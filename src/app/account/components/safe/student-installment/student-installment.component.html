@@ -7,17 +7,17 @@
       </div>
       <div class="modal-body">
         <ul class="w3-ul" >
-          <li *ngFor="let item of installments index as i" class="row" > 
+          <li *ngFor="let item of installments index as i" class="row" >
             <span>{{ i + 1 }}) {{ item.date }}</span>
-            <input type="text" style="border: none;outline: none;background: transparent;border-bottom: 2px dashed gray;width: 50px;padding-left: 10px;padding-right: 10px"  readonly > 
+            <input type="text" style="border: none;outline: none;background: transparent;border-bottom: 2px dashed gray;width: 50px;padding-left: 10px;padding-right: 10px"  readonly >
             <span class="w3-text-red">{{ item.value | currency }} جنيه</span>
           </li>
           <br>
           <br>
-          <li class="row" >
+          <li class="row" *ngIf="total > 0" >
             <span>{{ "total" | trans }}</span>
-            <input type="text" style="border-bottom: 2px dashed gray;width: 100px;padding-left: 10px;padding-right: 10px"  readonly > 
-            <span class="w3-text-red">{{ getTotal() }} جنيه</span>
+            <input type="text" style="border-bottom: 2px dashed gray;width: 100px;padding-left: 10px;padding-right: 10px"  readonly >
+            <span class="w3-text-red">{{ total }} جنيه</span>
           </li>
 
         </ul>
