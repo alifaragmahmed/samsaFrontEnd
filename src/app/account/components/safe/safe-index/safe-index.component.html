@@ -1,0 +1,212 @@
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="w3-white material-shadow safe-box">
+      <div class="safe-box-header w3-xlarge">
+        {{ "get money from safe" | trans }}
+      </div>
+      <br>
+      <div class="border-bottom-dashed" ></div>
+      <br>
+
+      <div class="safe-box-body row" >
+
+        <div class="col-lg-3 col-md-3 col-sm-12" >
+          <img [src]="safeObject.image" class="w3-block w3-round border-gray" >
+          <br>
+          <div class="custom-panel w3-display-container w3-round" style="padding: 5px" >
+            <div class="alert alert-danger w3-block btn-margin-bottom text-center" [innerHTML]="safeObject.notes" >
+
+            </div>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" >{{ "student payments" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" >{{ "student services" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentInstallment').style.display='block'"  >{{ "student installments" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" >{{ "installments" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" >{{ "write note" | trans }}</button>
+          </div>
+
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-12" >
+
+          <div class="custom-panel w3-display-container w3-round">
+            <div class="custom-panel-title" >{{ "search" | trans }}</div>
+
+            <div class="custom-panel-body w3-display-container"  >
+              <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " (keyup)="searchInputEvent()" [(ngModel)]="searchKey" >
+
+              <button
+              (click)="loadStudentAccountInfo(studentSearchId)"
+              class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge"  >{{ "search" | trans }}</button>
+
+              <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:30%;z-index:10;" >
+                <span class="fa fa-spin fa-spinner w3-text-indigo" ></span>
+              </div>
+
+              <div class="w3-display-topright w3-white material-shadow" *ngIf="studentSearchDialogShow" style="top: 47px;right:11px;z-index:10;width: 60%" >
+                <div class="w3-display-conitainer">
+                  <span class="w3-display-topright w3-button fa fa-close" (click)="studentSearchDialogShow=false" ></span>
+                  <br>
+                  <ul class="w3-ul" >
+                    <li *ngFor="let item of students" style="cursor: pointer;" class="w3-hover-light-gray w3-block text-right"  >
+                      <div class="media" (click)="selectStudent(item)" >
+                        <div class="media-left">
+                          <a href="#">
+                            <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
+                          </a>
+                        </div>
+                        <div class="media-body">
+                          <h4 class="media-heading" [innerHTML]="item.name" ></h4>
+                          <span [innerHTML]="item.code" class="w3-large" ></span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="custom-panel w3-display-container w3-round">
+            <div class="custom-panel-title" >{{ "student info" | trans }}</div>
+
+            <div class="custom-panel-body"  >
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <table class="table" >
+                    <tr>
+                      <th>{{ "student name" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.name" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "student code" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.code" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "national id" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.national_id" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "gpa" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.gpa" >
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <table class="table" >
+                    <tr>
+                      <th>{{ "level" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.level" [(ngModel)]="safeObject.level.name" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "department" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.division" [(ngModel)]="safeObject.division.name" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "case constraint" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.case_constraint" [(ngModel)]="safeObject.case_constraint.name" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "constraint status" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.constraint_status" [(ngModel)]="safeObject.constraint_status.name" >
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="custom-panel w3-display-container w3-round">
+            <div class="custom-panel-title" >{{ "payment info" | trans }}</div>
+
+            <div class="custom-panel-body"  >
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <table class="table" >
+                    <tr>
+                      <th>{{ "date" | trans }}</th>
+                      <td>
+                        <input type="date" class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.date" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "required value" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paid_value" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "value" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paid_value" >
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <table class="table" >
+                    <tr>
+                      <th>{{ "old balance" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.old_balance" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "current balance" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly  [(ngModel)]="safeObject.current_balance" >
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>{{ "paid value" | trans }}</th>
+                      <td>
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paids" >
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="custom-panel w3-display-container w3-round">
+            <div class="custom-panel-body"  >
+              <button class="btn btn-default small-shadow w3-margin-left" >{{ "save & print" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left" >{{ "services" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left" >{{ "exit" | trans }}</button>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- student installments modal -->
+<app-student-installment [installments]="safeObject.installments? safeObject.installments : []" [showStudentInstallment]="showStudentInstallment" ></app-student-installment>

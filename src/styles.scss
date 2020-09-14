@@ -1,0 +1,324 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import './assets/styles/variables';
+@import "../node_modules/compass-mixins/lib/compass";
+@import "../node_modules/compass-mixins/lib/animate";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/mdi/scss/materialdesignicons";
+@import "../node_modules/font-awesome/scss/font-awesome";
+@import "./assets/styles/fonts";
+@import "./assets/styles/functions";
+@import "./assets/styles/mixins/background";
+@import "./assets/styles/mixins/animation";
+@import "./assets/styles/mixins/badges";
+@import "./assets/styles/mixins/breadcrumbs";
+@import "./assets/styles/mixins/pagination";
+@import "./assets/styles/mixins/buttons";
+@import "./assets/styles/mixins/misc";
+@import "./assets/styles/mixins/color-functions";
+@import "./assets/styles/mixins/cards";
+@import "./assets/styles/mixins/tooltips";
+@import "./assets/styles/mixins/popovers";
+@import "./assets/styles/mixins/blockqoute";
+@import "./assets/styles/accordions";
+@import "./assets/styles/breadcrumbs";
+@import "./assets/styles/forms";
+@import "./assets/styles/icons";
+@import "./assets/styles/tables";
+@import "./assets/styles/buttons";
+@import "./assets/styles/badges";
+@import "./assets/styles/cards";
+@import "./assets/styles/typography";
+@import "./assets/styles/preview";
+@import "./assets/styles/lists";
+@import "./assets/styles/bootstrap-progress";
+@import "./assets/styles/bootstrap-alerts";
+@import "./assets/styles/tabs";
+@import "./assets/styles/dropdowns";
+@import "./assets/styles/pagination";
+@import "./assets/styles/popovers";
+@import "./assets/styles/modals";
+@import "./assets/styles/nav";
+@import "./assets/styles/reset";
+@import "./assets/styles/rating";
+@import "./assets/styles/layouts";
+@import "./assets/styles/tooltips";
+@import "./assets/styles/responsive";
+@import "./assets/styles/misc";
+@import "./assets/styles/utilities";
+@import "./assets/styles/demo";
+
+/* You can add global styles to this file, and also import other style files */
+.custom-error{
+  color: #af3e3e;
+  background-color: rgba(230, 82, 81, 0.2);
+  border-color: #d44b4b;
+  display: block;
+  margin-top: 0px;
+  border-radius: 0px
+}
+/*------------------------------------
+  Checkboxes
+------------------------------------*/
+.u-check {
+  position: relative;
+  cursor: pointer;
+  margin: 12px 60px;
+}
+.card {
+  margin: 0 !important;
+  /* top: 30px; */
+}
+
+.u-check-icon-font {
+  display: inline-block;
+  font-size: 0;
+  padding-left: 1px;
+  padding-right: 1px; }
+
+.u-check-icon-font i {
+  font-size: 22px;
+  color: #ccc; }
+
+.u-check-icon-font i::before {
+  content: attr(data-uncheck-icon); }
+
+.u-check-icon-checkbox, .u-check-icon-radio {
+  display: inline-block; }
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-font i,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-font i,
+.u-check input[type="radio"]:checked + .u-check-icon-font i,
+.u-check input[type="radio"]:checked + * .u-check-icon-font i {
+  color: #e62154; }
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-font i::before,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-font i::before,
+.u-check input[type="radio"]:checked + .u-check-icon-font i::before,
+.u-check input[type="radio"]:checked + * .u-check-icon-font i::before {
+  content: attr(data-check-icon); }
+
+.g-hide-check {
+  display: block !important; }
+
+.g-checked > * .g-hide-check,
+input[type="checkbox"]:checked + .g-hide-check,
+input[type="radio"]:checked + .g-hide-check,
+input[type="checkbox"]:checked + * .g-hide-check,
+input[type="radio"]:checked + * .g-hide-check {
+  display: none !important; }
+
+.g-show-check {
+  display: none !important; }
+
+.g-checked > * .g-show-check,
+input[type="checkbox"]:checked + .g-show-check,
+input[type="radio"]:checked + .g-show-check,
+input[type="checkbox"]:checked + * .g-show-check,
+input[type="radio"]:checked + * .g-show-check {
+  display: block !important; }
+.g-hidden-xs-up {
+  display: none !important;
+}
+
+element.style {
+}
+.align-items-center {
+  -ms-flex-align: center!important;
+  align-items: center!important;
+}
+.justify-content-between {
+  -ms-flex-pack: justify!important;
+  justify-content: space-between!important;
+}
+.d-flex {
+  display: -ms-flexbox!important;
+  display: flex!important;
+}
+/*------------------------------------
+  Checkboxes v7
+------------------------------------*/
+.u-check-icon-checkbox-v8, .u-check-icon-radio-v8 {
+  cursor: pointer;
+  display: block;
+  width: 43px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 9px;
+  color: #ddd;
+  border: solid 1px #ddd;
+  border-radius: 12px; }
+
+.u-check-icon-checkbox-v8 i::before, .u-check-icon-checkbox-v8 i::after, .u-check-icon-radio-v8 i::before, .u-check-icon-radio-v8 i::after {
+  content: "";
+  display: block;
+  position: absolute; }
+
+.u-check-icon-checkbox-v8 i::before, .u-check-icon-radio-v8 i::before {
+  content: attr(data-uncheck-icon);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  line-height: 18px;
+  text-transform: uppercase;
+  text-align: right;
+  padding: 2px 7px; }
+
+.u-check-icon-checkbox-v8 i::after, .u-check-icon-radio-v8 i::after {
+  top: 50%;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  background-color: #ddd;
+  border-radius: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition-property: left;
+  transition-duration: .1s;
+  transition-timing-function: ease-in; }
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-checkbox-v8,
+.u-check input[type="checkbox"]:checked + .u-check-icon-radio-v8,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-checkbox-v8,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-radio-v8,
+.u-check input[type="radio"]:checked + .u-check-icon-checkbox-v8,
+.u-check input[type="radio"]:checked + .u-check-icon-radio-v8,
+.u-check input[type="radio"]:checked + * .u-check-icon-checkbox-v8,
+.u-check input[type="radio"]:checked + * .u-check-icon-radio-v8 {
+  color: #e62154;
+  border-color: #e62154; }
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-checkbox-v8 i:before,
+.u-check input[type="checkbox"]:checked + .u-check-icon-radio-v8 i:before,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-checkbox-v8 i:before,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-radio-v8 i:before,
+.u-check input[type="radio"]:checked + .u-check-icon-checkbox-v8 i:before,
+.u-check input[type="radio"]:checked + .u-check-icon-radio-v8 i:before,
+.u-check input[type="radio"]:checked + * .u-check-icon-checkbox-v8 i:before,
+.u-check input[type="radio"]:checked + * .u-check-icon-radio-v8 i:before {
+  content: attr(data-check-icon);
+  text-align: left; }
+
+.u-check input[type="checkbox"]:checked + .u-check-icon-checkbox-v8 i::after,
+.u-check input[type="checkbox"]:checked + .u-check-icon-radio-v8 i::after,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-checkbox-v8 i::after,
+.u-check input[type="checkbox"]:checked + * .u-check-icon-radio-v8 i::after,
+.u-check input[type="radio"]:checked + .u-check-icon-checkbox-v8 i::after,
+.u-check input[type="radio"]:checked + .u-check-icon-radio-v8 i::after,
+.u-check input[type="radio"]:checked + * .u-check-icon-checkbox-v8 i::after,
+.u-check input[type="radio"]:checked + * .u-check-icon-radio-v8 i::after {
+  left: calc(100% - 19px);
+  background-color: #e62154; }
+
+/* P */
+[class*="u-checkbox-v1"] {
+  display: none; }
+
+[class*="u-checkbox-v1"] + label {
+  cursor: pointer; }
+
+.u-checkbox-v1--checked-color-primary:checked + label {
+  color: #e62154 !important; }
+
+.u-checkbox-v1--checked-brd-primary:checked + label {
+  border-color: #e62154 !important; }
+image-cropper {
+  max-height: 33vh;
+}
+.filter select.form-control{width: inherit !important;}
+.upload-img-spinner i{    position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0;
+  top: 25%;
+  left: 0;
+  font-size: 1em;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 8px;
+  text-align: center;
+  width: 80%;}
+.modal .modal-dialog {margin-top: calc(0px + 0px) !important;}
+.loader-main-parent{background: #fff; text-align: center; padding: 25vh 0; border: 1px solid #ccc;}
+.loader-main-parent h4{margin-top: 12px;letter-spacing: 4px;font-size: 22px;color: #616161;position: relative;width: 100%;}
+.single-match img{
+  width: 60px;
+  height: 60px;
+}
+.single-match span{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.card{
+  margin: 0px 80px 45px 9px;
+  top: 30px;
+}
+.card-header{
+  width: 272px;
+  margin-left: -13px;
+  margin-bottom: 15px;
+}
+.single-match{
+  text-align: -webkit-center;
+}
+
+.form-popup {
+  /* background-image: url('/assets/images/1r.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left; */
+
+  /* background-color: #333240; */
+  display: none;
+  position: fixed;
+  /* bottom: 0;
+  right: 15px; */
+  border: 3px solid ;
+  z-index: 9;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 435px !important;
+  height: 215px;
+  background-color:#e7efef;
+}
+.form-popup textarea{
+  margin-left: 10px;
+}
+
+.single-match{
+  text-align: -webkit-center !important;
+  display: -webkit-inline-box;
+}
+
+#dropdownMenuButton2{
+  margin: 7px 0 5px -12px;
+}
+.list-top{
+  margin-top: -30px !important;
+
+}
+#disapprove{
+  margin-top: 20px !important;
+  float: right;
+  margin-right: -15px;
+  margin-left: -2px;
+
+  font-size: 0.75rem !important;
+}
+
+#approve{
+  margin-top: -30px !important;
+  float: left;
+  font-size: 0.75rem !important;
+  margin-left: -2px !important;
+  margin-top: 20px !important;
+
+}
+.edited{margin: 6px}
+
+

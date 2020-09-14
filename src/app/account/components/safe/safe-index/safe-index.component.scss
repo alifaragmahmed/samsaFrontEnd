@@ -1,0 +1,51 @@
+.safe-box {
+  padding: 10px
+}
+
+.border-bottom-dashed {
+  border-bottom: 2px dashed gray;
+}
+
+.border-dashed {
+  border: 2px dashed lightgray;
+}
+
+.btn-margin-bottom {
+  margin-bottom: 6px;
+}
+
+.custom-panel {
+  border: 2px dashed lightgray;
+  margin-bottom: 15px;
+}
+
+
+.custom-panel-title {
+  position: absolute;
+  right: 10px;
+  top: -13px;
+  width: auto;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.custom-panel-body {
+  padding: 10px;
+}
+
+.small-shadow {
+  box-shadow: 0 1px 1px 0px rgba(0,0,0,0.3)!important;
+}
+
+.search-input {
+  min-width: 70%;
+}
+
+.border-gray {
+  border: 1px solid gray!important;
+}
+
+.custom-input {
+  min-width: 120px
+}

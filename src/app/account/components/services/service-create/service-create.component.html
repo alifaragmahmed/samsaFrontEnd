@@ -1,0 +1,44 @@
+
+      <tr>
+        <td></td>
+        <td>
+          <input type="text" class="form-control input-sm" [(ngModel)]="item.name" required  >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.value" required  >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.except_level_id" required  >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.division_id" required  >
+        </td>
+        <td>
+          <input type="checkbox" class="" [(ngModel)]="item.copy"    >
+        </td>
+        <td>
+          <input type="checkbox" class="" [(ngModel)]="item.repeat"    >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.additional_value"    >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.installment_percent"    >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.from_installment_id"    >
+        </td>
+        <td>
+          <input type="number" class="form-control input-sm" [(ngModel)]="item.store_id"    >
+        </td>
+        <td>
+          <select class="form-control input-sm" [(ngModel)]="item.type" required >
+            <option>-- {{ "type" | trans }} --</option>
+            <option value="wz" >{{ "wz" | trans }}</option>
+            <option value="in" >{{ "in" | trans }}</option>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-primary fa fa-send-o" (click)="addService()" ></button>
+        </td>
+      </tr>
