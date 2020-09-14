@@ -9,11 +9,15 @@ export class StudentInstallmentComponent implements OnInit {
 
   public total = 0;
 
-  @Input() installments: any[];
+  @Input() set installments(value: any[]) {
+    this.installments = value;
+    this.calculateTotal();
+  }
+
   @Input() showStudentInstallment: boolean;
   constructor() { }
 
-  getTotal() {
+  calculateTotal() {
     this.total = 0;
     return this.installments.forEach(element => {
       this.total += element.value;
