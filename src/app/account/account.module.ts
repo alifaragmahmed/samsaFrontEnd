@@ -8,6 +8,7 @@ import { SafeIndexComponent } from './components/safe/safe-index/safe-index.comp
 import { InstallmentComponent } from './components/safe/installment/installment.component';
 import { StudentInstallmentComponent } from './components/safe/student-installment/student-installment.component';
 import { StudentPaymentComponent } from './components/safe/student-payment/student-payment.component';
+import { StudentServiceComponent } from './components/safe/student-service/student-service.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StudentPaymentComponent } from './components/safe/student-payment/stude
     SafeIndexComponent,
     InstallmentComponent,
     StudentInstallmentComponent,
-    StudentPaymentComponent
+    StudentPaymentComponent,
+    StudentServiceComponent
   ],
   imports: [
     SharedModule,

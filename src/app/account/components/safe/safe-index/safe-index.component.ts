@@ -18,9 +18,12 @@ export class SafeIndexComponent implements OnInit {
   public isWait = false;
   public timeoutId;
   public students: any = [];
+  public updateStudent: any;
 
   constructor(private studentAcountService: StudentAccountService) {
     this.initSafeObject();
+    //
+    this.updateStudent = this.updateStudentFunc;
   }
 
   initSafeObject() {
@@ -65,6 +68,10 @@ export class SafeIndexComponent implements OnInit {
       this.safeObject = r;
       console.log(this.safeObject);
     });
+  }
+
+  updateStudentFunc() {
+    this.loadStudentAccountInfo(this.studentSearchId);
   }
 
   ngOnInit() {

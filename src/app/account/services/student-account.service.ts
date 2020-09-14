@@ -27,4 +27,11 @@ export class StudentAccountService {
     return this.http.get('account/get_student_account?api_token=' + Auth.getApiToken()+"&student_id="+studentId);
   }
 
+  /**
+   * update student installments
+   *
+   */
+  public updateStudentInstallments(data: any) {
+    return this.http.post('account/installment/update?api_token=' + Auth.getApiToken(), data);
+  }
 }

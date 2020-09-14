@@ -19,7 +19,7 @@
             </div>
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentPayments').style.display='block'" >{{ "student payments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" >{{ "student services" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentServices').style.display='block'"  >{{ "student services" | trans }}</button>
 
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentInstallment').style.display='block'"  >{{ "student installments" | trans }}</button>
 
@@ -213,5 +213,12 @@
 
 <!-- student payments modal -->
 <app-student-payment [payments]="safeObject.payments? safeObject.payments : []" ></app-student-payment>
+
+<!-- student services modal -->
+<app-student-service [services]="safeObject.services? safeObject.services : []"  ></app-student-service>
+
+<!-- student services modal -->
+<app-student-installment [student]="safeObject" [updateStudent]="updateStudent" [studentInstallments]="safeObject.installments? safeObject.installments : []" ></app-student-installment>
+
 
 
