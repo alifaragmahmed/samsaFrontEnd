@@ -1,30 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-student-installment',
   templateUrl: './student-installment.component.html',
   styleUrls: ['./student-installment.component.scss']
 })
-export class StudentInstallmentComponent implements OnInit {
+export class StudentInstallmentComponent implements OnInit, OnChanges {
 
   public total = 0;
 
-  @Input() set installments(value: any[]) {
-    this.installments = value;
-    this.calculateTotal();
-  }
+  @Input() installments: any[];
 
   @Input() showStudentInstallment: boolean;
   constructor() { }
 
   calculateTotal() {
     this.total = 0;
-    return this.installments.forEach(element => {
+    this.installments.forEach(element => {
       this.total += element.value;
     });
   }
 
   ngOnInit() {
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.calculateTotal();
+  }
+
 
 }
