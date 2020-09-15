@@ -25,7 +25,9 @@ export class CreateComponent implements OnInit, OnDestroy {
     private countryService: CountryService,
     private router: Router,
     private toastr: ToastrService
-    ) { }
+    ) {
+      
+     }
 
   ngOnInit() {
     setTimeout(() => {
@@ -56,11 +58,12 @@ export class CreateComponent implements OnInit, OnDestroy {
       }else{
         this.errorMessage = '';
         this.isSubmitClick = true;
-        this.router.navigate(['/settings/country']).then(() => {
-          this.toastr.success('تم انشاء البيانات بنجاح', '');
-        }).catch((e)=>{
-            this.errorMessage = e.error.message;
-        })
+        this.nonReload();
+        // this.router.navigate(['/settings/country']).then(() => {
+        //   this.toastr.success('تم انشاء البيانات بنجاح', '');
+        // }).catch((e)=>{
+        //     this.errorMessage = e.error.message;
+        // })
       }
       
       (e) => {
@@ -80,5 +83,24 @@ export class CreateComponent implements OnInit, OnDestroy {
   get name() {
     return this.callForm.get('name');
   }
-  
+
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
+  nonReload(){
+    setTimeout(()=>{
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+      
+      this.mySubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          // Trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+        }
+      });
+    },5000)
+  }
 }
