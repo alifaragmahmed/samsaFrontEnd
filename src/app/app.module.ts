@@ -33,7 +33,8 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
       closeButton: true,
       enableHtml: true,
     }),
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   providers: [
     httpInterceptorProviders,

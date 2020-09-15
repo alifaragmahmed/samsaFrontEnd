@@ -1,3 +1,132 @@
-<p>
-  list works!
-</p>
+<!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Foo</td>
+      <td>Bar</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Someone</td>
+      <td>Youknow</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Iamout</td>
+      <td>Ofinspiration</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Yoda</td>
+      <td>Skywalker</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Patrick</td>
+      <td>Dupont</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Barack</td>
+      <td>Obama</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>François</td>
+      <td>Holland</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Michel</td>
+      <td>Popo</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Chuck</td>
+      <td>Norris</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Simon</td>
+      <td>Robin</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Louis</td>
+      <td>Lin</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Zelda</td>
+      <td>Link</td>
+    </tr>
+  </tbody>
+</table>
+
+ -->
+<!-- 
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+<app-create-city></app-create-city>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Data Table With Full Features</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>الاسم</th>
+        <th>المحافظة</th>
+        <th>الدولة</th>
+        <th>ملاحظات</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of rows index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.government.name }}</td>
+        <td>{{ row.government.country.name }}</td>
+        <td>{{ row.notes }}</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>الاسم</th>
+        <th>المحافظة</th>
+        <th>الدولة</th>
+        <th>ملاحظات</th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

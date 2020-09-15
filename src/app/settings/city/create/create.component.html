@@ -1,3 +1,45 @@
-<p>
-  City create works!
-</p>
+
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">اضافة مدينة</h3>
+  </div>
+  <div class="box-body">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
+      اضافة مدينة
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Default Modal</h4>
+      </div>
+      <form class="forms-sample create" [formGroup]="callForm" (ngSubmit)="create()" autocomplete="off">
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label for="name_en"><span>الاسم</span><span
+                                            style="color: red">*</span></label>
+                                    <input formControlName="name" type="text" id="name" class="form-control" maxlength="50">
+                                </div>
+                                
+                            </div>
+                            
+                            <button [disabled]="GameForm.invalid || isSubmitClick" type="submit"
+                                class="btn btn-primary btn-block">
+                                <span i18n="Create Admin User">Create Game </span>
+                                <img *ngIf="isSubmitClick" src="assets/img/preloader-white.svg" style="height: 16px;">
+                            </button>
+                        </form>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
