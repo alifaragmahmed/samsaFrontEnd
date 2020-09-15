@@ -1,0 +1,51 @@
+
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">اضافة دولة جديدة</h3>
+  </div>
+  <div class="box-body">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
+      اضافة دولة جديدة
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">اضافة دولة جديدة</h4>
+      </div>
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <div [hidden]="!errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" class="forms-sample create" [formGroup]="callForm" (ngSubmit)="create()" autocomplete="off">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">اسم الدولة<span
+                style="color: red">*</span></label>
+              <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم الدولة">
+             <div *ngIf="(name.touched || name.dirty) && name.invalid">
+                <div class="alert alert-danger" *ngIf="name.errors?.required">
+                    <p>من فضلك ادخل اسم الدولة</p>
+                </div>
+               </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button [disabled]="callForm.invalid || isSubmitClick" type="submit" class="btn btn-primary" >حفظ</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

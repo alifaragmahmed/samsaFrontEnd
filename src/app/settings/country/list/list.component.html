@@ -1,0 +1,33 @@
+<app-create-country></app-create-country>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Data Table With Full Features</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>الاسم</th>
+        <th>ملاحظات</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of rows index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.notes }}</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>ID</th>
+        <th>الاسم</th>
+        <th>ملاحظات</th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.box-body -->
+</div>

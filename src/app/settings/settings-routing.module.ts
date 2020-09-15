@@ -6,6 +6,11 @@ const routes: Routes = [
     path: 'city',
     loadChildren: './city/city.module#CityModule'
   },
+
+  {
+    path: 'country',
+    loadChildren: './country/country.module#CountryModule'
+  },
 ];
 
 @NgModule({

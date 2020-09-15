@@ -6,10 +6,15 @@ export class GeneralService {
   constructor(private http: HttpClient) {
   }
 
-  public getAll() {
-    return this.http.get('getAll/games');
+  public getAllCountries() {
+    return this.http.get('countries?api_token=123456789');
   }
-
+  public getAllCities() {
+    return this.http.get('cities?api_token=123456789');
+  }
+  public getAllGovernments() {
+    return this.http.get('governments?api_token=123456789');
+  }
   getAllUsers(query: any) {
     const params = new HttpParams()
       .set('page', query.page)
