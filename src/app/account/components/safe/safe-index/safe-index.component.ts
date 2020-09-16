@@ -17,13 +17,11 @@ export class SafeIndexComponent implements OnInit {
   public showStudentInstallment = false;
   public isWait = false;
   public timeoutId;
-  public students: any = [];
-  public updateStudent: any;
+  public students: any = []; 
 
   constructor(private studentAcountService: StudentAccountService) {
     this.initSafeObject();
-    //
-    this.updateStudent = this.updateStudentFunc;
+    // 
   }
 
   initSafeObject() {
@@ -35,6 +33,9 @@ export class SafeIndexComponent implements OnInit {
   }
 
   searchInputEvent() {
+    if (!this.searchKey)
+      return;
+
     this.students = [];
     this.studentSearchDialogLoader = true;
     this.isWait = true;
@@ -70,7 +71,7 @@ export class SafeIndexComponent implements OnInit {
     });
   }
 
-  updateStudentFunc() {
+  updateStudent() { 
     this.loadStudentAccountInfo(this.studentSearchId);
   }
 

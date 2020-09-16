@@ -1,4 +1,4 @@
-<div class="modal " id="studentServices" tabindex="-1" role="dialog"   >
+<div class="modal " id="installmentSection" tabindex="-1" role="dialog"   >
   <div class="modal-dialog modal-" role="document">
     <div class="modal-content w3-animate-top">
       <div class="modal-header">
@@ -12,19 +12,19 @@
               {{ "old balance" | trans }}
             </td>
             <td>
-              <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="student.old_balance" >
+              <input style="width: 60px" class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="student.old_balance" >
             </td>
             <td>
               {{ "current balance" | trans }}
             </td>
             <td>
-              <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="student.current_balance" >
+              <input style="width: 60px" class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="student.current_balance" >
             </td>
             <td>
               {{ "paids" | trans }}
             </td>
             <td>
-              <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="student.paids" >
+              <input style="width: 60px" class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="student.paids" >
             </td>
           </tr>
         </table>
@@ -38,17 +38,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of studentInstallments index as i" *ngIf="item.deleted"   >
-              <td >{{ i + 1 }}</td>
-              <td>
-                <input class="form-control input-sm" [readOnly]="item.paid == 1" style="width: 60px" [(ngModel)]="item.value" >
-              </td>
-              <td>
-                <input class="form-control input-sm" [readOnly]="item.paid == 1" style="width: 60px" [(ngModel)]="item.date" >
-              </td>
-              <td>
-                <button *ngIf="item.paid == 0" (click)="removeRow(item)" class="btn btn-default fa fa-trash w3-text-red" ></button>
-              </td>
+            <tr *ngFor="let item of studentInstallments index as i"    >
+              <ng-container *ngIf='!item.deleted' >
+                  <td >{{ i + 1 }}</td>
+                  <td>
+                    <input class="form-control input-sm" [readOnly]="item.paid == 1" style="width: 60px" [(ngModel)]="item.value" >
+                  </td>
+                  <td>
+                    <input type="date" class="form-control input-sm" [readOnly]="item.paid == 1" style="width: 150px" [(ngModel)]="item.date" >
+                  </td>
+                  <td>
+                    <button *ngIf="item.paid == 0" (click)="removeRow(item)" class="btn btn-default fa fa-trash w3-text-red" ></button>
+                  </td>
+              </ng-container> 
             </tr>
           </tbody>
         </table>
@@ -58,12 +60,13 @@
             <td>{{ "total" | trans }}</td>
             <td></td>
             <td></td>
-            <td>{{ total | currency: ' جنيه' }}</td>
+            <td>{{ total | currency: ' جنيه ' }}</td>
           </tr>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="document.getElementById('studentServices').style.display='none'" >{{ "close" | trans }}</button>
+        <button type="button" class="btn btn-primary" (click)="performUpdate()" >{{ "save" | trans }}</button>
+        <button type="button" class="btn btn-default" onclick="document.getElementById('installmentSection').style.display='none'" >{{ "close" | trans }}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

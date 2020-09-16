@@ -32,6 +32,6 @@ export class StudentAccountService {
    *
    */
   public updateStudentInstallments(data: any) {
-    return this.http.post('account/installment/update?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('account/installment/update', data);
   }
 }
