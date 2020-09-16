@@ -11,6 +11,8 @@
         <th>ID</th>
         <th>الاسم</th>
         <th>ملاحظات</th>
+        <th>الاجراءات</th>
+
       </tr>
       </thead>
       <tbody>
@@ -18,6 +20,15 @@
         <td>{{ i + 1 }}</td>
         <td>{{ row.name }}</td>
         <td>{{ row.notes }}</td>
+        <td>
+          <button class="btn btn-info" type="button" routerLink='/settings/country/edit/{{row.id}}'>
+            <i class="fa-edit"></i>
+          </button>
+          &nbsp;
+          <button class="btn btn-danger" type="button" (click)="delete(row.id)">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </td>
       </tr>
       </tbody>
       <tfoot>
@@ -25,6 +36,8 @@
         <th>ID</th>
         <th>الاسم</th>
         <th>ملاحظات</th>
+        <th>الاجراءات</th>
+
       </tr>
       </tfoot>
     </table>

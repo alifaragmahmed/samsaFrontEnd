@@ -5,9 +5,10 @@ import { CountryRoutingModule } from './country-routing.module';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { DataTablesModule } from 'angular-datatables';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [CreateComponent, ListComponent],
+  declarations: [CreateComponent, ListComponent, EditComponent],
   imports: [
     CommonModule,
     SharedModule,

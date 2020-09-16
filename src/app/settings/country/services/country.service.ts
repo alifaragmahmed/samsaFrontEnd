@@ -17,4 +17,9 @@ export class CountryService {
     public createCountry(country:IReqCreateCountry){
         return this.http.post(`countries?api_token=123456789`, country);
     }
+    public deleteCountryById(countryId: string): Observable<any>{
+        return this.http.delete(`countries/`+ countryId +`?api_token=123456789`);
+
+    }
+
 }
