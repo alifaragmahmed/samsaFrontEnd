@@ -20,6 +20,10 @@ const routes: Routes = [
     component: SettingsComponent,
     children: [
       {
+        path: 'city',
+        loadChildren: './city/city.module#CityModule'
+      },
+      {
         path: "country",
         loadChildren: './country/country.module#CountryModule'
       }
