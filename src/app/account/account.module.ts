@@ -9,6 +9,7 @@ import { InstallmentComponent } from './components/safe/installment/installment.
 import { StudentInstallmentComponent } from './components/safe/student-installment/student-installment.component';
 import { StudentPaymentComponent } from './components/safe/student-payment/student-payment.component';
 import { StudentServiceComponent } from './components/safe/student-service/student-service.component';
+import { AvailableServiceComponent } from './components/safe/available-service/available-service.component'; 
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { StudentServiceComponent } from './components/safe/student-service/stude
     InstallmentComponent,
     StudentInstallmentComponent,
     StudentPaymentComponent,
-    StudentServiceComponent
+    StudentServiceComponent,
+    AvailableServiceComponent 
   ],
   imports: [
     SharedModule,

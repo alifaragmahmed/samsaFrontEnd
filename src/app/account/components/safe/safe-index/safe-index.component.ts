@@ -1,5 +1,7 @@
 import { StudentAccountService } from './../../../services/student-account.service';
 import { Component, OnInit } from '@angular/core';
+import { Payment } from '../../../models/payment';
+import { Message } from '../../../../shared/message';
 
 @Component({
   selector: 'app-safe-index',
@@ -9,8 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class SafeIndexComponent implements OnInit {
 
   public safeObject: any = {};
+  public payment: Payment;
   public searchKey: string;
   public studentSearchId;
+  public availableServices: any;
 
   public studentSearchDialogShow = false;
   public studentSearchDialogLoader = false;
@@ -65,16 +69,42 @@ export class SafeIndexComponent implements OnInit {
   }
 
   loadStudentAccountInfo(id) {
+    if (!id)
+      return Message.error('search about student first');
     this.studentAcountService.getStudentAccount(id).subscribe((r) => {
       this.safeObject = r;
-      console.log(this.safeObject);
+    
+      if (!this.safeObject.image)
+        this.safeObject.image = '/assets/img/avatar.png';
+      this.loadAvailableServices();
     });
   }
 
   updateStudent() { 
-    this.loadStudentAccountInfo(this.studentSearchId);
+    if (this.studentSearchId)
+      this.loadStudentAccountInfo(this.studentSearchId);
   }
 
+  /**
+   * perform payment
+   */
+  performPay() {
+    this.payment = new Payment(this.safeObject.id, this.safeObject.paid_value, this.studentAcountService, ()=>{
+      this.updateStudent();
+    });
+    return this.payment.pay();
+  } 
+
+  /**
+   *  load available services for student
+   */
+  loadAvailableServices() {
+    if(this.safeObject.id) {
+      this.studentAcountService.getAvailabeServices(this.safeObject.id).subscribe((r) => {
+        this.availableServices = r; 
+      });
+    }
+  }
   ngOnInit() {
   }
 

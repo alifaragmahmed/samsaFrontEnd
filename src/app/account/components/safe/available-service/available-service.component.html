@@ -1,38 +1,46 @@
-<div class="modal " id="studentPayments" tabindex="-1" role="dialog"   >
+<div class="modal " id="studentAvailableServices" tabindex="-1" role="dialog"   >
   <div class="modal-dialog modal-" role="document">
     <div class="modal-content w3-animate-top">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title text-center">{{ "payments" | trans }}</h4>
+        <h4 class="modal-title text-center">{{ "student available services" | trans }}</h4>
       </div>
       <div class="modal-body">
         <table class="table table-bordered" >
           <thead>
             <tr class="w3-dark-gray" >
               <th>{{ "#" | trans }}</th>
-              <th>{{ "date" | trans }}</th>
-              <th>{{ "expenses_type" | trans }}</th>
+              <th>{{ "name" | trans }}</th>
+              <th>{{ "additional_value" | trans }}</th>
               <th>{{ "value" | trans }}</th>
+              <th>{{ "total" | trans }}</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of payments index as i" >
+            <tr *ngFor="let item of services index as i" >
               <td>{{ i + 1 }}</td>
-              <td>{{ item.date }}</td>
-              <td>{{ item.model_type | trans }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.additional_value | currency: ' EGP ' }}</td>
               <td>{{ item.value | currency: ' EGP ' }}</td>
+              <td>{{ (item.value + item.additional_value) | currency: ' EGP ' }}</td>
+              <td>
+                <input type="checkbox" class="w3-check" >
+              </td>
             </tr>
             <tr>
               <td>{{ "total" | trans }}</td>
               <td></td>
               <td></td>
+              <td></td>
               <td>{{ total | currency: ' EGP ' }}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="document.getElementById('studentPayments').style.display='none'" >{{ "close" | trans }}</button>
+        <button type="button" class="btn btn-default" onclick="document.getElementById('studentAvailableServices').style.display='none'" >{{ "close" | trans }}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

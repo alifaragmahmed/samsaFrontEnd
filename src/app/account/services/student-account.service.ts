@@ -34,4 +34,20 @@ export class StudentAccountService {
   public updateStudentInstallments(data: any) {
     return this.http.post('account/installment/update', data);
   }
+  
+  /**
+   * update student installments
+   *
+   */
+  public studentPay(data: any) {
+    return this.http.post('account/pay', data);
+  }
+
+  /**
+   * get available services for student
+   *
+   */
+  public getAvailabeServices(studentId: number) { 
+    return this.http.get('account/get_available_services?api_token='+Auth.getApiToken()+'&student_id='+studentId);
+  }
 }

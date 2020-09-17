@@ -22,11 +22,11 @@
               <td>{{ item.additional_value | currency: ' جنيه' }}</td>
               <td>{{ item.valule | currency: ' جنيه' }}</td>
             </tr>
-            <tr>
+            <tr *ngIf="total > 0" >
               <td>{{ "total" | trans }}</td>
               <td></td>
               <td></td>
-              <td>{{ total | currency: ' جنيه' }}</td>
+              <td>{{ total | currency: ' EGP ' }}</td>
             </tr>
           </tbody>
         </table>

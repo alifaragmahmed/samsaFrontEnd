@@ -14,18 +14,22 @@
           <img [src]="safeObject.image" class="w3-block w3-round border-gray" >
           <br>
           <div class="custom-panel w3-display-container w3-round" style="padding: 5px" >
-            <div class="alert alert-danger w3-block btn-margin-bottom text-center" [innerHTML]="safeObject.notes" >
+
+            <div 
+            *ngIf="studentSearchId"
+            class="alert alert-danger w3-block btn-margin-bottom text-center" 
+            [innerHTML]="safeObject.notes" >
 
             </div>
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentPayments').style.display='block'" >{{ "student payments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"  onclick="document.getElementById('studentPayments').style.display='block'" >{{ "student payments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentServices').style.display='block'"  >{{ "student services" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('studentServices').style.display='block'"  >{{ "student services" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('studentInstallment').style.display='block'"  >{{ "student installments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('studentInstallment').style.display='block'"  >{{ "student installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  onclick="document.getElementById('installmentSection').style.display='block'"   >{{ "installments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('installmentSection').style.display='block'"   >{{ "installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" >{{ "write note" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"  >{{ "write note" | trans }}</button>
           </div>
 
         </div>
@@ -192,8 +196,8 @@
           </div>
           <div class="custom-panel w3-display-container w3-round">
             <div class="custom-panel-body"  >
-              <button class="btn btn-default small-shadow w3-margin-left" >{{ "save & print" | trans }}</button>
-              <button class="btn btn-default small-shadow w3-margin-left" >{{ "services" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"   (click)="performPay()" >{{ "save & print" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"   onclick="document.getElementById('studentAvailableServices').style.display='block'"  >{{ "services" | trans }}</button>
               <button class="btn btn-default small-shadow w3-margin-left" >{{ "exit" | trans }}</button>
             </div>
 
@@ -219,6 +223,9 @@
 
 <!-- student services modal -->
 <app-installment [student]="safeObject" [updateStudent]="updateStudent" [studentInstallments]="safeObject.installments? safeObject.installments : []" ></app-installment>
+
+<!-- student services modal -->
+<app-available-service [services]="availableServices" ></app-available-service>
 
 
 
