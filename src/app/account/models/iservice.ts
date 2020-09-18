@@ -5,7 +5,7 @@ export interface IService {
   division_id: number;
   copy: boolean;
   repeat: boolean;
-  store_id: boolean;
+  store_id: number;
   additional_value: number;
   installment_percent: number;
   from_installment_id: number;

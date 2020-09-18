@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
 
-* {
-  font-family: consolas;
+*, .font, h1, h2, h3, h4, h5, h5, .h6 {
+  font-family: 'Tajawal', sans-serif;
 }
 
 .material-shadow,
@@ -22,4 +23,8 @@
 
 .modal {
   overflow: auto!important;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  padding: 5px!important;
 }

@@ -1,44 +1,88 @@
-
-      <tr>
-        <td></td>
-        <td>
-          <input type="text" class="form-control input-sm" [(ngModel)]="item.name" required  >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.value" required  >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.except_level_id" required  >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.division_id" required  >
-        </td>
-        <td>
-          <input type="checkbox" class="" [(ngModel)]="item.copy"    >
-        </td>
-        <td>
-          <input type="checkbox" class="" [(ngModel)]="item.repeat"    >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.additional_value"    >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.installment_percent"    >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.from_installment_id"    >
-        </td>
-        <td>
-          <input type="number" class="form-control input-sm" [(ngModel)]="item.store_id"    >
-        </td>
-        <td>
-          <select class="form-control input-sm" [(ngModel)]="item.type" required >
-            <option>-- {{ "type" | trans }} --</option>
-            <option value="wz" >{{ "wz" | trans }}</option>
-            <option value="in" >{{ "in" | trans }}</option>
-          </select>
-        </td>
-        <td>
-          <button class="btn btn-primary fa fa-send-o" (click)="addService()" ></button>
-        </td>
-      </tr>
+<div class="modal" id="createModal"   role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="box box-primary modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" onclick="document.getElementById('createModal').style.display='none'"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">{{ "add service" | trans }}</h4>
+        </div>
+        <div class="modal-body"> 
+          <table class="table" >
+            <tr>
+              <th>{{ "name" | trans }} *</th>
+              <td>
+                  <input type="text" class="form-control input-sm" [(ngModel)]="item.name" required  >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "type" | trans }} *</th>
+              <td>
+                <select class="form-control input-sm" [(ngModel)]="item.type" required >
+                  <option>-- {{ "type" | trans }} --</option>
+                  <option value="wz" >{{ "wz" | trans }}</option>
+                  <option value="in" >{{ "in" | trans }}</option>
+                </select>
+              </td>
+            </tr> 
+            <tr>
+              <th>{{ "value" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.value" required  >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "except_level" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.except_level_id" required  >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "division" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.division_id" required  >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "copying" | trans }}</th>
+              <td>
+                <input type="checkbox" class="w3-check" [(ngModel)]="item.copy"    >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "repeat" | trans }}</th>
+              <td>
+                <input type="checkbox" class="w3-check" [(ngModel)]="item.repeat"    >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "additional_value" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.additional_value"    >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "installment_percent" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.installment_percent"    >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "from_installment" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.from_installment_id"    >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "store" | trans }}</th>
+              <td>
+                <input type="number" class="form-control input-sm" [(ngModel)]="item.store_id"    >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer text-right">
+          <button type="button" class="btn btn-default" onclick="document.getElementById('createModal').style.display='none'" >{{ "close" | trans }}</button>
+          <button class="btn btn-primary" (click)="addService()" >{{ "add" | trans }}</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal --> 

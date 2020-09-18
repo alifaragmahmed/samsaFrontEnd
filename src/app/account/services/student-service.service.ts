@@ -20,7 +20,7 @@ export class StudentServiceService {
    *
    */
   public get() {
-    return this.http.get(environment.apiUrl + '/account/services?api_token=' + Auth.getApiToken());
+    return this.http.get('account/services?api_token=' + Auth.getApiToken());
   }
 
   /**
@@ -29,7 +29,7 @@ export class StudentServiceService {
   public store(data: IService) {
     // remove old cache
     Cache.remove(StudentServiceService.STUDENT_SERVICE_PREFIX);
-    return this.http.post(environment.apiUrl + '/account/services/store' + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('account/services/store' + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
@@ -38,7 +38,7 @@ export class StudentServiceService {
   public update(data: IService, id) {
     // remove old cache
     Cache.remove(StudentServiceService.STUDENT_SERVICE_PREFIX);
-    return this.http.post(environment.apiUrl + '/account/services/update/' + id + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('account/services/update/' + id + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
@@ -47,7 +47,7 @@ export class StudentServiceService {
   public destroy(id) {
     // remove old cache
     Cache.remove(StudentServiceService.STUDENT_SERVICE_PREFIX);
-    return this.http.post(environment.apiUrl + '/account/services/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
+    return this.http.post('account/services/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
   }
 
 }

@@ -2,6 +2,7 @@ import { ServiceIndexComponent } from './../service-index/service-index.componen
 import { StudentServiceService } from './../../../services/student-service.service';
 import { IService } from './../../../models/iservice';
 import { Component, OnInit, Input } from '@angular/core';
+import { Message } from '../../../../shared/message';
 
 @Component({
   selector: 'app-service-create',
@@ -13,8 +14,15 @@ export class ServiceCreateComponent implements OnInit {
   public item: IService = null;
 
   @Input() parent: ServiceIndexComponent;
+  @Input() loadServices: any;
+  @Input() showCreateModal: any = false;
+  
 
   constructor(private studentService: StudentServiceService) {
+    this.initItem();
+  }
+
+  initItem() {
     this.item = {
       name : '',
       value : 0,
@@ -24,18 +32,41 @@ export class ServiceCreateComponent implements OnInit {
       division_id : null,
       copy: false,
       repeat: false,
-      store_id : null,
+      store_id : 0,
       from_installment_id : null,
       type : null
     };
+  }
+
+  validate() {
+    let valid = true;
+    if (
+      !this.item.name || 
+      !this.item.type ||  
+      this.item.store_id <= 0   
+    )
+      valid = false;
+    return valid;
   }
 
   ngOnInit() {
   }
 
   public addService() {
+    if (!this.validate())
+      return Message.error('please fill all data');
+
     this.studentService.store(this.item).subscribe((res) => {
-      this.parent.loadServices();
+      const r: any = res;
+      if (r.status == 1)
+        Message.success(r.message);
+      else
+        Message.error(r.message);
+
+      if (r.status == 1) {
+        this.initItem();
+        this.loadServices();
+      }
     });
   }
 }

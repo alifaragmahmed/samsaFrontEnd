@@ -2,16 +2,23 @@ import { SafeIndexComponent } from './components/safe/safe-index/safe-index.comp
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import { ServiceIndexComponent } from './components/services/service-index/service-index.component';
+import { AccountComponent } from './account.component';
 
 
 const routes: Routes = [
   {
     path: 'safe',
     component: SafeIndexComponent
-  },
+  }, 
   {
-    path: 'services',
-    component: ServiceIndexComponent
+    path: "setting",
+    component: AccountComponent,
+    children: [
+      {
+        path: 'services',
+        component: ServiceIndexComponent
+      }, 
+    ]
   },
   {
     path: '**',
