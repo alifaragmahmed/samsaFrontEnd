@@ -12,6 +12,9 @@ import { AuthComponent } from './core/auth.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { TranslationService } from './shared/services/translation.service';
+import { Cache } from './shared/cache';
+import { Translation } from './shared/translation';
 
 @NgModule({
   declarations: [
@@ -44,4 +47,23 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
   bootstrap: [AppComponent]
 })
 export class AppModule {
+ 
+
+  constructor(private translationService: TranslationService) {
+    this.init();
+  }
+
+  init() {
+    // load the translations words
+    this.loadTranslations();
+  }
+
+  /**
+   * load translations and update the cache
+   */
+  loadTranslations() {
+    this.translationService.get().subscribe((r) => { 
+      Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+    });
+  }
 }
