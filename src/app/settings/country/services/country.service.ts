@@ -14,6 +14,14 @@ export class CountryService {
         return this.http.get('countries?api_token=123456789', { params: params });
     }
 
+    public getItemById(id:string){
+        return this.http.get(`countries/${id}?api_token=123456789`);
+    }
+
+    public update(id:string, country:IReqCreateCountry): Observable<any> {
+        return this.http.put(`countries/${id}?api_token=123456789`, country);
+    }
+
     public createCountry(country:IReqCreateCountry){
         return this.http.post(`countries?api_token=123456789`, country);
     }

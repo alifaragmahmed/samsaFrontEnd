@@ -17,6 +17,8 @@ import {LoadMoreComponent} from './components/load-more/load-more.component';
 import {NgSelectModule} from '@ng-select/ng-select';
 import { ReplaceUnderscoreWithSpacePipe } from './pipes/replace-underscore-with-space.pipe';
 import { TransPipe } from './pipes/trans.pipe';
+import { DataTablesModule } from 'angular-datatables';
+
 @NgModule({
   declarations: [
     BreadcrumbComponent,
@@ -32,6 +34,7 @@ import { TransPipe } from './pipes/trans.pipe';
   ],
   imports: [
     CommonModule,
+    DataTablesModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,

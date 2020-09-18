@@ -3,7 +3,7 @@
 <div class="box box-default">
   <div class="box-body">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
-      اضافة دولة جديدة
+      اضافة محافظة جديدة
     </button>
   </div>
 </div>
@@ -14,7 +14,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">اضافة دولة جديدة</h4>
+        <h4 class="modal-title">اضافة محافظة جديدة</h4>
       </div>
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -25,16 +25,35 @@
         <form role="form" [hidden] class="forms-sample create" [formGroup]="callForm" (ngSubmit)="create()" autocomplete="off">
           <div class="box-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">اسم الدولة<span
+              <label for="exampleInputEmail1">اسم المحافظة<span
                 style="color: red">*</span></label>
               <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم الدولة">
              <div *ngIf="(name.touched || name.dirty) && name.invalid">
                 <div class="alert alert-danger" *ngIf="name.errors?.required">
-                    <p>من فضلك ادخل اسم الدولة</p>
+                    <p>من فضلك ادخل اسم المحافظة</p>
                 </div>
-               </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>الدولة
+                <span style="color: red">*</span>
+              </label>
+              <select class="form-control" formControlName="country_id">
+                <option value="" selected="selected"> -- اختر الدولة --</option>
+
+                <option value="{{row.id}}" *ngFor='let row of rows'>{{row.name}}</option>
+
+              </select>
+              <div *ngIf="(country_id.touched || country_id.dirty) && country_id.invalid">
+                <div class="alert alert-danger" *ngIf="name.errors?.required">
+                    <p>من فضلك ادخل اختر الدولة</p>
+                </div>
+              </div>
+
             </div>
           </div>
+       
+           
           <div class="box-footer">
             <button [disabled]="callForm.invalid || isSubmitClick" type="submit" class="btn btn-primary" >حفظ</button>
           </div>

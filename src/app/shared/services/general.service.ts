@@ -15,6 +15,9 @@ export class GeneralService {
   public getAllGovernments() {
     return this.http.get('governments?api_token=123456789');
   }
+  public getCountryGovernments(id: string) {
+    return this.http.get(`government/`+ id +`?api_token=123456789`);
+  }
   getAllUsers(query: any) {
     const params = new HttpParams()
       .set('page', query.page)

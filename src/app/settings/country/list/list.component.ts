@@ -3,6 +3,8 @@ import { GeneralService } from 'src/app/shared/services/general.service';
 import { Subject } from 'rxjs';
 import { CountryService } from '../services/country.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IReqCreateCountry } from '../model/IReqCreateCountry';
 
 @Component({
   selector: 'app-list',
@@ -10,11 +12,29 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  public callForm: FormGroup;
+  public errorMessage = '';
+  public nameError = '';
+  public governmentError = '';
+  public countryError = '';
+  public data: IReqCreateCountry = { name: '' };
+  public isSubmitClick = false;
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   public rows = [];
-  constructor(private generalService:GeneralService, private countryService:CountryService , private toastr: ToastrService
-    ) { }
+  constructor(
+    private generalService:GeneralService, 
+    private countryService:CountryService , 
+    private toastr: ToastrService
+    ) {
+      this.callForm = new FormGroup({
+        name: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ]),
+      });
+     }
 
   ngOnInit() {
     this.dtOptions = {
@@ -44,7 +64,6 @@ export class ListComponent implements OnInit {
     this.generalService.getAllCountries().subscribe(
       (res: any) => {
         console.log(res);
-        
         this.rows = res.data;
         this.dtTrigger.next();
       }
@@ -66,4 +85,42 @@ export class ListComponent implements OnInit {
        
       });
   }
+  create(){
+    this.nameError = '';
+    if (this.callForm.invalid) {
+      this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
+      return;
+    }
+    this.isSubmitClick = true;
+    this.data.name = this.callForm.value.name;
+    this.countryService.createCountry(this.data).subscribe((res:any)=>{
+      if(res.status == 0){
+        this.errorMessage = res.message.name;
+        this.isSubmitClick = false;
+        return;
+      }else{
+        this.errorMessage = '';
+        this.isSubmitClick = true;
+        this.toastr.success('تم انشاء البيانات بنجاح', '');
+        this.callHttp();
+      }
+      
+      (e) => {
+        this.isSubmitClick = false;
+        if (e.status == 400) {
+          this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
+          for (let i = 0; i < e.error.errors.length; i++) {
+            if (e.error.errors[i].input === 'name') {
+              this.nameError = e.error.errors[i].message;
+            }
+          }
+        }
+      };
+    })
+  }
+
+  get name() {
+    return this.callForm.get('name');
+  }
+
 }

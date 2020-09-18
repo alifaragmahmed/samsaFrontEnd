@@ -1,4 +1,18 @@
-<p>
-  edit works!
-</p>
-
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">تعديل الدولة</h3>
+  </div>
+  <form role="form" [hidden] class="forms-sample create" [formGroup]="callForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="box-body">
+      <div class="form-group">
+        <label for="exampleInputEmail1">اسم الدولة</label>
+        <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم الدولة">
+      </div>
+  </div>
+    <div class="box-footer">
+      <button type="submit" class="btn btn-primary">حفظ</button>
+      &nbsp;
+      <a routerLink='/settings/country' class="btn btn-info">الغاء</a>
+    </div>
+  </form>
+</div>

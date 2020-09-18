@@ -1,7 +1,9 @@
+
+
 <div class="box box-default">
   <div class="box-body">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
-      اضافة مدينة جديدة
+      اضافة محافظة جديدة
     </button>
   </div>
 </div>
@@ -12,7 +14,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">اضافة مدينة جديدة</h4>
+          <h4 class="modal-title">اضافة محافظة جديدة</h4>
 
         </div>
         <div class="box box-primary">
@@ -24,40 +26,27 @@
           <form role="form" class=" forms-sample create" [formGroup]="callForm" (ngSubmit)="create()" autocomplete="off">
             <div class="box-body">
               <div class="form-group">
-                <label for="exampleInputEmail1">اسم المدينة<span
+                <label for="exampleInputEmail1">اسم المحافظة<span
                   style="color: red">*</span></label>
                 <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم الدولة">
                <div *ngIf="(name.touched || name.dirty) && name.invalid">
                   <div class="alert alert-danger" *ngIf="name.errors?.required">
-                      <p>من فضلك ادخل اسم المدينة</p>
+                      <p>من فضلك ادخل اسم المحافظة</p>
                   </div>
                 </div>
               </div>
-
               <div class="form-group">
                 <label>الدولة
                   <span style="color: red">*</span>
                 </label>
-                <select class="form-control" formControlName="country_id" (click)="getGovernments(country_id)">
-                  <option  value="{{row.id}}" *ngFor='let row of countries'>{{row.name}}</option>
+                <select class="form-control" formControlName="country_id">
+                  <option value="" selected="selected"> -- اختر الدولة --</option>
+                  <option value="{{row.id}}" *ngFor='let row of countries'>{{row.name}}</option>
+  
                 </select>
                 <div *ngIf="(country_id.touched || country_id.dirty) && country_id.invalid">
                   <div class="alert alert-danger" *ngIf="name.errors?.required">
                       <p>من فضلك ادخل اختر الدولة</p>
-                  </div>
-                </div>
-  
-              </div>
-              <div class="form-group">
-                <label>المحافظة
-                  <span style="color: red">*</span>
-                </label>
-                <select class="form-control" formControlName="government_id">
-                  <option value="{{row.id}}" *ngFor='let row of governments'>{{row.name}}</option>
-                </select>
-                <div *ngIf="(government_id.touched || government_id.dirty) && government_id.invalid">
-                  <div class="alert alert-danger" *ngIf="name.errors?.required">
-                      <p>من فضلك ادخل اختر المحافظة</p>
                   </div>
                 </div>
   
@@ -78,11 +67,9 @@
   </div>
 </div>
 
-
-
 <div class="box">
   <div class="box-header">
-    <h3 class="box-title">المدن</h3>
+    <!-- <h3 class="box-title">Data Table With Full Features</h3> -->
   </div>
   <!-- /.box-header -->
   <div class="box-body">
@@ -91,7 +78,6 @@
       <tr>
         <th>ID</th>
         <th>الاسم</th>
-        <th>المحافظة</th>
         <th>الدولة</th>
         <th>ملاحظات</th>
         <th>الاجراءات</th>
@@ -102,11 +88,10 @@
       <tr *ngFor="let row of rows index as i">
         <td>{{ i + 1 }}</td>
         <td>{{ row.name }}</td>
-        <td>{{ row.governments.name }}</td>
-        <td>{{ row.governments.country.name }}</td>
+        <td>{{ row.country.name }}</td>
         <td>{{ row.notes }}</td>
         <td>
-          <button class="btn btn-info" type="button" routerLink='/settings/city/edit/{{row.id}}'>
+          <button class="btn btn-info" type="button" routerLink='/settings/government/edit/{{row.id}}'>
             <i class="fa fa-edit"></i>
           </button>
           &nbsp;
@@ -120,7 +105,6 @@
       <tr>
         <th>ID</th>
         <th>الاسم</th>
-        <th>المحافظة</th>
         <th>الدولة</th>
         <th>ملاحظات</th>
         <th>الاجراءات</th>
