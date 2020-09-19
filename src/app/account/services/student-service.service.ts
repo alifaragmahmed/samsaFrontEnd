@@ -35,10 +35,10 @@ export class StudentServiceService {
   /**
    * update service
    */
-  public update(data: IService, id) {
+  public update(data: any) {
     // remove old cache
     Cache.remove(StudentServiceService.STUDENT_SERVICE_PREFIX);
-    return this.http.post('account/services/update/' + id + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('account/services/update/' + data.id + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**

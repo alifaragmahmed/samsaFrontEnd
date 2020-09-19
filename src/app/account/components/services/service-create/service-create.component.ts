@@ -31,8 +31,7 @@ export class ServiceCreateComponent implements OnInit {
       except_level_id : null,
       division_id : null,
       copy: false,
-      repeat: false,
-      store_id : 0,
+      repeat: false, 
       from_installment_id : null,
       type : null
     };
@@ -42,8 +41,7 @@ export class ServiceCreateComponent implements OnInit {
     let valid = true;
     if (
       !this.item.name || 
-      !this.item.type ||  
-      this.item.store_id <= 0   
+      !this.item.type    
     )
       valid = false;
     return valid;

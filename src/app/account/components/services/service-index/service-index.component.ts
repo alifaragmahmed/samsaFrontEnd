@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cache } from 'src/app/shared/cache';
 import { Subject } from 'rxjs';
 import { HashTable } from 'angular-hashtable'; 
+import { IService } from '../../../models/iservice';
 
 @Component({
   selector: 'app-service-index',
@@ -33,6 +34,20 @@ export class ServiceIndexComponent implements OnInit {
   public showRemoveModal = false;
   public trashList = new HashTable<any, any>();
   public removed = [];
+
+  //
+  public updateItem: IService = {
+    name : '',
+    value : 0,
+    additional_value : 0,
+    installment_percent : 0,
+    except_level_id : null,
+    division_id : null,
+    copy: false,
+    repeat: false, 
+    from_installment_id : null,
+    type : null
+  };
 
   constructor(private studentService: StudentServiceService) {
     this.self = this;
@@ -102,6 +117,18 @@ export class ServiceIndexComponent implements OnInit {
 
   viewCreateModal() {
     document.getElementById('createModal').style.display='block';
+  }
+
+  showUpdateModal(item) {
+    this.updateItem = item;
+    document.getElementById('updateModal').style.display='block';
+  }
+
+  updateService() {
+    let data: any = this.updateItem;
+    this.studentService.update(data).subscribe(() => {
+
+    });
   }
 
   ngOnInit() {
