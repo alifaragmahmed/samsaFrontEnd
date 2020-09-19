@@ -2,9 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Cache } from 'src/app/shared/cache';
 import { Subject } from 'rxjs';
-import { HashTable } from 'angular-hashtable';  
+import { HashTable } from 'angular-hashtable';   
+import { Helper } from '../../../shared/helper'; 
+import { Message } from '../../../shared/message';
 import { AcademicYearService } from '../../services/academic-year.service';
-import { Helper } from '../../../shared/helper';
 import { LevelService } from '../../services/level.service';
 import { DivisionService } from '../../services/division.service';
 import { TermService } from '../../services/term.service';
@@ -22,7 +23,7 @@ export class AcademicYearIndexComponent implements OnInit {
   // datable trigger
   dtTrigger: Subject<any> = new Subject();
 
-  // services list
+  // Rows list
   public academicYearExpense: any = {
     level_id: 1
   };
@@ -47,7 +48,7 @@ export class AcademicYearIndexComponent implements OnInit {
   public terms: any[];
 
   //
-  public updateItem: any;
+  public updateItem: boolean;
 
   constructor(private academicService: AcademicYearService) {
     this.self = this;
@@ -59,19 +60,12 @@ export class AcademicYearIndexComponent implements OnInit {
     ];
   }
 
-  setLevelsAndDivisions() {
+  setAccountSettings() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     this.terms = Cache.get(TermService.TERPM_PREFIX);
   }
-
-  initDatatableOptions() { 
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10 
-    };
-  }
-
+ 
   toggleFromTrash(id) {
     if (this.trashList.has(id)) {
       this.trashList.remove(id);
@@ -86,7 +80,7 @@ export class AcademicYearIndexComponent implements OnInit {
       this.showRemoveButton = false;
   }
 
-  removeServices() {
+  removeRows() {
     this.showRemoveModal = true;
     const queue = this.trashList.getKeys();
     if (queue.length > 0) {
@@ -95,7 +89,7 @@ export class AcademicYearIndexComponent implements OnInit {
         this.removed.push(id);
         this.trashList.remove(id);
         //
-        this.removeServices();
+        this.removeRows();
       });
     } else {
       this.removed = [];
@@ -113,29 +107,57 @@ export class AcademicYearIndexComponent implements OnInit {
     }; 
     this.academicService.get(data).subscribe( (res: any) => {
       this.academicYearExpense = res; 
+      console.log(this.academicYearExpense.details);
     }); 
   }
 
-  viewCreateModal() {
-    document.getElementById('createModal').style.display='block';
+  addRow() {
+    let item = {
+      value: 0,
+      discount: 0,
+      academic_year_expense_id: this.academicYearExpense.id
+    };
+    this.academicYearExpense.details.push(item);
   }
 
-  showUpdateModal(item) {
-    this.updateItem = item;
-    document.getElementById('updateModal').style.display='block';
+  removeRow(item, index) {
+    Message.confirm(Helper.trans('are your sure'), () => { 
+        if (item.id) {
+          this.academicService.destroy(item.id).subscribe((r) => {
+            const data: any = r;
+            if (data.status == 1) {
+              this.academicYearExpense.details.splice(index,index + 1);
+              this.loadAcademicYearExpenses(); 
+              Message.success(data.message);
+            } else {
+              Message.error(data.message);
+            }
+          }); 
+        } else {
+          this.academicYearExpense.details.splice(index,index + 1); 
+        }
+    });
   }
 
-  updateService() {
-    let data: any = this.updateItem;
-    this.academicService.update(data).subscribe(() => {
+  viewChanges() {
+    this.updateAcademicYearExpense();
+  }
+  
 
+  updateAcademicYearExpense() { 
+    this.updateItem = true;
+     
+    this.academicService.update(this.academicYearExpense).subscribe((r) => {
+      const data: any = r;
+      this.loadAcademicYearExpenses();
+      Message.success(data.message);
+      this.updateItem = false;
     });
   }
 
   ngOnInit() {
-    this.setLevelsAndDivisions();
-    this.loadAcademicYearExpenses();
-    this.initDatatableOptions();
+    this.setAccountSettings();
+    this.loadAcademicYearExpenses(); 
   }
 
 }

@@ -8,4 +8,9 @@ export class Message {
       alert(message);
     }
 
+    public static confirm(message: string, action: any) {
+      const res = confirm(message);
+      if (res == true)
+        action(); 
+    }
 }
