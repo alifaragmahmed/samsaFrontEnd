@@ -7,6 +7,7 @@ import { AcademicYearService } from '../../services/academic-year.service';
 import { Helper } from '../../../shared/helper';
 import { LevelService } from '../../services/level.service';
 import { DivisionService } from '../../services/division.service';
+import { TermService } from '../../services/term.service';
 
 @Component({
   selector: 'app-academic-year-index',
@@ -43,6 +44,7 @@ export class AcademicYearIndexComponent implements OnInit {
   //
   public levels: any[];
   public divisions: any[];
+  public terms: any[];
 
   //
   public updateItem: any;
@@ -60,6 +62,7 @@ export class AcademicYearIndexComponent implements OnInit {
   setLevelsAndDivisions() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
+    this.terms = Cache.get(TermService.TERPM_PREFIX);
   }
 
   initDatatableOptions() { 
@@ -125,7 +128,7 @@ export class AcademicYearIndexComponent implements OnInit {
   updateService() {
     let data: any = this.updateItem;
     this.academicService.update(data).subscribe(() => {
-      
+
     });
   }
 
