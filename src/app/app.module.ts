@@ -17,6 +17,7 @@ import { Cache } from './shared/cache';
 import { Translation } from './shared/translation';
 import { LevelService } from './account/services/level.service';
 import { DivisionService } from './account/services/division.service';
+import { TermService } from './account/services/term.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ export class AppModule {
   constructor(
     private translationService: TranslationService,
     private levelService: LevelService,
+    private termService: TermService,
     private divisionService: DivisionService) {
     this.init();
   }
@@ -63,6 +65,7 @@ export class AppModule {
     this.loadTranslations();
     this.loadLevels();
     this.loadDivisions();
+    this.loadTerms();
   }
 
   /**
@@ -91,4 +94,14 @@ export class AppModule {
       Cache.set(DivisionService.DIVISION_PREFIX, r);
     });
   }
+  
+  /**
+   * load terms and update the cache
+   */
+  loadTerms() {
+    this.termService.get().subscribe((r) => { 
+      Cache.set(TermService.TERPM_PREFIX, r);
+    });
+  }
+
 }

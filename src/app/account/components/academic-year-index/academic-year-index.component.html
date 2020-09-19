@@ -49,7 +49,7 @@
         </td>
         <td>{{ i + 1 }}</td>
         <td>
-            <input type="number" class="form-control input-sm" [(ngModel)]="item.name"    > 
+            <input type="text" class="form-control input-sm" [(ngModel)]="item.name"    > 
         </td>
         <td>
             <input type="number" class="form-control input-sm" [(ngModel)]="item.priorty"    >  
@@ -57,9 +57,11 @@
         <td>
             <input type="number" class="form-control input-sm" [(ngModel)]="item.value"    >  
         </td> 
-        <td>
-            <input *ngIf="item.term" type="number" class="form-control input-sm" [(ngModel)]="item.term.name"    > 
-            <input type="hidden" class="form-control input-sm" [(ngModel)]="item.term_id"    >  
+        <td> 
+            <select style="width: 100px" class="form-control input-sm" [(ngModel)]="item.term_id" >
+                <option *ngFor="let item of terms" value="{{ item.id }}" >{{ item.name }}</option>
+            </select>
+
         </td>
         <td>
             <input *ngIf="item.store" type="number" class="form-control input-sm" [(ngModel)]="item.store.name"    > 
