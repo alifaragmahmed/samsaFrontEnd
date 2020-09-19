@@ -14,7 +14,6 @@ import { EditComponent } from './edit/edit.component';
     SharedModule,
     CountryRoutingModule,
     DataTablesModule
-
   ]
 })
 export class CountryModule { }
