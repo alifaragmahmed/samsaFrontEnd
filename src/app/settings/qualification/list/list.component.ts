@@ -98,10 +98,6 @@ export class ListComponent implements OnInit {
       notes : this.callForm.value.notes
     }
     this.isSubmitClick = true;
-    // this.data.name = this.callForm.value.name;
-    // this.data.grade = this.callForm.value.grade;
-    // this.data.notes = this.callForm.value.notes;
-
     this.service.create(data).subscribe((res:any)=>{
       if(res.status == 0){
         this.errorMessage = res.message.name;

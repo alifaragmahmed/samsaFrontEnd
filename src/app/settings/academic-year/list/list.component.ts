@@ -50,6 +50,8 @@ this.callHttp();
   callHttp(){
     this.service.getAll().subscribe((res)=>{
       this.rows = res.data;
+      this.isSubmitClick = false;
+
     })
   }
   create(){
@@ -63,15 +65,12 @@ this.callHttp();
     this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
     this.data.notes = this.callForm.value.notes;
 
-    console.log(this.data);
-    
     this.service.create(this.data).subscribe((res:any)=>{
       if(res.status == 0){
-        this.toastr.error(res.message, '');
-
-        console.log(res);
-        
-        this.errorMessage = res.message.name;
+        if(res.message.end_date)
+        this.errorMessage = res.message.end_date;
+        if(res.message.start_date)
+        this.errorMessage = res.message.start_date;
         this.isSubmitClick = false;
         return;
       }else{
@@ -107,7 +106,6 @@ this.callHttp();
   delete(id) {
     this.service.delete(id).subscribe(
       (res) => {
-        console.log(res);
         if(res.status == 1){
           this.toastr.success(res.message, '');
           const index = this.rows.findIndex(v => v.id === id);

@@ -26,6 +26,11 @@ const routes: Routes = [
         path: "qualifications",
         loadChildren: './qualification/qualification.module#QualificationModule'
       }
+      ,
+      {
+        path: "qualification-types",
+        loadChildren: './qualification-types/qualification-types.module#QualificationTypesModule'
+      }
     ]
   }
 ];

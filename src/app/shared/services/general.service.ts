@@ -18,6 +18,12 @@ export class GeneralService {
   public getCountryGovernments(id: string) {
     return this.http.get(`government/`+ id +`?api_token=123456789`);
   }
+  public getAllLevels(){
+    return this.http.get('levels?api_token=123456789');
+  }
+  public getAllAcademicYears(){
+    return this.http.get('academic-years?api_token=123456789');
+  }
   getAllUsers(query: any) {
     const params = new HttpParams()
       .set('page', query.page)
