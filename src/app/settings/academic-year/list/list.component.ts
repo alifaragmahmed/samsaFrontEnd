@@ -59,10 +59,12 @@ this.callHttp();
       return;
     }
     this.isSubmitClick = true;
-    this.data.start_date = this.callForm.value.start_date;
-    this.data.end_date = this.callForm.value.end_date;
+    this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
+    this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
     this.data.notes = this.callForm.value.notes;
 
+    console.log(this.data);
+    
     this.service.create(this.data).subscribe((res:any)=>{
       if(res.status == 0){
         this.toastr.error(res.message, '');
@@ -96,8 +98,7 @@ this.callHttp();
     if (date !== null && date !== '') {
       if (Date.parse(date.toDateString())) {
         return `${date.getFullYear()}-${('00' + (date.getMonth() + 1))
-          .slice(-2)}-${('00' + date.getDate()).slice(-2)} ${('00' + date.getHours())
-          .slice(-2)}:${('00' + date.getMinutes()).slice(-2)}:00.00Z`;
+          .slice(-2)}-${('00' + date.getDate()).slice(-2)} `;
       }
     }
     return '';

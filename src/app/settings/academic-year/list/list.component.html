@@ -23,7 +23,12 @@
             <div class="form-group">
               <label for="exampleInputEmail1">بداية العام الدراسى<span
                 style="color: red">*</span></label>
-              <input formControlName="start_date" type="date" class="form-control" id="exampleInputEmail1" placeholder="ادخل بداية العام الدراسى">
+              <input formControlName="start_date" class="form-control"
+              
+              flatpickr
+              [dateFormat]="'Y-m-d'"
+              type="text"
+               class="form-control" placeholder="ادخل بداية العام الدراسى">
              <div *ngIf="(start_date.touched || start_date.dirty) && start_date.invalid">
                 <div class="alert alert-danger" *ngIf="start_date.errors?.required">
                     <p>من فضلك ادخل بداية العام</p>
@@ -33,7 +38,12 @@
             <div class="form-group">
               <label for="exampleInputEmail1">نهاية العام الدراسى<span
                 style="color: red">*</span></label>
-              <input formControlName="end_date" type="date" class="form-control" id="exampleInputEmail1" placeholder="ادخل نهاية العام الدراسى">
+              <input formControlName="end_date" 
+              
+              flatpickr
+              [dateFormat]="'Y-m-d'"
+              type="text" 
+              class="form-control" placeholder="ادخل نهاية العام الدراسى">
              <div *ngIf="(end_date.touched || end_date.dirty) && end_date.invalid">
                 <div class="alert alert-danger" *ngIf="end_date.errors?.required">
                     <p>من فضلك ادخل نهاية العام</p>
