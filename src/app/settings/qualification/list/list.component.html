@@ -1,7 +1,7 @@
 <div class="box box-default">
   <div class="box-body">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
-      اضافة دولة جديدة
+      اضافة مؤهل دراسى
     </button>
   </div>
 </div>
@@ -12,7 +12,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">اضافة دولة جديدة</h4>
+        <h4 class="modal-title">اضافة مؤهل دراسى</h4>
       </div>
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -21,14 +21,34 @@
         <form role="form" [hidden] class="forms-sample create" [formGroup]="callForm" (ngSubmit)="create()" autocomplete="off">
           <div class="box-body">
             <div class="form-group">
-              <label for="exampleInputEmail1">اسم الدولة<span
+              <label for="exampleInputEmail1">{{ 'qualification' | trans }}<span
                 style="color: red">*</span></label>
-              <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="ادخل اسم الدولة">
-             <div *ngIf="(name.touched || name.dirty) && name.invalid">
-                <div class="alert alert-danger" *ngIf="name.errors?.required">
-                    <p>من فضلك ادخل اسم الدولة</p>
+              <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ 'qualification' | trans }}">
+                  <div *ngIf="(name.touched || name.dirty) && name.invalid">
+                    <div class="alert alert-danger" *ngIf="name.errors?.required">
+                        <p>من فضلك ادخل اسم المؤهل</p>
+                    </div>
+                  </div>
                 </div>
-               </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{ 'qualification grade' | trans }}<span
+                style="color: red">*</span></label>
+              <input formControlName="grade" type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ 'qualification grade' | trans }}">
+                <div *ngIf="(grade.touched || grade.dirty) && grade.invalid">
+                  <div class="alert alert-danger" *ngIf="grade.errors?.required">
+                      <p>من فضلك ادخل درجة المؤهل</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{ 'notes' | trans }}</label>
+              <textarea formControlName="notes" type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ 'notes' | trans }}">
+              </textarea>
+                
             </div>
           </div>
           <div class="box-footer">
@@ -41,7 +61,6 @@
   </div>
 </div>
 
-
 <div class="box">
   <div class="box-header">
   </div>
@@ -50,19 +69,20 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>الاسم</th>
+        <th>اسم المؤهل</th>
+        <th>درجة القبول</th>
         <th>ملاحظات</th>
         <th>الاجراءات</th>
-
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let row of rows index as i">
         <td>{{ i + 1 }}</td>
         <td>{{ row.name }}</td>
+        <td>{{ row.grade }}</td>
         <td>{{ row.notes }}</td>
         <td>
-          <button class="btn btn-info" type="button" routerLink='/settings/country/edit/{{row.id}}'>
+          <button class="btn btn-info" type="button" routerLink='/settings/qualifications/edit/{{row.id}}'>
             <i class="fa fa-edit"></i>
           </button>
           &nbsp;
@@ -75,10 +95,10 @@
       <tfoot>
       <tr>
         <th>ID</th>
-        <th>الاسم</th>
+        <th>اسم المؤهل</th>
+        <th>درجة القبول</th>
         <th>ملاحظات</th>
         <th>الاجراءات</th>
-
       </tr>
       </tfoot>
     </table>

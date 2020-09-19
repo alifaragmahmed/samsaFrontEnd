@@ -21,6 +21,10 @@ const routes: Routes = [
       {
         path: "academic-year",
         loadChildren: './academic-year/academic-year.module#AcademicYearModule'
+      },
+      {
+        path: "qualifications",
+        loadChildren: './qualification/qualification.module#QualificationModule'
       }
     ]
   }

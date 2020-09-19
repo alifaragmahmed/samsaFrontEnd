@@ -34,9 +34,6 @@ export class EditComponent implements OnInit {
       ]),
     });
     this.id = this.route.snapshot.params.id;
-    console.log(this.id);
-    // this.matchesService.getMatchDetails(this.id).subscribe((res) => {
-
     this.countryService.getItemById(this.id).subscribe((res:any) => {
       console.log(res);
       if(res.status == 1){
