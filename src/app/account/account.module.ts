@@ -11,7 +11,8 @@ import { StudentPaymentComponent } from './components/safe/student-payment/stude
 import { StudentServiceComponent } from './components/safe/student-service/student-service.component';
 import { AvailableServiceComponent } from './components/safe/available-service/available-service.component';
 import { AccountComponent } from './account.component';
-import { DataTablesModule } from 'angular-datatables'; 
+import { DataTablesModule } from 'angular-datatables';
+import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component'; 
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DataTablesModule } from 'angular-datatables';
     StudentPaymentComponent,
     StudentServiceComponent,
     AvailableServiceComponent,
-    AccountComponent 
+    AccountComponent,
+    AcademicYearIndexComponent 
   ],
   imports: [
     SharedModule,
