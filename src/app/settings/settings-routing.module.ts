@@ -17,6 +17,10 @@ const routes: Routes = [
       {
         path: "government",
         loadChildren: './government/government.module#GovernmentModule'
+      },
+      {
+        path: "academic-year",
+        loadChildren: './academic-year/academic-year.module#AcademicYearModule'
       }
     ]
   }
