@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
 import { TranslationService } from './shared/services/translation.service';
 import { Cache } from './shared/cache';
 import { Translation } from './shared/translation';
+import { LevelService } from './account/services/level.service';
+import { DivisionService } from './account/services/division.service';
 
 @NgModule({
   declarations: [
@@ -49,13 +51,18 @@ import { Translation } from './shared/translation';
 export class AppModule {
  
 
-  constructor(private translationService: TranslationService) {
+  constructor(
+    private translationService: TranslationService,
+    private levelService: LevelService,
+    private divisionService: DivisionService) {
     this.init();
   }
 
   init() {
     // load the translations words
     this.loadTranslations();
+    this.loadLevels();
+    this.loadDivisions();
   }
 
   /**
@@ -64,6 +71,24 @@ export class AppModule {
   loadTranslations() {
     this.translationService.get().subscribe((r) => { 
       Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+    });
+  }
+  
+  /**
+   * load levels and update the cache
+   */
+  loadLevels() {
+    this.levelService.get().subscribe((r) => { 
+      Cache.set(LevelService.LEVEL_PREFIX, r);
+    });
+  }
+  
+  /**
+   * load divisions and update the cache
+   */
+  loadDivisions() {
+    this.divisionService.get().subscribe((r) => { 
+      Cache.set(DivisionService.DIVISION_PREFIX, r);
     });
   }
 }

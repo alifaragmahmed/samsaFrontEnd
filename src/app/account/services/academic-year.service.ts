@@ -16,8 +16,8 @@ export class AcademicYearService {
    * get academic_year_expenses from api
    *
    */
-  public get() {
-    return this.http.get('account/academic_year_expenses?api_token=' + Auth.getApiToken());
+  public get(data) {
+    return this.http.get('account/academic_year_expenses?api_token=' + Auth.getApiToken()+"&level_id="+data.level_id);
   }
 
   /**

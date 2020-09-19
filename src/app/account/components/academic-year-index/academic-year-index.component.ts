@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { HashTable } from 'angular-hashtable';  
 import { AcademicYearService } from '../../services/academic-year.service';
 import { Helper } from '../../../shared/helper';
+import { LevelService } from '../../services/level.service';
+import { DivisionService } from '../../services/division.service';
 
 @Component({
   selector: 'app-academic-year-index',
@@ -20,7 +22,9 @@ export class AcademicYearIndexComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   // services list
-  public serviceList: any[] = null;
+  public academicYearExpense: any = {
+    level_id: 1
+  };
 
   // init breadcrum
   public breadcrumbList = [];
@@ -37,6 +41,10 @@ export class AcademicYearIndexComponent implements OnInit {
   public removed = [];
 
   //
+  public levels: any[];
+  public divisions: any[];
+
+  //
   public updateItem: any;
 
   constructor(private academicService: AcademicYearService) {
@@ -45,8 +53,13 @@ export class AcademicYearIndexComponent implements OnInit {
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},
-      {name: Helper.trans('academic_years')}
+      {name: Helper.trans('academic_years_expenses')}
     ];
+  }
+
+  setLevelsAndDivisions() {
+    this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+    this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
   }
 
   initDatatableOptions() { 
@@ -87,22 +100,17 @@ export class AcademicYearIndexComponent implements OnInit {
       this.showRemoveModal = false;
       //
       this.dtTrigger.unsubscribe();   
-      this.loadServices();
+      this.loadAcademicYearExpenses();
     }
   }
 
-  loadServices() {
-    //alert(Cache.has(StudentServiceService.STUDENT_SERVICE_PREFIX));
-    //if (Cache.has(StudentServiceService.STUDENT_SERVICE_PREFIX)) {
-    //  this.serviceList = Cache.get(StudentServiceService.STUDENT_SERVICE_PREFIX);
-    //} else { 
-    this.studentService.get().subscribe( (res: any) => {
-      this.serviceList = res;
-      // cache the result
-      Cache.set(StudentServiceService.STUDENT_SERVICE_PREFIX, this.serviceList);
-      this.dtTrigger.next();
-    });
-    //}
+  loadAcademicYearExpenses() {
+    let data = {
+      level_id: this.academicYearExpense.level_id
+    }; 
+    this.academicService.get(data).subscribe( (res: any) => {
+      this.academicYearExpense = res; 
+    }); 
   }
 
   viewCreateModal() {
@@ -116,13 +124,14 @@ export class AcademicYearIndexComponent implements OnInit {
 
   updateService() {
     let data: any = this.updateItem;
-    this.studentService.update(data).subscribe(() => {
-
+    this.academicService.update(data).subscribe(() => {
+      
     });
   }
 
   ngOnInit() {
-    this.loadServices();
+    this.setLevelsAndDivisions();
+    this.loadAcademicYearExpenses();
     this.initDatatableOptions();
   }
 
