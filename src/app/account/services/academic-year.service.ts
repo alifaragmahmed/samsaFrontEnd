@@ -33,7 +33,8 @@ export class AcademicYearService {
    */
   public update(data: any) {
     // remove old cache
-    return this.http.post('account/academic_year_expenses/update/' + data.id + '?api_token=' + Auth.getApiToken(), data);
+    data['api_token'] = Auth.getApiToken();
+    return this.http.post('account/academic_year_expenses/update', data);
   }
 
   /**
