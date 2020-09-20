@@ -38,7 +38,7 @@ export class Translation {
         Cache.set(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY, data);
     }
 
-    public static getNewKeys(key: string) {
+    public static getNewKeys() {
         return Cache.get(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY);
     }
 }

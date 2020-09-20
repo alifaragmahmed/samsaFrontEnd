@@ -1,3 +1,41 @@
-<p>
-  translation works!
-</p>
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="w3-white material-shadow box">
+      <div class="box-header w3-xlarge">
+        {{ "translations" | trans }}
+      </div>
+      <br>
+      <div class="border-bottom-dashed" ></div>
+      <br>
+
+      <div class="box-body row" > 
+        <table class=" table" >
+          <tr>
+            <th>#</th>
+            <th>{{ "key" | trans }}</th>
+            <th>{{ "name_en" | trans }}</th>
+            <th>{{ "name_ar" | trans }}</th>
+          </tr>
+          
+          <tr *ngFor="let item of translationList index as i" >
+            <td>{{ i + 1 }}</td>
+            <td>
+              <input type="text" class="w3-input w3-border-bottom w3-border-gray" readonly style="border-style: dashed" [(ngModel)]="item.key" >
+            </td>
+            <td>
+              <input type="text" class="w3-input w3-border-bottom w3-border-gray" style="border-style: dashed" [(ngModel)]="item.name_en" >
+            </td>
+            <td>
+              <input type="text" class="w3-input w3-border-bottom w3-border-gray" style="border-style: dashed" [(ngModel)]="item.name_ar" >
+            </td> 
+          </tr>
+        </table>
+        <br>
+      </div>
+      <div class="box-footer">
+        <button class="btn btn-primary" [disabled]="isUpdate" (click)="updateTranslation()" >{{ "save changes" | trans }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
