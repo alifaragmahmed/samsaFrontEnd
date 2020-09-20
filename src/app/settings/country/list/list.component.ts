@@ -22,6 +22,7 @@ export class ListComponent implements OnInit {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   public rows = [];
+  public item;
   constructor(
     private generalService:GeneralService, 
     private countryService:CountryService , 
@@ -69,7 +70,16 @@ export class ListComponent implements OnInit {
       }
     );
   }
-
+  findItem(id){
+    this.countryService.getItemById(id).subscribe((res:any) => {
+      if(res.status == 1){
+        // this.name.setValue(res.data.name);
+        this.itemData(res.data.name)
+      }else{
+        this.toastr.error(res.message);
+      }
+    });
+  }
   delete(id) {
     this.countryService.deleteCountryById(id).subscribe(
       (res) => {
@@ -118,7 +128,12 @@ export class ListComponent implements OnInit {
       };
     })
   }
-
+  get itemData():any{
+    return this.countryService.shareData
+  }
+  set itemData(value:any){
+    this.countryService.shareData = value
+  }
   get name() {
     return this.callForm.get('name');
   }

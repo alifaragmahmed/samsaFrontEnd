@@ -7,6 +7,8 @@ import { IReqCreateCountry } from '../model/IReqCreateCountry';
 export class CountryService {
     constructor(private http: HttpClient) { }
 
+    public shareData:any;
+
     public getAll(query:any): Observable<any> {
         const params = new HttpParams()
         .set('page', query.page)

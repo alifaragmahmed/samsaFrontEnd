@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, Inject } from '@angular/core';
 import { GeneralService } from 'src/app/shared/services/general.service';
 import { qualificationTypeService } from '../services/qualificationType.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IReqQualificationType } from '../models/IReqQualificationType';
 import { Subject } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-list',
@@ -26,6 +27,9 @@ export class ListComponent implements OnInit {
     notes:'',
     level_id:'' 
   };
+  hideModal: boolean = false;
+
+  public modal = '';
   public qualifications = [];
   public academicYears = [];
   public levels = [];
@@ -37,27 +41,28 @@ export class ListComponent implements OnInit {
   constructor(
     private generalService:GeneralService,
     private service:qualificationTypeService,
-    private toastr: ToastrService
-
+    private toastr: ToastrService,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document,
   ) {
     this.callForm = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
       ]),
       qualification_id: new FormControl(null, [
-        // Validators.required,
+        Validators.required,
       ]),
       academic_year_id: new FormControl(null, [
-        // Validators.required,
+        Validators.required,
       ]),
       level_id: new FormControl(null, [
-        // Validators.required,
+        Validators.required,
       ]),
       grade: new FormControl(null, [
-        // Validators.required,
+        Validators.required,
       ]),
       percentage: new FormControl(null, [
-        // Validators.required,
+        Validators.required,
       ]),
       
       notes :new FormControl(null, [])
@@ -66,6 +71,7 @@ export class ListComponent implements OnInit {
    }
 
   ngOnInit() {
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10 
@@ -103,9 +109,7 @@ export class ListComponent implements OnInit {
           this.rows.splice(index, 1);
         }else{
           this.toastr.error(res.message, '');
-
-        }
-       
+        }   
       });
   }
   create(){
@@ -122,33 +126,30 @@ export class ListComponent implements OnInit {
     this.data.percentage = this.callForm.value.percentage;
     this.data.level_id = this.callForm.value.level_id;
     this.data.notes = this.callForm.value.notes;
-
-    console.log(this.data);
     
-    // this.service.create(this.data).subscribe((res:any)=>{
-    //   if(res.status == 0){
-    //     this.errorMessage = res.message.name;
-    //     this.isSubmitClick = false;
-    //     return;
-    //   }else{
-    //     this.errorMessage = '';
-    //     this.isSubmitClick = true;
-    //     this.toastr.success('تم انشاء البيانات بنجاح', '');
-    //     this.callHttp();
-    //   }
-      
-    //   (e) => {
-    //     this.isSubmitClick = false;
-    //     if (e.status == 400) {
-    //       this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-    //       for (let i = 0; i < e.error.errors.length; i++) {
-    //         if (e.error.errors[i].input === 'name') {
-    //           this.nameError = e.error.errors[i].message;
-    //         }
-    //       }
-    //     }
-    //   };
-    // })
+    this.service.create(this.data).subscribe((res:any)=>{
+      if(res.status == 0){
+        this.errorMessage = res.message.name;
+        this.errorMessage = res.message.grade;
+        this.errorMessage = res.message.qualification_id;
+        this.errorMessage = res.message.academic_year_id;
+        this.errorMessage = res.message.level_id;
+        this.errorMessage = res.message.percentage;
+        this.isSubmitClick = false;
+        return;
+      }else{
+        this.errorMessage = '';
+        this.isSubmitClick = true;
+        this.toastr.success(res.message, '');
+        this.dtTrigger.unsubscribe();
+        document.getElementById("cancel").click();
+
+        this.hideModal  = true;
+        this.callHttp();
+        this.modal = 'modal';
+        this.isSubmitClick = false;
+      }
+    })
   }
   get name() {
     return this.callForm.get('name');
