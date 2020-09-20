@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SettingsComponent } from './settings.component'
+import { SettingsComponent } from './settings.component';
+import { TranslationComponent } from './translation/translation.component';
+
 const routes: Routes = [
   {
     path: "",
@@ -25,11 +27,15 @@ const routes: Routes = [
       {
         path: "qualifications",
         loadChildren: './qualification/qualification.module#QualificationModule'
-      }
-      ,
+      },
       {
         path: "qualification-types",
         loadChildren: './qualification-types/qualification-types.module#QualificationTypesModule'
+      }
+      ,
+      {
+        path: "translations",
+        component: TranslationComponent
       }
     ]
   }

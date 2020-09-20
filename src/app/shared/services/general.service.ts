@@ -24,6 +24,10 @@ export class GeneralService {
   public getAllAcademicYears(){
     return this.http.get('academic-years?api_token=123456789');
   }
+  public getAllQualifications() {
+    return this.http.get('qualifications?api_token=123456789');
+  }
+
   getAllUsers(query: any) {
     const params = new HttpParams()
       .set('page', query.page)

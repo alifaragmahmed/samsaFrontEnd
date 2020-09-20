@@ -26,6 +26,9 @@ export class ListComponent implements OnInit {
     notes:'',
     level_id:'' 
   };
+  public qualifications = [];
+  public academicYears = [];
+  public levels = [];
   public isSubmitClick = false;
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
@@ -40,24 +43,24 @@ export class ListComponent implements OnInit {
     this.callForm = new FormGroup({
       name: new FormControl(null, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50),
-      ]),
-      grade: new FormControl(null, [
-        Validators.required,
       ]),
       qualification_id: new FormControl(null, [
-        Validators.required,
+        // Validators.required,
       ]),
       academic_year_id: new FormControl(null, [
-        Validators.required,
-      ]),
-      percentage: new FormControl(null, [
-        Validators.required,
+        // Validators.required,
       ]),
       level_id: new FormControl(null, [
-        Validators.required,
+        // Validators.required,
       ]),
+      grade: new FormControl(null, [
+        // Validators.required,
+      ]),
+      percentage: new FormControl(null, [
+        // Validators.required,
+      ]),
+      
+      notes :new FormControl(null, [])
     });
 
    }
@@ -68,6 +71,18 @@ export class ListComponent implements OnInit {
       pageLength: 10 
     };
     this.callHttp();
+    this.generalService.getAllQualifications().subscribe((res:any)=>{
+      if(res.status == 1)
+      this.qualifications = res.data;
+    });
+    this.generalService.getAllLevels().subscribe((res:any)=>{
+      if(res.status == 1)
+      this.levels = res.data
+    });
+    this.generalService.getAllAcademicYears().subscribe((res:any)=>{
+      if(res.status == 1)
+      this.academicYears = res.data
+    });
   }
   callHttp(): void {
     this.service.getAll().subscribe(
@@ -101,30 +116,39 @@ export class ListComponent implements OnInit {
     }
     this.isSubmitClick = true;
     this.data.name = this.callForm.value.name;
-    this.service.create(this.data).subscribe((res:any)=>{
-      if(res.status == 0){
-        this.errorMessage = res.message.name;
-        this.isSubmitClick = false;
-        return;
-      }else{
-        this.errorMessage = '';
-        this.isSubmitClick = true;
-        this.toastr.success('تم انشاء البيانات بنجاح', '');
-        this.callHttp();
-      }
+    this.data.grade = this.callForm.value.grade;
+    this.data.qualification_id = this.callForm.value.qualification_id;
+    this.data.academic_year_id = this.callForm.value.academic_year_id;
+    this.data.percentage = this.callForm.value.percentage;
+    this.data.level_id = this.callForm.value.level_id;
+    this.data.notes = this.callForm.value.notes;
+
+    console.log(this.data);
+    
+    // this.service.create(this.data).subscribe((res:any)=>{
+    //   if(res.status == 0){
+    //     this.errorMessage = res.message.name;
+    //     this.isSubmitClick = false;
+    //     return;
+    //   }else{
+    //     this.errorMessage = '';
+    //     this.isSubmitClick = true;
+    //     this.toastr.success('تم انشاء البيانات بنجاح', '');
+    //     this.callHttp();
+    //   }
       
-      (e) => {
-        this.isSubmitClick = false;
-        if (e.status == 400) {
-          this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-          for (let i = 0; i < e.error.errors.length; i++) {
-            if (e.error.errors[i].input === 'name') {
-              this.nameError = e.error.errors[i].message;
-            }
-          }
-        }
-      };
-    })
+    //   (e) => {
+    //     this.isSubmitClick = false;
+    //     if (e.status == 400) {
+    //       this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
+    //       for (let i = 0; i < e.error.errors.length; i++) {
+    //         if (e.error.errors[i].input === 'name') {
+    //           this.nameError = e.error.errors[i].message;
+    //         }
+    //       }
+    //     }
+    //   };
+    // })
   }
   get name() {
     return this.callForm.get('name');
