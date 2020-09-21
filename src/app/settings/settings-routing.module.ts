@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SettingsComponent } from './settings.component';
 import { TranslationComponent } from './translation/translation.component';
+import { LevelsComponent } from './levels/levels.component'
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: "translations",
         component: TranslationComponent
+      },
+      {
+        path: "levels",
+        component: LevelsComponent
       }
     ]
   }
