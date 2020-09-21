@@ -1,9 +1,18 @@
 import { AppModule } from '../app.module';
 import { Translation } from './translation';
+import { Router } from '../../../node_modules/@angular/router';
 
 export class Helper {
 
   
+  public static refreshComponent(router: Router, url) {
+    router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      router.navigate([url]);
+    });
+    setTimeout(() => {
+      AppModule.doc.jquery('.modal-backdrop fade in').remove(); 
+    }, 1000);
+  }
 
   /**
    * translate word

@@ -1,14 +1,12 @@
 import {NgModule} from '@angular/core';
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './components/login/login.component';
-import {SharedModule} from '../shared/shared.module';
-import { TransPipe } from '../shared/pipes/trans.pipe';
+import {SharedModule} from '../shared/shared.module'; 
 @NgModule({
   declarations: [
     LoginComponent
   ],
-  imports: [
-    TransPipe,
+  imports: [ 
     SharedModule,
     AuthRoutingModule
   ]

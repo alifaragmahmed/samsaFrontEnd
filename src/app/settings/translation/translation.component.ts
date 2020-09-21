@@ -43,7 +43,7 @@ export class TranslationComponent implements OnInit {
    * update keys not exists
    */
   submitNotExistTranslation() {
-    if (Translation.getNewKeys())
+    if (!Translation.getNewKeys())
       return;
     const data = {
       data: Translation.getNewKeys()

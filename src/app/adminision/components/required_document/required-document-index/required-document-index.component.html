@@ -1,0 +1,67 @@
+<app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+
+<div class="box box-primary material-shadow w3-white table-responsive" >
+  <div class="box-header">
+    <button class="btn btn-primary" (click)="doc.jquery('#createModal').modal('show');" style="margin: 5px"  > 
+      <span class="fa fa-plus" ></span> {{ "add" | trans }}
+    </button> 
+    <button *ngIf="showRemoveButton" (click)="removeResources()" class="btn btn-danger" style="margin: 5px"  > 
+      <span class="fa fa-trash" ></span>
+    </button>
+  </div>
+  <br>
+  <div style="padding: 5px;">
+      <table class="table table-bordered text-center default-datatable" >
+          <thead>
+            <tr class="w3-hover-light-gray" >
+              <th></th>
+              <th>#</th>
+              <th>{{ "name" | trans }}</th>
+              <th>{{ "type" | trans }}</th> 
+              <th>{{ "notes" | trans }}</th> 
+              <th></th>
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr *ngFor="let item of resources index as i" >
+              <td>
+                <input type="checkbox" style="margin: 0px!important" class="w3-check" (click)="toggleFromTrash(item.id)"  >
+              </td>
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.name }}</td> 
+              <td>{{ item.type | trans}}</td>
+              <td>{{ item.notes }}</td>
+              <td> 
+                <button class="btn btn-warning fa fa-edit" (click)="setUpdateResource(item)" ></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+
+</div>
+
+ 
+<!-- remove modal -->
+<div class="w3-modal w3-block" *ngIf="showRemoveModal"  role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{ "remove required documents" | trans }}</h4>
+        </div>
+        <div class="modal-body text-center">
+            <i class="fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center" ></i>
+            <br>
+            {{ trashList.size() }} - {{ "removed" | trans }} {{ trashList.size() + removed.length }}
+        </div>
+        <div class="modal-footer"> 
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+ 
+
+  <app-required-document-update [updateResources]="updateResources" [resource]="updateItem" ></app-required-document-update>
+
+  <app-required-document-create [updateResources]="updateResources" ></app-required-document-create>

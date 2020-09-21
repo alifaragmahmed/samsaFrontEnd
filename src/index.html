@@ -103,6 +103,26 @@
       player.play();
     }
 
+    document.__proto__.datatable = function() {
+      $('.default-datatable').each(function(){
+        try{  
+          $(this).dataTable().fnDestroy();
+        }catch(e){}
+                $(this).DataTable({
+                    "pageLength": 10,
+                    dom: 'Bfrtip', 
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"
+                    },
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5'
+                    ]
+                });
+          });
+    };
     document.__proto__.jq = $;
     document.__proto__.jquery = $;
   </script>
