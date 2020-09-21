@@ -29,7 +29,7 @@
 
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('installmentSection').style.display='block'"   >{{ "installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"  >{{ "write note" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"  (click)="doc.jq('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
           </div>
 
         </div>
@@ -59,7 +59,10 @@
                       <div class="media" (click)="selectStudent(item)" >
                         <div class="media-left">
                           <a href="#">
+                            <img [src]="item.image" style="width: 30px;height: 30px;" class="w3-circle" alt="">
+                            <!--
                             <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
+                            -->
                           </a>
                         </div>
                         <div class="media-body">
@@ -195,8 +198,10 @@
 
           </div>
           <div class="custom-panel w3-display-container w3-round">
-            <div class="custom-panel-body"  >
-              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"   (click)="performPay()" >{{ "save & print" | trans }}</button>
+            <div class="custom-panel-body"  > 
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value"   (click)="performPay()" >{{ "save & print" | trans }}</button>
+              
+
               <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"   onclick="document.getElementById('studentAvailableServices').style.display='block'"  >{{ "services" | trans }}</button>
               <button class="btn btn-default small-shadow w3-margin-left" >{{ "exit" | trans }}</button>
             </div>
@@ -227,5 +232,7 @@
 <!-- student services modal -->
 <app-available-service [services]="availableServices" ></app-available-service>
 
+<!-- notes modal -->
+<app-send-note [student]="safeObject" [updateStudent]="updateStudent" ></app-send-note>
 
 

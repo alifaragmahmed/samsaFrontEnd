@@ -7,6 +7,8 @@ import { IUserLogin } from '../models/IUserLogin';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+  public static USER_PRFIX = 'user';
+  public static API_TOKEN_PRFIX = 'api_token';
 
   constructor(
     private route: ActivatedRoute,
@@ -18,8 +20,8 @@ export class AuthService {
     this.userStatus$.next(status);
   }
 
-  login(userLogin: IUserLogin): Observable<any> {
-    return this.http.post('authAdmin/login', userLogin);
+  login(userLogin: IUserLogin)  {
+    return this.http.post('auth/login', userLogin);
   }
 
   confirmEmail(confirmEmail: { code: string }) {

@@ -13,6 +13,14 @@ export class TranslationService {
    * get services from api
    *
    */
+  public getList() {
+    return this.http.get('translation/get?api_token=' + Auth.getApiToken());
+  }
+
+  /**
+   * get services from api
+   *
+   */
   public get() {
     return this.http.get('translation?api_token=' + Auth.getApiToken());
   }

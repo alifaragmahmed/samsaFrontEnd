@@ -97,9 +97,10 @@ export class ListComponent implements OnInit {
     this.data.name = this.callForm.value.name;
     this.data.country_id = this.callForm.value.country_id;
 
+    
     this.service.create(this.data).subscribe((res:any)=>{
       console.log(res);
-      
+      this.dtTrigger.unsubscribe();
       if(res.status == 0){
         this.isSubmitClick = false;
         if(res.message.country_id)

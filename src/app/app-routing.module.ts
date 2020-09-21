@@ -43,6 +43,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: '',
+    loadChildren: './auth/auth.module#AuthModule'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
     // redirectTo: 'admin',

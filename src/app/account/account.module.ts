@@ -1,8 +1,7 @@
 import {NgModule} from '@angular/core';
 import {AccountRoutingModule} from './account-routing.module';
 import {SharedModule} from '../shared/shared.module';
-import { ServiceIndexComponent } from './components/services/service-index/service-index.component';
-import { ServiceTableComponent } from './components/services/service-table/service-table.component';
+import { ServiceIndexComponent } from './components/services/service-index/service-index.component'; 
 import { ServiceCreateComponent } from './components/services/service-create/service-create.component';
 import { SafeIndexComponent } from './components/safe/safe-index/safe-index.component';
 import { InstallmentComponent } from './components/safe/installment/installment.component';
@@ -12,12 +11,13 @@ import { StudentServiceComponent } from './components/safe/student-service/stude
 import { AvailableServiceComponent } from './components/safe/available-service/available-service.component';
 import { AccountComponent } from './account.component';
 import { DataTablesModule } from 'angular-datatables';
-import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component'; 
+import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component';
+import { SendNoteComponent } from './components/safe/send-note/send-note.component';
+import { ServiceFormComponent } from './components/services/service-form/service-form.component'; 
 
 @NgModule({
   declarations: [
-    ServiceIndexComponent,
-    ServiceTableComponent,
+    ServiceIndexComponent, 
     ServiceCreateComponent,
     SafeIndexComponent,
     InstallmentComponent,
@@ -26,7 +26,9 @@ import { AcademicYearIndexComponent } from './components/academic-year-index/aca
     StudentServiceComponent,
     AvailableServiceComponent,
     AccountComponent,
-    AcademicYearIndexComponent 
+    AcademicYearIndexComponent,
+    SendNoteComponent,
+    ServiceFormComponent 
   ],
   imports: [
     SharedModule,

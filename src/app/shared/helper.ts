@@ -10,15 +10,16 @@ export class Helper {
    *
    * @param word
    */
-  public static trans(word) {
+  public static trans(word: string) {
+    word = word.replace(/\s/g, '_');
+    word = word.toLocaleLowerCase();
     // load translations from cache
     const transWord = Translation.getTranslationsData()[word];
 
     if (transWord) {
       return transWord['name_'+Translation.getLang()];
-    } else {
-      Translation.storeNewKey(word);
-      return word;
     } 
+    Translation.storeNewKey(word);
+    return word;
   }
 }
