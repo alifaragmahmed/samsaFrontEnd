@@ -21,6 +21,7 @@ export class LanguagesComponent implements OnInit {
 
   public item = ''
   public id = '';
+  public deletedId='';
   constructor(
     private service:LanguagesService,
     private toastr: ToastrService,
@@ -56,7 +57,6 @@ export class LanguagesComponent implements OnInit {
     this.id = id;
     this.service.getItemById(id).subscribe((res:any)=>{
       if(res.status ==1){
-        
         this.name.setValue(res.data.name);
         this.notes.setValue(res.data.notes);
         document.getElementById("openModal").click();
@@ -72,8 +72,9 @@ export class LanguagesComponent implements OnInit {
     };
     this.service.update(this.id, itemData).subscribe((res:any)=>{  
       if(res.status == 1){
-        document.getElementById("cancel").click();
+        document.getElementById("cancell").click();
         this.callHttp();
+        this.isSubmitClick = false;
         this.item = '';
         this.toastr.success(res.message, '')
         this.dtTrigger.unsubscribe();
@@ -92,18 +93,16 @@ export class LanguagesComponent implements OnInit {
     this.data.notes = this.callForm.value.notes;
     this.data.name = this.callForm.value.name;
 
-    this.service.create(this.data).subscribe((res:any)=>{    
-      console.log(res);
-        
+    this.service.create(this.data).subscribe((res:any)=>{            
       if(res.status == 0){
         if(res.message.name)
         this.toastr.error(res.message, '');
         this.errorMessage = res.message;
         this.isSubmitClick = false;
-        return;
+
       }else{
         this.errorMessage = '';
-        this.isSubmitClick = true;
+        this.isSubmitClick = false;
         this.toastr.success(res.message, '');
         this.dtTrigger.unsubscribe();
         document.getElementById("cancel").click();
@@ -112,22 +111,23 @@ export class LanguagesComponent implements OnInit {
     })
   }
 
-  delete(id) {
-    console.log(id);
-    
-    this.service.delete(id).subscribe((res) => {
-      console.log(res);
-      
+  delete() {
+    this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){
           document.getElementById("cancello").click();
           this.toastr.success(res.message, '');
-          const index = this.rows.findIndex(v => v.id === id);
+          const index = this.rows.findIndex(v => v.id === this.deletedId);
           this.rows.splice(index, 1);
         }else{
           this.toastr.error(res.message, '');
         }
        
       });
+  }
+  launchModal(id){
+    // console.log(id);
+    this.deletedId = id;
+    
   }
 
   get name() {

@@ -12,7 +12,15 @@ import { ConstraintStatusComponent } from './constraint-status/constraint-status
 import { LanguagesComponent } from './languages/languages.component';
 
 @NgModule({
-  declarations: [SettingsComponent, TranslationComponent, LevelsComponent, CaseConstraintComponent, ConstraintStatusComponent, LanguagesComponent],
+  declarations: 
+  [
+    SettingsComponent,
+     TranslationComponent,
+      LevelsComponent,
+     CaseConstraintComponent,
+      ConstraintStatusComponent, 
+      LanguagesComponent
+    ],
   imports: [
     CommonModule,
     SettingsRoutingModule,
