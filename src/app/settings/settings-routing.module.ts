@@ -6,7 +6,8 @@ import { LevelsComponent } from './levels/levels.component'
 import { CaseConstraintComponent } from './case-constraint/case-constraint.component';
 import { ConstraintStatusComponent } from './constraint-status/constraint-status.component';
 import { LanguagesComponent } from './languages/languages.component';
-
+import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
+import { DivisionsComponent } from './divisions/divisions.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,15 @@ const routes: Routes = [
       {
         path: 'languages',
         component: LanguagesComponent
+      }
+      ,
+      {
+        path: 'parent-jobs',
+        component: ParentJobsComponent
+      },
+      {
+        path: 'divisions',
+        component: DivisionsComponent
       }
     ]
   }
