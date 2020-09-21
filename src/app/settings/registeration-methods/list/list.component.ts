@@ -4,6 +4,8 @@ import { RegMethodService } from '../services/RegMethodService.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -19,9 +21,15 @@ export class ListComponent implements OnInit {
   public rows = [];
   public data: IReqRegMethod = { name: '', notes:'' };
 
+  public item = ''
+  public id = '';
   constructor(
     private toastr: ToastrService,
-    private service:RegMethodService
+    private service:RegMethodService,
+    private router:Router,
+    private route: ActivatedRoute, 
+
+
     ) { 
       this.callForm = new FormGroup({
         name: new FormControl(null, [
@@ -34,11 +42,27 @@ export class ListComponent implements OnInit {
 
     }
 
+
+    getItemData(id){
+      this.id = id;
+      this.service.getItemById(id).subscribe((res:any)=>{
+        if(res.status ==1){
+          this.item = res.data;
+          this.name.setValue(res.data.name);
+          this.notes.setValue(res.data.notes);
+
+          document.getElementById("openModal").click();
+        }
+
+      });
+    }
+
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10
     };
+
     this.callHttp();
   }
   callHttp(): void {
@@ -48,6 +72,22 @@ export class ListComponent implements OnInit {
         this.dtTrigger.next();
       }
     );
+  }
+  onSubmit(){
+    const itemData: IReqRegMethod = {
+      name: this.callForm.value.name,
+      notes : this.callForm.value.notes
+    };
+    this.service.update(this.id, itemData).subscribe((res:any)=>{      
+      if(res.status == 1){
+        document.getElementById("cancel").click();
+        this.callHttp();
+        this.toastr.success(res.message, '')
+        this.dtTrigger.unsubscribe();
+      }else{
+        this.toastr.error(res.message, '');
+      }
+    });
   }
   create(){
     this.errorMessage = '';
