@@ -5,6 +5,7 @@ import { TranslationComponent } from './translation/translation.component';
 
 const routes: Routes = [
   {
+    // RegisterationMethodsModule
     path: "",
     component: SettingsComponent,
     children: [
@@ -31,8 +32,11 @@ const routes: Routes = [
       {
         path: "qualification-types",
         loadChildren: './qualification-types/qualification-types.module#QualificationTypesModule'
-      }
-      ,
+      },
+      {
+        path: "registration-methods",
+        loadChildren: './registeration-methods/registeration-methods.module#RegisterationMethodsModule'
+      },
       {
         path: "translations",
         component: TranslationComponent
