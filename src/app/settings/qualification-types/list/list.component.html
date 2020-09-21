@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="modal-default"  [hidden]="hideModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,7 +74,7 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">{{ 'grade' | trans }}<span style="color: red">*</span></label>
-              <input formControlName="percentage" type="number" class="form-control" id="exampleInputEmail1"
+              <input formControlName="grade" type="number" class="form-control" id="exampleInputEmail1"
                 placeholder="{{ 'grade' | trans }}">
               <div *ngIf="(grade.touched || grade.dirty) && grade.invalid">
                 <div class="alert alert-danger" *ngIf="grade.errors?.required">
@@ -96,13 +96,16 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">{{ 'notes' | trans }}</label>
-              <input formControlName="notes" type="number" class="form-control" id="exampleInputEmail1"
+              <textarea formControlName="notes" type="text" class="form-control"
                 placeholder="{{ 'notes' | trans }}">
+               </textarea> 
             </div>
 
           </div>
           <div class="box-footer">
-            <button [disabled]="callForm.invalid || isSubmitClick" type="submit" class="btn btn-primary">حفظ</button>
+            <button [disabled]="callForm.invalid || isSubmitClick" type="submit" id="modalDismiss"  class="btn btn-primary">حفظ</button>
+            &nbsp;
+            <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal" >cancel</button>
           </div>
         </form>
       </div>
