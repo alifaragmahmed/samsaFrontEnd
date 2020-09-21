@@ -21,6 +21,10 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: './settings/settings.module#SettingsModule'
       },
+      {
+        path: 'military',
+        loadChildren: './military/military.module#MilitaryModule'
+      },
      /* {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
