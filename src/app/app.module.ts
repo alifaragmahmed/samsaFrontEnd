@@ -19,6 +19,7 @@ import { LevelService } from './account/services/level.service';
 import { DivisionService } from './account/services/division.service';
 import { TermService } from './account/services/term.service';
 import { Message } from './shared/message';
+import { ApplicationSettingService } from './adminision/services/application-setting.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ export class AppModule {
     private translationService: TranslationService,
     private levelService: LevelService,
     private termService: TermService,
-    private divisionService: DivisionService) {
+    private divisionService: DivisionService, 
+    private applicationSettingService: ApplicationSettingService) {
     this.init();
   }
 
@@ -68,6 +70,7 @@ export class AppModule {
     this.loadLevels();
     this.loadDivisions();
     this.loadTerms();
+    this.applicationSettingService.loadSettings();
   }
 
   /**

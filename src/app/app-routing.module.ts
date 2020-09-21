@@ -21,6 +21,10 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: './settings/settings.module#SettingsModule'
       },
+      {
+        path: 'adminision',
+        loadChildren: './adminision/adminision.module#AdminisionModule'
+      },
      /* {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
