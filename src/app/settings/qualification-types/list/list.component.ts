@@ -105,6 +105,8 @@ export class ListComponent implements OnInit {
         console.log(res);
         if(res.status == 1){
           this.toastr.success(res.message, '');
+          document.getElementById("cancel").click();
+
           const index = this.rows.findIndex(v => v.id === id);
           this.rows.splice(index, 1);
         }else{
