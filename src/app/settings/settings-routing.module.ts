@@ -5,6 +5,7 @@ import { TranslationComponent } from './translation/translation.component';
 import { LevelsComponent } from './levels/levels.component'
 import { CaseConstraintComponent } from './case-constraint/case-constraint.component';
 import { ConstraintStatusComponent } from './constraint-status/constraint-status.component';
+import { LanguagesComponent } from './languages/languages.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,10 @@ const routes: Routes = [
       {
         path: "constraint-status",
         component: ConstraintStatusComponent
+      },
+      {
+        path: 'languages',
+        component: LanguagesComponent
       }
     ]
   }

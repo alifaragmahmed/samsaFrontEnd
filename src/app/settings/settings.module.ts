@@ -9,9 +9,10 @@ import { SharedModule } from '../shared/shared.module';
 import { LevelsComponent } from './levels/levels.component';
 import { CaseConstraintComponent } from './case-constraint/case-constraint.component';
 import { ConstraintStatusComponent } from './constraint-status/constraint-status.component';
+import { LanguagesComponent } from './languages/languages.component';
 
 @NgModule({
-  declarations: [SettingsComponent, TranslationComponent, LevelsComponent, CaseConstraintComponent, ConstraintStatusComponent],
+  declarations: [SettingsComponent, TranslationComponent, LevelsComponent, CaseConstraintComponent, ConstraintStatusComponent, LanguagesComponent],
   imports: [
     CommonModule,
     SettingsRoutingModule,
