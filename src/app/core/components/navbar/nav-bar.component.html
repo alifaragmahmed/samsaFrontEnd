@@ -16,10 +16,14 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-          <li class="active">
-            <a routerLink="settings" class="dropdown-toggle" data-toggle="dropdown">{{ "settings" | trans }} <span class="caret"></span></a>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "applications_section" | trans }} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#" routerLink="/adminision/application" >{{ "applications" | trans }}</a></li>
+              <li class="divider"></li>
+              <li><a href="#" routerLink="/adminision/settings" >{{ "settings" | trans }}</a></li>
+            </ul>
           </li>
-
           <li class="dropdown active">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ "account" | trans }} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -28,6 +32,13 @@
               <li><a href="#" routerLink="/account/setting" >{{ "settings" | trans }}</a></li>
             </ul>
           </li>
+          <li class="active">
+            <a routerLink="/settings" class="dropdown-toggle" data-toggle="dropdown">{{ "main_settings" | trans }} <span class="caret"></span></a>
+          </li>
+          <li class="active">
+            <a routerLink="/military" class="dropdown-toggle" data-toggle="dropdown">{{ "military" | trans }} <span class="caret"></span></a>
+          </li>
+
         </ul>
         <ul class="nav navbar-nav navbar-right" style="float: left!important" >
           <!-- Messages: style can be found in dropdown.less-->
@@ -137,12 +148,12 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img [src]="user.image_url" class="img-circle" alt="User Image">
+                <!-- <img [src]="user.image_url" class="img-circle" alt="User Image"> -->
 
-                <p>
+                <!-- <p>
                   {{ user.name }}
                   <small>{{ user.phone }}</small>
-                </p>
+                </p> -->
               </li>
               
               <!-- Menu Footer-->

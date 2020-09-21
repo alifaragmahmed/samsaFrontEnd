@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     children: [
       {
         path: 'account',
@@ -22,8 +22,13 @@ const routes: Routes = [
         loadChildren: './settings/settings.module#SettingsModule'
       },
       {
+<<<<<<< HEAD
         path: 'adminision',
         loadChildren: './adminision/adminision.module#AdminisionModule'
+=======
+        path: 'military',
+        loadChildren: './military/military.module#MilitaryModule'
+>>>>>>> 7630432df40f8df6f4098541fcbb8bfaacd3f793
       },
      /* {
         path: 'dashboard',
