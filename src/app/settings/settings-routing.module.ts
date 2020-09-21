@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SettingsComponent } from './settings.component';
 import { TranslationComponent } from './translation/translation.component';
 import { LevelsComponent } from './levels/levels.component'
+import { CaseConstraintComponent } from './case-constraint/case-constraint.component';
+import { ConstraintStatusComponent } from './constraint-status/constraint-status.component';
+
 
 const routes: Routes = [
   {
@@ -45,6 +48,15 @@ const routes: Routes = [
       {
         path: "levels",
         component: LevelsComponent
+      },
+      {
+        path: "case-constraints",
+        component: CaseConstraintComponent
+      }
+      ,
+      {
+        path: "constraint-status",
+        component: ConstraintStatusComponent
       }
     ]
   }
