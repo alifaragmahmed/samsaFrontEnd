@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormGroup, Validators, FormControl} from '@angular/forms';
 import {IUserLogin} from '../../../shared/models/IUserLogin';
 import {AuthService} from '../../../shared/services/auth.service';
+import { Cache } from '../../../shared/cache';
+import { Message } from '../../../shared/message';
 
 @Component({
   selector: 'app-login',
@@ -10,51 +12,43 @@ import {AuthService} from '../../../shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  public userAuth: any = {};
+  
   constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
-  public loginForm: FormGroup;
-  public isSubmitted = false;
-  public errorMessage = null;
-  public returnTo: string;
+ 
+  public isSubmitted = false;  
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      // noinspection TsLint
-      this.returnTo = params['return'] || '/admin/dashboard';
-    });
-    this.loginForm = new FormGroup({
-      email: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
-    });
+      // noinspection TsLint 
+    }); 
   }
-
-  get email() {return this.loginForm.get('email'); }
-
-  get password() {return this.loginForm.get('password'); }
-
-  login() {
-    this.errorMessage = null;
-    if (this.loginForm.invalid) {
-      this.errorMessage = 'Invalid Username or/and password';
-      return;
-    }
+ 
+  login() { 
     this.isSubmitted = true;
-    const userLogInData: IUserLogin = {
-      email: this.email.value,
-      password: this.password.value
-    };
-    this.authService.login(userLogInData).subscribe(
-      (result) => {
-        this.authService.setAdminLoalStorage(result);
-        this.authService.notifySubscribers(true);
-        this.router.navigate([this.returnTo]).then().catch();
+     
+    this.authService.login(this.userAuth).subscribe((result) => {
+        const data: any = result;
+
+        if (data.status == 1) {
+          // cache user 
+          Cache.set(AuthService.USER_PRFIX, data.data);
+
+          // cache api token 
+          Cache.set(AuthService.API_TOKEN_PRFIX, data.data.api_token);
+          this.router.navigate(['/']).then().catch();
+        } else {
+          Message.error(data.message);
+        } 
+
+        this.isSubmitted = false;
       },
-      (e) => {
-        this.errorMessage = e.error.message;
+      (e) => { 
+        Message.error(e);
         this.isSubmitted = false;
       }
     );

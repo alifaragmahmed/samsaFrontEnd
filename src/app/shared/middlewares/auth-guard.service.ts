@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Auth } from '../auth';
+import { LoginComponent } from '../../auth/components/login/login.component';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuardService implements CanActivate {
@@ -9,12 +11,27 @@ export class AuthGuardService implements CanActivate {
               private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    // if (!this.auth.isAuth()) {
-    //   this.router.navigate(['/admin/auth/login'], {
-    //     queryParams: {return: state.url}
-    //   }).then().catch();
-    //   return false;
-    // }
+    //console.log(route.pathFromRoot + state.url);
+    /*if (state.url != 'login') {
+      if (!Auth.getApiToken()) {
+        this.router.navigate(['/login'], {
+          queryParams: {return: state.url}
+        }).then().catch(); 
+      } 
+      return false;
+    }*/
+    /*if (!Auth.getApiToken()) {
+      this.router.navigate(['/login'], {
+        queryParams: {return: state.url}
+      }).then().catch(); 
+    } */  
+    if (!Auth.getApiToken()) {
+      this.router.navigate(['/login'], {
+        queryParams: {return: state.url}
+      }).then().catch(); 
+      return false;
+    }
+
     return true;
   }
 

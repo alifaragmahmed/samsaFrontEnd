@@ -2,6 +2,9 @@ import { StudentAccountService } from './../../../services/student-account.servi
 import { Component, OnInit } from '@angular/core';
 import { Payment } from '../../../models/payment';
 import { Message } from '../../../../shared/message';
+import { Auth } from '../../../../shared/auth';
+import { Helper } from '../../../../shared/helper';
+import { AppModule } from '../../../../app.module';
 
 @Component({
   selector: 'app-safe-index',
@@ -9,6 +12,9 @@ import { Message } from '../../../../shared/message';
   styleUrls: ['./safe-index.component.scss']
 })
 export class SafeIndexComponent implements OnInit {
+
+  // init document 
+  public doc: any = AppModule.doc;
 
   public safeObject: any = {};
   public payment: Payment;
@@ -33,6 +39,7 @@ export class SafeIndexComponent implements OnInit {
     this.safeObject.image = '/assets/img/avatar.png';
     this.safeObject.notes = 'some notes here';
     this.safeObject.level = {};
+    this.safeObject.paid_value = 0;
     this.safeObject.division = {};
   }
 
@@ -72,7 +79,7 @@ export class SafeIndexComponent implements OnInit {
     if (!id)
       return Message.error('search about student first');
     this.studentAcountService.getStudentAccount(id).subscribe((r) => {
-      this.safeObject = r;
+      this.safeObject = r; 
     
       if (!this.safeObject.image)
         this.safeObject.image = '/assets/img/avatar.png';
@@ -81,18 +88,21 @@ export class SafeIndexComponent implements OnInit {
   }
 
   updateStudent() { 
-    if (this.studentSearchId)
-      this.loadStudentAccountInfo(this.studentSearchId);
+    if (this.safeObject)
+      if (this.safeObject.id)
+        this.loadStudentAccountInfo(this.safeObject.id);
   }
 
   /**
    * perform payment
    */
   performPay() {
-    this.payment = new Payment(this.safeObject.id, this.safeObject.paid_value, this.studentAcountService, ()=>{
-      this.updateStudent();
+    Message.confirm(Helper.trans('are_you_sure'), ()=>{
+      this.payment = new Payment(this.safeObject.id, this.safeObject.paid_value, this.studentAcountService, ()=>{
+        this.updateStudent();
+      });
+      return this.payment.pay();
     });
-    return this.payment.pay();
   } 
 
   /**
@@ -105,6 +115,7 @@ export class SafeIndexComponent implements OnInit {
       });
     }
   }
+
   ngOnInit() {
   }
 

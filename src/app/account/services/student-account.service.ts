@@ -44,6 +44,14 @@ export class StudentAccountService {
   }
 
   /**
+   * update student installments
+   *
+   */
+  public sendNotes(data: any) {
+    return this.http.post('account/write_notes', data);
+  }
+
+  /**
    * get available services for student
    *
    */

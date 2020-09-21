@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgbDropdownConfig} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { Auth } from '../../../shared/auth';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
   public sidebarOpened = false;
 
+  public user: any = Auth.user();
+
   constructor(config: NgbDropdownConfig,private authService: AuthService,
               private router: Router) {
     config.placement = 'bottom-right';
@@ -19,9 +22,9 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   logout(){
-    this.authService.removeAdminLoalStorage();
-    this.authService.notifySubscribers(false);
-    this.router.navigate(['admin/auth/login']).then().catch();
+    Auth.logout();
+    this.router.navigate(['/login']).then().catch();
   }
 }

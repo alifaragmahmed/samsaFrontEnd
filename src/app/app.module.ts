@@ -18,6 +18,7 @@ import { Translation } from './shared/translation';
 import { LevelService } from './account/services/level.service';
 import { DivisionService } from './account/services/division.service';
 import { TermService } from './account/services/term.service';
+import { Message } from './shared/message';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TermService } from './account/services/term.service';
   bootstrap: [AppComponent]
 })
 export class AppModule {
- 
+
+  public static doc: any = document;
 
   constructor(
     private translationService: TranslationService,
@@ -60,7 +62,7 @@ export class AppModule {
     this.init();
   }
 
-  init() {
+  init() { 
     // load the translations words
     this.loadTranslations();
     this.loadLevels();
