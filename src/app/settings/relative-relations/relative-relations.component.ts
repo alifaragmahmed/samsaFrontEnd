@@ -117,10 +117,11 @@ export class RelativeRelationsComponent implements OnInit {
     this.id = id;
     this.service.getItemById(id).subscribe((res: any) => {
       if (res.status == 1) {
+        this.isSubmitClick = false;
+
         this.name.setValue(res.data.name);
         this.notes.setValue(res.data.notes);
         document.getElementById("openModal").click();
-        this.isSubmitClick = false;
         this.item = res.data;
       }
     });
