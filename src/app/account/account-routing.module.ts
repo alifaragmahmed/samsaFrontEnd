@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { ServiceIndexComponent } from './components/services/service-index/service-index.component';
 import { AccountComponent } from './account.component';
 import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component';
+import { StoreIndexComponent } from './components/store/store-index/store-index.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'services',
         component: ServiceIndexComponent
+      }, 
+      {
+        path: 'stores',
+        component: StoreIndexComponent
       }, 
       {
         path: 'academic_year_expenses',

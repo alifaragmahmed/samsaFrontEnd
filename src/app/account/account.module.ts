@@ -14,6 +14,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component';
 import { SendNoteComponent } from './components/safe/send-note/send-note.component';
 import { ServiceFormComponent } from './components/services/service-form/service-form.component'; 
+import { StoreIndexComponent } from './components/store/store-index/store-index.component';
+import { StoreCreateComponent } from './components/store/store-create/store-create.component';
+import { StoreUpdateComponent } from './components/store/store-update/store-update.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { ServiceFormComponent } from './components/services/service-form/service
     AccountComponent,
     AcademicYearIndexComponent,
     SendNoteComponent,
-    ServiceFormComponent 
+    ServiceFormComponent,
+    StoreIndexComponent,
+    StoreCreateComponent,
+    StoreUpdateComponent
   ],
   imports: [
     SharedModule,

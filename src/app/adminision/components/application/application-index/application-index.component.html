@@ -1,0 +1,97 @@
+<app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+
+<div class="box box-primary  table-responsive" >
+  <div class="box-header">
+    <button class="btn btn-primary" routerLink="/adminision/application/create" style="margin: 5px"  > 
+      <span class="fa fa-plus" ></span> {{ "add" | trans }}
+    </button> 
+    <button *ngIf="showRemoveButton" (click)="removeResources()" class="btn btn-danger" style="margin: 5px"  > 
+      <span class="fa fa-trash" ></span>
+    </button>
+  </div>
+  <br>
+
+</div>
+<div class="w3-row" style="padding: 5px;">
+  <ng-container *ngFor="let item of resources.data" >
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 student-list-col" >
+          <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item">
+
+              <div class="w3-display-topleft w3-padding" >
+                <input type="checkbox" style="margin: 0px!important" class="w3-check w3-margin" (click)="toggleFromTrash(item.id)"  >
+              </div>
+
+            <div class="media-left">
+                <a href="#">
+                  <img class="media-object w3-round" [src]="item.personal_photo_url"  style="width: 70px;height: 70px" >
+                </a>
+            </div>
+            <div class="media-body">
+            <h4 class="media-heading">{{ item.name.substring(0, 15) }}..</h4>
+            <table class="table" >
+              <tr>
+                <th>{{ "academic_year" | trans }}</th>
+                <td>{{ item.academic_year? item.academic_year.name : '' }}</td>
+              </tr>
+              <tr>
+                <th>{{ "qualification" | trans }}</th>
+                <td>{{ item.qualification? item.qualification.name : '' }}</td>
+              </tr>
+              <tr>
+                <th>{{ "level" | trans }}</th>
+                <td>{{ item.level? item.level.name : '' }}</td>
+              </tr> 
+            </table> 
+            <div class="text-right" > 
+              <a href="#" [routerLink]="['/adminision/application/', item.id]" ><i class="fa fa-edit btn w3-text-orange" ></i></a>
+              <a href="#" [routerLink]="['/adminision/application/show/', item.id]" ><i class="fa fa-desktop btn w3-text-green" ></i></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </ng-container>
+  
+
+
+</div>
+<br>
+<div class="text-center w3-center" >
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a   class="" [ngClass]="{'disabled': !resources.prev_page}" (click)="loadResources(resources.prev_page)" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li *ngFor="let item of resources.pages_arr"  >
+            <a class="" [ngClass]="{'active': resources.current_page == item}"  (click)="loadResources(item)">{{ item }}</a>
+          </li>  
+          <li>
+            <a   class="" [ngClass]="{'disabled': !resources.next_page}"  (click)="loadResources(resources.next_page)" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+</div> 
+
+ 
+<!-- remove modal -->
+<div class="w3-modal w3-block" *ngIf="showRemoveModal"  role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{{ "remove applications" | trans }}</h4>
+        </div>
+        <div class="modal-body text-center">
+            <i class="fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center" ></i>
+            <br>
+            {{ trashList.size() }} - {{ "removed" | trans }} {{ trashList.size() + removed.length }}
+        </div>
+        <div class="modal-footer"> 
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+ 
+ 

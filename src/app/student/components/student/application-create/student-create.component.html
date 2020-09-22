@@ -2,7 +2,7 @@
     <div class="col-lg-10 col-md-10 col-sm-12">
       <div class="w3-white material-shadow safe-box">
         <div class="safe-box-header w3-xlarge">
-          {{ "create application" | trans }}
+          {{ "create student" | trans }}
         </div>
         <br>
         <div class="border-bottom-dashed" ></div>
@@ -106,12 +106,11 @@
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                             [(ngModel)]="application.email" >
                           </td>
-                      </tr>
+                      </tr> 
                       <tr>
                         <th>{{ "academic_years" | trans }} *</th>
                         <td>
-                          <select
-                          (change)="watchLevel()"
+                          <select 
                           class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                           [(ngModel)]="application.academic_years_id">
                             <option *ngFor="let item of applicationSettings.ACADEMIC_YEARS" value="{{ item.id }}">{{ item.name }}</option>
@@ -121,8 +120,7 @@
                       <tr>
                           <th>{{ "grade" | trans }} *</th>
                           <td>
-                            <input 
-                            (change)="watchLevel()"
+                            <input  
                             type="number"
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                             [(ngModel)]="application.grade" >
@@ -131,6 +129,15 @@
                             </p>
                           </td>
                       </tr> 
+                      <tr>
+                          <th>{{ "national_id" | trans }} *</th>
+                          <td>
+                            <input 
+                            type="text"
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            [(ngModel)]="application.national_id" >
+                          </td>
+                      </tr>
                       <tr>
                           <th>{{ "registeration_date" | trans }}</th>
                           <td>
@@ -170,15 +177,6 @@
                         </td>
                       </tr>
                       <tr>
-                          <th>{{ "qualification_date" | trans }} *</th>
-                          <td>
-                            <input 
-                            type="date"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.qualification_date" >
-                          </td>
-                      </tr>
-                      <tr>
                           <th>{{ "qualification_set_number" | trans }}</th>
                           <td>
                             <input 
@@ -193,10 +191,18 @@
                   <div class="col-lg-6 col-md-6 col-sm-12">
                     <table class="table w3-block w3-block" >
                         <tr>
+                            <th>{{ "qualification_date" | trans }} *</th>
+                            <td>
+                              <input 
+                              type="date"
+                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                              [(ngModel)]="application.qualification_date" >
+                            </td>
+                        </tr>
+                        <tr>
                           <th>{{ "qualification" | trans }} *</th>
                           <td>
-                            <select
-                            (change)="watchLevel()"
+                            <select 
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                             [(ngModel)]="application.qualification_id">
                               <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
@@ -206,8 +212,7 @@
                         <tr>
                           <th>{{ "qualification_types" | trans }} *</th>
                           <td>
-                            <select
-                            (change)="watchLevel()"
+                            <select 
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
                             [(ngModel)]="application.qualification_types_id">
                               <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
@@ -218,18 +223,25 @@
                           </td>
                         </tr>
                         <tr>
-                          <th>{{ "level" | trans }}</th>
+                          <th>{{ "level" | trans }} *</th>
                           <td>
-                            <input 
-                            type="text"
-                            readonly
+                            <select 
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.level_name" >
-                            <input 
-                            type="hidden"  
-                            [(ngModel)]="application.level_id" >
+                            [(ngModel)]="application.level_id">
+                              <option *ngFor="let item of levels" value="{{ item.id }}">{{ item.name }}</option>
+                            </select>  
                           </td>
-                        </tr>
+                        </tr> 
+                        <tr>
+                          <th>{{ "division" | trans }} *</th>
+                          <td>
+                            <select
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            [(ngModel)]="application.division_id">
+                              <option *ngFor="let item of divisions" value="{{ item.id }}">{{ item.name }}</option>
+                            </select>  
+                          </td>
+                        </tr> 
                         <tr>
                           <th>{{ "case_constraint" | trans }}</th>
                           <td>
@@ -239,15 +251,6 @@
                               <option *ngFor="let item of applicationSettings.CASE_CONSTRAINTS" value="{{ item.id }}">{{ item.name }}</option>
                             </select>  
                           </td>
-                        </tr>
-                        <tr>
-                            <th>{{ "national_id" | trans }} *</th>
-                            <td>
-                              <input 
-                              type="text"
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                              [(ngModel)]="application.national_id" >
-                            </td>
                         </tr>
                         <tr>
                             <th>{{ "coordination_password" | trans }}</th>

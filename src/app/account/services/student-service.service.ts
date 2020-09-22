@@ -26,7 +26,7 @@ export class StudentServiceService {
   /**
    * store new service
    */
-  public store(data: IService) {
+  public store(data: any) {
     // remove old cache
     Cache.remove(StudentServiceService.STUDENT_SERVICE_PREFIX);
     return this.http.post('account/services/store' + '?api_token=' + Auth.getApiToken(), data);

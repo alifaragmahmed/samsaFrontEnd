@@ -3,6 +3,7 @@ import { StudentServiceService } from './../../../services/student-service.servi
 import { IService } from './../../../models/iservice';
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from '../../../../shared/message';
+import { AppModule } from '../../../../app.module';
 
 @Component({
   selector: 'app-service-create',
@@ -11,7 +12,10 @@ import { Message } from '../../../../shared/message';
 })
 export class ServiceCreateComponent implements OnInit {
 
-  public item: IService = null;
+  public doc: any = AppModule.doc;
+  public item: any = {};
+
+  public isSubmitted = false;
 
   @Input() parent: ServiceIndexComponent;
   @Input() loadServices: any;
@@ -19,7 +23,7 @@ export class ServiceCreateComponent implements OnInit {
   
 
   constructor(private studentService: StudentServiceService) {
-    this.initItem();
+    // this.initItem();
   }
 
   initItem() {
@@ -54,10 +58,12 @@ export class ServiceCreateComponent implements OnInit {
     if (!this.validate())
       return Message.error('please fill all data');
 
+    this.isSubmitted = true;    
     this.studentService.store(this.item).subscribe((res) => {
       const r: any = res;
-      if (r.status == 1)
+      if (r.status == 1) {
         Message.success(r.message);
+      }
       else
         Message.error(r.message);
 
@@ -65,6 +71,8 @@ export class ServiceCreateComponent implements OnInit {
         this.initItem();
         this.loadServices();
       }
+
+      this.isSubmitted = false;
     });
   }
 }

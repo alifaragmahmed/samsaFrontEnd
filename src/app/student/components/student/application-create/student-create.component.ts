@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ApplicationSettingService } from '../../../services/application-setting.service';
+import { Component, OnInit } from '@angular/core'; 
 import { Message } from '../../../../shared/message';
-import { Helper } from '../../../../shared/helper';
-import { ApplicationService } from '../../../services/application.service';
+import { Helper } from '../../../../shared/helper'; 
 import { Cache } from '../../../../shared/cache';
 import { LevelService } from '../../../../account/services/level.service';
 import { AppModule } from '../../../../app.module';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
+import { ApplicationSettingService } from '../../../../adminision/services/application-setting.service';
+import { StudentService } from '../../../services/student.service';
+import { DivisionService } from '../../../../account/services/division.service';
 
 @Component({
-  selector: 'app-application-create',
-  templateUrl: './application-create.component.html',
-  styleUrls: ['./application-create.component.scss']
+  selector: 'app-student-create',
+  templateUrl: './student-create.component.html',
+  styleUrls: ['./student-create.component.scss']
 })
-export class ApplicationCreateComponent implements OnInit {
+export class StudentCreateComponent implements OnInit {
 
   public doc: any = AppModule.doc;
   /**
@@ -33,6 +34,9 @@ export class ApplicationCreateComponent implements OnInit {
 
   public isUpdate = false;
 
+  public levels: any;
+  public divisions: any;
+
   public required_field = [
     'name',
     'qualification_id',
@@ -45,16 +49,16 @@ export class ApplicationCreateComponent implements OnInit {
     'level_id'
   ];
 
-  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) { 
+  constructor(private studentService: StudentService, private route: ActivatedRoute) { 
     const id = this.route.snapshot.params['id'];
-    if (id > 0) {
+    if (id) {
       this.loadApplication(id);
       this.isUpdate = true;  
     }
   }
 
   loadApplication(id) {
-    this.applicationService.load(id).subscribe((res: any) => {
+    this.studentService.load(id).subscribe((res: any) => {
       this.application = res;
     });
   }
@@ -90,7 +94,7 @@ export class ApplicationCreateComponent implements OnInit {
     }
 
     //return console.log(data);
-    this.applicationService.update(data).subscribe((res)=>{
+    this.studentService.update(data).subscribe((res)=>{
       const data: any = res;
 
       if (data.status == 1)  {
@@ -106,7 +110,7 @@ export class ApplicationCreateComponent implements OnInit {
 
   performSendApplication() { 
     this.isSubmitted = true;
-    this.applicationService.store(this.application).subscribe((res)=>{
+    this.studentService.store(this.application).subscribe((res)=>{
       const data: any = res;
 
       if (data.status == 1)  {
@@ -156,59 +160,10 @@ export class ApplicationCreateComponent implements OnInit {
       this.application.personal_photo_url = reader.result; 
     } 
   }
-
-  //******************************************* */
-  // level methods
-  //******************************************* */
-
-  watchLevel() {
-    this.calculateLevel();
-    this.setLevel();
-  }
-
-  calculateLevel() {
-    const qualificationsTypes = this.applicationSettings.QUALIFICATION_TYPES;
-    let levelId = null;
-    let changes = false;
-    let requiredGrade = null;
-    qualificationsTypes.forEach(element => {
-      const condition: boolean = 
-      element.id == this.application.qualification_types_id && 
-      element.grade <= this.application.grade;
-
-      if (element.id == this.application.qualification_types_id)
-        requiredGrade = element.grade;
-
-      if (condition) {
-        levelId = element.level_id;
-        changes = true;
-      }
-    });
-
-    if (requiredGrade) {
-      this.gradeError = Helper.trans('grade must be equal or bigger than ') + ' : ' + requiredGrade;
-      this.setCurrentError(this.gradeError);
-    }
-    
-    if (!changes) {
-      levelId = null;
-    } else { 
-      this.gradeError = null;
-      this.setCurrentError(this.gradeError);
-    }
-
-    this.application.level_id = levelId;
-  }
-
-  setLevel() {
-    const levels = Cache.get(LevelService.LEVEL_PREFIX);
-    levels.forEach(element => {
-      if (element.id  == this.application.level_id)
-        this.application.level_name = element.name;
-    });
-  }
-
+ 
   ngOnInit() {
+    this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+    this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
   }
 
 }

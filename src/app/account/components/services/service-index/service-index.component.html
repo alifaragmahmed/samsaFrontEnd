@@ -10,7 +10,7 @@
     </button>
   </div>
   <br>
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered text-center">
+  <table class="table table-bordered text-center default-datatable">
     <thead>
       <tr class="w3-hover-light-gray" >
         <th></th>
@@ -88,7 +88,7 @@
   </div><!-- /.modal -->
 
 
-  <div class="modal" id="updateModal"   role="dialog">
+  <div class="modal fade" id="updateModal"   role="dialog">
     <div class="modal-dialog" role="document">
       <div class="box box-primary modal-content">
         <div class="modal-header">
@@ -164,7 +164,7 @@
           </table>
         </div>
         <div class="modal-footer text-right">
-          <button type="button" class="btn btn-default" onclick="document.getElementById('updateModal').style.display='none'" >{{ "close" | trans }}</button>
+          <button type="button" class="btn btn-default" (click)="doc.jquery('#updateModal').modal('hide')" >{{ "close" | trans }}</button>
           <button class="btn btn-primary" (click)="updateService()" >{{ "save" | trans }}</button>
         </div>
       </div><!-- /.modal-content -->

@@ -46,6 +46,11 @@ import { ApplicationSettingService } from './adminision/services/application-set
   ],
   providers: [
     httpInterceptorProviders,
+    ApplicationSettingService,
+    TranslationService,
+    LevelService,
+    DivisionService,
+    TermService,
     AuthService,
     AuthGuestService
   ],

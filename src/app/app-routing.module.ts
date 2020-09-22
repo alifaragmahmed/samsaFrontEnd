@@ -14,6 +14,10 @@ const routes: Routes = [
     // canActivate: [AuthGuardService],
     children: [
       {
+        path: 'student',
+        loadChildren: './student/student.module#StudentModule'
+      },
+      {
         path: 'account',
         loadChildren: './account/account.module#AccountModule'
       },
@@ -22,13 +26,12 @@ const routes: Routes = [
         loadChildren: './settings/settings.module#SettingsModule'
       },
       {
-<<<<<<< HEAD
         path: 'adminision',
         loadChildren: './adminision/adminision.module#AdminisionModule'
-=======
+      },
+      {
         path: 'military',
         loadChildren: './military/military.module#MilitaryModule'
->>>>>>> 7630432df40f8df6f4098541fcbb8bfaacd3f793
       },
      /* {
         path: 'dashboard',

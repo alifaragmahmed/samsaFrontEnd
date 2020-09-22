@@ -4,6 +4,7 @@ import { Cache } from 'src/app/shared/cache';
 import { Subject } from 'rxjs';
 import { HashTable } from 'angular-hashtable'; 
 import { IService } from '../../../models/iservice';
+import { AppModule } from '../../../../app.module';
 
 @Component({
   selector: 'app-service-index',
@@ -11,6 +12,8 @@ import { IService } from '../../../models/iservice';
   styleUrls: ['./service-index.component.scss']
 })
 export class ServiceIndexComponent implements OnInit {
+
+  public doc: any = AppModule.doc;
 
   // datatable options
   public dtOptions: any;
@@ -110,18 +113,21 @@ export class ServiceIndexComponent implements OnInit {
       this.serviceList = res;
       // cache the result
       Cache.set(StudentServiceService.STUDENT_SERVICE_PREFIX, this.serviceList);
-      this.dtTrigger.next();
+      
+      setTimeout(() => {
+        this.doc.datatable();
+      }, 3000);
     });
     //}
   }
 
   viewCreateModal() {
-    document.getElementById('createModal').style.display='block';
+    this.doc.jquery('#createModal').modal('show');  
   }
 
   showUpdateModal(item) {
     this.updateItem = item;
-    document.getElementById('updateModal').style.display='block';
+    this.doc.jquery('#updateModal').modal('show'); 
   }
 
   updateService() {

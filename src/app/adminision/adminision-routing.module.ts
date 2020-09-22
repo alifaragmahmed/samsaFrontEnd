@@ -3,8 +3,22 @@ import {Routes, RouterModule} from '@angular/router';
 import { AdminisionComponent } from './adminision.component';
 import { RequiredDocumentIndexComponent } from './components/required_document/required-document-index/required-document-index.component';
 import { ApplicationCreateComponent } from './components/application/application-create/application-create.component';
+import { ApplicationIndexComponent } from './components/application/application-index/application-index.component';
+import { ApplicationShowComponent } from './components/application/application-show/application-show.component';
 
 const routes: Routes = [ 
+  {
+    path: 'application',
+    component: ApplicationIndexComponent
+  }, 
+  {
+    path: 'application/:id',
+    component: ApplicationCreateComponent
+  }, 
+  {
+    path: 'application/show/:id',
+    component: ApplicationShowComponent
+  }, 
   {
     path: 'application/create',
     component: ApplicationCreateComponent
