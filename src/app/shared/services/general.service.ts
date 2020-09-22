@@ -28,6 +28,9 @@ export class GeneralService {
     return this.http.get('qualifications?api_token=123456789');
   }
 
+  public getAllDepartments(){
+    return this.http.get('departments?api_token=123456789');
+  }
   getAllUsers(query: any) {
     const params = new HttpParams()
       .set('page', query.page)

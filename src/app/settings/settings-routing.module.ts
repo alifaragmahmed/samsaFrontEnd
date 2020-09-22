@@ -5,7 +5,12 @@ import { TranslationComponent } from './translation/translation.component';
 import { LevelsComponent } from './levels/levels.component'
 import { CaseConstraintComponent } from './case-constraint/case-constraint.component';
 import { ConstraintStatusComponent } from './constraint-status/constraint-status.component';
-
+import { LanguagesComponent } from './languages/languages.component';
+import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
+import { DivisionsComponent } from './divisions/divisions.component';
+import { NationalityComponent } from './nationality/nationality.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
 
 const routes: Routes = [
   {
@@ -57,10 +62,36 @@ const routes: Routes = [
       {
         path: "constraint-status",
         component: ConstraintStatusComponent
+      },
+      {
+        path: 'languages',
+        component: LanguagesComponent
+      }
+      ,
+      {
+        path: 'parent-jobs',
+        component: ParentJobsComponent
+      },
+      {
+        path: 'divisions',
+        component: DivisionsComponent
+      },
+      {
+        path: 'nationalities',
+        component: NationalityComponent
+      },
+      {
+        path: 'departments',
+        component: DepartmentsComponent
+      },
+      {
+        path: 'relative-realtions',
+        component: RelativeRelationsComponent
       }
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

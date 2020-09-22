@@ -1,7 +1,7 @@
 <div class="box box-default">
   <div class="box-body">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
-      اضافة مستوى دراسى
+      اضافة جنسية
     </button>
     <button style="display: none;" type="button" id="openModal" class="btn btn-info" data-toggle="modal" data-target="#modal-default-edit">
     </button>
@@ -31,24 +31,26 @@
                 placeholder="{{ 'name' | trans }}">
               <div *ngIf="(name.touched || name.dirty) && name.invalid">
                 <div class="alert alert-danger" *ngIf="name.errors?.required">
-                  <p>من فضلك ادخل اسم وسيلة التعارف</p>
+                  <p>من فضلك ادخل اسم الجنسية </p>
                 </div>
               </div>
             </div>
 
+            
+
             <div class="form-group">
-              <label for="exampleInputEmail1">{{ 'notes' | trans }}<span style="color: red">*</span></label>
-              <input formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
+              <label for="exampleInputEmail1">{{ 'notes' | trans }}</label>
+              <textarea formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
                 placeholder="{{ 'notes' | trans }}">
+                </textarea>
             </div>
           </div>
           <div class="box-footer">
             <button [disabled]="callForm.invalid || isSubmitClick" type="submit" class="btn btn-primary">تعديل</button>
             &nbsp;
-            <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal">الغاء</button>
+            <button type="button" id="cancell" class="btn btn-danger" data-dismiss="modal">الغاء</button>
           </div>
         </form>
-
       </div>
     </div>
   </div>
@@ -62,7 +64,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">اضافة مستوى دراسى</h4>
+        <h4 class="modal-title">اضافة جنسية</h4>
       </div>
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -78,14 +80,17 @@
                 placeholder="{{ 'name' | trans }}">
               <div *ngIf="(name.touched || name.dirty) && name.invalid">
                 <div class="alert alert-danger" *ngIf="name.errors?.required">
-                  <p>من فضلك ادخل اسم وسيلة التعارف</p>
+                  <p>من فضلك ادخل اسم الجنسية </p>
                 </div>
               </div>
             </div>
+            
             <div class="form-group">
-              <label for="exampleInputEmail1">{{ 'notes' | trans }}<span style="color: red">*</span></label>
-              <input formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
+              <label for="exampleInputEmail1">{{ 'notes' | trans }}</label>
+              <textarea formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
                 placeholder="{{ 'notes' | trans }}">
+                </textarea>
+
             </div>
           </div>
           <div class="box-footer">
@@ -94,9 +99,6 @@
             <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal">cancel</button>
           </div>
         </form>
-
-
-
       </div>
     </div>
   </div>
@@ -126,7 +128,7 @@
               <i class="fa fa-edit"></i>
             </button>
             &nbsp;
-            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#modal-danger">
+            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#modal-danger" (click)="launchModal(row.id)">
               <i class="fa fa-trash-o"></i>
             </button>
             <div class="modal modal-danger fade" id="modal-danger">
@@ -141,7 +143,7 @@
                     <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-outline" (click)="delete(row.id)">حذف</button>
+                    <button type="button" class="btn btn-outline" (click)="delete()">حذف</button>
                     &nbsp;
                     <button type="button" id="cancello" class="btn btn-outline pull-left"
                       data-dismiss="modal">الغاء</button>
