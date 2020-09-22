@@ -63,7 +63,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"account-account-module":"account-account-module","common":"common","academic-year-academic-year-module":"academic-year-academic-year-module","city-city-module":"city-city-module","country-country-module":"country-country-module","government-government-module":"government-government-module","qualification-types-qualification-types-module":"qualification-types-qualification-types-module","qualification-qualification-module":"qualification-qualification-module","settings-settings-module":"settings-settings-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","academic-year-academic-year-module":"academic-year-academic-year-module","account-account-module":"account-account-module","adminision-adminision-module":"adminision-adminision-module","area-area-module":"area-area-module","auth-auth-module":"auth-auth-module","city-city-module":"city-city-module","country-country-module":"country-country-module","government-government-module":"government-government-module","qualification-types-qualification-types-module":"qualification-types-qualification-types-module","settings-settings-module":"settings-settings-module","student-student-module":"student-student-module","military-military-module":"military-military-module","qualification-qualification-module":"qualification-qualification-module","registeration-methods-registeration-methods-module":"registeration-methods-registeration-methods-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

@@ -36,6 +36,8 @@
 <body class="hold-transition skin-blue layout-top-nav">
   <app-root></app-root>
 
+  <audio id="player" src=""></audio>
+
   <!-- jQuery 3 -->
   <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap 3.3.7 -->
@@ -49,8 +51,9 @@
   <script src="assets/bower_components/fastclick/lib/fastclick.js"></script>
   <!-- AdminLTE App -->
   <script src="assets/dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="assets/dist/js/demo.js"></script>
+  <!-- AdminLTE for demo purposes --> 
+  
+  <script src="assets/js/sweetalert2.js"></script>
 
   <link rel="stylesheet" href="assets/css/bootstrap.rtl.full.min.css">
   <script>
@@ -69,6 +72,59 @@
         'autoWidth'   : false
       })
     })
+
+    document.__proto__.swal = {
+      success: function(message){
+        Swal.fire('تم', message,'success');
+      },
+      error: function(message){
+        Swal.fire('هناك خطا', message,'error');
+      },
+      confirm: function(message, action) {
+        Swal.fire({
+          title: message,
+          showDenyButton: true,
+          //showCancelButton: true,
+          confirmButtonText: `تمام`,
+          denyButtonText: `الغاء`,
+        }).then((result) => { 
+          if (result.isConfirmed) {
+            action();
+          } else if (result.isDenied) {
+            // nothing
+          }
+        });
+      }
+    };
+
+    document.__proto__.playSound = function(src) {
+      var player = document.getElementById('player');
+      player.src = src;
+      player.play();
+    }
+
+    document.__proto__.datatable = function() {
+      $('.default-datatable').each(function(){
+        try{  
+          $(this).dataTable().fnDestroy();
+        }catch(e){}
+                $(this).DataTable({
+                    "pageLength": 10,
+                    dom: 'Bfrtip', 
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"
+                    },
+                    buttons: [
+                        'copyHtml5',
+                        'excelHtml5',
+                        'csvHtml5',
+                        'pdfHtml5'
+                    ]
+                });
+          });
+    };
+    document.__proto__.jq = $;
+    document.__proto__.jquery = $;
   </script>
 <script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="es2015-polyfills.js" nomodule></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>

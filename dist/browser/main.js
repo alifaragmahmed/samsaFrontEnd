@@ -15,7 +15,23 @@ var map = {
 	],
 	"./account/account.module": [
 		"./src/app/account/account.module.ts",
+		"common",
 		"account-account-module"
+	],
+	"./adminision/adminision.module": [
+		"./src/app/adminision/adminision.module.ts",
+		"common",
+		"adminision-adminision-module"
+	],
+	"./area/area.module": [
+		"./src/app/military/area/area.module.ts",
+		"common",
+		"area-area-module"
+	],
+	"./auth/auth.module": [
+		"./src/app/auth/auth.module.ts",
+		"common",
+		"auth-auth-module"
 	],
 	"./city/city.module": [
 		"./src/app/settings/city/city.module.ts",
@@ -32,6 +48,10 @@ var map = {
 		"common",
 		"government-government-module"
 	],
+	"./military/military.module": [
+		"./src/app/military/military.module.ts",
+		"military-military-module"
+	],
 	"./qualification-types/qualification-types.module": [
 		"./src/app/settings/qualification-types/qualification-types.module.ts",
 		"common",
@@ -41,9 +61,19 @@ var map = {
 		"./src/app/settings/qualification/qualification.module.ts",
 		"qualification-qualification-module"
 	],
+	"./registeration-methods/registeration-methods.module": [
+		"./src/app/settings/registeration-methods/registeration-methods.module.ts",
+		"registeration-methods-registeration-methods-module"
+	],
 	"./settings/settings.module": [
 		"./src/app/settings/settings.module.ts",
+		"common",
 		"settings-settings-module"
+	],
+	"./student/student.module": [
+		"./src/app/student/student.module.ts",
+		"common",
+		"student-student-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -197,6 +227,126 @@ var TermService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/adminision/services/application-setting.service.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/adminision/services/application-setting.service.ts ***!
+  \********************************************************************/
+/*! exports provided: ApplicationSettingService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApplicationSettingService", function() { return ApplicationSettingService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var ApplicationSettingService = /** @class */ (function () {
+    function ApplicationSettingService(http) {
+        this.http = http;
+        //
+    }
+    ApplicationSettingService_1 = ApplicationSettingService;
+    ApplicationSettingService.prototype.loadSettings = function () {
+        this.getCaseConstraints().subscribe(function (r) { ApplicationSettingService_1.CASE_CONSTRAINTS = r; });
+        this.getNationalities().subscribe(function (r) { ApplicationSettingService_1.NATIONALITIES = r; });
+        this.getAcademicYears().subscribe(function (r) { ApplicationSettingService_1.ACADEMIC_YEARS = r; });
+        this.getQualificationTypes().subscribe(function (r) { ApplicationSettingService_1.QUALIFICATION_TYPES = r; });
+        this.getQualifications().subscribe(function (r) { ApplicationSettingService_1.QUALIFICATIONS = r; });
+        this.getRegisterationStatus().subscribe(function (r) { ApplicationSettingService_1.REGISTERATION_STATUS = r; });
+        this.getRegisterationMethods().subscribe(function (r) { ApplicationSettingService_1.REGISTERATION_METHODS = r; });
+        this.getLanguages().subscribe(function (r) { ApplicationSettingService_1.LANGUAGES = r; });
+        this.getCities().subscribe(function (r) { ApplicationSettingService_1.CITIES = r; });
+        this.getGovernments().subscribe(function (r) { ApplicationSettingService_1.GOVERNMENTS = r; });
+        this.getCountries().subscribe(function (r) { ApplicationSettingService_1.COUNTRIES = r; });
+        this.getMilitaryStatus().subscribe(function (r) { ApplicationSettingService_1.MILITARY_STATUS = r; });
+        this.getMilitaryAreas().subscribe(function (r) { ApplicationSettingService_1.MILITARY_AREAS = r; });
+        this.getParentJobs().subscribe(function (r) { ApplicationSettingService_1.PARENT_JOBS = r; });
+        this.getRelativeRelations().subscribe(function (r) { ApplicationSettingService_1.RELATIVE_RELATIONS = r; });
+        this.getRequiredDocuments().subscribe(function (r) { ApplicationSettingService_1.REQUIRED_DOCUMENTS = r; });
+    };
+    ApplicationSettingService.prototype.getRequiredDocuments = function () {
+        return this.http.get('adminision/required_documents?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getCaseConstraints = function () {
+        return this.http.get('adminision/get_case_constraints?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getRelativeRelations = function () {
+        return this.http.get('adminision/get_relative_relations?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getNationalities = function () {
+        return this.http.get('adminision/get_nationality?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getAcademicYears = function () {
+        return this.http.get('adminision/get_academic_years?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getQualificationTypes = function () {
+        return this.http.get('adminision/get_qualification_types?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getQualifications = function () {
+        return this.http.get('adminision/get_qualifications?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getRegisterationStatus = function () {
+        return this.http.get('adminision/get_registeration_status?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getRegisterationMethods = function () {
+        return this.http.get('adminision/get_registration_methods?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getLanguages = function () {
+        return this.http.get('adminision/get_languages?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getCities = function () {
+        return this.http.get('adminision/get_cities?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getGovernments = function () {
+        return this.http.get('adminision/get_governments?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getCountries = function () {
+        return this.http.get('adminision/get_countries?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getMilitaryStatus = function () {
+        return this.http.get('adminision/get_military_status?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getMilitaryAreas = function () {
+        return this.http.get('adminision/get_military_areas?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    ApplicationSettingService.prototype.getParentJobs = function () {
+        return this.http.get('adminision/get_parent_jobs?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    var ApplicationSettingService_1;
+    ApplicationSettingService.NATIONALITIES = [];
+    ApplicationSettingService.CASE_CONSTRAINTS = [];
+    ApplicationSettingService.ACADEMIC_YEARS = [];
+    ApplicationSettingService.QUALIFICATION_TYPES = [];
+    ApplicationSettingService.QUALIFICATIONS = [];
+    ApplicationSettingService.REGISTERATION_STATUS = [];
+    ApplicationSettingService.REGISTERATION_METHODS = [];
+    ApplicationSettingService.LANGUAGES = [];
+    ApplicationSettingService.CITIES = [];
+    ApplicationSettingService.GOVERNMENTS = [];
+    ApplicationSettingService.COUNTRIES = [];
+    ApplicationSettingService.MILITARY_STATUS = [];
+    ApplicationSettingService.MILITARY_AREAS = [];
+    ApplicationSettingService.PARENT_JOBS = [];
+    ApplicationSettingService.RELATIVE_RELATIONS = [];
+    ApplicationSettingService.REQUIRED_DOCUMENTS = [];
+    ApplicationSettingService = ApplicationSettingService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ApplicationSettingService);
+    return ApplicationSettingService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -212,8 +362,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/layout.component */ "./src/app/core/layout.component.ts");
-/* harmony import */ var _shared_middlewares_auth_guard_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/middlewares/auth-guard.service */ "./src/app/shared/middlewares/auth-guard.service.ts");
-
 
 
 
@@ -223,8 +371,12 @@ var routes = [
     {
         path: '',
         component: _core_layout_component__WEBPACK_IMPORTED_MODULE_4__["LayoutComponent"],
-        canActivate: [_shared_middlewares_auth_guard_service__WEBPACK_IMPORTED_MODULE_5__["AuthGuardService"]],
+        // canActivate: [AuthGuardService],
         children: [
+            {
+                path: 'student',
+                loadChildren: './student/student.module#StudentModule'
+            },
             {
                 path: 'account',
                 loadChildren: './account/account.module#AccountModule'
@@ -233,7 +385,19 @@ var routes = [
                 path: 'settings',
                 loadChildren: './settings/settings.module#SettingsModule'
             },
+            {
+                path: 'adminision',
+                loadChildren: './adminision/adminision.module#AdminisionModule'
+            },
+            {
+                path: 'military',
+                loadChildren: './military/military.module#MilitaryModule'
+            },
         ]
+    },
+    {
+        path: '',
+        loadChildren: './auth/auth.module#AuthModule'
     },
     {
         path: '**',
@@ -293,6 +457,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./account/services/level.service */ "./src/app/account/services/level.service.ts");
 /* harmony import */ var _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./account/services/division.service */ "./src/app/account/services/division.service.ts");
 /* harmony import */ var _account_services_term_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./account/services/term.service */ "./src/app/account/services/term.service.ts");
+/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+
 
 
 
@@ -315,11 +481,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppModule = /** @class */ (function () {
-    function AppModule(translationService, levelService, termService, divisionService) {
+    function AppModule(translationService, levelService, termService, divisionService, applicationSettingService) {
         this.translationService = translationService;
         this.levelService = levelService;
         this.termService = termService;
         this.divisionService = divisionService;
+        this.applicationSettingService = applicationSettingService;
         this.init();
     }
     AppModule.prototype.init = function () {
@@ -328,6 +495,7 @@ var AppModule = /** @class */ (function () {
         this.loadLevels();
         this.loadDivisions();
         this.loadTerms();
+        this.applicationSettingService.loadSettings();
     };
     /**
      * load translations and update the cache
@@ -361,6 +529,7 @@ var AppModule = /** @class */ (function () {
             _shared_cache__WEBPACK_IMPORTED_MODULE_16__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_20__["TermService"].TERPM_PREFIX, r);
         });
     };
+    AppModule.doc = document;
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
@@ -386,6 +555,11 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _shared_interceptors__WEBPACK_IMPORTED_MODULE_3__["httpInterceptorProviders"],
+                _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_21__["ApplicationSettingService"],
+                _shared_services_translation_service__WEBPACK_IMPORTED_MODULE_15__["TranslationService"],
+                _account_services_level_service__WEBPACK_IMPORTED_MODULE_18__["LevelService"],
+                _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__["DivisionService"],
+                _account_services_term_service__WEBPACK_IMPORTED_MODULE_20__["TermService"],
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"],
                 _shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_5__["AuthGuestService"]
             ],
@@ -394,7 +568,8 @@ var AppModule = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_translation_service__WEBPACK_IMPORTED_MODULE_15__["TranslationService"],
             _account_services_level_service__WEBPACK_IMPORTED_MODULE_18__["LevelService"],
             _account_services_term_service__WEBPACK_IMPORTED_MODULE_20__["TermService"],
-            _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__["DivisionService"]])
+            _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__["DivisionService"],
+            _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_21__["ApplicationSettingService"]])
     ], AppModule);
     return AppModule;
 }());
@@ -492,7 +667,7 @@ var AuthComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"main-header\">\r\n  <nav class=\"navbar navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n      <!-- Brand and toggle get grouped for better mobile display -->\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n          <span class=\"sr-only\">Toggle navigation</span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"#\"><img src=\"../../../../assets/img/logo.png\" width=\"40px\" ></a>\r\n      </div>\r\n\r\n      <!-- Collect the nav links, forms, and other content for toggling -->\r\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n        <ul class=\"nav navbar-nav\">\r\n\r\n          <li class=\"active\">\r\n            <a routerLink=\"settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"settings\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"account\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n        <ul class=\"nav navbar-nav navbar-right\" style=\"float: left!important\" >\r\n          <!-- Messages: style can be found in dropdown.less-->\r\n          <li class=\"dropdown messages-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-envelope-o\"></i>\r\n              <span class=\"label label-success\">4</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 4 messages</li>\r\n              <li>\r\n                <!-- inner menu: contains the messages -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start message -->\r\n                    <a href=\"#\">\r\n                      <div class=\"pull-left\">\r\n                        <!-- User Image -->\r\n                        <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\r\n                      </div>\r\n                      <!-- Message title and timestamp -->\r\n                      <h4>\r\n                        Support Team\r\n                        <small><i class=\"fa fa-clock-o\"></i> 5 mins</small>\r\n                      </h4>\r\n                      <!-- The message -->\r\n                      <p>Why not buy a new awesome theme?</p>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end message -->\r\n                </ul>\r\n                <!-- /.menu -->\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">See All Messages</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- /.messages-menu -->\r\n\r\n          <!-- Notifications Menu -->\r\n          <li class=\"dropdown notifications-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-bell-o\"></i>\r\n              <span class=\"label label-warning\">10</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 10 notifications</li>\r\n              <li>\r\n                <!-- Inner Menu: contains the notifications -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start notification -->\r\n                    <a href=\"#\">\r\n                      <i class=\"fa fa-users text-aqua\"></i> 5 new members joined today\r\n                    </a>\r\n                  </li>\r\n                  <!-- end notification -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">View all</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- Tasks Menu -->\r\n          <li class=\"dropdown tasks-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-flag-o\"></i>\r\n              <span class=\"label label-danger\">9</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 9 tasks</li>\r\n              <li>\r\n                <!-- Inner menu: contains the tasks -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- Task item -->\r\n                    <a href=\"#\">\r\n                      <!-- Task title and progress text -->\r\n                      <h3>\r\n                        Design some buttons\r\n                        <small class=\"pull-right\">20%</small>\r\n                      </h3>\r\n                      <!-- The progress bar -->\r\n                      <div class=\"progress xs\">\r\n                        <!-- Change the css width attribute to simulate progress -->\r\n                        <div class=\"progress-bar progress-bar-aqua\" style=\"width: 20%\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\">\r\n                          <span class=\"sr-only\">20% Complete</span>\r\n                        </div>\r\n                      </div>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end task item -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\">\r\n                <a href=\"#\">View all tasks</a>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n          <!-- User Account Menu -->\r\n          <li class=\"dropdown user user-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <!-- The user image in the navbar-->\r\n              <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"user-image\" alt=\"User Image\">\r\n              <!-- hidden-xs hides the username on small devices so only the image appears. -->\r\n              <span class=\"hidden-xs\">Alexander Pierce</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <!-- The user image in the menu -->\r\n              <li class=\"user-header\">\r\n                <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\r\n\r\n                <p>\r\n                  Alexander Pierce - Web Developer\r\n                  <small>Member since Nov. 2012</small>\r\n                </p>\r\n              </li>\r\n              <!-- Menu Body -->\r\n              <li class=\"user-body\">\r\n                <div class=\"row\">\r\n                  <div class=\"col-xs-4 text-center\">\r\n                    <a href=\"#\">Followers</a>\r\n                  </div>\r\n                  <div class=\"col-xs-4 text-center\">\r\n                    <a href=\"#\">Sales</a>\r\n                  </div>\r\n                  <div class=\"col-xs-4 text-center\">\r\n                    <a href=\"#\">Friends</a>\r\n                  </div>\r\n                </div>\r\n                <!-- /.row -->\r\n              </li>\r\n              <!-- Menu Footer-->\r\n              <li class=\"user-footer\">\r\n                <div class=\"pull-left\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\">Profile</a>\r\n                </div>\r\n                <div class=\"pull-right\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\">Sign out</a>\r\n                </div>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n  </nav>\r\n\r\n</header>\r\n<!-- Full Width Column -->\r\n"
+module.exports = "<header class=\"main-header\">\r\n  <nav class=\"navbar navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n      <!-- Brand and toggle get grouped for better mobile display -->\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n          <span class=\"sr-only\">Toggle navigation</span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"#\"><img src=\"../../../../assets/img/logo.png\" width=\"40px\" ></a>\r\n      </div>\r\n\r\n      <!-- Collect the nav links, forms, and other content for toggling -->\r\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n        <ul class=\"nav navbar-nav\">\r\n\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"applications_section\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/adminision/application\" >{{ \"applications\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/adminision/settings\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/student\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student\" | trans }}</a>\r\n          </li>\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"account\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n\r\n        </ul>\r\n        <ul class=\"nav navbar-nav navbar-right\" style=\"float: left!important\" >\r\n          <!-- Messages: style can be found in dropdown.less-->\r\n          <li class=\"dropdown messages-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-envelope-o\"></i>\r\n              <span class=\"label label-success\">4</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 4 messages</li>\r\n              <li>\r\n                <!-- inner menu: contains the messages -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start message -->\r\n                    <a href=\"#\">\r\n                      <div class=\"pull-left\">\r\n                        <!-- User Image -->\r\n                        <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\r\n                      </div>\r\n                      <!-- Message title and timestamp -->\r\n                      <h4>\r\n                        Support Team\r\n                        <small><i class=\"fa fa-clock-o\"></i> 5 mins</small>\r\n                      </h4>\r\n                      <!-- The message -->\r\n                      <p>Why not buy a new awesome theme?</p>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end message -->\r\n                </ul>\r\n                <!-- /.menu -->\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">See All Messages</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- /.messages-menu -->\r\n\r\n          <!-- Notifications Menu -->\r\n          <li class=\"dropdown notifications-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-bell-o\"></i>\r\n              <span class=\"label label-warning\">10</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 10 notifications</li>\r\n              <li>\r\n                <!-- Inner Menu: contains the notifications -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start notification -->\r\n                    <a href=\"#\">\r\n                      <i class=\"fa fa-users text-aqua\"></i> 5 new members joined today\r\n                    </a>\r\n                  </li>\r\n                  <!-- end notification -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">View all</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- Tasks Menu -->\r\n          <li class=\"dropdown tasks-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-flag-o\"></i>\r\n              <span class=\"label label-danger\">9</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 9 tasks</li>\r\n              <li>\r\n                <!-- Inner menu: contains the tasks -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- Task item -->\r\n                    <a href=\"#\">\r\n                      <!-- Task title and progress text -->\r\n                      <h3>\r\n                        Design some buttons\r\n                        <small class=\"pull-right\">20%</small>\r\n                      </h3>\r\n                      <!-- The progress bar -->\r\n                      <div class=\"progress xs\">\r\n                        <!-- Change the css width attribute to simulate progress -->\r\n                        <div class=\"progress-bar progress-bar-aqua\" style=\"width: 20%\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\">\r\n                          <span class=\"sr-only\">20% Complete</span>\r\n                        </div>\r\n                      </div>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end task item -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\">\r\n                <a href=\"#\">View all tasks</a>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n          <!-- User Account Menu -->\r\n          <li class=\"dropdown user user-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <!-- The user image in the navbar-->\r\n              <!-- <img [src]=\"user.image_url\" class=\"user-image\" alt=\"User Image\"> -->\r\n              <!-- hidden-xs hides the username on small devices so only the image appears. -->\r\n              <span class=\"hidden-xs\">Alexander Pierce</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <!-- The user image in the menu -->\r\n              <li class=\"user-header\">\r\n                <!-- <img [src]=\"user.image_url\" class=\"img-circle\" alt=\"User Image\"> -->\r\n\r\n                <!-- <p>\r\n                  {{ user.name }}\r\n                  <small>{{ user.phone }}</small>\r\n                </p> -->\r\n              </li>\r\n              \r\n              <!-- Menu Footer-->\r\n              <li class=\"user-footer\">\r\n                <div class=\"pull-left\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\">{{ \"Profile\" | trans }}</a>\r\n                </div>\r\n                <div class=\"pull-right\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\" (click)=\"logout\" >{{ \"Sign out\" | trans }}</a>\r\n                </div>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n  </nav>\r\n\r\n</header>\r\n<!-- Full Width Column -->\r\n"
 
 /***/ }),
 
@@ -522,6 +697,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 /* harmony import */ var _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/services/auth.service */ "./src/app/shared/services/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -532,14 +709,14 @@ var NavBarComponent = /** @class */ (function () {
         this.authService = authService;
         this.router = router;
         this.sidebarOpened = false;
+        this.user = _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].user();
         config.placement = 'bottom-right';
     }
     NavBarComponent.prototype.ngOnInit = function () {
     };
     NavBarComponent.prototype.logout = function () {
-        this.authService.removeAdminLoalStorage();
-        this.authService.notifySubscribers(false);
-        this.router.navigate(['admin/auth/login']).then().catch();
+        _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].logout();
+        this.router.navigate(['/login']).then().catch();
     };
     NavBarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -716,6 +893,10 @@ var LayoutComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Auth", function() { return Auth; });
+/* harmony import */ var _cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/shared/services/auth.service.ts");
+
+
 var Auth = /** @class */ (function () {
     function Auth() {
     }
@@ -724,7 +905,21 @@ var Auth = /** @class */ (function () {
      *
      */
     Auth.getApiToken = function () {
-        return '123456789';
+        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
+    };
+    /**
+     * return user
+     *
+     */
+    Auth.user = function () {
+        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
+    };
+    /**
+     * remove user object from cache
+     */
+    Auth.logout = function () {
+        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
+        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
     };
     return Auth;
 }());
@@ -1121,26 +1316,36 @@ var TablesLoaderDirective = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Helper", function() { return Helper; });
-/* harmony import */ var _translation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./translation */ "./src/app/shared/translation.ts");
+/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _translation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./translation */ "./src/app/shared/translation.ts");
+
 
 var Helper = /** @class */ (function () {
     function Helper() {
     }
+    Helper.refreshComponent = function (router, url) {
+        router.navigateByUrl('/', { skipLocationChange: true }).then(function () {
+            router.navigate([url]);
+        });
+        setTimeout(function () {
+            _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.jquery('.modal-backdrop fade in').remove();
+        }, 1000);
+    };
     /**
      * translate word
      *
      * @param word
      */
     Helper.trans = function (word) {
+        word = word.replace(/\s/g, '_');
+        word = word.toLocaleLowerCase();
         // load translations from cache
-        var transWord = _translation__WEBPACK_IMPORTED_MODULE_0__["Translation"].getTranslationsData()[word];
+        var transWord = _translation__WEBPACK_IMPORTED_MODULE_1__["Translation"].getTranslationsData()[word];
         if (transWord) {
-            return transWord['name_' + _translation__WEBPACK_IMPORTED_MODULE_0__["Translation"].getLang()];
+            return transWord['name_' + _translation__WEBPACK_IMPORTED_MODULE_1__["Translation"].getLang()];
         }
-        else {
-            _translation__WEBPACK_IMPORTED_MODULE_0__["Translation"].storeNewKey(word);
-            return word;
-        }
+        _translation__WEBPACK_IMPORTED_MODULE_1__["Translation"].storeNewKey(word);
+        return word;
     };
     return Helper;
 }());
@@ -1312,50 +1517,6 @@ var UrlInterceptor = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/shared/middlewares/auth-guard.service.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/shared/middlewares/auth-guard.service.ts ***!
-  \**********************************************************/
-/*! exports provided: AuthGuardService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuardService", function() { return AuthGuardService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/shared/services/auth.service.ts");
-
-
-
-
-var AuthGuardService = /** @class */ (function () {
-    function AuthGuardService(auth, router) {
-        this.auth = auth;
-        this.router = router;
-    }
-    AuthGuardService.prototype.canActivate = function (route, state) {
-        // if (!this.auth.isAuth()) {
-        //   this.router.navigate(['/admin/auth/login'], {
-        //     queryParams: {return: state.url}
-        //   }).then().catch();
-        //   return false;
-        // }
-        return true;
-    };
-    AuthGuardService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
-    ], AuthGuardService);
-    return AuthGuardService;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/shared/middlewares/auth-guest.service.ts":
 /*!**********************************************************!*\
   !*** ./src/app/shared/middlewares/auth-guest.service.ts ***!
@@ -1498,7 +1659,7 @@ var AuthService = /** @class */ (function () {
         this.userStatus$.next(status);
     };
     AuthService.prototype.login = function (userLogin) {
-        return this.http.post('authAdmin/login', userLogin);
+        return this.http.post('auth/login', userLogin);
     };
     AuthService.prototype.confirmEmail = function (confirmEmail) {
         return this.http.post('auth/confirmEmail', confirmEmail);
@@ -1524,6 +1685,8 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getToken = function () {
         return localStorage.getItem('AdminToken');
     };
+    AuthService.USER_PRFIX = 'user';
+    AuthService.API_TOKEN_PRFIX = 'api_token';
     AuthService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
@@ -1628,6 +1791,13 @@ var TranslationService = /** @class */ (function () {
     function TranslationService(http) {
         this.http = http;
     }
+    /**
+     * get services from api
+     *
+     */
+    TranslationService.prototype.getList = function () {
+        return this.http.get('translation/get?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
     /**
      * get services from api
      *
@@ -1807,7 +1977,7 @@ var Translation = /** @class */ (function () {
         // update translation cache
         src_app_shared_cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].set(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY, data);
     };
-    Translation.getNewKeys = function (key) {
+    Translation.getNewKeys = function () {
         return src_app_shared_cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY);
     };
     Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY = 'translations_not_exists';
@@ -1833,7 +2003,7 @@ var environment = {
     production: false,
     // apiUrl      : 'http://41.41.86.210:4000/admin/api',
     // backEndPublicUrl   : 'http://41.41.86.210:4000/',
-    apiUrl: 'http://samsav2.sphinxws.com/api',
+    apiUrl: 'http://127.0.0.1:8000/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/'

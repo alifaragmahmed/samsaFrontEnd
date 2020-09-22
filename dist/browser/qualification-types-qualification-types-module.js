@@ -63,7 +63,7 @@ var EditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة دولة جديدة\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة دولة جديدة</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\" autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">اسم الدولة<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"ادخل اسم الدولة\">\r\n             <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                    <p>من فضلك ادخل اسم الدولة</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\" >حفظ</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div> -->\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"  class=\"table table-bordered table-striped\">\r\n      <thead>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>{{ 'name' | trans }}</th>\r\n        <th>{{ 'qualification' | trans}}</th>\r\n        <th>{{ 'level name' | trans}}</th>\r\n        <th>{{ 'grade' | trans}}</th>\r\n        <th>{{ 'percentage' | trans}}</th>\r\n        <th>{{ 'notes' | trans}}</th>\r\n        <th>الاجراءات</th>\r\n\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>{{ row.qualification.name }}</td>\r\n        <td>{{ row.level.name }}</td>\r\n        <td>{{ row.grade }}</td>\r\n        <td>{{ row.percentage }}</td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <button class=\"btn btn-info\" type=\"button\" routerLink='/settings/country/edit/{{row.id}}'>\r\n            <i class=\"fa fa-edit\"></i>\r\n          </button>\r\n          &nbsp;\r\n          <button class=\"btn btn-danger\" type=\"button\" (click)=\"delete(row.id)\">\r\n            <i class=\"fa fa-trash-o\"></i>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n      <tfoot>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>{{ 'name' | trans }}</th>\r\n        <th>{{ 'qualification' | trans}}</th>\r\n        <th>{{ 'level name' | trans}}</th>\r\n        <th>{{ 'grade' | trans}}</th>\r\n        <th>{{ 'percentage' | trans}}</th>\r\n        <th>{{ 'notes' | trans}}</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة نوع مؤهل\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\"  [hidden]=\"hideModal\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة نوع مؤهل</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification_name' | trans }}<span\r\n                  style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'qualification_name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"qualification_id.errors?.required\">\r\n                  <p>من فضلك ادخل نوع المؤهل</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'select_qualification' | trans}}<span\r\n                  style=\"color: red\">*</span></label>\r\n              <select class=\"form-control\" formControlName=\"qualification_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of qualifications'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(qualification_id.touched || qualification_id.dirty) && qualification_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"qualification_id.errors?.required\">\r\n                  <p>من فضلك اختر المؤهل الدراسى</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'select_academic_year' | trans }}<span\r\n                  style=\"color: red\">*</span></label>\r\n              <select class=\"form-control\" formControlName=\"academic_year_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of academicYears'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(academic_year_id.touched || academic_year_id.dirty) && academic_year_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"academic_year_id.errors?.required\">\r\n                  <p>من فضلك اختر العام الدراسى</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'select_level_name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <select class=\"form-control\" formControlName=\"level_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of levels'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(level_id.touched || level_id.dirty) && level_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"level_id.errors?.required\">\r\n                  <p>من فضلك ادخل اختر المستوى الدراسى</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'grade' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"grade\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'grade' | trans }}\">\r\n              <div *ngIf=\"(grade.touched || grade.dirty) && grade.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"grade.errors?.required\">\r\n                  <p>من فضلك ادخل اسم درجة القبول</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'percentage' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"percentage\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'percentage' | trans }}\">\r\n              <div *ngIf=\"(percentage.touched || percentage.dirty) && percentage.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"percentage.errors?.required\">\r\n                  <p>من فضلك ادخل نسبة القبول</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n               </textarea> \r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" id=\"modalDismiss\"  class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\" >cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{ 'name' | trans }}</th>\r\n          <th>{{ 'qualification' | trans}}</th>\r\n          <th>{{ 'level name' | trans}}</th>\r\n          <th>{{ 'grade' | trans}}</th>\r\n          <th>{{ 'percentage' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.qualification.name }}</td>\r\n          <td>{{ row.level.name }}</td>\r\n          <td>{{ row.grade }}</td>\r\n          <td>{{ row.percentage }}</td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" routerLink='/settings/country/edit/{{row.id}}'>\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" (click)=\"delete(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{ 'name' | trans }}</th>\r\n          <th>{{ 'qualification' | trans}}</th>\r\n          <th>{{ 'level name' | trans}}</th>\r\n          <th>{{ 'grade' | trans}}</th>\r\n          <th>{{ 'percentage' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -95,6 +95,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
@@ -103,10 +105,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ListComponent = /** @class */ (function () {
-    function ListComponent(generalService, service, toastr) {
+    function ListComponent(generalService, service, toastr, renderer, document) {
         this.generalService = generalService;
         this.service = service;
         this.toastr = toastr;
+        this.renderer = renderer;
+        this.document = document;
         this.errorMessage = '';
         this.nameError = '';
         this.governmentError = '';
@@ -120,17 +124,17 @@ var ListComponent = /** @class */ (function () {
             notes: '',
             level_id: ''
         };
+        this.hideModal = false;
+        this.modal = '';
+        this.qualifications = [];
+        this.academicYears = [];
+        this.levels = [];
         this.isSubmitClick = false;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_6__["Subject"]();
         this.rows = [];
         this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormGroup"]({
             name: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].maxLength(50),
-            ]),
-            grade: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
             ]),
             qualification_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
@@ -139,20 +143,37 @@ var ListComponent = /** @class */ (function () {
             academic_year_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
             ]),
-            percentage: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
-            ]),
             level_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
             ]),
+            grade: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
+            ]),
+            percentage: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
+            ]),
+            notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"](null, [])
         });
     }
     ListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.dtOptions = {
             pagingType: 'full_numbers',
             pageLength: 10
         };
         this.callHttp();
+        this.generalService.getAllQualifications().subscribe(function (res) {
+            if (res.status == 1)
+                _this.qualifications = res.data;
+        });
+        this.generalService.getAllLevels().subscribe(function (res) {
+            if (res.status == 1)
+                _this.levels = res.data;
+        });
+        this.generalService.getAllAcademicYears().subscribe(function (res) {
+            if (res.status == 1)
+                _this.academicYears = res.data;
+        });
     };
     ListComponent.prototype.callHttp = function () {
         var _this = this;
@@ -168,6 +189,7 @@ var ListComponent = /** @class */ (function () {
             console.log(res);
             if (res.status == 1) {
                 _this.toastr.success(res.message, '');
+                document.getElementById("cancel").click();
                 var index = _this.rows.findIndex(function (v) { return v.id === id; });
                 _this.rows.splice(index, 1);
             }
@@ -185,29 +207,34 @@ var ListComponent = /** @class */ (function () {
         }
         this.isSubmitClick = true;
         this.data.name = this.callForm.value.name;
+        this.data.grade = this.callForm.value.grade;
+        this.data.qualification_id = this.callForm.value.qualification_id;
+        this.data.academic_year_id = this.callForm.value.academic_year_id;
+        this.data.percentage = this.callForm.value.percentage;
+        this.data.level_id = this.callForm.value.level_id;
+        this.data.notes = this.callForm.value.notes;
         this.service.create(this.data).subscribe(function (res) {
             if (res.status == 0) {
                 _this.errorMessage = res.message.name;
+                _this.errorMessage = res.message.grade;
+                _this.errorMessage = res.message.qualification_id;
+                _this.errorMessage = res.message.academic_year_id;
+                _this.errorMessage = res.message.level_id;
+                _this.errorMessage = res.message.percentage;
                 _this.isSubmitClick = false;
                 return;
             }
             else {
                 _this.errorMessage = '';
                 _this.isSubmitClick = true;
-                _this.toastr.success('تم انشاء البيانات بنجاح', '');
+                _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+                document.getElementById("cancel").click();
+                _this.hideModal = true;
                 _this.callHttp();
-            }
-            (function (e) {
+                _this.modal = 'modal';
                 _this.isSubmitClick = false;
-                if (e.status == 400) {
-                    _this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-                    for (var i = 0; i < e.error.errors.length; i++) {
-                        if (e.error.errors[i].input === 'name') {
-                            _this.nameError = e.error.errors[i].message;
-                        }
-                    }
-                }
-            });
+            }
         });
     };
     Object.defineProperty(ListComponent.prototype, "name", {
@@ -265,9 +292,12 @@ var ListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./list.component.html */ "./src/app/settings/qualification-types/list/list.component.html"),
             styles: [__webpack_require__(/*! ./list.component.scss */ "./src/app/settings/qualification-types/list/list.component.scss")]
         }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_7__["DOCUMENT"])),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_shared_services_general_service__WEBPACK_IMPORTED_MODULE_2__["GeneralService"],
             _services_qualificationType_service__WEBPACK_IMPORTED_MODULE_3__["qualificationTypeService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"],
+            Document])
     ], ListComponent);
     return ListComponent;
 }());
