@@ -2,31 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from "ngx-toastr";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Subject } from "rxjs";
-import { IReqDepartment } from "./IReqDepartment";
-import { DepartmentService } from "./Department.service";
-import { GeneralService } from 'src/app/shared/services/general.service';
+import { IReqRelativeRelation } from "./IReqRelativeRelation";
+import { RelativeRelation } from "./RelativeRelation.service"
 
 @Component({
-  selector: 'app-departments',
-  templateUrl: './departments.component.html',
-  styleUrls: ['./departments.component.scss']
+  selector: 'app-relative-relations',
+  templateUrl: './relative-relations.component.html',
+  styleUrls: ['./relative-relations.component.scss']
 })
-export class DepartmentsComponent implements OnInit {
+export class RelativeRelationsComponent implements OnInit {
   public callForm: FormGroup;
   public errorMessage = "";
   public isSubmitClick = false;
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   public rows = [];
-  public data: IReqDepartment = { name: "",level_id:"", notes: "" };
+  public data: IReqRelativeRelation = { name: "", notes: "" };
   public levels = [];
   public item = "";
   public id = "";
   public deletedId = "";
   constructor(
     private toastr: ToastrService,
-    private service: DepartmentService,
-    private generalService:GeneralService
+    private service: RelativeRelation,
   ) {
     this.callForm = new FormGroup({
       name: new FormControl(null, [
@@ -34,11 +32,7 @@ export class DepartmentsComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(50),
       ]),
-      notes: new FormControl(null, []),
-      level_id: new FormControl(null, [
-        Validators.required
-      ])
-
+      notes: new FormControl(null, [])
     });
    }
 
@@ -47,24 +41,22 @@ export class DepartmentsComponent implements OnInit {
       pagingType: "full_numbers",
       pageLength: 10,
     };
-    this.generalService.getAllLevels().subscribe((res:any)=>{
-      this.levels = res.data;
-    })
     this.callHttp();
 
   }
   callHttp(): void {
     this.service.getAll().subscribe((res: any) => {
+      console.log(res);
+      
       this.rows = res.data;
       this.dtTrigger.next();
     });
   }
   
   onSubmit() {
-    const itemData: IReqDepartment = {
+    const itemData: IReqRelativeRelation = {
       name: this.callForm.value.name,
       notes: this.callForm.value.notes,
-      level_id: this.callForm.value.level_id
     };
     this.service.update(this.id, itemData).subscribe((res: any) => {
       if (res.status == 1) {
@@ -86,13 +78,10 @@ export class DepartmentsComponent implements OnInit {
       return;
     }
     this.isSubmitClick = true;
-    const itemData: IReqDepartment = {
+    const itemData: IReqRelativeRelation = {
       name: this.callForm.value.name,
       notes: this.callForm.value.notes,
-      level_id: this.callForm.value.level_id
-    };
-    console.log(itemData);
-    
+    };    
     this.service.create(itemData).subscribe((res: any) => {
       console.log(res);
       
@@ -131,6 +120,7 @@ export class DepartmentsComponent implements OnInit {
         this.name.setValue(res.data.name);
         this.notes.setValue(res.data.notes);
         document.getElementById("openModal").click();
+        this.isSubmitClick = false;
         this.item = res.data;
       }
     });
@@ -143,9 +133,6 @@ export class DepartmentsComponent implements OnInit {
   }
   get notes() {
     return this.callForm.get("notes");
-  }
-  get level_id() {
-    return this.callForm.get("level_id");
   }
 
 }

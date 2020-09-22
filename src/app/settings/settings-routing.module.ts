@@ -10,6 +10,7 @@ import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
 import { DivisionsComponent } from './divisions/divisions.component';
 import { NationalityComponent } from './nationality/nationality.component';
 import { DepartmentsComponent } from './departments/departments.component';
+import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
 
 const routes: Routes = [
   {
@@ -82,10 +83,15 @@ const routes: Routes = [
       {
         path: 'departments',
         component: DepartmentsComponent
+      },
+      {
+        path: 'relative-realtions',
+        component: RelativeRelationsComponent
       }
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
