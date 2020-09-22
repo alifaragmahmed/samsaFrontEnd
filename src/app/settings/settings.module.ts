@@ -12,6 +12,7 @@ import { ConstraintStatusComponent } from './constraint-status/constraint-status
 import { LanguagesComponent } from './languages/languages.component';
 import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
 import { DivisionsComponent } from './divisions/divisions.component';
+import { NationalityComponent } from './nationality/nationality.component';
 
 @NgModule({
   declarations: 
@@ -21,7 +22,7 @@ import { DivisionsComponent } from './divisions/divisions.component';
       LevelsComponent,
      CaseConstraintComponent,
       ConstraintStatusComponent, 
-      LanguagesComponent, ParentJobsComponent, DivisionsComponent
+      LanguagesComponent, ParentJobsComponent, DivisionsComponent, NationalityComponent
     ],
   imports: [
     CommonModule,
