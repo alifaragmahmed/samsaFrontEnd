@@ -29,11 +29,7 @@ const routes: Routes = [
         path: 'adminision',
         loadChildren: './adminision/adminision.module#AdminisionModule'
       },
-<<<<<<< HEAD
-      {
-=======
-       {
->>>>>>> bc4bafc1ff7c21b8d284091cff175ee40fbcd4a2
+      { 
         path: 'military',
         loadChildren: './military/military.module#MilitaryModule'
       },
