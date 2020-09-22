@@ -9,6 +9,7 @@ import { LanguagesComponent } from './languages/languages.component';
 import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
 import { DivisionsComponent } from './divisions/divisions.component';
 import { NationalityComponent } from './nationality/nationality.component';
+import { DepartmentsComponent } from './departments/departments.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,10 @@ const routes: Routes = [
       {
         path: 'nationalities',
         component: NationalityComponent
+      },
+      {
+        path: 'departments',
+        component: DepartmentsComponent
       }
     ]
   }

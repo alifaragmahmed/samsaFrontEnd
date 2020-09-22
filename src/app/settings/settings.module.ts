@@ -13,6 +13,7 @@ import { LanguagesComponent } from './languages/languages.component';
 import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
 import { DivisionsComponent } from './divisions/divisions.component';
 import { NationalityComponent } from './nationality/nationality.component';
+import { DepartmentsComponent } from './departments/departments.component';
 
 @NgModule({
   declarations: 
@@ -22,7 +23,7 @@ import { NationalityComponent } from './nationality/nationality.component';
       LevelsComponent,
      CaseConstraintComponent,
       ConstraintStatusComponent, 
-      LanguagesComponent, ParentJobsComponent, DivisionsComponent, NationalityComponent
+      LanguagesComponent, ParentJobsComponent, DivisionsComponent, NationalityComponent, DepartmentsComponent
     ],
   imports: [
     CommonModule,
