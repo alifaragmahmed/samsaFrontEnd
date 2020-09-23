@@ -89,9 +89,7 @@ this.callHttp();
     this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
     this.data.notes = this.callForm.value.notes;
 
-    this.service.update(this.id, this.data).subscribe((res:any)=>{  
-      console.log(res);
-      
+    this.service.update(this.id, this.data).subscribe((res:any)=>{        
       if(res.status == 1){
         document.getElementById("cancell").click();
         this.callHttp();
@@ -136,6 +134,7 @@ this.callHttp();
   delete() {
     this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){
+          this.isSubmitClick = false;
           document.getElementById("cancello").click();
           this.toastr.success(res.message, '');
           const index = this.rows.findIndex(v => v.id === this.deletedId);

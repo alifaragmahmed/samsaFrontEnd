@@ -122,6 +122,7 @@ export class LevelsComponent implements OnInit {
   delete(id) {
     this.service.delete(id).subscribe(
       (res) => {
+        this.isSubmitClick = false;
         if(res.status == 1){
           document.getElementById("cancello").click();
           this.toastr.success(res.message, '');

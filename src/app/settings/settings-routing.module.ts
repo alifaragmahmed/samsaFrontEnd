@@ -12,6 +12,7 @@ import { NationalityComponent } from './nationality/nationality.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
 import { UsersComponent } from './users/users.component'
+import { RegisterationStatusComponent } from './registeration-status/registeration-status.component'
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: "registration-methods",
         loadChildren: './registeration-methods/registeration-methods.module#RegisterationMethodsModule'
+      },
+      {
+        path: "registration-status",
+        component: RegisterationStatusComponent
       },
       {
         path: "translations",

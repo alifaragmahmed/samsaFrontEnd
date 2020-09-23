@@ -114,6 +114,7 @@ export class DepartmentsComponent implements OnInit {
   delete() {
     this.service.delete(this.deletedId).subscribe((res) => {
       if (res.status == 1) {
+        this.isSubmitClick = false;
         document.getElementById("cancello").click();
         this.toastr.success(res.message, "");
         const index = this.rows.findIndex((v) => v.id === this.deletedId);
