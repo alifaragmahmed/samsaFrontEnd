@@ -5,6 +5,7 @@ import { RequiredDocumentIndexComponent } from './components/required_document/r
 import { ApplicationCreateComponent } from './components/application/application-create/application-create.component';
 import { ApplicationIndexComponent } from './components/application/application-index/application-index.component';
 import { ApplicationShowComponent } from './components/application/application-show/application-show.component';
+import { ApplicationRequiredComponent } from './components/application-required/application-required.component'; 
 
 const routes: Routes = [ 
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: 'application/create',
     component: ApplicationCreateComponent
-  }, 
+  },  
   {
     path: "settings",
     component: AdminisionComponent,
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'required_documents',
         component: RequiredDocumentIndexComponent
+      }, 
+      {
+        path: 'application_required',
+        component: ApplicationRequiredComponent
       }, 
     ]
   },

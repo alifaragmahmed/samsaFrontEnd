@@ -33288,7 +33288,7 @@ var EditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = " <div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة عام دراسي جديد\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة عام دراسي جديد</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\" autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">بداية العام الدراسى<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"start_date\" class=\"form-control\"\r\n              \r\n              flatpickr\r\n              [dateFormat]=\"'Y-m-d'\"\r\n              type=\"text\"\r\n               class=\"form-control\" placeholder=\"ادخل بداية العام الدراسى\">\r\n             <div *ngIf=\"(start_date.touched || start_date.dirty) && start_date.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"start_date.errors?.required\">\r\n                    <p>من فضلك ادخل بداية العام</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">نهاية العام الدراسى<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"end_date\" \r\n              \r\n              flatpickr\r\n              [dateFormat]=\"'Y-m-d'\"\r\n              type=\"text\" \r\n              class=\"form-control\" placeholder=\"ادخل نهاية العام الدراسى\">\r\n             <div *ngIf=\"(end_date.touched || end_date.dirty) && end_date.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"end_date.errors?.required\">\r\n                    <p>من فضلك ادخل نهاية العام</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">ملاحظات</label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\" rows=\"10\" cols=\"50\">\r\n                  \r\n                </textarea>\r\n            </div>\r\n          </div>\r\n\r\n         \r\n          \r\n\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\" >حفظ</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"  class=\"table table-bordered table-striped\">\r\n      <thead>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>عام دراسى</th>\r\n        <th>يبدأ فى</th>\r\n        <th>ينتهى فى</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>{{ row.start_date }}</td>\r\n        <td>{{ row.end_date }}</td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <button class=\"btn btn-info\" type=\"button\" routerLink='/settings/academic-year/edit/{{row.id}}'>\r\n            <i class=\"fa fa-edit\"></i>\r\n          </button>\r\n          &nbsp;\r\n          <button class=\"btn btn-danger\" type=\"button\" (click)=\"delete(row.id)\">\r\n            <i class=\"fa fa-trash-o\"></i>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n      <tfoot>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>عام دراسى</th>\r\n        <th>يبدأ فى</th>\r\n        <th>ينتهى فى</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
+module.exports = " <div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة عام دراسي جديد\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة عام دراسي جديد</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\" autocomplete=\"off\">\r\n\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">بداية العام الدراسى<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"start_date\" class=\"form-control\"\r\n              \r\n              flatpickr\r\n              [dateFormat]=\"'Y-m-d'\"\r\n              type=\"text\"\r\n               class=\"form-control\" placeholder=\"ادخل بداية العام الدراسى\">\r\n             <div *ngIf=\"(start_date.touched || start_date.dirty) && start_date.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"start_date.errors?.required\">\r\n                    <p>من فضلك ادخل بداية العام</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">نهاية العام الدراسى<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"end_date\" \r\n              \r\n              flatpickr\r\n              [dateFormat]=\"'Y-m-d'\"\r\n              type=\"text\" \r\n              class=\"form-control\" placeholder=\"ادخل نهاية العام الدراسى\">\r\n             <div *ngIf=\"(end_date.touched || end_date.dirty) && end_date.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"end_date.errors?.required\">\r\n                    <p>من فضلك ادخل نهاية العام</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">ملاحظات</label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\" rows=\"10\" cols=\"50\">\r\n                  \r\n                </textarea>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\" >حفظ</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">بداية العام الدراسى<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"start_date\" class=\"form-control\"\r\n              \r\n              flatpickr\r\n              [dateFormat]=\"'Y-m-d'\"\r\n              type=\"text\"\r\n               class=\"form-control\" placeholder=\"ادخل بداية العام الدراسى\">\r\n             <div *ngIf=\"(start_date.touched || start_date.dirty) && start_date.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"start_date.errors?.required\">\r\n                    <p>من فضلك ادخل بداية العام</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">نهاية العام الدراسى<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"end_date\" \r\n              \r\n              flatpickr\r\n              [dateFormat]=\"'Y-m-d'\"\r\n              type=\"text\" \r\n              class=\"form-control\" placeholder=\"ادخل نهاية العام الدراسى\">\r\n             <div *ngIf=\"(end_date.touched || end_date.dirty) && end_date.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"end_date.errors?.required\">\r\n                    <p>من فضلك ادخل نهاية العام</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">ملاحظات</label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\" rows=\"10\" cols=\"50\">\r\n                  \r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"  class=\"table table-bordered table-striped\">\r\n      <thead>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>عام دراسى</th>\r\n        <th>يبدأ فى</th>\r\n        <th>ينتهى فى</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>{{ row.start_date }}</td>\r\n        <td>{{ row.end_date }}</td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n            <i class=\"fa fa-edit\"></i>\r\n          </button>\r\n          &nbsp;\r\n          <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n            <i class=\"fa fa-trash-o\"></i>\r\n          </button>\r\n          <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n            <div class=\"modal-dialog\">\r\n              <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                  <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span></button>\r\n                  <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                  <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                  <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                  &nbsp;\r\n                  <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                    data-dismiss=\"modal\">الغاء</button>\r\n\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n      <tfoot>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>عام دراسى</th>\r\n        <th>يبدأ فى</th>\r\n        <th>ينتهى فى</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -33341,6 +33341,9 @@ var ListComponent = /** @class */ (function () {
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
         this.rows = [];
+        this.item = '';
+        this.id = '';
+        this.deletedId = '';
         this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormGroup"]({
             end_date: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
@@ -33348,6 +33351,7 @@ var ListComponent = /** @class */ (function () {
             start_date: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required,
             ]),
+            mame: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"](),
             notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormControl"]()
         });
     }
@@ -33365,9 +33369,52 @@ var ListComponent = /** @class */ (function () {
             _this.isSubmitClick = false;
         });
     };
+    ListComponent.prototype.dateAndTimeToString = function (date) {
+        if (date !== null && date !== '') {
+            if (Date.parse(date.toDateString())) {
+                return date.getFullYear() + "-" + ('00' + (date.getMonth() + 1))
+                    .slice(-2) + "-" + ('00' + date.getDate()).slice(-2) + " ";
+            }
+        }
+        return '';
+    };
+    ListComponent.prototype.getItemData = function (id) {
+        var _this = this;
+        this.id = id;
+        this.service.getItemById(id).subscribe(function (res) {
+            if (res.status == 1) {
+                console.log(res.data);
+                document.getElementById("openModal").click();
+                _this.notes.setValue(res.data.notes);
+                _this.end_date.setValue(res.data.end_date);
+                _this.start_date.setValue(res.data.start_date);
+                _this.item = res.data;
+            }
+        });
+    };
+    ListComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
+        this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
+        this.data.notes = this.callForm.value.notes;
+        this.service.update(this.id, this.data).subscribe(function (res) {
+            console.log(res);
+            if (res.status == 1) {
+                document.getElementById("cancell").click();
+                _this.callHttp();
+                _this.isSubmitClick = false;
+                _this.item = '';
+                _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+            }
+            else {
+                _this.toastr.error(res.message, '');
+            }
+        });
+    };
     ListComponent.prototype.create = function () {
         var _this = this;
-        this.nameError = '';
+        this.errorMessage = '';
         if (this.callForm.invalid) {
             this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
             return;
@@ -33378,47 +33425,28 @@ var ListComponent = /** @class */ (function () {
         this.data.notes = this.callForm.value.notes;
         this.service.create(this.data).subscribe(function (res) {
             if (res.status == 0) {
-                if (res.message.end_date)
-                    _this.errorMessage = res.message.end_date;
-                if (res.message.start_date)
-                    _this.errorMessage = res.message.start_date;
+                if (res.message.name)
+                    _this.toastr.error(res.message, '');
+                _this.errorMessage = res.message;
                 _this.isSubmitClick = false;
-                return;
             }
             else {
                 _this.errorMessage = '';
-                _this.isSubmitClick = true;
+                _this.isSubmitClick = false;
                 _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+                document.getElementById("cancel").click();
                 _this.callHttp();
             }
-            (function (e) {
-                _this.isSubmitClick = false;
-                if (e.status == 400) {
-                    _this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-                    for (var i = 0; i < e.error.errors.length; i++) {
-                        if (e.error.errors[i].input === 'name') {
-                            _this.nameError = e.error.errors[i].message;
-                        }
-                    }
-                }
-            });
         });
     };
-    ListComponent.prototype.dateAndTimeToString = function (date) {
-        if (date !== null && date !== '') {
-            if (Date.parse(date.toDateString())) {
-                return date.getFullYear() + "-" + ('00' + (date.getMonth() + 1))
-                    .slice(-2) + "-" + ('00' + date.getDate()).slice(-2) + " ";
-            }
-        }
-        return '';
-    };
-    ListComponent.prototype.delete = function (id) {
+    ListComponent.prototype.delete = function () {
         var _this = this;
-        this.service.delete(id).subscribe(function (res) {
+        this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
-                var index = _this.rows.findIndex(function (v) { return v.id === id; });
+                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
                 _this.rows.splice(index, 1);
             }
             else {
@@ -33426,9 +33454,19 @@ var ListComponent = /** @class */ (function () {
             }
         });
     };
+    ListComponent.prototype.launchModal = function (id) {
+        this.deletedId = id;
+    };
     Object.defineProperty(ListComponent.prototype, "start_date", {
         get: function () {
             return this.callForm.get('start_date');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ListComponent.prototype, "name", {
+        get: function () {
+            return this.callForm.get('name');
         },
         enumerable: true,
         configurable: true

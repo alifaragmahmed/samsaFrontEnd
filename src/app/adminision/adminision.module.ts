@@ -9,14 +9,18 @@ import { AdminisionComponent } from './adminision.component';
 import { ApplicationCreateComponent } from './components/application/application-create/application-create.component'; 
 import { ApplicationIndexComponent } from './components/application/application-index/application-index.component'; 
 import { ApplicationShowComponent } from './components/application/application-show/application-show.component';
+import { ApplicationRequiredComponent } from './components/application-required/application-required.component';
+import { ApplicationRequiredService } from './services/application-required.service';
+import { ApplicationService } from './services/application.service';
+import { RequiredDocumentService } from './services/required-document.service';
 @NgModule({
   declarations: [ 
     AdminisionComponent,
     RequiredDocumentIndexComponent, 
     RequiredDocumentCreateComponent, 
     RequiredDocumentUpdateComponent, ApplicationCreateComponent, ApplicationIndexComponent , 
-    ApplicationShowComponent
-],
+    ApplicationShowComponent, ApplicationRequiredComponent
+], 
   imports: [
     SharedModule,  
     AdminisionRoutingModule,

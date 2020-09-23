@@ -18,6 +18,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/application/application-create/application-create.component */ "./src/app/adminision/components/application/application-create/application-create.component.ts");
 /* harmony import */ var _components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/application/application-index/application-index.component */ "./src/app/adminision/components/application/application-index/application-index.component.ts");
 /* harmony import */ var _components_application_application_show_application_show_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/application/application-show/application-show.component */ "./src/app/adminision/components/application/application-show/application-show.component.ts");
+/* harmony import */ var _components_application_required_application_required_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/application-required/application-required.component */ "./src/app/adminision/components/application-required/application-required.component.ts");
+
 
 
 
@@ -50,6 +52,10 @@ var routes = [
             {
                 path: 'required_documents',
                 component: _components_required_document_required_document_index_required_document_index_component__WEBPACK_IMPORTED_MODULE_4__["RequiredDocumentIndexComponent"]
+            },
+            {
+                path: 'application_required',
+                component: _components_application_required_application_required_component__WEBPACK_IMPORTED_MODULE_8__["ApplicationRequiredComponent"]
             },
         ]
     },
@@ -84,7 +90,7 @@ var AdminisionRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\n  <div class=\"col-md-3\">\n\n    <!-- navbar list -->\n    <div class=\"box box-primary material-shadow\">\n      <div class=\"box-body box-profile\">\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/application.gif\" alt=\"User profile picture\">\n\n        <h3 class=\"profile-username text-center\">{{ \"adminision_settings\" | trans }}</h3>\n \n\n        <ul class=\"list-group list-group-unbordered\">\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/adminision/settings/required_documents' >\n                <b>{{ \"required_documents\" | trans }}</b> \n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-newspaper-o\" ></i> \n                </a>\n            </a>\n          </li> \n        </ul> \n      </div>\n      <!-- /.box-body -->\n    </div>\n    <!-- /.box -->\n \n  </div>\n  <!-- /.col -->\n  <div class=\"col-md-9\"> \n      <router-outlet></router-outlet>\n  </div>\n  <!-- /.col -->\n</div>"
+module.exports = "<div class=\"row\">\n\n  <div class=\"col-md-3\">\n\n    <!-- navbar list -->\n    <div class=\"box box-primary material-shadow\">\n      <div class=\"box-body box-profile\">\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/application.gif\" alt=\"User profile picture\">\n\n        <h3 class=\"profile-username text-center\">{{ \"adminision_settings\" | trans }}</h3>\n \n\n        <ul class=\"list-group list-group-unbordered\">\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/adminision/settings/required_documents' >\n                <b>{{ \"required_documents\" | trans }}</b> \n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-newspaper-o\" ></i> \n                </a>\n            </a>\n          </li> \n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/adminision/settings/application_required' >\n                <b>{{ \"application_required\" | trans }}</b> \n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-check-square\" ></i> \n                </a>\n            </a>\n          </li> \n        </ul> \n      </div>\n      <!-- /.box-body -->\n    </div>\n    <!-- /.box -->\n \n  </div>\n  <!-- /.col -->\n  <div class=\"col-md-9\"> \n      <router-outlet></router-outlet>\n  </div>\n  <!-- /.col -->\n</div>"
 
 /***/ }),
 
@@ -155,6 +161,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/application/application-create/application-create.component */ "./src/app/adminision/components/application/application-create/application-create.component.ts");
 /* harmony import */ var _components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/application/application-index/application-index.component */ "./src/app/adminision/components/application/application-index/application-index.component.ts");
 /* harmony import */ var _components_application_application_show_application_show_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/application/application-show/application-show.component */ "./src/app/adminision/components/application/application-show/application-show.component.ts");
+/* harmony import */ var _components_application_required_application_required_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/application-required/application-required.component */ "./src/app/adminision/components/application-required/application-required.component.ts");
+
 
 
 
@@ -177,7 +185,7 @@ var AdminisionModule = /** @class */ (function () {
                 _components_required_document_required_document_index_required_document_index_component__WEBPACK_IMPORTED_MODULE_4__["RequiredDocumentIndexComponent"],
                 _components_required_document_required_document_create_required_document_create_component__WEBPACK_IMPORTED_MODULE_5__["RequiredDocumentCreateComponent"],
                 _components_required_document_required_document_update_required_document_update_component__WEBPACK_IMPORTED_MODULE_6__["RequiredDocumentUpdateComponent"], _components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_9__["ApplicationCreateComponent"], _components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_10__["ApplicationIndexComponent"],
-                _components_application_application_show_application_show_component__WEBPACK_IMPORTED_MODULE_11__["ApplicationShowComponent"]
+                _components_application_application_show_application_show_component__WEBPACK_IMPORTED_MODULE_11__["ApplicationShowComponent"], _components_application_required_application_required_component__WEBPACK_IMPORTED_MODULE_12__["ApplicationRequiredComponent"]
             ],
             imports: [
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"],
@@ -187,6 +195,106 @@ var AdminisionModule = /** @class */ (function () {
         })
     ], AdminisionModule);
     return AdminisionModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/adminision/components/application-required/application-required.component.html":
+/*!************************************************************************************************!*\
+  !*** ./src/app/adminision/components/application-required/application-required.component.html ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = " \n<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\"> \n  </div>\n  <br>\n  <div style=\"padding: 5px;\">\n    <ul class=\"w3-ul\">\n      <li>\n          <input type=\"checkbox\" style=\"margin: 0px!important\" (click)=\"check(true)\"  class=\"w3-check\"   > \n          <span  style=\"padding: 5px;\" class=\"w3-large\" >\n              {{ \"check all\" | trans }}\n          </span>\n      </li>\n      <li>\n          <input type=\"checkbox\" style=\"margin: 0px!important\" (click)=\"check(false)\"  class=\"w3-check\"   > \n          <span  style=\"padding: 5px;\" class=\"w3-large\" >\n              {{ \"decheck all\" | trans }}\n          </span>\n      </li>\n      <li *ngFor=\"let item of resources index as i\" class=\"w3-display-container\" >\n          <input type=\"checkbox\" style=\"margin: 0px!important\" [(ngModel)]=\"item.required\" class=\"w3-check check-item\"   >\n        \n          <span  style=\"padding: 5px;\" class=\"w3-large\" >\n              {{ item.display_name }}\n          </span>\n         \n      </li>\n    </ul> \n        <br>\n        <div> \n          <button class=\"btn btn-primary\" [disabled]=\"isSubmitted\" (click)=\"updateResources()\" >{{ \"save changes\" | trans }}</button>\n        </div>\n  </div>\n\n</div>\n\n  "
+
+/***/ }),
+
+/***/ "./src/app/adminision/components/application-required/application-required.component.scss":
+/*!************************************************************************************************!*\
+  !*** ./src/app/adminision/components/application-required/application-required.component.scss ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXNpb24vY29tcG9uZW50cy9hcHBsaWNhdGlvbi1yZXF1aXJlZC9hcHBsaWNhdGlvbi1yZXF1aXJlZC5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/adminision/components/application-required/application-required.component.ts":
+/*!**********************************************************************************************!*\
+  !*** ./src/app/adminision/components/application-required/application-required.component.ts ***!
+  \**********************************************************************************************/
+/*! exports provided: ApplicationRequiredComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApplicationRequiredComponent", function() { return ApplicationRequiredComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _services_application_required_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/application-required.service */ "./src/app/adminision/services/application-required.service.ts");
+/* harmony import */ var _shared_message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../shared/message */ "./src/app/shared/message.ts");
+
+
+
+
+
+var ApplicationRequiredComponent = /** @class */ (function () {
+    function ApplicationRequiredComponent(applicationRequiredService) {
+        this.applicationRequiredService = applicationRequiredService;
+        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"].doc;
+        this.resources = {};
+        this.isSubmitted = false;
+        // init breadcrum
+        this.breadcrumbList = [
+            { name: 'home', url: '/' },
+            { name: 'application_required' }
+        ];
+    }
+    ApplicationRequiredComponent.prototype.ngOnInit = function () {
+        this.loadResources();
+    };
+    ApplicationRequiredComponent.prototype.loadResources = function () {
+        var _this = this;
+        this.applicationRequiredService.get().subscribe(function (res) {
+            _this.resources = res;
+        });
+    };
+    ApplicationRequiredComponent.prototype.updateResources = function () {
+        var _this = this;
+        this.isSubmitted = true;
+        var data = {
+            data: this.resources
+        };
+        this.applicationRequiredService.update(data).subscribe(function (res) {
+            var data = res;
+            if (data.status == 1) {
+                _shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].success(data.message);
+                _this.loadResources();
+            }
+            else
+                _shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].error(data.message);
+            _this.isSubmitted = false;
+        });
+    };
+    ApplicationRequiredComponent.prototype.check = function (bool) {
+        this.resources.forEach(function (element) {
+            element.required = bool;
+        });
+    };
+    ApplicationRequiredComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-application-required',
+            template: __webpack_require__(/*! ./application-required.component.html */ "./src/app/adminision/components/application-required/application-required.component.html"),
+            styles: [__webpack_require__(/*! ./application-required.component.scss */ "./src/app/adminision/components/application-required/application-required.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_required_service__WEBPACK_IMPORTED_MODULE_3__["ApplicationRequiredService"]])
+    ], ApplicationRequiredComponent);
+    return ApplicationRequiredComponent;
 }());
 
 
@@ -1022,6 +1130,54 @@ var RequiredDocumentUpdateComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_required_document_service__WEBPACK_IMPORTED_MODULE_3__["RequiredDocumentService"]])
     ], RequiredDocumentUpdateComponent);
     return RequiredDocumentUpdateComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/adminision/services/application-required.service.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/adminision/services/application-required.service.ts ***!
+  \*********************************************************************/
+/*! exports provided: ApplicationRequiredService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApplicationRequiredService", function() { return ApplicationRequiredService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var ApplicationRequiredService = /** @class */ (function () {
+    function ApplicationRequiredService(http) {
+        this.http = http;
+    }
+    /**
+     * get services from api
+     *
+     */
+    ApplicationRequiredService.prototype.get = function () {
+        return this.http.get('adminision/application_requireds?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
+     * update service
+     */
+    ApplicationRequiredService.prototype.update = function (data) {
+        return this.http.post('adminision/application_requireds/update' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    ApplicationRequiredService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ApplicationRequiredService);
+    return ApplicationRequiredService;
 }());
 
 
