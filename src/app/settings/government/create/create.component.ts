@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
   public governmentError = '';
   public countryError = '';
   public rows = [];
-  public data: IReqItem = { name: '' , country_id:''};
+  public data: IReqItem = { name: '' , country_id:'', notes:''};
   public isSubmitClick = false;
   mySubscription: any;
 
