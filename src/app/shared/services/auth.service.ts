@@ -20,7 +20,7 @@ export class AuthService {
     this.userStatus$.next(status);
   }
 
-  login(userLogin: IUserLogin)  {
+  login(userLogin: any)  {
     return this.http.post('auth/login', userLogin);
   }
 

@@ -95,7 +95,8 @@
                         <th>{{ "student name" | trans }} *</th>
                         <td>
                           <input 
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          class="custom-input form-control input-sm w3-input input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.name, 'border-bottom-red': !application.name}"
                           [(ngModel)]="application.name" >
                         </td>
                       </tr> 
@@ -112,7 +113,8 @@
                         <td>
                           <select
                           (change)="watchLevel()"
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          class="custom-input form-control input-sm w3-input input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.academic_years_id, 'border-bottom-red': !application.academic_years_id}"
                           [(ngModel)]="application.academic_years_id">
                             <option *ngFor="let item of applicationSettings.ACADEMIC_YEARS" value="{{ item.id }}">{{ item.name }}</option>
                           </select>  
@@ -124,7 +126,8 @@
                             <input 
                             (change)="watchLevel()"
                             type="number"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.grade, 'border-bottom-red': !application.grade}"
                             [(ngModel)]="application.grade" >
                             <p *ngIf="gradeError" class="w3-text-red w3-tiny"  >
                               {{ gradeError }}
@@ -153,7 +156,8 @@
                         <th>{{ "registration_status" | trans }} *</th>
                         <td>
                           <select
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          class="custom-input form-control input-sm w3-input  input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.registration_status_id>0, 'border-bottom-red': !application.registration_status_id}"
                           [(ngModel)]="application.registration_status_id">
                             <option *ngFor="let item of applicationSettings.REGISTERATION_STATUS" value="{{ item.id }}">{{ item.name }}</option>
                           </select>  
@@ -174,7 +178,8 @@
                           <td>
                             <input 
                             type="date"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input  input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.qualification_date>0, 'border-bottom-red': !application.qualification_date}"
                             [(ngModel)]="application.qualification_date" >
                           </td>
                       </tr>
@@ -197,7 +202,8 @@
                           <td>
                             <select
                             (change)="watchLevel()"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}"
                             [(ngModel)]="application.qualification_id">
                               <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
                             </select>  
@@ -208,7 +214,8 @@
                           <td>
                             <select
                             (change)="watchLevel()"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.qualification_types_id>0, 'border-bottom-red': !application.qualification_types_id}"
                             [(ngModel)]="application.qualification_types_id">
                               <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
                                   <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
@@ -246,6 +253,7 @@
                               <input 
                               type="text"
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                              [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
                               [(ngModel)]="application.national_id" >
                             </td>
                         </tr>

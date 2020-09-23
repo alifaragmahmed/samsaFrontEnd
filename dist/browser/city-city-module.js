@@ -538,6 +538,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -549,19 +551,19 @@ var CityService = /** @class */ (function () {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]()
             .set('page', query.page)
             .set('size', query.size);
-        return this.http.get('cities?api_token=123456789', { params: params });
+        return this.http.get("cities?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), { params: params });
     };
     CityService.prototype.getItemById = function (id) {
-        return this.http.get("cities/" + id + "?api_token=123456789");
+        return this.http.get("cities/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     CityService.prototype.update = function (id, city) {
-        return this.http.put("cities/" + id + "?api_token=123456789", city);
+        return this.http.put("cities/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), city);
     };
     CityService.prototype.create = function (city) {
-        return this.http.post("cities?api_token=123456789", city);
+        return this.http.post("cities?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), city);
     };
     CityService.prototype.delete = function (id) {
-        return this.http.delete("cities/" + id + "?api_token=123456789");
+        return this.http.delete("cities/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     CityService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),

@@ -23,6 +23,7 @@ export class ApplicationSettingService {
   public static PARENT_JOBS: any = [];
   public static RELATIVE_RELATIONS: any = [];
   public static REQUIRED_DOCUMENTS: any = [];
+  public static DEPARTMENTS: any = [];
 
   constructor(private http: HttpClient) {
     //
@@ -45,7 +46,12 @@ export class ApplicationSettingService {
     this.getParentJobs().subscribe((r)=>{ ApplicationSettingService.PARENT_JOBS = r; });
     this.getRelativeRelations().subscribe((r)=>{ ApplicationSettingService.RELATIVE_RELATIONS = r; });
     this.getRequiredDocuments().subscribe((r)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = r; });
+    this.getDepartments().subscribe((r)=>{ ApplicationSettingService.DEPARTMENTS = r; });
   } 
+ 
+  public getDepartments() {
+    return this.http.get('adminision/get_departments?api_token=' + Auth.getApiToken());
+  }
  
   public getRequiredDocuments() {
     return this.http.get('adminision/required_documents?api_token=' + Auth.getApiToken());

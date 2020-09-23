@@ -23,7 +23,7 @@ export class StoreCreateComponent implements OnInit {
   }
 
   validate() {
-    if (!this.resource.name || !this.resource.type)
+    if (!this.resource.name || this.resource.init_balance < 0)
       return false;
     
     return true;

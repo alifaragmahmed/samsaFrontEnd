@@ -268,6 +268,10 @@ var ApplicationSettingService = /** @class */ (function () {
         this.getParentJobs().subscribe(function (r) { ApplicationSettingService_1.PARENT_JOBS = r; });
         this.getRelativeRelations().subscribe(function (r) { ApplicationSettingService_1.RELATIVE_RELATIONS = r; });
         this.getRequiredDocuments().subscribe(function (r) { ApplicationSettingService_1.REQUIRED_DOCUMENTS = r; });
+        this.getDepartments().subscribe(function (r) { ApplicationSettingService_1.DEPARTMENTS = r; });
+    };
+    ApplicationSettingService.prototype.getDepartments = function () {
+        return this.http.get('adminision/get_departments?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRequiredDocuments = function () {
         return this.http.get('adminision/required_documents?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
@@ -334,6 +338,7 @@ var ApplicationSettingService = /** @class */ (function () {
     ApplicationSettingService.PARENT_JOBS = [];
     ApplicationSettingService.RELATIVE_RELATIONS = [];
     ApplicationSettingService.REQUIRED_DOCUMENTS = [];
+    ApplicationSettingService.DEPARTMENTS = [];
     ApplicationSettingService = ApplicationSettingService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -2080,7 +2085,8 @@ var environment = {
     production: false,
     // apiUrl      : 'http://41.41.86.210:4000/admin/api',
     // backEndPublicUrl   : 'http://41.41.86.210:4000/',
-    apiUrl: 'http://samsav2.sphinxws.com/public/api',
+    publicUrl: 'http://127.0.0.1:8000',
+    apiUrl: 'https://samsav2.sphinxws.com/public/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/'

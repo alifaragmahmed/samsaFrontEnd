@@ -106,7 +106,12 @@ export class ApplicationCreateComponent implements OnInit {
 
   performSendApplication() { 
     this.isSubmitted = true;
-    this.applicationService.store(this.application).subscribe((res)=>{
+    let data = new FormData();
+    for(let key of Object.keys(this.application)) {
+      if(this.application[key])
+        data.append(key, this.application[key]);
+    }
+    this.applicationService.store(data).subscribe((res)=>{
       const data: any = res;
 
       if (data.status == 1)  {
