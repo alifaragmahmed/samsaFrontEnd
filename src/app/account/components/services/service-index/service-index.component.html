@@ -16,16 +16,7 @@
         <th></th>
         <th>#</th>
         <th>{{ "name" | trans }}</th>
-        <th>{{ "value" | trans }}</th>
-        <!--
-        <th>{{ "except_level" | trans }}</th>
-        <th>{{ "division" | trans }}</th>
-        <th>{{ "copy" | trans }}</th>
-        <th>{{ "repeat" | trans }}</th>
-        <th>{{ "additional_value" | trans }}</th>
-        <th>{{ "installment_percent" | trans }}</th>
-        <th>{{ "from_installment" | trans }}</th>
-        -->
+        <th>{{ "value" | trans }}</th> 
         <th>{{ "store" | trans }}</th>
         <th>{{ "type" | trans }}</th>
         <th></th>
@@ -39,22 +30,7 @@
         </td>
         <td>{{ i + 1 }}</td>
         <td>{{ item.name }}</td>
-        <td>{{ item.value | currency: ' EGP '  }}</td>
-        <!--
-        <td>{{ item.level? item.level.name : '' }}</td>
-        <td>{{ item.division? item.division.name : '' }}</td>
-        <td>
-          <i *ngIf="item.copy" class="fa fa-check-square w3-text-green" ></i>
-          <i *ngIf="!item.copy" class="fa fa-close w3-text-red" ></i>
-        </td>
-        <td>
-          <i *ngIf="item.repeat" class="fa fa-check-square w3-text-green" ></i>
-          <i *ngIf="!item.repeat" class="fa fa-close w3-text-red" ></i>
-        </td>
-        <td>{{ item.additional_value | currency: ' EGP ' }}</td>
-        <td>{{ item.installment_percent | percent }}</td>
-        <td>{{ item.from_installment }}</td>
-        -->
+        <td>{{ item.value | currency: ' EGP '  }}</td> 
         <td>{{ item.store? item.store.name : '' }}</td>
         <td>{{ item.type }}</td>
         <td> 
@@ -120,17 +96,27 @@
               </td>
             </tr>
             <tr>
-              <th>{{ "except_level" | trans }}</th>
+              <th>{{ "except_level" | trans }} *</th>
               <td>
-                <input type="number" class="form-control input-sm" [(ngModel)]="updateItem.except_level_id" required  >
+                <select 
+                class="form-control input-sm"
+                [(ngModel)]="updateItem.except_level_id">
+                  <option *ngFor="let item of levels" value="{{ updateItem.id }}">{{ item.name }}</option>
+                </select>  
               </td>
-            </tr>
+            </tr>  
             <tr>
-              <th>{{ "division" | trans }}</th>
+              <th>{{ "division" | trans }} *</th>
               <td>
-                <input type="number" class="form-control input-sm" [(ngModel)]="updateItem.division_id" required  >
+                <select
+                class="form-control input-sm" 
+                [(ngModel)]="updateItem.division_id">
+                  <ng-container *ngFor="let item of divisions">
+                    <option  value="{{ item.id }}">{{ item.name + "-" + item.level }}</option>
+                  </ng-container> 
+                </select>  
               </td>
-            </tr>
+            </tr>  
             <tr>
               <th>{{ "copying" | trans }}</th>
               <td>

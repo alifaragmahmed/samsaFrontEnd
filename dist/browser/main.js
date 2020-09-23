@@ -460,14 +460,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _core_components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./core/components/page-not-found/page-not-found.component */ "./src/app/core/components/page-not-found/page-not-found.component.ts");
 /* harmony import */ var _shared_services_translation_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/services/translation.service */ "./src/app/shared/services/translation.service.ts");
-/* harmony import */ var _shared_cache__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/cache */ "./src/app/shared/cache.ts");
-/* harmony import */ var _shared_translation__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shared/translation */ "./src/app/shared/translation.ts");
-/* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./account/services/level.service */ "./src/app/account/services/level.service.ts");
-/* harmony import */ var _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./account/services/division.service */ "./src/app/account/services/division.service.ts");
-/* harmony import */ var _account_services_term_service__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./account/services/term.service */ "./src/app/account/services/term.service.ts");
-/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
-
-
+/* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./account/services/level.service */ "./src/app/account/services/level.service.ts");
+/* harmony import */ var _account_services_division_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./account/services/division.service */ "./src/app/account/services/division.service.ts");
+/* harmony import */ var _account_services_term_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./account/services/term.service */ "./src/app/account/services/term.service.ts");
+/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
 
 
 
@@ -489,54 +485,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppModule = /** @class */ (function () {
-    function AppModule(translationService, levelService, termService, divisionService, applicationSettingService) {
-        this.translationService = translationService;
-        this.levelService = levelService;
-        this.termService = termService;
-        this.divisionService = divisionService;
-        this.applicationSettingService = applicationSettingService;
-        this.init();
+    function AppModule() {
     }
-    AppModule.prototype.init = function () {
-        // load the translations words
-        this.loadTranslations();
-        this.loadLevels();
-        this.loadDivisions();
-        this.loadTerms();
-        this.applicationSettingService.loadSettings();
-    };
-    /**
-     * load translations and update the cache
-     */
-    AppModule.prototype.loadTranslations = function () {
-        this.translationService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_16__["Cache"].set(_shared_translation__WEBPACK_IMPORTED_MODULE_17__["Translation"].TRANSLATION_CACHE_KEY, r);
-        });
-    };
-    /**
-     * load levels and update the cache
-     */
-    AppModule.prototype.loadLevels = function () {
-        this.levelService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_16__["Cache"].set(_account_services_level_service__WEBPACK_IMPORTED_MODULE_18__["LevelService"].LEVEL_PREFIX, r);
-        });
-    };
-    /**
-     * load divisions and update the cache
-     */
-    AppModule.prototype.loadDivisions = function () {
-        this.divisionService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_16__["Cache"].set(_account_services_division_service__WEBPACK_IMPORTED_MODULE_19__["DivisionService"].DIVISION_PREFIX, r);
-        });
-    };
-    /**
-     * load terms and update the cache
-     */
-    AppModule.prototype.loadTerms = function () {
-        this.termService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_16__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_20__["TermService"].TERPM_PREFIX, r);
-        });
-    };
     AppModule.doc = document;
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
@@ -563,21 +513,17 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _shared_interceptors__WEBPACK_IMPORTED_MODULE_3__["httpInterceptorProviders"],
-                _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_21__["ApplicationSettingService"],
+                _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_19__["ApplicationSettingService"],
                 _shared_services_translation_service__WEBPACK_IMPORTED_MODULE_15__["TranslationService"],
-                _account_services_level_service__WEBPACK_IMPORTED_MODULE_18__["LevelService"],
-                _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__["DivisionService"],
-                _account_services_term_service__WEBPACK_IMPORTED_MODULE_20__["TermService"],
+                _account_services_level_service__WEBPACK_IMPORTED_MODULE_16__["LevelService"],
+                _account_services_division_service__WEBPACK_IMPORTED_MODULE_17__["DivisionService"],
+                _account_services_term_service__WEBPACK_IMPORTED_MODULE_18__["TermService"],
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"],
                 _shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_5__["AuthGuestService"]
             ],
             bootstrap: [_core_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_translation_service__WEBPACK_IMPORTED_MODULE_15__["TranslationService"],
-            _account_services_level_service__WEBPACK_IMPORTED_MODULE_18__["LevelService"],
-            _account_services_term_service__WEBPACK_IMPORTED_MODULE_20__["TermService"],
-            _account_services_division_service__WEBPACK_IMPORTED_MODULE_19__["DivisionService"],
-            _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_21__["ApplicationSettingService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], AppModule);
     return AppModule;
 }());
@@ -866,15 +812,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/auth */ "./src/app/shared/auth.ts");
 /* harmony import */ var _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/@angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shared_services_translation_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/services/translation.service */ "./src/app/shared/services/translation.service.ts");
+/* harmony import */ var _account_services_term_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../account/services/term.service */ "./src/app/account/services/term.service.ts");
+/* harmony import */ var _account_services_division_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../account/services/division.service */ "./src/app/account/services/division.service.ts");
+/* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../account/services/level.service */ "./src/app/account/services/level.service.ts");
+/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var _shared_translation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../shared/translation */ "./src/app/shared/translation.ts");
+/* harmony import */ var _shared_cache__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../shared/cache */ "./src/app/shared/cache.ts");
+
+
+
+
+
+
+
 
 
 
 
 
 var LayoutComponent = /** @class */ (function () {
-    function LayoutComponent(document, router) {
+    function LayoutComponent(document, router, translationService, levelService, termService, divisionService, applicationSettingService) {
         this.document = document;
         this.router = router;
+        this.translationService = translationService;
+        this.levelService = levelService;
+        this.termService = termService;
+        this.divisionService = divisionService;
+        this.applicationSettingService = applicationSettingService;
     }
     LayoutComponent.prototype.ngAfterViewChecked = function () {
         setTimeout(function () {
@@ -886,8 +851,52 @@ var LayoutComponent = /** @class */ (function () {
         if (!_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken())
             this.router.navigate(['/login'], {}).then().catch();
     };
+    LayoutComponent.prototype.ngOnInit = function () {
+        this.init();
+    };
     LayoutComponent.prototype.ngOnChanges = function (changes) {
         this.watchUser();
+    };
+    LayoutComponent.prototype.init = function () {
+        // load the translations words
+        this.loadTranslations();
+        this.loadLevels();
+        this.loadDivisions();
+        this.loadTerms();
+        this.applicationSettingService.loadSettings();
+    };
+    /**
+     * load translations and update the cache
+     */
+    LayoutComponent.prototype.loadTranslations = function () {
+        this.translationService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_CACHE_KEY);
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_CACHE_KEY, r);
+        });
+    };
+    /**
+     * load levels and update the cache
+     */
+    LayoutComponent.prototype.loadLevels = function () {
+        this.levelService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX, r);
+        });
+    };
+    /**
+     * load divisions and update the cache
+     */
+    LayoutComponent.prototype.loadDivisions = function () {
+        this.divisionService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX, r);
+        });
+    };
+    /**
+     * load terms and update the cache
+     */
+    LayoutComponent.prototype.loadTerms = function () {
+        this.termService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX, r);
+        });
     };
     LayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -895,7 +904,13 @@ var LayoutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./layout.component.html */ "./src/app/core/layout.component.html")
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Document, _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Document,
+            _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _shared_services_translation_service__WEBPACK_IMPORTED_MODULE_5__["TranslationService"],
+            _account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"],
+            _account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"],
+            _account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"],
+            _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_9__["ApplicationSettingService"]])
     ], LayoutComponent);
     return LayoutComponent;
 }());

@@ -4,6 +4,10 @@ import { IService } from './../../../models/iservice';
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from '../../../../shared/message';
 import { AppModule } from '../../../../app.module';
+import { ApplicationSettingService } from '../../../../adminision/services/application-setting.service'; 
+import { DivisionService } from '../../../services/division.service';
+import { Cache } from '../../../../shared/cache';
+import { LevelService } from '../../../services/level.service';
 
 @Component({
   selector: 'app-service-create',
@@ -14,6 +18,7 @@ export class ServiceCreateComponent implements OnInit {
 
   public doc: any = AppModule.doc;
   public item: any = {};
+  public applicationSettings = ApplicationSettingService;
 
   public isSubmitted = false;
 
@@ -21,6 +26,8 @@ export class ServiceCreateComponent implements OnInit {
   @Input() loadServices: any;
   @Input() showCreateModal: any = false;
   
+  public levels: any;
+  public divisions: any;
 
   constructor(private studentService: StudentServiceService) {
     // this.initItem();
@@ -52,6 +59,8 @@ export class ServiceCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+    this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
   }
 
   public addService() {

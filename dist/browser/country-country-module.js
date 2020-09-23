@@ -148,7 +148,7 @@ var CreateComponent = /** @class */ (function () {
         this.nameError = '';
         this.governmentError = '';
         this.countryError = '';
-        this.data = { name: '' };
+        this.data = { name: '', notes: '' };
         this.isSubmitClick = false;
         this.disapear = false;
     }
@@ -175,7 +175,7 @@ var CreateComponent = /** @class */ (function () {
         }
         this.isSubmitClick = true;
         this.data.name = this.callForm.value.name;
-        this.countryService.createCountry(this.data).subscribe(function (res) {
+        this.countryService.create(this.data).subscribe(function (res) {
             if (res.status == 0) {
                 _this.errorMessage = res.message.name;
                 _this.isSubmitClick = false;
@@ -300,7 +300,7 @@ var EditComponent = /** @class */ (function () {
         this.router = router;
         this.errorMessage = '';
         this.nameError = '';
-        this.data = { name: '' };
+        this.data = { name: '', notes: '' };
     }
     EditComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -323,6 +323,7 @@ var EditComponent = /** @class */ (function () {
         var _this = this;
         var itemData = {
             name: this.name.value,
+            notes: this.notes.value,
         };
         this.countryService.update(this.id, itemData).subscribe(function (res) {
             console.log(res);
@@ -339,6 +340,13 @@ var EditComponent = /** @class */ (function () {
     Object.defineProperty(EditComponent.prototype, "name", {
         get: function () {
             return this.callForm.get('name');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditComponent.prototype, "notes", {
+        get: function () {
+            return this.callForm.get('notes');
         },
         enumerable: true,
         configurable: true
@@ -368,7 +376,7 @@ var EditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة دولة جديدة\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة دولة جديدة</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\" autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">اسم الدولة<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"ادخل اسم الدولة\">\r\n             <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                    <p>من فضلك ادخل اسم الدولة</p>\r\n                </div>\r\n               </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\" >حفظ</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"  class=\"table table-bordered table-striped\">\r\n      <thead>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>الاسم</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <button class=\"btn btn-info\" type=\"button\" routerLink='/settings/country/edit/{{row.id}}'>\r\n            <i class=\"fa fa-edit\"></i>\r\n          </button>\r\n          &nbsp;\r\n          <button class=\"btn btn-danger\" type=\"button\"  data-toggle=\"modal\" data-target=\"#modal-danger\" >\r\n            <i class=\"fa fa-trash-o\"></i>\r\n          </button>\r\n          <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n            <div class=\"modal-dialog\">\r\n              <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                  <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span></button>\r\n                  <h4 class=\"modal-title\">Danger Modal</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                  <p>One fine body&hellip;</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                  <button type=\"button\" class=\"btn btn-outline pull-left\" data-dismiss=\"modal\">Close</button>\r\n                  <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete(row.id)\">Save changes</button>\r\n                </div>\r\n              </div>\r\n              <!-- /.modal-content -->\r\n            </div>\r\n            <!-- /.modal-dialog -->\r\n          </div>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n      <tfoot>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>الاسم</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n\r\n      </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n\r\n\r\n"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة  دولة\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم الدولة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة  دولة</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم الدولة </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -408,25 +416,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ListComponent = /** @class */ (function () {
-    function ListComponent(generalService, countryService, toastr) {
+    function ListComponent(generalService, service, toastr) {
         this.generalService = generalService;
-        this.countryService = countryService;
+        this.service = service;
         this.toastr = toastr;
         this.errorMessage = '';
         this.nameError = '';
         this.governmentError = '';
         this.countryError = '';
-        this.data = { name: '' };
+        this.data = { name: '', notes: '' };
         this.isSubmitClick = false;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.rows = [];
+        this.item = '';
+        this.id = '';
+        this.deletedId = '';
         this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormGroup"]({
             name: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required,
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].minLength(3),
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].maxLength(50),
             ]),
+            notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]()
         });
     }
     ListComponent.prototype.ngOnInit = function () {
@@ -444,25 +456,26 @@ var ListComponent = /** @class */ (function () {
             _this.dtTrigger.next();
         });
     };
-    ListComponent.prototype.findItem = function (id) {
+    ListComponent.prototype.getItemData = function (id) {
         var _this = this;
-        this.countryService.getItemById(id).subscribe(function (res) {
+        this.id = id;
+        this.service.getItemById(id).subscribe(function (res) {
             if (res.status == 1) {
-                // this.name.setValue(res.data.name);
-                _this.itemData(res.data.name);
-            }
-            else {
-                _this.toastr.error(res.message);
+                _this.name.setValue(res.data.name);
+                _this.notes.setValue(res.data.notes);
+                document.getElementById("openModal").click();
+                _this.item = res.data;
             }
         });
     };
-    ListComponent.prototype.delete = function (id) {
+    ListComponent.prototype.delete = function () {
         var _this = this;
-        this.countryService.deleteCountryById(id).subscribe(function (res) {
-            console.log(res);
+        console.log(this.deletedId);
+        this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
-                var index = _this.rows.findIndex(function (v) { return v.id === id; });
+                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
                 _this.rows.splice(index, 1);
             }
             else {
@@ -470,46 +483,63 @@ var ListComponent = /** @class */ (function () {
             }
         });
     };
+    ListComponent.prototype.launchModal = function (id) {
+        // console.log(id);
+        this.deletedId = id;
+    };
     ListComponent.prototype.create = function () {
         var _this = this;
-        this.nameError = '';
+        this.errorMessage = '';
         if (this.callForm.invalid) {
             this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
             return;
         }
         this.isSubmitClick = true;
+        this.data.notes = this.callForm.value.notes;
         this.data.name = this.callForm.value.name;
-        this.countryService.createCountry(this.data).subscribe(function (res) {
+        this.service.create(this.data).subscribe(function (res) {
             if (res.status == 0) {
-                _this.errorMessage = res.message.name;
+                if (res.message.name)
+                    _this.toastr.error(res.message, '');
+                _this.errorMessage = res.message;
                 _this.isSubmitClick = false;
-                return;
             }
             else {
                 _this.errorMessage = '';
-                _this.isSubmitClick = true;
-                _this.toastr.success('تم انشاء البيانات بنجاح', '');
+                _this.isSubmitClick = false;
+                _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+                document.getElementById("cancel").click();
                 _this.callHttp();
             }
-            (function (e) {
+        });
+    };
+    ListComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var itemData = {
+            name: this.callForm.value.name,
+            notes: this.callForm.value.notes
+        };
+        this.service.update(this.id, itemData).subscribe(function (res) {
+            if (res.status == 1) {
+                document.getElementById("cancell").click();
+                _this.callHttp();
                 _this.isSubmitClick = false;
-                if (e.status == 400) {
-                    _this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-                    for (var i = 0; i < e.error.errors.length; i++) {
-                        if (e.error.errors[i].input === 'name') {
-                            _this.nameError = e.error.errors[i].message;
-                        }
-                    }
-                }
-            });
+                _this.item = '';
+                _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+            }
+            else {
+                _this.toastr.error(res.message, '');
+            }
         });
     };
     Object.defineProperty(ListComponent.prototype, "itemData", {
         get: function () {
-            return this.countryService.shareData;
+            return this.service.shareData;
         },
         set: function (value) {
-            this.countryService.shareData = value;
+            this.service.shareData = value;
         },
         enumerable: true,
         configurable: true
@@ -517,6 +547,13 @@ var ListComponent = /** @class */ (function () {
     Object.defineProperty(ListComponent.prototype, "name", {
         get: function () {
             return this.callForm.get('name');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ListComponent.prototype, "notes", {
+        get: function () {
+            return this.callForm.get('notes');
         },
         enumerable: true,
         configurable: true
@@ -572,10 +609,10 @@ var CountryService = /** @class */ (function () {
     CountryService.prototype.update = function (id, country) {
         return this.http.put("countries/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), country);
     };
-    CountryService.prototype.createCountry = function (country) {
+    CountryService.prototype.create = function (country) {
         return this.http.post("countries?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), country);
     };
-    CountryService.prototype.deleteCountryById = function (countryId) {
+    CountryService.prototype.delete = function (countryId) {
         return this.http.delete("countries/" + countryId + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     CountryService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

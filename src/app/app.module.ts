@@ -60,60 +60,9 @@ export class AppModule {
 
   public static doc: any = document;
 
-  constructor(
-    private translationService: TranslationService,
-    private levelService: LevelService,
-    private termService: TermService,
-    private divisionService: DivisionService, 
-    private applicationSettingService: ApplicationSettingService) {
-    this.init();
+  constructor() { 
   }
 
-  init() { 
-    // load the translations words
-    this.loadTranslations();
-    this.loadLevels();
-    this.loadDivisions();
-    this.loadTerms();
-    this.applicationSettingService.loadSettings();
-  }
-
-  /**
-   * load translations and update the cache
-   */
-  loadTranslations() {
-    this.translationService.get().subscribe((r) => { 
-      Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
-    });
-  }
-  
-  /**
-   * load levels and update the cache
-   */
-  loadLevels() {
-    this.levelService.get().subscribe((r) => { 
-      Cache.set(LevelService.LEVEL_PREFIX, r);
-    });
-  }
-  
-  /**
-   * load divisions and update the cache
-   */
-  loadDivisions() {
-    this.divisionService.get().subscribe((r) => { 
-      Cache.set(DivisionService.DIVISION_PREFIX, r);
-    });
-  }
-  
-  /**
-   * load terms and update the cache
-   */
-  loadTerms() {
-    this.termService.get().subscribe((r) => { 
-      Cache.set(TermService.TERPM_PREFIX, r);
-    });
-  }
-
-  
+ 
 
 }

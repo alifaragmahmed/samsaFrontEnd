@@ -34,11 +34,11 @@ export class StoreIndexComponent implements OnInit {
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},
-      {name: 'required_documents'}
+      {name: 'store'}
     ];
 
     this.updateResources = () => { 
-      Helper.refreshComponent(this.router, '/adminision/settings/required_documents');  
+      Helper.refreshComponent(this.router, '/account/settings/store');  
     };
   }
  
