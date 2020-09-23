@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IReqDivisions } from './IReqDivisions';
+import { Auth } from '../../shared/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +14,24 @@ export class DivisionService {
   public shareData:any;
 
   public getAll() : Observable<any> {
-      return this.http.get('divisions?api_token=123456789');
+      return this.http.get(`divisions?api_token=` + Auth.getApiToken());
   }
 
   public getItemById(id:string){
-      return this.http.get(`divisions/${id}?api_token=123456789`);
+      return this.http.get(`divisions/${id}?api_token=` + Auth.getApiToken());
   }
 
   public update(id:string, data:IReqDivisions): Observable<any> {
-      return this.http.put(`divisions/${id}?api_token=123456789`, data);
+      return this.http.put(`divisions/${id}?api_token=` + Auth.getApiToken(), data);
   }
 
   public create(data:IReqDivisions){
-      return this.http.post(`divisions?api_token=123456789`, data);
+      return this.http.post(`divisions?api_token=` + Auth.getApiToken(), data);
   }
   public delete(id: string): Observable<any>{
-      return this.http.delete(`divisions/${id}?api_token=123456789`);
+      return this.http.delete(`divisions/${id}?api_token=` + Auth.getApiToken());
   }
   public getDepartmantByLevelId(level_id: string){
-    return this.http.get(`department/${level_id}?api_token=123456789`);
+    return this.http.get(`department/${level_id}?api_token=` + Auth.getApiToken());
   }
 }

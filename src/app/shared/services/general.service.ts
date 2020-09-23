@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import { Auth } from '../../shared/auth';
 
 @Injectable({providedIn: 'root'})
 export class GeneralService {
@@ -7,29 +8,29 @@ export class GeneralService {
   }
 
   public getAllCountries() {
-    return this.http.get('countries?api_token=123456789');
+    return this.http.get(`countries?api_token=` + Auth.getApiToken());
   }
   public getAllCities() {
-    return this.http.get('cities?api_token=123456789');
+    return this.http.get(`cities?api_token=` + Auth.getApiToken());
   }
   public getAllGovernments() {
-    return this.http.get('governments?api_token=123456789');
+    return this.http.get(`governments?api_token=` + Auth.getApiToken());
   }
   public getCountryGovernments(id: string) {
-    return this.http.get(`government/`+ id +`?api_token=123456789`);
+    return this.http.get(`government/`+ id +`?api_token=` + Auth.getApiToken());
   }
   public getAllLevels(){
-    return this.http.get('levels?api_token=123456789');
+    return this.http.get(`levels?api_token=` + Auth.getApiToken());
   }
   public getAllAcademicYears(){
-    return this.http.get('academic-years?api_token=123456789');
+    return this.http.get(`academic-years?api_token=` + Auth.getApiToken());
   }
   public getAllQualifications() {
-    return this.http.get('qualifications?api_token=123456789');
+    return this.http.get(`qualifications?api_token=` + Auth.getApiToken());
   }
 
   public getAllDepartments(){
-    return this.http.get('departments?api_token=123456789');
+    return this.http.get(`departments?api_token=` + Auth.getApiToken());
   }
   getAllUsers(query: any) {
     const params = new HttpParams()

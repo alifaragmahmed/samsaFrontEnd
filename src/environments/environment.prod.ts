@@ -8,7 +8,7 @@ export const environment = {
 
 
   // PRODUCTION
-  publicUrl   : 'http://41.41.86.210:8000/',
+  publicUrl   : 'http://127.0.0.1:8000',
   apiUrl: 'http://127.0.0.1:8000/api',
   backEndPublicUrl: 'https://www.gammagame.com:3000/',
   frontEndPublicUrl: 'https://www.gammagame.com:4001/'

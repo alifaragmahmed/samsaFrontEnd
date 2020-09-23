@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { IReqNationality } from './IReqNationality';
+import { Auth } from '../../shared/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +12,21 @@ export class NationalityService{
 
 
     public getAll() : Observable<any> {
-        return this.http.get('nationalities?api_token=123456789');
+        return this.http.get(`nationalities?api_token=` + Auth.getApiToken());
     }
   
     public getItemById(id:string){
-        return this.http.get(`nationalities/${id}?api_token=123456789`);
+        return this.http.get(`nationalities/${id}?api_token=` + Auth.getApiToken());
     }
   
     public update(id:string, data:IReqNationality): Observable<any> {
-        return this.http.put(`nationalities/${id}?api_token=123456789`, data);
+        return this.http.put(`nationalities/${id}?api_token=` + Auth.getApiToken(), data);
     }
   
     public create(data:IReqNationality){
-        return this.http.post(`nationalities?api_token=123456789`, data);
+        return this.http.post(`nationalities?api_token=` + Auth.getApiToken(), data);
     }
     public delete(id: string): Observable<any>{
-        return this.http.delete(`nationalities/${id}?api_token=123456789`);
+        return this.http.delete(`nationalities/${id}?api_token=` + Auth.getApiToken());
     }
 }

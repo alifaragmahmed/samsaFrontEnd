@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IReqRegMethod } from '../models/IReqRegMethod';
+import { Auth } from '../../../shared/auth';
 
 @Injectable({ providedIn: 'root' })
 export class RegMethodService {
@@ -10,22 +11,22 @@ export class RegMethodService {
     public shareData:any;
 
     public getAll() : Observable<any> {
-        return this.http.get('registration-methods?api_token=123456789');
+        return this.http.get(`registration-methods?api_token=` + Auth.getApiToken());
     }
 
     public getItemById(id:string){
-        return this.http.get(`registration-methods/${id}?api_token=123456789`);
+        return this.http.get(`registration-methods/${id}?api_token=` + Auth.getApiToken());
     }
 
     public update(id:string, data:IReqRegMethod): Observable<any> {
-        return this.http.put(`registration-methods/${id}?api_token=123456789`, data);
+        return this.http.put(`registration-methods/${id}?api_token=` + Auth.getApiToken(), data);
     }
 
     public create(data:IReqRegMethod){
-        return this.http.post(`registration-methods?api_token=123456789`, data);
+        return this.http.post(`registration-methods?api_token=` + Auth.getApiToken(), data);
     }
     public delete(id: string): Observable<any>{
-        return this.http.delete(`registration-methods/${id}?api_token=123456789`);
+        return this.http.delete(`registration-methods/${id}?api_token=` + Auth.getApiToken());
 
     }
 

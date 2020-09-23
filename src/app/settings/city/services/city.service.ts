@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IReqCity } from '../model/IReqCity';
+import { Auth } from '../../../shared/auth';
 
 @Injectable({ providedIn: 'root' })
 export class CityService {
@@ -11,21 +12,21 @@ export class CityService {
         const params = new HttpParams()
         .set('page', query.page)
         .set('size', query.size)
-        return this.http.get('cities?api_token=123456789', { params: params });
+        return this.http.get(`cities?api_token=` + Auth.getApiToken(), { params: params });
     }
     public getItemById(id:string){
-        return this.http.get(`cities/${id}?api_token=123456789`);
+        return this.http.get(`cities/${id}?api_token=` + Auth.getApiToken());
     }
 
     public update(id:string, city:IReqCity): Observable<any> {
-        return this.http.put(`cities/${id}?api_token=123456789`, city);
+        return this.http.put(`cities/${id}?api_token=` + Auth.getApiToken(), city);
     }
 
     public create(city:IReqCity){
-        return this.http.post(`cities?api_token=123456789`, city);
+        return this.http.post(`cities?api_token=` + Auth.getApiToken(), city);
     }
     public delete(id: string): Observable<any>{
-        return this.http.delete(`cities/`+ id +`?api_token=123456789`);
+        return this.http.delete(`cities/`+ id +`?api_token=` + Auth.getApiToken());
 
     }
 }
