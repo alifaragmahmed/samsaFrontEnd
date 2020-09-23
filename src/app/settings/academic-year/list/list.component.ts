@@ -22,6 +22,9 @@ export class ListComponent implements OnInit {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   public rows = [];
+  public item = ''
+  public id = '';
+  public deletedId='';
 
   constructor(
     private generalService:GeneralService, 
@@ -35,6 +38,7 @@ export class ListComponent implements OnInit {
         start_date: new FormControl(null, [
           Validators.required,
         ]),
+        mame:new FormControl(),
         notes:new FormControl()
       });
      }
@@ -54,45 +58,7 @@ this.callHttp();
 
     })
   }
-  create(){
-    this.nameError = '';
-    if (this.callForm.invalid) {
-      this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-      return;
-    }
-    this.isSubmitClick = true;
-    this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
-    this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
-    this.data.notes = this.callForm.value.notes;
 
-    this.service.create(this.data).subscribe((res:any)=>{
-      if(res.status == 0){
-        if(res.message.end_date)
-        this.errorMessage = res.message.end_date;
-        if(res.message.start_date)
-        this.errorMessage = res.message.start_date;
-        this.isSubmitClick = false;
-        return;
-      }else{
-        this.errorMessage = '';
-        this.isSubmitClick = true;
-        this.toastr.success(res.message, '');
-        this.callHttp();
-      }
-      
-      (e) => {
-        this.isSubmitClick = false;
-        if (e.status == 400) {
-          this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-          for (let i = 0; i < e.error.errors.length; i++) {
-            if (e.error.errors[i].input === 'name') {
-              this.nameError = e.error.errors[i].message;
-            }
-          }
-        }
-      };
-    })
-  }
   dateAndTimeToString(date) {
     if (date !== null && date !== '') {
       if (Date.parse(date.toDateString())) {
@@ -102,23 +68,94 @@ this.callHttp();
     }
     return '';
   }
-  
-  delete(id) {
-    this.service.delete(id).subscribe(
-      (res) => {
+
+  getItemData(id){
+    this.id = id;
+    this.service.getItemById(id).subscribe((res:any)=>{
+      if(res.status ==1){
+        console.log(res.data);
+        document.getElementById("openModal").click();
+        this.notes.setValue(res.data.notes);
+        this.end_date.setValue(res.data.end_date);
+        this.start_date.setValue(res.data.start_date);
+
+        this.item = res.data;
+      }
+
+    });
+  }
+  onSubmit(){
+    this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
+    this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
+    this.data.notes = this.callForm.value.notes;
+
+    this.service.update(this.id, this.data).subscribe((res:any)=>{  
+      console.log(res);
+      
+      if(res.status == 1){
+        document.getElementById("cancell").click();
+        this.callHttp();
+        this.isSubmitClick = false;
+        this.item = '';
+        this.toastr.success(res.message, '')
+        this.dtTrigger.unsubscribe();
+      }else{
+        this.toastr.error(res.message, '');
+      }
+    });
+  }
+  create(){
+    this.errorMessage = '';
+    if (this.callForm.invalid) {
+      this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
+      return;
+    }
+    this.isSubmitClick = true;
+    this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
+    this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
+    this.data.notes = this.callForm.value.notes;
+
+    this.service.create(this.data).subscribe((res:any)=>{            
+      if(res.status == 0){
+        if(res.message.name)
+        this.toastr.error(res.message, '');
+        this.errorMessage = res.message;
+        this.isSubmitClick = false;
+
+      }else{
+        this.errorMessage = '';
+        this.isSubmitClick = false;
+        this.toastr.success(res.message, '');
+        this.dtTrigger.unsubscribe();
+        document.getElementById("cancel").click();
+        this.callHttp();
+      }
+    })
+  }
+
+  delete() {
+    this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){
+          document.getElementById("cancello").click();
           this.toastr.success(res.message, '');
-          const index = this.rows.findIndex(v => v.id === id);
+          const index = this.rows.findIndex(v => v.id === this.deletedId);
           this.rows.splice(index, 1);
         }else{
           this.toastr.error(res.message, '');
-
         }
        
       });
   }
+  launchModal(id){
+    this.deletedId = id;
+  }
+
+
   get start_date() {
     return this.callForm.get('start_date');
+  } 
+  get name() {
+    return this.callForm.get('name');
   } 
   get end_date() {
     return this.callForm.get('end_date');
