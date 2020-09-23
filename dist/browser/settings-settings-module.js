@@ -196,6 +196,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -204,19 +206,19 @@ var CaseCoonstraintService = /** @class */ (function () {
         this.http = http;
     }
     CaseCoonstraintService.prototype.getAll = function () {
-        return this.http.get('case-constraint?api_token=123456789');
+        return this.http.get("case-constraint?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     CaseCoonstraintService.prototype.getItemById = function (id) {
-        return this.http.get("case-constraint/" + id + "?api_token=123456789");
+        return this.http.get("case-constraint/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     CaseCoonstraintService.prototype.update = function (id, data) {
-        return this.http.put("case-constraint/" + id + "?api_token=123456789", data);
+        return this.http.put("case-constraint/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     CaseCoonstraintService.prototype.create = function (data) {
-        return this.http.post("case-constraint?api_token=123456789", data);
+        return this.http.post("case-constraint?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     CaseCoonstraintService.prototype.delete = function (id) {
-        return this.http.delete("case-constraint/" + id + "?api_token=123456789");
+        return this.http.delete("case-constraint/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     CaseCoonstraintService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
@@ -430,6 +432,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -438,19 +442,19 @@ var ConstraintStatusService = /** @class */ (function () {
         this.http = http;
     }
     ConstraintStatusService.prototype.getAll = function () {
-        return this.http.get('constraint-status?api_token=123456789');
+        return this.http.get("constraint-status?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ConstraintStatusService.prototype.getItemById = function (id) {
-        return this.http.get("constraint-status/" + id + "?api_token=123456789");
+        return this.http.get("constraint-status/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ConstraintStatusService.prototype.update = function (id, data) {
-        return this.http.put("constraint-status/" + id + "?api_token=123456789", data);
+        return this.http.put("constraint-status/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     ConstraintStatusService.prototype.create = function (data) {
-        return this.http.post("constraint-status?api_token=123456789", data);
+        return this.http.post("constraint-status?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     ConstraintStatusService.prototype.delete = function (id) {
-        return this.http.delete("constraint-status/" + id + "?api_token=123456789");
+        return this.http.delete("constraint-status/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ConstraintStatusService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
@@ -476,6 +480,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -484,19 +490,19 @@ var DepartmentService = /** @class */ (function () {
         this.http = http;
     }
     DepartmentService.prototype.getAll = function () {
-        return this.http.get('departments?api_token=123456789');
+        return this.http.get("departments?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DepartmentService.prototype.getItemById = function (id) {
-        return this.http.get("departments/" + id + "?api_token=123456789");
+        return this.http.get("departments/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DepartmentService.prototype.update = function (id, data) {
-        return this.http.put("departments/" + id + "?api_token=123456789", data);
+        return this.http.put("departments/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     DepartmentService.prototype.create = function (data) {
-        return this.http.post("departments?api_token=123456789", data);
+        return this.http.post("departments?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     DepartmentService.prototype.delete = function (id) {
-        return this.http.delete("departments/" + id + "?api_token=123456789");
+        return this.http.delete("departments/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DepartmentService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -963,6 +969,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -971,22 +979,22 @@ var DivisionService = /** @class */ (function () {
         this.http = http;
     }
     DivisionService.prototype.getAll = function () {
-        return this.http.get('divisions?api_token=123456789');
+        return this.http.get("divisions?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DivisionService.prototype.getItemById = function (id) {
-        return this.http.get("divisions/" + id + "?api_token=123456789");
+        return this.http.get("divisions/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DivisionService.prototype.update = function (id, data) {
-        return this.http.put("divisions/" + id + "?api_token=123456789", data);
+        return this.http.put("divisions/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     DivisionService.prototype.create = function (data) {
-        return this.http.post("divisions?api_token=123456789", data);
+        return this.http.post("divisions?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     DivisionService.prototype.delete = function (id) {
-        return this.http.delete("divisions/" + id + "?api_token=123456789");
+        return this.http.delete("divisions/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DivisionService.prototype.getDepartmantByLevelId = function (level_id) {
-        return this.http.get("department/" + level_id + "?api_token=123456789");
+        return this.http.get("department/" + level_id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     DivisionService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1201,6 +1209,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -1209,19 +1219,19 @@ var LanguagesService = /** @class */ (function () {
         this.http = http;
     }
     LanguagesService.prototype.getAll = function () {
-        return this.http.get('languages?api_token=123456789');
+        return this.http.get("languages?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     LanguagesService.prototype.getItemById = function (id) {
-        return this.http.get("languages/" + id + "?api_token=123456789");
+        return this.http.get("languages/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     LanguagesService.prototype.update = function (id, data) {
-        return this.http.put("languages/" + id + "?api_token=123456789", data);
+        return this.http.put("languages/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     LanguagesService.prototype.create = function (data) {
-        return this.http.post("languages?api_token=123456789", data);
+        return this.http.post("languages?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     LanguagesService.prototype.delete = function (id) {
-        return this.http.delete("languages/" + id + "?api_token=123456789");
+        return this.http.delete("languages/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     LanguagesService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1433,6 +1443,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -1441,19 +1453,19 @@ var LevelService = /** @class */ (function () {
         this.http = http;
     }
     LevelService.prototype.getAll = function () {
-        return this.http.get('levels?api_token=123456789');
+        return this.http.get("levels?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     LevelService.prototype.getItemById = function (id) {
-        return this.http.get("levels/" + id + "?api_token=123456789");
+        return this.http.get("levels/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     LevelService.prototype.update = function (id, data) {
-        return this.http.put("levels/" + id + "?api_token=123456789", data);
+        return this.http.put("levels/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     LevelService.prototype.create = function (data) {
-        return this.http.post("levels?api_token=123456789", data);
+        return this.http.post("levels?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     LevelService.prototype.delete = function (id) {
-        return this.http.delete("levels/" + id + "?api_token=123456789");
+        return this.http.delete("levels/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     LevelService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
@@ -1666,6 +1678,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -1674,19 +1688,19 @@ var NationalityService = /** @class */ (function () {
         this.http = http;
     }
     NationalityService.prototype.getAll = function () {
-        return this.http.get('nationalities?api_token=123456789');
+        return this.http.get("nationalities?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     NationalityService.prototype.getItemById = function (id) {
-        return this.http.get("nationalities/" + id + "?api_token=123456789");
+        return this.http.get("nationalities/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     NationalityService.prototype.update = function (id, data) {
-        return this.http.put("nationalities/" + id + "?api_token=123456789", data);
+        return this.http.put("nationalities/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     NationalityService.prototype.create = function (data) {
-        return this.http.post("nationalities?api_token=123456789", data);
+        return this.http.post("nationalities?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     NationalityService.prototype.delete = function (id) {
-        return this.http.delete("nationalities/" + id + "?api_token=123456789");
+        return this.http.delete("nationalities/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     NationalityService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1902,6 +1916,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -1910,19 +1926,19 @@ var ParentJobsService = /** @class */ (function () {
         this.http = http;
     }
     ParentJobsService.prototype.getAll = function () {
-        return this.http.get('parent-jobs?api_token=123456789');
+        return this.http.get("parent-jobs?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ParentJobsService.prototype.getItemById = function (id) {
-        return this.http.get("parent-jobs/" + id + "?api_token=123456789");
+        return this.http.get("parent-jobs/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ParentJobsService.prototype.update = function (id, data) {
-        return this.http.put("parent-jobs/" + id + "?api_token=123456789", data);
+        return this.http.put("parent-jobs/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     ParentJobsService.prototype.create = function (data) {
-        return this.http.post("parent-jobs?api_token=123456789", data);
+        return this.http.post("parent-jobs?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     ParentJobsService.prototype.delete = function (id) {
-        return this.http.delete("parent-jobs/" + id + "?api_token=123456789");
+        return this.http.delete("parent-jobs/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ParentJobsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1950,6 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -1958,19 +1976,19 @@ var RelativeRelation = /** @class */ (function () {
         this.http = http;
     }
     RelativeRelation.prototype.getAll = function () {
-        return this.http.get('relations?api_token=123456789');
+        return this.http.get("relations?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     RelativeRelation.prototype.getItemById = function (id) {
-        return this.http.get("relations/" + id + "?api_token=123456789");
+        return this.http.get("relations/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     RelativeRelation.prototype.update = function (id, data) {
-        return this.http.put("relations/" + id + "?api_token=123456789", data);
+        return this.http.put("relations/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     RelativeRelation.prototype.create = function (data) {
-        return this.http.post("relations?api_token=123456789", data);
+        return this.http.post("relations?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     RelativeRelation.prototype.delete = function (id) {
-        return this.http.delete("relations/" + id + "?api_token=123456789");
+        return this.http.delete("relations/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     RelativeRelation = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2201,6 +2219,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./nationality/nationality.component */ "./src/app/settings/nationality/nationality.component.ts");
 /* harmony import */ var _departments_departments_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./departments/departments.component */ "./src/app/settings/departments/departments.component.ts");
 /* harmony import */ var _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./relative-relations/relative-relations.component */ "./src/app/settings/relative-relations/relative-relations.component.ts");
+/* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./users/users.component */ "./src/app/settings/users/users.component.ts");
+
 
 
 
@@ -2288,6 +2308,10 @@ var routes = [
             {
                 path: 'relative-realtions',
                 component: _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_13__["RelativeRelationsComponent"]
+            },
+            {
+                path: 'users',
+                component: _users_users_component__WEBPACK_IMPORTED_MODULE_14__["UsersComponent"]
             }
         ]
     }
@@ -2315,7 +2339,7 @@ var SettingsRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--    <aside class=\"main-sidebar\">-->\r\n<!--      &lt;!&ndash; sidebar: style can be found in sidebar.less &ndash;&gt;-->\r\n<!--      <section class=\"sidebar\">-->\r\n<!--        &lt;!&ndash; Sidebar user panel &ndash;&gt;-->\r\n<!--        <div class=\"user-panel\">-->\r\n<!--          <div class=\"pull-left image\">-->\r\n<!--            <img src=\"../../dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">-->\r\n<!--          </div>-->\r\n<!--          <div class=\"pull-left info\">-->\r\n<!--            <p>Alexander Pierce</p>-->\r\n<!--            <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>-->\r\n<!--          </div>-->\r\n<!--        </div>-->\r\n\r\n<!--        &lt;!&ndash; sidebar menu: : style can be found in sidebar.less &ndash;&gt;-->\r\n<!--        <ul class=\"sidebar-menu tree\" data-widget=\"tree\">-->\r\n<!--          <li class=\"header\">الاعدادات الرئيسية</li>-->\r\n<!--          <li><a routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i> الدول </a></li>-->\r\n<!--          <li><a routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i> المدن </a></li>-->\r\n<!--        </ul>-->\r\n<!--      </section>-->\r\n<!--      &lt;!&ndash; /.sidebar &ndash;&gt;-->\r\n<!--    </aside>-->\r\n<div class=\"content\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n      <!-- Profile Image -->\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-body box-profile\">\r\n          <h3 class=\"profile-username text-center\">الاعدادات الرئيسية</h3>\r\n          <ul class=\"list-group list-group-unbordered\">\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i>\r\n                الدول\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/government\"><i class=\"fa fa-circle-o\"></i>\r\n                المحافظات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i>\r\n                المدن\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/academic-year\"><i class=\"fa fa-circle-o\"></i>\r\n                الاعوام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/levels\"><i class=\"fa fa-circle-o\"></i>\r\n                 المستويات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualifications\"><i class=\"fa fa-circle-o\"></i>\r\n                المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            \r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualification-types\"><i class=\"fa fa-circle-o\"></i>\r\n                انواع المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/divisions\"><i class=\"fa fa-circle-o\"></i>\r\n                  الشعب الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/departments\"><i class=\"fa fa-circle-o\"></i>\r\n                  الاقسام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/registration-methods\"><i class=\"fa fa-circle-o\"></i>\r\n                وسائل التعارف\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/case-constraints\"><i class=\"fa fa-circle-o\"></i>\r\n                حالات القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/constraint-status\"><i class=\"fa fa-circle-o\"></i>\r\n              مواقف القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/languages\"><i class=\"fa fa-circle-o\"></i>\r\n              اللغات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/translations\"><i class=\"fa fa-circle-o\"></i>\r\n                الترجمة\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/parent-jobs\"><i class=\"fa fa-circle-o\"></i>\r\n                وظائف اولياء الامور\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n        <!-- /.box-body -->\r\n      </div>\r\n      <!-- /.box -->\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<!--    <aside class=\"main-sidebar\">-->\r\n<!--      &lt;!&ndash; sidebar: style can be found in sidebar.less &ndash;&gt;-->\r\n<!--      <section class=\"sidebar\">-->\r\n<!--        &lt;!&ndash; Sidebar user panel &ndash;&gt;-->\r\n<!--        <div class=\"user-panel\">-->\r\n<!--          <div class=\"pull-left image\">-->\r\n<!--            <img src=\"../../dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">-->\r\n<!--          </div>-->\r\n<!--          <div class=\"pull-left info\">-->\r\n<!--            <p>Alexander Pierce</p>-->\r\n<!--            <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>-->\r\n<!--          </div>-->\r\n<!--        </div>-->\r\n\r\n<!--        &lt;!&ndash; sidebar menu: : style can be found in sidebar.less &ndash;&gt;-->\r\n<!--        <ul class=\"sidebar-menu tree\" data-widget=\"tree\">-->\r\n<!--          <li class=\"header\">الاعدادات الرئيسية</li>-->\r\n<!--          <li><a routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i> الدول </a></li>-->\r\n<!--          <li><a routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i> المدن </a></li>-->\r\n<!--        </ul>-->\r\n<!--      </section>-->\r\n<!--      &lt;!&ndash; /.sidebar &ndash;&gt;-->\r\n<!--    </aside>-->\r\n<div class=\"content\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n      <!-- Profile Image -->\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-body box-profile\">\r\n          <h3 class=\"profile-username text-center\">الاعدادات الرئيسية</h3>\r\n          <ul class=\"list-group list-group-unbordered\">\r\n\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/users\"><i class=\"fa fa-circle-o\"></i>\r\n                المستخدمين\r\n              </a>\r\n            </li>\r\n\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i>\r\n                الدول\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/government\"><i class=\"fa fa-circle-o\"></i>\r\n                المحافظات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i>\r\n                المدن\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/academic-year\"><i class=\"fa fa-circle-o\"></i>\r\n                الاعوام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/levels\"><i class=\"fa fa-circle-o\"></i>\r\n                 المستويات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualifications\"><i class=\"fa fa-circle-o\"></i>\r\n                المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            \r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualification-types\"><i class=\"fa fa-circle-o\"></i>\r\n                انواع المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/divisions\"><i class=\"fa fa-circle-o\"></i>\r\n                  الشعب الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/departments\"><i class=\"fa fa-circle-o\"></i>\r\n                  الاقسام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/registration-methods\"><i class=\"fa fa-circle-o\"></i>\r\n                وسائل التعارف\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/case-constraints\"><i class=\"fa fa-circle-o\"></i>\r\n                حالات القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/constraint-status\"><i class=\"fa fa-circle-o\"></i>\r\n              مواقف القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/languages\"><i class=\"fa fa-circle-o\"></i>\r\n              اللغات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/translations\"><i class=\"fa fa-circle-o\"></i>\r\n                الترجمة\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/parent-jobs\"><i class=\"fa fa-circle-o\"></i>\r\n                وظائف اولياء الامور\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n        <!-- /.box-body -->\r\n      </div>\r\n      <!-- /.box -->\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2391,6 +2415,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./nationality/nationality.component */ "./src/app/settings/nationality/nationality.component.ts");
 /* harmony import */ var _departments_departments_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./departments/departments.component */ "./src/app/settings/departments/departments.component.ts");
 /* harmony import */ var _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./relative-relations/relative-relations.component */ "./src/app/settings/relative-relations/relative-relations.component.ts");
+/* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./users/users.component */ "./src/app/settings/users/users.component.ts");
+
 
 
 
@@ -2425,6 +2451,7 @@ var SettingsModule = /** @class */ (function () {
                 _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_14__["NationalityComponent"],
                 _departments_departments_component__WEBPACK_IMPORTED_MODULE_15__["DepartmentsComponent"],
                 _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_16__["RelativeRelationsComponent"],
+                _users_users_component__WEBPACK_IMPORTED_MODULE_17__["UsersComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -2557,6 +2584,321 @@ var TranslationComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_translation_service__WEBPACK_IMPORTED_MODULE_4__["TranslationService"]])
     ], TranslationComponent);
     return TranslationComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/settings/users/users.component.html":
+/*!*****************************************************!*\
+  !*** ./src/app/settings/users/users.component.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة مستخدم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'roles' | trans }}<span style=\"color: red\">*</span></label>\r\n              <select class=\"form-control\" formControlName=\"role_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of roles'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(role_id.touched || role_id.dirty) && role_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"role_id.errors?.required\">\r\n                  <p>من فضلك اختر وظيفة المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            \r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة مستخدم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'password' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'password' | trans }}\">\r\n                <div *ngIf=\"(password.touched || errorMessage) && password.invalid\" class=\"custom-error alert alert-danger\">\r\n                  <span *ngIf=\"password.errors.required\">من فضلك ادخل كلمة المرور</span>\r\n                  <span *ngIf=\"password.errors.minlength\">كلمة المرور يجب ان لا تقل عن 8 احرف</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>\r\n            <div class=\"user-panel\">\r\n              <div class=\"image\">\r\n                <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"img-circle\" alt=\"User Image\">\r\n              </div>\r\n            </div>\r\n            <!-- <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"user-image\"> -->\r\n          </td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.username }}</td>\r\n          <td>{{ row.role.name }}</td>\r\n          <td>{{ row.phone }}</td>\r\n          <td>{{ row.email }}</td>\r\n\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/settings/users/users.component.scss":
+/*!*****************************************************!*\
+  !*** ./src/app/settings/users/users.component.scss ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NldHRpbmdzL3VzZXJzL3VzZXJzLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/settings/users/users.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/settings/users/users.component.ts ***!
+  \***************************************************/
+/*! exports provided: UsersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersComponent", function() { return UsersComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./users.service */ "./src/app/settings/users/users.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
+
+
+
+
+
+var UsersComponent = /** @class */ (function () {
+    function UsersComponent(toastr, service) {
+        this.toastr = toastr;
+        this.service = service;
+        this.publicUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].publicUrl;
+        this.errorMessage = "";
+        this.isSubmitClick = false;
+        this.dtOptions = {};
+        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
+        this.rows = [];
+        // public data: IReqUsers = { name: "", notes: "" };
+        this.roles = [];
+        this.item = "";
+        this.id = "";
+        this.deletedId = "";
+        this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
+            name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(50),
+            ]),
+            role_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]),
+            phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(8)]),
+            image: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, []),
+            notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, []),
+        });
+    }
+    UsersComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dtOptions = {
+            pagingType: "full_numbers",
+            pageLength: 10,
+        };
+        this.service.getAllRoles().subscribe(function (res) {
+            _this.roles = res.data;
+        });
+        this.callHttp();
+    };
+    UsersComponent.prototype.callHttp = function () {
+        var _this = this;
+        this.service.getAll().subscribe(function (res) {
+            console.log(res.data);
+            _this.rows = res.data;
+            _this.dtTrigger.next();
+        });
+    };
+    UsersComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var itemData = {
+            name: this.callForm.value.name,
+            username: this.callForm.value.username,
+            image: this.callForm.value.image,
+            password: this.callForm.value.password,
+            phone: this.callForm.value.phone,
+            email: this.callForm.value.email,
+            notes: this.callForm.value.notes,
+            role_id: this.callForm.value.role_id,
+        };
+        this.service.update(this.id, itemData).subscribe(function (res) {
+            if (res.status == 1) {
+                document.getElementById("cancell").click();
+                _this.callHttp();
+                _this.isSubmitClick = false;
+                _this.item = "";
+                _this.toastr.success(res.message, "");
+                _this.dtTrigger.unsubscribe();
+            }
+            else {
+                _this.toastr.error(res.message, "");
+            }
+        });
+    };
+    UsersComponent.prototype.create = function () {
+        var _this = this;
+        this.errorMessage = "";
+        if (this.callForm.invalid) {
+            this.errorMessage = "من فضلك ادخل بيانات صحيحة";
+            return;
+        }
+        this.isSubmitClick = true;
+        var itemData = {
+            name: this.callForm.value.name,
+            username: this.callForm.value.username,
+            image: this.callForm.value.image,
+            password: this.callForm.value.password,
+            phone: this.callForm.value.phone,
+            email: this.callForm.value.email,
+            notes: this.callForm.value.notes,
+            role_id: this.callForm.value.role_id,
+        };
+        console.log(itemData);
+        this.service.create(itemData).subscribe(function (res) {
+            console.log(res);
+            if (res.status == 0) {
+                _this.toastr.error(res.message, "");
+                _this.errorMessage = res.message;
+                _this.isSubmitClick = false;
+            }
+            else {
+                _this.errorMessage = "";
+                _this.isSubmitClick = false;
+                _this.toastr.success(res.message, "");
+                _this.dtTrigger.unsubscribe();
+                document.getElementById("cancel").click();
+                _this.callHttp();
+            }
+        });
+    };
+    UsersComponent.prototype.delete = function () {
+        var _this = this;
+        this.service.delete(this.deletedId).subscribe(function (res) {
+            if (res.status == 1) {
+                document.getElementById("cancello").click();
+                _this.toastr.success(res.message, "");
+                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
+                _this.rows.splice(index, 1);
+            }
+            else {
+                document.getElementById("cancello").click();
+                _this.toastr.error(res.message, "");
+            }
+        });
+    };
+    UsersComponent.prototype.getItemData = function (id) {
+        var _this = this;
+        console.log(id);
+        this.id = id;
+        this.service.getItemById(id).subscribe(function (res) {
+            console.log(res);
+            if (res.status == 1) {
+                _this.name.setValue(res.data.name);
+                _this.username.setValue(res.data.username);
+                _this.phone.setValue(res.data.phone);
+                _this.email.setValue(res.data.email);
+                _this.name.setValue(res.data.name);
+                _this.role_id.setValue(res.data.role.id);
+                _this.notes.setValue(res.data.notes);
+                document.getElementById("openModal").click();
+                _this.item = res.data;
+            }
+        });
+    };
+    UsersComponent.prototype.launchModal = function (id) {
+        this.deletedId = id;
+    };
+    Object.defineProperty(UsersComponent.prototype, "name", {
+        get: function () {
+            return this.callForm.get("name");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsersComponent.prototype, "role_id", {
+        get: function () {
+            return this.callForm.get("role_id");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsersComponent.prototype, "username", {
+        get: function () {
+            return this.callForm.get("username");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsersComponent.prototype, "phone", {
+        get: function () {
+            return this.callForm.get("phone");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsersComponent.prototype, "email", {
+        get: function () {
+            return this.callForm.get("email");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsersComponent.prototype, "password", {
+        get: function () {
+            return this.callForm.get("password");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UsersComponent.prototype, "notes", {
+        get: function () {
+            return this.callForm.get("notes");
+        },
+        enumerable: true,
+        configurable: true
+    });
+    UsersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-users',
+            template: __webpack_require__(/*! ./users.component.html */ "./src/app/settings/users/users.component.html"),
+            styles: [__webpack_require__(/*! ./users.component.scss */ "./src/app/settings/users/users.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
+            _users_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])
+    ], UsersComponent);
+    return UsersComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/settings/users/users.service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/settings/users/users.service.ts ***!
+  \*************************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var UserService = /** @class */ (function () {
+    function UserService(http) {
+        this.http = http;
+    }
+    UserService.prototype.getAll = function () {
+        return this.http.get("users?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    UserService.prototype.getAllRoles = function () {
+        return this.http.get("roles?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    UserService.prototype.getRoleById = function (id) {
+        return this.http.get("roles/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    UserService.prototype.getItemById = function (id) {
+        return this.http.get("users/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    UserService.prototype.update = function (id, data) {
+        return this.http.put("users/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    UserService.prototype.create = function (data) {
+        return this.http.post("users?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    UserService.prototype.delete = function (id) {
+        return this.http.delete("users/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], UserService);
+    return UserService;
 }());
 
 

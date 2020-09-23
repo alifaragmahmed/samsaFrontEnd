@@ -95,7 +95,8 @@
                         <th>{{ "student name" | trans }} *</th>
                         <td>
                           <input 
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          class="custom-input form-control input-sm w3-input  input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.name, 'border-bottom-red': !application.name}"
                           [(ngModel)]="application.name" >
                         </td>
                       </tr> 
@@ -111,7 +112,8 @@
                         <th>{{ "academic_years" | trans }} *</th>
                         <td>
                           <select 
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          class="custom-input form-control input-sm w3-input  input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.academic_years_id, 'border-bottom-red': !application.academic_years_id}"
                           [(ngModel)]="application.academic_years_id">
                             <option *ngFor="let item of applicationSettings.ACADEMIC_YEARS" value="{{ item.id }}">{{ item.name }}</option>
                           </select>  
@@ -122,7 +124,8 @@
                           <td>
                             <input  
                             type="number"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input  input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.grade, 'border-bottom-red': !application.grade}"
                             [(ngModel)]="application.grade" >
                             <p *ngIf="gradeError" class="w3-text-red w3-tiny"  >
                               {{ gradeError }}
@@ -134,7 +137,8 @@
                           <td>
                             <input 
                             type="text"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input  input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.national_id, 'border-bottom-red': !application.national_id}"
                             [(ngModel)]="application.national_id" >
                           </td>
                       </tr>
@@ -160,7 +164,8 @@
                         <th>{{ "registration_status" | trans }} *</th>
                         <td>
                           <select
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          class="custom-input form-control input-sm w3-input  input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.registration_status, 'border-bottom-red': !application.registration_status}"
                           [(ngModel)]="application.registration_status_id">
                             <option *ngFor="let item of applicationSettings.REGISTERATION_STATUS" value="{{ item.id }}">{{ item.name }}</option>
                           </select>  
@@ -195,7 +200,8 @@
                             <td>
                               <input 
                               type="date"
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                              class="custom-input form-control input-sm w3-input  input-sm"
+                              [ngClass]="{'border-bottom-dashed': application.qualification_date, 'border-bottom-red': !application.qualification_date}" 
                               [(ngModel)]="application.qualification_date" >
                             </td>
                         </tr>
@@ -203,7 +209,8 @@
                           <th>{{ "qualification" | trans }} *</th>
                           <td>
                             <select 
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input  input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.qualification_id, 'border-bottom-red': !application.qualification_id}"
                             [(ngModel)]="application.qualification_id">
                               <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
                             </select>  
@@ -213,7 +220,8 @@
                           <th>{{ "qualification_types" | trans }} *</th>
                           <td>
                             <select 
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.qualification_types, 'border-bottom-red': !application.qualification_types}"
                             [(ngModel)]="application.qualification_types_id">
                               <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
                                   <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
@@ -226,9 +234,25 @@
                           <th>{{ "level" | trans }} *</th>
                           <td>
                             <select 
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            class="custom-input form-control input-sm w3-input input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.level_id, 'border-bottom-red': !application.level_id}"
                             [(ngModel)]="application.level_id">
                               <option *ngFor="let item of levels" value="{{ item.id }}">{{ item.name }}</option>
+                            </select>  
+                          </td>
+                        </tr> 
+                        <tr>
+                          <th>{{ "department" | trans }} *</th>
+                          <td>
+                            <select 
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.department_id, 'border-bottom-red': !application.department_id}"
+                            [(ngModel)]="application.department_id">
+                            <ng-container *ngFor="let item of applicationSettings.DEPARTMENTS">
+                              <option *ngIf="application.level_id == item.level_id" value="{{ item.id }}" >{{ item.name }}</option>
+                            </ng-container>
+                              
+                            
                             </select>  
                           </td>
                         </tr> 
@@ -237,8 +261,11 @@
                           <td>
                             <select
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.division_id, 'border-bottom-red': !application.division_id}"
                             [(ngModel)]="application.division_id">
-                              <option *ngFor="let item of divisions" value="{{ item.id }}">{{ item.name }}</option>
+                              <ng-container *ngFor="let item of divisions">
+                                <option *ngIf="application.department_id == item.department_id"  value="{{ item.id }}">{{ item.name }}</option>
+                              </ng-container> 
                             </select>  
                           </td>
                         </tr> 

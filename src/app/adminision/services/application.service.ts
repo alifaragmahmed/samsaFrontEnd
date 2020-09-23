@@ -29,7 +29,7 @@ export class ApplicationService {
   /**
    * store new service
    */
-  public store(data: any) { 
+  public store(data: FormData) { 
     return this.http.post('adminision/applications/store' + '?api_token=' + Auth.getApiToken(), data);
   }
 

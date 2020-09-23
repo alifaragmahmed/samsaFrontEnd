@@ -46,12 +46,14 @@ export class StudentCreateComponent implements OnInit {
     'grade',
     'qualification_date',
     'qualification_types_id',
-    'level_id'
+    'level_id',
+    'department_id',
+    'division_id'
   ];
 
   constructor(private studentService: StudentService, private route: ActivatedRoute) { 
     const id = this.route.snapshot.params['id'];
-    if (id) {
+    if (id > 0) {
       this.loadApplication(id);
       this.isUpdate = true;  
     }
