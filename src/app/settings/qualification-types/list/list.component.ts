@@ -37,7 +37,9 @@ export class ListComponent implements OnInit {
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
   public rows = [];
-
+  public item = ''
+  public id = '';
+  public deletedId='';
   constructor(
     private generalService:GeneralService,
     private service:qualificationTypeService,
@@ -99,21 +101,6 @@ export class ListComponent implements OnInit {
       }
     );
   }
-  delete(id) {
-    this.service.delete(id).subscribe(
-      (res) => {
-        console.log(res);
-        if(res.status == 1){
-          this.toastr.success(res.message, '');
-          document.getElementById("cancel").click();
-
-          const index = this.rows.findIndex(v => v.id === id);
-          this.rows.splice(index, 1);
-        }else{
-          this.toastr.error(res.message, '');
-        }   
-      });
-  }
   create(){
     this.nameError = '';
     if (this.callForm.invalid) {
@@ -152,6 +139,64 @@ export class ListComponent implements OnInit {
         this.isSubmitClick = false;
       }
     })
+  }
+  getItemData(id){
+    this.id = id;
+    this.service.getItemById(id).subscribe((res:any)=>{
+      if(res.status ==1){
+        this.name.setValue(res.data.name);
+        this.grade.setValue(res.data.grade);
+        this.notes.setValue(res.data.notes);
+        this.qualification_id.setValue(res.data.qualification_id);
+        this.academic_year_id.setValue(res.data.academic_year_id);
+        this.percentage.setValue(res.data.percentage);
+        this.level_id.setValue(res.data.level_id);
+
+        document.getElementById("openModal").click();
+        this.item = res.data;
+      }
+
+    });
+  }
+  onSubmit(){
+    this.data.name = this.callForm.value.name;
+    this.data.grade = this.callForm.value.grade;
+    this.data.qualification_id = this.callForm.value.qualification_id;
+    this.data.academic_year_id = this.callForm.value.academic_year_id;
+    this.data.percentage = this.callForm.value.percentage;
+    this.data.level_id = this.callForm.value.level_id;
+    this.data.notes = this.callForm.value.notes;
+
+    this.service.update(this.id,this.data).subscribe((res:any)=>{  
+      if(res.status == 1){
+        document.getElementById("cancell").click();
+        this.callHttp();
+        this.isSubmitClick = false;
+        this.item = '';
+        this.toastr.success(res.message, '')
+        this.dtTrigger.unsubscribe();
+      }else{
+        this.toastr.error(res.message, '');
+      }
+    });
+  }
+  delete() {
+    this.service.delete(this.deletedId).subscribe((res) => {      
+        if(res.status == 1){
+          document.getElementById("cancello").click();
+          this.toastr.success(res.message, '');
+          const index = this.rows.findIndex(v => v.id === this.deletedId);
+          this.rows.splice(index, 1);
+        }else{
+          this.toastr.error(res.message, '');
+        }
+       
+      });
+  }
+  launchModal(id){
+    // console.log(id);
+    this.deletedId = id;
+    
   }
   get name() {
     return this.callForm.get('name');

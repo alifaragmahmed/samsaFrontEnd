@@ -17,15 +17,17 @@ export class ListComponent implements OnInit {
   public nameError = '';
   public governmentError = '';
   public countryError = '';
-  public data: IReqCreateCountry = { name: '' };
+  public data: IReqCreateCountry = { name: '' , notes:''};
   public isSubmitClick = false;
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
-  public rows = [];
-  public item;
+  public rows = [];  
+  public item = ''
+  public id = '';
+  public deletedId='';
   constructor(
     private generalService:GeneralService, 
-    private countryService:CountryService , 
+    private service:CountryService , 
     private toastr: ToastrService
     ) {
       this.callForm = new FormGroup({
@@ -34,29 +36,14 @@ export class ListComponent implements OnInit {
           Validators.minLength(3),
           Validators.maxLength(50),
         ]),
+        notes:new FormControl()
       });
      }
 
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
-      // dom: 'Bfrtip',
-      // // Configure the buttons
-      // buttons: [
-      //   'columnsToggle',
-      //   'colvis',
-      //   'copy',
-      //   'print',
-      //   'excel',
-      //   {
-      //     text: 'Some button',
-      //     key: '1',
-      //     action: function (e, dt, node, config) {
-      //       alert('Button activated');
-      //     }
-      //   }
-      // ]      
+      pageLength: 10,   
      
     };
     this.callHttp();
@@ -70,72 +57,96 @@ export class ListComponent implements OnInit {
       }
     );
   }
-  findItem(id){
-    this.countryService.getItemById(id).subscribe((res:any) => {
-      if(res.status == 1){
-        // this.name.setValue(res.data.name);
-        this.itemData(res.data.name)
-      }else{
-        this.toastr.error(res.message);
+  getItemData(id){
+    this.id = id;
+    this.service.getItemById(id).subscribe((res:any)=>{
+      if(res.status ==1){
+        this.name.setValue(res.data.name);
+        this.notes.setValue(res.data.notes);
+        document.getElementById("openModal").click();
+        this.item = res.data;
       }
+
     });
   }
-  delete(id) {
-    this.countryService.deleteCountryById(id).subscribe(
-      (res) => {
-        console.log(res);
+  delete() {
+    console.log(this.deletedId);
+    
+    this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){
+          document.getElementById("cancello").click();
           this.toastr.success(res.message, '');
-          const index = this.rows.findIndex(v => v.id === id);
+          const index = this.rows.findIndex(v => v.id === this.deletedId);
           this.rows.splice(index, 1);
         }else{
           this.toastr.error(res.message, '');
-
         }
        
       });
   }
+  launchModal(id){
+    // console.log(id);
+    this.deletedId = id;
+    
+  }  
   create(){
-    this.nameError = '';
+    this.errorMessage = '';
     if (this.callForm.invalid) {
       this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
       return;
     }
     this.isSubmitClick = true;
+    this.data.notes = this.callForm.value.notes;
     this.data.name = this.callForm.value.name;
-    this.countryService.createCountry(this.data).subscribe((res:any)=>{
+
+    this.service.create(this.data).subscribe((res:any)=>{            
       if(res.status == 0){
-        this.errorMessage = res.message.name;
+        if(res.message.name)
+        this.toastr.error(res.message, '');
+        this.errorMessage = res.message;
         this.isSubmitClick = false;
-        return;
+
       }else{
         this.errorMessage = '';
-        this.isSubmitClick = true;
-        this.toastr.success('تم انشاء البيانات بنجاح', '');
+        this.isSubmitClick = false;
+        this.toastr.success(res.message, '');
+        this.dtTrigger.unsubscribe();
+        document.getElementById("cancel").click();
         this.callHttp();
       }
-      
-      (e) => {
-        this.isSubmitClick = false;
-        if (e.status == 400) {
-          this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-          for (let i = 0; i < e.error.errors.length; i++) {
-            if (e.error.errors[i].input === 'name') {
-              this.nameError = e.error.errors[i].message;
-            }
-          }
-        }
-      };
     })
   }
+
+  onSubmit(){
+    const itemData: IReqCreateCountry = {
+      name: this.callForm.value.name,
+      notes : this.callForm.value.notes
+    };
+    this.service.update(this.id, itemData).subscribe((res:any)=>{  
+      if(res.status == 1){
+        document.getElementById("cancell").click();
+        this.callHttp();
+        this.isSubmitClick = false;
+        this.item = '';
+        this.toastr.success(res.message, '')
+        this.dtTrigger.unsubscribe();
+      }else{
+        this.toastr.error(res.message, '');
+      }
+    });
+  }
+
   get itemData():any{
-    return this.countryService.shareData
+    return this.service.shareData
   }
   set itemData(value:any){
-    this.countryService.shareData = value
+    this.service.shareData = value
   }
   get name() {
     return this.callForm.get('name');
+  }
+  get notes() {
+    return this.callForm.get('notes');
   }
 
 }

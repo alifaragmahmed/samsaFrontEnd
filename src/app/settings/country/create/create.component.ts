@@ -16,7 +16,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   public nameError = '';
   public governmentError = '';
   public countryError = '';
-  public data: IReqCreateCountry = { name: '' };
+  public data: IReqCreateCountry = { name: '', notes:'' };
   public isSubmitClick = false;
   mySubscription: any;
 
@@ -50,7 +50,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     }
     this.isSubmitClick = true;
     this.data.name = this.callForm.value.name;
-    this.countryService.createCountry(this.data).subscribe((res:any)=>{
+    this.countryService.create(this.data).subscribe((res:any)=>{
       if(res.status == 0){
         this.errorMessage = res.message.name;
         this.isSubmitClick = false;

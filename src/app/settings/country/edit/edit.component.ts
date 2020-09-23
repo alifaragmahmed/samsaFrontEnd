@@ -23,7 +23,7 @@ export class EditComponent implements OnInit {
   public callForm: FormGroup;
   public errorMessage = '';
   public nameError = '';
-  public data: IReqCreateCountry = { name: '' };
+  public data: IReqCreateCountry = { name: '', notes:'' };
 
   ngOnInit() {
     this.callForm = new FormGroup({
@@ -44,6 +44,7 @@ export class EditComponent implements OnInit {
   onSubmit(){
     const itemData: IReqCreateCountry = {
       name: this.name.value,
+      notes:this.notes.value,
     };
     this.countryService.update(this.id, itemData).subscribe((res:any)=>{
       console.log(res);
@@ -59,6 +60,9 @@ export class EditComponent implements OnInit {
   }
   get name() {
     return this.callForm.get('name');
+  }
+  get notes() {
+    return this.callForm.get('notes');
   }
 
 }

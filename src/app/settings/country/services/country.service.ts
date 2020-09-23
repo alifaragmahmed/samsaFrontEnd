@@ -25,10 +25,10 @@ export class CountryService {
         return this.http.put(`countries/${id}?api_token=` + Auth.getApiToken(), country);
     }
 
-    public createCountry(country:IReqCreateCountry){
+    public create(country:IReqCreateCountry){
         return this.http.post(`countries?api_token=` + Auth.getApiToken(), country);
     }
-    public deleteCountryById(countryId: string): Observable<any>{
+    public delete(countryId: string): Observable<any>{
         return this.http.delete(`countries/`+ countryId +`?api_token=` + Auth.getApiToken());
 
     }
