@@ -15,13 +15,16 @@ import { DataTableDirective } from 'angular-datatables';
 export class ListComponent implements OnInit {
   dtElement: DataTableDirective;
   isDtInitialized:boolean = false;
-  public data: IReqItem = { name: '' , country_id:''};
+  public data: IReqItem = { name: '' , country_id:'', notes:''};
   public callForm: FormGroup;
   public errorMessage = '';
   public nameError = '';
   public governmentError = '';
   public countryError = '';
   public isSubmitClick = false;
+  public item = ''
+  public id = '';
+  public deletedId='';
 
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
@@ -47,6 +50,7 @@ export class ListComponent implements OnInit {
       country_id: new FormControl(null, [
         Validators.required,
       ]),
+      notes:new FormControl()
     });
    }
 
@@ -71,24 +75,42 @@ export class ListComponent implements OnInit {
       }
     );
   }
-  delete(id) {
-    this.service.delete(id).subscribe(
-      (res) => {
-        console.log(res);
-        if(res.status == 1){
-          this.toastr.success(res.message, '');
-          const index = this.rows.findIndex(v => v.id === id);
-          this.rows.splice(index, 1);
-        }else{
-          this.toastr.error(res.message, '');
+  getItemData(id){
+    this.id = id;
+    this.service.getItemById(id).subscribe((res:any)=>{
+      console.log(res);
+      
+      if(res.status ==1){
+        this.name.setValue(res.data.name);
+        this.notes.setValue(res.data.notes);
+        this.country_id.setValue(res.data.country_id);
+        document.getElementById("openModal").click();
+        this.item = res.data;
+      }
 
-        }
-       
-      });
+    });
   }
-
+  onSubmit(){
+    const itemData: IReqItem = {
+      name: this.callForm.value.name,
+      country_id:this.callForm.value.country_id,
+      notes : this.callForm.value.notes
+    };
+    this.service.update(this.id, itemData).subscribe((res:any)=>{  
+      if(res.status == 1){
+        document.getElementById("cancell").click();
+        this.callHttp();
+        this.isSubmitClick = false;
+        this.item = '';
+        this.toastr.success(res.message, '')
+        this.dtTrigger.unsubscribe();
+      }else{
+        this.toastr.error(res.message, '');
+      }
+    });
+  }
   create(){
-    this.nameError = '';
+    this.errorMessage = '';
     if (this.callForm.invalid) {
       this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
       return;
@@ -97,86 +119,52 @@ export class ListComponent implements OnInit {
     this.data.name = this.callForm.value.name;
     this.data.country_id = this.callForm.value.country_id;
 
-    
-    this.service.create(this.data).subscribe((res:any)=>{
-      console.log(res);
-      this.dtTrigger.unsubscribe();
+    this.service.create(this.data).subscribe((res:any)=>{            
       if(res.status == 0){
-        this.isSubmitClick = false;
-        if(res.message.country_id)
-        this.toastr.error(res.message.country_id, '');
         if(res.message.name)
-        this.toastr.error(res.message.name, '');
-
+        this.toastr.error(res.message, '');
+        this.errorMessage = res.message;
+        this.isSubmitClick = false;
 
       }else{
-        this.toastr.success(res.message, '');
         this.errorMessage = '';
-        this.isSubmitClick = true;
-        
+        this.isSubmitClick = false;
+        this.toastr.success(res.message, '');
+        this.dtTrigger.unsubscribe();
+        document.getElementById("cancel").click();
         this.callHttp();
-
-      };
+      }
     })
   }
+
+  delete() {
+    this.service.delete(this.deletedId).subscribe((res) => {      
+        if(res.status == 1){
+          document.getElementById("cancello").click();
+          this.toastr.success(res.message, '');
+          const index = this.rows.findIndex(v => v.id === this.deletedId);
+          this.rows.splice(index, 1);
+        }else{
+          this.toastr.error(res.message, '');
+        }
+       
+      });
+  }
+  launchModal(id){
+    // console.log(id);
+    this.deletedId = id;
+    
+  }
+
+
   get name() {
     return this.callForm.get('name');
   }
   get country_id() {
     return this.callForm.get('country_id');
   }
-// loadAllData() {
-
-// const that = this;
-
-
-// this.dtOptions = {
-//   pagingType: 'full_numbers',
-//   pageLength: 10,
-//   serverSide: true,
-//   processing: true,
-//   ajax: (dataTablesParameters: any, callback) => {
-//     that._http
-//       .post<DataTablesResponse>(
-//         //'https://angular-datatables-demo-server.herokuapp.com/',
-//         this.env.apiUrl + 'api/setup/ClientList_SelectAll_Grid',
-//         dataTablesParameters, {}
-//       ).subscribe(resp => {
-//         //console.log(dataTablesParameters);
-//         that.modelList = resp.data;
-
-
-//         callback({
-//           recordsTotal: resp.recordsTotal,
-//           recordsFiltered: resp.recordsFiltered,
-//           data: []
-//         });
-//       });
-//   },
-//   columns: [{ data: 'ClientID' }, { data: 'ClientName' }, { data: 'ClientPhone' }, { data: 'JoinDate' }, { data: 'Email' }, { data: 'IsActive' }, { defaultContent: '', orderable: false }]
-// };
-
-
-
-//  }
-
-//  ngAfterViewInit(): void {
-//     this.dtTrigger.next();
-//  }
-
-
-
-//  rerender(): void {
-
-// this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-//   // Destroy the table first
-//   dtInstance.destroy();
-//   // Call the dtTrigger to rerender again
-//   this.dtTrigger.next();
-// });
-
-
-// }
-
+  get notes() {
+    return this.callForm.get('notes');
+  }
 
 }

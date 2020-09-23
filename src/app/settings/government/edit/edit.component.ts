@@ -13,7 +13,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  public data: IReqItem = { name: '' , country_id:''};
+  public data: IReqItem = { name: '' , country_id:'', notes:''};
   public callForm: FormGroup;
   public errorMessage = '';
   public nameError = '';
@@ -63,6 +63,7 @@ export class EditComponent implements OnInit {
     const itemData: IReqItem = {
       name: this.name.value,
       country_id: this.country_id.value,
+      notes:this.notes.value,
     };
     this.service.update(this.id, itemData).subscribe((res)=>{
       if(res.status == 1){
@@ -79,5 +80,8 @@ export class EditComponent implements OnInit {
   }
   get country_id() {
     return this.callForm.get('country_id');
+  }
+  get notes() {
+    return this.callForm.get('notes');
   }
 }
