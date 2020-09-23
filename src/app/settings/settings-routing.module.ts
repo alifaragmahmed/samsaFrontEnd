@@ -11,6 +11,7 @@ import { DivisionsComponent } from './divisions/divisions.component';
 import { NationalityComponent } from './nationality/nationality.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
+import { UsersComponent } from './users/users.component'
 
 const routes: Routes = [
   {
@@ -87,6 +88,10 @@ const routes: Routes = [
       {
         path: 'relative-realtions',
         component: RelativeRelationsComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
       }
     ]
   }

@@ -15,6 +15,7 @@ import { DivisionsComponent } from "./divisions/divisions.component";
 import { NationalityComponent } from "./nationality/nationality.component";
 import { DepartmentsComponent } from "./departments/departments.component";
 import { RelativeRelationsComponent } from "./relative-relations/relative-relations.component";
+import { UsersComponent } from './users/users.component'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RelativeRelationsComponent } from "./relative-relations/relative-relati
     NationalityComponent,
     DepartmentsComponent,
     RelativeRelationsComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
