@@ -557,9 +557,9 @@
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="row w3-padding" >
-                          <div class="" style="float: right;min-width: 120px;" *ngFor="let item of application.student_required_document" >
+                          <div class="w3-padding text-center" style="float: right;min-width: 120px;" *ngFor="let item of application.student_required_document" >
                               <a [href]="item.path_url" target="_blank"  >
-                                  <img [src]="item.path_url"  class=" w3-round material-shadow" style="height: 100px;" >
+                                  <img [src]="item.path_url"  class=" w3-round material-shadow w3-center" style="height: 100px;" >
                                   <br>
                                   {{ item.required_document.name  }}
                               </a>
@@ -573,9 +573,8 @@
    
               <div class="custom-panel w3-display-container w3-round">
                   <div class="custom-panel-body"  > 
-                    <button class="btn btn-default small-shadow w3-margin-left" [disabled]="isSubmitted"  (click)="sendApplication()" >{{ "send application" | trans }}</button>
-                    
-                    <a href="#" class="btn btn-default small-shadow w3-margin-left" routerLink="/" >{{ "exit" | trans }}</a>
+                     
+                    <a href="#" class="btn btn-default small-shadow w3-margin-left"  routerLink="/adminision/application" >{{ "exit" | trans }}</a>
                   </div>
       
                 </div>

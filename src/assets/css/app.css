@@ -37,3 +37,8 @@ body {
   display: none!important;
   opacity: none!important;
 }
+.login-background {
+  background-image: url(/assets/img/login_background.jpg)!important;
+  background-size: cover!important;
+  background-repeat: no-repeat!important;
+}

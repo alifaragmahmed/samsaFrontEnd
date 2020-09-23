@@ -1,10 +1,12 @@
 <div class="login-box">
-    <div class="login-logo">
-      <a href="#"><b>MSA</b></a>
+    <div class="login-logo w3-animate-top">
+      <img src="/assets/img/logo.png" alt="" style="width: 90px" >
+      <br>
+      <a href="#" class="w3-text-gray" ><b> المعهد العالي للعلوم الإدارية ببني سويف  </b></a>
     </div>
     <!-- /.login-logo -->
-    <div class="login-box-body material-shadow">
-      <p class="login-box-msg">{{ 'login with account' || trans }}</p>
+    <div class="login-box-body material-shadow w3-animate-zoom">
+      <p class="login-box-msg"><b>{{ 'login with account' || trans }}</b></p>
    
         <div class="form-group has-feedback">
           <input type="email" class="form-control" [(ngModel)]="userAuth.email" placeholder="{{ 'email' | trans }}">

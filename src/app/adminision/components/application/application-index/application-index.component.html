@@ -23,7 +23,7 @@
 
             <div class="media-left">
                 <a href="#">
-                  <img class="media-object w3-round" [src]="item.personal_photo_url"  style="width: 70px;height: 70px" >
+                  <img class="media-object w3-round" [src]="item.personal_photo_url"  style="width: 100px;" >
                 </a>
             </div>
             <div class="media-body">
@@ -43,8 +43,11 @@
               </tr> 
             </table> 
             <div class="text-right" > 
-              <a href="#" [routerLink]="['/adminision/application/', item.id]" ><i class="fa fa-edit btn w3-text-orange" ></i></a>
-              <a href="#" [routerLink]="['/adminision/application/show/', item.id]" ><i class="fa fa-desktop btn w3-text-green" ></i></a>
+              <a href="#" [routerLink]="['/adminision/application/', item.id]" style="margin: 5px" ><i class="fa fa-edit btn btn-warning btn-sm" ></i></a>
+              
+              <a href="#" [routerLink]="['/adminision/application/show/', item.id]" style="margin: 5px" ><i class="fa fa-desktop btn btn-success btn-sm" ></i></a>
+              
+              <button class="btn btn-primary btn-sm" (click)="enrollStudent(item.id)" [disabled]="isEntrollSubmit" style="margin: 5px" ><i class="fa" [ngClass]="{'fa-user-circle': !isEntrollSubmit, 'fa-spin fa-spinner': isEntrollSubmit}" ></i>  {{ "enroll student" | trans }} </button>
             </div>
           </div>
       </div>

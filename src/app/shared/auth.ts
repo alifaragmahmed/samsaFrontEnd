@@ -24,7 +24,9 @@ export class Auth {
    * remove user object from cache
    */
   public static logout() {
-    return Cache.remove(AuthService.API_TOKEN_PRFIX);
-    return Cache.remove(AuthService.USER_PRFIX); 
+    Cache.remove(AuthService.API_TOKEN_PRFIX);
+    Cache.remove(AuthService.USER_PRFIX); 
+
+    return false;
   }
 }

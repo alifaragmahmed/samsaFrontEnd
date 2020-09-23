@@ -41,7 +41,7 @@ export class ApplicationCreateComponent implements OnInit {
     'academic_years_id',
     'grade',
     'qualification_date',
-    'qualification_types_id',
+    'qualification_types_id', 
     'level_id'
   ];
 

@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="assets/css/bootstrap.rtl.full.min.css">
   <link rel="stylesheet" href="assets/css/iziToast.css">
   <link rel="stylesheet" href="assets/css/w3.css">
-  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/app.css"> 
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -54,8 +54,7 @@
   <!-- AdminLTE for demo purposes --> 
   
   <script src="assets/js/sweetalert2.js"></script>
-
-  <link rel="stylesheet" href="assets/css/bootstrap.rtl.full.min.css">
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=IqzcmmiC"></script>
   <script>
     var $  = require( 'jquery' );
     var dt = require( 'datatables.net' )();
@@ -125,6 +124,9 @@
     };
     document.__proto__.jq = $;
     document.__proto__.jquery = $;
+    document.__proto__.say = function(word) {
+      responsiveVoice.speak(word, "Arabic Male");
+    };
   </script>
 </body>
 </html>

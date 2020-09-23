@@ -362,6 +362,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _core_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/layout.component */ "./src/app/core/layout.component.ts");
+/* harmony import */ var _shared_middlewares_auth_guard_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./shared/middlewares/auth-guard.service */ "./src/app/shared/middlewares/auth-guard.service.ts");
+
 
 
 
@@ -371,7 +373,7 @@ var routes = [
     {
         path: '',
         component: _core_layout_component__WEBPACK_IMPORTED_MODULE_4__["LayoutComponent"],
-        // canActivate: [AuthGuardService],
+        canActivate: [_shared_middlewares_auth_guard_service__WEBPACK_IMPORTED_MODULE_5__["AuthGuardService"]],
         children: [
             {
                 path: 'student',
@@ -413,6 +415,7 @@ var AppRoutingModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             imports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forRoot(routes, {
+                    useHash: true,
                     scrollPositionRestoration: 'enabled'
                 })
             ],
@@ -667,7 +670,7 @@ var AuthComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"main-header\">\r\n  <nav class=\"navbar navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n      <!-- Brand and toggle get grouped for better mobile display -->\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n          <span class=\"sr-only\">Toggle navigation</span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"#\"><img src=\"../../../../assets/img/logo.png\" width=\"40px\" ></a>\r\n      </div>\r\n\r\n      <!-- Collect the nav links, forms, and other content for toggling -->\r\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n        <ul class=\"nav navbar-nav\">\r\n\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"applications_section\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/adminision/application\" >{{ \"applications\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/adminision/settings\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/student\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student\" | trans }}</a>\r\n          </li>\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"account\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n\r\n        </ul>\r\n        <ul class=\"nav navbar-nav navbar-right\" style=\"float: left!important\" >\r\n          <!-- Messages: style can be found in dropdown.less-->\r\n          <li class=\"dropdown messages-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-envelope-o\"></i>\r\n              <span class=\"label label-success\">4</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 4 messages</li>\r\n              <li>\r\n                <!-- inner menu: contains the messages -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start message -->\r\n                    <a href=\"#\">\r\n                      <div class=\"pull-left\">\r\n                        <!-- User Image -->\r\n                        <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\r\n                      </div>\r\n                      <!-- Message title and timestamp -->\r\n                      <h4>\r\n                        Support Team\r\n                        <small><i class=\"fa fa-clock-o\"></i> 5 mins</small>\r\n                      </h4>\r\n                      <!-- The message -->\r\n                      <p>Why not buy a new awesome theme?</p>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end message -->\r\n                </ul>\r\n                <!-- /.menu -->\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">See All Messages</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- /.messages-menu -->\r\n\r\n          <!-- Notifications Menu -->\r\n          <li class=\"dropdown notifications-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-bell-o\"></i>\r\n              <span class=\"label label-warning\">10</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 10 notifications</li>\r\n              <li>\r\n                <!-- Inner Menu: contains the notifications -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start notification -->\r\n                    <a href=\"#\">\r\n                      <i class=\"fa fa-users text-aqua\"></i> 5 new members joined today\r\n                    </a>\r\n                  </li>\r\n                  <!-- end notification -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">View all</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- Tasks Menu -->\r\n          <li class=\"dropdown tasks-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-flag-o\"></i>\r\n              <span class=\"label label-danger\">9</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 9 tasks</li>\r\n              <li>\r\n                <!-- Inner menu: contains the tasks -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- Task item -->\r\n                    <a href=\"#\">\r\n                      <!-- Task title and progress text -->\r\n                      <h3>\r\n                        Design some buttons\r\n                        <small class=\"pull-right\">20%</small>\r\n                      </h3>\r\n                      <!-- The progress bar -->\r\n                      <div class=\"progress xs\">\r\n                        <!-- Change the css width attribute to simulate progress -->\r\n                        <div class=\"progress-bar progress-bar-aqua\" style=\"width: 20%\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\">\r\n                          <span class=\"sr-only\">20% Complete</span>\r\n                        </div>\r\n                      </div>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end task item -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\">\r\n                <a href=\"#\">View all tasks</a>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n          <!-- User Account Menu -->\r\n          <li class=\"dropdown user user-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <!-- The user image in the navbar-->\r\n              <!-- <img [src]=\"user.image_url\" class=\"user-image\" alt=\"User Image\"> -->\r\n              <!-- hidden-xs hides the username on small devices so only the image appears. -->\r\n              <span class=\"hidden-xs\">Alexander Pierce</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <!-- The user image in the menu -->\r\n              <li class=\"user-header\">\r\n                <!-- <img [src]=\"user.image_url\" class=\"img-circle\" alt=\"User Image\"> -->\r\n\r\n                <!-- <p>\r\n                  {{ user.name }}\r\n                  <small>{{ user.phone }}</small>\r\n                </p> -->\r\n              </li>\r\n              \r\n              <!-- Menu Footer-->\r\n              <li class=\"user-footer\">\r\n                <div class=\"pull-left\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\">{{ \"Profile\" | trans }}</a>\r\n                </div>\r\n                <div class=\"pull-right\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\" (click)=\"logout\" >{{ \"Sign out\" | trans }}</a>\r\n                </div>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n  </nav>\r\n\r\n</header>\r\n<!-- Full Width Column -->\r\n"
+module.exports = "<header class=\"main-header\">\r\n  <nav class=\"navbar navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n      <!-- Brand and toggle get grouped for better mobile display -->\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n          <span class=\"sr-only\">Toggle navigation</span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"#\"><img src=\"../../../../assets/img/logo.png\" width=\"40px\" ></a>\r\n      </div>\r\n\r\n      <!-- Collect the nav links, forms, and other content for toggling -->\r\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n        <ul class=\"nav navbar-nav\">\r\n\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"applications_section\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/adminision/application\" >{{ \"applications\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/adminision/settings\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/student\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student\" | trans }}</a>\r\n          </li>\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"account\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n\r\n        </ul>\r\n        <ul class=\"nav navbar-nav navbar-right\" style=\"float: left!important\" >\r\n          <!-- Messages: style can be found in dropdown.less-->\r\n          <li class=\"dropdown messages-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-envelope-o\"></i>\r\n              <span class=\"label label-success\">4</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 4 messages</li>\r\n              <li>\r\n                <!-- inner menu: contains the messages -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start message -->\r\n                    <a href=\"#\">\r\n                      <div class=\"pull-left\">\r\n                        <!-- User Image -->\r\n                        <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\r\n                      </div>\r\n                      <!-- Message title and timestamp -->\r\n                      <h4>\r\n                        Support Team\r\n                        <small><i class=\"fa fa-clock-o\"></i> 5 mins</small>\r\n                      </h4>\r\n                      <!-- The message -->\r\n                      <p>Why not buy a new awesome theme?</p>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end message -->\r\n                </ul>\r\n                <!-- /.menu -->\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">See All Messages</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- /.messages-menu -->\r\n\r\n          <!-- Notifications Menu -->\r\n          <li class=\"dropdown notifications-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-bell-o\"></i>\r\n              <span class=\"label label-warning\">10</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 10 notifications</li>\r\n              <li>\r\n                <!-- Inner Menu: contains the notifications -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- start notification -->\r\n                    <a href=\"#\">\r\n                      <i class=\"fa fa-users text-aqua\"></i> 5 new members joined today\r\n                    </a>\r\n                  </li>\r\n                  <!-- end notification -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">View all</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- Tasks Menu -->\r\n          <li class=\"dropdown tasks-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-flag-o\"></i>\r\n              <span class=\"label label-danger\">9</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 9 tasks</li>\r\n              <li>\r\n                <!-- Inner menu: contains the tasks -->\r\n                <ul class=\"menu\">\r\n                  <li><!-- Task item -->\r\n                    <a href=\"#\">\r\n                      <!-- Task title and progress text -->\r\n                      <h3>\r\n                        Design some buttons\r\n                        <small class=\"pull-right\">20%</small>\r\n                      </h3>\r\n                      <!-- The progress bar -->\r\n                      <div class=\"progress xs\">\r\n                        <!-- Change the css width attribute to simulate progress -->\r\n                        <div class=\"progress-bar progress-bar-aqua\" style=\"width: 20%\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\">\r\n                          <span class=\"sr-only\">20% Complete</span>\r\n                        </div>\r\n                      </div>\r\n                    </a>\r\n                  </li>\r\n                  <!-- end task item -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\">\r\n                <a href=\"#\">View all tasks</a>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n          <!-- User Account Menu -->\r\n          <li class=\"dropdown user user-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <!-- The user image in the navbar-->\r\n              <!-- <img [src]=\"user.image_url\" class=\"user-image\" alt=\"User Image\"> -->\r\n              <!-- hidden-xs hides the username on small devices so only the image appears. -->\r\n              <span class=\"hidden-xs\">Alexander Pierce</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <!-- The user image in the menu -->\r\n              <li class=\"user-header\">\r\n                <!-- <img [src]=\"user.image_url\" class=\"img-circle\" alt=\"User Image\"> -->\r\n\r\n                <!-- <p>\r\n                  {{ user.name }}\r\n                  <small>{{ user.phone }}</small>\r\n                </p> -->\r\n              </li>\r\n              \r\n              <!-- Menu Footer-->\r\n              <li class=\"user-footer\">\r\n                <div class=\"pull-left\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\">{{ \"Profile\" | trans }}</a>\r\n                </div>\r\n                <div class=\"pull-right\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\" (click)=\"logout()\" >{{ \"Sign out\" | trans }}</a>\r\n                </div>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n  </nav>\r\n\r\n</header>\r\n<!-- Full Width Column -->\r\n"
 
 /***/ }),
 
@@ -856,17 +859,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/@angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 
 var LayoutComponent = /** @class */ (function () {
-    function LayoutComponent(document) {
+    function LayoutComponent(document, router) {
         this.document = document;
+        this.router = router;
     }
     LayoutComponent.prototype.ngAfterViewChecked = function () {
         setTimeout(function () {
             // this.document.getElementById('start-loader').remove();
         }, 1500);
+    };
+    LayoutComponent.prototype.watchUser = function () {
+        console.log(_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        if (!_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken())
+            this.router.navigate(['/login'], {}).then().catch();
+    };
+    LayoutComponent.prototype.ngOnChanges = function (changes) {
+        this.watchUser();
     };
     LayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -874,7 +890,7 @@ var LayoutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./layout.component.html */ "./src/app/core/layout.component.html")
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Document])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Document, _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], LayoutComponent);
     return LayoutComponent;
 }());
@@ -918,8 +934,9 @@ var Auth = /** @class */ (function () {
      * remove user object from cache
      */
     Auth.logout = function () {
-        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
-        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
+        _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
+        _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
+        return false;
     };
     return Auth;
 }());
@@ -1517,6 +1534,66 @@ var UrlInterceptor = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/middlewares/auth-guard.service.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/shared/middlewares/auth-guard.service.ts ***!
+  \**********************************************************/
+/*! exports provided: AuthGuardService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuardService", function() { return AuthGuardService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/shared/services/auth.service.ts");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth */ "./src/app/shared/auth.ts");
+
+
+
+
+
+var AuthGuardService = /** @class */ (function () {
+    function AuthGuardService(auth, router) {
+        this.auth = auth;
+        this.router = router;
+    }
+    AuthGuardService.prototype.canActivate = function (route, state) {
+        //console.log(route.pathFromRoot + state.url);
+        /*if (state.url != 'login') {
+          if (!Auth.getApiToken()) {
+            this.router.navigate(['/login'], {
+              queryParams: {return: state.url}
+            }).then().catch();
+          }
+          return false;
+        }*/
+        /*if (!Auth.getApiToken()) {
+          this.router.navigate(['/login'], {
+            queryParams: {return: state.url}
+          }).then().catch();
+        } */
+        if (!_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken()) {
+            this.router.navigate(['/login'], {
+                queryParams: { return: state.url }
+            }).then().catch();
+            return false;
+        }
+        return true;
+    };
+    AuthGuardService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], AuthGuardService);
+    return AuthGuardService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/middlewares/auth-guest.service.ts":
 /*!**********************************************************!*\
   !*** ./src/app/shared/middlewares/auth-guest.service.ts ***!
@@ -2003,7 +2080,7 @@ var environment = {
     production: false,
     // apiUrl      : 'http://41.41.86.210:4000/admin/api',
     // backEndPublicUrl   : 'http://41.41.86.210:4000/',
-    apiUrl: 'https://samsav2.sphinxws.com/public/api',
+    apiUrl: 'http://samsav2.sphinxws.com/public/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/'

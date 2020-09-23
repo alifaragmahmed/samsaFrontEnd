@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from '../../../services/application.service';
 import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { AppModule } from '../../../../app.module';
+import { Message } from '../../../../shared/message';
 
 @Component({
   selector: 'app-application-index',
@@ -25,6 +26,8 @@ export class ApplicationIndexComponent implements OnInit {
   public removed = [];
 
   public pages: any;
+
+  public isEntrollSubmit = false;
  
  
   constructor(private applicationService: ApplicationService) { 
@@ -78,6 +81,19 @@ export class ApplicationIndexComponent implements OnInit {
     this.resources.pages_arr = [];
     for(let i = 0; i < this.resources.pages; i ++)
       this.resources.pages_arr.push(i+1);
+  }
+
+  enrollStudent(applicationId) {
+    this.isEntrollSubmit = true;
+    this.applicationService.enroll(applicationId).subscribe((res: any) => {
+      if (res.status == 1)  {
+        Message.success(res.message);
+        this.loadResources(this.resources.current_page);
+      } else 
+        Message.error(res.message);
+
+      this.isEntrollSubmit = false;
+    });
   }
 
 

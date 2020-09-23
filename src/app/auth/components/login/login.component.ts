@@ -1,18 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {FormGroup, Validators, FormControl} from '@angular/forms';
-import {IUserLogin} from '../../../shared/models/IUserLogin';
+import {ActivatedRoute, Router} from '@angular/router'; 
 import {AuthService} from '../../../shared/services/auth.service';
 import { Cache } from '../../../shared/cache';
 import { Message } from '../../../shared/message';
+import { AppModule } from '../../../app.module';
 
 @Component({
   selector: 'app-login',
+  styleUrls: ['./login.component.scss'],
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 
   public userAuth: any = {};
+
+  public doc: any = AppModule.doc;
   
   constructor(
     private authService: AuthService,
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   public isSubmitted = false;  
 
   ngOnInit() {
+    this.doc.jquery('body').addClass('login-background'); 
     this.route.queryParams.subscribe((params) => {
       // noinspection TsLint 
     }); 

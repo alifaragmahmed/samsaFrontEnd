@@ -44,6 +44,7 @@ export class ApplicationShowComponent implements OnInit {
   loadApplication(id) {
     this.applicationService.load(id).subscribe((res: any) => {
       this.application = res;
+      this.setLevel();
     });
   }
  
@@ -56,6 +57,14 @@ export class ApplicationShowComponent implements OnInit {
     }
   }
  
+  setLevel() {
+    const levels = Cache.get(LevelService.LEVEL_PREFIX);
+    levels.forEach(element => {
+      if (element.id  == this.application.level_id)
+        this.application.level_name = element.name;
+    });
+  }
+  
   ngOnInit() {
   }
 

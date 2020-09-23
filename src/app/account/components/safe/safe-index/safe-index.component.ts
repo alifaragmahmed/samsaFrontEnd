@@ -5,6 +5,7 @@ import { Message } from '../../../../shared/message';
 import { Auth } from '../../../../shared/auth';
 import { Helper } from '../../../../shared/helper';
 import { AppModule } from '../../../../app.module';
+import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder';
 
 @Component({
   selector: 'app-safe-index',
@@ -39,6 +40,8 @@ export class SafeIndexComponent implements OnInit {
     this.safeObject.image = '/assets/img/avatar.png';
     this.safeObject.notes = 'some notes here';
     this.safeObject.level = {};
+    this.safeObject.case_constraint = {};
+    this.safeObject.constraint_status = {};
     this.safeObject.paid_value = 0;
     this.safeObject.division = {};
   }
@@ -80,6 +83,7 @@ export class SafeIndexComponent implements OnInit {
       return Message.error('search about student first');
     this.studentAcountService.getStudentAccount(id).subscribe((r) => {
       this.safeObject = r; 
+      this.buildSafeMsg();
     
       if (!this.safeObject.image)
         this.safeObject.image = '/assets/img/avatar.png';
@@ -114,6 +118,20 @@ export class SafeIndexComponent implements OnInit {
         this.availableServices = r; 
       });
     }
+  }
+
+  buildSafeMsg() {
+    let builder = new SafeMsgBuilder();
+    builder
+      .setGender(this.safeObject.gender)
+      .setName(this.safeObject.name)
+      .setCode(this.safeObject.code)
+      .setLevel(this.safeObject.level? this.safeObject.level.name : '')
+      .setDivision(this.safeObject.division? this.safeObject.division.name : '')
+      .setOldBalance(this.safeObject.old_balance)
+      .setCurrentBalance(this.safeObject.current_balance)
+      .setPaidValue(this.safeObject.paid_value)
+      .say();
   }
 
   ngOnInit() {

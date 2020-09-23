@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'student',
@@ -70,6 +70,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes,
       {
+        useHash: true,
         scrollPositionRestoration: 'enabled'
       }
     )

@@ -46,4 +46,12 @@ export class ApplicationService {
   public destroy(id) { 
     return this.http.post('adminision/applications/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
   }
+  
+  /**
+   * enroll application to student
+   */
+  public enroll(id) { 
+    return this.http.post('students/enroll/' + id + '?api_token=' + Auth.getApiToken(), null);
+  }
+
 }
