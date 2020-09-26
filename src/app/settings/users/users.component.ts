@@ -128,7 +128,9 @@ export class UsersComponent implements OnInit {
         }
       });
     }
-  
+    reset(){
+      this.callForm.reset();
+    }
     delete() {
       this.service.delete(this.deletedId).subscribe((res) => {
         if (res.status == 1) {
@@ -186,5 +188,8 @@ export class UsersComponent implements OnInit {
     }
     get notes() {
       return this.callForm.get("notes");
+    }
+    get image(){
+      return this.callForm.get("image");
     }
 }

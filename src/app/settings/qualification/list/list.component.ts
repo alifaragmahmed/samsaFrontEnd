@@ -53,61 +53,8 @@ export class ListComponent implements OnInit {
       this.rows = res.data;
       this.dtTrigger.next();
       this.isSubmitClick = false;
-
     })
   }
-  // delete(id) {
-  //   this.service.delete(id).subscribe(
-  //     (res) => {
-  //       console.log(res);
-  //       if(res.status == 1){
-  //         this.toastr.success(res.message, '');
-  //         const index = this.rows.findIndex(v => v.id === id);
-  //         this.rows.splice(index, 1);
-  //       }else{
-  //         this.toastr.error(res.message, '');
-
-  //       }
-       
-  //     });
-  // }
-  // create(){
-  //   this.nameError = '';
-  //   if (this.callForm.invalid) {
-  //     this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
-  //     return;
-  //   }
-  //   const data: IReqQualification={
-  //     name : this.callForm.value.name,
-  //     grade : this.callForm.value.grade,
-  //     notes : this.callForm.value.notes
-  //   }
-  //   this.isSubmitClick = true;
-  //   this.service.create(data).subscribe((res:any)=>{
-  //     if(res.status == 0){
-  //       this.errorMessage = res.message.name;
-  //       this.isSubmitClick = false;
-  //       return;
-  //     }else{
-  //       this.errorMessage = '';
-  //       this.isSubmitClick = true;
-  //       this.toastr.success(res.message, '');
-  //       this.callHttp();
-  //     }
-      
-  //     (e) => {
-  //       this.isSubmitClick = false;
-  //       if (e.status == 400) {
-  //         this.errorMessage = res.message;
-  //         for (let i = 0; i < e.error.errors.length; i++) {
-  //           if (e.error.errors[i].input === 'name') {
-  //             this.nameError = e.error.errors[i].message;
-  //           }
-  //         }
-  //       }
-  //     };
-  //   })
-  // }
 
   getItemData(id){
     this.id = id;
@@ -123,7 +70,6 @@ export class ListComponent implements OnInit {
     });
   }
   onSubmit(){
-
     const itemData: IReqQualification={
       name : this.callForm.value.name,
       grade : this.callForm.value.grade,
@@ -151,7 +97,6 @@ export class ListComponent implements OnInit {
       return;
     }
     this.isSubmitClick = true;
-    
     const itemData: IReqQualification={
       name : this.callForm.value.name,
       grade : this.callForm.value.grade,
@@ -161,7 +106,7 @@ export class ListComponent implements OnInit {
     this.service.create(itemData).subscribe((res:any)=>{            
       if(res.status == 0){
         if(res.message.name)
-        this.toastr.error(res.message, '');
+        this.toastr.error(res.message.name, '');
         this.errorMessage = res.message;
         this.isSubmitClick = false;
 
@@ -175,7 +120,9 @@ export class ListComponent implements OnInit {
       }
     })
   }
-
+  reset(){
+    this.callForm.reset();
+  }
   delete() {
     this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){

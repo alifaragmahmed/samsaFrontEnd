@@ -16,7 +16,7 @@ export class EditComponent implements OnInit {
   public callForm: FormGroup;
   public errorMessage = '';
   public nameError = '';
-  public data: IReqAcademicYear = { start_date: '', end_date:'', notes:'' };
+  public data: IReqAcademicYear = { name:'', start_date: '', end_date:'', notes:'' };
   constructor(
     private route: ActivatedRoute, 
     private service:AcademicYearService, 
@@ -30,7 +30,8 @@ export class EditComponent implements OnInit {
       start_date: new FormControl(null, [
         Validators.required,
       ]),
-      notes:new FormControl()
+      notes:new FormControl(),
+      name:new FormControl(),
     });
    }
 
@@ -51,6 +52,7 @@ export class EditComponent implements OnInit {
       start_date: this.start_date.value,
       end_date:this.end_date.value,
       notes:this.notes.value,
+      name:this.name.value,
     };
     this.service.update(this.id, itemData).subscribe((res:any)=>{
       console.log(res);
@@ -72,5 +74,9 @@ export class EditComponent implements OnInit {
   }
   get notes(){
     return this.callForm.get('notes')
+  }
+  get name(){
+    return this.callForm.get('name')
+
   }
 }
