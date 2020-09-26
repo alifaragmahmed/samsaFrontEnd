@@ -57,7 +57,7 @@ var CreateComponent = /** @class */ (function () {
         this.governmentError = '';
         this.countryError = '';
         this.rows = [];
-        this.data = { name: '', country_id: '' };
+        this.data = { name: '', country_id: '', notes: '' };
         this.isSubmitClick = false;
         this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](null, [
@@ -197,7 +197,7 @@ var EditComponent = /** @class */ (function () {
         this.toastr = toastr;
         this.route = route;
         this.router = router;
-        this.data = { name: '', country_id: '' };
+        this.data = { name: '', country_id: '', notes: '' };
         this.errorMessage = '';
         this.nameError = '';
         this.governmentError = '';
@@ -234,6 +234,7 @@ var EditComponent = /** @class */ (function () {
         var itemData = {
             name: this.name.value,
             country_id: this.country_id.value,
+            notes: this.notes.value,
         };
         this.service.update(this.id, itemData).subscribe(function (res) {
             if (res.status == 1) {
@@ -256,6 +257,13 @@ var EditComponent = /** @class */ (function () {
     Object.defineProperty(EditComponent.prototype, "country_id", {
         get: function () {
             return this.callForm.get('country_id');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditComponent.prototype, "notes", {
+        get: function () {
+            return this.callForm.get('notes');
         },
         enumerable: true,
         configurable: true
@@ -387,7 +395,7 @@ var GovernmentModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة محافظة جديدة\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div [hidden]=\"sucreq\">\r\n  <div class=\" modal fade\" id=\"modal-default\">\r\n    <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"> <span\r\n              aria-hidden=\"true\">&times;</span></button>\r\n          <h4 class=\"modal-title\">اضافة محافظة جديدة</h4>\r\n\r\n        </div>\r\n        <div class=\"box box-primary\">\r\n          <div class=\"box-header with-border\">\r\n            <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n          </div>\r\n          <!-- /.box-header -->\r\n          <!-- form start -->\r\n          <form role=\"form\" class=\" forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n            autocomplete=\"off\">\r\n            <div class=\"box-body\">\r\n              <div class=\"form-group\">\r\n                <label for=\"exampleInputEmail1\">اسم المحافظة<span style=\"color: red\">*</span></label>\r\n                <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                  placeholder=\"ادخل اسم الدولة\">\r\n                <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                    <p>من فضلك ادخل اسم المحافظة</p>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label>الدولة\r\n                  <span style=\"color: red\">*</span>\r\n                </label>\r\n                <select class=\"form-control\" formControlName=\"country_id\">\r\n                  <option value=\"{{row.id}}\" *ngFor='let row of countries'>{{row.name}}</option>\r\n                </select>\r\n                <div *ngIf=\"(country_id.touched || country_id.dirty) && country_id.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                    <p>من فضلك ادخل اختر الدولة</p>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"box-footer\">\r\n              <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n\r\n      </div>\r\n      <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n  </div>\r\n</div>\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n    <!-- <h3 class=\"box-title\">Data Table With Full Features</h3> -->\r\n  </div>\r\n  <!-- /.box-header -->\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>الدولة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.country.name }}</td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" routerLink='/settings/government/edit/{{row.id}}'>\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" (click)=\"delete(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>الدولة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n  <!-- /.box-body -->\r\n</div>"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة محافظة جديدة\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div [hidden]=\"sucreq\">\r\n  <div class=\" modal fade\" id=\"modal-default\">\r\n    <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"> <span\r\n              aria-hidden=\"true\">&times;</span></button>\r\n          <h4 class=\"modal-title\">اضافة محافظة جديدة</h4>\r\n\r\n        </div>\r\n        <div class=\"box box-primary\">\r\n          <div class=\"box-header with-border\">\r\n            <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n          </div>\r\n          <!-- /.box-header -->\r\n          <!-- form start -->\r\n          <form role=\"form\" class=\" forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n            autocomplete=\"off\">\r\n            <div class=\"box-body\">\r\n              <div class=\"form-group\">\r\n                <label for=\"exampleInputEmail1\">اسم المحافظة<span style=\"color: red\">*</span></label>\r\n                <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                  placeholder=\"ادخل اسم الدولة\">\r\n                <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                    <p>من فضلك ادخل اسم المحافظة</p>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label>الدولة\r\n                  <span style=\"color: red\">*</span>\r\n                </label>\r\n                <select class=\"form-control\" formControlName=\"country_id\">\r\n                  <option value=\"{{row.id}}\" *ngFor='let row of countries'>{{row.name}}</option>\r\n                </select>\r\n                <div *ngIf=\"(country_id.touched || country_id.dirty) && country_id.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"country_id.errors?.required\">\r\n                    <p>من فضلك ادخل اختر الدولة</p>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n              <div class=\"form-group\">\r\n                <label>ملاحظات\r\n                  <span style=\"color: red\">*</span>\r\n                </label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\">\r\n                </textarea>\r\n                \r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"box-footer\">\r\n              <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">اسم المحافظة<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"ادخل اسم الدولة\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المحافظة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label>الدولة\r\n                <span style=\"color: red\">*</span>\r\n              </label>\r\n              <select class=\"form-control\" formControlName=\"country_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of countries'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(country_id.touched || country_id.dirty) && country_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"country_id.errors?.required\">\r\n                  <p>من فضلك ادخل اختر الدولة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label>ملاحظات\r\n                <span style=\"color: red\">*</span>\r\n              </label>\r\n              <textarea class=\"form-control\" formControlName=\"notes\">\r\n              </textarea>\r\n              \r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>الدولة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.country.name }}</td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>الدولة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -432,12 +440,15 @@ var ListComponent = /** @class */ (function () {
         this.service = service;
         this.toastr = toastr;
         this.isDtInitialized = false;
-        this.data = { name: '', country_id: '' };
+        this.data = { name: '', country_id: '', notes: '' };
         this.errorMessage = '';
         this.nameError = '';
         this.governmentError = '';
         this.countryError = '';
         this.isSubmitClick = false;
+        this.item = '';
+        this.id = '';
+        this.deletedId = '';
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.rows = [];
@@ -456,6 +467,7 @@ var ListComponent = /** @class */ (function () {
             country_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required,
             ]),
+            notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]()
         });
     }
     ListComponent.prototype.ngOnInit = function () {
@@ -477,14 +489,35 @@ var ListComponent = /** @class */ (function () {
             _this.dtTrigger.next();
         });
     };
-    ListComponent.prototype.delete = function (id) {
+    ListComponent.prototype.getItemData = function (id) {
         var _this = this;
-        this.service.delete(id).subscribe(function (res) {
+        this.id = id;
+        this.service.getItemById(id).subscribe(function (res) {
             console.log(res);
             if (res.status == 1) {
+                _this.name.setValue(res.data.name);
+                _this.notes.setValue(res.data.notes);
+                _this.country_id.setValue(res.data.country_id);
+                document.getElementById("openModal").click();
+                _this.item = res.data;
+            }
+        });
+    };
+    ListComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var itemData = {
+            name: this.callForm.value.name,
+            country_id: this.callForm.value.country_id,
+            notes: this.callForm.value.notes
+        };
+        this.service.update(this.id, itemData).subscribe(function (res) {
+            if (res.status == 1) {
+                document.getElementById("cancell").click();
+                _this.callHttp();
+                _this.isSubmitClick = false;
+                _this.item = '';
                 _this.toastr.success(res.message, '');
-                var index = _this.rows.findIndex(function (v) { return v.id === id; });
-                _this.rows.splice(index, 1);
+                _this.dtTrigger.unsubscribe();
             }
             else {
                 _this.toastr.error(res.message, '');
@@ -493,7 +526,7 @@ var ListComponent = /** @class */ (function () {
     };
     ListComponent.prototype.create = function () {
         var _this = this;
-        this.nameError = '';
+        this.errorMessage = '';
         if (this.callForm.invalid) {
             this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
             return;
@@ -502,23 +535,39 @@ var ListComponent = /** @class */ (function () {
         this.data.name = this.callForm.value.name;
         this.data.country_id = this.callForm.value.country_id;
         this.service.create(this.data).subscribe(function (res) {
-            console.log(res);
-            _this.dtTrigger.unsubscribe();
             if (res.status == 0) {
-                _this.isSubmitClick = false;
-                if (res.message.country_id)
-                    _this.toastr.error(res.message.country_id, '');
                 if (res.message.name)
-                    _this.toastr.error(res.message.name, '');
+                    _this.toastr.error(res.message, '');
+                _this.errorMessage = res.message;
+                _this.isSubmitClick = false;
             }
             else {
-                _this.toastr.success(res.message, '');
                 _this.errorMessage = '';
-                _this.isSubmitClick = true;
+                _this.isSubmitClick = false;
+                _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+                document.getElementById("cancel").click();
                 _this.callHttp();
             }
-            ;
         });
+    };
+    ListComponent.prototype.delete = function () {
+        var _this = this;
+        this.service.delete(this.deletedId).subscribe(function (res) {
+            if (res.status == 1) {
+                document.getElementById("cancello").click();
+                _this.toastr.success(res.message, '');
+                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
+                _this.rows.splice(index, 1);
+            }
+            else {
+                _this.toastr.error(res.message, '');
+            }
+        });
+    };
+    ListComponent.prototype.launchModal = function (id) {
+        // console.log(id);
+        this.deletedId = id;
     };
     Object.defineProperty(ListComponent.prototype, "name", {
         get: function () {
@@ -530,6 +579,13 @@ var ListComponent = /** @class */ (function () {
     Object.defineProperty(ListComponent.prototype, "country_id", {
         get: function () {
             return this.callForm.get('country_id');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ListComponent.prototype, "notes", {
+        get: function () {
+            return this.callForm.get('notes');
         },
         enumerable: true,
         configurable: true
