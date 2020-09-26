@@ -18,6 +18,12 @@ import { StoreIndexComponent } from './components/store/store-index/store-index.
 import { StoreCreateComponent } from './components/store/store-create/store-create.component';
 import { StoreUpdateComponent } from './components/store/store-update/store-update.component';
 
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     ServiceIndexComponent, 
@@ -34,12 +40,20 @@ import { StoreUpdateComponent } from './components/store/store-update/store-upda
     ServiceFormComponent,
     StoreIndexComponent,
     StoreCreateComponent,
-    StoreUpdateComponent
+    StoreUpdateComponent 
   ],
   imports: [
     SharedModule,
     AccountRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatButtonModule,
+  ],
+  providers: [ 
+    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
   ]
 })
 export class AccountModule {

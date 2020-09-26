@@ -41,8 +41,7 @@ import { ApplicationSettingService } from './adminision/services/application-set
       closeButton: true,
       enableHtml: true,
     }),
-    AppRoutingModule,
-
+    AppRoutingModule 
   ],
   providers: [
     httpInterceptorProviders,
