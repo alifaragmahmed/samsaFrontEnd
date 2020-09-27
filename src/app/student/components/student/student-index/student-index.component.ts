@@ -25,6 +25,7 @@ export class StudentIndexComponent implements OnInit {
   public removed = [];
 
   public pages: any;
+  public isLoad = false;
  
  
   constructor(private studentService: StudentService) { 
@@ -83,13 +84,21 @@ export class StudentIndexComponent implements OnInit {
 
 
   loadResources(page=1) { 
+    this.isLoad = true;
     this.studentService.get(page).subscribe( (res: any) => {
       this.resources = res; 
       this.prePagniation();
+      this.isLoad = false;
     }); 
   }  
 
+  setStudentContainerHeight() {
+    //const height = window.innerHeight - 90;
+    //this.doc.jquery('.student-container').css('height', height); 
+  }
+
   ngOnInit() {
+    this.setStudentContainerHeight();
     this.loadResources(); 
   } 
 

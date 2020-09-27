@@ -7,6 +7,9 @@ import { StudentShowComponent } from './components/student/student-show/student-
 import { StudentCreateComponent } from './components/student/student-create/student-create.component';
 import { StudentIndexComponent } from './components/student/student-index/student-index.component';
 import { ApplicationSettingService } from '../adminision/services/application-setting.service';
+import {MatButtonModule} from '@angular/material/button';
+
+
 @NgModule({
   declarations: [ 
     StudentComponent,
@@ -17,6 +20,7 @@ import { ApplicationSettingService } from '../adminision/services/application-se
   imports: [
     SharedModule,  
     StudentRoutingModule,
+    MatButtonModule,
     DataTablesModule
   ]
 })

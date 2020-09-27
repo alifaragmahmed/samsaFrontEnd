@@ -13,6 +13,10 @@ const routes: Routes = [
     component: SafeIndexComponent
   }, 
   {
+    path: 'safe/:id',
+    component: SafeIndexComponent
+  }, 
+  {
     path: "setting",
     component: AccountComponent,
     children: [
