@@ -1,7 +1,7 @@
 export interface IReqUsers{
+    image:string;
     name:string;
     username:string;
-    image:string;
     email:string;
     password:string;
     phone:string;

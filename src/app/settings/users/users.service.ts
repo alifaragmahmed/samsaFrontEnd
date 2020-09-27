@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { IReqUsers } from "./IReqUsers";
 import { Auth } from '../../shared/auth';
+import { IReqUpdateUser } from "./IReqUpdateUser";
 
 @Injectable({
     providedIn: 'root'
@@ -25,7 +26,7 @@ import { Auth } from '../../shared/auth';
         return this.http.get(`users/${id}?api_token=` + Auth.getApiToken());
     }
   
-    public update(id:string, data:IReqUsers): Observable<any> {
+    public update(id:string, data:IReqUpdateUser): Observable<any> {
         return this.http.put(`users/${id}?api_token=` + Auth.getApiToken(), data);
     }
   

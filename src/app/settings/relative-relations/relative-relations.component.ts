@@ -99,6 +99,9 @@ export class RelativeRelationsComponent implements OnInit {
       }
     });
   }
+  reset(){
+    this.callForm.reset();
+  }
 
   delete() {
     this.service.delete(this.deletedId).subscribe((res) => {

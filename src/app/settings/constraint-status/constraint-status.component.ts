@@ -117,7 +117,9 @@ export class ConstraintStatusComponent implements OnInit {
       }
     })
   }
-
+  reset(){
+    this.callForm.reset();
+  }
   delete(id) {
     this.service.delete(id).subscribe(
       (res) => {
