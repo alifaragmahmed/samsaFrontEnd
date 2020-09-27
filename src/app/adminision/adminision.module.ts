@@ -13,6 +13,7 @@ import { ApplicationRequiredComponent } from './components/application-required/
 import { ApplicationRequiredService } from './services/application-required.service';
 import { ApplicationService } from './services/application.service';
 import { RequiredDocumentService } from './services/required-document.service';
+import { ApplicationSettingService } from './services/application-setting.service';
 @NgModule({
   declarations: [ 
     AdminisionComponent,
@@ -28,4 +29,9 @@ import { RequiredDocumentService } from './services/required-document.service';
   ]
 })
 export class AdminisionModule {
+  constructor( 
+    private applicationSettingService: ApplicationSettingService) {
+      this.applicationSettingService.loadSettings(); 
+    }
+ 
 }
