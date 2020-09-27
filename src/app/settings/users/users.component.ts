@@ -78,6 +78,7 @@ export class UsersComponent implements OnInit {
         notes:this.callForm.value.notes,
         role_id:this.callForm.value.role_id,
       };
+      console.log(itemData);
       
       this.service.update(this.id,itemData).subscribe((res: any) => {
         if (res.status == 1) {
@@ -88,6 +89,8 @@ export class UsersComponent implements OnInit {
           this.toastr.success(res.message, "");
           this.dtTrigger.unsubscribe();
         } else {
+          console.log(res);
+          
           this.toastr.error(res.message, "");
         }
       });
@@ -145,8 +148,6 @@ export class UsersComponent implements OnInit {
       });
     }
     getItemData(id) {
-      console.log(id);
-      
       this.id = id;
       this.service.getItemById(id).subscribe((res: any) => {
         console.log(res);
@@ -158,7 +159,7 @@ export class UsersComponent implements OnInit {
           this.email.setValue(res.data.email);
           this.name.setValue(res.data.name);
           this.role_id.setValue(res.data.role.id);
-
+          this.password.setValue(res.data.password);
           this.notes.setValue(res.data.notes);
           document.getElementById("openModal").click();
           this.item = res.data;

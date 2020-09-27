@@ -1,6 +1,6 @@
 <div class="box box-default">
   <div class="box-body">
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default">
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default" (click) = "reset()">
       اضافة مستخدم
     </button>
     <button style="display: none;" type="button" id="openModal" class="btn btn-info" data-toggle="modal" data-target="#modal-default-edit">
@@ -25,6 +25,7 @@
         <form role="form" [hidden] class="forms-sample create" [formGroup]="callForm" (ngSubmit)="onSubmit()"
           autocomplete="off">
           <div class="box-body">
+
             <div class="form-group">
               <label for="exampleInputEmail1">{{ 'name' | trans }}<span style="color: red">*</span></label>
               <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1"
@@ -45,7 +46,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group">
               <label for="exampleInputEmail1">{{ 'phone' | trans }}<span style="color: red">*</span></label>
               <input formControlName="phone" type="number" class="form-control" id="exampleInputEmail1"
@@ -53,18 +53,6 @@
               <div *ngIf="(phone.touched || phone.dirty) && phone.invalid">
                 <div class="alert alert-danger" *ngIf="phone.errors?.required">
                   <p>من فضلك ادخل تليفون المستخدم </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="exampleInputEmail1">{{ 'roles' | trans }}<span style="color: red">*</span></label>
-              <select class="form-control" formControlName="role_id">
-                <option value="{{row.id}}" *ngFor='let row of roles'>{{row.name}}</option>
-              </select>
-              <div *ngIf="(role_id.touched || role_id.dirty) && role_id.invalid">
-                <div class="alert alert-danger" *ngIf="role_id.errors?.required">
-                  <p>من فضلك اختر وظيفة المستخدم </p>
                 </div>
               </div>
             </div>
@@ -82,14 +70,21 @@
                 </div>
               </div>
             </div>
-
-            
-
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{ 'password' | trans }}<span style="color: red">*</span></label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputEmail1"
+                placeholder="{{ 'password' | trans }}">
+                <div *ngIf="(password.touched || errorMessage) && password.invalid" class="custom-error alert alert-danger">
+                  <span *ngIf="password.errors.required">من فضلك ادخل كلمة المرور</span>
+                  <span *ngIf="password.errors.minlength">كلمة المرور يجب ان لا تقل عن 8 احرف</span>
+                </div>
+            </div>
             <div class="form-group">
               <label for="exampleInputEmail1">{{ 'notes' | trans }}</label>
               <textarea formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
                 placeholder="{{ 'notes' | trans }}">
                 </textarea>
+
             </div>
           </div>
           <div class="box-footer">
