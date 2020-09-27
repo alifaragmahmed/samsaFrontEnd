@@ -91,10 +91,10 @@
     </tbody>
   </table>
   <br>
-  <button mat-raised-button  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  > 
+  <button mat-raised-button [disabled]="!level_id || !division_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  > 
     <span class="fa fa-plus" ></span> 
   </button> 
-  <button mat-raised-button color="primary" [disabled]="updateItem" (click)="viewChanges()" style="margin: 5px"  > 
+  <button mat-raised-button color="primary" [disabled]="updateItem || (!level_id || !division_id)" (click)="viewChanges()" style="margin: 5px"  > 
     <span *ngIf="!updateItem" >{{ "save" | trans }}</span>
     <span *ngIf="updateItem"  class="fa fa-spin fa-spinner" ></span>
   </button> 

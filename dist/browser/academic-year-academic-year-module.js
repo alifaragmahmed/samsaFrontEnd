@@ -33398,7 +33398,6 @@ var ListComponent = /** @class */ (function () {
         this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
         this.data.notes = this.callForm.value.notes;
         this.service.update(this.id, this.data).subscribe(function (res) {
-            console.log(res);
             if (res.status == 1) {
                 document.getElementById("cancell").click();
                 _this.callHttp();
@@ -33444,6 +33443,7 @@ var ListComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
                 var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });

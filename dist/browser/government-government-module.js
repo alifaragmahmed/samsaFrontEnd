@@ -555,6 +555,7 @@ var ListComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
                 var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });

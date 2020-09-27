@@ -145,6 +145,7 @@ var ListComponent = /** @class */ (function () {
     ListComponent.prototype.delete = function (id) {
         var _this = this;
         this.service.delete(id).subscribe(function (res) {
+            _this.isSubmitClick = false;
             if (res.status == 1) {
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');

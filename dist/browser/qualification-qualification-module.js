@@ -145,7 +145,7 @@ var EditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة مؤهل دراسى\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة مؤهل دراسى</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\" autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification' | trans }}<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'qualification' | trans }}\">\r\n                  <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                    <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                        <p>من فضلك ادخل اسم المؤهل</p>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n          </div>\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification grade' | trans }}<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"grade\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'qualification grade' | trans }}\">\r\n                <div *ngIf=\"(grade.touched || grade.dirty) && grade.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"grade.errors?.required\">\r\n                      <p>من فضلك ادخل درجة المؤهل</p>\r\n                  </div>\r\n                </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'notes' | trans }}\">\r\n              </textarea>\r\n                \r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\" >حفظ</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"  class=\"table table-bordered table-striped\">\r\n      <thead>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>اسم المؤهل</th>\r\n        <th>درجة القبول</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>{{ row.grade }}</td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <button class=\"btn btn-info\" type=\"button\" routerLink='/settings/qualifications/edit/{{row.id}}'>\r\n            <i class=\"fa fa-edit\"></i>\r\n          </button>\r\n          &nbsp;\r\n          <button class=\"btn btn-danger\" type=\"button\" (click)=\"delete(row.id)\">\r\n            <i class=\"fa fa-trash-o\"></i>\r\n          </button>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n      <tfoot>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>اسم المؤهل</th>\r\n        <th>درجة القبول</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة مؤهل دراسى\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة مؤهل دراسى</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\" autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification' | trans }}<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'qualification' | trans }}\">\r\n                  <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                    <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                        <p>من فضلك ادخل اسم المؤهل</p>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n          </div>\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification grade' | trans }}<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"grade\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'qualification grade' | trans }}\">\r\n                <div *ngIf=\"(grade.touched || grade.dirty) && grade.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"grade.errors?.required\">\r\n                      <p>من فضلك ادخل درجة المؤهل</p>\r\n                  </div>\r\n                </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'notes' | trans }}\">\r\n              </textarea>\r\n                \r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\" >حفظ</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n      \r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification' | trans }}<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'qualification' | trans }}\">\r\n                  <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                    <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                        <p>من فضلك ادخل اسم المؤهل</p>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n          \r\n          \r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'qualification grade' | trans }}<span\r\n                style=\"color: red\">*</span></label>\r\n              <input formControlName=\"grade\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'qualification grade' | trans }}\">\r\n                <div *ngIf=\"(grade.touched || grade.dirty) && grade.invalid\">\r\n                  <div class=\"alert alert-danger\" *ngIf=\"grade.errors?.required\">\r\n                      <p>من فضلك ادخل درجة المؤهل</p>\r\n                  </div>\r\n                </div>\r\n            </div>\r\n          \r\n          \r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"{{ 'notes' | trans }}\">\r\n              </textarea>\r\n                \r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\"  class=\"table table-bordered table-striped\">\r\n      <thead>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>اسم المؤهل</th>\r\n        <th>درجة القبول</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </thead>\r\n      <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>{{ row.grade }}</td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n            <i class=\"fa fa-edit\"></i>\r\n          </button>\r\n          &nbsp;\r\n          <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n            <i class=\"fa fa-trash-o\"></i>\r\n          </button>\r\n          <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n            <div class=\"modal-dialog\">\r\n              <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                  <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                    <span aria-hidden=\"true\">&times;</span></button>\r\n                  <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                  <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                </div>\r\n                <div class=\"modal-footer\">\r\n                  <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                  &nbsp;\r\n                  <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                    data-dismiss=\"modal\">الغاء</button>\r\n\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </td>\r\n      </tr>\r\n      </tbody>\r\n      <tfoot>\r\n      <tr>\r\n        <th>ID</th>\r\n        <th>اسم المؤهل</th>\r\n        <th>درجة القبول</th>\r\n        <th>ملاحظات</th>\r\n        <th>الاجراءات</th>\r\n      </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -193,6 +193,9 @@ var ListComponent = /** @class */ (function () {
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.rows = [];
+        this.item = '';
+        this.id = '';
+        this.deletedId = '';
         this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
             name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
@@ -220,14 +223,84 @@ var ListComponent = /** @class */ (function () {
             _this.isSubmitClick = false;
         });
     };
-    ListComponent.prototype.delete = function (id) {
+    // delete(id) {
+    //   this.service.delete(id).subscribe(
+    //     (res) => {
+    //       console.log(res);
+    //       if(res.status == 1){
+    //         this.toastr.success(res.message, '');
+    //         const index = this.rows.findIndex(v => v.id === id);
+    //         this.rows.splice(index, 1);
+    //       }else{
+    //         this.toastr.error(res.message, '');
+    //       }
+    //     });
+    // }
+    // create(){
+    //   this.nameError = '';
+    //   if (this.callForm.invalid) {
+    //     this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
+    //     return;
+    //   }
+    //   const data: IReqQualification={
+    //     name : this.callForm.value.name,
+    //     grade : this.callForm.value.grade,
+    //     notes : this.callForm.value.notes
+    //   }
+    //   this.isSubmitClick = true;
+    //   this.service.create(data).subscribe((res:any)=>{
+    //     if(res.status == 0){
+    //       this.errorMessage = res.message.name;
+    //       this.isSubmitClick = false;
+    //       return;
+    //     }else{
+    //       this.errorMessage = '';
+    //       this.isSubmitClick = true;
+    //       this.toastr.success(res.message, '');
+    //       this.callHttp();
+    //     }
+    //     (e) => {
+    //       this.isSubmitClick = false;
+    //       if (e.status == 400) {
+    //         this.errorMessage = res.message;
+    //         for (let i = 0; i < e.error.errors.length; i++) {
+    //           if (e.error.errors[i].input === 'name') {
+    //             this.nameError = e.error.errors[i].message;
+    //           }
+    //         }
+    //       }
+    //     };
+    //   })
+    // }
+    ListComponent.prototype.getItemData = function (id) {
         var _this = this;
-        this.service.delete(id).subscribe(function (res) {
+        this.id = id;
+        this.service.getItemById(id).subscribe(function (res) {
+            if (res.status == 1) {
+                _this.name.setValue(res.data.name);
+                _this.grade.setValue(res.data.grade);
+                _this.notes.setValue(res.data.notes);
+                document.getElementById("openModal").click();
+                _this.item = res.data;
+            }
+        });
+    };
+    ListComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var itemData = {
+            name: this.callForm.value.name,
+            grade: this.callForm.value.grade,
+            notes: this.callForm.value.notes
+        };
+        this.service.update(this.id, itemData).subscribe(function (res) {
             console.log(res);
             if (res.status == 1) {
+                document.getElementById("cancell").click();
+                _this.callHttp();
+                _this.isSubmitClick = false;
+                _this.item = '';
                 _this.toastr.success(res.message, '');
-                var index = _this.rows.findIndex(function (v) { return v.id === id; });
-                _this.rows.splice(index, 1);
+                _this.dtTrigger.unsubscribe();
             }
             else {
                 _this.toastr.error(res.message, '');
@@ -236,41 +309,52 @@ var ListComponent = /** @class */ (function () {
     };
     ListComponent.prototype.create = function () {
         var _this = this;
-        this.nameError = '';
+        this.errorMessage = '';
         if (this.callForm.invalid) {
             this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
             return;
         }
-        var data = {
+        this.isSubmitClick = true;
+        var itemData = {
             name: this.callForm.value.name,
             grade: this.callForm.value.grade,
             notes: this.callForm.value.notes
         };
-        this.isSubmitClick = true;
-        this.service.create(data).subscribe(function (res) {
+        this.service.create(itemData).subscribe(function (res) {
             if (res.status == 0) {
-                _this.errorMessage = res.message.name;
+                if (res.message.name)
+                    _this.toastr.error(res.message, '');
+                _this.errorMessage = res.message;
                 _this.isSubmitClick = false;
-                return;
             }
             else {
                 _this.errorMessage = '';
-                _this.isSubmitClick = true;
+                _this.isSubmitClick = false;
                 _this.toastr.success(res.message, '');
+                _this.dtTrigger.unsubscribe();
+                document.getElementById("cancel").click();
                 _this.callHttp();
             }
-            (function (e) {
-                _this.isSubmitClick = false;
-                if (e.status == 400) {
-                    _this.errorMessage = res.message;
-                    for (var i = 0; i < e.error.errors.length; i++) {
-                        if (e.error.errors[i].input === 'name') {
-                            _this.nameError = e.error.errors[i].message;
-                        }
-                    }
-                }
-            });
         });
+    };
+    ListComponent.prototype.delete = function () {
+        var _this = this;
+        this.service.delete(this.deletedId).subscribe(function (res) {
+            if (res.status == 1) {
+                _this.isSubmitClick = false;
+                document.getElementById("cancello").click();
+                _this.toastr.success(res.message, '');
+                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
+                _this.rows.splice(index, 1);
+            }
+            else {
+                _this.toastr.error(res.message, '');
+            }
+        });
+    };
+    ListComponent.prototype.launchModal = function (id) {
+        // console.log(id);
+        this.deletedId = id;
     };
     Object.defineProperty(ListComponent.prototype, "name", {
         get: function () {
