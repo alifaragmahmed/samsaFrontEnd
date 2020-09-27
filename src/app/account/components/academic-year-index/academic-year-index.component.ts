@@ -9,6 +9,8 @@ import { AcademicYearService } from '../../services/academic-year.service';
 import { LevelService } from '../../services/level.service';
 import { DivisionService } from '../../services/division.service';
 import { TermService } from '../../services/term.service';
+import { StoreService } from '../../services/store.service';
+import { ApplicationSettingService } from '../../../adminision/services/application-setting.service';
 
 @Component({
   selector: 'app-academic-year-index',
@@ -24,9 +26,7 @@ export class AcademicYearIndexComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   // Rows list
-  public academicYearExpense: any = {
-    level_id: 1
-  };
+  public academicYearExpense: any = {};
 
   // init breadcrum
   public breadcrumbList = [];
@@ -46,11 +46,21 @@ export class AcademicYearIndexComponent implements OnInit {
   public levels: any[];
   public divisions: any[];
   public terms: any[];
+  public stores: any[];
+  public departments: any[];
+  public division_id: any;
+  public level_id: any;
 
   //
   public updateItem: boolean;
+  public isLoad = false;
 
-  constructor(private academicService: AcademicYearService) {
+  // 
+  validateDetailsCol = [
+    'name', 'priorty', 'value', 'term_id', 'store_id'
+  ];
+
+  constructor(private academicService: AcademicYearService, private storeService: StoreService, private applicationSetting: ApplicationSettingService) {
     this.self = this;
  
     // init breadcrum
@@ -64,6 +74,12 @@ export class AcademicYearIndexComponent implements OnInit {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     this.terms = Cache.get(TermService.TERPM_PREFIX);
+    this.storeService.get().subscribe((res: any)=>{
+      this.stores = res;
+    });
+    this.applicationSetting.getDepartments().subscribe((res: any)=>{
+      this.departments = res;
+    });
   }
  
   toggleFromTrash(id) {
@@ -101,12 +117,44 @@ export class AcademicYearIndexComponent implements OnInit {
     }
   }
 
+  reset() {
+    this.academicYearExpense = {
+      details: [],
+      level_id: this.level_id? this.level_id : 1,
+      division_id: this.division_id 
+    };
+  }
+
+  validate() {
+    let valid = true;
+    if (!this.level_id || !this.division_id) 
+      valid = false;
+    return valid;
+  }
+
+  validateDetails() { 
+    let valid = true;
+    this.academicYearExpense.details.forEach(element => {
+      this.validateDetailsCol.forEach(col => {
+        if (!element[col])
+          valid = false;
+      });
+    });
+    return valid;
+  }
+
   loadAcademicYearExpenses() {
+    if (!this.validate())
+      return;
+    this.isLoad = true;
+    this.reset();
     let data = {
-      level_id: this.academicYearExpense.level_id
+      level_id: this.level_id,
+      division_id: this.division_id
     }; 
     this.academicService.get(data).subscribe( (res: any) => {
       this.academicYearExpense = res; 
+      this.isLoad = false;
       console.log(this.academicYearExpense.details);
     }); 
   }
@@ -145,6 +193,8 @@ export class AcademicYearIndexComponent implements OnInit {
   
 
   updateAcademicYearExpense() { 
+    if (!this.validateDetails())
+      return Message.error(Helper.trans('fill all data'));
     this.updateItem = true;
      
     this.academicService.update(this.academicYearExpense).subscribe((r) => {
@@ -155,7 +205,7 @@ export class AcademicYearIndexComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.setAccountSettings();
     this.loadAcademicYearExpenses(); 
   }

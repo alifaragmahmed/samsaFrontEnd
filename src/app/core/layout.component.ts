@@ -51,7 +51,7 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
     this.loadLevels();
     this.loadDivisions();
     this.loadTerms();
-    this.applicationSettingService.loadSettings();
+   // this.applicationSettingService.loadSettings();
   }
 
   /**

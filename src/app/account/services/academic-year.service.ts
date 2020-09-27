@@ -1,12 +1,14 @@
 import { Auth } from './../../shared/auth';
 import { Injectable } from '@angular/core'; 
 import { HttpClient } from '@angular/common/http';
+import { AppModule } from '../../app.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AcademicYearService {
 
+  public doc: any = AppModule.doc;
   public static STUDENT_SERVICE_PREFIX = 'student_services';
 
   constructor(private http: HttpClient) {
@@ -17,7 +19,8 @@ export class AcademicYearService {
    *
    */
   public get(data) {
-    return this.http.get('account/academic_year_expenses?api_token=' + Auth.getApiToken()+"&level_id="+data.level_id);
+    data.api_token = Auth.getApiToken();
+    return this.http.get('account/academic_year_expenses?'+this.doc.jquery.param(data));
   }
 
   /**

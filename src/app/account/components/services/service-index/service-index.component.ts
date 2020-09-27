@@ -1,10 +1,11 @@
 import { StudentServiceService } from './../../../services/student-service.service';
-import { Component, OnInit } from '@angular/core';
-import { Cache } from 'src/app/shared/cache';
-import { Subject } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Cache } from 'src/app/shared/cache'; 
 import { HashTable } from 'angular-hashtable'; 
 import { IService } from '../../../models/iservice';
-import { AppModule } from '../../../../app.module';
+import { AppModule } from '../../../../app.module';  
+import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
+import { Helper } from '../../../../shared/helper';
 
 @Component({
   selector: 'app-service-index',
@@ -14,21 +15,13 @@ import { AppModule } from '../../../../app.module';
 export class ServiceIndexComponent implements OnInit {
 
   public doc: any = AppModule.doc;
-
-  // datatable options
-  public dtOptions: any;
-
-  // datable trigger
-  dtTrigger: Subject<any> = new Subject();
-
+ 
   // services list
-  public serviceList: any[] = null;
+  public resources: any[] = [];
 
   // init breadcrum
   public breadcrumbList = [];
-
-  public self: any;
-
+  
   // show create modal
   public showCreateModal = false;
 
@@ -38,35 +31,60 @@ export class ServiceIndexComponent implements OnInit {
   public trashList = new HashTable<any, any>();
   public removed = [];
 
-  //
-  public updateItem: IService = {
-    name : '',
-    value : 0,
-    additional_value : 0,
-    installment_percent : 0,
-    except_level_id : null,
-    division_id : null,
-    copy: false,
-    repeat: false, 
-    from_installment_id : null,
-    type : null
-  };
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  dataSource = new MatTableDataSource(this.resources);
+  displayedColumns: string[];
 
-  constructor(private studentService: StudentServiceService) {
-    this.self = this;
- 
-    // init breadcrum
+  // update resouce
+  updateResources: any;
+  updateItem: any = {};
+
+  constructor(private studentService: StudentServiceService) { 
+    this.init();
+  }
+
+  init() { 
+    this.initBreadcrumb();
+    this.initDisplayColumns();
+    //
+    this.updateResources = () => {
+      this.loadResources();
+    };
+  }
+
+  initMatDatatable() { 
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  } 
+
+  initBreadcrumb() { 
     this.breadcrumbList = [
       {name: 'home', url: '/'},
       {name: 'services'}
     ];
   }
 
-  initDatatableOptions() { 
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10 
-    };
+  initDisplayColumns() {
+    this.displayedColumns = [ 
+      "name", 
+      "value", 
+      "store_id", 
+      "additional_value", 
+      "except_level_id", 
+      "division_id", 
+      "copy", 
+      "repeat", 
+      "installment_percent", 
+      "from_installment_id", 
+      "type",
+      "action" 
+    ];
+  }
+
+  refreshDataSource(data: any[]) {
+    this.resources = data;
+    this.dataSource.data = data;
   }
 
   toggleFromTrash(id) {
@@ -81,6 +99,12 @@ export class ServiceIndexComponent implements OnInit {
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
+  }
+
+  performRemove() {
+    this.doc.swal.confirm(Helper.trans('are you sure'), ()=> {
+      this.removeServices();
+    });
   }
 
   removeServices() {
@@ -98,48 +122,35 @@ export class ServiceIndexComponent implements OnInit {
       this.removed = [];
       this.showRemoveButton = false;
       this.showRemoveModal = false;
-      //
-      this.dtTrigger.unsubscribe();   
-      this.loadServices();
+      // 
+      this.loadResources();
     }
   }
 
-  loadServices() {
-    //alert(Cache.has(StudentServiceService.STUDENT_SERVICE_PREFIX));
-    //if (Cache.has(StudentServiceService.STUDENT_SERVICE_PREFIX)) {
-    //  this.serviceList = Cache.get(StudentServiceService.STUDENT_SERVICE_PREFIX);
-    //} else { 
-    this.studentService.get().subscribe( (res: any) => {
-      this.serviceList = res;
-      // cache the result
-      Cache.set(StudentServiceService.STUDENT_SERVICE_PREFIX, this.serviceList);
-      
-      setTimeout(() => {
-        this.doc.datatable();
-      }, 3000);
-    });
-    //}
+  loadResources() { 
+    this.studentService.get().subscribe( (res: any) => { 
+      this.refreshDataSource(res);
+    }); 
   }
 
   viewCreateModal() {
     this.doc.jquery('#createModal').modal('show');  
   }
 
-  showUpdateModal(item) {
+  showUpdateModal(item) { 
     this.updateItem = item;
     this.doc.jquery('#updateModal').modal('show'); 
   }
 
-  updateService() {
-    let data: any = this.updateItem;
-    this.studentService.update(data).subscribe(() => {
+  updateService() { 
+    this.studentService.update([]).subscribe(() => {
 
     });
   }
 
   ngOnInit() {
-    this.loadServices();
-    this.initDatatableOptions();
+    this.initMatDatatable();
+    this.loadResources(); 
   }
 
 }

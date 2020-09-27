@@ -69,9 +69,6 @@ export class ListComponent implements OnInit {
 
     });
   }
-  reset(){
-    this.callForm.reset();
-  }
   delete() {
     this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){

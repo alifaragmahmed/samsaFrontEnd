@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   public nameError = '';
   public governmentError = '';
   public countryError = '';
-  public data: IReqAcademicYear = { name: '',start_date: '', end_date:'', notes:''};
+  public data: IReqAcademicYear = { start_date: '', end_date:'', notes:''};
   public isSubmitClick = false;
   dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
@@ -26,7 +26,6 @@ export class ListComponent implements OnInit {
   public id = '';
   public deletedId='';
 
-  public errors = [];
   constructor(
     private generalService:GeneralService, 
     private service:AcademicYearService,
@@ -89,7 +88,6 @@ this.callHttp();
     this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
     this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
     this.data.notes = this.callForm.value.notes;
-    this.data.name =this.data.start_date.substring(0,4) + '-' + this.data.end_date.substring(0,4);
 
     this.service.update(this.id, this.data).subscribe((res:any)=>{        
       if(res.status == 1){
@@ -113,30 +111,26 @@ this.callHttp();
     this.isSubmitClick = true;
     this.data.start_date = this.dateAndTimeToString(this.callForm.value.start_date);
     this.data.end_date = this.dateAndTimeToString(this.callForm.value.end_date);
-    this.data.name =this.data.start_date.substring(0,4) + '-' + this.data.end_date.substring(0,4);
     this.data.notes = this.callForm.value.notes;
-    console.log(this.data.start_date.substring(0,4) + '-' + this.data.end_date.substring(0,4)); 
-    console.log(this.data); 
-    this.service.create(this.data).subscribe((res:any)=>{ 
+
+    this.service.create(this.data).subscribe((res:any)=>{            
       if(res.status == 0){
-        if(res.message.end_date)
-        this.toastr.error(res.message.end_date, '');
-        if(res.message.start_date)
-        this.toastr.error(res.message.start_date, '');
+        if(res.message.name)
+        this.toastr.error(res.message, '');
+        this.errorMessage = res.message;
         this.isSubmitClick = false;
 
       }else{
+        this.errorMessage = '';
         this.isSubmitClick = false;
+        this.toastr.success(res.message, '');
         this.dtTrigger.unsubscribe();
         document.getElementById("cancel").click();
         this.callHttp();
-        this.toastr.success(res.message, '');
       }
     })
   }
-  reset(){
-    this.callForm.reset();
-  }
+
   delete() {
     this.service.delete(this.deletedId).subscribe((res) => {      
         if(res.status == 1){

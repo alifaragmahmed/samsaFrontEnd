@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { HashTable } from '../../../../../../node_modules/angular-hashtable';  
-import { AppModule } from '../../../../app.module';
-import { Router } from '../../../../../../node_modules/@angular/router';
-import { Helper } from '../../../../shared/helper';
+ 
+import { Component, OnInit, ViewChild } from '@angular/core'; 
+import { HashTable } from 'angular-hashtable';  
+import { AppModule } from '../../../../app.module';  
+import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import { StoreService } from '../../../services/store.service';
+import { Helper } from '../../../../shared/helper';
 
 @Component({
   selector: 'app-store-index',
@@ -13,35 +14,71 @@ import { StoreService } from '../../../services/store.service';
 export class StoreIndexComponent implements OnInit {
 
   public doc: any = AppModule.doc;
-
-  // Resources list
-  public resources: any[] = null;
+ 
+  // services list
+  public resources: any[] = [];
 
   // init breadcrum
   public breadcrumbList = [];
-   
+  
+  // show create modal
+  public showCreateModal = false;
+
   // remove options
   public showRemoveButton = false;
   public showRemoveModal = false;
   public trashList = new HashTable<any, any>();
   public removed = [];
 
-  // update 
-  public updateItem: any = {};
-  public updateResources: any;
- 
-  constructor(private storeService: StoreService, private router: Router) { 
-    // init breadcrum
-    this.breadcrumbList = [
-      {name: 'home', url: '/'},
-      {name: 'store'}
-    ];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  dataSource = new MatTableDataSource(this.resources);
+  displayedColumns: string[];
 
-    this.updateResources = () => { 
-      Helper.refreshComponent(this.router, '/account/settings/store');  
+  // update resouce
+  updateResources: any;
+  updateItem: any = {};
+
+  constructor(private storeService: StoreService) { 
+    this.init();
+  }
+
+  init() { 
+    this.initBreadcrumb();
+    this.initDisplayColumns();
+    //
+    this.updateResources = () => {
+      this.loadResources();
     };
   }
- 
+
+  initMatDatatable() { 
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  } 
+
+  initBreadcrumb() { 
+    this.breadcrumbList = [
+      {name: 'home', url: '/'},
+      {name: 'stores'}
+    ];
+  }
+
+  initDisplayColumns() {
+    this.displayedColumns = [ 
+      "name", 
+      "init_balance",  
+      "balance",  
+      "address",  
+      "notes",  
+      "action" 
+    ];
+  }
+
+  refreshDataSource(data: any[]) {
+    this.resources = data;
+    this.dataSource.data = data;
+  }
 
   toggleFromTrash(id) {
     if (this.trashList.has(id)) {
@@ -55,6 +92,12 @@ export class StoreIndexComponent implements OnInit {
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
+  }
+
+  performRemove() {
+    this.doc.swal.confirm(Helper.trans('are you sure'), ()=> {
+      this.removeResources();
+    });
   }
 
   removeResources() {
@@ -78,29 +121,29 @@ export class StoreIndexComponent implements OnInit {
   }
 
   loadResources() { 
-    this.storeService.get().subscribe( (res: any) => {
-      this.resources = res; 
-      // 
-      setTimeout(() => {
-        this.doc.datatable();
-      }, 2000);
+    this.storeService.get().subscribe( (res: any) => { 
+      this.refreshDataSource(res);
     }); 
-  } 
+  }
 
-  setUpdateResource(item) {
+  viewCreateModal() {
+    this.doc.jquery('#createModal').modal('show');  
+  }
+
+  showUpdateModal(item) { 
     this.updateItem = item;
-    this.doc.jquery('#updateModal').modal('show');
-  } 
-  
- 
- 
+    this.doc.jquery('#updateModal').modal('show'); 
+  }
+
+  updateService() { 
+    this.storeService.update([]).subscribe(() => {
+
+    });
+  }
 
   ngOnInit() {
+    this.initMatDatatable();
     this.loadResources(); 
-  }
-  
-  showUpdateModal(item) {
-    this.updateItem = item;
   }
 
 }

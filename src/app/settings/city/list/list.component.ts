@@ -20,8 +20,6 @@ export class ListComponent implements OnInit {
   public governmentError = '';
   public countryError = '';
   public rows = [];
-  public id = '';
-  public deletedId='';
   public paging = {
     page: '1',
     size: '10',
@@ -75,41 +73,21 @@ export class ListComponent implements OnInit {
     );
   }
   
-  delete() {
-    this.service.delete(this.deletedId).subscribe((res) => {      
+
+  delete(id) {
+    this.service.delete(id).subscribe(
+      (res) => {
+        console.log(res);
         if(res.status == 1){
-          this.isSubmitClick = false;
-          document.getElementById("cancello").click();
           this.toastr.success(res.message, '');
-          const index = this.rows.findIndex(v => v.id === this.deletedId);
+          const index = this.rows.findIndex(v => v.id === id);
           this.rows.splice(index, 1);
         }else{
           this.toastr.error(res.message, '');
+
         }
+       
       });
-  }
-  onSubmit(){
-    this.data.name = this.callForm.value.name;
-    this.data.country_id = this.callForm.value.country_id;
-    this.data.government_id = this.callForm.value.government_id;
-
-    this.service.update(this.id, this.data).subscribe((res:any)=>{  
-      if(res.status == 1){
-        document.getElementById("cancell").click();
-        
-        this.dtTrigger.unsubscribe();
-        this.callHttp();
-        this.isSubmitClick = false;
-        this.toastr.success(res.message, '');
-
-        this.callForm.reset();
-      }else{
-        this.toastr.error(res.message, '');
-      }
-    });
-  }
-  reset(){
-    this.callForm.reset();
   }
   getGovernments(country_id){
     this.generalService.getCountryGovernments(country_id.value).subscribe((res:any)=>{
@@ -120,14 +98,11 @@ export class ListComponent implements OnInit {
     
   }
   create(){
-
     this.nameError = '';
     if (this.callForm.invalid) {
       this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
       return;
     }
-    this.callForm.reset();
-
     this.isSubmitClick = true;
     this.data.name = this.callForm.value.name;
     this.data.country_id = this.callForm.value.country_id;
@@ -143,10 +118,7 @@ export class ListComponent implements OnInit {
         this.errorMessage = '';
         this.isSubmitClick = true;
         this.toastr.success(res.messgae, '');
-        this.dtTrigger.unsubscribe();
-
         this.callHttp();
-        
       }
       
       (e) => {
@@ -161,22 +133,6 @@ export class ListComponent implements OnInit {
         }
       };
     })
-  }
-  getItemData(id){
-    this.id = id;
-    this.service.getItemById(id).subscribe((res:any)=>{
-      if(res.status ==1){
-       document.getElementById("openModal").click();
-        this.name.setValue(res.data.name);
-        this.country_id.setValue(res.data.government.country.id);
-        this.government_id.setValue(res.data.government_id);
-        // this.item = res.data;
-      }
-
-    });
-  }
-  launchModal(id){
-    this.deletedId = id;
   }
   get name() {
     return this.callForm.get('name');

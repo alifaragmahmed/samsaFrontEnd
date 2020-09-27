@@ -11,14 +11,16 @@
     <tr>
       <td>{{ "level" | trans }}</td>
       <td>
-        <select style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()" [(ngModel)]="academicYearExpense.level_id" >
+        <select style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()" [(ngModel)]="level_id" >
           <option *ngFor="let item of levels" value="{{ item.id }}" >{{ item.name }}</option>
         </select>
       </td>
       <td>{{ "division" | trans }}</td>
       <td>
-        <select readonly style="width: 100px" class="form-control input-sm" [(ngModel)]="academicYearExpense.division_id" >
-            <option *ngFor="let item of divisions" value="{{ item.id }}" >{{ item.name }}</option>
+        <select   style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()"  [(ngModel)]="division_id" >
+           <ng-container *ngFor="let item of departments">
+              <option *ngIf="level_id == item.level_id"  value="{{ item.id }}" >{{ item.name }}</option>
+           </ng-container> 
         </select>
       </td>
     </tr>
@@ -61,24 +63,40 @@
             </select> 
         </td>
         <td>
-            <input *ngIf="item.store" readonly type="text" class="form-control input-sm" [(ngModel)]="item.store.name"    > 
-            <input type="hidden" class="form-control input-sm" [(ngModel)]="item.store_id"    >   
+            <select class="form-control input-sm" [(ngModel)]="item.store_id" required > 
+              <option *ngFor="let row of stores" value="{{ row.id }}" >{{ row.name}}</option> 
+            </select>  
         </td>
         <td>
             <input type="number" class="form-control input-sm" [(ngModel)]="item.discount"   >  
         </td> 
         <td> 
-          <button class="btn btn-danger fa fa-trash" (click)="removeRow(item, i)" ></button>
+          <button mat-button color="warn" (click)="removeRow(item, i)" >
+            <i class="fa fa-trash" ></i>
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="academicYearExpense.details.length <= 0 && !isLoad" >
+        <td colspan="9" >
+          <div class="w3-large text-center" >{{ "there is no data" | trans }}</div>
+        </td>
+      </tr>
+
+      <tr *ngIf="isLoad" >
+        <td colspan="9" >
+          <div class="fa fa-spin fa-spinner w3-large text-center" ></div>
         </td>
       </tr>
     </tbody>
   </table>
   <br>
-  <button class="btn btn-default" (click)="addRow()" style="margin: 5px"  > 
+  <button mat-raised-button  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  > 
     <span class="fa fa-plus" ></span> 
   </button> 
-  <button class="btn btn-primary" [disabled]="updateItem" (click)="viewChanges()" style="margin: 5px"  > 
-    {{ "save" | trans }}
+  <button mat-raised-button color="primary" [disabled]="updateItem" (click)="viewChanges()" style="margin: 5px"  > 
+    <span *ngIf="!updateItem" >{{ "save" | trans }}</span>
+    <span *ngIf="updateItem"  class="fa fa-spin fa-spinner" ></span>
   </button> 
 </div>
 
