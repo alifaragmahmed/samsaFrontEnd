@@ -14,15 +14,15 @@ import { DataTablesModule } from 'angular-datatables';
 import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component';
 import { SendNoteComponent } from './components/safe/send-note/send-note.component';
 import { ServiceFormComponent } from './components/services/service-form/service-form.component'; 
-import { StoreIndexComponent } from './components/store/store-index/store-index.component';
-import { StoreCreateComponent } from './components/store/store-create/store-create.component';
+import { StoreIndexComponent } from './components/store/store-index/store-index.component'; 
 import { StoreUpdateComponent } from './components/store/store-update/store-update.component';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
-import {MatButtonModule} from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button'; 
+import { StoreFormComponent } from './components/store/store-form/store-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import {MatButtonModule} from '@angular/material/button';
     SendNoteComponent,
     ServiceFormComponent,
     StoreIndexComponent,
-    StoreCreateComponent,
+    StoreFormComponent,
     StoreUpdateComponent 
   ],
   imports: [

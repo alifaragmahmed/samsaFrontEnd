@@ -5,6 +5,7 @@ import { HashTable } from 'angular-hashtable';
 import { IService } from '../../../models/iservice';
 import { AppModule } from '../../../../app.module';  
 import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
+import { Helper } from '../../../../shared/helper';
 
 @Component({
   selector: 'app-service-index',
@@ -98,6 +99,12 @@ export class ServiceIndexComponent implements OnInit {
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
+  }
+
+  performRemove() {
+    this.doc.swal.confirm(Helper.trans('are you sure'), ()=> {
+      this.removeServices();
+    });
   }
 
   removeServices() {
