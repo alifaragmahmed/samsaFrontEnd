@@ -48,14 +48,14 @@ var CaseConstraintComponent = /** @class */ (function () {
     function CaseConstraintComponent(toastr, service) {
         this.toastr = toastr;
         this.service = service;
-        this.errorMessage = '';
+        this.errorMessage = "";
         this.isSubmitClick = false;
         this.dtOptions = {};
         this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.rows = [];
-        this.data = { name: '', notes: '' };
-        this.item = '';
-        this.id = '';
+        this.data = { name: "", notes: "" };
+        this.item = "";
+        this.id = "";
         this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
             name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
@@ -67,8 +67,8 @@ var CaseConstraintComponent = /** @class */ (function () {
     }
     CaseConstraintComponent.prototype.ngOnInit = function () {
         this.dtOptions = {
-            pagingType: 'full_numbers',
-            pageLength: 10
+            pagingType: "full_numbers",
+            pageLength: 10,
         };
         this.callHttp();
     };
@@ -95,28 +95,28 @@ var CaseConstraintComponent = /** @class */ (function () {
         var _this = this;
         var itemData = {
             name: this.callForm.value.name,
-            notes: this.callForm.value.notes
+            notes: this.callForm.value.notes,
         };
         this.service.update(this.id, itemData).subscribe(function (res) {
             console.log(res);
             if (res.status == 1) {
                 document.getElementById("cancel").click();
                 _this.callHttp();
-                _this.item = '';
+                _this.item = "";
                 _this.isSubmitClick = false;
-                _this.toastr.success(res.message, '');
+                _this.toastr.success(res.message, "");
                 _this.dtTrigger.unsubscribe();
             }
             else {
-                _this.toastr.error(res.message, '');
+                _this.toastr.error(res.message, "");
             }
         });
     };
     CaseConstraintComponent.prototype.create = function () {
         var _this = this;
-        this.errorMessage = '';
+        this.errorMessage = "";
         if (this.callForm.invalid) {
-            this.errorMessage = 'من فضلك ادخل بيانات صحيحة';
+            this.errorMessage = "من فضلك ادخل بيانات صحيحة";
             return;
         }
         this.isSubmitClick = true;
@@ -125,14 +125,14 @@ var CaseConstraintComponent = /** @class */ (function () {
         this.service.create(this.data).subscribe(function (res) {
             if (res.status == 0) {
                 if (res.message.name)
-                    _this.toastr.error(res.message, '');
+                    _this.toastr.error(res.message, "");
                 _this.errorMessage = res.message;
                 _this.isSubmitClick = false;
             }
             else {
-                _this.errorMessage = '';
+                _this.errorMessage = "";
                 _this.isSubmitClick = true;
-                _this.toastr.success(res.message, '');
+                _this.toastr.success(res.message, "");
                 document.getElementById("cancel").click();
                 _this.dtTrigger.unsubscribe();
                 _this.callHttp();
@@ -143,33 +143,34 @@ var CaseConstraintComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(id).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
-                _this.toastr.success(res.message, '');
+                _this.toastr.success(res.message, "");
                 var index = _this.rows.findIndex(function (v) { return v.id === id; });
                 _this.rows.splice(index, 1);
             }
             else {
-                _this.toastr.error(res.message, '');
+                _this.toastr.error(res.message, "");
             }
         });
     };
     Object.defineProperty(CaseConstraintComponent.prototype, "name", {
         get: function () {
-            return this.callForm.get('name');
+            return this.callForm.get("name");
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(CaseConstraintComponent.prototype, "notes", {
         get: function () {
-            return this.callForm.get('notes');
+            return this.callForm.get("notes");
         },
         enumerable: true,
         configurable: true
     });
     CaseConstraintComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-case-constraint',
+            selector: "app-case-constraint",
             template: __webpack_require__(/*! ./case-constraint.component.html */ "./src/app/settings/case-constraint/case-constraint.component.html"),
             styles: [__webpack_require__(/*! ./case-constraint.component.scss */ "./src/app/settings/case-constraint/case-constraint.component.scss")]
         }),
@@ -377,6 +378,7 @@ var ConstraintStatusComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(id).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
                 var index = _this.rows.findIndex(function (v) { return v.id === id; });
@@ -664,6 +666,7 @@ var DepartmentsComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, "");
                 var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
@@ -890,6 +893,7 @@ var DivisionsComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, "");
                 var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
@@ -1152,6 +1156,7 @@ var LanguagesComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
                 var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
@@ -1389,6 +1394,7 @@ var LevelsComponent = /** @class */ (function () {
     LevelsComponent.prototype.delete = function (id) {
         var _this = this;
         this.service.delete(id).subscribe(function (res) {
+            _this.isSubmitClick = false;
             if (res.status == 1) {
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, '');
@@ -1610,6 +1616,7 @@ var NationalityComponent = /** @class */ (function () {
         var _this = this;
         this.service.delete(this.deletedId).subscribe(function (res) {
             if (res.status == 1) {
+                _this.isSubmitClick = false;
                 document.getElementById("cancello").click();
                 _this.toastr.success(res.message, "");
                 var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
@@ -1953,6 +1960,62 @@ var ParentJobsService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/settings/registeration-status/registeration-status.component.html":
+/*!***********************************************************************************!*\
+  !*** ./src/app/settings/registeration-status/registeration-status.component.html ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\r\n  registeration-status works!\r\n</p>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/settings/registeration-status/registeration-status.component.scss":
+/*!***********************************************************************************!*\
+  !*** ./src/app/settings/registeration-status/registeration-status.component.scss ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NldHRpbmdzL3JlZ2lzdGVyYXRpb24tc3RhdHVzL3JlZ2lzdGVyYXRpb24tc3RhdHVzLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/settings/registeration-status/registeration-status.component.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/app/settings/registeration-status/registeration-status.component.ts ***!
+  \*********************************************************************************/
+/*! exports provided: RegisterationStatusComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterationStatusComponent", function() { return RegisterationStatusComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var RegisterationStatusComponent = /** @class */ (function () {
+    function RegisterationStatusComponent() {
+    }
+    RegisterationStatusComponent.prototype.ngOnInit = function () {
+    };
+    RegisterationStatusComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-registeration-status',
+            template: __webpack_require__(/*! ./registeration-status.component.html */ "./src/app/settings/registeration-status/registeration-status.component.html"),
+            styles: [__webpack_require__(/*! ./registeration-status.component.scss */ "./src/app/settings/registeration-status/registeration-status.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], RegisterationStatusComponent);
+    return RegisterationStatusComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/settings/relative-relations/RelativeRelation.service.ts":
 /*!*************************************************************************!*\
   !*** ./src/app/settings/relative-relations/RelativeRelation.service.ts ***!
@@ -2220,6 +2283,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _departments_departments_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./departments/departments.component */ "./src/app/settings/departments/departments.component.ts");
 /* harmony import */ var _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./relative-relations/relative-relations.component */ "./src/app/settings/relative-relations/relative-relations.component.ts");
 /* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./users/users.component */ "./src/app/settings/users/users.component.ts");
+/* harmony import */ var _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./registeration-status/registeration-status.component */ "./src/app/settings/registeration-status/registeration-status.component.ts");
+
 
 
 
@@ -2268,6 +2333,10 @@ var routes = [
             {
                 path: "registration-methods",
                 loadChildren: './registeration-methods/registeration-methods.module#RegisterationMethodsModule'
+            },
+            {
+                path: "registration-status",
+                component: _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_15__["RegisterationStatusComponent"]
             },
             {
                 path: "translations",
@@ -2339,7 +2408,7 @@ var SettingsRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--    <aside class=\"main-sidebar\">-->\r\n<!--      &lt;!&ndash; sidebar: style can be found in sidebar.less &ndash;&gt;-->\r\n<!--      <section class=\"sidebar\">-->\r\n<!--        &lt;!&ndash; Sidebar user panel &ndash;&gt;-->\r\n<!--        <div class=\"user-panel\">-->\r\n<!--          <div class=\"pull-left image\">-->\r\n<!--            <img src=\"../../dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">-->\r\n<!--          </div>-->\r\n<!--          <div class=\"pull-left info\">-->\r\n<!--            <p>Alexander Pierce</p>-->\r\n<!--            <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>-->\r\n<!--          </div>-->\r\n<!--        </div>-->\r\n\r\n<!--        &lt;!&ndash; sidebar menu: : style can be found in sidebar.less &ndash;&gt;-->\r\n<!--        <ul class=\"sidebar-menu tree\" data-widget=\"tree\">-->\r\n<!--          <li class=\"header\">الاعدادات الرئيسية</li>-->\r\n<!--          <li><a routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i> الدول </a></li>-->\r\n<!--          <li><a routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i> المدن </a></li>-->\r\n<!--        </ul>-->\r\n<!--      </section>-->\r\n<!--      &lt;!&ndash; /.sidebar &ndash;&gt;-->\r\n<!--    </aside>-->\r\n<div class=\"content\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n      <!-- Profile Image -->\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-body box-profile\">\r\n          <h3 class=\"profile-username text-center\">الاعدادات الرئيسية</h3>\r\n          <ul class=\"list-group list-group-unbordered\">\r\n\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/users\"><i class=\"fa fa-circle-o\"></i>\r\n                المستخدمين\r\n              </a>\r\n            </li>\r\n\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i>\r\n                الدول\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/government\"><i class=\"fa fa-circle-o\"></i>\r\n                المحافظات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i>\r\n                المدن\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/academic-year\"><i class=\"fa fa-circle-o\"></i>\r\n                الاعوام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/levels\"><i class=\"fa fa-circle-o\"></i>\r\n                 المستويات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualifications\"><i class=\"fa fa-circle-o\"></i>\r\n                المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            \r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualification-types\"><i class=\"fa fa-circle-o\"></i>\r\n                انواع المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/divisions\"><i class=\"fa fa-circle-o\"></i>\r\n                  الشعب الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/departments\"><i class=\"fa fa-circle-o\"></i>\r\n                  الاقسام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/registration-methods\"><i class=\"fa fa-circle-o\"></i>\r\n                وسائل التعارف\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/case-constraints\"><i class=\"fa fa-circle-o\"></i>\r\n                حالات القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/constraint-status\"><i class=\"fa fa-circle-o\"></i>\r\n              مواقف القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/languages\"><i class=\"fa fa-circle-o\"></i>\r\n              اللغات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/translations\"><i class=\"fa fa-circle-o\"></i>\r\n                الترجمة\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/parent-jobs\"><i class=\"fa fa-circle-o\"></i>\r\n                وظائف اولياء الامور\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n        <!-- /.box-body -->\r\n      </div>\r\n      <!-- /.box -->\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n"
+module.exports = "<!--    <aside class=\"main-sidebar\">-->\r\n<!--      &lt;!&ndash; sidebar: style can be found in sidebar.less &ndash;&gt;-->\r\n<!--      <section class=\"sidebar\">-->\r\n<!--        &lt;!&ndash; Sidebar user panel &ndash;&gt;-->\r\n<!--        <div class=\"user-panel\">-->\r\n<!--          <div class=\"pull-left image\">-->\r\n<!--            <img src=\"../../dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">-->\r\n<!--          </div>-->\r\n<!--          <div class=\"pull-left info\">-->\r\n<!--            <p>Alexander Pierce</p>-->\r\n<!--            <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>-->\r\n<!--          </div>-->\r\n<!--        </div>-->\r\n\r\n<!--        &lt;!&ndash; sidebar menu: : style can be found in sidebar.less &ndash;&gt;-->\r\n<!--        <ul class=\"sidebar-menu tree\" data-widget=\"tree\">-->\r\n<!--          <li class=\"header\">الاعدادات الرئيسية</li>-->\r\n<!--          <li><a routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i> الدول </a></li>-->\r\n<!--          <li><a routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i> المدن </a></li>-->\r\n<!--        </ul>-->\r\n<!--      </section>-->\r\n<!--      &lt;!&ndash; /.sidebar &ndash;&gt;-->\r\n<!--    </aside>-->\r\n<div class=\"content\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n\r\n      <!-- Profile Image -->\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-body box-profile\">\r\n          <h3 class=\"profile-username text-center\">الاعدادات الرئيسية</h3>\r\n          <ul class=\"list-group list-group-unbordered\">\r\n\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/users\"><i class=\"fa fa-circle-o\"></i>\r\n                المستخدمين\r\n              </a>\r\n            </li>\r\n\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/country\"><i class=\"fa fa-circle-o\"></i>\r\n                الدول\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/government\"><i class=\"fa fa-circle-o\"></i>\r\n                المحافظات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/city\"><i class=\"fa fa-circle-o\"></i>\r\n                المدن\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/academic-year\"><i class=\"fa fa-circle-o\"></i>\r\n                الاعوام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/levels\"><i class=\"fa fa-circle-o\"></i>\r\n                 المستويات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualifications\"><i class=\"fa fa-circle-o\"></i>\r\n                المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            \r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/qualification-types\"><i class=\"fa fa-circle-o\"></i>\r\n                انواع المؤهلات الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/divisions\"><i class=\"fa fa-circle-o\"></i>\r\n                  الشعب الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/departments\"><i class=\"fa fa-circle-o\"></i>\r\n                  الاقسام الدراسية\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/registration-methods\"><i class=\"fa fa-circle-o\"></i>\r\n                وسائل التعارف\r\n              </a>\r\n            </li>\r\n            <!-- <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/registration-status\"><i class=\"fa fa-circle-o\"></i>\r\n                 حالات التقديم\r\n              </a>\r\n            </li> -->\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/case-constraints\"><i class=\"fa fa-circle-o\"></i>\r\n                حالات القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/constraint-status\"><i class=\"fa fa-circle-o\"></i>\r\n              مواقف القيد\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/languages\"><i class=\"fa fa-circle-o\"></i>\r\n              اللغات\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/translations\"><i class=\"fa fa-circle-o\"></i>\r\n                الترجمة\r\n              </a>\r\n            </li>\r\n            <li class=\"list-group-item\">\r\n              <a class=\"active\" routerLink=\"/settings/parent-jobs\"><i class=\"fa fa-circle-o\"></i>\r\n                وظائف اولياء الامور\r\n              </a>\r\n            </li>\r\n          </ul>\r\n        </div>\r\n        <!-- /.box-body -->\r\n      </div>\r\n      <!-- /.box -->\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2416,6 +2485,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _departments_departments_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./departments/departments.component */ "./src/app/settings/departments/departments.component.ts");
 /* harmony import */ var _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./relative-relations/relative-relations.component */ "./src/app/settings/relative-relations/relative-relations.component.ts");
 /* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./users/users.component */ "./src/app/settings/users/users.component.ts");
+/* harmony import */ var _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./registeration-status/registeration-status.component */ "./src/app/settings/registeration-status/registeration-status.component.ts");
+
 
 
 
@@ -2451,7 +2522,8 @@ var SettingsModule = /** @class */ (function () {
                 _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_14__["NationalityComponent"],
                 _departments_departments_component__WEBPACK_IMPORTED_MODULE_15__["DepartmentsComponent"],
                 _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_16__["RelativeRelationsComponent"],
-                _users_users_component__WEBPACK_IMPORTED_MODULE_17__["UsersComponent"]
+                _users_users_component__WEBPACK_IMPORTED_MODULE_17__["UsersComponent"],
+                _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_18__["RegisterationStatusComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -2597,7 +2669,7 @@ var TranslationComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة مستخدم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'roles' | trans }}<span style=\"color: red\">*</span></label>\r\n              <select class=\"form-control\" formControlName=\"role_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of roles'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(role_id.touched || role_id.dirty) && role_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"role_id.errors?.required\">\r\n                  <p>من فضلك اختر وظيفة المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            \r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة مستخدم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'password' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'password' | trans }}\">\r\n                <div *ngIf=\"(password.touched || errorMessage) && password.invalid\" class=\"custom-error alert alert-danger\">\r\n                  <span *ngIf=\"password.errors.required\">من فضلك ادخل كلمة المرور</span>\r\n                  <span *ngIf=\"password.errors.minlength\">كلمة المرور يجب ان لا تقل عن 8 احرف</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>\r\n            <div class=\"user-panel\">\r\n              <div class=\"image\">\r\n                <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"img-circle\" alt=\"User Image\">\r\n              </div>\r\n            </div>\r\n            <!-- <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"user-image\"> -->\r\n          </td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.username }}</td>\r\n          <td>{{ row.role.name }}</td>\r\n          <td>{{ row.phone }}</td>\r\n          <td>{{ row.email }}</td>\r\n\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\" (click) = \"reset()\">\r\n      اضافة مستخدم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'password' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'password' | trans }}\">\r\n                <div *ngIf=\"(password.touched || errorMessage) && password.invalid\" class=\"custom-error alert alert-danger\">\r\n                  <span *ngIf=\"password.errors.required\">من فضلك ادخل كلمة المرور</span>\r\n                  <span *ngIf=\"password.errors.minlength\">كلمة المرور يجب ان لا تقل عن 8 احرف</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة مستخدم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'password' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'password' | trans }}\">\r\n                <div *ngIf=\"(password.touched || errorMessage) && password.invalid\" class=\"custom-error alert alert-danger\">\r\n                  <span *ngIf=\"password.errors.required\">من فضلك ادخل كلمة المرور</span>\r\n                  <span *ngIf=\"password.errors.minlength\">كلمة المرور يجب ان لا تقل عن 8 احرف</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>\r\n            <div class=\"user-panel\">\r\n              <div class=\"image\">\r\n                <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"img-circle\" alt=\"User Image\">\r\n              </div>\r\n            </div>\r\n            <!-- <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"user-image\"> -->\r\n          </td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.username }}</td>\r\n          <td>{{ row.role.name }}</td>\r\n          <td>{{ row.phone }}</td>\r\n          <td>{{ row.email }}</td>\r\n\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2697,6 +2769,7 @@ var UsersComponent = /** @class */ (function () {
             notes: this.callForm.value.notes,
             role_id: this.callForm.value.role_id,
         };
+        console.log(itemData);
         this.service.update(this.id, itemData).subscribe(function (res) {
             if (res.status == 1) {
                 document.getElementById("cancell").click();
@@ -2707,6 +2780,7 @@ var UsersComponent = /** @class */ (function () {
                 _this.dtTrigger.unsubscribe();
             }
             else {
+                console.log(res);
                 _this.toastr.error(res.message, "");
             }
         });
@@ -2764,7 +2838,6 @@ var UsersComponent = /** @class */ (function () {
     };
     UsersComponent.prototype.getItemData = function (id) {
         var _this = this;
-        console.log(id);
         this.id = id;
         this.service.getItemById(id).subscribe(function (res) {
             console.log(res);
@@ -2775,6 +2848,7 @@ var UsersComponent = /** @class */ (function () {
                 _this.email.setValue(res.data.email);
                 _this.name.setValue(res.data.name);
                 _this.role_id.setValue(res.data.role.id);
+                _this.password.setValue(res.data.password);
                 _this.notes.setValue(res.data.notes);
                 document.getElementById("openModal").click();
                 _this.item = res.data;
