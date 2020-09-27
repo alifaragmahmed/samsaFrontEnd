@@ -20,6 +20,7 @@ import { DivisionService } from './account/services/division.service';
 import { TermService } from './account/services/term.service';
 import { Message } from './shared/message';
 import { ApplicationSettingService } from './adminision/services/application-setting.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ApplicationSettingService } from './adminision/services/application-set
     AuthComponent,
     AppComponent,
     PageNotFoundComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

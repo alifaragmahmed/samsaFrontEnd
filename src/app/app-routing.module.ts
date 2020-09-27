@@ -5,6 +5,7 @@ import { LayoutComponent } from './core/layout.component';
 import { AuthGuardService } from './shared/middlewares/auth-guard.service';
 import { AuthComponent } from './core/auth.component';
 import { AuthGuestService } from './shared/middlewares/auth-guest.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
 
@@ -32,6 +33,10 @@ const routes: Routes = [
       { 
         path: 'military',
         loadChildren: './military/military.module#MilitaryModule'
+      },
+      { 
+        path: 'my-profile',
+        component: UserProfileComponent
       },
      /* {
         path: 'dashboard',
