@@ -45,6 +45,10 @@ const routes: Routes = [
         loadChildren: './qualification-types/qualification-types.module#QualificationTypesModule'
       },
       {
+        path: "roles",
+        loadChildren: './roles/roles.module#RolesModule'
+      },
+      {
         path: "registration-methods",
         loadChildren: './registeration-methods/registeration-methods.module#RegisterationMethodsModule'
       },
