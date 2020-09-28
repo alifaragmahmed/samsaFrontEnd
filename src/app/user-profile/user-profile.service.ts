@@ -7,21 +7,28 @@ import { Auth } from '../shared/auth';
 
 export class UserProfileService {
     constructor(private http: HttpClient) { }
-
-    public getuserData(): Observable<any> {
-
-        return this.http.get(`user-profile?api_token=` + Auth.getApiToken());
+ 
+    public getProfile() {
+        return this.http.get(`profile?api_token=` + Auth.getApiToken());
+    }
+ 
+    public updateProfile(data) {
+        data.api_token = Auth.getApiToken();
+        return this.http.post(`profile/update`, data);
+    }
+ 
+    public updateProfileImage(data: FormData) {
+        data.append('api_token', Auth.getApiToken());
+        return this.http.post(`profile/update`, data);
     }
 
-    public update(id:string, data:IReqUserProfile): Observable<any> {
-        return this.http.put(`academic-years/${id}?api_token=` + Auth.getApiToken(), data);
+    public updatePassword(data) {
+        data.api_token = Auth.getApiToken();
+        return this.http.post(`profile/update-password`, data);
     }
-
-    public create(data:IReqUserProfile){
-        return this.http.post(`academic-years?api_token=` + Auth.getApiToken(), data);
-    }
-    public delete(id: string): Observable<any>{
-        return this.http.delete(`academic-years/`+ id +`?api_token=` + Auth.getApiToken());
-
+ 
+    public updatePhone(data) {
+        data.api_token = Auth.getApiToken();
+        return this.http.post(`profile/update-phone`, data);
     }
 }

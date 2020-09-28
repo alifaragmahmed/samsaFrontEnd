@@ -5,7 +5,8 @@ import { Message } from '../../../../shared/message';
 import { Auth } from '../../../../shared/auth';
 import { Helper } from '../../../../shared/helper';
 import { AppModule } from '../../../../app.module';
-import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder';
+import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder'; 
+import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-safe-index',
@@ -30,9 +31,12 @@ export class SafeIndexComponent implements OnInit {
   public timeoutId;
   public students: any = []; 
 
-  constructor(private studentAcountService: StudentAccountService) {
+  constructor(private studentAcountService: StudentAccountService, private route: ActivatedRoute) {
     this.initSafeObject();
-    // 
+    const id = this.route.snapshot.params['id'];
+    if (id > 0) {
+      this.loadStudentAccountInfo(id); 
+    }
   }
 
   initSafeObject() {

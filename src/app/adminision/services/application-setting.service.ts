@@ -25,11 +25,16 @@ export class ApplicationSettingService {
   public static REQUIRED_DOCUMENTS: any = [];
   public static DEPARTMENTS: any = [];
 
+  public static LOADED: any = false;
+
   constructor(private http: HttpClient) {
     //
   }
 
   public loadSettings() {
+    if (ApplicationSettingService.LOADED)
+      return;
+
     this.getCaseConstraints().subscribe((r)=>{ ApplicationSettingService.CASE_CONSTRAINTS = r; });
     this.getNationalities().subscribe((r)=>{ ApplicationSettingService.NATIONALITIES = r; });
     this.getAcademicYears().subscribe((r)=>{ ApplicationSettingService.ACADEMIC_YEARS = r; });
@@ -47,6 +52,7 @@ export class ApplicationSettingService {
     this.getRelativeRelations().subscribe((r)=>{ ApplicationSettingService.RELATIVE_RELATIONS = r; });
     this.getRequiredDocuments().subscribe((r)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = r; });
     this.getDepartments().subscribe((r)=>{ ApplicationSettingService.DEPARTMENTS = r; });
+    ApplicationSettingService.LOADED = true;
   } 
  
   public getDepartments() {

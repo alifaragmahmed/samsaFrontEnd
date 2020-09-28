@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApplicationSettingService } from './services/application-setting.service';
 
 @Component({
   selector: 'app-adminision',
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class AdminisionComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit() {
-  }
+ 
+  ngOnInit() { 
+  } 
 
 }

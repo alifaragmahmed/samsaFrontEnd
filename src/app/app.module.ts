@@ -22,6 +22,13 @@ import { Message } from './shared/message';
 import { ApplicationSettingService } from './adminision/services/application-setting.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button'; 
+import { DataTablesModule } from '../../node_modules/angular-datatables';
+
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -43,7 +50,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
       closeButton: true,
       enableHtml: true,
     }),
-    AppRoutingModule 
+    AppRoutingModule,
+    DataTablesModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatButtonModule,
   ],
   providers: [
     httpInterceptorProviders,
@@ -53,7 +66,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     DivisionService,
     TermService,
     AuthService,
-    AuthGuestService
+    AuthGuestService,
+    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
   ],
   bootstrap: [AppComponent]
 })

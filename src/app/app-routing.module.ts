@@ -35,7 +35,7 @@ const routes: Routes = [
         loadChildren: './military/military.module#MilitaryModule'
       },
       { 
-        path: 'my-profile',
+        path: 'profile',
         component: UserProfileComponent
       },
      /* {
