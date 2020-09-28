@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MilitaryComponent } from './military.component';
 import { MilitaryStatusComponent } from './military-status/military-status.component';
+import { AreaSubmissionComponent } from './area-submission/area-submission.component';
 
 
 const routes: Routes = [
@@ -12,9 +13,16 @@ const routes: Routes = [
       {
         path: 'area',
         loadChildren: './area/area.module#AreaModule'
-      },{
+      }
+      ,
+      {
         path:'status',
         component:MilitaryStatusComponent
+      }     
+      ,
+      {
+        path:'area-submission',
+        component:AreaSubmissionComponent
       }     
 
     ]

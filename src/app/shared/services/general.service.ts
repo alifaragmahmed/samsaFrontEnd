@@ -32,6 +32,9 @@ export class GeneralService {
   public getAllDepartments(){
     return this.http.get(`departments?api_token=` + Auth.getApiToken());
   }
+  public getAllMilitaryAres(){
+    return this.http.get(`military-area-submission?api_token=` + Auth.getApiToken());
+  }
   getAllUsers(query: any) {
     const params = new HttpParams()
       .set('page', query.page)
