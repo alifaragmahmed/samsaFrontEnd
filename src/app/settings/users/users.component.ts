@@ -158,6 +158,7 @@ export class UsersComponent implements OnInit {
           this.email.setValue(res.data.email);
           this.name.setValue(res.data.name);
           this.role_id.setValue(res.data.role.id);
+          this.password.setValue(res.data.password);
 
           this.notes.setValue(res.data.notes);
           document.getElementById("openModal").click();

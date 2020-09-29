@@ -16,7 +16,8 @@ import { NationalityComponent } from "./nationality/nationality.component";
 import { DepartmentsComponent } from "./departments/departments.component";
 import { RelativeRelationsComponent } from "./relative-relations/relative-relations.component";
 import { UsersComponent } from './users/users.component';
-import { RegisterationStatusComponent } from './registeration-status/registeration-status.component'
+import { RegisterationStatusComponent } from './registeration-status/registeration-status.component';
+import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RegisterationStatusComponent } from './registeration-status/registerati
     DepartmentsComponent,
     RelativeRelationsComponent,
     UsersComponent,
-    RegisterationStatusComponent
+    RegisterationStatusComponent,
+    RequiredDocumentsComponent
   ],
   imports: [
     CommonModule,

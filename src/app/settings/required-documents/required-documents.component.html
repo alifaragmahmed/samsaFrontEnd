@@ -1,14 +1,12 @@
 <div class="box box-default">
   <div class="box-body">
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default" (click) = "reset()">
-      اضافة حالة تقديم
+      اضافة اوراق تقديم
     </button>
     <button style="display: none;" type="button" id="openModal" class="btn btn-info" data-toggle="modal" data-target="#modal-default-edit">
     </button>
   </div>
 </div>
-
-
 
 
 <div class="modal fade" id="modal-default">
@@ -17,7 +15,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">اضافة حالة تقديم</h4>
+        <h4 class="modal-title">اضافةاوراق تقديم</h4>
       </div>
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -33,17 +31,79 @@
                 placeholder="{{ 'name' | trans }}">
               <div *ngIf="(name.touched || name.dirty) && name.invalid">
                 <div class="alert alert-danger" *ngIf="name.errors?.required">
-                  <p>من فضلك ادخل اسم حالة التقديم </p>
+                  <p>من فضلك ادخل اسم الورقة المطلوبة</p>
                 </div>
               </div>
             </div>
-            
-            <div class="form-group">
-              <label for="exampleInputEmail1">{{ 'notes' | trans }}</label>
-              <textarea formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
-                placeholder="{{ 'notes' | trans }}">
-                </textarea>
 
+            <!-- <div class="form-group">
+              <label for="exampleInputEmail1">نوع النسخة<span style="color: red">*</span></label>
+              <li class="d-inline-block mr-2">
+                    <fieldset>
+                        <div class="vs-radio-con">
+                            <input type="radio" formControlName="type" checked="" value="original">
+                            <span class="vs-radio">
+                                <span class="vs-radio--border"></span>
+                                <span class="vs-radio--circle"></span>
+                            </span>
+                            <span class="">{{ 'original' | trans }}</span>
+                        </div>
+                    </fieldset>
+                </li>
+                <li class="d-inline-block mr-2">
+                    <fieldset>
+                        <div class="vs-radio-con"  >
+                            <input type="radio" namformControlNamee="type" value="copy">
+                            <span class="vs-radio">
+                                <span class="vs-radio--border"></span>
+                                <span class="vs-radio--circle"></span>
+                            </span>
+                            <span class="">{{ 'copy' | trans }}</span>
+                        </div>
+                    </fieldset>
+                </li>
+                <li class="d-inline-block mr-2">
+                    <fieldset>
+                        <div class="vs-radio-con" >
+                            <input type="radio" formControlName="type" value="both">
+                            <span class="vs-radio">
+                                <span class="vs-radio--border"></span>
+                                <span class="vs-radio--circle"></span>
+                            </span>
+                            <span class="">{{ 'both' | trans }}</span>
+                        </div>
+                    </fieldset>
+                </li>
+              <div *ngIf="(name.touched || name.dirty) && name.invalid">
+                <div class="alert alert-danger" *ngIf="name.errors?.required">
+                  <p>من فضلك ادخل اسم اللغة </p>
+                </div>
+              </div>
+            </div> -->
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" formControlName="type"  id="optionsRadios1" value="original" checked="">
+                  {{ 'original' | trans }}
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" formControlName="type"  id="optionsRadios2" value="copy">
+                  {{ 'copy' | trans }}
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" formControlName="type" id="optionsRadios3" value="both">
+                  {{ 'both' | trans }}
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">ملاحظات</label>
+                <textarea class="form-control" formControlName="notes" rows="10" cols="50">  
+                </textarea>
             </div>
           </div>
           <div class="box-footer">
@@ -80,17 +140,34 @@
                 placeholder="{{ 'name' | trans }}">
               <div *ngIf="(name.touched || name.dirty) && name.invalid">
                 <div class="alert alert-danger" *ngIf="name.errors?.required">
-                  <p>من فضلك ادخل اسم حالة التقديم </p>
+                  <p>من فضلك ادخل اسم الورقة المطلوبة</p>
                 </div>
               </div>
             </div>
-
-            
-
             <div class="form-group">
-              <label for="exampleInputEmail1">ملاحظات</label>
-                <textarea class="form-control" formControlName="notes" rows="10" cols="50">  
-                </textarea>
+              <div class="radio">
+                <label>
+                  <input type="radio" formControlName="type"  id="optionsRadios1" value="original" checked="">
+                  {{ 'original' | trans }}
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" formControlName="type"  id="optionsRadios2" value="copy">
+                  {{ 'copy' | trans }}
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" formControlName="type" id="optionsRadios3" value="both">
+                  {{ 'both' | trans }}
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{ 'notes' | trans }}<span style="color: red">*</span></label>
+              <input formControlName="notes" type="text" class="form-control" id="exampleInputEmail1"
+                placeholder="{{ 'notes' | trans }}">
             </div>
           </div>
           <div class="box-footer">
@@ -104,6 +181,9 @@
   </div>
 </div>
 
+
+
+
 <div class="box">
   <div class="box-header">
   </div>
@@ -113,7 +193,7 @@
         <tr>
           <th>ID</th>
           <th>الاسم</th>
-          <th>الاوراق المطلوبة</th>
+          <th>نوع النسخة</th>
           <th>ملاحظات</th>
           <th>الاجراءات</th>
         </tr>
@@ -122,11 +202,7 @@
         <tr *ngFor="let row of rows index as i">
           <td>{{ i + 1 }}</td>
           <td>{{ row.name }}</td>
-          <td>
-            <ul *ngFor="let row of row.required_documents">
-              <li>{{ row.required_document.name }}</li>
-            </ul>
-          </td>
+          <td>{{ row.type | trans }}</td>
           <td>{{ row.notes }}</td>
           <td>
             <button class="btn btn-info" type="button" (click)="getItemData(row.id)">
@@ -136,7 +212,6 @@
             <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#modal-danger" (click)="launchModal(row.id)">
               <i class="fa fa-trash-o"></i>
             </button>
-
             <div class="modal modal-danger fade" id="modal-danger">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -158,42 +233,6 @@
                 </div>
               </div>
             </div>
-            &nbsp;
-            <button title="{{'assign required documents' | trans}}" class="btn btn-success" type="button" data-toggle="modal" data-target="#modal-info" (click)="getItemInfo(row.id)">
-              <i class="fa fa-newspaper-o"></i>
-            </button>
-            <div class="modal modal-info fade in" id="modal-info">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span></button>
-                      <div class="text-center w3-block modal-title w3-xlarge" >
-                        {{ 'select required documents' | trans }}
-                        <br>
-                        <span>{{ row.name }}</span>
-                      </div>
-                  </div>
-                  <div class="box box-primary">
-                    <div class="box-header with-border">
-                      <div [hidden]="!errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-                    </div>
-            
-                    <form role="form" [hidden] class="forms-sample create" [formGroup]="callForm" (ngSubmit)="create()"
-                      autocomplete="off">
-                      <div class="box-body">
-                        
-                      </div>
-                      <div class="box-footer">
-                        <button [disabled]="callForm.invalid || isSubmitClick" type="submit" class="btn btn-primary">حفظ</button>
-                        &nbsp;
-                        <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal">cancel</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
           </td>
         </tr>
       </tbody>
@@ -201,7 +240,6 @@
         <tr>
           <th>ID</th>
           <th>الاسم</th>
-          <th>الاوراق المطلوبة</th>
           <th>ملاحظات</th>
           <th>الاجراءات</th>
         </tr>
