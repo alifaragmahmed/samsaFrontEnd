@@ -56,6 +56,7 @@
   <!-- AdminLTE for demo purposes --> 
   
   <script src="assets/js/sweetalert2.js"></script>
+  <script src="assets/js/iziToast.js"></script>
   <script src="assets/js/jquery.nicescroll.min.js"></script>
   <script src="assets/js/jquery.nicescroll.iframehelper.min.js"></script>
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=IqzcmmiC"></script>
@@ -78,10 +79,22 @@
 
     document.__proto__.swal = {
       success: function(message){
-        Swal.fire('تم', message,'success');
+        if (!message)
+          return null;
+        //Swal.fire('تم', message,'success');
+        iziToast.success({ 
+          title: message,
+          position: 'topCenter',
+        });
       },
       error: function(message){
-        Swal.fire('هناك خطا', message,'error');
+        if (!message)
+          return null;
+        //Swal.fire('هناك خطا', message,'error');
+        iziToast.error({ 
+          title: message,
+          position: 'topCenter',
+        });
       },
       confirm: function(message, action) {
         Swal.fire({
@@ -102,7 +115,7 @@
 
     document.__proto__.playSound = function(src) {
       var player = document.getElementById('player');
-      player.src = src;
+      player.src = "/assets/sound/"+src+".mp3";
       player.play();
     }
 
@@ -136,7 +149,7 @@
     document.__proto__.jq = $;
     document.__proto__.jquery = $;
     document.__proto__.say = function(word) {
-      responsiveVoice.speak(word, "Arabic Male");
+      responsiveVoice.speak(word, "Arabic Female");
     };
   </script>
 </body>

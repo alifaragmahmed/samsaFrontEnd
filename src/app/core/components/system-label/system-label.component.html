@@ -1,0 +1,39 @@
+
+
+<div class="w3-display-topleft current-academic-year w3-center"  >
+  <div class="academic_year" >
+    <div class="text-center" >
+        <img 
+          src="/assets/img/academic_year.png" 
+          class="material-shadow w3-circle" 
+          style="width: 60px;" >
+      </div>
+
+      <div 
+      class="text-center w3-block" 
+      style="padding: 5px;z-index: 99;margin-top: -10px" >
+      <b class="w3-white material-shadow w3-center w3-round" style="padding: 4px" >
+        {{ setting.current_academic_year? setting.current_academic_year.name : '' }}
+      </b> 
+    </div> 
+  </div>
+  <br> 
+  <div class="academic_year" >
+    <div class="text-center" >
+        <img 
+          src="/assets/img/term.png" 
+          class="material-shadow w3-circle" 
+          style="width: 60px;" >
+      </div>
+
+      <div 
+      class="text-center w3-block" 
+      style="padding: 5px;z-index: 99;margin-top: -10px;padding-left: 10px;padding-right: 10px" >
+      <b class="w3-white material-shadow w3-center w3-round" style="padding: 4px" >
+        {{ setting.current_term? setting.current_term.name : '' }}
+      </b> 
+    </div> 
+  </div>
+  
+  
+</div>

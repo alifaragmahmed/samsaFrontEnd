@@ -24,6 +24,7 @@ export class ApplicationSettingService {
   public static RELATIVE_RELATIONS: any = [];
   public static REQUIRED_DOCUMENTS: any = [];
   public static DEPARTMENTS: any = [];
+  public static REGSITERATIN_STATUS_DOCUMENTS: any = [];
 
   public static LOADED: any = false;
 
@@ -52,8 +53,13 @@ export class ApplicationSettingService {
     this.getRelativeRelations().subscribe((r)=>{ ApplicationSettingService.RELATIVE_RELATIONS = r; });
     this.getRequiredDocuments().subscribe((r)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = r; });
     this.getDepartments().subscribe((r)=>{ ApplicationSettingService.DEPARTMENTS = r; });
+    this.getRegisterationStatusDocuments().subscribe((r)=>{ ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = r; });
     ApplicationSettingService.LOADED = true;
   } 
+ 
+  public getRegisterationStatusDocuments() {
+    return this.http.get('adminision/get_registeration_status_document?api_token=' + Auth.getApiToken());
+  }
  
   public getDepartments() {
     return this.http.get('adminision/get_departments?api_token=' + Auth.getApiToken());

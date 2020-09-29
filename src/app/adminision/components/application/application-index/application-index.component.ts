@@ -28,6 +28,7 @@ export class ApplicationIndexComponent implements OnInit {
   public pages: any;
 
   public isEntrollSubmit = false;
+  public isLoad = false;
  
  
   constructor(private applicationService: ApplicationService) { 
@@ -99,9 +100,11 @@ export class ApplicationIndexComponent implements OnInit {
 
 
   loadResources(page=1) { 
+    this.isLoad = true;
     this.applicationService.get(page).subscribe( (res: any) => {
       this.resources = res; 
       this.prePagniation();
+      this.isLoad = false;
     }); 
   }  
 

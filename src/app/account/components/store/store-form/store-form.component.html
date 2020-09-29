@@ -16,7 +16,7 @@
                   <input type="text" class="form-control input-sm"  [(ngModel)]="item.name" >
                 </td>
               </tr>
-              <tr>
+              <tr *ngIf="!updateMode" >
                 <th>{{ "init_balance" | trans }} *</th>
                 <td>
                   <input type="number" class="form-control input-sm"  [(ngModel)]="item.init_balance" >

@@ -49,7 +49,8 @@ export class AcademicYearIndexComponent implements OnInit {
   public stores: any[];
   public departments: any[];
   public division_id: any;
-  public level_id: any;
+  public level_id: any = 1;
+  public registerationStatus: any = [];
 
   //
   public updateItem: boolean;
@@ -79,6 +80,9 @@ export class AcademicYearIndexComponent implements OnInit {
     });
     this.applicationSetting.getDepartments().subscribe((res: any)=>{
       this.departments = res;
+    });
+    this.applicationSetting.getRegisterationStatus().subscribe((res: any)=>{
+      this.registerationStatus = res;
     });
   }
  
@@ -127,7 +131,7 @@ export class AcademicYearIndexComponent implements OnInit {
 
   validate() {
     let valid = true;
-    if (!this.level_id || !this.division_id) 
+    if (!this.level_id) 
       valid = false;
     return valid;
   }
@@ -149,8 +153,7 @@ export class AcademicYearIndexComponent implements OnInit {
     this.isLoad = true;
     this.reset();
     let data = {
-      level_id: this.level_id,
-      division_id: this.division_id
+      level_id: this.level_id  
     }; 
     this.academicService.get(data).subscribe( (res: any) => {
       this.academicYearExpense = res; 

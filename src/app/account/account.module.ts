@@ -52,6 +52,9 @@ import { StoreFormComponent } from './components/store/store-form/store-form.com
     MatCheckboxModule,
     MatButtonModule,
   ],
+  exports: [
+    StudentPaymentComponent
+  ],
   providers: [ 
     {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
   ]

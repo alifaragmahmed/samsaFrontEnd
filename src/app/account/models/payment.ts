@@ -1,6 +1,8 @@
 import { Message } from '../../shared/message';
 import { StudentAccountService } from '../services/student-account.service';
 import { Auth } from '../../shared/auth';
+import { environment } from '../../../environments/environment';
+import { AppModule } from '../../app.module';
 
 
 export class Payment {
@@ -45,6 +47,7 @@ export class Payment {
             if (response.status == 1) {
                 Message.success(response.message);
                 this.action();
+                Payment.loadReceipts(response.data);
             } 
             else 
                 Message.error(response.message); 
@@ -52,5 +55,20 @@ export class Payment {
         });
     }
 
+    public static loadReceipts(data: any) {
+        data.forEach(element => {
+            Payment.viewReceipt(element.id);
+        });
+    }
+
+    public static viewReceipt(paymentId) {
+        const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=905,height=484";
+        const data = {
+            api_token: Auth.getApiToken(),
+            payment_id: paymentId
+        };
+        const url = environment.apiUrl + "/account/payment_receipt?" + AppModule.doc.jquery.param(data);
+        window.open(url, "_blank", options);
+    }
 
 }

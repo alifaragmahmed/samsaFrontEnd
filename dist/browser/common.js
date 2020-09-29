@@ -265,39 +265,6 @@ if (false) {}
 
 /***/ }),
 
-/***/ "./src/app/shared/message.ts":
-/*!***********************************!*\
-  !*** ./src/app/shared/message.ts ***!
-  \***********************************/
-/*! exports provided: Message */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Message", function() { return Message; });
-/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
-
-var Message = /** @class */ (function () {
-    function Message() {
-    }
-    Message.success = function (message) {
-        _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.playSound('/assets/sound/not2.mp3');
-        _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.swal.success(message);
-    };
-    Message.error = function (message) {
-        _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.playSound('/assets/sound/not2.mp3');
-        _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.swal.error(message);
-    };
-    Message.confirm = function (message, action) {
-        _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.swal.confirm(message, action);
-    };
-    return Message;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/shared/services/general.service.ts":
 /*!****************************************************!*\
   !*** ./src/app/shared/services/general.service.ts ***!

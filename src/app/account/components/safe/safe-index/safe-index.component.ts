@@ -30,13 +30,22 @@ export class SafeIndexComponent implements OnInit {
   public isWait = false;
   public timeoutId;
   public students: any = []; 
+  public isStudentSayed = false;
+  public updateStudent: any;
 
   constructor(private studentAcountService: StudentAccountService, private route: ActivatedRoute) {
+    this.init();
     this.initSafeObject();
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       this.loadStudentAccountInfo(id); 
     }
+  }
+
+  init() {
+    this.updateStudent = () => {
+      this.updateStudentAction();
+    };
   }
 
   initSafeObject() {
@@ -85,9 +94,22 @@ export class SafeIndexComponent implements OnInit {
   loadStudentAccountInfo(id) {
     if (!id)
       return Message.error('search about student first');
-    this.studentAcountService.getStudentAccount(id).subscribe((r) => {
+    this.studentAcountService.getStudentAccount(id).subscribe((r: any) => {
+      if (this.safeObject.id != r.id)
+        this.isStudentSayed = false;
+
       this.safeObject = r; 
       this.buildSafeMsg();
+      this.studentSearchId = this.safeObject.id;
+     
+      if (!this.safeObject.old_balance)
+        this.safeObject.old_balance = 0;
+     
+      if (!this.safeObject.current_balance)
+        this.safeObject.current_balance = 0;
+     
+      if (!this.safeObject.paid_value)
+        this.safeObject.paid_value = 0;
     
       if (!this.safeObject.image)
         this.safeObject.image = '/assets/img/avatar.png';
@@ -95,7 +117,7 @@ export class SafeIndexComponent implements OnInit {
     });
   }
 
-  updateStudent() { 
+  updateStudentAction() { 
     if (this.safeObject)
       if (this.safeObject.id)
         this.loadStudentAccountInfo(this.safeObject.id);
@@ -125,17 +147,21 @@ export class SafeIndexComponent implements OnInit {
   }
 
   buildSafeMsg() {
+    if (this.isStudentSayed)
+      return;
+
     let builder = new SafeMsgBuilder();
     builder
       .setGender(this.safeObject.gender)
       .setName(this.safeObject.name)
-      .setCode(this.safeObject.code)
-      .setLevel(this.safeObject.level? this.safeObject.level.name : '')
-      .setDivision(this.safeObject.division? this.safeObject.division.name : '')
+      //.setCode(this.safeObject.code)
+      .setLevel(this.safeObject.level? this.safeObject.level.name : null)
+      .setDivision(this.safeObject.division? this.safeObject.division.name : null)
       .setOldBalance(this.safeObject.old_balance)
       .setCurrentBalance(this.safeObject.current_balance)
       .setPaidValue(this.safeObject.paid_value)
       .say();
+    this.isStudentSayed = true;
   }
 
   ngOnInit() {

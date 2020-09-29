@@ -100,14 +100,6 @@
                           [(ngModel)]="application.name" >
                         </td>
                       </tr> 
-                      <tr> 
-                          <th>{{ "email" | trans }}</th>
-                          <td>
-                            <input 
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.email" >
-                          </td>
-                      </tr>
                       <tr>
                         <th>{{ "academic_years" | trans }} *</th>
                         <td>
@@ -117,6 +109,33 @@
                           [ngClass]="{'border-bottom-dashed': application.academic_years_id, 'border-bottom-red': !application.academic_years_id}"
                           [(ngModel)]="application.academic_years_id">
                             <option *ngFor="let item of applicationSettings.ACADEMIC_YEARS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>  
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "qualification" | trans }} *</th>
+                        <td>
+                          <select
+                          (change)="watchLevel()"
+                          class="custom-input form-control input-sm w3-input input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}"
+                          [(ngModel)]="application.qualification_id">
+                            <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>  
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "qualification_types" | trans }} *</th>
+                        <td>
+                          <select
+                          (change)="watchLevel()"
+                          class="custom-input form-control input-sm w3-input input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.qualification_types_id>0, 'border-bottom-red': !application.qualification_types_id}"
+                          [(ngModel)]="application.qualification_types_id">
+                            <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
+                                <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
+                            </ng-container>
+                            
                           </select>  
                         </td>
                       </tr>
@@ -135,42 +154,16 @@
                           </td>
                       </tr> 
                       <tr>
-                          <th>{{ "registeration_date" | trans }}</th>
-                          <td>
-                            <input 
-                            type="date"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.registeration_date" >
-                          </td>
-                      </tr>
-                      <tr>
-                          <th>{{ "registeration_date" | trans }}</th>
-                          <td>
-                            <input 
-                            type="date"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.registeration_date" >
-                          </td>
-                      </tr>
-                      <tr>
-                        <th>{{ "registration_status" | trans }} *</th>
+                        <th>{{ "level" | trans }}</th>
                         <td>
-                          <select
-                          class="custom-input form-control input-sm w3-input  input-sm" 
-                          [ngClass]="{'border-bottom-dashed': application.registration_status_id>0, 'border-bottom-red': !application.registration_status_id}"
-                          [(ngModel)]="application.registration_status_id">
-                            <option *ngFor="let item of applicationSettings.REGISTERATION_STATUS" value="{{ item.id }}">{{ item.name }}</option>
-                          </select>  
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>{{ "registration_method" | trans }}</th>
-                        <td>
-                          <select
+                          <input 
+                          type="text"
+                          readonly
                           class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                          [(ngModel)]="application.registration_method_id">
-                            <option *ngFor="let item of applicationSettings.REGISTERATION_METHODS" value="{{ item.id }}">{{ item.name }}</option>
-                          </select>  
+                          [(ngModel)]="application.level_name" >
+                          <input 
+                          type="hidden"  
+                          [(ngModel)]="application.level_id" >
                         </td>
                       </tr>
                       <tr>
@@ -184,6 +177,55 @@
                           </td>
                       </tr>
                       <tr>
+                        <th>{{ "registration_status" | trans }} *</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input  input-sm" 
+                          (change)="validateOnRegisterationStatusDocument()"
+                          [ngClass]="{'border-bottom-dashed': application.registration_status_id>0, 'border-bottom-red': !application.registration_status_id}"
+                          [(ngModel)]="application.registration_status_id">
+                            <option *ngFor="let item of applicationSettings.REGISTERATION_STATUS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>  
+                        </td>
+                      </tr>
+                      <tr>
+                          <th>{{ "national_id" | trans }} *</th>
+                          <td>
+                            <input 
+                            type="text"
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                            [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
+                            [(ngModel)]="application.national_id" >
+                          </td>
+                      </tr> 
+                      <!--
+                      <tr>
+                        <th>{{ "case_constraint" | trans }}</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          [ngClass]="{'border-bottom-dashed': application.case_constraint_id>0, 'border-bottom-red': !application.case_constraint_id}"
+                          [(ngModel)]="application.case_constraint_id">
+                            <option *ngFor="let item of applicationSettings.CASE_CONSTRAINTS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>  
+                        </td>
+                      </tr>
+                      -->
+                    </table>
+                  </div>  
+
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <table class="table w3-block w3-block" >
+                        <tr>
+                            <th>{{ "registeration_date" | trans }}</th>
+                            <td>
+                              <input 
+                              type="date"
+                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                              [(ngModel)]="application.registeration_date" >
+                            </td>
+                        </tr>
+                      <tr>
                           <th>{{ "qualification_set_number" | trans }}</th>
                           <td>
                             <input 
@@ -192,71 +234,24 @@
                             [(ngModel)]="application.qualification_set_number" >
                           </td>
                       </tr>
-                    </table>
-                  </div>  
-
-                  <div class="col-lg-6 col-md-6 col-sm-12">
-                    <table class="table w3-block w3-block" >
-                        <tr>
-                          <th>{{ "qualification" | trans }} *</th>
-                          <td>
-                            <select
-                            (change)="watchLevel()"
-                            class="custom-input form-control input-sm w3-input input-sm" 
-                            [ngClass]="{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}"
-                            [(ngModel)]="application.qualification_id">
-                              <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
-                            </select>  
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "qualification_types" | trans }} *</th>
-                          <td>
-                            <select
-                            (change)="watchLevel()"
-                            class="custom-input form-control input-sm w3-input input-sm" 
-                            [ngClass]="{'border-bottom-dashed': application.qualification_types_id>0, 'border-bottom-red': !application.qualification_types_id}"
-                            [(ngModel)]="application.qualification_types_id">
-                              <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
-                                  <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
-                              </ng-container>
-                              
-                            </select>  
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "level" | trans }}</th>
+                      <tr>
+                        <th>{{ "registration_method" | trans }}</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
+                          [(ngModel)]="application.registration_method_id">
+                            <option *ngFor="let item of applicationSettings.REGISTERATION_METHODS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>  
+                        </td>
+                      </tr>
+                      <tr> 
+                          <th>{{ "email" | trans }}</th>
                           <td>
                             <input 
-                            type="text"
-                            readonly
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.level_name" >
-                            <input 
-                            type="hidden"  
-                            [(ngModel)]="application.level_id" >
+                            [(ngModel)]="application.email" >
                           </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "case_constraint" | trans }}</th>
-                          <td>
-                            <select
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                            [(ngModel)]="application.case_constraint_id">
-                              <option *ngFor="let item of applicationSettings.CASE_CONSTRAINTS" value="{{ item.id }}">{{ item.name }}</option>
-                            </select>  
-                          </td>
-                        </tr>
-                        <tr>
-                            <th>{{ "national_id" | trans }} *</th>
-                            <td>
-                              <input 
-                              type="text"
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" 
-                              [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
-                              [(ngModel)]="application.national_id" >
-                            </td>
-                        </tr>
+                      </tr>
                         <tr>
                             <th>{{ "coordination_password" | trans }}</th>
                             <td>
@@ -569,20 +564,32 @@
                   <div class="custom-panel-body"  >
                     <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
+                          
+
                         <table class="table w3-block" >
-                            <tr *ngFor="let item of applicationSettings.REQUIRED_DOCUMENTS" [ngClass]="{'w3-text-green': application['required_document_' + item.id]}" >
-                              <th>
-                                <i *ngIf="application['required_document_' + item.id]" class="fa fa-check-circle w3-text-green"></i>
-                                {{ item.name  }}
-                              </th>
-                              <th>{{ item.type | trans }}</th>
-                              <td>
-                                  <input 
-                                  type="file"
-                                  (change)="setFile($event, 'required_document_' + item.id)"
-                                  class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"   >
-                                </td>
-                            </tr>  
+                           <ng-container *ngFor="let item of applicationSettings.REQUIRED_DOCUMENTS"  >
+                              <tr 
+                              *ngIf="requiredDocumentList.get(item.id) > 0"
+                              [ngClass]="{'w3-text-green': application['required_document_' + item.id]}" 
+                              >
+                                <th>
+                                  <i *ngIf="application['required_document_' + item.id]" 
+                                  class="fa fa-check-circle w3-text-green"></i>
+
+                                  <i *ngIf="requiredDocumentList.get(item.id) == 1 && !application['required_document_' + item.id]" 
+                                  class="fa fa-exclamation-circle w3-text-red"></i>
+                                  {{ item.name  }}
+                                </th>
+                                <th>{{ item.type | trans }}</th>
+                                <td>
+                                    <input 
+                                    type="file"
+                                    (change)="setFile($event, 'required_document_' + item.id, item.id)"
+                                    class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"   >
+                                  </td>
+                              </tr>  
+                           </ng-container>
+                           
                             
                         </table>
                       </div>   

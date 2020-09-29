@@ -1,4 +1,5 @@
 import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
+import { AppModule } from '../../../../app.module';
 
 @Component({
   selector: 'app-student-payment',
@@ -8,6 +9,7 @@ import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/cor
 export class StudentPaymentComponent implements OnInit , OnChanges{
 
   public total = 0;
+  public doc: any = AppModule.doc;
 
   @Input() payments: any[];
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
+import { AppModule } from '../../../../app.module';
 
 @Component({
   selector: 'app-student-installment',
@@ -8,6 +9,7 @@ import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/cor
 export class StudentInstallmentComponent implements OnInit, OnChanges {
 
   public total = 0;
+  public doc: any = AppModule.doc;
 
   @Input() installments: any[];
 

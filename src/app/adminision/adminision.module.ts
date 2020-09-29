@@ -14,6 +14,7 @@ import { ApplicationRequiredService } from './services/application-required.serv
 import { ApplicationService } from './services/application.service';
 import { RequiredDocumentService } from './services/required-document.service';
 import { ApplicationSettingService } from './services/application-setting.service';
+import { MatButtonModule } from '../../../node_modules/@angular/material';
 @NgModule({
   declarations: [ 
     AdminisionComponent,
@@ -25,7 +26,8 @@ import { ApplicationSettingService } from './services/application-setting.servic
   imports: [
     SharedModule,  
     AdminisionRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    MatButtonModule
   ]
 })
 export class AdminisionModule {

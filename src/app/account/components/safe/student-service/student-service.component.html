@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-" role="document">
     <div class="modal-content w3-animate-top">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close"  (click)="doc.jquery('#studentServices').modal('hide')" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title text-center">{{ "student services" | trans }}</h4>
       </div>
       <div class="modal-body">
@@ -32,7 +32,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="document.getElementById('studentServices').style.display='none'" >{{ "close" | trans }}</button>
+        <button type="button" class="btn btn-default" (click)="doc.jquery('#studentServices').modal('hide')"  >{{ "close" | trans }}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

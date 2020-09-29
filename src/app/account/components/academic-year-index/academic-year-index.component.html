@@ -12,9 +12,10 @@
       <td>{{ "level" | trans }}</td>
       <td>
         <select style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()" [(ngModel)]="level_id" >
-          <option *ngFor="let item of levels" value="{{ item.id }}" >{{ item.name }}</option>
+          <option *ngFor="let item of levels index as i" value="{{ item.id }}" >{{ item.name }}</option>
         </select>
       </td>
+      <!--
       <td>{{ "division" | trans }}</td>
       <td>
         <select   style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()"  [(ngModel)]="division_id" >
@@ -23,6 +24,7 @@
            </ng-container> 
         </select>
       </td>
+      -->
     </tr>
   </table>
   <br>
@@ -36,6 +38,7 @@
         <th>{{ "priorty" | trans }}</th> 
         <th>{{ "value" | trans }}</th>
         <th>{{ "term" | trans }}</th>
+        <th>{{ "registeration_status" | trans }}</th>
         <th>{{ "store" | trans }}</th>
         <th>{{ "discount" | trans }}</th>
         <th></th>
@@ -60,6 +63,12 @@
         <td> 
             <select style="width: 100px" class="form-control input-sm" [(ngModel)]="item.term_id"   >
                 <option *ngFor="let row of terms" value="{{ row.id }}" >{{ row.name }}</option>
+            </select> 
+        </td>
+        <td> 
+            <select style="width: 100px" class="form-control input-sm" [(ngModel)]="item.registeration_status_id"   >
+              <option value="">-- {{ "registeration_status" | trans }} --</option>  
+              <option *ngFor="let row of registerationStatus" value="{{ row.id }}" >{{ row.name }}</option>
             </select> 
         </td>
         <td>
@@ -91,10 +100,10 @@
     </tbody>
   </table>
   <br>
-  <button mat-raised-button [disabled]="!level_id || !division_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  > 
+  <button mat-raised-button [disabled]="!level_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  > 
     <span class="fa fa-plus" ></span> 
   </button> 
-  <button mat-raised-button color="primary" [disabled]="updateItem || (!level_id || !division_id)" (click)="viewChanges()" style="margin: 5px"  > 
+  <button mat-raised-button color="primary" [disabled]="updateItem || (!level_id)" (click)="viewChanges()" style="margin: 5px"  > 
     <span *ngIf="!updateItem" >{{ "save" | trans }}</span>
     <span *ngIf="updateItem"  class="fa fa-spin fa-spinner" ></span>
   </button> 

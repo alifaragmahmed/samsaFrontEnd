@@ -31,12 +31,16 @@ export class SafeMsgBuilder {
     }
 
     setLevel(level) {
+        if (!level)
+            return this;
         this.msg += " ";
         this.msg += "مستوى "+this.type+"  " + level;
         return this;
     }
 
     setDivision(division) {
+        if (!division)
+            return this;
         this.msg += " ";
         this.msg += " والشعبة " + division;
         return this;
@@ -56,7 +60,7 @@ export class SafeMsgBuilder {
 
     setPaidValue(value) {
         this.msg += " ";
-        this.msg += "  المبلغ المطلوب دفعه " + value + " جنيه ";
+        this.msg += "  المبلغ المطلوب دفعهُ " + value + " جنيه ";
         return this;
     }
 

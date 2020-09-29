@@ -3,6 +3,7 @@ import { Auth } from './../../../../shared/auth';
 import { StudentAccountService } from './../../../services/student-account.service';
 import { Component, OnInit, SimpleChanges, OnChanges, Input, Output } from '@angular/core';
 import { Helper } from '../../../../shared/helper';
+import { AppModule } from '../../../../app.module';
 
 @Component({
   selector: 'app-installment',
@@ -11,7 +12,10 @@ import { Helper } from '../../../../shared/helper';
 })
 export class InstallmentComponent implements OnInit {
 
-  public total = 0;
+  public doc: any = AppModule.doc;
+  public total: number = 0;
+  public isSubmitted = false;
+
   public studentInstallmentData: any = {};
   @Input() studentInstallments: any[]; 
   @Input() student: any;
@@ -34,8 +38,12 @@ export class InstallmentComponent implements OnInit {
    * item.delted = 1
    * @param item 
    */
-  removeRow(item: any) {
-    item.deleted = 1;
+  removeRow(item: any, index: any) {
+    if (!item.id) {
+      // remove item from arr
+      this.studentInstallments.splice(index, index + 1);
+    } else
+      item.deleted = 1;
   }
 
   /**
@@ -60,6 +68,7 @@ export class InstallmentComponent implements OnInit {
    * update installmenst of student 
    */
   update() {
+    this.isSubmitted = true;
     // update data of the api
     this.buildInstallmentRequestData();
     this.studentAccountService.updateStudentInstallments(this.studentInstallmentData).subscribe((r) => {
@@ -70,6 +79,7 @@ export class InstallmentComponent implements OnInit {
       } else {
         Message.error(data.message);
       }
+      this.isSubmitted = false;
     });
 
   }
@@ -92,6 +102,7 @@ export class InstallmentComponent implements OnInit {
    * validate and update
    */
   performUpdate() {
+    console.log(this.studentInstallments);
     if (!this.validate())
       return Message.error(Helper.trans('please enter all data'));
     this.update();
@@ -114,7 +125,7 @@ export class InstallmentComponent implements OnInit {
   calculateTotal() {
     this.total = 0;
     this.studentInstallments.forEach(element => {
-      this.total += element.value;
+      this.total += parseFloat(element.value);
     });
   }
 

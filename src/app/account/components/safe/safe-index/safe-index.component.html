@@ -21,15 +21,15 @@
             [innerHTML]="safeObject.notes" >
 
             </div>
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"  onclick="document.getElementById('studentPayments').style.display='block'" >{{ "student payments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#studentPayments').modal('show')"    >{{ "student payments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('studentServices').style.display='block'"  >{{ "student services" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#studentServices').modal('show')"    >{{ "student services" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('studentInstallment').style.display='block'"  >{{ "student installments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#studentInstallment').modal('show')"   >{{ "student installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"   onclick="document.getElementById('installmentSection').style.display='block'"   >{{ "installments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#installmentSection').modal('show')"  >{{ "installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId"  (click)="doc.jq('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')"  (click)="doc.jq('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
           </div>
 
         </div>
@@ -40,7 +40,10 @@
             <div class="custom-panel-title" >{{ "search" | trans }}</div>
 
             <div class="custom-panel-body w3-display-container"  >
-              <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " (keyup)="searchInputEvent()" [(ngModel)]="searchKey" >
+              <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " 
+              (keyup)="searchInputEvent()" 
+              placeholder="{{ 'search with student name code national_id' | trans }}"
+              [(ngModel)]="searchKey" >
 
               <button
               (click)="loadStudentAccountInfo(studentSearchId)"
@@ -222,7 +225,7 @@
 <app-student-installment [installments]="safeObject.installments? safeObject.installments : []" [showStudentInstallment]="showStudentInstallment" ></app-student-installment>
 
 <!-- student payments modal -->
-<app-student-payment [payments]="safeObject.payments? safeObject.payments : []" ></app-student-payment>
+<app-student-payment [payments]="safeObject.payment_details? safeObject.payment_details : []" ></app-student-payment>
 
 <!-- student services modal -->
 <app-student-service [services]="safeObject.services? safeObject.services : []"  ></app-student-service>

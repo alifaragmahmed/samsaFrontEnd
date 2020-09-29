@@ -7,6 +7,7 @@ import { Cache } from '../../../../shared/cache';
 import { LevelService } from '../../../../account/services/level.service';
 import { AppModule } from '../../../../app.module';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
+import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 
 @Component({
   selector: 'app-application-create',
@@ -33,6 +34,8 @@ export class ApplicationCreateComponent implements OnInit {
 
   public isUpdate = false;
 
+  public requiredDocumentList = new HashTable();
+
   public required_field = [
     'name',
     'qualification_id',
@@ -43,6 +46,7 @@ export class ApplicationCreateComponent implements OnInit {
     'qualification_date',
     'qualification_types_id', 
     'level_id'
+    //'case_constraint_id'
   ];
 
   constructor(private applicationService: ApplicationService, private route: ActivatedRoute) { 
@@ -68,6 +72,15 @@ export class ApplicationCreateComponent implements OnInit {
     });
 
     return valid;
+  }
+
+  validateOnRegisterationStatusDocument() {
+    this.requiredDocumentList = new HashTable(); 
+    this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS.forEach(element => {
+      if (element.registeration_status_id	 == this.application.registration_status_id) {
+        this.requiredDocumentList.put(element.required_document_id, 1);
+      }
+    });
   }
 
   sendApplication() {
@@ -148,9 +161,16 @@ export class ApplicationCreateComponent implements OnInit {
     }
   }
 
-  setFile(event, key) { 
+  setFile(event, key, required_document_id=null) { 
     this.application[key] = event.target.files[0];
     console.log(this.application[key]);
+
+    if (required_document_id) {
+      if (!this.application[key])
+        this.requiredDocumentList.put(required_document_id, 1);
+      else
+        this.requiredDocumentList.put(required_document_id, 2);
+    }
   }
 
   viewPersonalImage(event) {

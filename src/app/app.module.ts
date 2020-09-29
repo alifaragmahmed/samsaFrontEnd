@@ -28,6 +28,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button'; 
 import { DataTablesModule } from '../../node_modules/angular-datatables';
+import { SystemLabelComponent } from './core/components/system-label/system-label.component';
+import { AccountModule } from './account/account.module';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,11 @@ import { DataTablesModule } from '../../node_modules/angular-datatables';
     AppComponent,
     PageNotFoundComponent,
     UserProfileComponent,
+    SystemLabelComponent
   ],
   imports: [
     BrowserModule,
-    SharedModule,
+    SharedModule, 
     BrowserAnimationsModule,
     CoreModule,
     ToastrModule.forRoot({

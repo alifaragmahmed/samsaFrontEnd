@@ -43,7 +43,7 @@
                 -->
                 <br>
                 <br>
-                <b>{{ item.current_balance }}</b>
+                <b>{{ item.paid_value }}</b>
                 <br>
                 <b>جنيه</b>
               </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="media-body">
             <h4 class="media-heading">{{ item.name.substring(0, 15) }}..</h4>
-            <table class="table" >
+            <table class="table w3-tiny" >
               <tr>
                 <th>{{ "level" | trans }}</th>
                 <td>{{ item.level? item.level.name : '' }}</td>
@@ -72,13 +72,17 @@
                 <th>{{ "qualification" | trans }}</th>
                 <td>{{ item.qualification? item.qualification.name : '' }}</td>
               </tr>
+              <tr>
+                <th>{{ "registeration_status" | trans }}</th>
+                <td>{{ item.registeration_status? item.registeration_status.name : '' }}</td>
+              </tr>
             </table>  
             <div class="text-right" > 
               <a href="#" [routerLink]="['/student/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-edit btn btn-warning btn-sm" ></i></a>
               
               <a href="#" [routerLink]="['/student/show/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-desktop btn btn-success btn-sm" ></i></a> 
               
-              <a href="#" [routerLink]="['/account/safe/', item.id]" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "pay" | trans }} </a> 
+              <button (click)="showStudentPayments(item)" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "student payments" | trans }} </button> 
             </div>
           </div>
       </div>
@@ -129,3 +133,5 @@
   </div><!-- /.modal -->
  
  
+<!-- student payments modal -->
+<app-student-payment [payments]="selectedItem.payment_details? selectedItem.payment_details : []" ></app-student-payment>

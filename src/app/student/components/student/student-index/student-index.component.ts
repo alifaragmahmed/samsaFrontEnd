@@ -26,6 +26,8 @@ export class StudentIndexComponent implements OnInit {
 
   public pages: any;
   public isLoad = false;
+
+  public selectedItem: any= {};
  
  
   constructor(private studentService: StudentService) { 
@@ -101,6 +103,11 @@ export class StudentIndexComponent implements OnInit {
     this.setStudentContainerHeight();
     this.loadResources(); 
   } 
+
+  showStudentPayments(item: any) {
+    this.selectedItem = item;
+    this.doc.jquery('#studentPayments').modal('show');
+  }
 
 
 }

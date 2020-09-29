@@ -8,20 +8,22 @@ import { StudentCreateComponent } from './components/student/student-create/stud
 import { StudentIndexComponent } from './components/student/student-index/student-index.component';
 import { ApplicationSettingService } from '../adminision/services/application-setting.service';
 import {MatButtonModule} from '@angular/material/button';
-
+import { AccountModule } from '../account/account.module';
+ 
 
 @NgModule({
   declarations: [ 
     StudentComponent,
     StudentCreateComponent,
     StudentIndexComponent ,
-    StudentShowComponent
-],
+    StudentShowComponent 
+  ],
   imports: [
-    SharedModule,  
-    StudentRoutingModule,
+    SharedModule,   
+    StudentRoutingModule, 
+    AccountModule,
     MatButtonModule,
-    DataTablesModule
+    DataTablesModule 
   ]
 })
 export class StudentModule {
