@@ -5,29 +5,34 @@ import { ServiceIndexComponent } from './components/services/service-index/servi
 import { AccountComponent } from './account.component';
 import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component';
 import { StoreIndexComponent } from './components/store/store-index/store-index.component';
+import { OldBalanceComponent } from './components/old-balance/old-balance.component';
 
 
 const routes: Routes = [
   {
     path: 'safe',
     component: SafeIndexComponent
-  }, 
+  },
   {
     path: 'safe/:id',
     component: SafeIndexComponent
-  }, 
+  },
   {
     path: "setting",
     component: AccountComponent,
     children: [
       {
+        path: '',
+        component: OldBalanceComponent
+      },
+      {
         path: 'services',
         component: ServiceIndexComponent
-      }, 
+      },
       {
         path: 'stores',
         component: StoreIndexComponent
-      }, 
+      },
       {
         path: 'academic_year_expenses',
         component: AcademicYearIndexComponent

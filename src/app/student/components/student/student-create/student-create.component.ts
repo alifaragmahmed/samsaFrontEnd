@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { Message } from '../../../../shared/message';
-import { Helper } from '../../../../shared/helper'; 
+import { Helper } from '../../../../shared/helper';
 import { Cache } from '../../../../shared/cache';
 import { LevelService } from '../../../../account/services/level.service';
 import { AppModule } from '../../../../app.module';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 import { ApplicationSettingService } from '../../../../adminision/services/application-setting.service';
 import { StudentService } from '../../../services/student.service';
 import { DivisionService } from '../../../../account/services/division.service';
+import { HashTable } from 'angular-hashtable';
 
 @Component({
   selector: 'app-student-create',
@@ -37,6 +38,8 @@ export class StudentCreateComponent implements OnInit {
   public levels: any;
   public divisions: any;
 
+  public requiredDocumentList = new HashTable();
+
   public required_field = [
     'name',
     'qualification_id',
@@ -48,14 +51,15 @@ export class StudentCreateComponent implements OnInit {
     'qualification_types_id',
     'level_id',
     'department_id',
+    'case_constraint_id',
     'division_id'
   ];
 
-  constructor(private studentService: StudentService, private route: ActivatedRoute) { 
+  constructor(private studentService: StudentService, private route: ActivatedRoute) {
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       this.loadApplication(id);
-      this.isUpdate = true;  
+      this.isUpdate = true;
     }
   }
 
@@ -76,18 +80,27 @@ export class StudentCreateComponent implements OnInit {
     return valid;
   }
 
+  validateOnRegisterationStatusDocument() {
+    this.requiredDocumentList = new HashTable();
+    this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS.forEach(element => {
+      if (element.registeration_status_id	 == this.application.registration_status_id) {
+        this.requiredDocumentList.put(element.required_document_id, 1);
+      }
+    });
+  }
+
   sendApplication() {
     if (!this.validate()) {
-      return Message.error(Helper.trans('fill all requird data'));
       this.setCurrentError(Helper.trans('fill all requird data'));
+      return Message.error(Helper.trans('fill all requird data'));
     }
     if (this.isUpdate)
       this.performUpdateApplication();
     else
-      this.performSendApplication(); 
-  } 
+      this.performSendApplication();
+  }
 
-  performUpdateApplication() { 
+  performUpdateApplication() {
     this.isSubmitted = true;
     let data = new FormData();
     for(let key of Object.keys(this.application)) {
@@ -100,19 +113,24 @@ export class StudentCreateComponent implements OnInit {
       const data: any = res;
 
       if (data.status == 1)  {
-        Message.success(data.message); 
+        Message.success(data.message);
       }
       else {
         Message.error(data.message);
         this.setCurrentError(data.message);
-      } 
+      }
       this.isSubmitted = false;
     });
   }
 
-  performSendApplication() { 
+  performSendApplication() {
     this.isSubmitted = true;
-    this.studentService.store(this.application).subscribe((res)=>{
+    let data = new FormData();
+    for(let key of Object.keys(this.application)) {
+      if(this.application[key])
+        data.append(key, this.application[key]);
+    }
+    this.studentService.store(data).subscribe((res)=>{
       const data: any = res;
 
       if (data.status == 1)  {
@@ -129,7 +147,7 @@ export class StudentCreateComponent implements OnInit {
   }
 
   reset() {
-    this.application = {}; 
+    this.application = {};
     this.currentError = '';
   }
 
@@ -149,20 +167,28 @@ export class StudentCreateComponent implements OnInit {
     }
   }
 
-  setFile(event, key) { 
+
+  setFile(event, key, required_document_id=null) {
     this.application[key] = event.target.files[0];
     console.log(this.application[key]);
+
+    if (required_document_id) {
+      if (!this.application[key])
+        this.requiredDocumentList.put(required_document_id, 1);
+      else
+        this.requiredDocumentList.put(required_document_id, 2);
+    }
   }
 
   viewPersonalImage(event) {
-    this.setFile(event, 'personal_photo');  
-    var reader = new FileReader(); 
-    reader.readAsDataURL(this.application.personal_photo); 
-    reader.onload = (_event) => { 
-      this.application.personal_photo_url = reader.result; 
-    } 
+    this.setFile(event, 'personal_photo');
+    var reader = new FileReader();
+    reader.readAsDataURL(this.application.personal_photo);
+    reader.onload = (_event) => {
+      this.application.personal_photo_url = reader.result;
+    }
   }
- 
+
   ngOnInit() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);

@@ -1,0 +1,35 @@
+<app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+
+<div class="box box-primary material-shadow w3-white table-responsive" >
+  <div class="box-header">
+
+  </div>
+  <table  class="table table-bordered text-right">
+    <tr>
+      <td>{{ "old balance store" | trans }}</td>
+      <td>
+        <select style="width: 100px" class="form-control input-sm" [(ngModel)]="oldBalanceSetting.value" >
+          <option *ngFor="let item of stores index as i" value="{{ item.id }}" >{{ item.name }}</option>
+        </select>
+      </td>
+      <td>
+        <button mat-raised-button color="primary" [disabled]="isSubmittedOldbalance" style="margin: 5px"  >
+          <span *ngIf="!isSubmittedOldbalance" >{{ "save" | trans }}</span>
+          <span *ngIf="isSubmittedOldbalance"  class="fa fa-spin fa-spinner" ></span>
+        </button>
+      </td>
+      <!--
+      <td>{{ "division" | trans }}</td>
+      <td>
+        <select   style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()"  [(ngModel)]="division_id" >
+           <ng-container *ngFor="let item of departments">
+              <option *ngIf="level_id == item.level_id"  value="{{ item.id }}" >{{ item.name }}</option>
+           </ng-container>
+        </select>
+      </td>
+      -->
+    </tr>
+  </table>
+  <br>
+</div>
+

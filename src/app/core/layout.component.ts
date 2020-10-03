@@ -2,7 +2,7 @@ import {AfterViewChecked, Component, Inject, OnChanges, SimpleChanges, OnInit} f
 import {DOCUMENT} from "@angular/platform-browser";
 import { Auth } from '../shared/auth';
 import { Router } from '../../../node_modules/@angular/router';
-import { TranslationService } from '../shared/services/translation.service'; 
+import { TranslationService } from '../shared/services/translation.service';
 import { TermService } from '../account/services/term.service';
 import { DivisionService } from '../account/services/division.service';
 import { LevelService } from '../account/services/level.service';
@@ -15,13 +15,13 @@ import { Cache } from '../shared/cache';
 })
 export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
 
-  constructor(@Inject(DOCUMENT) 
-  private document: Document, 
+  constructor(@Inject(DOCUMENT)
+  private document: Document,
   private router: Router,
   private translationService: TranslationService,
   private levelService: LevelService,
   private termService: TermService,
-  private divisionService: DivisionService, 
+  private divisionService: DivisionService,
   private applicationSettingService: ApplicationSettingService) {
   }
 
@@ -30,12 +30,12 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
       // this.document.getElementById('start-loader').remove();
     }, 1500);
   }
- 
+
   watchUser() {
     console.log(Auth.getApiToken());
     if (!Auth.getApiToken())
-      this.router.navigate(['/login'], { 
-      }).then().catch(); 
+      this.router.navigate(['/login'], {
+      }).then().catch();
   }
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     this.watchUser();
   }
-  init() { 
+  init() {
     // load the translations words
     this.loadTranslations();
     this.loadLevels();
@@ -58,38 +58,41 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
    * load translations and update the cache
    */
   loadTranslations() {
-    this.translationService.get().subscribe((r) => { 
+    this.translationService.get().subscribe((r) => {
       Cache.remove(Translation.TRANSLATION_CACHE_KEY);
       Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
     });
   }
-  
+
   /**
    * load levels and update the cache
    */
   loadLevels() {
-    this.levelService.get().subscribe((r) => { 
+    this.levelService.get().subscribe((r) => {
+      Cache.remove(LevelService.LEVEL_PREFIX);
       Cache.set(LevelService.LEVEL_PREFIX, r);
     });
   }
-  
+
   /**
    * load divisions and update the cache
    */
   loadDivisions() {
-    this.divisionService.get().subscribe((r) => { 
+    this.divisionService.get().subscribe((r) => {
+      Cache.remove(DivisionService.DIVISION_PREFIX);
       Cache.set(DivisionService.DIVISION_PREFIX, r);
     });
   }
-  
+
   /**
    * load terms and update the cache
    */
   loadTerms() {
-    this.termService.get().subscribe((r) => { 
+    this.termService.get().subscribe((r) => {
+      Cache.remove(TermService.TERPM_PREFIX);
       Cache.set(TermService.TERPM_PREFIX, r);
     });
   }
 
-  
+
 }

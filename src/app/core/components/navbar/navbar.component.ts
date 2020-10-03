@@ -21,7 +21,7 @@ export class NavBarComponent implements OnInit {
    */
   public static OBSERVE_TIME = 2 * 60 * 1000;
 
-  public sidebarOpened = false; 
+  public sidebarOpened = false;
   public user: any = Auth.user();
   public notifications: any = [];
   public message: string;
@@ -40,14 +40,14 @@ export class NavBarComponent implements OnInit {
     this.initMessage(this.notifications);
     this.loadNotifications();
     //
-    this.observeNotifications();
+    //this.observeNotifications();
   }
 
   observeNotifications() {
     setInterval(()=> {
       this.loadNotifications();
     }, 10000);
-  } 
+  }
 
   loadNotifications() {
     this.systemSettingService.getNotifications().subscribe((res: any[]) => {
@@ -57,12 +57,12 @@ export class NavBarComponent implements OnInit {
       this.notifications.reverse();
       //
       if (res.length > 0) {
-        this.initMessage(res); 
+        this.initMessage(res);
         AppModule.doc.playSound('ios_notification');
       }
     });
   }
-  
+
   logout(){
     Auth.logout();
     this.router.navigate(['/login']).then().catch();

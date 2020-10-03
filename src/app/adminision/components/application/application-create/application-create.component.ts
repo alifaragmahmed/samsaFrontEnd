@@ -34,6 +34,10 @@ export class ApplicationCreateComponent implements OnInit {
 
   public isUpdate = false;
 
+  public isAzhar = false;
+
+  public qualificationGrade = 0;
+
   public requiredDocumentList = new HashTable();
 
   public required_field = [
@@ -44,16 +48,16 @@ export class ApplicationCreateComponent implements OnInit {
     'academic_years_id',
     'grade',
     'qualification_date',
-    'qualification_types_id', 
+    'qualification_types_id',
     'level_id'
     //'case_constraint_id'
   ];
 
-  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) { 
+  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) {
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       this.loadApplication(id);
-      this.isUpdate = true;  
+      this.isUpdate = true;
     }
   }
 
@@ -75,7 +79,7 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   validateOnRegisterationStatusDocument() {
-    this.requiredDocumentList = new HashTable(); 
+    this.requiredDocumentList = new HashTable();
     this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS.forEach(element => {
       if (element.registeration_status_id	 == this.application.registration_status_id) {
         this.requiredDocumentList.put(element.required_document_id, 1);
@@ -91,10 +95,10 @@ export class ApplicationCreateComponent implements OnInit {
     if (this.isUpdate)
       this.performUpdateApplication();
     else
-      this.performSendApplication(); 
-  } 
+      this.performSendApplication();
+  }
 
-  performUpdateApplication() { 
+  performUpdateApplication() {
     this.isSubmitted = true;
     let data = new FormData();
     for(let key of Object.keys(this.application)) {
@@ -107,17 +111,17 @@ export class ApplicationCreateComponent implements OnInit {
       const data: any = res;
 
       if (data.status == 1)  {
-        Message.success(data.message); 
+        Message.success(data.message);
       }
       else {
         Message.error(data.message);
         this.setCurrentError(data.message);
-      } 
+      }
       this.isSubmitted = false;
     });
   }
 
-  performSendApplication() { 
+  performSendApplication() {
     this.isSubmitted = true;
     let data = new FormData();
     for(let key of Object.keys(this.application)) {
@@ -141,7 +145,7 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   reset() {
-    this.application = {}; 
+    this.application = {};
     this.currentError = '';
   }
 
@@ -161,7 +165,7 @@ export class ApplicationCreateComponent implements OnInit {
     }
   }
 
-  setFile(event, key, required_document_id=null) { 
+  setFile(event, key, required_document_id=null) {
     this.application[key] = event.target.files[0];
     console.log(this.application[key]);
 
@@ -174,12 +178,12 @@ export class ApplicationCreateComponent implements OnInit {
   }
 
   viewPersonalImage(event) {
-    this.setFile(event, 'personal_photo');  
-    var reader = new FileReader(); 
-    reader.readAsDataURL(this.application.personal_photo); 
-    reader.onload = (_event) => { 
-      this.application.personal_photo_url = reader.result; 
-    } 
+    this.setFile(event, 'personal_photo');
+    var reader = new FileReader();
+    reader.readAsDataURL(this.application.personal_photo);
+    reader.onload = (_event) => {
+      this.application.personal_photo_url = reader.result;
+    }
   }
 
   //******************************************* */
@@ -197,12 +201,14 @@ export class ApplicationCreateComponent implements OnInit {
     let changes = false;
     let requiredGrade = null;
     qualificationsTypes.forEach(element => {
-      const condition: boolean = 
-      element.id == this.application.qualification_types_id && 
+      const condition: boolean =
+      element.id == this.application.qualification_types_id &&
       element.grade <= this.application.grade;
 
-      if (element.id == this.application.qualification_types_id)
+      if (element.id == this.application.qualification_types_id) {
         requiredGrade = element.grade;
+        this.qualificationGrade = requiredGrade;
+      }
 
       if (condition) {
         levelId = element.level_id;
@@ -213,11 +219,13 @@ export class ApplicationCreateComponent implements OnInit {
     if (requiredGrade) {
       this.gradeError = Helper.trans('grade must be equal or bigger than ') + ' : ' + requiredGrade;
       this.setCurrentError(this.gradeError);
+    } else {
+      this.setCurrentError("");
     }
-    
+
     if (!changes) {
       levelId = null;
-    } else { 
+    } else {
       this.gradeError = null;
       this.setCurrentError(this.gradeError);
     }
@@ -231,6 +239,36 @@ export class ApplicationCreateComponent implements OnInit {
       if (element.id  == this.application.level_id)
         this.application.level_name = element.name;
     });
+  }
+
+  getQualificationGrade(qualificationId=null) {
+    let grade = 0;
+    if (!qualificationId)
+      qualificationId = this.application.qualification_id;
+    this.applicationSettings.QUALIFICATIONS.forEach(element => {
+      if (element.id == qualificationId)
+        grade = element.grade;
+    });
+    return grade;
+  }
+
+
+  checkIfAzhar() {
+    if (this.application.qualification_id == 4)
+      this.isAzhar = true;
+    else
+      this.isAzhar = false;
+
+    if (this.application.azhar_total_grade &&
+      this.application.azhar_religious_grade_total &&
+      this.application.qualification_id == 4) {
+        this.application.azhar_remind_grade = this.application.azhar_total_grade - this.application.azhar_religious_grade_total;
+        let grade = this.getQualificationGrade(1) * this.application.azhar_remind_grade;
+        grade /= this.qualificationGrade;
+        this.application.grade = grade.toFixed(2);
+
+        this.watchLevel();
+      }
   }
 
   ngOnInit() {

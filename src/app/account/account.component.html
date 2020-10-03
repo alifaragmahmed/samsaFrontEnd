@@ -8,42 +8,50 @@
         <img class="profile-user-img img-responsive img-circle" style="width: 60%!important" src="/assets/img/account_settings.gif" alt="User profile picture">
 
         <h3 class="profile-username text-center">{{ "account_setting" | trans }}</h3>
- 
+
 
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
             <a href="#" routerLink='/account/setting/services' >
-                <b>{{ "services" | trans }}</b> 
+                <b>{{ "services" | trans }}</b>
                 <a href="#"  class="pull-left">
-                  <i class="fa fa-trophy" ></i> 
+                  <i class="fa fa-trophy" ></i>
                 </a>
             </a>
-          </li> 
+          </li>
           <li class="list-group-item">
             <a href="#" routerLink='/account/setting/stores' >
-                <b>{{ "stores" | trans }}</b> 
+                <b>{{ "stores" | trans }}</b>
                 <a href="#"  class="pull-left">
-                  <i class="fa fa-bank" ></i> 
+                  <i class="fa fa-bank" ></i>
                 </a>
             </a>
-          </li> 
+          </li>
           <li class="list-group-item">
             <a href="#" routerLink='/account/setting/academic_year_expenses' >
-                <b>{{ "academic_year_expenses" | trans }}</b> 
+                <b>{{ "academic_year_expenses" | trans }}</b>
                 <a href="#"  class="pull-left">
-                  <i class="fa fa-money" ></i> 
+                  <i class="fa fa-money" ></i>
                 </a>
             </a>
-          </li> 
-        </ul> 
+          </li>
+          <li class="list-group-item">
+            <a href="#" routerLink='/account/setting/' >
+                <b>{{ "general settings" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-cogs" ></i>
+                </a>
+            </a>
+          </li>
+        </ul>
       </div>
       <!-- /.box-body -->
     </div>
     <!-- /.box -->
- 
+
   </div>
   <!-- /.col -->
-  <div class="col-md-9"> 
+  <div class="col-md-9">
       <router-outlet></router-outlet>
   </div>
   <!-- /.col -->

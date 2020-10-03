@@ -23,6 +23,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button'; 
 import { StoreFormComponent } from './components/store/store-form/store-form.component';
+import { OldBalanceComponent } from './components/old-balance/old-balance.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { StoreFormComponent } from './components/store/store-form/store-form.com
     ServiceFormComponent,
     StoreIndexComponent,
     StoreFormComponent,
-    StoreUpdateComponent 
+    StoreUpdateComponent,
+    OldBalanceComponent 
   ],
   imports: [
     SharedModule,

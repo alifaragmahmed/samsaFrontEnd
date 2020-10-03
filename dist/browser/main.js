@@ -15,8 +15,8 @@ var map = {
 	],
 	"./account/account.module": [
 		"./src/app/account/account.module.ts",
-		"common",
-		"account-account-module"
+		"default~account-account-module~student-student-module",
+		"common"
 	],
 	"./adminision/adminision.module": [
 		"./src/app/adminision/adminision.module.ts",
@@ -49,6 +49,7 @@ var map = {
 	],
 	"./military/military.module": [
 		"./src/app/military/military.module.ts",
+		"common",
 		"military-military-module"
 	],
 	"./qualification-types/qualification-types.module": [
@@ -64,6 +65,10 @@ var map = {
 		"./src/app/settings/registeration-methods/registeration-methods.module.ts",
 		"registeration-methods-registeration-methods-module"
 	],
+	"./roles/roles.module": [
+		"./src/app/settings/roles/roles.module.ts",
+		"roles-roles-module"
+	],
 	"./settings/settings.module": [
 		"./src/app/settings/settings.module.ts",
 		"common",
@@ -71,6 +76,7 @@ var map = {
 	],
 	"./student/student.module": [
 		"./src/app/student/student.module.ts",
+		"default~account-account-module~student-student-module",
 		"common",
 		"student-student-module"
 	]
@@ -271,7 +277,11 @@ var ApplicationSettingService = /** @class */ (function () {
         this.getRequiredDocuments().subscribe(function (r) { ApplicationSettingService_1.REQUIRED_DOCUMENTS = r; });
         this.getDepartments().subscribe(function (r) { ApplicationSettingService_1.DEPARTMENTS = r; });
         this.getRegisterationStatusDocuments().subscribe(function (r) { ApplicationSettingService_1.REGSITERATIN_STATUS_DOCUMENTS = r; });
+        this.getDivisions().subscribe(function (r) { ApplicationSettingService_1.DIVISIONS = r; });
         ApplicationSettingService_1.LOADED = true;
+    };
+    ApplicationSettingService.prototype.getDivisions = function () {
+        return this.http.get('account/divisions?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRegisterationStatusDocuments = function () {
         return this.http.get('adminision/get_registeration_status_document?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
@@ -346,6 +356,7 @@ var ApplicationSettingService = /** @class */ (function () {
     ApplicationSettingService.REQUIRED_DOCUMENTS = [];
     ApplicationSettingService.DEPARTMENTS = [];
     ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = [];
+    ApplicationSettingService.DIVISIONS = [];
     ApplicationSettingService.LOADED = false;
     ApplicationSettingService = ApplicationSettingService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -721,7 +732,7 @@ var NavBarComponent = /** @class */ (function () {
         this.initMessage(this.notifications);
         this.loadNotifications();
         //
-        this.observeNotifications();
+        //this.observeNotifications();
     };
     NavBarComponent.prototype.observeNotifications = function () {
         var _this = this;
@@ -1026,6 +1037,7 @@ var LayoutComponent = /** @class */ (function () {
      */
     LayoutComponent.prototype.loadLevels = function () {
         this.levelService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX);
             _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX, r);
         });
     };
@@ -1034,6 +1046,7 @@ var LayoutComponent = /** @class */ (function () {
      */
     LayoutComponent.prototype.loadDivisions = function () {
         this.divisionService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX);
             _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX, r);
         });
     };
@@ -1042,6 +1055,7 @@ var LayoutComponent = /** @class */ (function () {
      */
     LayoutComponent.prototype.loadTerms = function () {
         this.termService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX);
             _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX, r);
         });
     };
@@ -2546,7 +2560,9 @@ var environment = {
     // apiUrl      : 'http://41.41.86.210:4000/admin/api',
     // backEndPublicUrl   : 'http://41.41.86.210:4000/',
     publicUrl: 'http://127.0.0.1:8000',
-    apiUrl: 'http://127.0.0.1:8000/api',
+    // https://samsav2.sphinxws.com/public
+    // http://127.0.0.1:8000
+    apiUrl: 'https://samsav2.sphinxws.com/public/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/'

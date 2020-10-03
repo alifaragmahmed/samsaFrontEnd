@@ -270,6 +270,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -278,19 +280,19 @@ var militaryAreaService = /** @class */ (function () {
         this.http = http;
     }
     militaryAreaService.prototype.getAll = function () {
-        return this.http.get('military-areas?api_token=123456789');
+        return this.http.get("military-areas?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     militaryAreaService.prototype.getItemById = function (id) {
-        return this.http.get("military-areas/" + id + "?api_token=123456789");
+        return this.http.get("military-areas/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     militaryAreaService.prototype.update = function (id, data) {
-        return this.http.put("military-areas/" + id + "?api_token=123456789", data);
+        return this.http.put("military-areas/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     militaryAreaService.prototype.create = function (data) {
-        return this.http.post("military-areas?api_token=123456789", data);
+        return this.http.post("military-areas?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     militaryAreaService.prototype.delete = function (id) {
-        return this.http.delete("military-areas/" + id + "?api_token=123456789");
+        return this.http.delete("military-areas/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     militaryAreaService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),

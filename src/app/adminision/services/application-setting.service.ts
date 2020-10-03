@@ -25,6 +25,7 @@ export class ApplicationSettingService {
   public static REQUIRED_DOCUMENTS: any = [];
   public static DEPARTMENTS: any = [];
   public static REGSITERATIN_STATUS_DOCUMENTS: any = [];
+  public static DIVISIONS: any = [];
 
   public static LOADED: any = false;
 
@@ -54,29 +55,34 @@ export class ApplicationSettingService {
     this.getRequiredDocuments().subscribe((r)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = r; });
     this.getDepartments().subscribe((r)=>{ ApplicationSettingService.DEPARTMENTS = r; });
     this.getRegisterationStatusDocuments().subscribe((r)=>{ ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = r; });
+    this.getDivisions().subscribe((r)=>{ ApplicationSettingService.DIVISIONS = r; });
     ApplicationSettingService.LOADED = true;
-  } 
- 
+  }
+
+  public getDivisions() {
+    return this.http.get('account/divisions?api_token=' + Auth.getApiToken());
+  }
+
   public getRegisterationStatusDocuments() {
     return this.http.get('adminision/get_registeration_status_document?api_token=' + Auth.getApiToken());
   }
- 
+
   public getDepartments() {
     return this.http.get('adminision/get_departments?api_token=' + Auth.getApiToken());
   }
- 
+
   public getRequiredDocuments() {
     return this.http.get('adminision/required_documents?api_token=' + Auth.getApiToken());
   }
- 
+
   public getCaseConstraints() {
     return this.http.get('adminision/get_case_constraints?api_token=' + Auth.getApiToken());
   }
- 
+
   public getRelativeRelations() {
     return this.http.get('adminision/get_relative_relations?api_token=' + Auth.getApiToken());
   }
- 
+
   public getNationalities() {
     return this.http.get('adminision/get_nationality?api_token=' + Auth.getApiToken());
   }
@@ -129,7 +135,7 @@ export class ApplicationSettingService {
     return this.http.get('adminision/get_parent_jobs?api_token=' + Auth.getApiToken());
   }
 
-   
- 
-  
+
+
+
 }

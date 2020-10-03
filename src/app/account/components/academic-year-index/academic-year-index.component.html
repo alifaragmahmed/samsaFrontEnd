@@ -2,8 +2,8 @@
 
 <div class="box box-primary material-shadow w3-white table-responsive" >
   <div class="box-header">
-    
-    <button *ngIf="showRemoveButton" (click)="removeServices()" class="btn btn-danger" style="margin: 5px"  > 
+
+    <button *ngIf="showRemoveButton" (click)="removeServices()" class="btn btn-danger" style="margin: 5px"  >
       <span class="fa fa-trash" ></span>
     </button>
   </div>
@@ -21,7 +21,7 @@
         <select   style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()"  [(ngModel)]="division_id" >
            <ng-container *ngFor="let item of departments">
               <option *ngIf="level_id == item.level_id"  value="{{ item.id }}" >{{ item.name }}</option>
-           </ng-container> 
+           </ng-container>
         </select>
       </td>
       -->
@@ -29,13 +29,13 @@
   </table>
   <br>
   <table  class="table table-bordered text-center">
-    <thead> 
+    <thead>
 
       <tr>
         <th></th>
         <th>#</th>
         <th>{{ "name" | trans }}</th>
-        <th>{{ "priorty" | trans }}</th> 
+        <th>{{ "priorty" | trans }}</th>
         <th>{{ "value" | trans }}</th>
         <th>{{ "term" | trans }}</th>
         <th>{{ "registeration_status" | trans }}</th>
@@ -52,34 +52,34 @@
         </td>
         <td>{{ i + 1 }}</td>
         <td>
-            <input type="text" class="form-control input-sm" [(ngModel)]="item.name"    > 
+            <input type="text" class="form-control input-sm" [(ngModel)]="item.name"    >
         </td>
         <td>
-            <input type="number" class="form-control input-sm" [(ngModel)]="item.priorty"     >  
+            <input type="number" class="form-control input-sm" [(ngModel)]="item.priorty"     >
         </td>
         <td>
-            <input type="number" class="form-control input-sm" [(ngModel)]="item.value"      >  
-        </td> 
-        <td> 
+            <input type="number" class="form-control input-sm" [(ngModel)]="item.value"      >
+        </td>
+        <td>
             <select style="width: 100px" class="form-control input-sm" [(ngModel)]="item.term_id"   >
                 <option *ngFor="let row of terms" value="{{ row.id }}" >{{ row.name }}</option>
-            </select> 
+            </select>
         </td>
-        <td> 
+        <td>
             <select style="width: 100px" class="form-control input-sm" [(ngModel)]="item.registeration_status_id"   >
-              <option value="">-- {{ "registeration_status" | trans }} --</option>  
+              <option value="">-- {{ "registeration_status" | trans }} --</option>
               <option *ngFor="let row of registerationStatus" value="{{ row.id }}" >{{ row.name }}</option>
-            </select> 
+            </select>
         </td>
         <td>
-            <select class="form-control input-sm" [(ngModel)]="item.store_id" required > 
-              <option *ngFor="let row of stores" value="{{ row.id }}" >{{ row.name}}</option> 
-            </select>  
+            <select class="form-control input-sm" [(ngModel)]="item.store_id" required >
+              <option *ngFor="let row of stores" value="{{ row.id }}" >{{ row.name}}</option>
+            </select>
         </td>
         <td>
-            <input type="number" class="form-control input-sm" [(ngModel)]="item.discount"   >  
-        </td> 
-        <td> 
+            <input type="number" class="form-control input-sm" [(ngModel)]="item.discount"   >
+        </td>
+        <td>
           <button mat-button color="warn" (click)="removeRow(item, i)" >
             <i class="fa fa-trash" ></i>
           </button>
@@ -100,16 +100,16 @@
     </tbody>
   </table>
   <br>
-  <button mat-raised-button [disabled]="!level_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  > 
-    <span class="fa fa-plus" ></span> 
-  </button> 
-  <button mat-raised-button color="primary" [disabled]="updateItem || (!level_id)" (click)="viewChanges()" style="margin: 5px"  > 
+  <button mat-raised-button [disabled]="!level_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  >
+    <span class="fa fa-plus" ></span>
+  </button>
+  <button mat-raised-button color="primary" [disabled]="updateItem || (!level_id)" (click)="viewChanges()" style="margin: 5px"  >
     <span *ngIf="!updateItem" >{{ "save" | trans }}</span>
     <span *ngIf="updateItem"  class="fa fa-spin fa-spinner" ></span>
-  </button> 
+  </button>
 </div>
 
- 
+
 <!-- remove modal -->
 <div class="w3-modal w3-block" *ngIf="showRemoveModal"  role="dialog">
     <div class="modal-dialog" role="document">
@@ -122,9 +122,8 @@
             <br>
             {{ trashList.size() }} - {{ "removed" | trans }} {{ trashList.size() + removed.length }}
         </div>
-        <div class="modal-footer"> 
+        <div class="modal-footer">
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
- 

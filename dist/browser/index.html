@@ -79,6 +79,8 @@
 
     document.__proto__.swal = {
       success: function(message){
+        if (!message)
+          return null;
         //Swal.fire('تم', message,'success');
         iziToast.success({ 
           title: message,
@@ -86,6 +88,8 @@
         });
       },
       error: function(message){
+        if (!message)
+          return null;
         //Swal.fire('هناك خطا', message,'error');
         iziToast.error({ 
           title: message,
