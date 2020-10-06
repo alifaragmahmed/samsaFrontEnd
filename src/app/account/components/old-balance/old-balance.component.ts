@@ -50,6 +50,7 @@ export class OldBalanceComponent implements OnInit {
       } else {
         Message.error(r.message);
       }
+      this.isSubmittedOldbalance = false;
     });
   }
 

@@ -45,13 +45,14 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     this.watchUser();
   }
+
   init() {
     // load the translations words
     this.loadTranslations();
     this.loadLevels();
     this.loadDivisions();
     this.loadTerms();
-   // this.applicationSettingService.loadSettings();
+    this.applicationSettingService.loadSettings();
   }
 
   /**

@@ -47,13 +47,19 @@ export class RequiredDocumentsComponent implements OnInit {
       (res: any) => {
         this.rows = res;
         console.log(res);
-        
+
         this.dtTrigger.next();
       }
     );
   }
-  getItemData(id){
-    this.id = id;
+  getItemData(item){
+    this.id = item.id;
+    this.name.setValue(item.name);
+    this.type.setValue(item.type);
+    this.notes.setValue(item.notes);
+    document.getElementById("openModal").click();
+    this.item = item;
+    /*
     this.service.getItemById(id).subscribe((res:any)=>{
       if(res.status ==1){
         this.name.setValue(res.data.name);
@@ -63,7 +69,7 @@ export class RequiredDocumentsComponent implements OnInit {
         this.item = res.data;
       }
 
-    });
+    });*/
   }
   onSubmit(){
     const itemData: IReqReuiredDocument = {
@@ -71,7 +77,7 @@ export class RequiredDocumentsComponent implements OnInit {
       notes : this.callForm.value.notes,
       type : this.callForm.value.type
     };
-    this.service.update(this.id, itemData).subscribe((res:any)=>{  
+    this.service.update(this.id, itemData).subscribe((res:any)=>{
       if(res.status == 1){
         document.getElementById("cancell").click();
         this.dtTrigger.unsubscribe();
@@ -98,7 +104,7 @@ export class RequiredDocumentsComponent implements OnInit {
       type : this.callForm.value.type
     };
 
-    this.service.create(itemData).subscribe((res:any)=>{            
+    this.service.create(itemData).subscribe((res:any)=>{
       if(res.status == 0){
         if(res.message.name)
         this.toastr.error(res.message.name, '');
@@ -119,7 +125,7 @@ export class RequiredDocumentsComponent implements OnInit {
     this.callForm.reset();
   }
   delete() {
-    this.service.delete(this.deletedId).subscribe((res) => {      
+    this.service.delete(this.deletedId).subscribe((res) => {
         if(res.status == 1){
           this.isSubmitClick = false;
           document.getElementById("cancello").click();
@@ -129,7 +135,7 @@ export class RequiredDocumentsComponent implements OnInit {
         }else{
           this.toastr.error(res.message, '');
         }
-       
+
       });
   }
   launchModal(id){

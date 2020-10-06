@@ -762,7 +762,7 @@ var AcademicYearIndexComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\">\n\n  </div>\n  <table  class=\"table table-bordered text-right\">\n    <tr>\n      <td>{{ \"old balance store\" | trans }}</td>\n      <td>\n        <select style=\"width: 100px\" class=\"form-control input-sm\" [(ngModel)]=\"oldBalanceSetting.value\" >\n          <option *ngFor=\"let item of stores index as i\" value=\"{{ item.id }}\" >{{ item.name }}</option>\n        </select>\n      </td>\n      <td>\n        <button mat-raised-button color=\"primary\" [disabled]=\"isSubmittedOldbalance\" style=\"margin: 5px\"  >\n          <span *ngIf=\"!isSubmittedOldbalance\" >{{ \"save\" | trans }}</span>\n          <span *ngIf=\"isSubmittedOldbalance\"  class=\"fa fa-spin fa-spinner\" ></span>\n        </button>\n      </td>\n      <!--\n      <td>{{ \"division\" | trans }}</td>\n      <td>\n        <select   style=\"width: 100px\" class=\"form-control input-sm\" (change)=\"loadAcademicYearExpenses()\"  [(ngModel)]=\"division_id\" >\n           <ng-container *ngFor=\"let item of departments\">\n              <option *ngIf=\"level_id == item.level_id\"  value=\"{{ item.id }}\" >{{ item.name }}</option>\n           </ng-container>\n        </select>\n      </td>\n      -->\n    </tr>\n  </table>\n  <br>\n</div>\n\n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\">\n\n  </div>\n  <table  class=\"table table-bordered text-right\">\n    <tr>\n      <td>{{ \"old balance store\" | trans }}</td>\n      <td>\n        <select style=\"width: 100px\" class=\"form-control input-sm\" [(ngModel)]=\"oldBalanceSetting.value\" >\n          <option *ngFor=\"let item of stores index as i\" value=\"{{ item.id }}\" >{{ item.name }}</option>\n        </select>\n      </td>\n      <td>\n        <button mat-raised-button color=\"primary\" [disabled]=\"isSubmittedOldbalance\" style=\"margin: 5px\" (click)=\"updateOldBalanceSetting()\"  >\n          <span *ngIf=\"!isSubmittedOldbalance\" >{{ \"save\" | trans }}</span>\n          <span *ngIf=\"isSubmittedOldbalance\"  class=\"fa fa-spin fa-spinner\" ></span>\n        </button>\n      </td>\n      <!--\n      <td>{{ \"division\" | trans }}</td>\n      <td>\n        <select   style=\"width: 100px\" class=\"form-control input-sm\" (change)=\"loadAcademicYearExpenses()\"  [(ngModel)]=\"division_id\" >\n           <ng-container *ngFor=\"let item of departments\">\n              <option *ngIf=\"level_id == item.level_id\"  value=\"{{ item.id }}\" >{{ item.name }}</option>\n           </ng-container>\n        </select>\n      </td>\n      -->\n    </tr>\n  </table>\n  <br>\n</div>\n\n"
 
 /***/ }),
 
@@ -830,6 +830,7 @@ var OldBalanceComponent = /** @class */ (function () {
         });
     };
     OldBalanceComponent.prototype.updateOldBalanceSetting = function () {
+        var _this = this;
         this.isSubmittedOldbalance = true;
         this.accountSettingService.update(this.oldBalanceSetting).subscribe(function (r) {
             if (r.status == 1) {
@@ -838,6 +839,7 @@ var OldBalanceComponent = /** @class */ (function () {
             else {
                 src_app_shared_message__WEBPACK_IMPORTED_MODULE_3__["Message"].error(r.message);
             }
+            _this.isSubmittedOldbalance = false;
         });
     };
     OldBalanceComponent.prototype.ngOnInit = function () {

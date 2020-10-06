@@ -11,26 +11,27 @@ import { Auth } from '../../shared/auth';
   export class RegisterationService {
 
     constructor(private http: HttpClient) { }
-  
+
     public shareData:any;
-  
+
     public getAll() : Observable<any> {
         return this.http.get(`registration-status?api_token=` + Auth.getApiToken());
     }
-  
-    public getItemById(id:string){
-        return this.http.get(`registration-status/${id}?api_token=` + Auth.getApiToken());
+
+    public update(data): Observable<any> {
+        return this.http.put(`registration-status/${data.id}?api_token=` + Auth.getApiToken(), data);
     }
-  
-    public update(id:string, data:IReqRegisterationStatus): Observable<any> {
-        return this.http.put(`registration-status/${id}?api_token=` + Auth.getApiToken(), data);
-    }
-  
-    public create(data:IReqRegisterationStatus){
+
+    public create(data){
         return this.http.post(`registration-status?api_token=` + Auth.getApiToken(), data);
     }
-    public delete(id: string): Observable<any>{
-        return this.http.delete(`registration-status/${id}?api_token=` + Auth.getApiToken());
-  
+
+    public delete(id){
+      return this.http.delete(`registration-status/${id}?api_token=` + Auth.getApiToken());
     }
-  }
+
+    public updateRequierdDocument(id, data){
+      return this.http.post(`registration-status/document/${id}?api_token=` + Auth.getApiToken(), data);
+    }
+
+}

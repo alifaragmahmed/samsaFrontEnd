@@ -15,9 +15,9 @@ import { DivisionsComponent } from "./divisions/divisions.component";
 import { NationalityComponent } from "./nationality/nationality.component";
 import { DepartmentsComponent } from "./departments/departments.component";
 import { RelativeRelationsComponent } from "./relative-relations/relative-relations.component";
-import { UsersComponent } from './users/users.component';
 import { RegisterationStatusComponent } from './registeration-status/registeration-status.component';
 import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
+import { MatSlideToggleModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,6 @@ import { RequiredDocumentsComponent } from './required-documents/required-docume
     NationalityComponent,
     DepartmentsComponent,
     RelativeRelationsComponent,
-    UsersComponent,
     RegisterationStatusComponent,
     RequiredDocumentsComponent
   ],
@@ -41,6 +40,7 @@ import { RequiredDocumentsComponent } from './required-documents/required-docume
     SettingsRoutingModule,
     SharedModule,
     DataTablesModule,
+    MatSlideToggleModule
   ],
   exports: [SettingsComponent],
 })

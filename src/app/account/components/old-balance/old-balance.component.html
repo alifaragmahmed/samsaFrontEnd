@@ -13,7 +13,7 @@
         </select>
       </td>
       <td>
-        <button mat-raised-button color="primary" [disabled]="isSubmittedOldbalance" style="margin: 5px"  >
+        <button mat-raised-button color="primary" [disabled]="isSubmittedOldbalance" style="margin: 5px" (click)="updateOldBalanceSetting()"  >
           <span *ngIf="!isSubmittedOldbalance" >{{ "save" | trans }}</span>
           <span *ngIf="isSubmittedOldbalance"  class="fa fa-spin fa-spinner" ></span>
         </button>

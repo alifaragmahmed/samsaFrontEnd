@@ -1,5 +1,270 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["settings-settings-module"],{
 
+/***/ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/angular-hashtable/fesm5/angular-hashtable.js ***!
+  \*******************************************************************/
+/*! exports provided: HashTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HashTable", function() { return HashTable; });
+/**
+ * @fileoverview added by tsickle
+ * Generated from: lib/angular-hashtable.class.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/*
+* This class represents the class definition.
+*/
+/**
+ * @template T, L
+ */
+var  /*
+* This class represents the class definition.
+*/
+/**
+ * @template T, L
+ */
+HashTable = /** @class */ (function () {
+    function HashTable() {
+        this.table = {};
+    }
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    HashTable.prototype.put = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        this.table['v_' + key] = value;
+        return this;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    HashTable.prototype.get = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        return this.table['v_' + key];
+    };
+    /**
+     * @return {?}
+     */
+    HashTable.prototype.getAll = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        /** @type {?} */
+        var vector = Array.from(Object.keys(this.table), (/**
+         * @param {?} k
+         * @return {?}
+         */
+        function (k) { return _this.table[k]; }));
+        return vector;
+    };
+    /**
+     * @return {?}
+     */
+    HashTable.prototype.getKeys = /**
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var keys = Array.from(Object.keys(this.table), (/**
+         * @param {?} k
+         * @return {?}
+         */
+        function (k) { return k.substring(2); }));
+        return keys;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    HashTable.prototype.has = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        if (typeof this.table['v_' + key] !== 'undefined') {
+            return true;
+        }
+        return false;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    HashTable.prototype.remove = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        delete this.table['v_' + key];
+        return this;
+    };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    HashTable.prototype.putArray = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        if (typeof this.table['a_' + key] === 'undefined') {
+            this.table['a_' + key] = [];
+        }
+        this.table['a_' + key].push(value);
+        return this;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    HashTable.prototype.getArray = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        if (typeof this.table['a_' + key] === 'undefined') {
+            this.table['a_' + key] = [];
+        }
+        return this.table['a_' + key];
+    };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    HashTable.prototype.removeArray = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        if (typeof this.table['a_' + key] !== 'undefined') {
+            this.table['a_' + key].splice(this.table['a_' + key].indexOf(value), 1);
+        }
+        return this;
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    HashTable.prototype.hasArray = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        if (typeof this.table['a_' + key] !== 'undefined') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    HashTable.prototype.hasinArray = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        if (typeof this.table['a_' + key] !== 'undefined') {
+            if (this.table['a_' + key].indexOf(value) !== -1) {
+                return true;
+            }
+            return false;
+        }
+        else {
+            return false;
+        }
+    };
+    /**
+     * @return {?}
+     */
+    HashTable.prototype.size = /**
+     * @return {?}
+     */
+    function () {
+        return Object.keys(this.table).length;
+    };
+    /***************************************************/
+    // ForEach Function
+    // forEach(callback: function(key,value) )
+    // @callback: A Callback function use to iterate the Object  
+    //
+    // Iterate all objects Hashtable
+    // A used like arguments in the callback function
+    /***************************************************/
+    /***************************************************/
+    // ForEach Function
+    // forEach(callback: function(key,value) )
+    // @callback: A Callback function use to iterate the Object  
+    //
+    // Iterate all objects Hashtable
+    // A used like arguments in the callback function
+    /**
+     * ***********************************************
+     * @param {?} callback
+     * @return {?}
+     */
+    HashTable.prototype.forEach = /***************************************************/
+    // ForEach Function
+    // forEach(callback: function(key,value) )
+    // @callback: A Callback function use to iterate the Object  
+    //
+    // Iterate all objects Hashtable
+    // A used like arguments in the callback function
+    /**
+     * ***********************************************
+     * @param {?} callback
+     * @return {?}
+     */
+    function (callback) {
+        for (var key in this.table) {
+            callback(key.substring(2), this.table[key]);
+        }
+    };
+    return HashTable;
+}());
+if (false) {}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: angular-hashtable.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+
+//# sourceMappingURL=angular-hashtable.js.map
+
+
+/***/ }),
+
 /***/ "./src/app/settings/case-constraint/case-constraint.component.html":
 /*!*************************************************************************!*\
   !*** ./src/app/settings/case-constraint/case-constraint.component.html ***!
@@ -2009,17 +2274,17 @@ var RegisterationService = /** @class */ (function () {
     RegisterationService.prototype.getAll = function () {
         return this.http.get("registration-status?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
-    RegisterationService.prototype.getItemById = function (id) {
-        return this.http.get("registration-status/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
-    };
-    RegisterationService.prototype.update = function (id, data) {
-        return this.http.put("registration-status/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    RegisterationService.prototype.update = function (data) {
+        return this.http.put("registration-status/" + data.id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     RegisterationService.prototype.create = function (data) {
         return this.http.post("registration-status?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     RegisterationService.prototype.delete = function (id) {
         return this.http.delete("registration-status/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    RegisterationService.prototype.updateRequierdDocument = function (id, data) {
+        return this.http.post("registration-status/document/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     RegisterationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2041,7 +2306,7 @@ var RegisterationService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\" (click) = \"reset()\">\r\n      اضافة حالة تقديم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة حالة تقديم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم حالة التقديم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            \r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم حالة التقديم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            \r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">ملاحظات</label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\" rows=\"10\" cols=\"50\">  \r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>الاوراق المطلوبة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>\r\n            <ul *ngFor=\"let row of row.required_documents\">\r\n              <li>{{ row.required_document.name }}</li>\r\n            </ul>\r\n          </td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            &nbsp;\r\n            <button title=\"{{'assign required documents' | trans}}\" class=\"btn btn-success\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-info\" (click)=\"getItemInfo(row.id)\">\r\n              <i class=\"fa fa-newspaper-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-info fade in\" id=\"modal-info\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                      <div class=\"text-center w3-block modal-title w3-xlarge\" >\r\n                        {{ 'select required documents' | trans }}\r\n                        <br>\r\n                        <span>{{ row.name }}</span>\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"box box-primary\">\r\n                    <div class=\"box-header with-border\">\r\n                      <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n                    </div>\r\n            \r\n                    <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n                      autocomplete=\"off\">\r\n                      <div class=\"box-body\">\r\n                        \r\n                      </div>\r\n                      <div class=\"box-footer\">\r\n                        <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n                        &nbsp;\r\n                        <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n                      </div>\r\n                    </form>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>الاوراق المطلوبة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\" (click)=\"create()\">\r\n      اضافة حالة تقديم\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"requiredDocumentModal\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">{{ \"assign required document\" }}</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n          <div class=\"box-body\">\r\n             <ul class=\"w3-ul\">\r\n              <li *ngFor=\"let item of requiredDocuments\" >\r\n                <div class=\"media\">\r\n                  <div class=\"media-left\">\r\n                    <mat-slide-toggle\r\n                      [checked]=\"requiredDocumentId.has(item.id)\"\r\n                      (change)=\"toggleRequiredDocument(item.id)\" ></mat-slide-toggle>\r\n                  </div>\r\n                  <div class=\"media-body\">\r\n                    <h4 class=\"media-heading\">{{ item.name }}</h4>\r\n                    <p>\r\n                      {{ item.notes }}\r\n                    </p>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n             </ul>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"requiredDocumentSubmitted\" (click)=\"updateRequiredDocument()\" type=\"submit\" class=\"btn btn-primary\">\r\n              <i *ngIf=\"!requiredDocumentSubmitted\" >{{ \"add\" | trans }}</i>\r\n              <i *ngIf=\"requiredDocumentSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n            </button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">{{ \"cancel\" | trans }}</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal fade\" id=\"addModal\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة حالة تقديم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }} *</label>\r\n              <input  type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" [(ngModel)]=\"addItem.name\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea  type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" [(ngModel)]=\"addItem.notes\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"storeSubmitted\" (click)=\"store()\" class=\"btn btn-primary\">\r\n              <i *ngIf=\"!storeSubmitted\" >{{ \"add\" | trans }}</i>\r\n              <i *ngIf=\"storeSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n            </button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">{{ \"cancel\" | trans }}</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"editModal\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل حالة تقديم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }} *</label>\r\n              <input  type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" [(ngModel)]=\"editItem.name\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea  type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\" [(ngModel)]=\"editItem.notes\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"updateSubmitted\" (click)=\"update()\" type=\"submit\" class=\"btn btn-primary\">\r\n              <i *ngIf=\"!updateSubmitted\" >{{ \"add\" | trans }}</i>\r\n              <i *ngIf=\"updateSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n            </button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">{{ \"cancel\" | trans }}</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"\">\r\n  <!--\r\n  <input type=\"text\" class=\"w3-input w3-block\" #input (keyup)=\"search(input.value, table)\" placeholder=\"{{ 'search' | trans }}\" >\r\n  -->\r\n  <table  class=\"table table-bordered w3-card w3-padding w3-white\" #table >\r\n    <thead>\r\n      <tr>\r\n        <th>#</th>\r\n        <th>الاسم</th>\r\n        <th>الاوراق المطلوبة</th>\r\n        <th>ملاحظات</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let row of rows index as i\">\r\n        <td>{{ i + 1 }}</td>\r\n        <td>{{ row.name }}</td>\r\n        <td>\r\n          <ul>\r\n            <li *ngFor=\"let row of row.required_document_names\">{{ row }}</li>\r\n          </ul>\r\n        </td>\r\n        <td>{{ row.notes }}</td>\r\n        <td>\r\n          <i class=\"fa fa-edit btn w3-text-orange\" (click)=\"edit(row)\"  ></i>\r\n\r\n          <i class=\"fa fa-newspaper-o btn w3-text-green\" title=\"{{'assign required documents' | trans}}\" (click)=\"displayRequiredDocument(row)\" ></i>\r\n\r\n          <i class=\"fa fa-trash btn w2-text-red\" *ngIf=\"row.can_delete\"  (click)=\"destroy(row.id)\"></i>\r\n\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2069,10 +2334,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _Registeration_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Registeration.service */ "./src/app/settings/registeration-status/Registeration.service.ts");
-/* harmony import */ var _required_documents_required_document_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../required-documents/required-document.service */ "./src/app/settings/required-documents/required-document.service.ts");
+/* harmony import */ var _Registeration_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Registeration.service */ "./src/app/settings/registeration-status/Registeration.service.ts");
+/* harmony import */ var src_app_app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_adminision_services_required_document_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/adminision/services/required-document.service */ "./src/app/adminision/services/required-document.service.ts");
+/* harmony import */ var angular_hashtable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
+
+
 
 
 
@@ -2085,141 +2354,168 @@ var RegisterationStatusComponent = /** @class */ (function () {
         this.toastr = toastr;
         this.service = service;
         this.requiredDocumentService = requiredDocumentService;
-        this.errorMessage = "";
-        this.isSubmitClick = false;
-        this.dtOptions = {};
-        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
+        this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"].doc;
+        this.addItem = {};
+        this.editItem = {};
+        this.requiredDocumentItem = {};
+        this.storeSubmitted = false;
+        this.updateSubmitted = false;
+        this.requiredDocumentSubmitted = false;
         this.rows = [];
-        this.data = { name: "", notes: "" };
-        this.levels = [];
-        this.departments = [];
-        this.item = "";
-        this.id = "";
-        this.deletedId = "";
         this.requiredDocuments = [];
+        this.requiredDocumentId = new angular_hashtable__WEBPACK_IMPORTED_MODULE_8__["HashTable"]();
     }
     RegisterationStatusComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(50),
-            ]),
-            notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, []),
-        });
-        this.requiredDocumentService.getAll().subscribe(function (res) {
-            _this.requiredDocuments = res;
-            console.log(_this.requiredDocuments);
-        });
-        this.callHttp();
+        this.get();
+        this.loadRequiredDocument();
     };
-    RegisterationStatusComponent.prototype.callHttp = function () {
+    /**
+     * show add modal
+     * @param item {}
+     */
+    RegisterationStatusComponent.prototype.create = function () {
+        this.doc.jquery('#addModal').modal('show');
+    };
+    /**
+     * show edit modal
+     * @param item {}
+     */
+    RegisterationStatusComponent.prototype.edit = function (item) {
+        this.editItem = item;
+        this.doc.jquery('#editModal').modal('show');
+    };
+    /**
+     * get all resources from api
+     *
+     */
+    RegisterationStatusComponent.prototype.get = function () {
         var _this = this;
         this.service.getAll().subscribe(function (res) {
-            _this.rows = res.data;
-            console.log(res);
-            _this.dtTrigger.next();
+            _this.rows = res;
         });
     };
-    RegisterationStatusComponent.prototype.onSubmit = function () {
+    /**
+     * validate on name
+     */
+    RegisterationStatusComponent.prototype.validate = function (data) {
+        return (!data.name) ? false : true;
+    };
+    /**
+     * add new resource
+     *
+     */
+    RegisterationStatusComponent.prototype.store = function () {
         var _this = this;
-        var itemData = {
-            name: this.callForm.value.name,
-            notes: this.callForm.value.notes,
-        };
-        this.service.update(this.id, itemData).subscribe(function (res) {
-            if (res.status == 1) {
-                document.getElementById("cancell").click();
-                _this.callHttp();
-                _this.isSubmitClick = false;
-                _this.item = "";
-                _this.toastr.success(res.message, "");
-                _this.dtTrigger.unsubscribe();
+        if (!this.validate(this.addItem))
+            return src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__["Helper"].trans('fill all data'));
+        this.storeSubmitted = true;
+        this.service.create(this.addItem).subscribe(function (r) {
+            if (r.status == 1) {
+                _this.get();
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].success(r.message);
+                _this.reset();
             }
-            else {
-                _this.toastr.error(res.message, "");
-            }
+            else
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(r.message);
+            _this.storeSubmitted = false;
         });
     };
-    RegisterationStatusComponent.prototype.create = function () {
+    /**
+     * update exiting resource
+     */
+    RegisterationStatusComponent.prototype.update = function () {
         var _this = this;
-        this.errorMessage = "";
-        if (this.callForm.invalid) {
-            this.errorMessage = "من فضلك ادخل بيانات صحيحة";
-            return;
-        }
-        this.isSubmitClick = true;
-        this.data.notes = this.callForm.value.notes;
-        this.data.name = this.callForm.value.name;
-        this.service.create(this.data).subscribe(function (res) {
-            console.log(res);
-            if (res.status == 0) {
-                _this.toastr.error(res.message.name, "");
-                _this.isSubmitClick = false;
+        if (!this.validate(this.editItem))
+            return src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__["Helper"].trans('fill all data'));
+        this.updateSubmitted = true;
+        this.service.update(this.editItem).subscribe(function (r) {
+            if (r.status == 1) {
+                _this.get();
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].success(r.message);
             }
-            else {
-                _this.errorMessage = "";
-                _this.isSubmitClick = false;
-                _this.toastr.success(res.message, "");
-                _this.dtTrigger.unsubscribe();
-                document.getElementById("cancel").click();
-                _this.callHttp();
-            }
+            else
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(r.message);
+            _this.updateSubmitted = false;
         });
     };
+    /**
+     * remove a resource
+     *
+     */
+    RegisterationStatusComponent.prototype.destroy = function (id) {
+        var _this = this;
+        this.doc.swal.confirm(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__["Helper"].trans('are you sure'), function () {
+            _this.service.delete(id).subscribe(function (r) {
+                if (r.status == 1) {
+                    _this.get();
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].success(r.message);
+                }
+                else
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(r.message);
+            });
+        });
+    };
+    /**
+     * clear all data of create
+     *
+     */
     RegisterationStatusComponent.prototype.reset = function () {
-        this.callForm.reset();
+        this.addItem = {};
     };
-    RegisterationStatusComponent.prototype.delete = function () {
+    RegisterationStatusComponent.prototype.search = function (value, table) {
+        this.doc.search(value, table);
+    };
+    /**
+     * display required document of resource
+     *
+     */
+    RegisterationStatusComponent.prototype.displayRequiredDocument = function (item) {
         var _this = this;
-        this.service.delete(this.deletedId).subscribe(function (res) {
-            if (res.status == 1) {
-                _this.isSubmitClick = false;
-                document.getElementById("cancello").click();
-                _this.toastr.success(res.message, "");
-                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
-                _this.rows.splice(index, 1);
-            }
-            else {
-                _this.toastr.error(res.message, "");
-            }
+        this.requiredDocumentItem = item;
+        this.requiredDocumentId = new angular_hashtable__WEBPACK_IMPORTED_MODULE_8__["HashTable"]();
+        item.required_documents.forEach(function (element) {
+            _this.requiredDocumentId.put(element.id, element.id);
         });
+        //
+        this.doc.jquery('#requiredDocumentModal').modal('show');
     };
-    RegisterationStatusComponent.prototype.getItemData = function (id) {
+    /**
+     * load all required document data
+     */
+    RegisterationStatusComponent.prototype.loadRequiredDocument = function () {
         var _this = this;
-        this.id = id;
-        this.service.getItemById(id).subscribe(function (res) {
-            if (res.status == 1) {
-                _this.name.setValue(res.data.name);
-                _this.notes.setValue(res.data.notes);
-                document.getElementById("openModal").click();
-                _this.item = res.data;
+        this.requiredDocumentService.get().subscribe(function (res) {
+            _this.requiredDocuments = res;
+        });
+    };
+    /**
+     * add or remove required document id
+     */
+    RegisterationStatusComponent.prototype.toggleRequiredDocument = function (id) {
+        if (this.requiredDocumentId.has(id))
+            this.requiredDocumentId.remove(id);
+        else
+            this.requiredDocumentId.put(id, id);
+    };
+    /**
+     * update required document of item
+     */
+    RegisterationStatusComponent.prototype.updateRequiredDocument = function () {
+        var _this = this;
+        this.requiredDocumentSubmitted = true;
+        var data = {
+            "required_documents": this.requiredDocumentId.getKeys()
+        };
+        this.service.updateRequierdDocument(this.requiredDocumentItem.id, data).subscribe(function (r) {
+            if (r.status == 1) {
+                _this.get();
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].success(r.message);
             }
+            else
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(r.message);
+            _this.requiredDocumentSubmitted = false;
         });
     };
-    RegisterationStatusComponent.prototype.launchModal = function (id) {
-        this.deletedId = id;
-    };
-    RegisterationStatusComponent.prototype.getItemInfo = function (id) {
-        this.service.getItemById(id).subscribe(function (res) {
-            console.log(res);
-        });
-    };
-    Object.defineProperty(RegisterationStatusComponent.prototype, "name", {
-        get: function () {
-            return this.callForm.get("name");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(RegisterationStatusComponent.prototype, "notes", {
-        get: function () {
-            return this.callForm.get("notes");
-        },
-        enumerable: true,
-        configurable: true
-    });
     RegisterationStatusComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "app-registeration-status",
@@ -2227,8 +2523,8 @@ var RegisterationStatusComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./registeration-status.component.scss */ "./src/app/settings/registeration-status/registeration-status.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
-            _Registeration_service__WEBPACK_IMPORTED_MODULE_5__["RegisterationService"],
-            _required_documents_required_document_service__WEBPACK_IMPORTED_MODULE_6__["RequiredDocumentsService"]])
+            _Registeration_service__WEBPACK_IMPORTED_MODULE_3__["RegisterationService"],
+            src_app_adminision_services_required_document_service__WEBPACK_IMPORTED_MODULE_7__["RequiredDocumentService"]])
     ], RegisterationStatusComponent);
     return RegisterationStatusComponent;
 }());
@@ -2537,7 +2833,7 @@ var RequiredDocumentsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\" (click) = \"reset()\">\r\n      اضافة اوراق تقديم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافةاوراق تقديم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم الورقة المطلوبة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <!-- <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">نوع النسخة<span style=\"color: red\">*</span></label>\r\n              <li class=\"d-inline-block mr-2\">\r\n                    <fieldset>\r\n                        <div class=\"vs-radio-con\">\r\n                            <input type=\"radio\" formControlName=\"type\" checked=\"\" value=\"original\">\r\n                            <span class=\"vs-radio\">\r\n                                <span class=\"vs-radio--border\"></span>\r\n                                <span class=\"vs-radio--circle\"></span>\r\n                            </span>\r\n                            <span class=\"\">{{ 'original' | trans }}</span>\r\n                        </div>\r\n                    </fieldset>\r\n                </li>\r\n                <li class=\"d-inline-block mr-2\">\r\n                    <fieldset>\r\n                        <div class=\"vs-radio-con\"  >\r\n                            <input type=\"radio\" namformControlNamee=\"type\" value=\"copy\">\r\n                            <span class=\"vs-radio\">\r\n                                <span class=\"vs-radio--border\"></span>\r\n                                <span class=\"vs-radio--circle\"></span>\r\n                            </span>\r\n                            <span class=\"\">{{ 'copy' | trans }}</span>\r\n                        </div>\r\n                    </fieldset>\r\n                </li>\r\n                <li class=\"d-inline-block mr-2\">\r\n                    <fieldset>\r\n                        <div class=\"vs-radio-con\" >\r\n                            <input type=\"radio\" formControlName=\"type\" value=\"both\">\r\n                            <span class=\"vs-radio\">\r\n                                <span class=\"vs-radio--border\"></span>\r\n                                <span class=\"vs-radio--circle\"></span>\r\n                            </span>\r\n                            <span class=\"\">{{ 'both' | trans }}</span>\r\n                        </div>\r\n                    </fieldset>\r\n                </li>\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم اللغة </p>\r\n                </div>\r\n              </div>\r\n            </div> -->\r\n            <div class=\"form-group\">\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios1\" value=\"original\" checked=\"\">\r\n                  {{ 'original' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios2\" value=\"copy\">\r\n                  {{ 'copy' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\" id=\"optionsRadios3\" value=\"both\">\r\n                  {{ 'both' | trans }}\r\n                </label>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">ملاحظات</label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\" rows=\"10\" cols=\"50\">  \r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم الورقة المطلوبة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios1\" value=\"original\" checked=\"\">\r\n                  {{ 'original' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios2\" value=\"copy\">\r\n                  {{ 'copy' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\" id=\"optionsRadios3\" value=\"both\">\r\n                  {{ 'both' | trans }}\r\n                </label>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>نوع النسخة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.type | trans }}</td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\" (click) = \"reset()\">\r\n      اضافة اوراق تقديم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافةاوراق تقديم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم الورقة المطلوبة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n\r\n            <div class=\"form-group\">\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios1\" value=\"original\" checked=\"\">\r\n                  {{ 'original' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios2\" value=\"copy\">\r\n                  {{ 'copy' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\" id=\"optionsRadios3\" value=\"both\">\r\n                  {{ 'both' | trans }}\r\n                </label>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">ملاحظات</label>\r\n                <textarea class=\"form-control\" formControlName=\"notes\" rows=\"10\" cols=\"50\">\r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم الورقة المطلوبة</p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios1\" value=\"original\" checked=\"\">\r\n                  {{ 'original' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\"  id=\"optionsRadios2\" value=\"copy\">\r\n                  {{ 'copy' | trans }}\r\n                </label>\r\n              </div>\r\n              <div class=\"radio\">\r\n                <label>\r\n                  <input type=\"radio\" formControlName=\"type\" id=\"optionsRadios3\" value=\"both\">\r\n                  {{ 'both' | trans }}\r\n                </label>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>الاسم</th>\r\n          <th>نوع النسخة</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.type | trans }}</td>\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>#</th>\r\n          <th>الاسم</th>\r\n          <th>ملاحظات</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2612,18 +2908,24 @@ var RequiredDocumentsComponent = /** @class */ (function () {
             _this.dtTrigger.next();
         });
     };
-    RequiredDocumentsComponent.prototype.getItemData = function (id) {
-        var _this = this;
-        this.id = id;
-        this.service.getItemById(id).subscribe(function (res) {
-            if (res.status == 1) {
-                _this.name.setValue(res.data.name);
-                _this.type.setValue(res.data.type);
-                _this.notes.setValue(res.data.notes);
-                document.getElementById("openModal").click();
-                _this.item = res.data;
-            }
-        });
+    RequiredDocumentsComponent.prototype.getItemData = function (item) {
+        this.id = item.id;
+        this.name.setValue(item.name);
+        this.type.setValue(item.type);
+        this.notes.setValue(item.notes);
+        document.getElementById("openModal").click();
+        this.item = item;
+        /*
+        this.service.getItemById(id).subscribe((res:any)=>{
+          if(res.status ==1){
+            this.name.setValue(res.data.name);
+            this.type.setValue(res.data.type);
+            this.notes.setValue(res.data.notes);
+            document.getElementById("openModal").click();
+            this.item = res.data;
+          }
+    
+        });*/
     };
     RequiredDocumentsComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -2757,10 +3059,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./nationality/nationality.component */ "./src/app/settings/nationality/nationality.component.ts");
 /* harmony import */ var _departments_departments_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./departments/departments.component */ "./src/app/settings/departments/departments.component.ts");
 /* harmony import */ var _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./relative-relations/relative-relations.component */ "./src/app/settings/relative-relations/relative-relations.component.ts");
-/* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./users/users.component */ "./src/app/settings/users/users.component.ts");
-/* harmony import */ var _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./registeration-status/registeration-status.component */ "./src/app/settings/registeration-status/registeration-status.component.ts");
-/* harmony import */ var _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./required-documents/required-documents.component */ "./src/app/settings/required-documents/required-documents.component.ts");
-
+/* harmony import */ var _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./registeration-status/registeration-status.component */ "./src/app/settings/registeration-status/registeration-status.component.ts");
+/* harmony import */ var _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./required-documents/required-documents.component */ "./src/app/settings/required-documents/required-documents.component.ts");
 
 
 
@@ -2817,7 +3117,7 @@ var routes = [
             },
             {
                 path: "registration-status",
-                component: _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_15__["RegisterationStatusComponent"]
+                component: _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_14__["RegisterationStatusComponent"]
             },
             {
                 path: "translations",
@@ -2860,12 +3160,8 @@ var routes = [
                 component: _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_13__["RelativeRelationsComponent"]
             },
             {
-                path: 'users',
-                component: _users_users_component__WEBPACK_IMPORTED_MODULE_14__["UsersComponent"]
-            },
-            {
                 path: 'required-documents',
-                component: _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_16__["RequiredDocumentsComponent"]
+                component: _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_15__["RequiredDocumentsComponent"]
             }
         ]
     }
@@ -2969,9 +3265,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./nationality/nationality.component */ "./src/app/settings/nationality/nationality.component.ts");
 /* harmony import */ var _departments_departments_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./departments/departments.component */ "./src/app/settings/departments/departments.component.ts");
 /* harmony import */ var _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./relative-relations/relative-relations.component */ "./src/app/settings/relative-relations/relative-relations.component.ts");
-/* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./users/users.component */ "./src/app/settings/users/users.component.ts");
-/* harmony import */ var _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./registeration-status/registeration-status.component */ "./src/app/settings/registeration-status/registeration-status.component.ts");
-/* harmony import */ var _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./required-documents/required-documents.component */ "./src/app/settings/required-documents/required-documents.component.ts");
+/* harmony import */ var _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./registeration-status/registeration-status.component */ "./src/app/settings/registeration-status/registeration-status.component.ts");
+/* harmony import */ var _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./required-documents/required-documents.component */ "./src/app/settings/required-documents/required-documents.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 
 
 
@@ -3009,15 +3305,15 @@ var SettingsModule = /** @class */ (function () {
                 _nationality_nationality_component__WEBPACK_IMPORTED_MODULE_14__["NationalityComponent"],
                 _departments_departments_component__WEBPACK_IMPORTED_MODULE_15__["DepartmentsComponent"],
                 _relative_relations_relative_relations_component__WEBPACK_IMPORTED_MODULE_16__["RelativeRelationsComponent"],
-                _users_users_component__WEBPACK_IMPORTED_MODULE_17__["UsersComponent"],
-                _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_18__["RegisterationStatusComponent"],
-                _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_19__["RequiredDocumentsComponent"]
+                _registeration_status_registeration_status_component__WEBPACK_IMPORTED_MODULE_17__["RegisterationStatusComponent"],
+                _required_documents_required_documents_component__WEBPACK_IMPORTED_MODULE_18__["RequiredDocumentsComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _settings_routing_module__WEBPACK_IMPORTED_MODULE_4__["SettingsRoutingModule"],
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_7__["SharedModule"],
                 angular_datatables__WEBPACK_IMPORTED_MODULE_3__["DataTablesModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_19__["MatSlideToggleModule"]
             ],
             exports: [_settings_component__WEBPACK_IMPORTED_MODULE_5__["SettingsComponent"]],
         })
@@ -3144,332 +3440,6 @@ var TranslationComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_shared_services_translation_service__WEBPACK_IMPORTED_MODULE_4__["TranslationService"]])
     ], TranslationComponent);
     return TranslationComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/settings/users/users.component.html":
-/*!*****************************************************!*\
-  !*** ./src/app/settings/users/users.component.html ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"box box-default\">\r\n  <div class=\"box-body\">\r\n    <button type=\"button\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default\">\r\n      اضافة مستخدم\r\n    </button>\r\n    <button style=\"display: none;\" type=\"button\" id=\"openModal\" class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#modal-default-edit\">\r\n    </button>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default-edit\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">تعديل البيانات</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"onSubmit()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'roles' | trans }}<span style=\"color: red\">*</span></label>\r\n              <select class=\"form-control\" formControlName=\"role_id\">\r\n                <option value=\"{{row.id}}\" *ngFor='let row of roles'>{{row.name}}</option>\r\n              </select>\r\n              <div *ngIf=\"(role_id.touched || role_id.dirty) && role_id.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"role_id.errors?.required\">\r\n                  <p>من فضلك اختر وظيفة المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'password' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'password' | trans }}\">\r\n                <div *ngIf=\"(password.touched || errorMessage) && password.invalid\" class=\"custom-error alert alert-danger\">\r\n                  <span *ngIf=\"password.errors.required\">من فضلك ادخل كلمة المرور</span>\r\n                  <span *ngIf=\"password.errors.minlength\">كلمة المرور يجب ان لا تقل عن 8 احرف</span>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            \r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">تعديل</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancell\" class=\"btn btn-danger\" data-dismiss=\"modal\">الغاء</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<div class=\"modal fade\" id=\"modal-default\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">اضافة مستخدم</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n        <div class=\"box-header with-border\">\r\n          <div [hidden]=\"!errorMessage\" class=\"alert alert-danger\">{{errorMessage}}</div>\r\n        </div>\r\n\r\n        <form role=\"form\" [hidden] class=\"forms-sample create\" [formGroup]=\"callForm\" (ngSubmit)=\"create()\"\r\n          autocomplete=\"off\">\r\n          <div class=\"box-body\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'name' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"name\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'name' | trans }}\">\r\n              <div *ngIf=\"(name.touched || name.dirty) && name.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"name.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'username' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"username\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'username' | trans }}\">\r\n              <div *ngIf=\"(username.touched || username.dirty) && username.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"username.errors?.required\">\r\n                  <p>من فضلك ادخل اسم المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'phone' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"phone\" type=\"number\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'phone' | trans }}\">\r\n              <div *ngIf=\"(phone.touched || phone.dirty) && phone.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"phone.errors?.required\">\r\n                  <p>من فضلك ادخل تليفون المستخدم </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'email' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"email\" type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'email' | trans }}\">\r\n              <div *ngIf=\"(email.touched || email.dirty) && email.invalid\">\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.required\">\r\n                  <p>من فضلك ادخل البريد الاليكترونى  </p>\r\n                </div>\r\n                <div class=\"alert alert-danger\" *ngIf=\"email.errors?.email\">\r\n                  <p>من فضلك ادخل  بريد اليكترونى صحيح </p>\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'password' | trans }}<span style=\"color: red\">*</span></label>\r\n              <input formControlName=\"password\" type=\"password\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'password' | trans }}\">\r\n                <div *ngIf=\"(password.touched || errorMessage) && password.invalid\" class=\"custom-error alert alert-danger\">\r\n                  <span *ngIf=\"password.errors.required\">من فضلك ادخل كلمة المرور</span>\r\n                  <span *ngIf=\"password.errors.minlength\">كلمة المرور يجب ان لا تقل عن 8 احرف</span>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"exampleInputEmail1\">{{ 'notes' | trans }}</label>\r\n              <textarea formControlName=\"notes\" type=\"text\" class=\"form-control\" id=\"exampleInputEmail1\"\r\n                placeholder=\"{{ 'notes' | trans }}\">\r\n                </textarea>\r\n\r\n            </div>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"callForm.invalid || isSubmitClick\" type=\"submit\" class=\"btn btn-primary\">حفظ</button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">cancel</button>\r\n          </div>\r\n        </form>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<div class=\"box\">\r\n  <div class=\"box-header\">\r\n  </div>\r\n  <div class=\"box-body\">\r\n    <table datatable [dtOptions]=\"dtOptions\" [dtTrigger]=\"dtTrigger\" class=\"table table-bordered table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let row of rows index as i\">\r\n          <td>{{ i + 1 }}</td>\r\n          <td>\r\n            <div class=\"user-panel\">\r\n              <div class=\"image\">\r\n                <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"img-circle\" alt=\"User Image\">\r\n              </div>\r\n            </div>\r\n            <!-- <img src=\"{{publicUrl +'/'+ row.image}}\" class=\"user-image\"> -->\r\n          </td>\r\n          <td>{{ row.name }}</td>\r\n          <td>{{ row.username }}</td>\r\n          <td>{{ row.role.name }}</td>\r\n          <td>{{ row.phone }}</td>\r\n          <td>{{ row.email }}</td>\r\n\r\n          <td>{{ row.notes }}</td>\r\n          <td>\r\n            <button class=\"btn btn-info\" type=\"button\" (click)=\"getItemData(row.id)\">\r\n              <i class=\"fa fa-edit\"></i>\r\n            </button>\r\n            &nbsp;\r\n            <button class=\"btn btn-danger\" type=\"button\" data-toggle=\"modal\" data-target=\"#modal-danger\" (click)=\"launchModal(row.id)\">\r\n              <i class=\"fa fa-trash-o\"></i>\r\n            </button>\r\n            <div class=\"modal modal-danger fade\" id=\"modal-danger\">\r\n              <div class=\"modal-dialog\">\r\n                <div class=\"modal-content\">\r\n                  <div class=\"modal-header\">\r\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                      <span aria-hidden=\"true\">&times;</span></button>\r\n                    <h4 class=\"modal-title\">هل انت متأكد من حذف هذا العنصر</h4>\r\n                  </div>\r\n                  <div class=\"modal-body\">\r\n                    <p>عند حذف هذا العنصر لايمكن استرجاعه مرة اخرى&hellip;</p>\r\n                  </div>\r\n                  <div class=\"modal-footer\">\r\n                    <button type=\"button\" class=\"btn btn-outline\" (click)=\"delete()\">حذف</button>\r\n                    &nbsp;\r\n                    <button type=\"button\" id=\"cancello\" class=\"btn btn-outline pull-left\"\r\n                      data-dismiss=\"modal\">الغاء</button>\r\n\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n      <tfoot>\r\n        <tr>\r\n          <th>ID</th>\r\n          <th>{{'image' | trans}}</th>\r\n          <th>{{ 'name' | trans}}</th>\r\n          <th>{{'username' | trans}}</th>\r\n          <th>{{'roles' | trans}}</th>\r\n          <th>{{'phone' | trans}}</th>\r\n          <th>{{'email' | trans}}</th>\r\n          <th>{{ 'notes' | trans}}</th>\r\n          <th>الاجراءات</th>\r\n        </tr>\r\n      </tfoot>\r\n    </table>\r\n  </div>\r\n</div>\r\n"
-
-/***/ }),
-
-/***/ "./src/app/settings/users/users.component.scss":
-/*!*****************************************************!*\
-  !*** ./src/app/settings/users/users.component.scss ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NldHRpbmdzL3VzZXJzL3VzZXJzLmNvbXBvbmVudC5zY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/settings/users/users.component.ts":
-/*!***************************************************!*\
-  !*** ./src/app/settings/users/users.component.ts ***!
-  \***************************************************/
-/*! exports provided: UsersComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersComponent", function() { return UsersComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./users.service */ "./src/app/settings/users/users.service.ts");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
-
-
-
-
-
-
-
-var UsersComponent = /** @class */ (function () {
-    function UsersComponent(toastr, service) {
-        this.toastr = toastr;
-        this.service = service;
-        this.publicUrl = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].publicUrl;
-        this.errorMessage = "";
-        this.isSubmitClick = false;
-        this.dtOptions = {};
-        this.dtTrigger = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
-        this.rows = [];
-        // public data: IReqUsers = { name: "", notes: "" };
-        this.roles = [];
-        this.item = "";
-        this.id = "";
-        this.deletedId = "";
-        this.callForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormGroup"]({
-            name: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(3),
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(50),
-            ]),
-            role_id: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]),
-            phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]),
-            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(8)]),
-            image: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, []),
-            notes: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"](null, []),
-        });
-    }
-    UsersComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.dtOptions = {
-            pagingType: "full_numbers",
-            pageLength: 10,
-        };
-        this.service.getAllRoles().subscribe(function (res) {
-            _this.roles = res.data;
-        });
-        this.callHttp();
-    };
-    UsersComponent.prototype.callHttp = function () {
-        var _this = this;
-        this.service.getAll().subscribe(function (res) {
-            console.log(res.data);
-            _this.rows = res.data;
-            _this.dtTrigger.next();
-        });
-    };
-    UsersComponent.prototype.onSubmit = function () {
-        var _this = this;
-        var itemData = {
-            name: this.callForm.value.name,
-            username: this.callForm.value.username,
-            image: this.callForm.value.image,
-            password: this.callForm.value.password,
-            phone: this.callForm.value.phone,
-            email: this.callForm.value.email,
-            notes: this.callForm.value.notes,
-            role_id: this.callForm.value.role_id,
-        };
-        this.service.update(this.id, itemData).subscribe(function (res) {
-            if (res.status == 1) {
-                document.getElementById("cancell").click();
-                _this.callHttp();
-                _this.isSubmitClick = false;
-                _this.item = "";
-                _this.toastr.success(res.message, "");
-                _this.dtTrigger.unsubscribe();
-            }
-            else {
-                _this.toastr.error(res.message, "");
-            }
-        });
-    };
-    UsersComponent.prototype.create = function () {
-        var _this = this;
-        this.errorMessage = "";
-        if (this.callForm.invalid) {
-            this.errorMessage = "من فضلك ادخل بيانات صحيحة";
-            return;
-        }
-        this.isSubmitClick = true;
-        var itemData = {
-            name: this.callForm.value.name,
-            username: this.callForm.value.username,
-            image: this.callForm.value.image,
-            password: this.callForm.value.password,
-            phone: this.callForm.value.phone,
-            email: this.callForm.value.email,
-            notes: this.callForm.value.notes,
-            role_id: this.callForm.value.role_id,
-        };
-        console.log(itemData);
-        this.service.create(itemData).subscribe(function (res) {
-            console.log(res);
-            if (res.status == 0) {
-                _this.toastr.error(res.message, "");
-                _this.errorMessage = res.message;
-                _this.isSubmitClick = false;
-            }
-            else {
-                _this.errorMessage = "";
-                _this.isSubmitClick = false;
-                _this.toastr.success(res.message, "");
-                _this.dtTrigger.unsubscribe();
-                document.getElementById("cancel").click();
-                _this.callHttp();
-            }
-        });
-    };
-    UsersComponent.prototype.reset = function () {
-        this.callForm.reset();
-    };
-    UsersComponent.prototype.delete = function () {
-        var _this = this;
-        this.service.delete(this.deletedId).subscribe(function (res) {
-            if (res.status == 1) {
-                document.getElementById("cancello").click();
-                _this.toastr.success(res.message, "");
-                var index = _this.rows.findIndex(function (v) { return v.id === _this.deletedId; });
-                _this.rows.splice(index, 1);
-            }
-            else {
-                document.getElementById("cancello").click();
-                _this.toastr.error(res.message, "");
-            }
-        });
-    };
-    UsersComponent.prototype.getItemData = function (id) {
-        var _this = this;
-        console.log(id);
-        this.id = id;
-        this.service.getItemById(id).subscribe(function (res) {
-            console.log(res);
-            if (res.status == 1) {
-                _this.name.setValue(res.data.name);
-                _this.username.setValue(res.data.username);
-                _this.phone.setValue(res.data.phone);
-                _this.email.setValue(res.data.email);
-                _this.name.setValue(res.data.name);
-                _this.role_id.setValue(res.data.role.id);
-                _this.password.setValue(res.data.password);
-                _this.notes.setValue(res.data.notes);
-                document.getElementById("openModal").click();
-                _this.item = res.data;
-            }
-        });
-    };
-    UsersComponent.prototype.launchModal = function (id) {
-        this.deletedId = id;
-    };
-    Object.defineProperty(UsersComponent.prototype, "name", {
-        get: function () {
-            return this.callForm.get("name");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "role_id", {
-        get: function () {
-            return this.callForm.get("role_id");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "username", {
-        get: function () {
-            return this.callForm.get("username");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "phone", {
-        get: function () {
-            return this.callForm.get("phone");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "email", {
-        get: function () {
-            return this.callForm.get("email");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "password", {
-        get: function () {
-            return this.callForm.get("password");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "notes", {
-        get: function () {
-            return this.callForm.get("notes");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(UsersComponent.prototype, "image", {
-        get: function () {
-            return this.callForm.get("image");
-        },
-        enumerable: true,
-        configurable: true
-    });
-    UsersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-users',
-            template: __webpack_require__(/*! ./users.component.html */ "./src/app/settings/users/users.component.html"),
-            styles: [__webpack_require__(/*! ./users.component.scss */ "./src/app/settings/users/users.component.scss")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
-            _users_service__WEBPACK_IMPORTED_MODULE_5__["UserService"]])
-    ], UsersComponent);
-    return UsersComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/settings/users/users.service.ts":
-/*!*************************************************!*\
-  !*** ./src/app/settings/users/users.service.ts ***!
-  \*************************************************/
-/*! exports provided: UserService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
-
-
-
-
-var UserService = /** @class */ (function () {
-    function UserService(http) {
-        this.http = http;
-    }
-    UserService.prototype.getAll = function () {
-        return this.http.get("users?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
-    };
-    UserService.prototype.getAllRoles = function () {
-        return this.http.get("roles?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
-    };
-    UserService.prototype.getRoleById = function (id) {
-        return this.http.get("roles/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
-    };
-    UserService.prototype.getItemById = function (id) {
-        return this.http.get("users/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
-    };
-    UserService.prototype.update = function (id, data) {
-        return this.http.put("users/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
-    };
-    UserService.prototype.create = function (data) {
-        return this.http.post("users?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
-    };
-    UserService.prototype.delete = function (id) {
-        return this.http.delete("users/" + id + "?api_token=" + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
-    };
-    UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], UserService);
-    return UserService;
 }());
 
 

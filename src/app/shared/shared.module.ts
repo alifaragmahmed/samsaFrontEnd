@@ -18,6 +18,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ReplaceUnderscoreWithSpacePipe } from './pipes/replace-underscore-with-space.pipe';
 import { TransPipe } from './pipes/trans.pipe';
 import { DataTablesModule } from 'angular-datatables';
+import { PermissionDirective } from './directives/permission.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DataTablesModule } from 'angular-datatables';
     NoMatchingComponent,
     ButtonClickedDirective,
     MainLoaderComponent,
-    TransPipe
+    TransPipe,
+    PermissionDirective
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,8 @@ import { DataTablesModule } from 'angular-datatables';
     ConfirmModalComponent,
     MainLoaderComponent,
     ReplaceUnderscoreWithSpacePipe,
-    TransPipe
+    TransPipe,
+    PermissionDirective
   ]
 })
 export class SharedModule { }

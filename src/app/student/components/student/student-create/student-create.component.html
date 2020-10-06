@@ -30,7 +30,7 @@
 
               <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  (click)="toggle('student-info-panel')"  >{{ "student info" | trans }}</button>
 
-              <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  (click)="toggle('military-info-panel')"  >{{ "military info" | trans }}</button>
+              <button class="btn btn-default w3-block small-shadow btn-margin-bottom military-info-button"  (click)="toggle('military-info-panel')"  >{{ "military info" | trans }}</button>
 
               <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  (click)="toggle('parent-info-panel')"  >{{ "parent info" | trans }}</button>
 
@@ -101,14 +101,6 @@
                         </td>
                       </tr>
                       <tr>
-                          <th>{{ "email" | trans }}</th>
-                          <td>
-                            <input
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [(ngModel)]="application.email" >
-                          </td>
-                      </tr>
-                      <tr>
                         <th>{{ "academic_years" | trans }} *</th>
                         <td>
                           <select
@@ -116,6 +108,32 @@
                           [ngClass]="{'border-bottom-dashed': application.academic_years_id, 'border-bottom-red': !application.academic_years_id}"
                           [(ngModel)]="application.academic_years_id">
                             <option *ngFor="let item of applicationSettings.ACADEMIC_YEARS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "qualification" | trans }} *</th>
+                        <td>
+                          <select
+                          (change)="emptyData()"
+                          class="custom-input form-control input-sm w3-input  input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.qualification_id, 'border-bottom-red': !application.qualification_id}"
+                          [(ngModel)]="application.qualification_id">
+                            <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "qualification_types" | trans }} *</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.qualification_types_id, 'border-bottom-red': !application.qualification_types_id}"
+                          [(ngModel)]="application.qualification_types_id">
+                            <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
+                                <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
+                            </ng-container>
+
                           </select>
                         </td>
                       </tr>
@@ -146,21 +164,14 @@
                         <th>{{ "gender" | trans }}</th>
                         <td>
                           <select
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                          (change)="filterDataBaisedOnGender()"
+                          class="custom-input form-control input-sm w3-input  input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.gender, 'border-bottom-red': !application.gender}"
                           [(ngModel)]="application.gender">
                             <option value="male">{{ "male" | trans }}</option>
                             <option value="female">{{ "female" | trans }}</option>
                           </select>
                         </td>
-                      </tr>
-                      <tr>
-                          <th>{{ "registeration_date" | trans }}</th>
-                          <td>
-                            <input
-                            type="date"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [(ngModel)]="application.registeration_date" >
-                          </td>
                       </tr>
                       <tr>
                         <th>{{ "registration_status" | trans }} *</th>
@@ -171,6 +182,69 @@
                           [ngClass]="{'border-bottom-dashed': application.registration_status_id, 'border-bottom-red': !application.registration_status_id}"
                           [(ngModel)]="application.registration_status_id">
                             <option *ngFor="let item of applicationSettings.REGISTERATION_STATUS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                          <th>{{ "qualification_date" | trans }} *</th>
+                          <td>
+                            <input
+                            type="date"
+                            class="custom-input form-control input-sm w3-input  input-sm"
+                            [ngClass]="{'border-bottom-dashed': application.qualification_date, 'border-bottom-red': !application.qualification_date}"
+                            [(ngModel)]="application.qualification_date" >
+                          </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "case_constraint" | trans }} *</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input  input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.case_constraint_id, 'border-bottom-red': !application.case_constraint_id}"
+                          [(ngModel)]="application.case_constraint_id">
+                            <option *ngFor="let item of applicationSettings.CASE_CONSTRAINTS" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "level" | trans }} *</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.level_id, 'border-bottom-red': !application.level_id}"
+                          [(ngModel)]="application.level_id">
+                            <option *ngFor="let item of levels" value="{{ item.id }}">{{ item.name }}</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <div class="col-lg-6 col-md-6 col-sm-12">
+                    <table class="table w3-block w3-block" >
+                      <tr>
+                        <th>{{ "department" | trans }} *</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.department_id, 'border-bottom-red': !application.department_id}"
+                          [(ngModel)]="application.department_id">
+                          <ng-container *ngFor="let item of applicationSettings.DEPARTMENTS">
+                            <option *ngIf="application.level_id == item.level_id" value="{{ item.id }}" >{{ item.name }}</option>
+                          </ng-container>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>{{ "division" | trans }} *</th>
+                        <td>
+                          <select
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                          [ngClass]="{'border-bottom-dashed': application.division_id, 'border-bottom-red': !application.division_id}"
+                          [(ngModel)]="application.division_id">
+                            <ng-container *ngFor="let item of applicationSettings.DIVISIONS">
+                              <option *ngIf="application.department_id == item.department_id"  value="{{ item.id }}">{{ item.name }}</option>
+                            </ng-container>
                           </select>
                         </td>
                       </tr>
@@ -193,96 +267,15 @@
                             [(ngModel)]="application.qualification_set_number" >
                           </td>
                       </tr>
-                    </table>
-                  </div>
-
-                  <div class="col-lg-6 col-md-6 col-sm-12">
-                    <table class="table w3-block w3-block" >
-                        <tr>
-                            <th>{{ "qualification_date" | trans }} *</th>
-                            <td>
-                              <input
-                              type="date"
-                              class="custom-input form-control input-sm w3-input  input-sm"
-                              [ngClass]="{'border-bottom-dashed': application.qualification_date, 'border-bottom-red': !application.qualification_date}"
-                              [(ngModel)]="application.qualification_date" >
-                            </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "qualification" | trans }} *</th>
+                      <tr>
+                          <th>{{ "registeration_date" | trans }}</th>
                           <td>
-                            <select
-                            class="custom-input form-control input-sm w3-input  input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.qualification_id, 'border-bottom-red': !application.qualification_id}"
-                            [(ngModel)]="application.qualification_id">
-                              <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>
-                            </select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "qualification_types" | trans }} *</th>
-                          <td>
-                            <select
-                            class="custom-input form-control input-sm w3-input input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.qualification_types_id, 'border-bottom-red': !application.qualification_types_id}"
-                            [(ngModel)]="application.qualification_types_id">
-                              <ng-container *ngFor="let item of applicationSettings.QUALIFICATION_TYPES">
-                                  <option *ngIf="item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id" value="{{ item.id }}">{{ item.name }}</option>
-                              </ng-container>
-
-                            </select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "level" | trans }} *</th>
-                          <td>
-                            <select
-                            class="custom-input form-control input-sm w3-input input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.level_id, 'border-bottom-red': !application.level_id}"
-                            [(ngModel)]="application.level_id">
-                              <option *ngFor="let item of levels" value="{{ item.id }}">{{ item.name }}</option>
-                            </select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "department" | trans }} *</th>
-                          <td>
-                            <select
+                            <input
+                            type="date"
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.department_id, 'border-bottom-red': !application.department_id}"
-                            [(ngModel)]="application.department_id">
-                            <ng-container *ngFor="let item of applicationSettings.DEPARTMENTS">
-                              <option *ngIf="application.level_id == item.level_id" value="{{ item.id }}" >{{ item.name }}</option>
-                            </ng-container>
-
-
-                            </select>
+                            [(ngModel)]="application.registeration_date" >
                           </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "division" | trans }} *</th>
-                          <td>
-                            <select
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.division_id, 'border-bottom-red': !application.division_id}"
-                            [(ngModel)]="application.division_id">
-                              <ng-container *ngFor="let item of applicationSettings.DIVISIONS">
-                                <option *ngIf="application.department_id == item.department_id"  value="{{ item.id }}">{{ item.name }}</option>
-                              </ng-container>
-                            </select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>{{ "case_constraint" | trans }}</th>
-                          <td>
-                            <select
-                            class="custom-input form-control input-sm w3-input  input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.case_constraint_id, 'border-bottom-red': !application.case_constraint_id}"
-                            [(ngModel)]="application.case_constraint_id">
-                              <option *ngFor="let item of applicationSettings.CASE_CONSTRAINTS" value="{{ item.id }}">{{ item.name }}</option>
-                            </select>
-                          </td>
-                        </tr>
+                      </tr>
                         <tr>
                             <th>{{ "coordination_password" | trans }}</th>
                             <td>
@@ -317,6 +310,14 @@
                               type="text"
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.phone_1" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ "email" | trans }}</th>
+                            <td>
+                              <input
+                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                              [(ngModel)]="application.email" >
                             </td>
                         </tr>
 
@@ -654,7 +655,7 @@
 
               <div class="custom-panel w3-display-container w3-round">
                   <div class="custom-panel-body"  >
-                    <button class="btn btn-default small-shadow w3-margin-left" [disabled]="isSubmitted"  (click)="sendApplication()" >{{ "save changes" | trans }}</button>
+                    <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted"  (click)="sendApplication()" >{{ "save changes" | trans }}</button>
 
                     <a href="#" class="btn btn-default small-shadow w3-margin-left" routerLink="/student" >{{ "exit" | trans }}</a>
                   </div>

@@ -15,13 +15,14 @@ import { ApplicationService } from './services/application.service';
 import { RequiredDocumentService } from './services/required-document.service';
 import { ApplicationSettingService } from './services/application-setting.service';
 import { MatButtonModule } from '../../../node_modules/@angular/material';
+import { AdminisionSettingComponent } from './components/adminision-setting/adminision-setting.component';
 @NgModule({
   declarations: [ 
     AdminisionComponent,
     RequiredDocumentIndexComponent, 
     RequiredDocumentCreateComponent, 
     RequiredDocumentUpdateComponent, ApplicationCreateComponent, ApplicationIndexComponent , 
-    ApplicationShowComponent, ApplicationRequiredComponent
+    ApplicationShowComponent, ApplicationRequiredComponent, AdminisionSettingComponent
 ], 
   imports: [
     SharedModule,  

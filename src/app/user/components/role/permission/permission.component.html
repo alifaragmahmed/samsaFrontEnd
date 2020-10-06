@@ -1,0 +1,41 @@
+
+<div class="modal fade" id="permissionModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{ "assign required document" }}</h4>
+      </div>
+      <div class="box box-primary">
+          <div class="box-body">
+             <ul class="w3-ul">
+              <li *ngFor="let item of permissions" >
+                <div class="media">
+                  <div class="media-left">
+                    <mat-slide-toggle
+                      [checked]="permissionId.has(item.id)"
+                      (change)="togglePermissions(item.id)" ></mat-slide-toggle>
+                  </div>
+                  <div class="media-body">
+                    <h6 class="media-heading">{{ item.name }}</h6>
+                    <p>
+                      {{ item.notes }}
+                    </p>
+                  </div>
+                </div>
+              </li>
+             </ul>
+          </div>
+          <div class="box-footer">
+            <button [disabled]="isSubmitted" (click)="updatePermissions()" type="submit" class="btn btn-primary">
+              <i *ngIf="!isSubmitted" >{{ "add" | trans }}</i>
+              <i *ngIf="isSubmitted" class="fa fa-spin fa-spinner" ></i>
+            </button>
+            &nbsp;
+            <button type="button" id="cancel" class="btn btn-danger" data-dismiss="modal">{{ "cancel" | trans }}</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

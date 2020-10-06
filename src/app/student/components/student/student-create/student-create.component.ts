@@ -38,7 +38,7 @@ export class StudentCreateComponent implements OnInit {
   public levels: any;
   public divisions: any;
 
-  public requiredDocumentList = new HashTable();
+  public requiredDocumentList = new HashTable<any, any>();
 
   public required_field = [
     'name',
@@ -52,7 +52,8 @@ export class StudentCreateComponent implements OnInit {
     'level_id',
     'department_id',
     'case_constraint_id',
-    'division_id'
+    'division_id',
+    'gender'
   ];
 
   constructor(private studentService: StudentService, private route: ActivatedRoute) {
@@ -186,6 +187,20 @@ export class StudentCreateComponent implements OnInit {
     reader.readAsDataURL(this.application.personal_photo);
     reader.onload = (_event) => {
       this.application.personal_photo_url = reader.result;
+    }
+  }
+
+  emptyData() {
+    this.application.qualification_types_id = null;
+    this.application.level_id = null;
+    this.application.level_name = null;
+    this.application.grade = 0;
+  }
+
+  filterDataBaisedOnGender() {
+    if (this.application.gender == 'female') {
+      this.doc.jquery('.military-info-panel').hide();
+      this.doc.jquery('.military-info-button').hide();
     }
   }
 

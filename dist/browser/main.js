@@ -79,6 +79,11 @@ var map = {
 		"default~account-account-module~student-student-module",
 		"common",
 		"student-student-module"
+	],
+	"./user/user.module": [
+		"./src/app/user/user.module.ts",
+		"common",
+		"user-user-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -278,6 +283,7 @@ var ApplicationSettingService = /** @class */ (function () {
         this.getDepartments().subscribe(function (r) { ApplicationSettingService_1.DEPARTMENTS = r; });
         this.getRegisterationStatusDocuments().subscribe(function (r) { ApplicationSettingService_1.REGSITERATIN_STATUS_DOCUMENTS = r; });
         this.getDivisions().subscribe(function (r) { ApplicationSettingService_1.DIVISIONS = r; });
+        this.getSettings().subscribe(function (r) { ApplicationSettingService_1.SETTINGS = r; });
         ApplicationSettingService_1.LOADED = true;
     };
     ApplicationSettingService.prototype.getDivisions = function () {
@@ -337,6 +343,12 @@ var ApplicationSettingService = /** @class */ (function () {
     ApplicationSettingService.prototype.getParentJobs = function () {
         return this.http.get('adminision/get_parent_jobs?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
+    ApplicationSettingService.prototype.updateSetting = function (data) {
+        return this.http.post('adminision/update_setting?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    ApplicationSettingService.prototype.getSettings = function () {
+        return this.http.get('adminision/get_settings?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
     var ApplicationSettingService_1;
     ApplicationSettingService.NATIONALITIES = [];
     ApplicationSettingService.CASE_CONSTRAINTS = [];
@@ -357,6 +369,7 @@ var ApplicationSettingService = /** @class */ (function () {
     ApplicationSettingService.DEPARTMENTS = [];
     ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = [];
     ApplicationSettingService.DIVISIONS = [];
+    ApplicationSettingService.SETTINGS = [];
     ApplicationSettingService.LOADED = false;
     ApplicationSettingService = ApplicationSettingService_1 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -424,6 +437,10 @@ var routes = [
             {
                 path: 'profile',
                 component: _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_6__["UserProfileComponent"]
+            },
+            {
+                path: 'users',
+                loadChildren: './user/user.module#UserModule'
             },
         ]
     },
@@ -497,6 +514,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
 /* harmony import */ var _node_modules_angular_datatables__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../node_modules/angular-datatables */ "./node_modules/angular-datatables/index.js");
 /* harmony import */ var _core_components_system_label_system_label_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./core/components/system-label/system-label.component */ "./src/app/core/components/system-label/system-label.component.ts");
+/* harmony import */ var _user_services_user_service__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./user/services/user.service */ "./src/app/user/services/user.service.ts");
+/* harmony import */ var _user_services_role_service__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./user/services/role.service */ "./src/app/user/services/role.service.ts");
+
+
 
 
 
@@ -569,6 +590,8 @@ var AppModule = /** @class */ (function () {
                 _account_services_term_service__WEBPACK_IMPORTED_MODULE_18__["TermService"],
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"],
                 _shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_5__["AuthGuestService"],
+                _user_services_user_service__WEBPACK_IMPORTED_MODULE_28__["UserService"],
+                _user_services_role_service__WEBPACK_IMPORTED_MODULE_29__["RoleService"],
                 { provide: _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_24__["MAT_CHECKBOX_CLICK_ACTION"], useValue: 'check' }
             ],
             bootstrap: [_core_app_component__WEBPACK_IMPORTED_MODULE_10__["AppComponent"]]
@@ -664,6 +687,62 @@ var AuthComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/components/home/home.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/core/components/home/home.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"w3-block\" >\n\n\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/core/components/home/home.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/core/components/home/home.component.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/core/components/home/home.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/core/components/home/home.component.ts ***!
+  \********************************************************/
+/*! exports provided: HomeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var HomeComponent = /** @class */ (function () {
+    function HomeComponent() {
+    }
+    HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-home',
+            template: __webpack_require__(/*! ./home.component.html */ "./src/app/core/components/home/home.component.html"),
+            styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/core/components/home/home.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], HomeComponent);
+    return HomeComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/components/navbar/nav-bar.component.html":
 /*!***************************************************************!*\
   !*** ./src/app/core/components/navbar/nav-bar.component.html ***!
@@ -671,7 +750,7 @@ var AuthComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"main-header\">\r\n  <nav class=\"navbar navbar-static-top\">\r\n    <div class=\"container-fluid\">\r\n      <!-- Brand and toggle get grouped for better mobile display -->\r\n      <div class=\"navbar-header\">\r\n        <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n          <span class=\"sr-only\">Toggle navigation</span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n          <span class=\"icon-bar\"></span>\r\n        </button>\r\n        <a class=\"navbar-brand\" href=\"#\"><img src=\"../../../../assets/img/logo.png\" width=\"40px\" ></a>\r\n      </div>\r\n\r\n      <!-- Collect the nav links, forms, and other content for toggling -->\r\n      <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n        <ul class=\"nav navbar-nav\">\r\n\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"applications_section\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/adminision/application\" >{{ \"applications\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/adminision/settings\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/student\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student\" | trans }}</a>\r\n          </li>\r\n          <li class=\"dropdown active\">\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"account\" | trans }} <span class=\"caret\"></span></a>\r\n            <ul class=\"dropdown-menu\" role=\"menu\">\r\n              <li><a href=\"#\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a></li>\r\n              <li class=\"divider\"></li>\r\n              <li><a href=\"#\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n          <li class=\"active\">\r\n            <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }} <span class=\"caret\"></span></a>\r\n          </li>\r\n\r\n        </ul>\r\n        <ul class=\"nav navbar-nav navbar-right\" style=\"float: left!important\" >\r\n          <!-- Messages: style can be found in dropdown.less \r\n          <li class=\"dropdown messages-menu\"> \r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-envelope-o\"></i>\r\n              <span class=\"label label-success\">4</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 4 messages</li>\r\n              <li> \r\n                <ul class=\"menu\">\r\n                  <li> \r\n                    <a href=\"#\">\r\n                      <div class=\"pull-left\"> \r\n                        <img src=\"../../../../assets/dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\">\r\n                      </div> \r\n                      <h4>\r\n                        Support Team\r\n                        <small><i class=\"fa fa-clock-o\"></i> 5 mins</small>\r\n                      </h4> \r\n                      <p>Why not buy a new awesome theme?</p>\r\n                    </a>\r\n                  </li> \r\n                </ul> \r\n              </li>\r\n              <li class=\"footer\"><a href=\"#\">See All Messages</a></li>\r\n            </ul>\r\n          </li> -->\r\n          <!-- /.messages-menu -->\r\n\r\n          <!-- Notifications Menu -->\r\n          <li class=\"dropdown notifications-menu\">\r\n            <!-- Menu toggle button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-bell-o\"></i>\r\n              <span class=\"label label-warning\">{{ notifications.length > 0? notifications.length : '' }}</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\"> \r\n              <li class=\"header\">{{ message }}</li>\r\n              <li>\r\n                <!-- Inner Menu: contains the notifications -->\r\n                <ul class=\"menu\">\r\n                  <li *ngFor=\"let item of notifications index as i\" ><!-- start notification -->\r\n                    <div class=\"media\">\r\n                        <div class=\"media-left\">\r\n                          <a href=\"#\">\r\n                              <i class=\"{{ item.icon? item.icon : 'fa fa-bell-o' }} w3-padding\"></i> \r\n                          </a>\r\n                        </div>\r\n                        <div class=\"media-body\">\r\n                          {{ item.body }}\r\n                        </div>\r\n                      </div> \r\n                  </li>\r\n                  <!-- end notification -->\r\n                </ul>\r\n              </li>\r\n              <li class=\"footer w3-white\"><a href=\"#\">{{ \"View all\" | trans }}</a></li>\r\n            </ul>\r\n          </li>\r\n          <!-- Tasks Menu\r\n          <li class=\"dropdown tasks-menu\"> \r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <i class=\"fa fa-flag-o\"></i>\r\n              <span class=\"label label-danger\">9</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <li class=\"header\">You have 9 tasks</li>\r\n              <li> \r\n                <ul class=\"menu\">\r\n                  <li> \r\n                    <a href=\"#\">  \r\n                      <h3>\r\n                        Design some buttons\r\n                        <small class=\"pull-right\">20%</small>\r\n                      </h3> \r\n                      <div class=\"progress xs\"> \r\n                        <div class=\"progress-bar progress-bar-aqua\" style=\"width: 20%\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\">\r\n                          <span class=\"sr-only\">20% Complete</span>\r\n                        </div>\r\n                      </div>\r\n                    </a>\r\n                  </li> \r\n                </ul>\r\n              </li>\r\n              <li class=\"footer\">\r\n                <a href=\"#\">View all tasks</a>\r\n              </li>\r\n            </ul>\r\n          </li> -->\r\n          <!-- User Account Menu -->\r\n          <li class=\"dropdown user user-menu\">\r\n            <!-- Menu Toggle Button -->\r\n            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n              <!-- The user image in the navbar-->\r\n              <img [src]=\"user.image_url\" class=\"img-circle\" alt=\"User Image\" height=\"20px\" > \r\n              <!-- hidden-xs hides the username on small devices so only the image appears. -->\r\n              <span class=\"hidden-xs\">{{ user.name }}</span>\r\n            </a>\r\n            <ul class=\"dropdown-menu\">\r\n              <!-- The user image in the menu -->\r\n              <li class=\"user-header\">\r\n                 <img [src]=\"user.image_url\" class=\"img-circle\" alt=\"User Image\"> \r\n\r\n                 <p>\r\n                  {{ user.name }}\r\n                  <small>{{ user.phone }}</small>\r\n                </p> \r\n              </li>\r\n              \r\n              <!-- Menu Footer-->\r\n              <li class=\"user-footer\">\r\n                <div class=\"pull-left\">\r\n                  <a routerLink=\"/profile\" class=\"btn btn-default btn-flat\">{{ \"Profile\" | trans }}</a>\r\n                </div>\r\n                <div class=\"pull-right\">\r\n                  <a href=\"#\" class=\"btn btn-default btn-flat\" (click)=\"logout()\" >{{ \"Sign out\" | trans }}</a>\r\n                </div>\r\n              </li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n  </nav>\r\n\r\n</header>\r\n<!-- Full Width Column -->\r\n"
+module.exports = "<header>\r\n  <nav>\r\n      <div class=\"fixed-nav\">\r\n          <input type=\"checkbox\" id=\"mobile-nav-check\" class=\"invisible-checkbox\" tab-index=\"-1\" />\r\n          <!-- Fix tabbing on desktop -->\r\n          <label for=\"mobile-nav-check\" class=\"burger\"></label>\r\n          <div class=\"top\">\r\n              <div class=\"container \">\r\n\r\n                  <div class=\"w3-left\" style=\"text-align: center;font-size: 13px;\" >\r\n                    <b>وزارة التعليم العالى\r\n                     المعهد العالى للعلوم الادراية\r\n                    ببنى سويف</b>\r\n                </div>\r\n                  <a href=\"#\" class=\"feature-button  logo w3-hide-small\t\">\r\n                    <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                  </a>\r\n              </div>\r\n          </div>\r\n          <div class=\"bottom\">\r\n              <div class=\"container\">\r\n                  <ul class=\"navigation\" style=\"float: none;\" >\r\n                      <li class=\"waves-effect waves-white text-right w3-hide-large w3-hide-medium\t\">\r\n                        <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                      </li>\r\n                      <li class=\"pointer\"></li>\r\n                      <li appPermission permission=\"applications_read\" class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a  class=\"dropdown-toggle\">\r\n                            {{ \"applications_section\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a appPermission permission=\"applications_read\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/adminision/application\" >{{ \"applications\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/adminision/settings\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\" appPermission permission=\"students_read\">\r\n                        <a routerLink=\"/student\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student\" | trans }}</a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"account\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                    <!-- Notifications Menu -->\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    class=\"dropdown notifications-menu waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-bell-o\"></i>\r\n                        <span class=\"label label-warning\">{{ notifications.length > 0? notifications.length : '' }}</span>\r\n                      </a>\r\n                      <div class=\"w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card\" style=\"position: fixed;left: 10%\">\r\n                          <!-- Inner Menu: contains the notifications -->\r\n                          <ul class=\"menu w3-ul\">\r\n                            <li class=\"w3-bar-item w3-button w3-text-black\">{{ message }}</li>\r\n                            <li class=\"w3-bar-item w3-button w3-text-black\" *ngFor=\"let item of notifications index as i\" ><!-- start notification -->\r\n                              <div class=\"media\">\r\n                                  <div class=\"media-left\">\r\n                                    <a href=\"#\">\r\n                                        <i class=\"{{ item.icon? item.icon : 'fa fa-bell-o' }} w3-padding\"></i>\r\n                                    </a>\r\n                                  </div>\r\n                                  <div class=\"media-body\">\r\n                                    {{ item.body }}\r\n                                  </div>\r\n                                </div>\r\n                            </li>\r\n                            <li class=\"w3-bar-item w3-button w3-text-black\"><a href=\"#\">{{ \"View all\" | trans }}</a></li>\r\n                            <!-- end notification -->\r\n                          </ul>\r\n                      </div>\r\n                    </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </nav>\r\n</header>\r\n"
 
 /***/ }),
 
@@ -682,7 +761,7 @@ module.exports = "<header class=\"main-header\">\r\n  <nav class=\"navbar navbar
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvY29tcG9uZW50cy9uYXZiYXIvbmF2LWJhci5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = "body {\n  background-color: #f3f3f3;\n  color: #333;\n  font-family: \"Raleway\", sans-serif;\n  margin: 0;\n  overflow-x: hidden;\n  width: 100%; }\n\n.navigation li {\n  float: right !important; }\n\n* {\n  box-sizing: border-box; }\n\n.clearfix:before,\n.clearfix:after {\n  clear: both;\n  content: \"\";\n  display: block; }\n\n.container {\n  max-width: 1082px;\n  position: relative;\n  width: calc(100% - 32px);\n  margin: 0 auto;\n  transition: max-width 0.3s; }\n\n.container:before, .container:after {\n  clear: both;\n  content: \"\";\n  display: table; }\n\n@media screen and (max-width: 1050px) {\n  .container {\n    max-width: 768px; } }\n\n.waves-effect.waves-white .waves-ripple {\n  background-color: rgba(255, 255, 255, 0.3); }\n\n.invisible-checkbox {\n  position: fixed;\n  top: 0;\n  left: 200vw; }\n\nnav {\n  position: relative;\n  width: 100%;\n  margin: 0;\n  height: 100px;\n  font-weight: 300; }\n\nnav .fixed-nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100px;\n  background: #5c6bc0;\n  color: #fff;\n  overflow: hidden;\n  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);\n  z-index: 20; }\n\nnav .fixed-nav .top {\n  position: relative;\n  float: left;\n  width: 100%;\n  height: 60px;\n  line-height: 60px;\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }\n\nnav .fixed-nav .top .logo {\n  margin: 0 0 0 16px;\n  font-size: 20px;\n  color: #fff;\n  text-decoration: none;\n  transition: opacity 0.3s; }\n\nnav .fixed-nav .top .logo:hover, nav .fixed-nav .top .logo:focus {\n  opacity: 0.7; }\n\nnav .fixed-nav .top .feature-button {\n  position: absolute;\n  right: 16px;\n  height: 34px;\n  line-height: calc(34px - 4px);\n  font-size: 14px;\n  top: 50%;\n  transform: translate3d(0, -50%, 0);\n  cursor: pointer;\n  transition: background 0.3s; }\n\nnav .fixed-nav .top .feature-button:hover, nav .fixed-nav .top .feature-button:focus {\n  outline: none;\n  background: rgba(0, 0, 0, 0.2); }\n\nnav .fixed-nav .bottom {\n  position: relative;\n  float: left;\n  width: 100%;\n  height: 40px;\n  line-height: 40px;\n  background: rgba(0, 0, 0, 0.2);\n  overflow: hidden; }\n\nnav .fixed-nav .bottom ul {\n  position: relative;\n  float: right;\n  list-style: none;\n  margin: 0;\n  padding: 0; }\n\nnav .fixed-nav .bottom ul li:not(.pointer) {\n  position: relative;\n  float: left; }\n\nnav .fixed-nav .bottom ul li:not(.pointer) a {\n  display: block;\n  padding: 0 16px;\n  height: 40px;\n  line-height: 40px;\n  color: #fff;\n  text-decoration: none;\n  transition: background 0.3s; }\n\nnav .fixed-nav .bottom ul li:not(.pointer) a:hover, nav .fixed-nav .bottom ul li:not(.pointer) a:focus {\n  outline: none;\n  background: rgba(0, 0, 0, 0.25); }\n\nnav .fixed-nav .bottom ul li:not(.pointer).active a {\n  background: rgba(0, 0, 0, 0.15); }\n\nnav .fixed-nav .bottom ul li:not(.pointer).active a:hover, nav .fixed-nav .bottom ul li:not(.pointer).active a:focus {\n  background: rgba(0, 0, 0, 0.25); }\n\nnav .fixed-nav .bottom ul .pointer {\n  display: none;\n  height: 10px;\n  width: 10px;\n  position: absolute;\n  top: -5px;\n  left: -5px;\n  background: #5c6bc0;\n  transition: transform 0.3s;\n  z-index: 2;\n  transform: translate3d(0, 0, 0) rotate(45deg);\n  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2); }\n\n@media screen and (max-width: 768px) {\n  nav {\n    height: 60px; }\n  nav .fixed-nav {\n    height: 60px;\n    overflow: visible;\n    box-shadow: none; }\n  nav .fixed-nav .burger {\n    position: fixed;\n    top: 0;\n    right: 0;\n    height: 60px;\n    width: 60px;\n    z-index: 9001;\n    cursor: pointer; }\n  nav .fixed-nav .burger {\n    transition: background 0.3s; }\n  nav .fixed-nav .burger:after {\n    content: \"\";\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate3d(-50%, -50%, 0px);\n    height: 4px;\n    width: 4px;\n    background-color: #fff;\n    box-shadow: -8px -8px 0 0 #fff, 0px -8px 0 0 #fff, 8px -8px 0 0 #fff, -8px 0px 0 0 #fff, 8px 0px 0 0 #fff, -8px 8px 0 0 #fff, 0px 8px 0 0 #fff, 8px 8px 0 0 #fff;\n    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1); }\n  nav .fixed-nav .burger:hover {\n    background-color: rgba(0, 0, 0, 0.2); }\n  nav .fixed-nav .burger:hover:after {\n    box-shadow: 0px -12px 0 0 #fff, 0px -6px 0 0 #fff, 12px 0px 0 0 #fff, -6px 0px 0 0 #fff, 6px 0px 0 0 #fff, -12px 0px 0 0 #fff, 0px 6px 0 0 #fff, 0px 12px 0 0 #fff; }\n  nav .fixed-nav .top {\n    z-index: 3;\n    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2); }\n  nav .fixed-nav .top .container {\n    height: 60px; }\n  nav .fixed-nav .top .logo {\n    margin-left: 0; }\n  nav .fixed-nav .top .feature-button {\n    right: auto;\n    top: calc(100% + 16px);\n    left: calc(100px - 14px);\n    border-color: #333;\n    color: #333;\n    font-weight: 400;\n    height: 50px;\n    line-height: 46px;\n    padding: 0;\n    font-size: 18px;\n    text-align: center;\n    width: 168px;\n    transform: translate3d(-400px, 0, 0);\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }\n  nav .fixed-nav .bottom {\n    position: fixed;\n    top: 60px;\n    width: 200px;\n    height: calc(100vh - 60px);\n    overflow-y: auto;\n    background: #fff;\n    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);\n    z-index: 2;\n    transform: translate3d(120%, 0, 0);\n    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n    will-change: transform; }\n  nav .fixed-nav .bottom .container {\n    margin: 0;\n    width: 100%;\n    max-width: 100%; }\n  nav .fixed-nav .bottom ul {\n    top: 0px;\n    padding-top: 10px;\n    float: left;\n    width: 100%;\n    border-top: 1px solid rgba(0, 0, 0, 0.2); }\n  nav .fixed-nav .bottom ul li:not(.pointer) {\n    width: 100%; }\n  nav .fixed-nav .bottom ul li:not(.pointer) a {\n    color: #333;\n    font-weight: 400; }\n  nav .fixed-nav .bottom ul .pointer {\n    background: rgba(0, 0, 0, 0.6); }\n  nav .fixed-nav #mobile-nav-check:focus + .burger {\n    background-color: rgba(0, 0, 0, 0.2); }\n  nav .fixed-nav #mobile-nav-check:checked + .burger:after {\n    box-shadow: -8px -8px 0 0 #fff, 4px -4px 0 0 #fff, 8px -8px 0 0 #fff, -4px -4px 0 0 #fff, 4px 4px 0 0 #fff, -8px 8px 0 0 #fff, -4px 4px 0 0 #fff, 8px 8px 0 0 #fff; }\n  nav .fixed-nav #mobile-nav-check:checked ~ .top .feature-button {\n    transform: translate3d(-50%, 0, 0); }\n  nav .fixed-nav #mobile-nav-check:checked ~ .bottom {\n    transform: translate3d(0, 0, 0); } }\n\nmain {\n  padding: 32px; }\n\n@media screen and (max-width: 768px) {\n  main {\n    padding: 16px; } }\n\n.projects {\n  position: relative;\n  margin: 0 -8px;\n  display: flex;\n  flex-wrap: wrap; }\n\n.projects:before, .projects:after {\n  content: \"\";\n  display: block;\n  clear: both; }\n\n.project {\n  background-color: #fff;\n  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);\n  float: left;\n  margin: 0 8px 16px 8px;\n  padding: 28px 32px 32px 32px;\n  position: relative;\n  width: calc(50% - 16px);\n  z-index: 0; }\n\n.project:after {\n  background: #08c;\n  border-radius: 0.3em;\n  color: #fff;\n  content: \"COMPLETE\";\n  font-size: 10px;\n  right: 16px;\n  padding: 5px;\n  position: absolute;\n  top: 16px;\n  z-index: -1; }\n\n.project.ongoing:after {\n  background: #689f38;\n  content: \"ONGOING\"; }\n\n.project.onhold:after {\n  background: #cc5b3f;\n  content: \"ONHOLD\"; }\n\n.project h2 {\n  font-size: 20px;\n  margin: 0 0 16px 0; }\n\n.project p {\n  margin: 0;\n  text-align: justify; }\n\n.project .readmore {\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  transition: background-color 0.3s;\n  width: 100%; }\n\n.project .readmore:after, .project .readmore:before {\n  border: 2px solid transparent;\n  content: \"\";\n  height: 16px;\n  position: absolute;\n  transition: border-color 0.3s, transform 0.3s;\n  width: 16px; }\n\n.project .readmore:before {\n  border-left-color: #689f38;\n  border-top-color: #689f38;\n  left: 16px;\n  top: 16px; }\n\n.project .readmore:after {\n  border-bottom-color: #689f38;\n  border-right-color: #689f38;\n  bottom: 16px;\n  right: 16px; }\n\n.project .readmore:active, .project .readmore:focus, .project .readmore:hover {\n  background-color: rgba(0, 0, 0, 0.075);\n  outline: none; }\n\n.project .readmore:active:before, .project .readmore:focus:before, .project .readmore:hover:before {\n  border-left-color: #91c761;\n  border-top-color: #91c761;\n  transform: translate3d(-16px, -16px, 0); }\n\n.project .readmore:active:after, .project .readmore:focus:after, .project .readmore:hover:after {\n  border-bottom-color: #91c761;\n  border-right-color: #91c761;\n  transform: translate3d(16px, 16px, 0); }\n\n@media screen and (max-width: 800px) {\n  .projects {\n    margin-left: -16px;\n    margin-right: -16px; }\n  .project {\n    width: 100%;\n    margin-left: 0;\n    margin-right: 0; }\n  .project:after {\n    float: left;\n    margin-top: 16px;\n    right: 0;\n    position: relative;\n    top: 0; }\n  .project p {\n    text-align: left; } }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29yZS9jb21wb25lbnRzL25hdmJhci9FOlxccHJvamVjdHNcXHNhbXNhXFxzYW1zYUZyb250RW5kL3NyY1xcYXBwXFxjb3JlXFxjb21wb25lbnRzXFxuYXZiYXJcXG5hdi1iYXIuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7RUFDekIsV0FBVztFQUNYLGtDQUFrQztFQUNsQyxTQUFTO0VBQ1Qsa0JBQWtCO0VBQ2xCLFdBQVcsRUFBQTs7QUFHYjtFQUNFLHVCQUFzQixFQUFBOztBQUd4QjtFQUNFLHNCQUFzQixFQUFBOztBQUd4Qjs7RUFFRSxXQUFXO0VBQ1gsV0FBVztFQUNYLGNBQWMsRUFBQTs7QUFHaEI7RUFDRSxpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLHdCQUF3QjtFQUN4QixjQUFjO0VBQ2QsMEJBQTBCLEVBQUE7O0FBRTVCO0VBQ0UsV0FBVztFQUNYLFdBQVc7RUFDWCxjQUFjLEVBQUE7O0FBR2hCO0VBQ0U7SUFDRSxnQkFBZ0IsRUFBQSxFQUNqQjs7QUFFSDtFQUNFLDBDQUEwQyxFQUFBOztBQUc1QztFQUNFLGVBQWU7RUFDZixNQUFNO0VBQ04sV0FBVyxFQUFBOztBQUdiO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxTQUFTO0VBQ1QsYUFBYTtFQUNiLGdCQUFnQixFQUFBOztBQUVsQjtFQUNFLGVBQWU7RUFDZixNQUFNO0VBQ04sT0FBTztFQUNQLFdBQVc7RUFDWCxhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsd0NBQXdDO0VBQ3hDLFdBQVcsRUFBQTs7QUFFYjtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsV0FBVztFQUNYLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsd0NBQXdDLEVBQUE7O0FBRTFDO0VBQ0Usa0JBQWtCO0VBQ2xCLGVBQWU7RUFDZixXQUFXO0VBQ1gscUJBQXFCO0VBQ3JCLHdCQUF3QixFQUFBOztBQUUx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RSxXQUFXO0lBQ1gsZ0JBQWdCO0lBQ2hCLFFBQVE7SUFDUixrQkFBa0I7SUFDbEIsTUFBTSxFQUFBO0VBRVI7SUFDRSxnQkFBZ0IsRUFBQSxFQUNqQiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvY29tcG9uZW50cy9uYXZiYXIvbmF2LWJhci5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmM2YzZjM7XHJcbiAgY29sb3I6ICMzMzM7XHJcbiAgZm9udC1mYW1pbHk6IFwiUmFsZXdheVwiLCBzYW5zLXNlcmlmO1xyXG4gIG1hcmdpbjogMDtcclxuICBvdmVyZmxvdy14OiBoaWRkZW47XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5uYXZpZ2F0aW9uIGxpIHtcclxuICBmbG9hdDogcmlnaHQhaW1wb3J0YW50O1xyXG59XHJcblxyXG4qIHtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG59XHJcblxyXG4uY2xlYXJmaXg6YmVmb3JlLFxyXG4uY2xlYXJmaXg6YWZ0ZXIge1xyXG4gIGNsZWFyOiBib3RoO1xyXG4gIGNvbnRlbnQ6IFwiXCI7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuXHJcbi5jb250YWluZXIge1xyXG4gIG1heC13aWR0aDogMTA4MnB4O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB3aWR0aDogY2FsYygxMDAlIC0gMzJweCk7XHJcbiAgbWFyZ2luOiAwIGF1dG87XHJcbiAgdHJhbnNpdGlvbjogbWF4LXdpZHRoIDAuM3M7XHJcbn1cclxuLmNvbnRhaW5lcjpiZWZvcmUsIC5jb250YWluZXI6YWZ0ZXIge1xyXG4gIGNsZWFyOiBib3RoO1xyXG4gIGNvbnRlbnQ6IFwiXCI7XHJcbiAgZGlzcGxheTogdGFibGU7XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDEwNTBweCkge1xyXG4gIC5jb250YWluZXIge1xyXG4gICAgbWF4LXdpZHRoOiA3NjhweDtcclxuICB9XHJcbn1cclxuLndhdmVzLWVmZmVjdC53YXZlcy13aGl0ZSAud2F2ZXMtcmlwcGxlIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMyk7XHJcbn1cclxuXHJcbi5pbnZpc2libGUtY2hlY2tib3gge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICB0b3A6IDA7XHJcbiAgbGVmdDogMjAwdnc7XHJcbn1cclxuXHJcbm5hdiB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG1hcmdpbjogMDtcclxuICBoZWlnaHQ6IDEwMHB4O1xyXG4gIGZvbnQtd2VpZ2h0OiAzMDA7XHJcbn1cclxubmF2IC5maXhlZC1uYXYge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDtcclxuICB0b3A6IDA7XHJcbiAgbGVmdDogMDtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMHB4O1xyXG4gIGJhY2tncm91bmQ6ICM1YzZiYzA7XHJcbiAgY29sb3I6ICNmZmY7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICBib3gtc2hhZG93OiAwIDNweCA1cHggcmdiYSgwLCAwLCAwLCAwLjMpO1xyXG4gIHotaW5kZXg6IDIwO1xyXG59XHJcbm5hdiAuZml4ZWQtbmF2IC50b3Age1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBmbG9hdDogbGVmdDtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbiAgbGluZS1oZWlnaHQ6IDYwcHg7XHJcbiAgYm94LXNoYWRvdzogMCAxcHggMnB4IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxufVxyXG5uYXYgLmZpeGVkLW5hdiAudG9wIC5sb2dvIHtcclxuICBtYXJnaW46IDAgMCAwIDE2cHg7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIGNvbG9yOiAjZmZmO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICB0cmFuc2l0aW9uOiBvcGFjaXR5IDAuM3M7XHJcbn1cclxubmF2IC5maXhlZC1uYXYgLnRvcCAubG9nbzpob3ZlciwgbmF2IC5maXhlZC1uYXYgLnRvcCAubG9nbzpmb2N1cyB7XHJcbiAgb3BhY2l0eTogMC43O1xyXG59XHJcbm5hdiAuZml4ZWQtbmF2IC50b3AgLmZlYXR1cmUtYnV0dG9uIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcmlnaHQ6IDE2cHg7XHJcbiAgaGVpZ2h0OiAzNHB4O1xyXG4gIGxpbmUtaGVpZ2h0OiBjYWxjKDM0cHggLSA0cHgpO1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxuICB0b3A6IDUwJTtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC01MCUsIDApO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kIDAuM3M7XHJcbn1cclxubmF2IC5maXhlZC1uYXYgLnRvcCAuZmVhdHVyZS1idXR0b246aG92ZXIsIG5hdiAuZml4ZWQtbmF2IC50b3AgLmZlYXR1cmUtYnV0dG9uOmZvY3VzIHtcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxufVxyXG5uYXYgLmZpeGVkLW5hdiAuYm90dG9tIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG4gIGxpbmUtaGVpZ2h0OiA0MHB4O1xyXG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG59XHJcbm5hdiAuZml4ZWQtbmF2IC5ib3R0b20gdWwge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbGlzdC1zdHlsZTogbm9uZTtcclxuICBtYXJnaW46IDA7XHJcbiAgcGFkZGluZzogMDtcclxufVxyXG5uYXYgLmZpeGVkLW5hdiAuYm90dG9tIHVsIGxpOm5vdCgucG9pbnRlcikge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBmbG9hdDogbGVmdDtcclxufVxyXG5uYXYgLmZpeGVkLW5hdiAuYm90dG9tIHVsIGxpOm5vdCgucG9pbnRlcikgYSB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgcGFkZGluZzogMCAxNnB4O1xyXG4gIGhlaWdodDogNDBweDtcclxuICBsaW5lLWhlaWdodDogNDBweDtcclxuICBjb2xvcjogI2ZmZjtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgdHJhbnNpdGlvbjogYmFja2dyb3VuZCAwLjNzO1xyXG59XHJcbm5hdiAuZml4ZWQtbmF2IC5ib3R0b20gdWwgbGk6bm90KC5wb2ludGVyKSBhOmhvdmVyLCBuYXYgLmZpeGVkLW5hdiAuYm90dG9tIHVsIGxpOm5vdCgucG9pbnRlcikgYTpmb2N1cyB7XHJcbiAgb3V0bGluZTogbm9uZTtcclxuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuMjUpO1xyXG59XHJcbm5hdiAuZml4ZWQtbmF2IC5ib3R0b20gdWwgbGk6bm90KC5wb2ludGVyKS5hY3RpdmUgYSB7XHJcbiAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjE1KTtcclxufVxyXG5uYXYgLmZpeGVkLW5hdiAuYm90dG9tIHVsIGxpOm5vdCgucG9pbnRlcikuYWN0aXZlIGE6aG92ZXIsIG5hdiAuZml4ZWQtbmF2IC5ib3R0b20gdWwgbGk6bm90KC5wb2ludGVyKS5hY3RpdmUgYTpmb2N1cyB7XHJcbiAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjI1KTtcclxufVxyXG5uYXYgLmZpeGVkLW5hdiAuYm90dG9tIHVsIC5wb2ludGVyIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG4gIGhlaWdodDogMTBweDtcclxuICB3aWR0aDogMTBweDtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAtNXB4O1xyXG4gIGxlZnQ6IC01cHg7XHJcbiAgYmFja2dyb3VuZDogIzVjNmJjMDtcclxuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4zcztcclxuICB6LWluZGV4OiAyO1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgMCwgMCkgcm90YXRlKDQ1ZGVnKTtcclxuICBib3gtc2hhZG93OiAwIDAgMnB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbn1cclxuXHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDc2OHB4KSB7XHJcbiAgbmF2IHtcclxuICAgIGhlaWdodDogNjBweDtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYge1xyXG4gICAgaGVpZ2h0OiA2MHB4O1xyXG4gICAgb3ZlcmZsb3c6IHZpc2libGU7XHJcbiAgICBib3gtc2hhZG93OiBub25lO1xyXG4gIH1cclxuICBuYXYgLmZpeGVkLW5hdiAuYnVyZ2VyIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogMDtcclxuICAgIHJpZ2h0OiAwO1xyXG4gICAgaGVpZ2h0OiA2MHB4O1xyXG4gICAgd2lkdGg6IDYwcHg7XHJcbiAgICB6LWluZGV4OiA5MDAxO1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIH1cclxuICBuYXYgLmZpeGVkLW5hdiAuYnVyZ2VyIHtcclxuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQgMC4zcztcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgLmJ1cmdlcjphZnRlciB7XHJcbiAgICBjb250ZW50OiBcIlwiO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgdG9wOiA1MCU7XHJcbiAgICBsZWZ0OiA1MCU7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKC01MCUsIC01MCUsIDBweCk7XHJcbiAgICBoZWlnaHQ6IDRweDtcclxuICAgIHdpZHRoOiA0cHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gICAgYm94LXNoYWRvdzogLThweCAtOHB4IDAgMCAjZmZmLCAwcHggLThweCAwIDAgI2ZmZiwgOHB4IC04cHggMCAwICNmZmYsIC04cHggMHB4IDAgMCAjZmZmLCA4cHggMHB4IDAgMCAjZmZmLCAtOHB4IDhweCAwIDAgI2ZmZiwgMHB4IDhweCAwIDAgI2ZmZiwgOHB4IDhweCAwIDAgI2ZmZjtcclxuICAgIHRyYW5zaXRpb246IGJveC1zaGFkb3cgMC4zcyBjdWJpYy1iZXppZXIoMC40LCAwLCAwLjIsIDEpO1xyXG4gIH1cclxuICBuYXYgLmZpeGVkLW5hdiAuYnVyZ2VyOmhvdmVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgLmJ1cmdlcjpob3ZlcjphZnRlciB7XHJcbiAgICBib3gtc2hhZG93OiAwcHggLTEycHggMCAwICNmZmYsIDBweCAtNnB4IDAgMCAjZmZmLCAxMnB4IDBweCAwIDAgI2ZmZiwgLTZweCAwcHggMCAwICNmZmYsIDZweCAwcHggMCAwICNmZmYsIC0xMnB4IDBweCAwIDAgI2ZmZiwgMHB4IDZweCAwIDAgI2ZmZiwgMHB4IDEycHggMCAwICNmZmY7XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC50b3Age1xyXG4gICAgei1pbmRleDogMztcclxuICAgIGJveC1zaGFkb3c6IDAgM3B4IDVweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC50b3AgLmNvbnRhaW5lciB7XHJcbiAgICBoZWlnaHQ6IDYwcHg7XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC50b3AgLmxvZ28ge1xyXG4gICAgbWFyZ2luLWxlZnQ6IDA7XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC50b3AgLmZlYXR1cmUtYnV0dG9uIHtcclxuICAgIHJpZ2h0OiBhdXRvO1xyXG4gICAgdG9wOiBjYWxjKDEwMCUgKyAxNnB4KTtcclxuICAgIGxlZnQ6IGNhbGMoMTAwcHggLSAxNHB4KTtcclxuICAgIGJvcmRlci1jb2xvcjogIzMzMztcclxuICAgIGNvbG9yOiAjMzMzO1xyXG4gICAgZm9udC13ZWlnaHQ6IDQwMDtcclxuICAgIGhlaWdodDogNTBweDtcclxuICAgIGxpbmUtaGVpZ2h0OiA0NnB4O1xyXG4gICAgcGFkZGluZzogMDtcclxuICAgIGZvbnQtc2l6ZTogMThweDtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIHdpZHRoOiAxNjhweDtcclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoLTQwMHB4LCAwLCAwKTtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjNzIGN1YmljLWJlemllcigwLjQsIDAsIDAuMiwgMSk7XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC5ib3R0b20ge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOiA2MHB4O1xyXG4gICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgaGVpZ2h0OiBjYWxjKDEwMHZoIC0gNjBweCk7XHJcbiAgICBvdmVyZmxvdy15OiBhdXRvO1xyXG4gICAgYmFja2dyb3VuZDogI2ZmZjtcclxuICAgIGJveC1zaGFkb3c6IDNweCAzcHggNXB4IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICAgIHotaW5kZXg6IDI7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDEyMCUsIDAsIDApO1xyXG4gICAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIDAuM3MgY3ViaWMtYmV6aWVyKDAuNCwgMCwgMC4yLCAxKTtcclxuICAgIHdpbGwtY2hhbmdlOiB0cmFuc2Zvcm07XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC5ib3R0b20gLmNvbnRhaW5lciB7XHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIG1heC13aWR0aDogMTAwJTtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgLmJvdHRvbSB1bCB7XHJcbiAgICB0b3A6IDBweDtcclxuICAgIHBhZGRpbmctdG9wOiAxMHB4O1xyXG4gICAgZmxvYXQ6IGxlZnQ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGJvcmRlci10b3A6IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbiAgfVxyXG4gIG5hdiAuZml4ZWQtbmF2IC5ib3R0b20gdWwgbGk6bm90KC5wb2ludGVyKSB7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgLmJvdHRvbSB1bCBsaTpub3QoLnBvaW50ZXIpIGEge1xyXG4gICAgY29sb3I6ICMzMzM7XHJcbiAgICBmb250LXdlaWdodDogNDAwO1xyXG4gIH1cclxuICBuYXYgLmZpeGVkLW5hdiAuYm90dG9tIHVsIC5wb2ludGVyIHtcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC42KTtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgI21vYmlsZS1uYXYtY2hlY2s6Zm9jdXMgKyAuYnVyZ2VyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgI21vYmlsZS1uYXYtY2hlY2s6Y2hlY2tlZCArIC5idXJnZXI6YWZ0ZXIge1xyXG4gICAgYm94LXNoYWRvdzogLThweCAtOHB4IDAgMCAjZmZmLCA0cHggLTRweCAwIDAgI2ZmZiwgOHB4IC04cHggMCAwICNmZmYsIC00cHggLTRweCAwIDAgI2ZmZiwgNHB4IDRweCAwIDAgI2ZmZiwgLThweCA4cHggMCAwICNmZmYsIC00cHggNHB4IDAgMCAjZmZmLCA4cHggOHB4IDAgMCAjZmZmO1xyXG4gIH1cclxuICBuYXYgLmZpeGVkLW5hdiAjbW9iaWxlLW5hdi1jaGVjazpjaGVja2VkIH4gLnRvcCAuZmVhdHVyZS1idXR0b24ge1xyXG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgtNTAlLCAwLCAwKTtcclxuICB9XHJcbiAgbmF2IC5maXhlZC1uYXYgI21vYmlsZS1uYXYtY2hlY2s6Y2hlY2tlZCB+IC5ib3R0b20ge1xyXG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcclxuICB9XHJcbn1cclxubWFpbiB7XHJcbiAgcGFkZGluZzogMzJweDtcclxufVxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNzY4cHgpIHtcclxuICBtYWluIHtcclxuICAgIHBhZGRpbmc6IDE2cHg7XHJcbiAgfVxyXG59XHJcbi5wcm9qZWN0cyB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIG1hcmdpbjogMCAtOHB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC13cmFwOiB3cmFwO1xyXG59XHJcbi5wcm9qZWN0czpiZWZvcmUsIC5wcm9qZWN0czphZnRlciB7XHJcbiAgY29udGVudDogXCJcIjtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBjbGVhcjogYm90aDtcclxufVxyXG5cclxuLnByb2plY3Qge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbiAgYm94LXNoYWRvdzogMCAycHggM3B4IHJnYmEoMCwgMCwgMCwgMC4zKTtcclxuICBmbG9hdDogbGVmdDtcclxuICBtYXJnaW46IDAgOHB4IDE2cHggOHB4O1xyXG4gIHBhZGRpbmc6IDI4cHggMzJweCAzMnB4IDMycHg7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHdpZHRoOiBjYWxjKDUwJSAtIDE2cHgpO1xyXG4gIHotaW5kZXg6IDA7XHJcbn1cclxuLnByb2plY3Q6YWZ0ZXIge1xyXG4gIGJhY2tncm91bmQ6ICMwOGM7XHJcbiAgYm9yZGVyLXJhZGl1czogMC4zZW07XHJcbiAgY29sb3I6ICNmZmY7XHJcbiAgY29udGVudDogXCJDT01QTEVURVwiO1xyXG4gIGZvbnQtc2l6ZTogMTBweDtcclxuICByaWdodDogMTZweDtcclxuICBwYWRkaW5nOiA1cHg7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMTZweDtcclxuICB6LWluZGV4OiAtMTtcclxufVxyXG4ucHJvamVjdC5vbmdvaW5nOmFmdGVyIHtcclxuICBiYWNrZ3JvdW5kOiAjNjg5ZjM4O1xyXG4gIGNvbnRlbnQ6IFwiT05HT0lOR1wiO1xyXG59XHJcbi5wcm9qZWN0Lm9uaG9sZDphZnRlciB7XHJcbiAgYmFja2dyb3VuZDogI2NjNWIzZjtcclxuICBjb250ZW50OiBcIk9OSE9MRFwiO1xyXG59XHJcbi5wcm9qZWN0IGgyIHtcclxuICBmb250LXNpemU6IDIwcHg7XHJcbiAgbWFyZ2luOiAwIDAgMTZweCAwO1xyXG59XHJcbi5wcm9qZWN0IHAge1xyXG4gIG1hcmdpbjogMDtcclxuICB0ZXh0LWFsaWduOiBqdXN0aWZ5O1xyXG59XHJcbi5wcm9qZWN0IC5yZWFkbW9yZSB7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMDtcclxuICAtd2Via2l0LXRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcclxuICAtbXMtdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzO1xyXG4gIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG4ucHJvamVjdCAucmVhZG1vcmU6YWZ0ZXIsIC5wcm9qZWN0IC5yZWFkbW9yZTpiZWZvcmUge1xyXG4gIGJvcmRlcjogMnB4IHNvbGlkIHRyYW5zcGFyZW50O1xyXG4gIGNvbnRlbnQ6IFwiXCI7XHJcbiAgaGVpZ2h0OiAxNnB4O1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAtd2Via2l0LXRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzLCB0cmFuc2Zvcm0gMC4zcztcclxuICAtbXMtdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIDAuM3MsIHRyYW5zZm9ybSAwLjNzO1xyXG4gIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzLCB0cmFuc2Zvcm0gMC4zcztcclxuICB3aWR0aDogMTZweDtcclxufVxyXG4ucHJvamVjdCAucmVhZG1vcmU6YmVmb3JlIHtcclxuICBib3JkZXItbGVmdC1jb2xvcjogIzY4OWYzODtcclxuICBib3JkZXItdG9wLWNvbG9yOiAjNjg5ZjM4O1xyXG4gIGxlZnQ6IDE2cHg7XHJcbiAgdG9wOiAxNnB4O1xyXG59XHJcbi5wcm9qZWN0IC5yZWFkbW9yZTphZnRlciB7XHJcbiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzY4OWYzODtcclxuICBib3JkZXItcmlnaHQtY29sb3I6ICM2ODlmMzg7XHJcbiAgYm90dG9tOiAxNnB4O1xyXG4gIHJpZ2h0OiAxNnB4O1xyXG59XHJcbi5wcm9qZWN0IC5yZWFkbW9yZTphY3RpdmUsIC5wcm9qZWN0IC5yZWFkbW9yZTpmb2N1cywgLnByb2plY3QgLnJlYWRtb3JlOmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuMDc1KTtcclxuICBvdXRsaW5lOiBub25lO1xyXG59XHJcbi5wcm9qZWN0IC5yZWFkbW9yZTphY3RpdmU6YmVmb3JlLCAucHJvamVjdCAucmVhZG1vcmU6Zm9jdXM6YmVmb3JlLCAucHJvamVjdCAucmVhZG1vcmU6aG92ZXI6YmVmb3JlIHtcclxuICBib3JkZXItbGVmdC1jb2xvcjogIzkxYzc2MTtcclxuICBib3JkZXItdG9wLWNvbG9yOiAjOTFjNzYxO1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoLTE2cHgsIC0xNnB4LCAwKTtcclxufVxyXG4ucHJvamVjdCAucmVhZG1vcmU6YWN0aXZlOmFmdGVyLCAucHJvamVjdCAucmVhZG1vcmU6Zm9jdXM6YWZ0ZXIsIC5wcm9qZWN0IC5yZWFkbW9yZTpob3ZlcjphZnRlciB7XHJcbiAgYm9yZGVyLWJvdHRvbS1jb2xvcjogIzkxYzc2MTtcclxuICBib3JkZXItcmlnaHQtY29sb3I6ICM5MWM3NjE7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgxNnB4LCAxNnB4LCAwKTtcclxufVxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogODAwcHgpIHtcclxuICAucHJvamVjdHMge1xyXG4gICAgbWFyZ2luLWxlZnQ6IC0xNnB4O1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAtMTZweDtcclxuICB9XHJcblxyXG4gIC5wcm9qZWN0IHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDA7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDA7XHJcbiAgfVxyXG4gIC5wcm9qZWN0OmFmdGVyIHtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgbWFyZ2luLXRvcDogMTZweDtcclxuICAgIHJpZ2h0OiAwO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgdG9wOiAwO1xyXG4gIH1cclxuICAucHJvamVjdCBwIHtcclxuICAgIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -917,6 +996,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/core/components/navbar/navbar.component.ts");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/core/components/home/home.component.ts");
+
 
 
 
@@ -927,7 +1008,8 @@ var CoreModule = /** @class */ (function () {
     CoreModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"]
+                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"],
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"]
             ],
             imports: [
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"]
@@ -1021,7 +1103,7 @@ var LayoutComponent = /** @class */ (function () {
         this.loadLevels();
         this.loadDivisions();
         this.loadTerms();
-        // this.applicationSettingService.loadSettings();
+        this.applicationSettingService.loadSettings();
     };
     /**
      * load translations and update the cache
@@ -1158,6 +1240,14 @@ var Auth = /** @class */ (function () {
     Auth.logout = function () {
         _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
         _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
+        return false;
+    };
+    Auth.can = function (permission) {
+        if (!Auth.user())
+            return false;
+        var permissions = Auth.user().permissions;
+        if (permissions[permission])
+            return true;
         return false;
     };
     return Auth;
@@ -1512,6 +1602,44 @@ var ButtonClickedDirective = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/directives/permission.directive.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/shared/directives/permission.directive.ts ***!
+  \***********************************************************/
+/*! exports provided: PermissionDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PermissionDirective", function() { return PermissionDirective; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth */ "./src/app/shared/auth.ts");
+
+
+
+var PermissionDirective = /** @class */ (function () {
+    function PermissionDirective(el) {
+        this.el = el;
+        this.permission = el.nativeElement.getAttribute('permission');
+        //console.log(this.permission);
+        //console.log(!Auth.can(this.permission));
+        if (!_auth__WEBPACK_IMPORTED_MODULE_2__["Auth"].can(this.permission))
+            el.nativeElement.remove();
+    }
+    PermissionDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+            selector: '[appPermission]'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+    ], PermissionDirective);
+    return PermissionDirective;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/directives/tables-loader.directive.ts":
 /*!**************************************************************!*\
   !*** ./src/app/shared/directives/tables-loader.directive.ts ***!
@@ -1585,6 +1713,17 @@ var Helper = /** @class */ (function () {
         }
         _translation__WEBPACK_IMPORTED_MODULE_1__["Translation"].storeNewKey(word);
         return word;
+    };
+    Helper.setFile = function (event, key, model) {
+        model[key] = event.target.files[0];
+    };
+    Helper.loadImage = function (event, key, model) {
+        Helper.setFile(event, key, model);
+        var reader = new FileReader();
+        reader.readAsDataURL(model[key]);
+        reader.onload = function (_event) {
+            model[key + "_url"] = reader.result;
+        };
     };
     return Helper;
 }());
@@ -2187,6 +2326,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pipes_replace_underscore_with_space_pipe__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pipes/replace-underscore-with-space.pipe */ "./src/app/shared/pipes/replace-underscore-with-space.pipe.ts");
 /* harmony import */ var _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pipes/trans.pipe */ "./src/app/shared/pipes/trans.pipe.ts");
 /* harmony import */ var angular_datatables__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! angular-datatables */ "./node_modules/angular-datatables/index.js");
+/* harmony import */ var _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./directives/permission.directive */ "./src/app/shared/directives/permission.directive.ts");
+
 
 
 
@@ -2223,7 +2364,8 @@ var SharedModule = /** @class */ (function () {
                 _components_no_matching_app_no_matching_component__WEBPACK_IMPORTED_MODULE_14__["NoMatchingComponent"],
                 _directives_button_clicked_directive_directive__WEBPACK_IMPORTED_MODULE_15__["ButtonClickedDirective"],
                 _components_main_loader_main_loader_component__WEBPACK_IMPORTED_MODULE_11__["MainLoaderComponent"],
-                _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__["TransPipe"]
+                _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__["TransPipe"],
+                _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__["PermissionDirective"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
@@ -2253,7 +2395,8 @@ var SharedModule = /** @class */ (function () {
                 _components_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_10__["ConfirmModalComponent"],
                 _components_main_loader_main_loader_component__WEBPACK_IMPORTED_MODULE_11__["MainLoaderComponent"],
                 _pipes_replace_underscore_with_space_pipe__WEBPACK_IMPORTED_MODULE_18__["ReplaceUnderscoreWithSpacePipe"],
-                _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__["TransPipe"]
+                _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__["TransPipe"],
+                _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__["PermissionDirective"]
             ]
         })
     ], SharedModule);
@@ -2539,6 +2682,139 @@ var UserProfileService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], UserProfileService);
     return UserProfileService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/user/services/role.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/user/services/role.service.ts ***!
+  \***********************************************/
+/*! exports provided: RoleService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RoleService", function() { return RoleService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var RoleService = /** @class */ (function () {
+    function RoleService(http) {
+        this.http = http;
+    }
+    /**
+     * get services from api
+     *
+     */
+    RoleService.prototype.permissions = function () {
+        return this.http.get('permissions?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
+     * update permission new service
+     */
+    RoleService.prototype.updatePermission = function (id, data) {
+        return this.http.post('roles/permission/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * get services from api
+     *
+     */
+    RoleService.prototype.get = function () {
+        return this.http.get('roles?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
+     * store new service
+     */
+    RoleService.prototype.store = function (data) {
+        return this.http.post('roles' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * update service
+     */
+    RoleService.prototype.update = function (id, data) {
+        return this.http.post('roles/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * remove service
+     */
+    RoleService.prototype.destroy = function (id) {
+        return this.http.delete('roles/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    RoleService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], RoleService);
+    return RoleService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/user/services/user.service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/user/services/user.service.ts ***!
+  \***********************************************/
+/*! exports provided: UserService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var UserService = /** @class */ (function () {
+    function UserService(http) {
+        this.http = http;
+    }
+    /**
+     * get services from api
+     *
+     */
+    UserService.prototype.get = function () {
+        return this.http.get('users?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
+     * store new service
+     */
+    UserService.prototype.store = function (data) {
+        return this.http.post('users' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * update service
+     */
+    UserService.prototype.update = function (id, data) {
+        return this.http.post('users/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * remove service
+     */
+    UserService.prototype.destroy = function (id) {
+        return this.http.delete('users/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], UserService);
+    return UserService;
 }());
 
 

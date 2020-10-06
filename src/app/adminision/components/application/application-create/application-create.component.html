@@ -30,7 +30,7 @@
 
               <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  (click)="toggle('student-info-panel')"  >{{ "student info" | trans }}</button>
 
-              <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  (click)="toggle('military-info-panel')"  >{{ "military info" | trans }}</button>
+              <button class="btn btn-default w3-block small-shadow btn-margin-bottom military-info-button"  (click)="toggle('military-info-panel')"  >{{ "military info" | trans }}</button>
 
               <button class="btn btn-default w3-block small-shadow btn-margin-bottom"  (click)="toggle('parent-info-panel')"  >{{ "parent info" | trans }}</button>
 
@@ -116,7 +116,7 @@
                         <th>{{ "qualification" | trans }} *</th>
                         <td>
                           <select
-                          (change)="watchLevel()"
+                          (change)="watchLevel();emptyData()"
                           class="custom-input form-control input-sm w3-input input-sm"
                           [ngClass]="{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}"
                           [(ngModel)]="application.qualification_id">
@@ -477,6 +477,7 @@
                             <th>{{ "gender" | trans }}</th>
                             <td>
                               <select
+                              (change)="filterDataBaisedOnGender()"
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.gender">
                                 <option value="male">{{ "male" | trans }}</option>
@@ -636,7 +637,7 @@
 
               <div class="custom-panel w3-display-container w3-round">
                   <div class="custom-panel-body"  >
-                    <button class="btn btn-default small-shadow w3-margin-left" [disabled]="isSubmitted"  (click)="sendApplication()" >{{ "send application" | trans }}</button>
+                    <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted"  (click)="sendApplication()" >{{ "send application" | trans }}</button>
 
                     <a href="#" class="btn btn-default small-shadow w3-margin-left" routerLink="/adminision/application" >{{ "exit" | trans }}</a>
                   </div>

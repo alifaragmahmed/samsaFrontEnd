@@ -11,7 +11,6 @@ import { DivisionsComponent } from './divisions/divisions.component';
 import { NationalityComponent } from './nationality/nationality.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
-import { UsersComponent } from './users/users.component'
 import { RegisterationStatusComponent } from './registeration-status/registeration-status.component'
 import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
 
@@ -98,11 +97,6 @@ const routes: Routes = [
       {
         path: 'relative-realtions',
         component: RelativeRelationsComponent
-      }
-      ,
-      {
-        path: 'users',
-        component: UsersComponent
       }
       ,
       {

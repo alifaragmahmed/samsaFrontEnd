@@ -30,13 +30,17 @@ const routes: Routes = [
         path: 'adminision',
         loadChildren: './adminision/adminision.module#AdminisionModule'
       },
-      { 
+      {
         path: 'military',
         loadChildren: './military/military.module#MilitaryModule'
       },
-      { 
+      {
         path: 'profile',
         component: UserProfileComponent
+      },
+      {
+        path: 'users',
+        loadChildren: './user/user.module#UserModule'
       },
      /* {
         path: 'dashboard',

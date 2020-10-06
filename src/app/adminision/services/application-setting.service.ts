@@ -26,6 +26,7 @@ export class ApplicationSettingService {
   public static DEPARTMENTS: any = [];
   public static REGSITERATIN_STATUS_DOCUMENTS: any = [];
   public static DIVISIONS: any = [];
+  public static SETTINGS: any = [];
 
   public static LOADED: any = false;
 
@@ -56,6 +57,7 @@ export class ApplicationSettingService {
     this.getDepartments().subscribe((r)=>{ ApplicationSettingService.DEPARTMENTS = r; });
     this.getRegisterationStatusDocuments().subscribe((r)=>{ ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = r; });
     this.getDivisions().subscribe((r)=>{ ApplicationSettingService.DIVISIONS = r; });
+    this.getSettings().subscribe((r)=>{ ApplicationSettingService.SETTINGS = r; });
     ApplicationSettingService.LOADED = true;
   }
 
@@ -135,7 +137,13 @@ export class ApplicationSettingService {
     return this.http.get('adminision/get_parent_jobs?api_token=' + Auth.getApiToken());
   }
 
+  public updateSetting(data) {
+    return this.http.post('adminision/update_setting?api_token=' + Auth.getApiToken(), data);
+  }
 
+  public getSettings() {
+    return this.http.get('adminision/get_settings?api_token=' + Auth.getApiToken());
+  }
 
 
 }

@@ -26,10 +26,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
 import { DataTablesModule } from '../../node_modules/angular-datatables';
 import { SystemLabelComponent } from './core/components/system-label/system-label.component';
 import { AccountModule } from './account/account.module';
+import { UserService } from './user/services/user.service';
+import { RoleService } from './user/services/role.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { AccountModule } from './account/account.module';
   ],
   imports: [
     BrowserModule,
-    SharedModule, 
+    SharedModule,
     BrowserAnimationsModule,
     CoreModule,
     ToastrModule.forRoot({
@@ -70,6 +72,8 @@ import { AccountModule } from './account/account.module';
     TermService,
     AuthService,
     AuthGuestService,
+    UserService,
+    RoleService,
     {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
   ],
   bootstrap: [AppComponent]
@@ -78,9 +82,9 @@ export class AppModule {
 
   public static doc: any = document;
 
-  constructor() { 
+  constructor() {
   }
 
- 
+
 
 }

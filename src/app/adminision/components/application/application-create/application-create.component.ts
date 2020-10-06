@@ -40,6 +40,8 @@ export class ApplicationCreateComponent implements OnInit {
 
   public requiredDocumentList = new HashTable();
 
+  public differentYearRequired = 0;
+
   public required_field = [
     'name',
     'qualification_id',
@@ -87,11 +89,35 @@ export class ApplicationCreateComponent implements OnInit {
     });
   }
 
+  validateOnQualificationDate() {
+    if (!this.application.qualification_date)
+      return false;
+
+    this.differentYearRequired = 0;
+    this.applicationSettings.SETTINGS.forEach(element => {
+      if (element.id == 5)
+        this.differentYearRequired = element.value;
+    });
+    // current year
+    let currentYear = new Date().getFullYear();
+    let qualificationYear = new Date(this.application.qualification_date).getFullYear();
+    let differentYear = currentYear - qualificationYear;
+
+    console.log(differentYear);
+    if (differentYear > this.differentYearRequired)
+      return false;
+
+    return true;
+  }
+
   sendApplication() {
     if (!this.validate()) {
-      return Message.error(Helper.trans('fill all requird data'));
       this.setCurrentError(Helper.trans('fill all requird data'));
+      return Message.error(Helper.trans('fill all requird data'));
     }
+    if (!this.validateOnQualificationDate())
+      return Message.error(Helper.trans('different year of qualification must be less of equal than ' + this.differentYearRequired));
+
     if (this.isUpdate)
       this.performUpdateApplication();
     else
@@ -269,6 +295,20 @@ export class ApplicationCreateComponent implements OnInit {
 
         this.watchLevel();
       }
+  }
+
+  emptyData() {
+    this.application.qualification_types_id = null;
+    this.application.level_id = null;
+    this.application.level_name = null;
+    this.application.grade = 0;
+  }
+
+  filterDataBaisedOnGender() {
+    if (this.application.gender == 'female') {
+      this.doc.jquery('.military-info-panel').hide();
+      this.doc.jquery('.military-info-button').hide();
+    }
   }
 
   ngOnInit() {
