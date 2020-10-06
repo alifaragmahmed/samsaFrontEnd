@@ -59,10 +59,11 @@
                       <li class="waves-effect waves-white">
                         <a routerLink="/users" class="dropdown-toggle" data-toggle="dropdown">{{ "users" | trans }}  </a>
                       </li>
-
+                      <!--
                       <li class="waves-effect waves-white">
                         <a routerLink="/users" class="dropdown-toggle" data-toggle="dropdown">{{ "users" | trans }}  </a>
                       </li>
+                      -->
                     <!-- Notifications Menu -->
                     <li
                     style="float: left!important"
@@ -72,23 +73,29 @@
                         <i class="fa fa-bell-o"></i>
                         <span class="label label-warning">{{ notifications.length > 0? notifications.length : '' }}</span>
                       </a>
-                      <div class="w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card" style="position: fixed;left: 10%">
+                      <div
+                      class="w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card"
+                      style="position: fixed;left: 10%;width: 300px">
                           <!-- Inner Menu: contains the notifications -->
-                          <ul class="menu w3-ul">
-                            <li class="w3-bar-item w3-button w3-text-black">{{ message }}</li>
-                            <li class="w3-bar-item w3-button w3-text-black" *ngFor="let item of notifications index as i" ><!-- start notification -->
+                          <ul class="menu w3-ul w3-block">
+                            <li class="w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray" style="text-align: center!important;" >{{ message }}</li>
+                            <li class="w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray" *ngFor="let item of notifications index as i" ><!-- start notification -->
                               <div class="media">
                                   <div class="media-left">
                                     <a href="#">
-                                        <i class="{{ item.icon? item.icon : 'fa fa-bell-o' }} w3-padding"></i>
+                                        <i
+                                        style="padding: 0px!important;"
+                                        class="w3-text-black text-right {{ item.icon? item.icon : 'fa fa-bell-o' }}"></i>
                                     </a>
                                   </div>
-                                  <div class="media-body">
+                                  <div class="media-body" style="text-align: right!important;line-height: 14px!important;" >
                                     {{ item.body }}
                                   </div>
                                 </div>
                             </li>
-                            <li class="w3-bar-item w3-button w3-text-black"><a href="#">{{ "View all" | trans }}</a></li>
+                            <li
+                            class="w3-bar-item w3-button w3-text-black text-center w3-border-bottom w3-border-light-gray"
+                            style="text-align: center!important;padding: 0px!important">{{ "View all" | trans }}</li>
                             <!-- end notification -->
                           </ul>
                       </div>

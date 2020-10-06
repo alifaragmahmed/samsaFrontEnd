@@ -89,6 +89,7 @@
           title: message,
           position: 'topCenter',
         });
+        setTimeout(()=>{ document.notify = 1; }, 2000);
       },
       error: function(message){
         if (!message)
@@ -98,6 +99,7 @@
           title: message,
           position: 'topCenter',
         });
+        setTimeout(()=>{ document.notify = 1; }, 2000);
       },
       confirm: function(message, action) {
         Swal.fire({
@@ -109,6 +111,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             action();
+        setTimeout(()=>{ document.notify = 1; }, 2000);
           } else if (result.isDenied) {
             // nothing
           }

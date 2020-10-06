@@ -69,12 +69,14 @@
             [disabled]="isEntrollSubmit"
             style="margin: 5px" ><i class="fa" [ngClass]="{'fa-user-circle': !isEntrollSubmit, 'fa-spin fa-spinner': isEntrollSubmit}" ></i>  {{ "enroll student" | trans }} </button>
 
+            <!--
             <a
             *ngIf="!item.can_convert_to_student"
             href="#"
             [routerLink]="['/account/safe/', item.id]"
             style="margin: 5px"
             class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "pay" | trans }} </a>
+            -->
           </div>
       </div>
     </div>
