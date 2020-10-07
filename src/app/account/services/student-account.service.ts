@@ -34,7 +34,7 @@ export class StudentAccountService {
   public updateStudentInstallments(data: any) {
     return this.http.post('account/installment/update', data);
   }
-  
+
   /**
    * update student installments
    *
@@ -55,7 +55,28 @@ export class StudentAccountService {
    * get available services for student
    *
    */
-  public getAvailabeServices(studentId: number) { 
+  public getAvailabeServices(studentId: number) {
     return this.http.get('account/get_available_services?api_token='+Auth.getApiToken()+'&student_id='+studentId);
+  }
+
+  /**
+   * pay refund
+   */
+  public payRefund(data) {
+    return this.http.post('account/pay-refund?api_token='+Auth.getApiToken(), data);
+  }
+
+  /**
+   * pay refund
+   */
+  public payRemove(data) {
+    return this.http.post('account/pay-remove?api_token='+Auth.getApiToken(), data);
+  }
+
+  /**
+   * edit payment info
+   */
+  public editPayment(data) {
+    return this.http.post('account/edit-payment?api_token='+Auth.getApiToken(), data);
   }
 }

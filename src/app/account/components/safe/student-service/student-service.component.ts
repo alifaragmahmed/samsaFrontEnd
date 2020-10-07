@@ -11,14 +11,16 @@ export class StudentServiceComponent implements OnInit {
   public total = 0;
   public doc: any = AppModule.doc;
 
-  @Input() services: any[];
+  @Input() safeObject: any;
 
   constructor() { }
 
   calculateTotal() {
     this.total = 0;
-    this.services.forEach(element => {
-      this.total += element.value;
+    if (this.safeObject)
+    this.safeObject.payments.forEach(element => {
+      if (element.model_type == 'service')
+        this.total += element.value;
     });
   }
 

@@ -79,7 +79,11 @@
                           <!-- Inner Menu: contains the notifications -->
                           <ul class="menu w3-ul w3-block">
                             <li class="w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray" style="text-align: center!important;" >{{ message }}</li>
-                            <li class="w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray" *ngFor="let item of notifications index as i" ><!-- start notification -->
+                            <li
+                            style="padding: 0px!important"
+                            class="w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray"
+                            *ngFor="let item of notifications index as i" ><!-- start notification -->
+
                               <div class="media">
                                   <div class="media-left">
                                     <a href="#">
@@ -88,7 +92,8 @@
                                         class="w3-text-black text-right {{ item.icon? item.icon : 'fa fa-bell-o' }}"></i>
                                     </a>
                                   </div>
-                                  <div class="media-body" style="text-align: right!important;line-height: 14px!important;" >
+                                  <div class="media-body"
+                                  style="text-align: right!important;line-height: 14px!important;padding-top:10px" >
                                     {{ item.body }}
                                   </div>
                                 </div>

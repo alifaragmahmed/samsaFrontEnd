@@ -5,7 +5,7 @@ import { Message } from '../../../../shared/message';
 import { Auth } from '../../../../shared/auth';
 import { Helper } from '../../../../shared/helper';
 import { AppModule } from '../../../../app.module';
-import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder'; 
+import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 })
 export class SafeIndexComponent implements OnInit {
 
-  // init document 
+  // init document
   public doc: any = AppModule.doc;
 
   public safeObject: any = {};
@@ -29,7 +29,7 @@ export class SafeIndexComponent implements OnInit {
   public showStudentInstallment = false;
   public isWait = false;
   public timeoutId;
-  public students: any = []; 
+  public students: any = [];
   public isStudentSayed = false;
   public updateStudent: any;
 
@@ -38,7 +38,7 @@ export class SafeIndexComponent implements OnInit {
     this.initSafeObject();
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
-      this.loadStudentAccountInfo(id); 
+      this.loadStudentAccountInfo(id);
     }
   }
 
@@ -98,26 +98,26 @@ export class SafeIndexComponent implements OnInit {
       if (this.safeObject.id != r.id)
         this.isStudentSayed = false;
 
-      this.safeObject = r; 
+      this.safeObject = r;
       this.buildSafeMsg();
       this.studentSearchId = this.safeObject.id;
-     
+
       if (!this.safeObject.old_balance)
         this.safeObject.old_balance = 0;
-     
+
       if (!this.safeObject.current_balance)
         this.safeObject.current_balance = 0;
-     
+
       if (!this.safeObject.paid_value)
         this.safeObject.paid_value = 0;
-    
+
       if (!this.safeObject.image)
         this.safeObject.image = '/assets/img/avatar.png';
       this.loadAvailableServices();
     });
   }
 
-  updateStudentAction() { 
+  updateStudentAction() {
     if (this.safeObject)
       if (this.safeObject.id)
         this.loadStudentAccountInfo(this.safeObject.id);
@@ -128,12 +128,12 @@ export class SafeIndexComponent implements OnInit {
    */
   performPay() {
     Message.confirm(Helper.trans('are_you_sure'), ()=>{
-      this.payment = new Payment(this.safeObject.id, this.safeObject.paid_value, this.studentAcountService, ()=>{
+      this.payment = new Payment(this.safeObject, this.studentAcountService, ()=>{
         this.updateStudent();
       });
       return this.payment.pay();
     });
-  } 
+  }
 
   /**
    *  load available services for student
@@ -141,7 +141,7 @@ export class SafeIndexComponent implements OnInit {
   loadAvailableServices() {
     if(this.safeObject.id) {
       this.studentAcountService.getAvailabeServices(this.safeObject.id).subscribe((r) => {
-        this.availableServices = r; 
+        this.availableServices = r;
       });
     }
   }

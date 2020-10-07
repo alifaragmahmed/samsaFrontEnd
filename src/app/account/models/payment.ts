@@ -7,14 +7,16 @@ import { AppModule } from '../../app.module';
 
 export class Payment {
 
+    public safeObject: any;
     public studentId: number;
     public value: number;
     public studentAcountService: StudentAccountService;
     public action: any;
 
-    constructor(studentId: number, value: number, studentAcountService: StudentAccountService, action: any) {
-        this.studentId = studentId;
-        this.value = value;
+    constructor(safeObject: any, studentAcountService: StudentAccountService, action: any) {
+        this.safeObject = safeObject;
+        this.studentId = safeObject.id;
+        this.value = safeObject.paid_value;
         this.studentAcountService = studentAcountService;
         this.action = action;
     }
@@ -34,13 +36,15 @@ export class Payment {
      * permform payment of the student
      */
     pay() {
-        if (!this.validate()) 
+        if (!this.validate())
             return Message.error('select a student or not value to pay');
-        
-        const data = {
+
+        let data = {
             api_token: Auth.getApiToken(),
             student_id: this.studentId,
-            value: this.value
+            value: this.value,
+            payment_type: this.safeObject.payment_type,
+            services: this.safeObject.services
         };
         this.studentAcountService.studentPay(data).subscribe((r)=> {
             const response: any = r;
@@ -48,9 +52,9 @@ export class Payment {
                 Message.success(response.message);
                 this.action();
                 Payment.loadReceipts(response.data);
-            } 
-            else 
-                Message.error(response.message); 
+            }
+            else
+                Message.error(response.message);
 
         });
     }

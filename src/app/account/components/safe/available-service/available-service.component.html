@@ -1,35 +1,72 @@
 <div class="modal " id="studentAvailableServices" tabindex="-1" role="dialog"   >
-  <div class="modal-dialog modal-" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content w3-animate-top">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title text-center">{{ "student available services" | trans }}</h4>
       </div>
-      <div class="modal-body">
-        <table class="table table-bordered" >
+      <div class="">
+        <table class="table table-bordered text-center" >
           <thead>
             <tr class="w3-dark-gray" >
               <th>{{ "#" | trans }}</th>
               <th>{{ "name" | trans }}</th>
               <th>{{ "additional_value" | trans }}</th>
               <th>{{ "value" | trans }}</th>
+              <th>{{ "valid" | trans }}</th>
+              <th>{{ "reason" | trans }}</th>
+              <th>{{ "number" | trans }}</th>
               <th>{{ "total" | trans }}</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of services index as i" >
+            <tr
+            *ngFor="let item of services index as i"
+            [ngClass]="{'w3-text-red': !item.valid}"
+             >
               <td>{{ i + 1 }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.additional_value | currency: ' EGP ' }}</td>
               <td>{{ item.value | currency: ' EGP ' }}</td>
+              <td>
+                <i *ngIf="!item.valid" class="fa fa-window-close w3-text-red" ></i>
+                <i *ngIf="item.valid" class="fa fa-check-square w3-text-green" ></i>
+              </td>
+              <td>
+                <span *ngIf="!item.valid" class="w3-text-red">
+                  {{ item.reason }}
+                </span>
+              </td>
+              <td>
+                <input
+                *ngIf="item.valid && item.copy"
+                (change)="calculateTotal()"
+                type="number"
+                class="custom-input w3-input border-bottom-dashed input-sm" [(ngModel)]="item.number" >
+              </td>
               <td>{{ (item.value + item.additional_value) | currency: ' EGP ' }}</td>
               <td>
-                <input type="checkbox" class="w3-check" >
+                <mat-slide-toggle
+                (change)="toggleService(item)"
+                [checked]="selectedServices.has(item.id)"
+                *ngIf="item.valid"  ></mat-slide-toggle>
               </td>
             </tr>
             <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
               <td>{{ "total" | trans }}</td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -39,8 +76,8 @@
           </tbody>
         </table>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="document.getElementById('studentAvailableServices').style.display='none'" >{{ "close" | trans }}</button>
+      <div class="modal-footer text-right">
+        <button type="button" class="btn btn-default"  class="close" data-dismiss="modal" aria-label="Close" >{{ "close" | trans }}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

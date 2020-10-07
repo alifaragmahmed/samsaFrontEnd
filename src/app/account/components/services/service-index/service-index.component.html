@@ -2,59 +2,63 @@
 
 <div class="box box-primary material-shadow w3-white table-responsive" >
   <div class="box-header">
-    <button mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  > 
+    <button mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  >
       <span class="fa fa-plus" ></span> {{ "add" | trans }}
-    </button> 
-    <button mat-raised-button color="warn" *ngIf="showRemoveButton" (click)="performRemove()" style="margin: 5px"  > 
+    </button>
+    <button mat-raised-button color="warn" *ngIf="showRemoveButton" (click)="performRemove()" style="margin: 5px"  >
       <span class="fa fa-trash" ></span>
     </button>
-  </div> 
+  </div>
 
 </div>
 <div class="mat-elevation-z8 w3-white" style="padding: 7px" >
     <table mat-table [dataSource]="dataSource" matSort  class="">
- 
+
         <!-- Position Column -->
         <ng-container matColumnDef="name" sticky>
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "name" | trans }}</th>
-          <td mat-cell *matCellDef="let element"> 
-            <mat-checkbox [checked]="trashList.has(element.id)" (change)="toggleFromTrash(element.id)"  ></mat-checkbox> 
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox
+            *ngIf="element.can_delete"
+            [checked]="trashList.has(element.id)"
+            (change)="toggleFromTrash(element.id)"  ></mat-checkbox>
+
             <span class="w3-margin-right">
-                {{element.name}} 
+                {{element.name}}
             </span>
           </td>
         </ng-container>
-        
+
         <!-- Position Column -->
         <ng-container matColumnDef="value">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "value" | trans }}</th>
           <td mat-cell *matCellDef="let element"> {{element.value | currency: ' EGP '}} </td>
         </ng-container>
-        
+
         <!-- Position Column -->
         <ng-container matColumnDef="store_id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "store" | trans }}</th>
           <td mat-cell *matCellDef="let element"> {{element.store? element.store.name : element.store_id}} </td>
         </ng-container>
-        
+
         <!-- Position Column -->
         <ng-container matColumnDef="additional_value">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "additional_value" | trans }}</th>
             <td mat-cell *matCellDef="let element"> {{element.additional_value | currency: ' EGP '}} </td>
         </ng-container>
-        
+
         <!-- Position Column -->
         <ng-container matColumnDef="except_level_id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "except_level" | trans }}</th>
             <td mat-cell *matCellDef="let element"> {{element.level? element.level.name : element.except_level_id}} </td>
-        </ng-container>  
-        
+        </ng-container>
+
         <!-- Position Column -->
         <ng-container matColumnDef="division_id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "division" | trans }}</th>
             <td mat-cell *matCellDef="let element"> {{element.division? element.division.name : element.division_id}} </td>
-        </ng-container>  
-       
+        </ng-container>
+
         <!-- Position Column -->
         <ng-container matColumnDef="copy">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "copy" | trans }}</th>
@@ -71,48 +75,48 @@
               <span class="fa fa-close w3-text-red" *ngIf="!element.repeat" ></span>
             </td>
         </ng-container>
-         
+
         <!-- Position Column -->
         <ng-container matColumnDef="installment_percent">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "installment_percent" | trans }}</th>
-            <td mat-cell *matCellDef="let element">  
-              {{element.installment_percent}} 
+            <td mat-cell *matCellDef="let element">
+              {{element.installment_percent}}
             </td>
        </ng-container>
-         
+
         <!-- Position Column -->
         <ng-container matColumnDef="from_installment_id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "from_installment" | trans }}</th>
-            <td mat-cell *matCellDef="let element">  
-              {{element.from_installment_id}} 
+            <td mat-cell *matCellDef="let element">
+              {{element.from_installment_id}}
             </td>
        </ng-container>
-         
+
         <!-- Position Column -->
         <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "type" | trans }}</th>
-            <td mat-cell *matCellDef="let element">  
-              {{element.type | trans }} 
+            <td mat-cell *matCellDef="let element">
+              {{element.type | trans }}
             </td>
        </ng-container>
-         
+
         <!-- Position Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-            <td mat-cell *matCellDef="let element">  
+            <td mat-cell *matCellDef="let element">
                 <button mat-button color="warn"  (click)="showUpdateModal(element)" >
                   <i class="fa fa-edit"></i>
                 </button>
             </td>
        </ng-container>
- 
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      
+
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
- 
+
 
 <app-service-form [updateResources]="updateResources" [updateMode]="false" ></app-service-form>
 
@@ -130,10 +134,10 @@
             <br>
             {{ removed.length }} - {{ "removed" | trans }} {{ trashList.size() + removed.length }}
         </div>
-        <div class="modal-footer"> 
+        <div class="modal-footer">
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
- 
+

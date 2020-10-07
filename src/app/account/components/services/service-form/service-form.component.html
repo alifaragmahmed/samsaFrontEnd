@@ -8,7 +8,7 @@
             <b *ngIf="updateMode" >{{ "update service" | trans }}</b>
           </h4>
         </div>
-        <div class="modal-body"> 
+        <div class="modal-body">
           <table class="table" >
             <tr>
               <th>{{ "name" | trans }} *</th>
@@ -19,11 +19,11 @@
             <tr>
               <th>{{ "store" | trans }} *</th>
               <td>
-                <select class="form-control input-sm" [(ngModel)]="item.store_id" required > 
-                  <option *ngFor="let row of stores" value="{{ row.id }}" >{{ row.name}}</option> 
+                <select class="form-control input-sm" [(ngModel)]="item.store_id" required >
+                  <option *ngFor="let row of stores" value="{{ row.id }}" >{{ row.name}}</option>
                 </select>
               </td>
-            </tr> 
+            </tr>
             <tr>
               <th>{{ "type" | trans }} *</th>
               <td>
@@ -33,7 +33,7 @@
                   <option value="in" >{{ "in" | trans }}</option>
                 </select>
               </td>
-            </tr> 
+            </tr>
             <tr>
               <th>{{ "value" | trans }}</th>
               <td>
@@ -43,25 +43,27 @@
             <tr>
               <th>{{ "except_level" | trans }} </th>
               <td>
-                <select 
+                <select
                 class="form-control input-sm"
                 [(ngModel)]="item.except_level_id">
+                <option value="" >-- {{ "select level" | trans }} --</option>
                   <option *ngFor="let item of levels" value="{{ item.id }}">{{ item.name }}</option>
-                </select>  
+                </select>
               </td>
-            </tr>  
+            </tr>
             <tr>
               <th>{{ "division" | trans }} </th>
               <td>
                 <select
-                class="form-control input-sm" 
+                class="form-control input-sm"
                 [(ngModel)]="item.division_id">
+                <option value="" >-- {{ "select division" | trans }} --</option>
                   <ng-container *ngFor="let item of divisions">
                     <option  value="{{ item.id }}">{{ item.name + "-" + item.level }}</option>
-                  </ng-container> 
-                </select>  
+                  </ng-container>
+                </select>
               </td>
-            </tr>   
+            </tr>
             <tr>
               <th>{{ "copying" | trans }}</th>
               <td>
@@ -91,21 +93,21 @@
               <td>
                 <input type="number" class="form-control input-sm" [(ngModel)]="item.from_installment_id"    >
               </td>
-            </tr> 
+            </tr>
           </table>
         </div>
         <div class="modal-footer text-right">
-          <button type="button" mat-raised-button 
+          <button type="button" mat-raised-button
           (click)="updateMode? doc.jquery('#updateModal').modal('hide') : doc.jquery('#createModal').modal('hide')"  >{{ "close" | trans }}</button>
-          
-          <button  
-            mat-raised-button color="primary" 
-            [disabled]="isSubmitted"  
-            (click)="sendResource()" > 
+
+          <button
+            mat-raised-button color="primary"
+            [disabled]="isSubmitted"
+            (click)="sendResource()" >
             <span *ngIf="!isSubmitted" >{{ "save" | trans }}</span>
             <span *ngIf="isSubmitted" class="fa fa-spin fa-spinner" ></span>
           </button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal --> 
+  </div><!-- /.modal -->

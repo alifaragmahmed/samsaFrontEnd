@@ -15,9 +15,9 @@
           <br>
           <div class="custom-panel w3-display-container w3-round" style="padding: 5px" >
 
-            <div 
+            <div
             *ngIf="studentSearchId"
-            class="alert alert-danger w3-block btn-margin-bottom text-center" 
+            class="alert alert-danger w3-block btn-margin-bottom text-center"
             [innerHTML]="safeObject.notes" >
 
             </div>
@@ -40,8 +40,8 @@
             <div class="custom-panel-title" >{{ "search" | trans }}</div>
 
             <div class="custom-panel-body w3-display-container"  >
-              <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " 
-              (keyup)="searchInputEvent()" 
+              <input class="w3-round-xxlarge w3-white w3-input border-gray search-input "
+              (keyup)="searchInputEvent()"
               placeholder="{{ 'search with student name code national_id' | trans }}"
               [(ngModel)]="searchKey" >
 
@@ -170,6 +170,9 @@
                       <th>{{ "value" | trans }}</th>
                       <td>
                         <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paid_value" >
+                        <p class="w3-text-red" *ngIf="safeObject.payment_type == 'service'" >
+                          {{ "total of selected services" | trans }}
+                        </p>
                       </td>
                     </tr>
                   </table>
@@ -201,12 +204,13 @@
 
           </div>
           <div class="custom-panel w3-display-container w3-round">
-            <div class="custom-panel-body"  > 
+            <div class="custom-panel-body"  >
               <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value"   (click)="performPay()" >{{ "save & print" | trans }}</button>
-              
-              <!--
-              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"   onclick="document.getElementById('studentAvailableServices').style.display='block'"  >{{ "services" | trans }}</button>
-              -->
+
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"  (click)="doc.jquery('#studentAvailableServices').modal('show')"  >{{ "services" | trans }}</button>
+
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"  (click)="doc.jquery('#studentRefundPayments').modal('show')"  >{{ "pay_refund" | trans }}</button>
+
               <button class="btn btn-default small-shadow w3-margin-left" routerLink="" >{{ "exit" | trans }}</button>
             </div>
 
@@ -225,16 +229,19 @@
 <app-student-installment [installments]="safeObject.installments? safeObject.installments : []" [showStudentInstallment]="showStudentInstallment" ></app-student-installment>
 
 <!-- student payments modal -->
-<app-student-payment [payments]="safeObject.payment_details? safeObject.payment_details : []" ></app-student-payment>
+<app-student-payment [payments]="safeObject.payment_details? safeObject.payment_details : []" [updateStudent]="updateStudent" ></app-student-payment>
+
+<!-- student refund payments modal -->
+<app-pay-refund [payments]="safeObject.payments? safeObject.payments : []" [updateStudent]="updateStudent" ></app-pay-refund>
 
 <!-- student services modal -->
-<app-student-service [services]="safeObject.services? safeObject.services : []"  ></app-student-service>
+<app-student-service [safeObject]="safeObject"  ></app-student-service>
 
 <!-- student services modal -->
 <app-installment [student]="safeObject" [updateStudent]="updateStudent" [studentInstallments]="safeObject.installments? safeObject.installments : []" ></app-installment>
 
 <!-- student services modal -->
-<app-available-service [services]="availableServices" ></app-available-service>
+<app-available-service [services]="availableServices" [safeObject]="safeObject" ></app-available-service>
 
 <!-- notes modal -->
 <app-send-note [student]="safeObject" [updateStudent]="updateStudent" ></app-send-note>

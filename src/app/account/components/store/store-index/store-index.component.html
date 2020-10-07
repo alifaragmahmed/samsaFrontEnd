@@ -2,74 +2,77 @@
 
 <div class="box box-primary material-shadow w3-white table-responsive" >
   <div class="box-header">
-    <button mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  > 
+    <button mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  >
       <span class="fa fa-plus" ></span> {{ "add" | trans }}
-    </button> 
-    <button mat-raised-button color="warn" *ngIf="showRemoveButton" (click)="performRemove()" style="margin: 5px"  > 
+    </button>
+    <button mat-raised-button color="warn" *ngIf="showRemoveButton" (click)="performRemove()" style="margin: 5px"  >
       <span class="fa fa-trash" ></span>
     </button>
-  </div> 
+  </div>
 
 </div>
 <div class="mat-elevation-z8 w3-white" style="padding: 7px" >
     <table mat-table [dataSource]="dataSource" matSort  class="">
-      
+
         <!-- Position Column -->
         <ng-container matColumnDef="name" sticky>
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "name" | trans }}</th>
-          <td mat-cell *matCellDef="let element"> 
-            <mat-checkbox [checked]="trashList.has(element.id)" (change)="toggleFromTrash(element.id)"  ></mat-checkbox> 
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox
+            *ngIf="element.can_delete"
+            [checked]="trashList.has(element.id)"
+            (change)="toggleFromTrash(element.id)"  ></mat-checkbox>
             <span class="w3-margin-right">
-                {{element.name}} 
+                {{element.name}}
             </span>
           </td>
         </ng-container>
-        
+
         <!-- Position Column -->
         <ng-container matColumnDef="init_balance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "init_balance" | trans }}</th>
           <td mat-cell *matCellDef="let element"> {{element.init_balance | currency: ' EGP '}} </td>
         </ng-container>
-        
+
         <!-- Position Column -->
         <ng-container matColumnDef="balance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "balance" | trans }}</th>
           <td mat-cell *matCellDef="let element"> {{element.balance | currency: ' EGP '}} </td>
         </ng-container>
-         
+
         <!-- Position Column -->
         <ng-container matColumnDef="address">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "address" | trans }}</th>
-            <td mat-cell *matCellDef="let element">  
-              {{element.address}} 
+            <td mat-cell *matCellDef="let element">
+              {{element.address}}
             </td>
        </ng-container>
-         
+
         <!-- Position Column -->
         <ng-container matColumnDef="notes">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "notes" | trans }}</th>
-            <td mat-cell *matCellDef="let element">  
-              {{element.notes}} 
+            <td mat-cell *matCellDef="let element">
+              {{element.notes}}
             </td>
        </ng-container>
-          
+
         <!-- Position Column -->
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-            <td mat-cell *matCellDef="let element">  
+            <td mat-cell *matCellDef="let element">
                 <button mat-button color="warn"  (click)="showUpdateModal(element)" >
                   <i class="fa fa-edit"></i>
                 </button>
             </td>
        </ng-container>
- 
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      
+
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
- 
+
 
 <app-store-form [updateResources]="updateResources" [updateMode]="false" ></app-store-form>
 
@@ -87,10 +90,10 @@
             <br>
             {{ removed.length }} - {{ "removed" | trans }} {{ trashList.size() + removed.length }}
         </div>
-        <div class="modal-footer"> 
+        <div class="modal-footer">
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
- 
+

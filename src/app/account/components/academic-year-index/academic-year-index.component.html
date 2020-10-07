@@ -41,6 +41,7 @@
         <th>{{ "registeration_status" | trans }}</th>
         <th>{{ "store" | trans }}</th>
         <th>{{ "discount" | trans }}</th>
+        <th>{{ "wz_value" | trans }}</th>
         <th></th>
       </tr>
     </thead>
@@ -78,6 +79,9 @@
         </td>
         <td>
             <input type="number" class="form-control input-sm" [(ngModel)]="item.discount"   >
+        </td>
+        <td>
+            <input type="number" class="form-control input-sm" [(ngModel)]="item.wz_value"   >
         </td>
         <td>
           <button mat-button color="warn" (click)="removeRow(item, i)" >

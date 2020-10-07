@@ -10,23 +10,27 @@
           <thead>
             <tr class="w3-dark-gray" >
               <th>{{ "#" | trans }}</th>
+              <th>{{ "date" | trans }}</th>
               <th>{{ "name" | trans }}</th>
-              <th>{{ "additional_value" | trans }}</th>
+              <th>{{ "number" | trans }}</th>
               <th>{{ "value" | trans }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of services index as i" >
-              <td>{{ i + 1 }}</td>
-              <td>{{ item.name }}</td>
-              <td>{{ item.additional_value | currency: ' جنيه' }}</td>
-              <td>{{ item.valule | currency: ' جنيه' }}</td>
-            </tr>
+            <ng-container *ngFor="let item of safeObject.payments index as i">
+              <tr *ngIf="item.model_type == 'service'"  >
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.model_object? item.model_object.name : '' }}</td>
+                <td>{{ item.service_count }}</td>
+                <td>{{ item.value | currency: ' جنيه ' }}</td>
+              </tr>
+            </ng-container>
             <tr *ngIf="total > 0" >
               <td>{{ "total" | trans }}</td>
               <td></td>
               <td></td>
-              <td>{{ total | currency: ' EGP ' }}</td>
+              <td>{{ total | currency: ' جنيه ' }}</td>
             </tr>
           </tbody>
         </table>
