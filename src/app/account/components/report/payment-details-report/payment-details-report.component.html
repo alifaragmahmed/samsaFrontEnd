@@ -1,0 +1,230 @@
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="w3-white material-shadow safe-box">
+      <div class="safe-box-header w3-xlarge">
+        {{ "student payments report" | trans }}
+      </div>
+      <br>
+      <div class="border-bottom-dashed" ></div>
+      <br>
+
+      <div class="safe-box-body row" >
+
+        <div class="col-lg-12 col-md-12 col-sm-12" >
+          <div class="row">
+            <!-- search info -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+              <div class="custom-panel w3-display-container w3-round  application-panel military-info-panel">
+                <div class="custom-panel-title" >{{ "search" | trans }}</div>
+
+                <div class="custom-panel-body filter-top"  >
+                  <table class="table">
+                    <tr>
+                      <td>
+                        {{ "from date" | trans }} <br>
+                        <input
+                        type="date"
+                        class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                        [(ngModel)]="searchData.date_from" >
+                      </td>
+                  </tr>
+                    <tr>
+                      <td>
+                        {{ "to date" | trans }} <br>
+                        <input
+                        type="date"
+                        class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                        [(ngModel)]="searchData.date_to" >
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                        {{ "payments_incomes" | trans }} :
+                        <mat-slide-toggle
+                        (change)="searchData.payment_type = 'out'"
+                        [checked]="searchData.payment_type == 'out'"
+                         ></mat-slide-toggle>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                        {{ "payments_returns" | trans }} :
+                        <mat-slide-toggle
+                        (change)="searchData.payment_type = 'in'"
+                        [checked]="searchData.payment_type == 'in'"
+                         ></mat-slide-toggle>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {{ "users" | trans }} <br>
+                      <select
+                      class="custom-input form-control input-sm w3-input input-sm border-bottom-dashed"
+                      [(ngModel)]="searchData.user_id">
+                        <option value="">-- {{ "user" }} --</option>
+                        <option *ngFor="let item of users" value="{{ item.id }}">{{ item.name }}</option>
+                      </select>
+                    </td>
+                </tr>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-3">
+              <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-title" >{{ "levels" | trans }}</div>
+                <div class="custom-panel-body filter-top"  >
+                  <ul class="w3-ul">
+                    <li *ngFor="let item of levels index as i" >
+                      <mat-slide-toggle
+                      (change)="toggle(item.id, selectedLevels)"
+                      [checked]="selectedLevels.has(item.id)"
+                       ></mat-slide-toggle>
+                      <span style="padding-right: 3px" class="w3-tiny"  >{{ item.name }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-3">
+              <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-title" >{{ "divisions" | trans }}</div>
+                <div class="custom-panel-body filter-top"  >
+                  <ul class="w3-ul">
+                    <li *ngFor="let item of applicationSetting.DIVISIONS index as i" >
+                      <mat-slide-toggle
+                      (change)="toggle(item.id, selectedDivisions)"
+                      [checked]="selectedDivisions.has(item.id)"
+                       ></mat-slide-toggle>
+                      <span style="padding-right: 3px" class="w3-tiny"  >{{ item.name }} - {{ item.level }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-3">
+              <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-title" >{{ "academic years" | trans }}</div>
+                <div class="custom-panel-body filter-top"  >
+                  <ul class="w3-ul">
+                    <li *ngFor="let item of applicationSetting.ACADEMIC_YEARS index as i" >
+                      <mat-slide-toggle
+                      (change)="toggle(item.id, selectedYears);loadAcadeimicYearExpenses()"
+                      [checked]="selectedYears.has(item.id)"
+                       ></mat-slide-toggle>
+                      <span style="padding-right: 3px" class="w3-tiny"  >{{ item.name }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                <div class="custom-panel-title" >{{ "academic year expense" | trans }}</div>
+                <div class="custom-panel-body filter-top"  >
+                  <ul class="w3-ul">
+                    <li *ngFor="let item of academicYearExpenses index as i" >
+                      <mat-slide-toggle
+                      (change)="toggle(item.priorty, selectedAcademicYearExpenses)"
+                      [checked]="selectedAcademicYearExpenses.has(item.priorty)"
+                       ></mat-slide-toggle>
+                      <span style="padding-right: 3px" class="w3-"  >{{ item.name }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" >
+
+          <!--services-->
+          <div class="col-lg-3 col-md-3 col-sm-3 " >
+
+            <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+              <div class="custom-panel-title" >{{ "services" | trans }}</div>
+              <div class="custom-panel-body filter-side"  >
+                <ul class="w3-ul">
+                  <li *ngFor="let item of services index as i" >
+                    <mat-slide-toggle
+                    (change)="toggle(item.id, selectedServices)"
+                    [checked]="selectedServices.has(item.id)"
+                     ></mat-slide-toggle>
+                    <span style="padding-right: 3px" class="" >{{ item.name }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <!--data-->
+          <div class="col-lg-9 col-md-9 col-sm-9" >
+            <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+              <div class="custom-panel-title" >{{ "student payments" | trans }}</div>
+              <div class="custom-panel-body filter-side"  >
+                <table class="table table-bordered">
+                  <tr>
+                    <th>{{ "#" }}</th>
+                    <th>{{ "date" | trans }}</th>
+                    <th>{{ "id" | trans }}</th>
+                    <th>{{ "student_code" | trans }}</th>
+                    <th>{{ "student_name" | trans }}</th>
+                    <th>{{ "level" | trans }}</th>
+                    <th>{{ "division" | trans }}</th>
+                    <th>{{ "value" | trans }}</th>
+                    <th>{{ "type" | trans }}</th>
+                    <th>{{ "payment_name" | trans }}</th>
+                  </tr>
+
+                  <tr *ngFor="let item of payments index as i"  >
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.code }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.level? item.level.name : item.level_id }}</td>
+                    <td>{{ item.division? item.division.name : item.division_id }}</td>
+                    <td>{{ item.value | currency: ' جنيه ' }}</td>
+                    <td>{{ "payment_type_"+ item.model_type | trans }}</td>
+                    <td>{{ item.model_object? item.model_object.name : '' }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="custom-panel w3-display-container w3-round">
+              <div class="custom-panel-body"  >
+                <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted"  (click)="loadPayments()" >{{ "search" | trans }}</button>
+
+                <a href="#" class="btn btn-default small-shadow w3-margin-left" routerLink="/adminision/application" >{{ "exit" | trans }}</a>
+              </div>
+
+          </div>
+          </div>
+
+
+          </div>
+
+      </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+

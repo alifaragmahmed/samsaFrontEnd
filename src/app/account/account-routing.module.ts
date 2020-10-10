@@ -6,6 +6,7 @@ import { AccountComponent } from './account.component';
 import { AcademicYearIndexComponent } from './components/academic-year-index/academic-year-index.component';
 import { StoreIndexComponent } from './components/store/store-index/store-index.component';
 import { OldBalanceComponent } from './components/old-balance/old-balance.component';
+import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'safe/:id',
     component: SafeIndexComponent
+  },
+  {
+    path: 'report/payment-details',
+    component: PaymentDetailsReportComponent
   },
   {
     path: "setting",

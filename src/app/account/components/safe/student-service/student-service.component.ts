@@ -17,11 +17,14 @@ export class StudentServiceComponent implements OnInit {
 
   calculateTotal() {
     this.total = 0;
-    if (this.safeObject)
-    this.safeObject.payments.forEach(element => {
-      if (element.model_type == 'service')
-        this.total += element.value;
-    });
+    if (this.safeObject) {
+      if (this.safeObject.payments) {
+        this.safeObject.payments.forEach(element => {
+          if (element.model_type == 'service')
+            this.total += element.value;
+        });
+      }
+    }
   }
 
   ngOnInit() {

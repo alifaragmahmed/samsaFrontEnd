@@ -75,6 +75,14 @@
               <span class="fa fa-close w3-text-red" *ngIf="!element.repeat" ></span>
             </td>
         </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="is_refund">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "is_refund" | trans }}</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="fa fa-check-square w3-text-green" *ngIf="element.is_refund" ></span>
+              <span class="fa fa-close w3-text-red" *ngIf="!element.is_refund" ></span>
+            </td>
+        </ng-container>
 
         <!-- Position Column -->
         <ng-container matColumnDef="installment_percent">

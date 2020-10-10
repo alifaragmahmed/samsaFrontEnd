@@ -1,9 +1,9 @@
 import { StudentServiceService } from './../../../services/student-service.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Cache } from 'src/app/shared/cache'; 
-import { HashTable } from 'angular-hashtable'; 
+import { Cache } from 'src/app/shared/cache';
+import { HashTable } from 'angular-hashtable';
 import { IService } from '../../../models/iservice';
-import { AppModule } from '../../../../app.module';  
+import { AppModule } from '../../../../app.module';
 import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import { Helper } from '../../../../shared/helper';
 
@@ -15,13 +15,13 @@ import { Helper } from '../../../../shared/helper';
 export class ServiceIndexComponent implements OnInit {
 
   public doc: any = AppModule.doc;
- 
+
   // services list
   public resources: any[] = [];
 
   // init breadcrum
   public breadcrumbList = [];
-  
+
   // show create modal
   public showCreateModal = false;
 
@@ -40,11 +40,11 @@ export class ServiceIndexComponent implements OnInit {
   updateResources: any;
   updateItem: any = {};
 
-  constructor(private studentService: StudentServiceService) { 
+  constructor(private studentService: StudentServiceService) {
     this.init();
   }
 
-  init() { 
+  init() {
     this.initBreadcrumb();
     this.initDisplayColumns();
     //
@@ -53,12 +53,12 @@ export class ServiceIndexComponent implements OnInit {
     };
   }
 
-  initMatDatatable() { 
+  initMatDatatable() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-  } 
+  }
 
-  initBreadcrumb() { 
+  initBreadcrumb() {
     this.breadcrumbList = [
       {name: 'home', url: '/'},
       {name: 'services'}
@@ -66,19 +66,20 @@ export class ServiceIndexComponent implements OnInit {
   }
 
   initDisplayColumns() {
-    this.displayedColumns = [ 
-      "name", 
-      "value", 
-      "store_id", 
-      "additional_value", 
-      "except_level_id", 
-      "division_id", 
-      "copy", 
-      "repeat", 
-      "installment_percent", 
-      "from_installment_id", 
+    this.displayedColumns = [
+      "name",
+      "value",
+      "store_id",
+      "additional_value",
+      "except_level_id",
+      "division_id",
+      "copy",
+      "repeat",
+      "is_refund",
+      "installment_percent",
+      "from_installment_id",
       "type",
-      "action" 
+      "action"
     ];
   }
 
@@ -94,8 +95,8 @@ export class ServiceIndexComponent implements OnInit {
     else {
       this.trashList.put(id, id);
     }
- 
-    if (this.trashList.size() > 0) 
+
+    if (this.trashList.size() > 0)
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
@@ -122,27 +123,27 @@ export class ServiceIndexComponent implements OnInit {
       this.removed = [];
       this.showRemoveButton = false;
       this.showRemoveModal = false;
-      // 
+      //
       this.loadResources();
     }
   }
 
-  loadResources() { 
-    this.studentService.get().subscribe( (res: any) => { 
+  loadResources() {
+    this.studentService.get().subscribe( (res: any) => {
       this.refreshDataSource(res);
-    }); 
+    });
   }
 
   viewCreateModal() {
-    this.doc.jquery('#createModal').modal('show');  
+    this.doc.jquery('#createModal').modal('show');
   }
 
-  showUpdateModal(item) { 
+  showUpdateModal(item) {
     this.updateItem = item;
-    this.doc.jquery('#updateModal').modal('show'); 
+    this.doc.jquery('#updateModal').modal('show');
   }
 
-  updateService() { 
+  updateService() {
     this.studentService.update([]).subscribe(() => {
 
     });
@@ -150,7 +151,7 @@ export class ServiceIndexComponent implements OnInit {
 
   ngOnInit() {
     this.initMatDatatable();
-    this.loadResources(); 
+    this.loadResources();
   }
 
 }

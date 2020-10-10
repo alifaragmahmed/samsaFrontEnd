@@ -77,6 +77,12 @@
               </td>
             </tr>
             <tr>
+              <th>{{ "is_refund" | trans }}</th>
+              <td>
+                <input type="checkbox" class="w3-check" [(ngModel)]="item.is_refund"    >
+              </td>
+            </tr>
+            <tr>
               <th>{{ "additional_value" | trans }}</th>
               <td>
                 <input type="number" class="form-control input-sm" [(ngModel)]="item.additional_value"    >

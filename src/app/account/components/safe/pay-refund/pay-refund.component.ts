@@ -28,6 +28,29 @@ export class PayRefundComponent implements OnInit {
     });
   }
 
+  prePayments(pays: any[]) {
+    let prePays = [];
+    pays.forEach(element => {
+      let valid = true;
+      if (element.model_type == 'service') {
+        if (element.model_object) {
+          if (element.model_object.is_refund != 1) {
+            valid = false;
+          }
+        }
+      }
+
+      if (element.model_type == 'refund') {
+        valid = false;
+      }
+
+      if (valid)
+        prePays.push(element);
+    });
+
+    return prePays;
+  }
+
   performRefund(payment) {
     this.doc.swal.confirm(Helper.trans('are you sure'), () => {
       let data = {

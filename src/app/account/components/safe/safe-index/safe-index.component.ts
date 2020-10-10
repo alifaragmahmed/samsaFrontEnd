@@ -147,6 +147,7 @@ export class SafeIndexComponent implements OnInit {
   }
 
   buildSafeMsg() {
+    return;
     if (this.isStudentSayed)
       return;
 

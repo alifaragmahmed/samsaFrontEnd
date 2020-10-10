@@ -17,8 +17,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of payments index as i" >
-              <ng-container *ngIf="item.model_type != 'refund'" >
+            <tr *ngFor="let item of prePayments(payments) index as i" >
+              <ng-container  >
                 <td>{{ item.date }}</td>
                 <td>{{ item.store? item.store.name : '' }}</td>
                 <td>{{ item.value | currency: ' EGP ' }}</td>

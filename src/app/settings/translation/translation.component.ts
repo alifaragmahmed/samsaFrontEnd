@@ -25,7 +25,7 @@ export class TranslationComponent implements OnInit {
    * load translations and update the cache
    */
   loadTranslations() {
-    this.translationService.getList().subscribe((r) => { 
+    this.translationService.getList().subscribe((r) => {
       this.translationList = r;
     });
   }
@@ -34,7 +34,7 @@ export class TranslationComponent implements OnInit {
    * load translations and update the cache
    */
   loadِAppTranslations() {
-    this.translationService.get().subscribe((r) => { 
+    this.translationService.get().subscribe((r) => {
       Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
     });
   }
@@ -46,9 +46,10 @@ export class TranslationComponent implements OnInit {
     if (!Translation.getNewKeys())
       return;
     const data = {
-      data: Translation.getNewKeys()
+      data: Translation.getNewKeys(),
+      not_exist: 1
     };
-    this.translationService.update(data).subscribe((r) => { 
+    this.translationService.update(data).subscribe((r) => {
       this.loadTranslations();
       //
       Cache.remove(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY);
@@ -58,12 +59,12 @@ export class TranslationComponent implements OnInit {
   /**
    * update new words
    */
-  updateTranslation() { 
+  updateTranslation() {
     const data = {
       data: this.translationList
     };
     this.isUpdate = true;
-    this.translationService.update(data).subscribe((r) => { 
+    this.translationService.update(data).subscribe((r) => {
       const data: any = r;
       if (data.status == 1)
         Message.success(data.message);

@@ -26,6 +26,7 @@ import { StoreFormComponent } from './components/store/store-form/store-form.com
 import { OldBalanceComponent } from './components/old-balance/old-balance.component';
 import { MatSliderModule, MatSlideToggleModule } from '@angular/material';
 import { PayRefundComponent } from './components/safe/pay-refund/pay-refund.component';
+import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PayRefundComponent } from './components/safe/pay-refund/pay-refund.comp
     StoreUpdateComponent,
     OldBalanceComponent,
     PayRefundComponent,
+    PaymentDetailsReportComponent,
   ],
   imports: [
     SharedModule,
