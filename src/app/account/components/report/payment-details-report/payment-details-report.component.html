@@ -82,7 +82,7 @@
                       (change)="toggle(item.id, selectedLevels)"
                       [checked]="selectedLevels.has(item.id)"
                        ></mat-slide-toggle>
-                      <span style="padding-right: 3px" class="w3-tiny"  >{{ item.name }}</span>
+                      <span style="padding-right: 3px"    >{{ item.name }}</span>
                     </li>
                   </ul>
                 </div>
@@ -99,7 +99,8 @@
                       (change)="toggle(item.id, selectedDivisions)"
                       [checked]="selectedDivisions.has(item.id)"
                        ></mat-slide-toggle>
-                      <span style="padding-right: 3px" class="w3-tiny"  >{{ item.name }} - {{ item.level }}</span>
+                       <br>
+                      <span style="padding-right: 3px"  >{{ item.name }} - {{ item.level }}</span>
                     </li>
                   </ul>
                 </div>
@@ -116,7 +117,8 @@
                       (change)="toggle(item.id, selectedYears);loadAcadeimicYearExpenses()"
                       [checked]="selectedYears.has(item.id)"
                        ></mat-slide-toggle>
-                      <span style="padding-right: 3px" class="w3-tiny"  >{{ item.name }}</span>
+                       <br>
+                      <span style="padding-right: 3px"   >{{ item.name }}</span>
                     </li>
                   </ul>
                 </div>
@@ -157,6 +159,53 @@
           <div class="col-lg-3 col-md-3 col-sm-3 " >
 
             <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+              <div class="custom-panel-title" >{{ "student search" | trans }}</div>
+              <div class="custom-panel-body w3-display-container"  >
+                <input class="w3-round-xxlarge w3-white w3-input border-gray search-input "
+                style="width: 100%!important"
+                (keyup)="searchInputEvent()"
+                placeholder="{{ 'search with student name code national_id' | trans }}"
+                [(ngModel)]="searchKey" >
+
+                <div class="w3-display-topleft w3-padding"
+                (click)="selectStudent({})"
+                *ngIf="searchKey && !studentSearchDialogLoader" style="top: 12px;left:5%;z-index:10;" >
+                  <span class="fa fa-close w3-text-red"  ></span>
+                </div>
+
+                <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:5%;z-index:10;" >
+                  <span class="fa fa-spin fa-spinner w3-text-indigo" ></span>
+                </div>
+
+
+                <div class="w3-display-topright w3-white material-shadow" *ngIf="studentSearchDialogShow" style="top: 47px;right:11px;z-index:10;width: 100%" >
+                  <div class="w3-display-conitainer">
+                    <span class="w3-display-topright w3-button fa fa-close" (click)="studentSearchDialogShow=false" ></span>
+                    <br>
+                    <ul class="w3-ul" >
+                      <li *ngFor="let item of students" style="cursor: pointer;" class="w3-hover-light-gray w3-block text-right"  >
+                        <div class="media" (click)="selectStudent(item)" >
+                          <div class="media-left">
+                            <a href="#">
+                              <img [src]="item.image" style="width: 30px;height: 30px;" class="w3-circle" alt="">
+                              <!--
+                              <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
+                              -->
+                            </a>
+                          </div>
+                          <div class="media-body">
+                            <h4 class="media-heading" [innerHTML]="item.name" ></h4>
+                            <span [innerHTML]="item.code" class="w3-large" ></span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
               <div class="custom-panel-title" >{{ "services" | trans }}</div>
               <div class="custom-panel-body filter-side"  >
                 <ul class="w3-ul">
@@ -175,6 +224,7 @@
                 </ul>
               </div>
             </div>
+
           </div>
 
 
@@ -234,13 +284,6 @@
                       class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                       [(ngModel)]="payments.payments_returns" >
                     </td>
-                    <th>{{ "total" | trans }}</th>
-                    <td>
-                      <input
-                      type="text" readonly
-                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                      [(ngModel)]="payments.total" >
-                    </td>
                   </tr>
                   <tr>
                     <th>{{ "student_services" | trans }}</th>
@@ -250,6 +293,13 @@
                       class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                       [(ngModel)]="payments.student_services" >
                     </td>
+                    <th>{{ "total" | trans }}</th>
+                    <td>
+                      <input
+                      type="text" readonly
+                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                      [(ngModel)]="payments.total" >
+                    </td>
                   </tr>
                 </table>
               </div>
@@ -257,7 +307,7 @@
 
             <div class="custom-panel w3-display-container w3-round">
               <div class="custom-panel-body"  >
-                <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted"  (click)="loadPayments()" >{{ "search" | trans }}</button>
+                <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted"  (click)="loadPayments()" >{{ "update" | trans }}</button>
 
                 <button
                 mat-raised-button color="primary"

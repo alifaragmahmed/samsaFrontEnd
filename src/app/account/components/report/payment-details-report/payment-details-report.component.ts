@@ -4,6 +4,7 @@ import { AcademicYearService } from 'src/app/account/services/academic-year.serv
 import { DivisionService } from 'src/app/account/services/division.service';
 import { LevelService } from 'src/app/account/services/level.service';
 import { ReportService } from 'src/app/account/services/report.service';
+import { StudentAccountService } from 'src/app/account/services/student-account.service';
 import { StudentServiceService } from 'src/app/account/services/student-service.service';
 import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
 import { AppModule } from 'src/app/app.module';
@@ -36,6 +37,14 @@ export class PaymentDetailsReportComponent implements OnInit {
   selectedTypes = new HashTable();
 
   //
+  public searchKey: string;
+  public studentSearchDialogShow = false;
+  public studentSearchDialogLoader = false;
+  public isWait = false;
+  public timeoutId;
+  public students: any = [];
+
+  //
   payments: any = [];
   isSubmitted = false;
 
@@ -43,7 +52,8 @@ export class PaymentDetailsReportComponent implements OnInit {
     private userService: UserService,
     private studentService: StudentServiceService,
     private reportService: ReportService,
-    private acadeimicYearExpenseService: AcademicYearService) { }
+    private acadeimicYearExpenseService: AcademicYearService,
+    private studentAcountService: StudentAccountService) { }
 
 
   loadUsers() {
@@ -131,6 +141,40 @@ export class PaymentDetailsReportComponent implements OnInit {
   exportExcel() {
     const filename = "مدفوعات الطلاب-"+new Date().toLocaleTimeString();
     this.doc.exportExcel(filename);
+  }
+
+  //
+
+  searchInputEvent() {
+    if (!this.searchKey)
+      return;
+
+    this.students = [];
+    this.studentSearchDialogLoader = true;
+    this.isWait = true;
+    clearTimeout(this.timeoutId);
+
+    this.timeoutId = setTimeout(() => {
+       this.searchAboutStudent();
+    }, 500);
+  }
+
+  searchAboutStudent() {
+    this.studentAcountService.search(this.searchKey).subscribe((r) => {
+        this.studentSearchDialogLoader = false;
+        this.students = r;
+        if (this.students.length > 0) {
+          this.studentSearchDialogShow = true;
+        }
+    });
+  }
+
+  selectStudent(student) {
+    if (student) {
+      this.searchData.student_id = student.id;
+      this.searchKey = student.name;
+    }
+    this.studentSearchDialogShow = false;
   }
 
   ngOnInit() {
