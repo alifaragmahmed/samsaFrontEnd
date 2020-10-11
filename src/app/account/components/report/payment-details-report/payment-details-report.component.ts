@@ -6,7 +6,9 @@ import { LevelService } from 'src/app/account/services/level.service';
 import { ReportService } from 'src/app/account/services/report.service';
 import { StudentServiceService } from 'src/app/account/services/student-service.service';
 import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
+import { AppModule } from 'src/app/app.module';
 import { Cache } from 'src/app/shared/cache';
+import { Helper } from 'src/app/shared/helper';
 import { UserService } from 'src/app/user/services/user.service';
 
 @Component({
@@ -16,6 +18,7 @@ import { UserService } from 'src/app/user/services/user.service';
 })
 export class PaymentDetailsReportComponent implements OnInit {
 
+  doc: any = AppModule.doc;
   searchData: any = {};
   applicationSetting: any = ApplicationSettingService;
   users: any = [];
@@ -78,7 +81,16 @@ export class PaymentDetailsReportComponent implements OnInit {
     };
     this.acadeimicYearExpenseService.get(data).subscribe((res: any) => {
       this.academicYearExpenses = res.details;
+      //
+      this.loadPayments();
     });
+  }
+
+  toggleType(value) {
+    if (this.searchData.payment_type == value)
+      this.searchData.payment_type = '';
+    else
+      this.searchData.payment_type = value;
   }
 
   toggle(id, list = new HashTable()) {
@@ -98,8 +110,27 @@ export class PaymentDetailsReportComponent implements OnInit {
     this.isSubmitted = true;
     this.reportService.get(this.searchData).subscribe((res) => {
       this.payments = res;
+      this.prepareTotal(res);
       this.isSubmitted = false;
     });
+  }
+
+  prepareTotal(res) {
+    this.services.forEach(element => {
+      element.total = res['services'][element.id];
+    });
+    this.academicYearExpenses.forEach(element => {
+      element.total = res['academic_year_expense'][element.id];
+    });
+  }
+
+  print() {
+    Helper.print();
+  }
+
+  exportExcel() {
+    const filename = "مدفوعات الطلاب-"+new Date().toLocaleTimeString();
+    this.doc.exportExcel(filename);
   }
 
   ngOnInit() {

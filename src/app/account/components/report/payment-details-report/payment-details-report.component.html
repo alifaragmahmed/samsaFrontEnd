@@ -41,7 +41,7 @@
                       <td>
                         {{ "payments_incomes" | trans }} :
                         <mat-slide-toggle
-                        (change)="searchData.payment_type = 'out'"
+                        (change)="toggleType('out')"
                         [checked]="searchData.payment_type == 'out'"
                          ></mat-slide-toggle>
                       </td>
@@ -50,7 +50,7 @@
                       <td>
                         {{ "payments_returns" | trans }} :
                         <mat-slide-toggle
-                        (change)="searchData.payment_type = 'in'"
+                        (change)="toggleType('in')"
                         [checked]="searchData.payment_type == 'in'"
                          ></mat-slide-toggle>
                       </td>
@@ -129,12 +129,17 @@
                 <div class="custom-panel-title" >{{ "academic year expense" | trans }}</div>
                 <div class="custom-panel-body filter-top"  >
                   <ul class="w3-ul">
-                    <li *ngFor="let item of academicYearExpenses index as i" >
+                    <li *ngFor="let item of academicYearExpenses index as i" class="w3-display-container w3-padding" >
                       <mat-slide-toggle
                       (change)="toggle(item.priorty, selectedAcademicYearExpenses)"
                       [checked]="selectedAcademicYearExpenses.has(item.priorty)"
                        ></mat-slide-toggle>
+                       <br>
                       <span style="padding-right: 3px" class="w3-"  >{{ item.name }}</span>
+
+                      <span class="w3-display-topleft w3-padding w3-text-red">
+                        {{ item.total | currency: ' جنيه ' }}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -146,6 +151,7 @@
         </div>
 
         <div class="col-lg-12 col-md-12 col-sm-12" >
+            <div class="row">
 
           <!--services-->
           <div class="col-lg-3 col-md-3 col-sm-3 " >
@@ -154,12 +160,17 @@
               <div class="custom-panel-title" >{{ "services" | trans }}</div>
               <div class="custom-panel-body filter-side"  >
                 <ul class="w3-ul">
-                  <li *ngFor="let item of services index as i" >
+                  <li *ngFor="let item of services index as i" class="w3-display-container w3-padding" >
                     <mat-slide-toggle
                     (change)="toggle(item.id, selectedServices)"
                     [checked]="selectedServices.has(item.id)"
                      ></mat-slide-toggle>
+                     <br>
                     <span style="padding-right: 3px" class="" >{{ item.name }}</span>
+
+                    <span class="w3-display-topleft w3-padding w3-text-red">
+                      {{ item.total | currency: ' جنيه ' }}
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -174,7 +185,7 @@
             <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
               <div class="custom-panel-title" >{{ "student payments" | trans }}</div>
               <div class="custom-panel-body filter-side"  >
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="printable" style="direction: rtl!important;" >
                   <tr>
                     <th>{{ "#" }}</th>
                     <th>{{ "date" | trans }}</th>
@@ -188,7 +199,7 @@
                     <th>{{ "payment_name" | trans }}</th>
                   </tr>
 
-                  <tr *ngFor="let item of payments index as i"  >
+                  <tr *ngFor="let item of payments.details index as i"  >
                     <td>{{ i + 1 }}</td>
                     <td>{{ item.date }}</td>
                     <td>{{ item.id }}</td>
@@ -205,14 +216,66 @@
             </div>
 
             <div class="custom-panel w3-display-container w3-round">
+              <div class="custom-panel-title" >{{ "analysis" | trans }}</div>
+              <div class="custom-panel-body"  >
+                <table class="table">
+                  <tr>
+                    <th>{{ "payments_incomes" | trans }}</th>
+                    <td>
+                      <input
+                      type="text" readonly
+                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                      [(ngModel)]="payments.payments_incomes" >
+                    </td>
+                    <th>{{ "payments_returns" | trans }}</th>
+                    <td>
+                      <input
+                      type="text" readonly
+                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                      [(ngModel)]="payments.payments_returns" >
+                    </td>
+                    <th>{{ "total" | trans }}</th>
+                    <td>
+                      <input
+                      type="text" readonly
+                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                      [(ngModel)]="payments.total" >
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ "student_services" | trans }}</th>
+                    <td>
+                      <input
+                      type="text" readonly
+                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                      [(ngModel)]="payments.student_services" >
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="custom-panel w3-display-container w3-round">
               <div class="custom-panel-body"  >
                 <button mat-raised-button color="primary" class="w3-margin-left" [disabled]="isSubmitted"  (click)="loadPayments()" >{{ "search" | trans }}</button>
 
+                <button
+                mat-raised-button color="primary"
+                class="w3-margin-left w3-black"
+                (click)="print()" > <i class="fa fa-print" ></i> {{ "print" | trans }}</button>
+
+                <button
+                mat-raised-button color="primary"
+                class="w3-margin-left w3-green"
+                (click)="exportExcel()"> <i class="fa fa-file-excel-o" ></i> {{ "excel" | trans }}</button>
+
                 <a href="#" class="btn btn-default small-shadow w3-margin-left" routerLink="/adminision/application" >{{ "exit" | trans }}</a>
               </div>
+            </div>
+
 
           </div>
-          </div>
+        </div>
 
 
           </div>

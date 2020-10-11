@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="assets/css/app.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://printjs-4de6.kxcdn.com/print.min.css" rel="stylesheet">
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -61,7 +62,9 @@
   <script src="assets/js/sweetalert2.js"></script>
   <script src="assets/js/iziToast.js"></script>
   <script src="assets/js/jquery.nicescroll.min.js"></script>
+  <script src="assets/js/jquery.table2excel.min.js"></script>
   <script src="assets/js/jquery.nicescroll.iframehelper.min.js"></script>
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=IqzcmmiC"></script>
   <script>
     var $  = require( 'jquery' );
@@ -89,6 +92,7 @@
           title: message,
           position: 'topCenter',
         });
+        setTimeout(()=>{ document.notify = 1; }, 2000);
       },
       error: function(message){
         if (!message)
@@ -98,10 +102,12 @@
           title: message,
           position: 'topCenter',
         });
+        setTimeout(()=>{ document.notify = 1; }, 2000);
       },
       confirm: function(message, action) {
         Swal.fire({
           title: message,
+          message: message,
           showDenyButton: true,
           //showCancelButton: true,
           confirmButtonText: `تمام`,
@@ -109,6 +115,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             action();
+        setTimeout(()=>{ document.notify = 1; }, 2000);
           } else if (result.isDenied) {
             // nothing
           }
@@ -120,6 +127,26 @@
       var player = document.getElementById('player');
       player.src = "/assets/sound/"+src+".mp3";
       player.play();
+    }
+
+    document.__proto__.printJs = function() {
+      printJS('printable', 'html');
+    }
+
+    document.__proto__.printPdf = function() {
+      printJS('printable', 'docs/printjs.pdf');
+    }
+
+    document.__proto__.exportExcel = function(name="excel") {
+      $("#printable").table2excel({
+        exclude: ".noExl",
+        name: name,
+        filename: name,
+        fileext: ".xls",
+        exclude_img: true,
+        exclude_links: true,
+        exclude_inputs: true
+      });
     }
 
     document.__proto__.nicescroll = function(selector) {

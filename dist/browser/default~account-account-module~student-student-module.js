@@ -284,6 +284,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_academic_year_index_academic_year_index_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/academic-year-index/academic-year-index.component */ "./src/app/account/components/academic-year-index/academic-year-index.component.ts");
 /* harmony import */ var _components_store_store_index_store_index_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/store/store-index/store-index.component */ "./src/app/account/components/store/store-index/store-index.component.ts");
 /* harmony import */ var _components_old_balance_old_balance_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/old-balance/old-balance.component */ "./src/app/account/components/old-balance/old-balance.component.ts");
+/* harmony import */ var _components_report_payment_details_report_payment_details_report_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/report/payment-details-report/payment-details-report.component */ "./src/app/account/components/report/payment-details-report/payment-details-report.component.ts");
+
 
 
 
@@ -301,6 +303,10 @@ var routes = [
     {
         path: 'safe/:id',
         component: _components_safe_safe_index_safe_index_component__WEBPACK_IMPORTED_MODULE_1__["SafeIndexComponent"]
+    },
+    {
+        path: 'report/payment-details',
+        component: _components_report_payment_details_report_payment_details_report_component__WEBPACK_IMPORTED_MODULE_9__["PaymentDetailsReportComponent"]
     },
     {
         path: "setting",
@@ -355,7 +361,7 @@ var AccountRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n\n  <div class=\"col-md-3\">\n\n    <!-- navbar list -->\n    <div class=\"box box-primary material-shadow\">\n      <div class=\"box-body box-profile\">\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/account_settings.gif\" alt=\"User profile picture\">\n\n        <h3 class=\"profile-username text-center\">{{ \"account_setting\" | trans }}</h3>\n\n\n        <ul class=\"list-group list-group-unbordered\">\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/services' >\n                <b>{{ \"services\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-trophy\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/stores' >\n                <b>{{ \"stores\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-bank\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/academic_year_expenses' >\n                <b>{{ \"academic_year_expenses\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-money\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/' >\n                <b>{{ \"general settings\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-cogs\" ></i>\n                </a>\n            </a>\n          </li>\n        </ul>\n      </div>\n      <!-- /.box-body -->\n    </div>\n    <!-- /.box -->\n\n  </div>\n  <!-- /.col -->\n  <div class=\"col-md-9\">\n      <router-outlet></router-outlet>\n  </div>\n  <!-- /.col -->\n</div>\n"
+module.exports = "<div class=\"row\">\n\n  <div class=\"col-md-3\">\n\n    <!-- navbar list -->\n    <div class=\"box box-primary material-shadow\">\n      <div class=\"box-body box-profile\">\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/account_settings.gif\" alt=\"User profile picture\">\n\n        <h3 class=\"profile-username text-center\">{{ \"account_setting\" | trans }}</h3>\n\n\n        <ul class=\"list-group list-group-unbordered\">\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/services' >\n                <b>{{ \"services\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-trophy\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/stores' >\n                <b>{{ \"stores\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-bank\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/academic_year_expenses' >\n                <b>{{ \"academic_year_expenses\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-money\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/setting/' >\n                <b>{{ \"general settings\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-cogs\" ></i>\n                </a>\n            </a>\n          </li>\n          <li class=\"list-group-item\">\n            <a href=\"#\" routerLink='/account/report/payment-details/' >\n                <b>{{ \"students payments report\" | trans }}</b>\n                <a href=\"#\"  class=\"pull-left\">\n                  <i class=\"fa fa-line-chart\" ></i>\n                </a>\n            </a>\n          </li>\n        </ul>\n      </div>\n      <!-- /.box-body -->\n    </div>\n    <!-- /.box -->\n\n  </div>\n  <!-- /.col -->\n  <div class=\"col-md-9\">\n      <router-outlet></router-outlet>\n  </div>\n  <!-- /.col -->\n</div>\n"
 
 /***/ }),
 
@@ -440,6 +446,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
 /* harmony import */ var _components_store_store_form_store_form_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/store/store-form/store-form.component */ "./src/app/account/components/store/store-form/store-form.component.ts");
 /* harmony import */ var _components_old_balance_old_balance_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/old-balance/old-balance.component */ "./src/app/account/components/old-balance/old-balance.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _components_safe_pay_refund_pay_refund_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/safe/pay-refund/pay-refund.component */ "./src/app/account/components/safe/pay-refund/pay-refund.component.ts");
+/* harmony import */ var _components_report_payment_details_report_payment_details_report_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/report/payment-details-report/payment-details-report.component */ "./src/app/account/components/report/payment-details-report/payment-details-report.component.ts");
+
+
+
 
 
 
@@ -487,7 +499,9 @@ var AccountModule = /** @class */ (function () {
                 _components_store_store_index_store_index_component__WEBPACK_IMPORTED_MODULE_17__["StoreIndexComponent"],
                 _components_store_store_form_store_form_component__WEBPACK_IMPORTED_MODULE_24__["StoreFormComponent"],
                 _components_store_store_update_store_update_component__WEBPACK_IMPORTED_MODULE_18__["StoreUpdateComponent"],
-                _components_old_balance_old_balance_component__WEBPACK_IMPORTED_MODULE_25__["OldBalanceComponent"]
+                _components_old_balance_old_balance_component__WEBPACK_IMPORTED_MODULE_25__["OldBalanceComponent"],
+                _components_safe_pay_refund_pay_refund_component__WEBPACK_IMPORTED_MODULE_27__["PayRefundComponent"],
+                _components_report_payment_details_report_payment_details_report_component__WEBPACK_IMPORTED_MODULE_28__["PaymentDetailsReportComponent"],
             ],
             imports: [
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_3__["SharedModule"],
@@ -498,6 +512,8 @@ var AccountModule = /** @class */ (function () {
                 _angular_material_sort__WEBPACK_IMPORTED_MODULE_21__["MatSortModule"],
                 _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_22__["MatCheckboxModule"],
                 _angular_material_button__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_26__["MatSliderModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_26__["MatSlideToggleModule"]
             ],
             exports: [
                 _components_safe_student_payment_student_payment_component__WEBPACK_IMPORTED_MODULE_9__["StudentPaymentComponent"]
@@ -521,7 +537,7 @@ var AccountModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\">\n\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeServices()\" class=\"btn btn-danger\" style=\"margin: 5px\"  >\n      <span class=\"fa fa-trash\" ></span>\n    </button>\n  </div>\n  <table  class=\"table table-bordered text-center\">\n    <tr>\n      <td>{{ \"level\" | trans }}</td>\n      <td>\n        <select style=\"width: 100px\" class=\"form-control input-sm\" (change)=\"loadAcademicYearExpenses()\" [(ngModel)]=\"level_id\" >\n          <option *ngFor=\"let item of levels index as i\" value=\"{{ item.id }}\" >{{ item.name }}</option>\n        </select>\n      </td>\n      <!--\n      <td>{{ \"division\" | trans }}</td>\n      <td>\n        <select   style=\"width: 100px\" class=\"form-control input-sm\" (change)=\"loadAcademicYearExpenses()\"  [(ngModel)]=\"division_id\" >\n           <ng-container *ngFor=\"let item of departments\">\n              <option *ngIf=\"level_id == item.level_id\"  value=\"{{ item.id }}\" >{{ item.name }}</option>\n           </ng-container>\n        </select>\n      </td>\n      -->\n    </tr>\n  </table>\n  <br>\n  <table  class=\"table table-bordered text-center\">\n    <thead>\n\n      <tr>\n        <th></th>\n        <th>#</th>\n        <th>{{ \"name\" | trans }}</th>\n        <th>{{ \"priorty\" | trans }}</th>\n        <th>{{ \"value\" | trans }}</th>\n        <th>{{ \"term\" | trans }}</th>\n        <th>{{ \"registeration_status\" | trans }}</th>\n        <th>{{ \"store\" | trans }}</th>\n        <th>{{ \"discount\" | trans }}</th>\n        <th></th>\n      </tr>\n    </thead>\n\n    <tbody *ngIf=\"academicYearExpense.details\" >\n      <tr *ngFor=\"let item of academicYearExpense.details index as i\" >\n        <td>\n          <input type=\"checkbox\" style=\"margin: 0px!important\" class=\"w3-check\" (click)=\"toggleFromTrash(item.id)\"  >\n        </td>\n        <td>{{ i + 1 }}</td>\n        <td>\n            <input type=\"text\" class=\"form-control input-sm\" [(ngModel)]=\"item.name\"    >\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.priorty\"     >\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.value\"      >\n        </td>\n        <td>\n            <select style=\"width: 100px\" class=\"form-control input-sm\" [(ngModel)]=\"item.term_id\"   >\n                <option *ngFor=\"let row of terms\" value=\"{{ row.id }}\" >{{ row.name }}</option>\n            </select>\n        </td>\n        <td>\n            <select style=\"width: 100px\" class=\"form-control input-sm\" [(ngModel)]=\"item.registeration_status_id\"   >\n              <option value=\"\">-- {{ \"registeration_status\" | trans }} --</option>\n              <option *ngFor=\"let row of registerationStatus\" value=\"{{ row.id }}\" >{{ row.name }}</option>\n            </select>\n        </td>\n        <td>\n            <select class=\"form-control input-sm\" [(ngModel)]=\"item.store_id\" required >\n              <option *ngFor=\"let row of stores\" value=\"{{ row.id }}\" >{{ row.name}}</option>\n            </select>\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.discount\"   >\n        </td>\n        <td>\n          <button mat-button color=\"warn\" (click)=\"removeRow(item, i)\" >\n            <i class=\"fa fa-trash\" ></i>\n          </button>\n        </td>\n      </tr>\n\n      <tr *ngIf=\"academicYearExpense.details.length <= 0 && !isLoad\" >\n        <td colspan=\"9\" >\n          <div class=\"w3-large text-center\" >{{ \"there is no data\" | trans }}</div>\n        </td>\n      </tr>\n\n      <tr *ngIf=\"isLoad\" >\n        <td colspan=\"9\" >\n          <div class=\"fa fa-spin fa-spinner w3-large text-center\" ></div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <br>\n  <button mat-raised-button [disabled]=\"!level_id\"  class=\"w3-light-gray\" (click)=\"addRow()\" style=\"margin: 5px\"  >\n    <span class=\"fa fa-plus\" ></span>\n  </button>\n  <button mat-raised-button color=\"primary\" [disabled]=\"updateItem || (!level_id)\" (click)=\"viewChanges()\" style=\"margin: 5px\"  >\n    <span *ngIf=\"!updateItem\" >{{ \"save\" | trans }}</span>\n    <span *ngIf=\"updateItem\"  class=\"fa fa-spin fa-spinner\" ></span>\n  </button>\n</div>\n\n\n<!-- remove modal -->\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">{{ \"remove services\" | trans }}</h4>\n        </div>\n        <div class=\"modal-body text-center\">\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\n            <br>\n            {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\n        </div>\n        <div class=\"modal-footer\">\n        </div>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\">\n\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeServices()\" class=\"btn btn-danger\" style=\"margin: 5px\"  >\n      <span class=\"fa fa-trash\" ></span>\n    </button>\n  </div>\n  <table  class=\"table table-bordered text-center\">\n    <tr>\n      <td>{{ \"level\" | trans }}</td>\n      <td>\n        <select style=\"width: 100px\" class=\"form-control input-sm\" (change)=\"loadAcademicYearExpenses()\" [(ngModel)]=\"level_id\" >\n          <option *ngFor=\"let item of levels index as i\" value=\"{{ item.id }}\" >{{ item.name }}</option>\n        </select>\n      </td>\n      <!--\n      <td>{{ \"division\" | trans }}</td>\n      <td>\n        <select   style=\"width: 100px\" class=\"form-control input-sm\" (change)=\"loadAcademicYearExpenses()\"  [(ngModel)]=\"division_id\" >\n           <ng-container *ngFor=\"let item of departments\">\n              <option *ngIf=\"level_id == item.level_id\"  value=\"{{ item.id }}\" >{{ item.name }}</option>\n           </ng-container>\n        </select>\n      </td>\n      -->\n    </tr>\n  </table>\n  <br>\n  <table  class=\"table table-bordered text-center\">\n    <thead>\n\n      <tr>\n        <th></th>\n        <th>#</th>\n        <th>{{ \"name\" | trans }}</th>\n        <th>{{ \"priorty\" | trans }}</th>\n        <th>{{ \"value\" | trans }}</th>\n        <th>{{ \"term\" | trans }}</th>\n        <th>{{ \"registeration_status\" | trans }}</th>\n        <th>{{ \"store\" | trans }}</th>\n        <th>{{ \"discount\" | trans }}</th>\n        <th>{{ \"wz_value\" | trans }}</th>\n        <th></th>\n      </tr>\n    </thead>\n\n    <tbody *ngIf=\"academicYearExpense.details\" >\n      <tr *ngFor=\"let item of academicYearExpense.details index as i\" >\n        <td>\n          <input type=\"checkbox\" style=\"margin: 0px!important\" class=\"w3-check\" (click)=\"toggleFromTrash(item.id)\"  >\n        </td>\n        <td>{{ i + 1 }}</td>\n        <td>\n            <input type=\"text\" class=\"form-control input-sm\" [(ngModel)]=\"item.name\"    >\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.priorty\"     >\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.value\"      >\n        </td>\n        <td>\n            <select style=\"width: 100px\" class=\"form-control input-sm\" [(ngModel)]=\"item.term_id\"   >\n                <option *ngFor=\"let row of terms\" value=\"{{ row.id }}\" >{{ row.name }}</option>\n            </select>\n        </td>\n        <td>\n            <select style=\"width: 100px\" class=\"form-control input-sm\" [(ngModel)]=\"item.registeration_status_id\"   >\n              <option value=\"\">-- {{ \"registeration_status\" | trans }} --</option>\n              <option *ngFor=\"let row of registerationStatus\" value=\"{{ row.id }}\" >{{ row.name }}</option>\n            </select>\n        </td>\n        <td>\n            <select class=\"form-control input-sm\" [(ngModel)]=\"item.store_id\" required >\n              <option *ngFor=\"let row of stores\" value=\"{{ row.id }}\" >{{ row.name}}</option>\n            </select>\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.discount\"   >\n        </td>\n        <td>\n            <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.wz_value\"   >\n        </td>\n        <td>\n          <button mat-button color=\"warn\" (click)=\"removeRow(item, i)\" >\n            <i class=\"fa fa-trash\" ></i>\n          </button>\n        </td>\n      </tr>\n\n      <tr *ngIf=\"academicYearExpense.details.length <= 0 && !isLoad\" >\n        <td colspan=\"9\" >\n          <div class=\"w3-large text-center\" >{{ \"there is no data\" | trans }}</div>\n        </td>\n      </tr>\n\n      <tr *ngIf=\"isLoad\" >\n        <td colspan=\"9\" >\n          <div class=\"fa fa-spin fa-spinner w3-large text-center\" ></div>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <br>\n  <button mat-raised-button [disabled]=\"!level_id\"  class=\"w3-light-gray\" (click)=\"addRow()\" style=\"margin: 5px\"  >\n    <span class=\"fa fa-plus\" ></span>\n  </button>\n  <button mat-raised-button color=\"primary\" [disabled]=\"updateItem || (!level_id)\" (click)=\"viewChanges()\" style=\"margin: 5px\"  >\n    <span *ngIf=\"!updateItem\" >{{ \"save\" | trans }}</span>\n    <span *ngIf=\"updateItem\"  class=\"fa fa-spin fa-spinner\" ></span>\n  </button>\n</div>\n\n\n<!-- remove modal -->\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">{{ \"remove services\" | trans }}</h4>\n        </div>\n        <div class=\"modal-body text-center\">\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\n            <br>\n            {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\n        </div>\n        <div class=\"modal-footer\">\n        </div>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n"
 
 /***/ }),
 
@@ -861,6 +877,195 @@ var OldBalanceComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/account/components/report/payment-details-report/payment-details-report.component.html":
+/*!********************************************************************************************************!*\
+  !*** ./src/app/account/components/report/payment-details-report/payment-details-report.component.html ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\n  <div class=\"col-lg-10 col-md-10 col-sm-12\">\n    <div class=\"w3-white material-shadow safe-box\">\n      <div class=\"safe-box-header w3-xlarge\">\n        {{ \"student payments report\" | trans }}\n      </div>\n      <br>\n      <div class=\"border-bottom-dashed\" ></div>\n      <br>\n\n      <div class=\"safe-box-body row\" >\n\n        <div class=\"col-lg-12 col-md-12 col-sm-12\" >\n          <div class=\"row\">\n            <!-- search info -->\n            <div class=\"col-lg-3 col-md-3 col-sm-6\">\n              <div class=\"custom-panel w3-display-container w3-round  application-panel military-info-panel\">\n                <div class=\"custom-panel-title\" >{{ \"search\" | trans }}</div>\n\n                <div class=\"custom-panel-body filter-top\"  >\n                  <table class=\"table\">\n                    <tr>\n                      <td>\n                        {{ \"from date\" | trans }} <br>\n                        <input\n                        type=\"date\"\n                        class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\n                        [(ngModel)]=\"searchData.date_from\" >\n                      </td>\n                  </tr>\n                    <tr>\n                      <td>\n                        {{ \"to date\" | trans }} <br>\n                        <input\n                        type=\"date\"\n                        class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\n                        [(ngModel)]=\"searchData.date_to\" >\n                      </td>\n                  </tr>\n                  <tr>\n                      <td>\n                        {{ \"payments_incomes\" | trans }} :\n                        <mat-slide-toggle\n                        (change)=\"toggleType('out')\"\n                        [checked]=\"searchData.payment_type == 'out'\"\n                         ></mat-slide-toggle>\n                      </td>\n                  </tr>\n                  <tr>\n                      <td>\n                        {{ \"payments_returns\" | trans }} :\n                        <mat-slide-toggle\n                        (change)=\"toggleType('in')\"\n                        [checked]=\"searchData.payment_type == 'in'\"\n                         ></mat-slide-toggle>\n                      </td>\n                  </tr>\n                  <tr>\n                    <td>\n                      {{ \"users\" | trans }} <br>\n                      <select\n                      class=\"custom-input form-control input-sm w3-input input-sm border-bottom-dashed\"\n                      [(ngModel)]=\"searchData.user_id\">\n                        <option value=\"\">-- {{ \"user\" }} --</option>\n                        <option *ngFor=\"let item of users\" value=\"{{ item.id }}\">{{ item.name }}</option>\n                      </select>\n                    </td>\n                </tr>\n                  </table>\n                </div>\n\n              </div>\n            </div>\n\n            <div class=\"col-lg-2 col-md-2 col-sm-3\">\n              <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n                <div class=\"custom-panel-title\" >{{ \"levels\" | trans }}</div>\n                <div class=\"custom-panel-body filter-top\"  >\n                  <ul class=\"w3-ul\">\n                    <li *ngFor=\"let item of levels index as i\" >\n                      <mat-slide-toggle\n                      (change)=\"toggle(item.id, selectedLevels)\"\n                      [checked]=\"selectedLevels.has(item.id)\"\n                       ></mat-slide-toggle>\n                      <span style=\"padding-right: 3px\" class=\"w3-tiny\"  >{{ item.name }}</span>\n                    </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-lg-2 col-md-2 col-sm-3\">\n              <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n                <div class=\"custom-panel-title\" >{{ \"divisions\" | trans }}</div>\n                <div class=\"custom-panel-body filter-top\"  >\n                  <ul class=\"w3-ul\">\n                    <li *ngFor=\"let item of applicationSetting.DIVISIONS index as i\" >\n                      <mat-slide-toggle\n                      (change)=\"toggle(item.id, selectedDivisions)\"\n                      [checked]=\"selectedDivisions.has(item.id)\"\n                       ></mat-slide-toggle>\n                      <span style=\"padding-right: 3px\" class=\"w3-tiny\"  >{{ item.name }} - {{ item.level }}</span>\n                    </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-lg-2 col-md-2 col-sm-3\">\n              <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n                <div class=\"custom-panel-title\" >{{ \"academic years\" | trans }}</div>\n                <div class=\"custom-panel-body filter-top\"  >\n                  <ul class=\"w3-ul\">\n                    <li *ngFor=\"let item of applicationSetting.ACADEMIC_YEARS index as i\" >\n                      <mat-slide-toggle\n                      (change)=\"toggle(item.id, selectedYears);loadAcadeimicYearExpenses()\"\n                      [checked]=\"selectedYears.has(item.id)\"\n                       ></mat-slide-toggle>\n                      <span style=\"padding-right: 3px\" class=\"w3-tiny\"  >{{ item.name }}</span>\n                    </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n\n\n            <div class=\"col-lg-3 col-md-3 col-sm-3\">\n              <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n                <div class=\"custom-panel-title\" >{{ \"academic year expense\" | trans }}</div>\n                <div class=\"custom-panel-body filter-top\"  >\n                  <ul class=\"w3-ul\">\n                    <li *ngFor=\"let item of academicYearExpenses index as i\" class=\"w3-display-container w3-padding\" >\n                      <mat-slide-toggle\n                      (change)=\"toggle(item.priorty, selectedAcademicYearExpenses)\"\n                      [checked]=\"selectedAcademicYearExpenses.has(item.priorty)\"\n                       ></mat-slide-toggle>\n                       <br>\n                      <span style=\"padding-right: 3px\" class=\"w3-\"  >{{ item.name }}</span>\n\n                      <span class=\"w3-display-topleft w3-padding w3-text-red\">\n                        {{ item.total | currency: ' جنيه ' }}\n                      </span>\n                    </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n\n          </div>\n\n        </div>\n\n        <div class=\"col-lg-12 col-md-12 col-sm-12\" >\n            <div class=\"row\">\n\n          <!--services-->\n          <div class=\"col-lg-3 col-md-3 col-sm-3 \" >\n\n            <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n              <div class=\"custom-panel-title\" >{{ \"services\" | trans }}</div>\n              <div class=\"custom-panel-body filter-side\"  >\n                <ul class=\"w3-ul\">\n                  <li *ngFor=\"let item of services index as i\" class=\"w3-display-container w3-padding\" >\n                    <mat-slide-toggle\n                    (change)=\"toggle(item.id, selectedServices)\"\n                    [checked]=\"selectedServices.has(item.id)\"\n                     ></mat-slide-toggle>\n                     <br>\n                    <span style=\"padding-right: 3px\" class=\"\" >{{ item.name }}</span>\n\n                    <span class=\"w3-display-topleft w3-padding w3-text-red\">\n                      {{ item.total | currency: ' جنيه ' }}\n                    </span>\n                  </li>\n                </ul>\n              </div>\n            </div>\n          </div>\n\n\n\n\n          <!--data-->\n          <div class=\"col-lg-9 col-md-9 col-sm-9\" >\n            <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n              <div class=\"custom-panel-title\" >{{ \"student payments\" | trans }}</div>\n              <div class=\"custom-panel-body filter-side\"  >\n                <table class=\"table table-bordered\" id=\"printable\" style=\"direction: rtl!important;\" >\n                  <tr>\n                    <th>{{ \"#\" }}</th>\n                    <th>{{ \"date\" | trans }}</th>\n                    <th>{{ \"id\" | trans }}</th>\n                    <th>{{ \"student_code\" | trans }}</th>\n                    <th>{{ \"student_name\" | trans }}</th>\n                    <th>{{ \"level\" | trans }}</th>\n                    <th>{{ \"division\" | trans }}</th>\n                    <th>{{ \"value\" | trans }}</th>\n                    <th>{{ \"type\" | trans }}</th>\n                    <th>{{ \"payment_name\" | trans }}</th>\n                  </tr>\n\n                  <tr *ngFor=\"let item of payments.details index as i\"  >\n                    <td>{{ i + 1 }}</td>\n                    <td>{{ item.date }}</td>\n                    <td>{{ item.id }}</td>\n                    <td>{{ item.code }}</td>\n                    <td>{{ item.name }}</td>\n                    <td>{{ item.level? item.level.name : item.level_id }}</td>\n                    <td>{{ item.division? item.division.name : item.division_id }}</td>\n                    <td>{{ item.value | currency: ' جنيه ' }}</td>\n                    <td>{{ \"payment_type_\"+ item.model_type | trans }}</td>\n                    <td>{{ item.model_object? item.model_object.name : '' }}</td>\n                  </tr>\n                </table>\n              </div>\n            </div>\n\n            <div class=\"custom-panel w3-display-container w3-round\">\n              <div class=\"custom-panel-title\" >{{ \"analysis\" | trans }}</div>\n              <div class=\"custom-panel-body\"  >\n                <table class=\"table\">\n                  <tr>\n                    <th>{{ \"payments_incomes\" | trans }}</th>\n                    <td>\n                      <input\n                      type=\"text\" readonly\n                      class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\n                      [(ngModel)]=\"payments.payments_incomes\" >\n                    </td>\n                    <th>{{ \"payments_returns\" | trans }}</th>\n                    <td>\n                      <input\n                      type=\"text\" readonly\n                      class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\n                      [(ngModel)]=\"payments.payments_returns\" >\n                    </td>\n                    <th>{{ \"total\" | trans }}</th>\n                    <td>\n                      <input\n                      type=\"text\" readonly\n                      class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\n                      [(ngModel)]=\"payments.total\" >\n                    </td>\n                  </tr>\n                  <tr>\n                    <th>{{ \"student_services\" | trans }}</th>\n                    <td>\n                      <input\n                      type=\"text\" readonly\n                      class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\n                      [(ngModel)]=\"payments.student_services\" >\n                    </td>\n                  </tr>\n                </table>\n              </div>\n            </div>\n\n            <div class=\"custom-panel w3-display-container w3-round\">\n              <div class=\"custom-panel-body\"  >\n                <button mat-raised-button color=\"primary\" class=\"w3-margin-left\" [disabled]=\"isSubmitted\"  (click)=\"loadPayments()\" >{{ \"search\" | trans }}</button>\n\n                <button\n                mat-raised-button color=\"primary\"\n                class=\"w3-margin-left w3-black\"\n                (click)=\"print()\" > <i class=\"fa fa-print\" ></i> {{ \"print\" | trans }}</button>\n\n                <button\n                mat-raised-button color=\"primary\"\n                class=\"w3-margin-left w3-green\"\n                (click)=\"exportExcel()\"> <i class=\"fa fa-file-excel-o\" ></i> {{ \"excel\" | trans }}</button>\n\n                <a href=\"#\" class=\"btn btn-default small-shadow w3-margin-left\" routerLink=\"/adminision/application\" >{{ \"exit\" | trans }}</a>\n              </div>\n            </div>\n\n\n          </div>\n        </div>\n\n\n          </div>\n\n      </div>\n\n\n\n\n      </div>\n    </div>\n  </div>\n\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/account/components/report/payment-details-report/payment-details-report.component.scss":
+/*!********************************************************************************************************!*\
+  !*** ./src/app/account/components/report/payment-details-report/payment-details-report.component.scss ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".safe-box {\n  padding: 10px; }\n\n.border-bottom-dashed {\n  border-bottom: 2px dashed gray !important; }\n\n.border-bottom-red {\n  border-bottom: 2px dashed red !important; }\n\n.border-dashed {\n  border: 2px dashed lightgray !important; }\n\n.btn-margin-bottom {\n  margin-bottom: 6px !important; }\n\n.custom-panel {\n  border: 2px dashed lightgray !important;\n  margin-bottom: 15px !important; }\n\n.custom-panel-title {\n  position: absolute !important;\n  right: 10px !important;\n  top: -13px !important;\n  width: auto !important;\n  background-color: white !important;\n  padding-left: 10px !important;\n  padding-right: 10px !important; }\n\n.custom-panel-body {\n  padding: 10px !important; }\n\n.small-shadow {\n  box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.3) !important; }\n\n.search-input {\n  min-width: 70% !important; }\n\n.border-gray {\n  border: 1px solid gray !important; }\n\n.custom-input {\n  min-width: 120px; }\n\n.modal {\n  overflow: auto !important; }\n\n/*\r\n  custom button style\r\n*/\n\nselect, input[type=file] {\n  padding: 0px !important; }\n\n.filter-top {\n  height: 200px !important;\n  overflow: auto; }\n\n.filter-side {\n  height: 400px !important;\n  overflow: auto; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWNjb3VudC9jb21wb25lbnRzL3JlcG9ydC9wYXltZW50LWRldGFpbHMtcmVwb3J0L0U6XFxwcm9qZWN0c1xcc2Ftc2FcXHNhbXNhRnJvbnRFbmQvc3JjXFxhcHBcXGFjY291bnRcXGNvbXBvbmVudHNcXHJlcG9ydFxccGF5bWVudC1kZXRhaWxzLXJlcG9ydFxccGF5bWVudC1kZXRhaWxzLXJlcG9ydC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYWNjb3VudC9jb21wb25lbnRzL3JlcG9ydC9wYXltZW50LWRldGFpbHMtcmVwb3J0L3BheW1lbnQtZGV0YWlscy1yZXBvcnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUNGLEVBQUE7O0FBRUE7RUFDRSx5Q0FBd0MsRUFBQTs7QUFHMUM7RUFDRSx3Q0FBdUMsRUFBQTs7QUFHekM7RUFDRSx1Q0FBc0MsRUFBQTs7QUFHeEM7RUFDRSw2QkFBNEIsRUFBQTs7QUFHOUI7RUFDRSx1Q0FBc0M7RUFDdEMsOEJBQTZCLEVBQUE7O0FBSS9CO0VBQ0UsNkJBQTRCO0VBQzVCLHNCQUFxQjtFQUNyQixxQkFBb0I7RUFDcEIsc0JBQXFCO0VBQ3JCLGtDQUFpQztFQUNqQyw2QkFBNEI7RUFDNUIsOEJBQTZCLEVBQUE7O0FBRy9CO0VBQ0Usd0JBQXVCLEVBQUE7O0FBR3pCO0VBQ0UsdURBQW1ELEVBQUE7O0FBR3JEO0VBQ0UseUJBQXdCLEVBQUE7O0FBRzFCO0VBQ0UsaUNBQWdDLEVBQUE7O0FBR2xDO0VBQ0UsZ0JBQ0YsRUFBQTs7QUFFQTtFQUNFLHlCQUF3QixFQUFBOztBQUUxQjs7Q0NYQzs7QURlRDtFQUNFLHVCQUFzQixFQUFBOztBQUd4QjtFQUNFLHdCQUF1QjtFQUN2QixjQUFjLEVBQUE7O0FBR2hCO0VBQ0Usd0JBQXVCO0VBQ3ZCLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvY29tcG9uZW50cy9yZXBvcnQvcGF5bWVudC1kZXRhaWxzLXJlcG9ydC9wYXltZW50LWRldGFpbHMtcmVwb3J0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnNhZmUtYm94IHtcclxuICBwYWRkaW5nOiAxMHB4XHJcbn1cclxuXHJcbi5ib3JkZXItYm90dG9tLWRhc2hlZCB7XHJcbiAgYm9yZGVyLWJvdHRvbTogMnB4IGRhc2hlZCBncmF5IWltcG9ydGFudDtcclxufVxyXG5cclxuLmJvcmRlci1ib3R0b20tcmVkIHtcclxuICBib3JkZXItYm90dG9tOiAycHggZGFzaGVkIHJlZCFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5ib3JkZXItZGFzaGVkIHtcclxuICBib3JkZXI6IDJweCBkYXNoZWQgbGlnaHRncmF5IWltcG9ydGFudDtcclxufVxyXG5cclxuLmJ0bi1tYXJnaW4tYm90dG9tIHtcclxuICBtYXJnaW4tYm90dG9tOiA2cHghaW1wb3J0YW50O1xyXG59XHJcblxyXG4uY3VzdG9tLXBhbmVsIHtcclxuICBib3JkZXI6IDJweCBkYXNoZWQgbGlnaHRncmF5IWltcG9ydGFudDtcclxuICBtYXJnaW4tYm90dG9tOiAxNXB4IWltcG9ydGFudDtcclxufVxyXG5cclxuXHJcbi5jdXN0b20tcGFuZWwtdGl0bGUge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZSFpbXBvcnRhbnQ7XHJcbiAgcmlnaHQ6IDEwcHghaW1wb3J0YW50O1xyXG4gIHRvcDogLTEzcHghaW1wb3J0YW50O1xyXG4gIHdpZHRoOiBhdXRvIWltcG9ydGFudDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZSFpbXBvcnRhbnQ7XHJcbiAgcGFkZGluZy1sZWZ0OiAxMHB4IWltcG9ydGFudDtcclxuICBwYWRkaW5nLXJpZ2h0OiAxMHB4IWltcG9ydGFudDtcclxufVxyXG5cclxuLmN1c3RvbS1wYW5lbC1ib2R5IHtcclxuICBwYWRkaW5nOiAxMHB4IWltcG9ydGFudDtcclxufVxyXG5cclxuLnNtYWxsLXNoYWRvdyB7XHJcbiAgYm94LXNoYWRvdzogMCAxcHggMXB4IDBweCByZ2JhKDAsMCwwLDAuMykhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc2VhcmNoLWlucHV0IHtcclxuICBtaW4td2lkdGg6IDcwJSFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5ib3JkZXItZ3JheSB7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JheSFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5jdXN0b20taW5wdXQge1xyXG4gIG1pbi13aWR0aDogMTIwcHhcclxufVxyXG5cclxuLm1vZGFsIHtcclxuICBvdmVyZmxvdzogYXV0byFpbXBvcnRhbnQ7XHJcbn1cclxuLypcclxuICBjdXN0b20gYnV0dG9uIHN0eWxlXHJcbiovXHJcblxyXG5zZWxlY3QsIGlucHV0W3R5cGU9ZmlsZV0ge1xyXG4gIHBhZGRpbmc6IDBweCFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5maWx0ZXItdG9wIHtcclxuICBoZWlnaHQ6IDIwMHB4IWltcG9ydGFudDtcclxuICBvdmVyZmxvdzogYXV0bztcclxufVxyXG5cclxuLmZpbHRlci1zaWRlIHtcclxuICBoZWlnaHQ6IDQwMHB4IWltcG9ydGFudDtcclxuICBvdmVyZmxvdzogYXV0bztcclxufVxyXG4iLCIuc2FmZS1ib3gge1xuICBwYWRkaW5nOiAxMHB4OyB9XG5cbi5ib3JkZXItYm90dG9tLWRhc2hlZCB7XG4gIGJvcmRlci1ib3R0b206IDJweCBkYXNoZWQgZ3JheSAhaW1wb3J0YW50OyB9XG5cbi5ib3JkZXItYm90dG9tLXJlZCB7XG4gIGJvcmRlci1ib3R0b206IDJweCBkYXNoZWQgcmVkICFpbXBvcnRhbnQ7IH1cblxuLmJvcmRlci1kYXNoZWQge1xuICBib3JkZXI6IDJweCBkYXNoZWQgbGlnaHRncmF5ICFpbXBvcnRhbnQ7IH1cblxuLmJ0bi1tYXJnaW4tYm90dG9tIHtcbiAgbWFyZ2luLWJvdHRvbTogNnB4ICFpbXBvcnRhbnQ7IH1cblxuLmN1c3RvbS1wYW5lbCB7XG4gIGJvcmRlcjogMnB4IGRhc2hlZCBsaWdodGdyYXkgIWltcG9ydGFudDtcbiAgbWFyZ2luLWJvdHRvbTogMTVweCAhaW1wb3J0YW50OyB9XG5cbi5jdXN0b20tcGFuZWwtdGl0bGUge1xuICBwb3NpdGlvbjogYWJzb2x1dGUgIWltcG9ydGFudDtcbiAgcmlnaHQ6IDEwcHggIWltcG9ydGFudDtcbiAgdG9wOiAtMTNweCAhaW1wb3J0YW50O1xuICB3aWR0aDogYXV0byAhaW1wb3J0YW50O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50O1xuICBwYWRkaW5nLWxlZnQ6IDEwcHggIWltcG9ydGFudDtcbiAgcGFkZGluZy1yaWdodDogMTBweCAhaW1wb3J0YW50OyB9XG5cbi5jdXN0b20tcGFuZWwtYm9keSB7XG4gIHBhZGRpbmc6IDEwcHggIWltcG9ydGFudDsgfVxuXG4uc21hbGwtc2hhZG93IHtcbiAgYm94LXNoYWRvdzogMCAxcHggMXB4IDBweCByZ2JhKDAsIDAsIDAsIDAuMykgIWltcG9ydGFudDsgfVxuXG4uc2VhcmNoLWlucHV0IHtcbiAgbWluLXdpZHRoOiA3MCUgIWltcG9ydGFudDsgfVxuXG4uYm9yZGVyLWdyYXkge1xuICBib3JkZXI6IDFweCBzb2xpZCBncmF5ICFpbXBvcnRhbnQ7IH1cblxuLmN1c3RvbS1pbnB1dCB7XG4gIG1pbi13aWR0aDogMTIwcHg7IH1cblxuLm1vZGFsIHtcbiAgb3ZlcmZsb3c6IGF1dG8gIWltcG9ydGFudDsgfVxuXG4vKlxyXG4gIGN1c3RvbSBidXR0b24gc3R5bGVcclxuKi9cbnNlbGVjdCwgaW5wdXRbdHlwZT1maWxlXSB7XG4gIHBhZGRpbmc6IDBweCAhaW1wb3J0YW50OyB9XG5cbi5maWx0ZXItdG9wIHtcbiAgaGVpZ2h0OiAyMDBweCAhaW1wb3J0YW50O1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG4uZmlsdGVyLXNpZGUge1xuICBoZWlnaHQ6IDQwMHB4ICFpbXBvcnRhbnQ7XG4gIG92ZXJmbG93OiBhdXRvOyB9XG4iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/account/components/report/payment-details-report/payment-details-report.component.ts":
+/*!******************************************************************************************************!*\
+  !*** ./src/app/account/components/report/payment-details-report/payment-details-report.component.ts ***!
+  \******************************************************************************************************/
+/*! exports provided: PaymentDetailsReportComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentDetailsReportComponent", function() { return PaymentDetailsReportComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angular_hashtable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
+/* harmony import */ var src_app_account_services_academic_year_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/account/services/academic-year.service */ "./src/app/account/services/academic-year.service.ts");
+/* harmony import */ var src_app_account_services_level_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/account/services/level.service */ "./src/app/account/services/level.service.ts");
+/* harmony import */ var src_app_account_services_report_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/account/services/report.service */ "./src/app/account/services/report.service.ts");
+/* harmony import */ var src_app_account_services_student_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/account/services/student-service.service */ "./src/app/account/services/student-service.service.ts");
+/* harmony import */ var src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var src_app_app_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var src_app_shared_cache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_user_services_user_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/user/services/user.service */ "./src/app/user/services/user.service.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+var PaymentDetailsReportComponent = /** @class */ (function () {
+    function PaymentDetailsReportComponent(userService, studentService, reportService, acadeimicYearExpenseService) {
+        this.userService = userService;
+        this.studentService = studentService;
+        this.reportService = reportService;
+        this.acadeimicYearExpenseService = acadeimicYearExpenseService;
+        this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_8__["AppModule"].doc;
+        this.searchData = {};
+        this.applicationSetting = src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationSettingService"];
+        this.users = [];
+        this.levels = [];
+        this.divisions = [];
+        this.services = [];
+        this.academicYears = [];
+        this.academicYearExpenses = [];
+        //
+        this.selectedLevels = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        this.selectedDivisions = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        this.selectedYears = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        this.selectedServices = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        this.selectedAcademicYearExpenses = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        this.selectedTypes = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        //
+        this.payments = [];
+        this.isSubmitted = false;
+    }
+    PaymentDetailsReportComponent.prototype.loadUsers = function () {
+        var _this = this;
+        this.userService.get().subscribe(function (res) {
+            _this.users = res;
+        });
+    };
+    PaymentDetailsReportComponent.prototype.loadLevels = function () {
+        this.levels = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_9__["Cache"].get(src_app_account_services_level_service__WEBPACK_IMPORTED_MODULE_4__["LevelService"].LEVEL_PREFIX);
+    };
+    PaymentDetailsReportComponent.prototype.loadDivisions = function () {
+        this.divisions = this.applicationSetting.DIVISIONS;
+    };
+    PaymentDetailsReportComponent.prototype.loadAcademicYears = function () {
+        this.academicYears = this.applicationSetting.ACADEMIC_YEARS;
+    };
+    PaymentDetailsReportComponent.prototype.loadServices = function () {
+        var _this = this;
+        this.studentService.get().subscribe(function (res) {
+            _this.services = res;
+        });
+    };
+    PaymentDetailsReportComponent.prototype.loadAcadeimicYearExpenses = function () {
+        var _this = this;
+        if (this.selectedYears.getKeys().length == 0)
+            return;
+        var currentAcademicYears = this.selectedYears.getKeys()[0];
+        var data = {
+            academic_year_id: currentAcademicYears,
+            level_id: 1
+        };
+        this.acadeimicYearExpenseService.get(data).subscribe(function (res) {
+            _this.academicYearExpenses = res.details;
+            //
+            _this.loadPayments();
+        });
+    };
+    PaymentDetailsReportComponent.prototype.toggleType = function (value) {
+        if (this.searchData.payment_type == value)
+            this.searchData.payment_type = '';
+        else
+            this.searchData.payment_type = value;
+    };
+    PaymentDetailsReportComponent.prototype.toggle = function (id, list) {
+        if (list === void 0) { list = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"](); }
+        if (list.has(id)) {
+            list.remove(id);
+        }
+        else {
+            list.put(id, id);
+        }
+    };
+    PaymentDetailsReportComponent.prototype.loadPayments = function () {
+        var _this = this;
+        this.searchData.level_id = this.selectedLevels.getKeys();
+        this.searchData.division_id = this.selectedDivisions.getKeys();
+        this.searchData.academic_year_id = this.selectedYears.getKeys();
+        this.searchData.services = this.selectedServices.getKeys();
+        this.isSubmitted = true;
+        this.reportService.get(this.searchData).subscribe(function (res) {
+            _this.payments = res;
+            _this.prepareTotal(res);
+            _this.isSubmitted = false;
+        });
+    };
+    PaymentDetailsReportComponent.prototype.prepareTotal = function (res) {
+        this.services.forEach(function (element) {
+            element.total = res['services'][element.id];
+        });
+        this.academicYearExpenses.forEach(function (element) {
+            element.total = res['academic_year_expense'][element.id];
+        });
+    };
+    PaymentDetailsReportComponent.prototype.print = function () {
+        src_app_shared_helper__WEBPACK_IMPORTED_MODULE_10__["Helper"].print();
+    };
+    PaymentDetailsReportComponent.prototype.exportExcel = function () {
+        var filename = "مدفوعات الطلاب-" + new Date().toLocaleTimeString();
+        this.doc.exportExcel(filename);
+    };
+    PaymentDetailsReportComponent.prototype.ngOnInit = function () {
+        this.loadUsers();
+        this.loadLevels();
+        this.loadDivisions();
+        this.loadAcademicYears();
+        this.loadServices();
+        this.loadAcadeimicYearExpenses();
+        //
+        this.loadPayments();
+    };
+    PaymentDetailsReportComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-payment-details-report',
+            template: __webpack_require__(/*! ./payment-details-report.component.html */ "./src/app/account/components/report/payment-details-report/payment-details-report.component.html"),
+            styles: [__webpack_require__(/*! ./payment-details-report.component.scss */ "./src/app/account/components/report/payment-details-report/payment-details-report.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_user_services_user_service__WEBPACK_IMPORTED_MODULE_11__["UserService"],
+            src_app_account_services_student_service_service__WEBPACK_IMPORTED_MODULE_6__["StudentServiceService"],
+            src_app_account_services_report_service__WEBPACK_IMPORTED_MODULE_5__["ReportService"],
+            src_app_account_services_academic_year_service__WEBPACK_IMPORTED_MODULE_3__["AcademicYearService"]])
+    ], PaymentDetailsReportComponent);
+    return PaymentDetailsReportComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/account/components/safe/available-service/available-service.component.html":
 /*!********************************************************************************************!*\
   !*** ./src/app/account/components/safe/available-service/available-service.component.html ***!
@@ -868,7 +1073,7 @@ var OldBalanceComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal \" id=\"studentAvailableServices\" tabindex=\"-1\" role=\"dialog\"   >\n  <div class=\"modal-dialog modal-\" role=\"document\">\n    <div class=\"modal-content w3-animate-top\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n        <h4 class=\"modal-title text-center\">{{ \"student available services\" | trans }}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <table class=\"table table-bordered\" >\n          <thead>\n            <tr class=\"w3-dark-gray\" >\n              <th>{{ \"#\" | trans }}</th>\n              <th>{{ \"name\" | trans }}</th>\n              <th>{{ \"additional_value\" | trans }}</th>\n              <th>{{ \"value\" | trans }}</th>\n              <th>{{ \"total\" | trans }}</th>\n              <th></th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let item of services index as i\" >\n              <td>{{ i + 1 }}</td>\n              <td>{{ item.name }}</td>\n              <td>{{ item.additional_value | currency: ' EGP ' }}</td>\n              <td>{{ item.value | currency: ' EGP ' }}</td>\n              <td>{{ (item.value + item.additional_value) | currency: ' EGP ' }}</td>\n              <td>\n                <input type=\"checkbox\" class=\"w3-check\" >\n              </td>\n            </tr>\n            <tr>\n              <td>{{ \"total\" | trans }}</td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td>{{ total | currency: ' EGP ' }}</td>\n              <td></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\" onclick=\"document.getElementById('studentAvailableServices').style.display='none'\" >{{ \"close\" | trans }}</button>\n      </div>\n    </div><!-- /.modal-content -->\n  </div><!-- /.modal-dialog -->\n</div><!-- /.modal -->\n"
+module.exports = "<div class=\"modal \" id=\"studentAvailableServices\" tabindex=\"-1\" role=\"dialog\"   >\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\n    <div class=\"modal-content w3-animate-top\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n        <h4 class=\"modal-title text-center\">{{ \"student available services\" | trans }}</h4>\n      </div>\n      <div class=\"\">\n        <table class=\"table table-bordered text-center\" >\n          <thead>\n            <tr class=\"w3-dark-gray\" >\n              <th>{{ \"#\" | trans }}</th>\n              <th>{{ \"name\" | trans }}</th>\n              <th>{{ \"additional_value\" | trans }}</th>\n              <th>{{ \"value\" | trans }}</th>\n              <th>{{ \"valid\" | trans }}</th>\n              <th>{{ \"reason\" | trans }}</th>\n              <th>{{ \"number\" | trans }}</th>\n              <th>{{ \"total\" | trans }}</th>\n              <th></th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr\n            *ngFor=\"let item of services index as i\"\n            [ngClass]=\"{'w3-text-red': !item.valid}\"\n             >\n              <td>{{ i + 1 }}</td>\n              <td>{{ item.name }}</td>\n              <td>{{ item.additional_value | currency: ' EGP ' }}</td>\n              <td>{{ item.value | currency: ' EGP ' }}</td>\n              <td>\n                <i *ngIf=\"!item.valid\" class=\"fa fa-window-close w3-text-red\" ></i>\n                <i *ngIf=\"item.valid\" class=\"fa fa-check-square w3-text-green\" ></i>\n              </td>\n              <td>\n                <span *ngIf=\"!item.valid\" class=\"w3-text-red\">\n                  {{ item.reason }}\n                </span>\n              </td>\n              <td>\n                <input\n                *ngIf=\"item.valid && item.copy\"\n                (change)=\"calculateTotal()\"\n                type=\"number\"\n                class=\"custom-input w3-input border-bottom-dashed input-sm\" [(ngModel)]=\"item.number\" >\n              </td>\n              <td>{{ (item.value + item.additional_value) | currency: ' EGP ' }}</td>\n              <td>\n                <mat-slide-toggle\n                (change)=\"toggleService(item)\"\n                [checked]=\"selectedServices.has(item.id)\"\n                *ngIf=\"item.valid\"  ></mat-slide-toggle>\n              </td>\n            </tr>\n            <tr>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n            </tr>\n            <tr>\n              <td>{{ \"total\" | trans }}</td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td></td>\n              <td>{{ total | currency: ' EGP ' }}</td>\n              <td></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <div class=\"modal-footer text-right\">\n        <button type=\"button\" class=\"btn btn-default\"  class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" >{{ \"close\" | trans }}</button>\n      </div>\n    </div><!-- /.modal-content -->\n  </div><!-- /.modal-dialog -->\n</div><!-- /.modal -->\n"
 
 /***/ }),
 
@@ -895,20 +1100,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AvailableServiceComponent", function() { return AvailableServiceComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angular_hashtable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
+/* harmony import */ var src_app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/app.module */ "./src/app/app.module.ts");
+
+
 
 
 var AvailableServiceComponent = /** @class */ (function () {
     function AvailableServiceComponent() {
+        this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"].doc;
         this.total = 0;
+        this.selectedServices = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
     }
     AvailableServiceComponent.prototype.calculateTotal = function () {
         var _this = this;
         this.total = 0;
         if (this.services)
             this.services.forEach(function (element) {
-                _this.total += element.value;
-                _this.total += element.additional_value;
+                if (!element.number)
+                    element.number = 1;
+                if (_this.selectedServices.has(element.id)) {
+                    _this.total += (element.value + element.additional_value) * element.number;
+                }
             });
+    };
+    AvailableServiceComponent.prototype.toggleService = function (item) {
+        if (this.selectedServices.has(item.id)) {
+            this.selectedServices.remove(item.id);
+        }
+        else {
+            this.selectedServices.put(item.id, item);
+        }
+        this.calculateTotal();
+        this.setServicePayment();
+    };
+    AvailableServiceComponent.prototype.setServicePayment = function () {
+        var _this = this;
+        var arr = [];
+        var ids = this.selectedServices.getKeys();
+        ids.forEach(function (element) {
+            var object = {
+                id: element,
+                number: _this.selectedServices.get(element).number
+            };
+            arr.push(object);
+        });
+        if (ids.length > 0) {
+            this.safeObject.services = arr;
+            this.safeObject.payment_type = 'service';
+            this.safeObject.paid_value = this.total;
+        }
+        else {
+            this.safeObject.services = [];
+            this.safeObject.payment_type = null;
+            this.safeObject.paid_value = 0;
+        }
     };
     AvailableServiceComponent.prototype.ngOnInit = function () {
     };
@@ -919,6 +1165,10 @@ var AvailableServiceComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], AvailableServiceComponent.prototype, "services", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], AvailableServiceComponent.prototype, "safeObject", void 0);
     AvailableServiceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-available-service',
@@ -1118,6 +1368,133 @@ var InstallmentComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/account/components/safe/pay-refund/pay-refund.component.html":
+/*!******************************************************************************!*\
+  !*** ./src/app/account/components/safe/pay-refund/pay-refund.component.html ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal \" id=\"studentRefundPayments\" tabindex=\"-1\" role=\"dialog\"   >\n  <div class=\"modal-dialog modal-\" role=\"document\">\n    <div class=\"modal-content w3-animate-top\">\n      <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" (click)=\"doc.jquery('#studentRefundPayments').modal('hide')\"  aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n        <h4 class=\"modal-title text-center\">{{ \"payments\" | trans }}</h4>\n      </div>\n      <div class=\"modal-body\">\n        <table  class=\"table table-bordered\" >\n          <thead>\n            <tr class=\"w3-dark-gray\" >\n              <th>{{ \"date\" | trans }}</th>\n              <th>{{ \"store\" | trans }}</th>\n              <th>{{ \"value\" | trans }}</th>\n              <th>{{ \"type\" | trans }}</th>\n              <th></th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let item of prePayments(payments) index as i\" >\n              <ng-container  >\n                <td>{{ item.date }}</td>\n                <td>{{ item.store? item.store.name : '' }}</td>\n                <td>{{ item.value | currency: ' EGP ' }}</td>\n                <td>{{ item.model_object? item.model_object.name : '' }}</td>\n                <td>\n                  <button\n                  *ngIf=\"!item.is_refund\"\n                  (click)=\"performRefund(item)\"\n                  [disabled]=\"isSubmitted\"\n                  class=\"btn btn-danger btn-sm fa fa-replay material-shadow\"  >\n                    <i *ngIf=\"isSubmitted\"  class=\"fa fa-spin fa-spinner\"></i>\n                    <i>{{ \"pay_refund\" | trans }}</i>\n                  </button>\n                  <p *ngIf=\"item.is_refund\" class=\"w3-text-red\">{{ \"payment refunded\" | trans }}</p>\n                </td>\n              </ng-container>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-default\"  (click)=\"doc.jquery('#studentRefundPayments').modal('hide')\" >{{ \"close\" | trans }}</button>\n      </div>\n    </div><!-- /.modal-content -->\n  </div><!-- /.modal-dialog -->\n</div><!-- /.modal -->\n"
+
+/***/ }),
+
+/***/ "./src/app/account/components/safe/pay-refund/pay-refund.component.scss":
+/*!******************************************************************************!*\
+  !*** ./src/app/account/components/safe/pay-refund/pay-refund.component.scss ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FjY291bnQvY29tcG9uZW50cy9zYWZlL3BheS1yZWZ1bmQvcGF5LXJlZnVuZC5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/account/components/safe/pay-refund/pay-refund.component.ts":
+/*!****************************************************************************!*\
+  !*** ./src/app/account/components/safe/pay-refund/pay-refund.component.ts ***!
+  \****************************************************************************/
+/*! exports provided: PayRefundComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PayRefundComponent", function() { return PayRefundComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_account_models_payment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/account/models/payment */ "./src/app/account/models/payment.ts");
+/* harmony import */ var src_app_account_services_student_account_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/account/services/student-account.service */ "./src/app/account/services/student-account.service.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
+
+
+
+
+
+
+
+var PayRefundComponent = /** @class */ (function () {
+    function PayRefundComponent(service) {
+        this.service = service;
+        this.total = 0;
+        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_6__["AppModule"].doc;
+        this.isSubmitted = false;
+    }
+    PayRefundComponent.prototype.calculateTotal = function () {
+        var _this = this;
+        this.total = 0;
+        this.payments.forEach(function (element) {
+            _this.total += element.value;
+        });
+    };
+    PayRefundComponent.prototype.prePayments = function (pays) {
+        var prePays = [];
+        pays.forEach(function (element) {
+            var valid = true;
+            if (element.model_type == 'service') {
+                if (element.model_object) {
+                    if (element.model_object.is_refund != 1) {
+                        valid = false;
+                    }
+                }
+            }
+            if (element.model_type == 'refund') {
+                valid = false;
+            }
+            if (valid)
+                prePays.push(element);
+        });
+        return prePays;
+    };
+    PayRefundComponent.prototype.performRefund = function (payment) {
+        var _this = this;
+        this.doc.swal.confirm(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_4__["Helper"].trans('are you sure'), function () {
+            var data = {
+                payment_id: payment.id
+            };
+            _this.isSubmitted = true;
+            _this.service.payRefund(data).subscribe(function (res) {
+                if (res.status == 1) {
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].success(res.message);
+                    src_app_account_models_payment__WEBPACK_IMPORTED_MODULE_2__["Payment"].loadReceipts(res.data);
+                    _this.updateStudent();
+                }
+                else {
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(res.message);
+                }
+                _this.isSubmitted = false;
+            });
+        });
+    };
+    PayRefundComponent.prototype.ngOnInit = function () {
+    };
+    PayRefundComponent.prototype.ngOnChanges = function (changes) {
+        this.calculateTotal();
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+    ], PayRefundComponent.prototype, "payments", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PayRefundComponent.prototype, "updateStudent", void 0);
+    PayRefundComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-pay-refund',
+            template: __webpack_require__(/*! ./pay-refund.component.html */ "./src/app/account/components/safe/pay-refund/pay-refund.component.html"),
+            styles: [__webpack_require__(/*! ./pay-refund.component.scss */ "./src/app/account/components/safe/pay-refund/pay-refund.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_account_services_student_account_service__WEBPACK_IMPORTED_MODULE_3__["StudentAccountService"]])
+    ], PayRefundComponent);
+    return PayRefundComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/account/components/safe/safe-index/safe-index.component.html":
 /*!******************************************************************************!*\
   !*** ./src/app/account/components/safe/safe-index/safe-index.component.html ***!
@@ -1125,7 +1502,7 @@ var InstallmentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-10 col-md-10 col-sm-12\">\r\n    <div class=\"w3-white material-shadow safe-box\">\r\n      <div class=\"safe-box-header w3-xlarge\">\r\n        {{ \"get money from safe\" | trans }}\r\n      </div>\r\n      <br>\r\n      <div class=\"border-bottom-dashed\" ></div>\r\n      <br>\r\n\r\n      <div class=\"safe-box-body row\" >\r\n\r\n        <div class=\"col-lg-3 col-md-3 col-sm-12\" >\r\n          <img [src]=\"safeObject.image\" class=\"w3-block w3-round border-gray\" >\r\n          <br>\r\n          <div class=\"custom-panel w3-display-container w3-round\" style=\"padding: 5px\" >\r\n\r\n            <div \r\n            *ngIf=\"studentSearchId\"\r\n            class=\"alert alert-danger w3-block btn-margin-bottom text-center\" \r\n            [innerHTML]=\"safeObject.notes\" >\r\n\r\n            </div>\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#studentPayments').modal('show')\"    >{{ \"student payments\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#studentServices').modal('show')\"    >{{ \"student services\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#studentInstallment').modal('show')\"   >{{ \"student installments\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#installmentSection').modal('show')\"  >{{ \"installments\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#notesModal').modal('show')\"  (click)=\"doc.jq('#notesModal').modal('show')\" >{{ \"write note\" | trans }}</button>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"col-lg-9 col-md-9 col-sm-12\" >\r\n\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-title\" >{{ \"search\" | trans }}</div>\r\n\r\n            <div class=\"custom-panel-body w3-display-container\"  >\r\n              <input class=\"w3-round-xxlarge w3-white w3-input border-gray search-input \" \r\n              (keyup)=\"searchInputEvent()\" \r\n              placeholder=\"{{ 'search with student name code national_id' | trans }}\"\r\n              [(ngModel)]=\"searchKey\" >\r\n\r\n              <button\r\n              (click)=\"loadStudentAccountInfo(studentSearchId)\"\r\n              class=\"btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge\"  >{{ \"search\" | trans }}</button>\r\n\r\n              <div class=\"w3-display-topleft w3-padding\" *ngIf=\"studentSearchDialogLoader\" style=\"top: 12px;left:30%;z-index:10;\" >\r\n                <span class=\"fa fa-spin fa-spinner w3-text-indigo\" ></span>\r\n              </div>\r\n\r\n              <div class=\"w3-display-topright w3-white material-shadow\" *ngIf=\"studentSearchDialogShow\" style=\"top: 47px;right:11px;z-index:10;width: 60%\" >\r\n                <div class=\"w3-display-conitainer\">\r\n                  <span class=\"w3-display-topright w3-button fa fa-close\" (click)=\"studentSearchDialogShow=false\" ></span>\r\n                  <br>\r\n                  <ul class=\"w3-ul\" >\r\n                    <li *ngFor=\"let item of students\" style=\"cursor: pointer;\" class=\"w3-hover-light-gray w3-block text-right\"  >\r\n                      <div class=\"media\" (click)=\"selectStudent(item)\" >\r\n                        <div class=\"media-left\">\r\n                          <a href=\"#\">\r\n                            <img [src]=\"item.image\" style=\"width: 30px;height: 30px;\" class=\"w3-circle\" alt=\"\">\r\n                            <!--\r\n                            <span class=\"fa fa-user-circle w3-text-indigo w3-large\" ></span>\r\n                            -->\r\n                          </a>\r\n                        </div>\r\n                        <div class=\"media-body\">\r\n                          <h4 class=\"media-heading\" [innerHTML]=\"item.name\" ></h4>\r\n                          <span [innerHTML]=\"item.code\" class=\"w3-large\" ></span>\r\n                        </div>\r\n                      </div>\r\n                    </li>\r\n                  </ul>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-title\" >{{ \"student info\" | trans }}</div>\r\n\r\n            <div class=\"custom-panel-body\"  >\r\n              <div class=\"row\">\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"student name\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"student code\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.code\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"national id\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.national_id\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"gpa\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.gpa\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"level\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.level\" [(ngModel)]=\"safeObject.level.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"department\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.division\" [(ngModel)]=\"safeObject.division.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"case constraint\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.case_constraint\" [(ngModel)]=\"safeObject.case_constraint.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"constraint status\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.constraint_status\" [(ngModel)]=\"safeObject.constraint_status.name\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-title\" >{{ \"payment info\" | trans }}</div>\r\n\r\n            <div class=\"custom-panel-body\"  >\r\n              <div class=\"row\">\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"date\" | trans }}</th>\r\n                      <td>\r\n                        <input type=\"date\" class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.date\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"required value\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.paid_value\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"value\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.paid_value\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"old balance\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.old_balance\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"current balance\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly  [(ngModel)]=\"safeObject.current_balance\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"paid value\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.paids\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-body\"  > \r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" [disabled]=\"!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value\"   (click)=\"performPay()\" >{{ \"save & print\" | trans }}</button>\r\n              \r\n              <!--\r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" [disabled]=\"!studentSearchId\"   onclick=\"document.getElementById('studentAvailableServices').style.display='block'\"  >{{ \"services\" | trans }}</button>\r\n              -->\r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" routerLink=\"\" >{{ \"exit\" | trans }}</button>\r\n            </div>\r\n\r\n          </div>\r\n        </div>\r\n\r\n\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<!-- student installments modal -->\r\n<app-student-installment [installments]=\"safeObject.installments? safeObject.installments : []\" [showStudentInstallment]=\"showStudentInstallment\" ></app-student-installment>\r\n\r\n<!-- student payments modal -->\r\n<app-student-payment [payments]=\"safeObject.payment_details? safeObject.payment_details : []\" ></app-student-payment>\r\n\r\n<!-- student services modal -->\r\n<app-student-service [services]=\"safeObject.services? safeObject.services : []\"  ></app-student-service>\r\n\r\n<!-- student services modal -->\r\n<app-installment [student]=\"safeObject\" [updateStudent]=\"updateStudent\" [studentInstallments]=\"safeObject.installments? safeObject.installments : []\" ></app-installment>\r\n\r\n<!-- student services modal -->\r\n<app-available-service [services]=\"availableServices\" ></app-available-service>\r\n\r\n<!-- notes modal -->\r\n<app-send-note [student]=\"safeObject\" [updateStudent]=\"updateStudent\" ></app-send-note>\r\n\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-10 col-md-10 col-sm-12\">\r\n    <div class=\"w3-white material-shadow safe-box\">\r\n      <div class=\"safe-box-header w3-xlarge\">\r\n        {{ \"get money from safe\" | trans }}\r\n      </div>\r\n      <br>\r\n      <div class=\"border-bottom-dashed\" ></div>\r\n      <br>\r\n\r\n      <div class=\"safe-box-body row\" >\r\n\r\n        <div class=\"col-lg-3 col-md-3 col-sm-12\" >\r\n          <img [src]=\"safeObject.image\" class=\"w3-block w3-round border-gray\" >\r\n          <br>\r\n          <div class=\"custom-panel w3-display-container w3-round\" style=\"padding: 5px\" >\r\n\r\n            <div\r\n            *ngIf=\"studentSearchId\"\r\n            class=\"alert alert-danger w3-block btn-margin-bottom text-center\"\r\n            [innerHTML]=\"safeObject.notes\" >\r\n\r\n            </div>\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#studentPayments').modal('show')\"    >{{ \"student payments\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#studentServices').modal('show')\"    >{{ \"student services\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#studentInstallment').modal('show')\"   >{{ \"student installments\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#installmentSection').modal('show')\"  >{{ \"installments\" | trans }}</button>\r\n\r\n            <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\" [disabled]=\"!studentSearchId\" (click)=\"doc.jquery('#notesModal').modal('show')\"  (click)=\"doc.jq('#notesModal').modal('show')\" >{{ \"write note\" | trans }}</button>\r\n          </div>\r\n\r\n        </div>\r\n\r\n        <div class=\"col-lg-9 col-md-9 col-sm-12\" >\r\n\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-title\" >{{ \"search\" | trans }}</div>\r\n\r\n            <div class=\"custom-panel-body w3-display-container\"  >\r\n              <input class=\"w3-round-xxlarge w3-white w3-input border-gray search-input \"\r\n              (keyup)=\"searchInputEvent()\"\r\n              placeholder=\"{{ 'search with student name code national_id' | trans }}\"\r\n              [(ngModel)]=\"searchKey\" >\r\n\r\n              <button\r\n              (click)=\"loadStudentAccountInfo(studentSearchId)\"\r\n              class=\"btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge\"  >{{ \"search\" | trans }}</button>\r\n\r\n              <div class=\"w3-display-topleft w3-padding\" *ngIf=\"studentSearchDialogLoader\" style=\"top: 12px;left:30%;z-index:10;\" >\r\n                <span class=\"fa fa-spin fa-spinner w3-text-indigo\" ></span>\r\n              </div>\r\n\r\n              <div class=\"w3-display-topright w3-white material-shadow\" *ngIf=\"studentSearchDialogShow\" style=\"top: 47px;right:11px;z-index:10;width: 60%\" >\r\n                <div class=\"w3-display-conitainer\">\r\n                  <span class=\"w3-display-topright w3-button fa fa-close\" (click)=\"studentSearchDialogShow=false\" ></span>\r\n                  <br>\r\n                  <ul class=\"w3-ul\" >\r\n                    <li *ngFor=\"let item of students\" style=\"cursor: pointer;\" class=\"w3-hover-light-gray w3-block text-right\"  >\r\n                      <div class=\"media\" (click)=\"selectStudent(item)\" >\r\n                        <div class=\"media-left\">\r\n                          <a href=\"#\">\r\n                            <img [src]=\"item.image\" style=\"width: 30px;height: 30px;\" class=\"w3-circle\" alt=\"\">\r\n                            <!--\r\n                            <span class=\"fa fa-user-circle w3-text-indigo w3-large\" ></span>\r\n                            -->\r\n                          </a>\r\n                        </div>\r\n                        <div class=\"media-body\">\r\n                          <h4 class=\"media-heading\" [innerHTML]=\"item.name\" ></h4>\r\n                          <span [innerHTML]=\"item.code\" class=\"w3-large\" ></span>\r\n                        </div>\r\n                      </div>\r\n                    </li>\r\n                  </ul>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-title\" >{{ \"student info\" | trans }}</div>\r\n\r\n            <div class=\"custom-panel-body\"  >\r\n              <div class=\"row\">\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"student name\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"student code\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.code\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"national id\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.national_id\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"gpa\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.gpa\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"level\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.level\" [(ngModel)]=\"safeObject.level.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"department\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.division\" [(ngModel)]=\"safeObject.division.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"case constraint\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.case_constraint\" [(ngModel)]=\"safeObject.case_constraint.name\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"constraint status\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly *ngIf=\"safeObject.constraint_status\" [(ngModel)]=\"safeObject.constraint_status.name\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-title\" >{{ \"payment info\" | trans }}</div>\r\n\r\n            <div class=\"custom-panel-body\"  >\r\n              <div class=\"row\">\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"date\" | trans }}</th>\r\n                      <td>\r\n                        <input type=\"date\" class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.date\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"required value\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.paid_value\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"value\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.paid_value\" >\r\n                        <p class=\"w3-text-red\" *ngIf=\"safeObject.payment_type == 'service'\" >\r\n                          {{ \"total of selected services\" | trans }}\r\n                        </p>\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n                <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                  <table class=\"table\" >\r\n                    <tr>\r\n                      <th>{{ \"old balance\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.old_balance\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"current balance\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly  [(ngModel)]=\"safeObject.current_balance\" >\r\n                      </td>\r\n                    </tr>\r\n                    <tr>\r\n                      <th>{{ \"paid value\" | trans }}</th>\r\n                      <td>\r\n                        <input class=\"custom-input w3-input border-bottom-dashed input-sm\" readonly [(ngModel)]=\"safeObject.paids\" >\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-body\"  >\r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" [disabled]=\"!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value\"   (click)=\"performPay()\" >{{ \"save & print\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" [disabled]=\"!studentSearchId\"  (click)=\"doc.jquery('#studentAvailableServices').modal('show')\"  >{{ \"services\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" [disabled]=\"!studentSearchId\"  (click)=\"doc.jquery('#studentRefundPayments').modal('show')\"  >{{ \"pay_refund\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default small-shadow w3-margin-left\" routerLink=\"\" >{{ \"exit\" | trans }}</button>\r\n            </div>\r\n\r\n          </div>\r\n        </div>\r\n\r\n\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<!-- student installments modal -->\r\n<app-student-installment [installments]=\"safeObject.installments? safeObject.installments : []\" [showStudentInstallment]=\"showStudentInstallment\" ></app-student-installment>\r\n\r\n<!-- student payments modal -->\r\n<app-student-payment [payments]=\"safeObject.payment_details? safeObject.payment_details : []\" [updateStudent]=\"updateStudent\" ></app-student-payment>\r\n\r\n<!-- student refund payments modal -->\r\n<app-pay-refund [payments]=\"safeObject.payments? safeObject.payments : []\" [updateStudent]=\"updateStudent\" ></app-pay-refund>\r\n\r\n<!-- student services modal -->\r\n<app-student-service [safeObject]=\"safeObject\"  ></app-student-service>\r\n\r\n<!-- student services modal -->\r\n<app-installment [student]=\"safeObject\" [updateStudent]=\"updateStudent\" [studentInstallments]=\"safeObject.installments? safeObject.installments : []\" ></app-installment>\r\n\r\n<!-- student services modal -->\r\n<app-available-service [services]=\"availableServices\" [safeObject]=\"safeObject\" ></app-available-service>\r\n\r\n<!-- notes modal -->\r\n<app-send-note [student]=\"safeObject\" [updateStudent]=\"updateStudent\" ></app-send-note>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -1172,7 +1549,7 @@ var SafeIndexComponent = /** @class */ (function () {
     function SafeIndexComponent(studentAcountService, route) {
         this.studentAcountService = studentAcountService;
         this.route = route;
-        // init document 
+        // init document
         this.doc = _app_module__WEBPACK_IMPORTED_MODULE_6__["AppModule"].doc;
         this.safeObject = {};
         this.studentSearchDialogShow = false;
@@ -1265,7 +1642,7 @@ var SafeIndexComponent = /** @class */ (function () {
     SafeIndexComponent.prototype.performPay = function () {
         var _this = this;
         _shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].confirm(_shared_helper__WEBPACK_IMPORTED_MODULE_5__["Helper"].trans('are_you_sure'), function () {
-            _this.payment = new _models_payment__WEBPACK_IMPORTED_MODULE_3__["Payment"](_this.safeObject.id, _this.safeObject.paid_value, _this.studentAcountService, function () {
+            _this.payment = new _models_payment__WEBPACK_IMPORTED_MODULE_3__["Payment"](_this.safeObject, _this.studentAcountService, function () {
                 _this.updateStudent();
             });
             return _this.payment.pay();
@@ -1283,6 +1660,7 @@ var SafeIndexComponent = /** @class */ (function () {
         }
     };
     SafeIndexComponent.prototype.buildSafeMsg = function () {
+        return;
         if (this.isStudentSayed)
             return;
         var builder = new _helpers_safe_msg_builder__WEBPACK_IMPORTED_MODULE_7__["SafeMsgBuilder"]();
@@ -1509,7 +1887,7 @@ var StudentInstallmentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal \" id=\"studentPayments\" tabindex=\"-1\" role=\"dialog\"   >\r\n  <div class=\"modal-dialog modal-\" role=\"document\">\r\n    <div class=\"modal-content w3-animate-top\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" (click)=\"doc.jquery('#studentPayments').modal('hide')\"  aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title text-center\">{{ \"payments\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <ul class=\"w3-ul\" >\r\n          <li *ngFor=\"let item of payments index as i\" \r\n          (click)=\"doc.jquery('#tablePayment'+i).slideToggle(500)\"\r\n          style=\"cursor: pointer;\"\r\n          class=\"w3-display-container w3-padding w3-hover-light-gray\" >\r\n          <span>{{ i + 1 }}) </span>\r\n            <span class=\"fa fa-calendar w3-text-indigo w3-margin-left\" ></span>\r\n            <span>{{ item.date }}</span>\r\n            <span class=\"w3-left\" >{{ item.total | currency: ' EGP ' }}</span>\r\n          </li>\r\n        </ul>\r\n        <table *ngFor=\"let item of payments index as i\" id=\"tablePayment{{ i }}\" style=\"display: none\"  class=\"table table-bordered\" >\r\n          <thead>\r\n            <tr class=\"w3-dark-gray\" > \r\n              <th>{{ \"date\" | trans }}</th>   \r\n              <th>{{ \"store\" | trans }}</th>\r\n              <th>{{ \"value\" | trans }}</th>\r\n              <th>{{ \"type\" | trans }}</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <tr *ngFor=\"let item of item.payments index as i\" >\r\n              <td>{{ item.date }}</td>\r\n              <td>{{ item.store? item.store.name : '' }}</td>\r\n              <td>{{ item.value | currency: ' EGP ' }}</td>\r\n              <td>{{ item.model_object? item.model_object.name : '' }}</td>\r\n            </tr> \r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\"  (click)=\"doc.jquery('#studentPayments').modal('hide')\" >{{ \"close\" | trans }}</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
+module.exports = "<div class=\"modal \" id=\"studentPayments\" tabindex=\"-1\" role=\"dialog\"   >\r\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\r\n    <div class=\"modal-content w3-animate-top\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" (click)=\"doc.jquery('#studentPayments').modal('hide')\"  aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title text-center\">{{ \"payments\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <ul class=\"w3-ul\" >\r\n          <li *ngFor=\"let item of payments index as i\"\r\n           >\r\n            <div\r\n            class=\"w3-display-container w3-padding w3-hover-light-gray\"\r\n            (click)=\"doc.jquery('#tablePayment'+i).slideToggle(500)\"\r\n            style=\"cursor: pointer;\">\r\n              <span>{{ i + 1 }}) </span>\r\n              <span class=\"fa fa-calendar w3-text-indigo w3-margin-left\" ></span>\r\n              <span>{{ item.date }}</span>\r\n              <span class=\"w3-left\" >{{ item.total | currency: ' EGP ' }}</span>\r\n            </div>\r\n            <table  id=\"tablePayment{{ i }}\" style=\"display: none\"  class=\"table table-bordered\" >\r\n              <thead>\r\n                <tr class=\"w3-dark-gray\" >\r\n                  <th>{{ \"date\" | trans }}</th>\r\n                  <th>{{ \"store\" | trans }}</th>\r\n                  <th>{{ \"value\" | trans }}</th>\r\n                  <th>{{ \"type\" | trans }}</th>\r\n                  <th></th>\r\n                </tr>\r\n              </thead>\r\n              <tbody>\r\n                <ng-container *ngIf=\"user.role_id != 1\" >\r\n                  <tr *ngFor=\"let item of item.payments index as i\" >\r\n                    <td>\r\n                      {{ item.date }}\r\n                    </td>\r\n                    <td>{{ item.store? item.store.name : '' }}</td>\r\n                    <td>{{ item.value | currency: ' EGP ' }}</td>\r\n                    <td>{{ item.model_object? item.model_object.name : '' }}</td>\r\n                    <td>\r\n                    </td>\r\n                  </tr>\r\n                </ng-container>\r\n                <ng-container *ngIf=\"user.role_id == 1\">\r\n                  <tr *ngFor=\"let item of item.payments index as i\" >\r\n                    <td>\r\n                      <input type=\"date\" class=\"form-control input-sm\" [(ngModel)]=\"item.date\"   >\r\n                    </td>\r\n                    <td>\r\n                      <select class=\"form-control input-sm\" [(ngModel)]=\"item.store_id\" required >\r\n                        <option *ngFor=\"let row of stores\" value=\"{{ row.id }}\" >{{ row.name}}</option>\r\n                      </select>\r\n                    </td>\r\n                    <td>\r\n                      <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.value\"   >\r\n                    </td>\r\n                    <td>\r\n                      <ng-container *ngIf=\"item.model_type == 'service'\" >\r\n                        <select class=\"form-control input-sm\" [(ngModel)]=\"item.model_id\" required >\r\n                          <option *ngFor=\"let row of services\" value=\"{{ row.id }}\" >{{ row.name }}</option>\r\n                        </select>\r\n                      </ng-container>\r\n                      <ng-container  *ngIf=\"item.model_type != 'service'\" >\r\n                        {{ item.model_object? item.model_object.name : '' }}\r\n                      </ng-container>\r\n                    </td>\r\n                    <td>\r\n                      <button\r\n                      class=\"btn btn-danger btn-sm material-shadow\"\r\n                      style=\"margin: 5px\"\r\n                      [disabled]=\"isSubmitted\"\r\n                      (click)=\"removePayment(item)\"  >\r\n                        <i class=\"\" *ngIf=\"!isSubmitted\" >{{ \"remove\" | trans }}</i>\r\n                        <i class=\"fa fa-spin fa-spinner\" *ngIf=\"isSubmitted\" ></i>\r\n                      </button>\r\n                      <button\r\n                      #editbutton\r\n                      style=\"margin: 5px\"\r\n                      class=\"btn btn-warning btn-sm material-shadow\"\r\n                      (click)=\"editPayment(item, editbutton)\"  >\r\n                        {{ \"save\" | trans }}\r\n                      </button>\r\n                    </td>\r\n                  </tr>\r\n                </ng-container>\r\n              </tbody>\r\n            </table>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\"  (click)=\"doc.jquery('#studentPayments').modal('hide')\" >{{ \"close\" | trans }}</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
 
 /***/ }),
 
@@ -1536,14 +1914,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StudentPaymentComponent", function() { return StudentPaymentComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
+/* harmony import */ var src_app_account_services_store_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/account/services/store.service */ "./src/app/account/services/store.service.ts");
+/* harmony import */ var src_app_account_services_student_account_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/account/services/student-account.service */ "./src/app/account/services/student-account.service.ts");
+/* harmony import */ var src_app_account_services_student_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/account/services/student-service.service */ "./src/app/account/services/student-service.service.ts");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
+
+
+
+
+
+
 
 
 
 var StudentPaymentComponent = /** @class */ (function () {
-    function StudentPaymentComponent() {
+    function StudentPaymentComponent(service, storeService, studentService) {
+        this.service = service;
+        this.storeService = storeService;
+        this.studentService = studentService;
         this.total = 0;
-        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"].doc;
+        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_8__["AppModule"].doc;
+        this.user = src_app_shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].user();
+        this.isSubmitted = false;
+        this.stores = [];
+        this.services = [];
     }
     StudentPaymentComponent.prototype.calculateTotal = function () {
         var _this = this;
@@ -1552,22 +1949,77 @@ var StudentPaymentComponent = /** @class */ (function () {
             _this.total += element.value;
         });
     };
+    StudentPaymentComponent.prototype.loadStores = function () {
+        var _this = this;
+        this.storeService.get().subscribe(function (res) {
+            _this.stores = res;
+        });
+    };
+    StudentPaymentComponent.prototype.loadServices = function () {
+        var _this = this;
+        this.studentService.get().subscribe(function (res) {
+            _this.services = res;
+        });
+    };
+    StudentPaymentComponent.prototype.removePayment = function (payment) {
+        var _this = this;
+        this.doc.swal.confirm(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__["Helper"].trans('are you sure'), function () {
+            var data = {
+                payment_id: payment.id
+            };
+            _this.isSubmitted = true;
+            _this.service.payRemove(data).subscribe(function (r) {
+                if (r.status == 1) {
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_7__["Message"].success(r.message);
+                    _this.updateStudent();
+                }
+                else
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_7__["Message"].error(r.message);
+                _this.isSubmitted = false;
+            });
+        });
+    };
+    StudentPaymentComponent.prototype.editPayment = function (payment, editButton) {
+        var _this = this;
+        this.doc.swal.confirm(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_6__["Helper"].trans('are you sure'), function () {
+            console.log(editButton);
+            var content = editButton.innerHTML;
+            editButton.disabled = true;
+            editButton.innerHTML = "<i class='fa fa-spin fa-spinner' ></i>";
+            _this.service.editPayment(payment).subscribe(function (r) {
+                if (r.status == 1) {
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_7__["Message"].success(r.message);
+                    _this.updateStudent();
+                }
+                else
+                    src_app_shared_message__WEBPACK_IMPORTED_MODULE_7__["Message"].error(r.message);
+                editButton.disabled = false;
+                editButton.innerHTML = content;
+            });
+        });
+    };
     StudentPaymentComponent.prototype.ngOnInit = function () {
     };
     StudentPaymentComponent.prototype.ngOnChanges = function (changes) {
+        this.loadStores();
+        this.loadServices();
         this.calculateTotal();
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
     ], StudentPaymentComponent.prototype, "payments", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], StudentPaymentComponent.prototype, "updateStudent", void 0);
     StudentPaymentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-student-payment',
             template: __webpack_require__(/*! ./student-payment.component.html */ "./src/app/account/components/safe/student-payment/student-payment.component.html"),
             styles: [__webpack_require__(/*! ./student-payment.component.scss */ "./src/app/account/components/safe/student-payment/student-payment.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_account_services_student_account_service__WEBPACK_IMPORTED_MODULE_3__["StudentAccountService"], src_app_account_services_store_service__WEBPACK_IMPORTED_MODULE_2__["StoreService"], src_app_account_services_student_service_service__WEBPACK_IMPORTED_MODULE_4__["StudentServiceService"]])
     ], StudentPaymentComponent);
     return StudentPaymentComponent;
 }());
@@ -1583,7 +2035,7 @@ var StudentPaymentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal \" id=\"studentServices\" tabindex=\"-1\" role=\"dialog\"   >\r\n  <div class=\"modal-dialog modal-\" role=\"document\">\r\n    <div class=\"modal-content w3-animate-top\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\"  (click)=\"doc.jquery('#studentServices').modal('hide')\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title text-center\">{{ \"student services\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <table class=\"table table-bordered\" >\r\n          <thead>\r\n            <tr class=\"w3-dark-gray\" >\r\n              <th>{{ \"#\" | trans }}</th>\r\n              <th>{{ \"name\" | trans }}</th>\r\n              <th>{{ \"additional_value\" | trans }}</th>\r\n              <th>{{ \"value\" | trans }}</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <tr *ngFor=\"let item of services index as i\" >\r\n              <td>{{ i + 1 }}</td>\r\n              <td>{{ item.name }}</td>\r\n              <td>{{ item.additional_value | currency: ' جنيه' }}</td>\r\n              <td>{{ item.valule | currency: ' جنيه' }}</td>\r\n            </tr>\r\n            <tr *ngIf=\"total > 0\" >\r\n              <td>{{ \"total\" | trans }}</td>\r\n              <td></td>\r\n              <td></td>\r\n              <td>{{ total | currency: ' EGP ' }}</td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"doc.jquery('#studentServices').modal('hide')\"  >{{ \"close\" | trans }}</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
+module.exports = "<div class=\"modal \" id=\"studentServices\" tabindex=\"-1\" role=\"dialog\"   >\r\n  <div class=\"modal-dialog modal-\" role=\"document\">\r\n    <div class=\"modal-content w3-animate-top\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\"  (click)=\"doc.jquery('#studentServices').modal('hide')\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title text-center\">{{ \"student services\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <table class=\"table table-bordered\" >\r\n          <thead>\r\n            <tr class=\"w3-dark-gray\" >\r\n              <th>{{ \"#\" | trans }}</th>\r\n              <th>{{ \"date\" | trans }}</th>\r\n              <th>{{ \"name\" | trans }}</th>\r\n              <th>{{ \"number\" | trans }}</th>\r\n              <th>{{ \"value\" | trans }}</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <ng-container *ngFor=\"let item of safeObject.payments index as i\">\r\n              <tr *ngIf=\"item.model_type == 'service'\"  >\r\n                <td>{{ i + 1 }}</td>\r\n                <td>{{ item.date }}</td>\r\n                <td>{{ item.model_object? item.model_object.name : '' }}</td>\r\n                <td>{{ item.service_count }}</td>\r\n                <td>{{ item.value | currency: ' جنيه ' }}</td>\r\n              </tr>\r\n            </ng-container>\r\n            <tr *ngIf=\"total > 0\" >\r\n              <td>{{ \"total\" | trans }}</td>\r\n              <td></td>\r\n              <td></td>\r\n              <td>{{ total | currency: ' جنيه ' }}</td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"doc.jquery('#studentServices').modal('hide')\"  >{{ \"close\" | trans }}</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
 
 /***/ }),
 
@@ -1622,9 +2074,14 @@ var StudentServiceComponent = /** @class */ (function () {
     StudentServiceComponent.prototype.calculateTotal = function () {
         var _this = this;
         this.total = 0;
-        this.services.forEach(function (element) {
-            _this.total += element.value;
-        });
+        if (this.safeObject) {
+            if (this.safeObject.payments) {
+                this.safeObject.payments.forEach(function (element) {
+                    if (element.model_type == 'service')
+                        _this.total += element.value;
+                });
+            }
+        }
     };
     StudentServiceComponent.prototype.ngOnInit = function () {
     };
@@ -1633,8 +2090,8 @@ var StudentServiceComponent = /** @class */ (function () {
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
-    ], StudentServiceComponent.prototype, "services", void 0);
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], StudentServiceComponent.prototype, "safeObject", void 0);
     StudentServiceComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-student-service',
@@ -1790,7 +2247,7 @@ var ServiceCreateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\"  [id]=\"updateMode? 'updateModal' : 'createModal'\"   role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"box box-primary modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" onclick=\"document.getElementById('createModal').style.display='none'\"  aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n          <h4 class=\"modal-title\">\r\n            <b *ngIf=\"!updateMode\" >{{ \"add service\" | trans }}</b>\r\n            <b *ngIf=\"updateMode\" >{{ \"update service\" | trans }}</b>\r\n          </h4>\r\n        </div>\r\n        <div class=\"modal-body\"> \r\n          <table class=\"table\" >\r\n            <tr>\r\n              <th>{{ \"name\" | trans }} *</th>\r\n              <td>\r\n                  <input type=\"text\" class=\"form-control input-sm\" [(ngModel)]=\"item.name\" required  >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"store\" | trans }} *</th>\r\n              <td>\r\n                <select class=\"form-control input-sm\" [(ngModel)]=\"item.store_id\" required > \r\n                  <option *ngFor=\"let row of stores\" value=\"{{ row.id }}\" >{{ row.name}}</option> \r\n                </select>\r\n              </td>\r\n            </tr> \r\n            <tr>\r\n              <th>{{ \"type\" | trans }} *</th>\r\n              <td>\r\n                <select class=\"form-control input-sm\" [(ngModel)]=\"item.type\" required >\r\n                  <option>-- {{ \"type\" | trans }} --</option>\r\n                  <option value=\"wz\" >{{ \"wz\" | trans }}</option>\r\n                  <option value=\"in\" >{{ \"in\" | trans }}</option>\r\n                </select>\r\n              </td>\r\n            </tr> \r\n            <tr>\r\n              <th>{{ \"value\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.value\" required  >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"except_level\" | trans }} </th>\r\n              <td>\r\n                <select \r\n                class=\"form-control input-sm\"\r\n                [(ngModel)]=\"item.except_level_id\">\r\n                  <option *ngFor=\"let item of levels\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                </select>  \r\n              </td>\r\n            </tr>  \r\n            <tr>\r\n              <th>{{ \"division\" | trans }} </th>\r\n              <td>\r\n                <select\r\n                class=\"form-control input-sm\" \r\n                [(ngModel)]=\"item.division_id\">\r\n                  <ng-container *ngFor=\"let item of divisions\">\r\n                    <option  value=\"{{ item.id }}\">{{ item.name + \"-\" + item.level }}</option>\r\n                  </ng-container> \r\n                </select>  \r\n              </td>\r\n            </tr>   \r\n            <tr>\r\n              <th>{{ \"copying\" | trans }}</th>\r\n              <td>\r\n                <input type=\"checkbox\" class=\"w3-check\" [(ngModel)]=\"item.copy\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"repeat\" | trans }}</th>\r\n              <td>\r\n                <input type=\"checkbox\" class=\"w3-check\" [(ngModel)]=\"item.repeat\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"additional_value\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.additional_value\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"installment_percent\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.installment_percent\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"from_installment\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.from_installment_id\"    >\r\n              </td>\r\n            </tr> \r\n          </table>\r\n        </div>\r\n        <div class=\"modal-footer text-right\">\r\n          <button type=\"button\" mat-raised-button \r\n          (click)=\"updateMode? doc.jquery('#updateModal').modal('hide') : doc.jquery('#createModal').modal('hide')\"  >{{ \"close\" | trans }}</button>\r\n          \r\n          <button  \r\n            mat-raised-button color=\"primary\" \r\n            [disabled]=\"isSubmitted\"  \r\n            (click)=\"sendResource()\" > \r\n            <span *ngIf=\"!isSubmitted\" >{{ \"save\" | trans }}</span>\r\n            <span *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></span>\r\n          </button>\r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal --> \r\n"
+module.exports = "<div class=\"modal fade\"  [id]=\"updateMode? 'updateModal' : 'createModal'\"   role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"box box-primary modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" onclick=\"document.getElementById('createModal').style.display='none'\"  aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n          <h4 class=\"modal-title\">\r\n            <b *ngIf=\"!updateMode\" >{{ \"add service\" | trans }}</b>\r\n            <b *ngIf=\"updateMode\" >{{ \"update service\" | trans }}</b>\r\n          </h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <table class=\"table\" >\r\n            <tr>\r\n              <th>{{ \"name\" | trans }} *</th>\r\n              <td>\r\n                  <input type=\"text\" class=\"form-control input-sm\" [(ngModel)]=\"item.name\" required  >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"store\" | trans }} *</th>\r\n              <td>\r\n                <select class=\"form-control input-sm\" [(ngModel)]=\"item.store_id\" required >\r\n                  <option *ngFor=\"let row of stores\" value=\"{{ row.id }}\" >{{ row.name}}</option>\r\n                </select>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"type\" | trans }} *</th>\r\n              <td>\r\n                <select class=\"form-control input-sm\" [(ngModel)]=\"item.type\" required >\r\n                  <option>-- {{ \"type\" | trans }} --</option>\r\n                  <option value=\"wz\" >{{ \"wz\" | trans }}</option>\r\n                  <option value=\"in\" >{{ \"in\" | trans }}</option>\r\n                </select>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"value\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.value\" required  >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"except_level\" | trans }} </th>\r\n              <td>\r\n                <select\r\n                class=\"form-control input-sm\"\r\n                [(ngModel)]=\"item.except_level_id\">\r\n                <option value=\"\" >-- {{ \"select level\" | trans }} --</option>\r\n                  <option *ngFor=\"let item of levels\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                </select>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"division\" | trans }} </th>\r\n              <td>\r\n                <select\r\n                class=\"form-control input-sm\"\r\n                [(ngModel)]=\"item.division_id\">\r\n                <option value=\"\" >-- {{ \"select division\" | trans }} --</option>\r\n                  <ng-container *ngFor=\"let item of divisions\">\r\n                    <option  value=\"{{ item.id }}\">{{ item.name + \"-\" + item.level }}</option>\r\n                  </ng-container>\r\n                </select>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"copying\" | trans }}</th>\r\n              <td>\r\n                <input type=\"checkbox\" class=\"w3-check\" [(ngModel)]=\"item.copy\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"repeat\" | trans }}</th>\r\n              <td>\r\n                <input type=\"checkbox\" class=\"w3-check\" [(ngModel)]=\"item.repeat\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"is_refund\" | trans }}</th>\r\n              <td>\r\n                <input type=\"checkbox\" class=\"w3-check\" [(ngModel)]=\"item.is_refund\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"additional_value\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.additional_value\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"installment_percent\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.installment_percent\"    >\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <th>{{ \"from_installment\" | trans }}</th>\r\n              <td>\r\n                <input type=\"number\" class=\"form-control input-sm\" [(ngModel)]=\"item.from_installment_id\"    >\r\n              </td>\r\n            </tr>\r\n          </table>\r\n        </div>\r\n        <div class=\"modal-footer text-right\">\r\n          <button type=\"button\" mat-raised-button\r\n          (click)=\"updateMode? doc.jquery('#updateModal').modal('hide') : doc.jquery('#createModal').modal('hide')\"  >{{ \"close\" | trans }}</button>\r\n\r\n          <button\r\n            mat-raised-button color=\"primary\"\r\n            [disabled]=\"isSubmitted\"\r\n            (click)=\"sendResource()\" >\r\n            <span *ngIf=\"!isSubmitted\" >{{ \"save\" | trans }}</span>\r\n            <span *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></span>\r\n          </button>\r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n"
 
 /***/ }),
 
@@ -1946,7 +2403,7 @@ var ServiceFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\r\n  <div class=\"box-header\">\r\n    <button mat-raised-button color=\"primary\" (click)=\"viewCreateModal()\" style=\"margin: 5px\"  > \r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button> \r\n    <button mat-raised-button color=\"warn\" *ngIf=\"showRemoveButton\" (click)=\"performRemove()\" style=\"margin: 5px\"  > \r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div> \r\n\r\n</div>\r\n<div class=\"mat-elevation-z8 w3-white\" style=\"padding: 7px\" >\r\n    <table mat-table [dataSource]=\"dataSource\" matSort  class=\"\">\r\n \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"name\" sticky>\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"name\" | trans }}</th>\r\n          <td mat-cell *matCellDef=\"let element\"> \r\n            <mat-checkbox [checked]=\"trashList.has(element.id)\" (change)=\"toggleFromTrash(element.id)\"  ></mat-checkbox> \r\n            <span class=\"w3-margin-right\">\r\n                {{element.name}} \r\n            </span>\r\n          </td>\r\n        </ng-container>\r\n        \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"value\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"value\" | trans }}</th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.value | currency: ' EGP '}} </td>\r\n        </ng-container>\r\n        \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"store_id\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"store\" | trans }}</th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.store? element.store.name : element.store_id}} </td>\r\n        </ng-container>\r\n        \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"additional_value\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"additional_value\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.additional_value | currency: ' EGP '}} </td>\r\n        </ng-container>\r\n        \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"except_level_id\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"except_level\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.level? element.level.name : element.except_level_id}} </td>\r\n        </ng-container>  \r\n        \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"division_id\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"division\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.division? element.division.name : element.division_id}} </td>\r\n        </ng-container>  \r\n       \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"copy\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"copy\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              <span class=\"fa fa-check-square w3-text-green\" *ngIf=\"element.copy\" ></span>\r\n              <span class=\"fa fa-close w3-text-red\" *ngIf=\"!element.copy\" ></span>\r\n            </td>\r\n        </ng-container>\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"repeat\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"repeat\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              <span class=\"fa fa-check-square w3-text-green\" *ngIf=\"element.repeat\" ></span>\r\n              <span class=\"fa fa-close w3-text-red\" *ngIf=\"!element.repeat\" ></span>\r\n            </td>\r\n        </ng-container>\r\n         \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"installment_percent\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"installment_percent\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">  \r\n              {{element.installment_percent}} \r\n            </td>\r\n       </ng-container>\r\n         \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"from_installment_id\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"from_installment\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">  \r\n              {{element.from_installment_id}} \r\n            </td>\r\n       </ng-container>\r\n         \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"type\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"type\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">  \r\n              {{element.type | trans }} \r\n            </td>\r\n       </ng-container>\r\n         \r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"action\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\r\n            <td mat-cell *matCellDef=\"let element\">  \r\n                <button mat-button color=\"warn\"  (click)=\"showUpdateModal(element)\" >\r\n                  <i class=\"fa fa-edit\"></i>\r\n                </button>\r\n            </td>\r\n       </ng-container>\r\n \r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n      </table>\r\n      \r\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n \r\n\r\n<app-service-form [updateResources]=\"updateResources\" [updateMode]=\"false\" ></app-service-form>\r\n\r\n<app-service-form [updateResources]=\"updateResources\" [updateMode]=\"true\" [item]=\"updateItem\" ></app-service-form>\r\n\r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">{{ \"remove services\" | trans }}</h4>\r\n        </div>\r\n        <div class=\"modal-body text-center\">\r\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\r\n            <br>\r\n            {{ removed.length }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n        </div>\r\n        <div class=\"modal-footer\"> \r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n\r\n \r\n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\r\n  <div class=\"box-header\">\r\n    <button mat-raised-button color=\"primary\" (click)=\"viewCreateModal()\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button>\r\n    <button mat-raised-button color=\"warn\" *ngIf=\"showRemoveButton\" (click)=\"performRemove()\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div>\r\n\r\n</div>\r\n<div class=\"mat-elevation-z8 w3-white\" style=\"padding: 7px\" >\r\n    <table mat-table [dataSource]=\"dataSource\" matSort  class=\"\">\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"name\" sticky>\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"name\" | trans }}</th>\r\n          <td mat-cell *matCellDef=\"let element\">\r\n            <mat-checkbox\r\n            *ngIf=\"element.can_delete\"\r\n            [checked]=\"trashList.has(element.id)\"\r\n            (change)=\"toggleFromTrash(element.id)\"  ></mat-checkbox>\r\n\r\n            <span class=\"w3-margin-right\">\r\n                {{element.name}}\r\n            </span>\r\n          </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"value\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"value\" | trans }}</th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.value | currency: ' EGP '}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"store_id\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"store\" | trans }}</th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.store? element.store.name : element.store_id}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"additional_value\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"additional_value\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.additional_value | currency: ' EGP '}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"except_level_id\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"except_level\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.level? element.level.name : element.except_level_id}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"division_id\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"division\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.division? element.division.name : element.division_id}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"copy\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"copy\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              <span class=\"fa fa-check-square w3-text-green\" *ngIf=\"element.copy\" ></span>\r\n              <span class=\"fa fa-close w3-text-red\" *ngIf=\"!element.copy\" ></span>\r\n            </td>\r\n        </ng-container>\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"repeat\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"repeat\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              <span class=\"fa fa-check-square w3-text-green\" *ngIf=\"element.repeat\" ></span>\r\n              <span class=\"fa fa-close w3-text-red\" *ngIf=\"!element.repeat\" ></span>\r\n            </td>\r\n        </ng-container>\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"is_refund\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"is_refund\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              <span class=\"fa fa-check-square w3-text-green\" *ngIf=\"element.is_refund\" ></span>\r\n              <span class=\"fa fa-close w3-text-red\" *ngIf=\"!element.is_refund\" ></span>\r\n            </td>\r\n        </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"installment_percent\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"installment_percent\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              {{element.installment_percent}}\r\n            </td>\r\n       </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"from_installment_id\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"from_installment\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              {{element.from_installment_id}}\r\n            </td>\r\n       </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"type\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"type\" | trans }}</th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n              {{element.type | trans }}\r\n            </td>\r\n       </ng-container>\r\n\r\n        <!-- Position Column -->\r\n        <ng-container matColumnDef=\"action\">\r\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n                <button mat-button color=\"warn\"  (click)=\"showUpdateModal(element)\" >\r\n                  <i class=\"fa fa-edit\"></i>\r\n                </button>\r\n            </td>\r\n       </ng-container>\r\n\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n      </table>\r\n\r\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n\r\n\r\n<app-service-form [updateResources]=\"updateResources\" [updateMode]=\"false\" ></app-service-form>\r\n\r\n<app-service-form [updateResources]=\"updateResources\" [updateMode]=\"true\" [item]=\"updateItem\" ></app-service-form>\r\n\r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">{{ \"remove services\" | trans }}</h4>\r\n        </div>\r\n        <div class=\"modal-body text-center\">\r\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\r\n            <br>\r\n            {{ removed.length }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -2033,6 +2490,7 @@ var ServiceIndexComponent = /** @class */ (function () {
             "division_id",
             "copy",
             "repeat",
+            "is_refund",
             "installment_percent",
             "from_installment_id",
             "type",
@@ -2078,7 +2536,7 @@ var ServiceIndexComponent = /** @class */ (function () {
             this.removed = [];
             this.showRemoveButton = false;
             this.showRemoveModal = false;
-            // 
+            //
             this.loadResources();
         }
     };
@@ -2270,7 +2728,7 @@ var StoreFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\">\n    <button mat-raised-button color=\"primary\" (click)=\"viewCreateModal()\" style=\"margin: 5px\"  > \n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\n    </button> \n    <button mat-raised-button color=\"warn\" *ngIf=\"showRemoveButton\" (click)=\"performRemove()\" style=\"margin: 5px\"  > \n      <span class=\"fa fa-trash\" ></span>\n    </button>\n  </div> \n\n</div>\n<div class=\"mat-elevation-z8 w3-white\" style=\"padding: 7px\" >\n    <table mat-table [dataSource]=\"dataSource\" matSort  class=\"\">\n      \n        <!-- Position Column -->\n        <ng-container matColumnDef=\"name\" sticky>\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"name\" | trans }}</th>\n          <td mat-cell *matCellDef=\"let element\"> \n            <mat-checkbox [checked]=\"trashList.has(element.id)\" (change)=\"toggleFromTrash(element.id)\"  ></mat-checkbox> \n            <span class=\"w3-margin-right\">\n                {{element.name}} \n            </span>\n          </td>\n        </ng-container>\n        \n        <!-- Position Column -->\n        <ng-container matColumnDef=\"init_balance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"init_balance\" | trans }}</th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.init_balance | currency: ' EGP '}} </td>\n        </ng-container>\n        \n        <!-- Position Column -->\n        <ng-container matColumnDef=\"balance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"balance\" | trans }}</th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.balance | currency: ' EGP '}} </td>\n        </ng-container>\n         \n        <!-- Position Column -->\n        <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"address\" | trans }}</th>\n            <td mat-cell *matCellDef=\"let element\">  \n              {{element.address}} \n            </td>\n       </ng-container>\n         \n        <!-- Position Column -->\n        <ng-container matColumnDef=\"notes\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"notes\" | trans }}</th>\n            <td mat-cell *matCellDef=\"let element\">  \n              {{element.notes}} \n            </td>\n       </ng-container>\n          \n        <!-- Position Column -->\n        <ng-container matColumnDef=\"action\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n            <td mat-cell *matCellDef=\"let element\">  \n                <button mat-button color=\"warn\"  (click)=\"showUpdateModal(element)\" >\n                  <i class=\"fa fa-edit\"></i>\n                </button>\n            </td>\n       </ng-container>\n \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n      \n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\n</div>\n \n\n<app-store-form [updateResources]=\"updateResources\" [updateMode]=\"false\" ></app-store-form>\n\n<app-store-form [updateResources]=\"updateResources\" [updateMode]=\"true\" [item]=\"updateItem\" ></app-store-form>\n\n<!-- remove modal -->\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">{{ \"remove services\" | trans }}</h4>\n        </div>\n        <div class=\"modal-body text-center\">\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\n            <br>\n            {{ removed.length }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\n        </div>\n        <div class=\"modal-footer\"> \n        </div>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n\n \n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\n\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\n  <div class=\"box-header\">\n    <button mat-raised-button color=\"primary\" (click)=\"viewCreateModal()\" style=\"margin: 5px\"  >\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\n    </button>\n    <button mat-raised-button color=\"warn\" *ngIf=\"showRemoveButton\" (click)=\"performRemove()\" style=\"margin: 5px\"  >\n      <span class=\"fa fa-trash\" ></span>\n    </button>\n  </div>\n\n</div>\n<div class=\"mat-elevation-z8 w3-white\" style=\"padding: 7px\" >\n    <table mat-table [dataSource]=\"dataSource\" matSort  class=\"\">\n\n        <!-- Position Column -->\n        <ng-container matColumnDef=\"name\" sticky>\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"name\" | trans }}</th>\n          <td mat-cell *matCellDef=\"let element\">\n            <mat-checkbox\n            *ngIf=\"element.can_delete\"\n            [checked]=\"trashList.has(element.id)\"\n            (change)=\"toggleFromTrash(element.id)\"  ></mat-checkbox>\n            <span class=\"w3-margin-right\">\n                {{element.name}}\n            </span>\n          </td>\n        </ng-container>\n\n        <!-- Position Column -->\n        <ng-container matColumnDef=\"init_balance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"init_balance\" | trans }}</th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.init_balance | currency: ' EGP '}} </td>\n        </ng-container>\n\n        <!-- Position Column -->\n        <ng-container matColumnDef=\"balance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"balance\" | trans }}</th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.balance | currency: ' EGP '}} </td>\n        </ng-container>\n\n        <!-- Position Column -->\n        <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"address\" | trans }}</th>\n            <td mat-cell *matCellDef=\"let element\">\n              {{element.address}}\n            </td>\n       </ng-container>\n\n        <!-- Position Column -->\n        <ng-container matColumnDef=\"notes\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"notes\" | trans }}</th>\n            <td mat-cell *matCellDef=\"let element\">\n              {{element.notes}}\n            </td>\n       </ng-container>\n\n        <!-- Position Column -->\n        <ng-container matColumnDef=\"action\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\n            <td mat-cell *matCellDef=\"let element\">\n                <button mat-button color=\"warn\"  (click)=\"showUpdateModal(element)\" >\n                  <i class=\"fa fa-edit\"></i>\n                </button>\n            </td>\n       </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n      <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\n</div>\n\n\n<app-store-form [updateResources]=\"updateResources\" [updateMode]=\"false\" ></app-store-form>\n\n<app-store-form [updateResources]=\"updateResources\" [updateMode]=\"true\" [item]=\"updateItem\" ></app-store-form>\n\n<!-- remove modal -->\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\n    <div class=\"modal-dialog\" role=\"document\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">{{ \"remove services\" | trans }}</h4>\n        </div>\n        <div class=\"modal-body text-center\">\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\n            <br>\n            {{ removed.length }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\n        </div>\n        <div class=\"modal-footer\">\n        </div>\n      </div><!-- /.modal-content -->\n    </div><!-- /.modal-dialog -->\n  </div><!-- /.modal -->\n\n\n"
 
 /***/ }),
 
@@ -2636,9 +3094,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Payment = /** @class */ (function () {
-    function Payment(studentId, value, studentAcountService, action) {
-        this.studentId = studentId;
-        this.value = value;
+    function Payment(safeObject, studentAcountService, action) {
+        this.safeObject = safeObject;
+        this.studentId = safeObject.id;
+        this.value = safeObject.paid_value;
         this.studentAcountService = studentAcountService;
         this.action = action;
     }
@@ -2662,7 +3121,9 @@ var Payment = /** @class */ (function () {
         var data = {
             api_token: _shared_auth__WEBPACK_IMPORTED_MODULE_1__["Auth"].getApiToken(),
             student_id: this.studentId,
-            value: this.value
+            value: this.value,
+            payment_type: this.safeObject.payment_type,
+            services: this.safeObject.services
         };
         this.studentAcountService.studentPay(data).subscribe(function (r) {
             var response = r;
@@ -2814,6 +3275,51 @@ var AccountSettingService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/account/services/report.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/account/services/report.service.ts ***!
+  \****************************************************/
+/*! exports provided: ReportService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportService", function() { return ReportService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+
+var ReportService = /** @class */ (function () {
+    function ReportService(http) {
+        this.http = http;
+        this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"].doc;
+    }
+    /**
+     * get services from api
+     *
+     */
+    ReportService.prototype.get = function (data) {
+        return this.http.get('account/report/payment-details?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken() + "&" + this.doc.jquery.param(data));
+    };
+    ReportService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ReportService);
+    return ReportService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/account/services/store.service.ts":
 /*!***************************************************!*\
   !*** ./src/app/account/services/store.service.ts ***!
@@ -2938,6 +3444,24 @@ var StudentAccountService = /** @class */ (function () {
      */
     StudentAccountService.prototype.getAvailabeServices = function (studentId) {
         return this.http.get('account/get_available_services?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_1__["Auth"].getApiToken() + '&student_id=' + studentId);
+    };
+    /**
+     * pay refund
+     */
+    StudentAccountService.prototype.payRefund = function (data) {
+        return this.http.post('account/pay-refund?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_1__["Auth"].getApiToken(), data);
+    };
+    /**
+     * pay refund
+     */
+    StudentAccountService.prototype.payRemove = function (data) {
+        return this.http.post('account/pay-remove?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_1__["Auth"].getApiToken(), data);
+    };
+    /**
+     * edit payment info
+     */
+    StudentAccountService.prototype.editPayment = function (data) {
+        return this.http.post('account/edit-payment?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_1__["Auth"].getApiToken(), data);
     };
     StudentAccountService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({

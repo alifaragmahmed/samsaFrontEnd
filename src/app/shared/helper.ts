@@ -2,6 +2,7 @@ import { AppModule } from '../app.module';
 import { Translation } from './translation';
 import { Router } from '../../../node_modules/@angular/router';
 
+
 export class Helper {
 
 
@@ -30,6 +31,10 @@ export class Helper {
     }
     Translation.storeNewKey(word);
     return word;
+  }
+
+  public static print() {
+    AppModule.doc.printJs();
   }
 
 
