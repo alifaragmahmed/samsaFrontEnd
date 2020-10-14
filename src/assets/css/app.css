@@ -49,3 +49,9 @@ body {
 .margin-5 {
   margin: 5px!important;
 }
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #2cbf11!important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(60, 228, 49, 0.54)!important;
+}

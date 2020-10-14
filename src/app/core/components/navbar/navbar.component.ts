@@ -6,6 +6,7 @@ import { Auth } from '../../../shared/auth';
 import { SystemSettingService } from '../../services/system-setting.service';
 import { Helper } from '../../../shared/helper';
 import { AppModule } from '../../../app.module';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -27,9 +28,21 @@ export class NavBarComponent implements OnInit {
   public notifications: any = [];
   public message: string;
 
+  public notify = of(this.doc.notify);
+
   constructor(config: NgbDropdownConfig,private authService: AuthService,
               private router: Router, private systemSettingService: SystemSettingService) {
     config.placement = 'bottom-right';
+
+    //let ob = new Observable();
+    //ob.
+    /*this.notify.subscribe((r)=>{
+      console.log("r : " + r);
+      if (r == 1)
+        this.observeNotifications();
+    });*/
+
+    //Object.
   }
 
   initMessage(arr) {
@@ -44,11 +57,9 @@ export class NavBarComponent implements OnInit {
     this.observeNotifications();
   }
 
-  observeNotifications() {
-    setInterval(()=> {
-      if (this.doc.notify == 1)
-        this.loadNotifications();
-    }, 3000);
+  public observeNotifications() {
+    this.loadNotifications();
+    //AppModule.doc.observeNotification = this.loadNotifications();
   }
 
   loadNotifications() {

@@ -33,10 +33,18 @@
                     <input type="text" class="w3-input w3-block" readonly style="border: none;border: 1px dashed gray;" [(ngModel)]="item.key" >
                   </td>
                   <td>
-                    <input type="text" class="form-control w3-input w3-block" [(ngModel)]="item.name_en" >
+                    <input
+                    type="text"
+                    (change)="item.changed = 1"
+                    class="form-control w3-input w3-block"
+                    [(ngModel)]="item.name_en" >
                   </td>
                   <td>
-                    <input type="text" class="form-control w3-input w3-block"  [(ngModel)]="item.name_ar" >
+                    <input
+                    type="text"
+                    (change)="item.changed = 1"
+                    class="form-control w3-input w3-block"
+                    [(ngModel)]="item.name_ar" >
                   </td>
                 </tr>
               </table>

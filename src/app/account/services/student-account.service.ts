@@ -79,4 +79,11 @@ export class StudentAccountService {
   public editPayment(data) {
     return this.http.post('account/edit-payment?api_token='+Auth.getApiToken(), data);
   }
+
+  /**
+   * update student info
+   */
+  public updateStudentInfo(data) {
+    return this.http.post('account/update_student_info?api_token='+Auth.getApiToken(), data);
+  }
 }

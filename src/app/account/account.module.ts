@@ -27,6 +27,7 @@ import { OldBalanceComponent } from './components/old-balance/old-balance.compon
 import { MatSliderModule, MatSlideToggleModule } from '@angular/material';
 import { PayRefundComponent } from './components/safe/pay-refund/pay-refund.component';
 import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
+import { SafeSettingComponent } from './components/safe/safe-setting/safe-setting.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { PaymentDetailsReportComponent } from './components/report/payment-detai
     OldBalanceComponent,
     PayRefundComponent,
     PaymentDetailsReportComponent,
+    SafeSettingComponent,
   ],
   imports: [
     SharedModule,

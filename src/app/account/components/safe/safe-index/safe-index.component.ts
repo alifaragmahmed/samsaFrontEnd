@@ -7,6 +7,7 @@ import { Helper } from '../../../../shared/helper';
 import { AppModule } from '../../../../app.module';
 import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
+import { HashTable } from 'angular-hashtable';
 
 @Component({
   selector: 'app-safe-index',
@@ -33,6 +34,8 @@ export class SafeIndexComponent implements OnInit {
   public isStudentSayed = false;
   public updateStudent: any;
 
+  public selectedServices = new HashTable<any, any>();
+
   constructor(private studentAcountService: StudentAccountService, private route: ActivatedRoute) {
     this.init();
     this.initSafeObject();
@@ -45,6 +48,7 @@ export class SafeIndexComponent implements OnInit {
   init() {
     this.updateStudent = () => {
       this.updateStudentAction();
+      this.selectedServices = new HashTable<any, any>();
     };
   }
 
@@ -163,6 +167,10 @@ export class SafeIndexComponent implements OnInit {
       .setPaidValue(this.safeObject.paid_value)
       .say();
     this.isStudentSayed = true;
+  }
+
+  getSelectedServices() {
+
   }
 
   ngOnInit() {

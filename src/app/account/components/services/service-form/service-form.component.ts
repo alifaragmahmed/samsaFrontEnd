@@ -4,7 +4,7 @@ import { IService } from './../../../models/iservice';
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from '../../../../shared/message';
 import { AppModule } from '../../../../app.module';
-import { ApplicationSettingService } from '../../../../adminision/services/application-setting.service'; 
+import { ApplicationSettingService } from '../../../../adminision/services/application-setting.service';
 import { DivisionService } from '../../../services/division.service';
 import { Cache } from '../../../../shared/cache';
 import { LevelService } from '../../../services/level.service';
@@ -21,12 +21,12 @@ export class ServiceFormComponent implements OnInit {
   public applicationSettings = ApplicationSettingService;
 
   public isSubmitted = false;
- 
-  @Input() updateResources: any; 
-  @Input() updateMode: any = false; 
+
+  @Input() updateResources: any;
+  @Input() updateMode: any = false;
   @Input() item: any = {};
 
-  
+
   public levels: any;
   public divisions: any;
   public stores: any;
@@ -34,21 +34,22 @@ export class ServiceFormComponent implements OnInit {
   constructor(private studentService: StudentServiceService, private storeService: StoreService) {
     this.reset();
   }
- 
+
   reset() {
     if (this.updateMode)
       return;
     this.item = {
-      value: 0
+      value: 0,
+      active: true
     };
   }
 
   validate() {
     let valid = true;
     if (
-      !this.item.name || 
-      !this.item.store_id || 
-      !this.item.type    
+      !this.item.name ||
+      !this.item.store_id ||
+      !this.item.type
     )
       valid = false;
     return valid;
@@ -63,7 +64,7 @@ export class ServiceFormComponent implements OnInit {
   }
 
   sendResource() {
-    if (this.updateMode) 
+    if (this.updateMode)
       this.updateResource();
     else
       this.addResource();
@@ -73,7 +74,7 @@ export class ServiceFormComponent implements OnInit {
     if (!this.validate())
       return Message.error('please fill all data');
 
-    this.isSubmitted = true;    
+    this.isSubmitted = true;
     this.studentService.store(this.item).subscribe((res) => {
       const r: any = res;
       if (r.status == 1) {
@@ -95,7 +96,7 @@ export class ServiceFormComponent implements OnInit {
     if (!this.validate())
       return Message.error('please fill all data');
 
-    this.isSubmitted = true;    
+    this.isSubmitted = true;
     this.studentService.update(this.item).subscribe((res) => {
       const r: any = res;
       if (r.status == 1) {
@@ -104,7 +105,7 @@ export class ServiceFormComponent implements OnInit {
       else
         Message.error(r.message);
 
-      if (r.status == 1) { 
+      if (r.status == 1) {
         this.updateResources();
       }
 

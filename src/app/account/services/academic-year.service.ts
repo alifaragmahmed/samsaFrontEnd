@@ -1,5 +1,5 @@
 import { Auth } from './../../shared/auth';
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppModule } from '../../app.module';
 
@@ -21,6 +21,15 @@ export class AcademicYearService {
   public get(data) {
     data.api_token = Auth.getApiToken();
     return this.http.get('account/academic_year_expenses?'+this.doc.jquery.param(data));
+  }
+
+  /**
+   * get academic_year_expenses from api
+   *
+   */
+  public getDetails(data) {
+    data.api_token = Auth.getApiToken();
+    return this.http.get('account/academic_year_expenses_details?'+this.doc.jquery.param(data));
   }
 
   /**

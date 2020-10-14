@@ -324,6 +324,18 @@
                               [(ngModel)]="application.phone_1" >
                             </td>
                         </tr>
+                        <tr>
+                          <th>{{ "gender" | trans }}</th>
+                          <td>
+                            <select
+                            (change)="filterDataBaisedOnGender()"
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                            [(ngModel)]="application.gender">
+                              <option value="male">{{ "male" | trans }}</option>
+                              <option value="female">{{ "female" | trans }}</option>
+                            </select>
+                          </td>
+                        </tr>
 
 
                     </table>
@@ -333,7 +345,9 @@
 
             </div>
 
-            <div class="custom-panel w3-display-container w3-round  application-panel military-info-panel">
+            <div
+            *ngIf="application.gender != 'female'"
+            class="custom-panel w3-display-container w3-round  application-panel military-info-panel">
                 <div class="custom-panel-title" >{{ "military info" | trans }}</div>
 
                 <div class="custom-panel-body"  >
@@ -470,18 +484,6 @@
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.nationality_id">
                                 <option *ngFor="let item of applicationSettings.NATIONALITIES" value="{{ item.id }}">{{ item.name }}</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{{ "gender" | trans }}</th>
-                            <td>
-                              <select
-                              (change)="filterDataBaisedOnGender()"
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                              [(ngModel)]="application.gender">
-                                <option value="male">{{ "male" | trans }}</option>
-                                <option value="female">{{ "female" | trans }}</option>
                               </select>
                             </td>
                           </tr>

@@ -53,7 +53,12 @@ export class PaymentDetailsReportComponent implements OnInit {
     private studentService: StudentServiceService,
     private reportService: ReportService,
     private acadeimicYearExpenseService: AcademicYearService,
-    private studentAcountService: StudentAccountService) { }
+    private studentAcountService: StudentAccountService) {
+      let inputDate = new Date().toISOString().substring(0, 10);
+      console.log(inputDate);
+      this.searchData.date_from = inputDate;
+      this.searchData.date_to = inputDate;
+    }
 
 
   loadUsers() {
@@ -75,24 +80,24 @@ export class PaymentDetailsReportComponent implements OnInit {
   }
 
   loadServices() {
-    this.studentService.get().subscribe((res) => {
-      this.services = res;
+    this.studentService.get().subscribe((res: any) => {
+      this.services = [];
+      res.forEach(element => {
+        if (element.is_academic_year_expense != 1) {
+          this.services.push(element);
+        }
+      });
     });
   }
 
   loadAcadeimicYearExpenses() {
-    if (this.selectedYears.getKeys().length ==  0)
-      return;
-
-    let currentAcademicYears = this.selectedYears.getKeys()[0];
-    let data = {
-      academic_year_id: currentAcademicYears,
-      level_id: 1
-    };
-    this.acadeimicYearExpenseService.get(data).subscribe((res: any) => {
-      this.academicYearExpenses = res.details;
-      //
-      this.loadPayments();
+    this.studentService.get().subscribe((res: any) => {
+      this.academicYearExpenses = [];
+      res.forEach(element => {
+        if (element.is_academic_year_expense == 1) {
+          this.academicYearExpenses.push(element);
+        }
+      });
     });
   }
 
@@ -117,6 +122,7 @@ export class PaymentDetailsReportComponent implements OnInit {
     this.searchData.division_id = this.selectedDivisions.getKeys();
     this.searchData.academic_year_id = this.selectedYears.getKeys();
     this.searchData.services = this.selectedServices.getKeys();
+    this.searchData.academic_year_expenses = this.selectedAcademicYearExpenses.getKeys();
     this.isSubmitted = true;
     this.reportService.get(this.searchData).subscribe((res) => {
       this.payments = res;
@@ -125,13 +131,15 @@ export class PaymentDetailsReportComponent implements OnInit {
     });
   }
 
-  prepareTotal(res) {
+
+  prepareTotal(res: any) {
     this.services.forEach(element => {
       element.total = res['services'][element.id];
     });
     this.academicYearExpenses.forEach(element => {
       element.total = res['academic_year_expense'][element.id];
     });
+
   }
 
   print() {
@@ -175,6 +183,22 @@ export class PaymentDetailsReportComponent implements OnInit {
       this.searchKey = student.name;
     }
     this.studentSearchDialogShow = false;
+  }
+
+  toggleServiceType(type) {
+    if (this.searchData.service_type == type) {
+      this.searchData.service_type= '';
+      this.selectedServices = new HashTable();
+    }
+    else  {
+      this.searchData.service_type = type;
+      this.selectedServices = new HashTable();
+      this.services.forEach(element => {
+        if (element.type == type) {
+          this.selectedServices.put(element.id, element.id);
+        }
+      });
+    }
   }
 
   ngOnInit() {

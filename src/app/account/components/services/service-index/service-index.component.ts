@@ -6,6 +6,7 @@ import { IService } from '../../../models/iservice';
 import { AppModule } from '../../../../app.module';
 import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import { Helper } from '../../../../shared/helper';
+import { Message } from 'src/app/shared/message';
 
 @Component({
   selector: 'app-service-index',
@@ -76,6 +77,8 @@ export class ServiceIndexComponent implements OnInit {
       "copy",
       "repeat",
       "is_refund",
+      "is_in_store",
+      "active",
       "installment_percent",
       "from_installment_id",
       "type",
@@ -146,6 +149,23 @@ export class ServiceIndexComponent implements OnInit {
   updateService() {
     this.studentService.update([]).subscribe(() => {
 
+    });
+  }
+
+  toggleServiceValue(item, value) {
+    if (item[value])
+      item[value] = false;
+    else
+      item[value] = true;
+  }
+
+  updateActive(item) {
+    this.studentService.update(item).subscribe((res: any) => {
+      if (res.status == 1) {
+        Message.success(res.message);
+      } else {
+        Message.error(res.message);
+      }
     });
   }
 

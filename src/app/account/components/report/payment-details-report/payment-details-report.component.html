@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-10 col-md-10 col-sm-12">
+  <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="w3-white material-shadow safe-box">
       <div class="safe-box-header w3-xlarge">
         {{ "student payments report" | trans }}
@@ -79,7 +79,7 @@
                   <ul class="w3-ul">
                     <li *ngFor="let item of levels index as i" >
                       <mat-slide-toggle
-                      (change)="toggle(item.id, selectedLevels)"
+                      (change)="toggle(item.id, selectedLevels);loadPayments()"
                       [checked]="selectedLevels.has(item.id)"
                        ></mat-slide-toggle>
                       <span style="padding-right: 3px"    >{{ item.name }}</span>
@@ -96,11 +96,10 @@
                   <ul class="w3-ul">
                     <li *ngFor="let item of applicationSetting.DIVISIONS index as i" >
                       <mat-slide-toggle
-                      (change)="toggle(item.id, selectedDivisions)"
+                      (change)="toggle(item.id, selectedDivisions);loadPayments()"
                       [checked]="selectedDivisions.has(item.id)"
                        ></mat-slide-toggle>
-                       <br>
-                      <span style="padding-right: 3px"  >{{ item.name }} - {{ item.level }}</span>
+                      <span style="padding-right: 3px"  >{{ item.name }}</span>
                     </li>
                   </ul>
                 </div>
@@ -114,10 +113,9 @@
                   <ul class="w3-ul">
                     <li *ngFor="let item of applicationSetting.ACADEMIC_YEARS index as i" >
                       <mat-slide-toggle
-                      (change)="toggle(item.id, selectedYears);loadAcadeimicYearExpenses()"
+                      (change)="toggle(item.id, selectedYears);loadPayments()"
                       [checked]="selectedYears.has(item.id)"
                        ></mat-slide-toggle>
-                       <br>
                       <span style="padding-right: 3px"   >{{ item.name }}</span>
                     </li>
                   </ul>
@@ -131,15 +129,14 @@
                 <div class="custom-panel-title" >{{ "academic year expense" | trans }}</div>
                 <div class="custom-panel-body filter-top"  >
                   <ul class="w3-ul">
-                    <li *ngFor="let item of academicYearExpenses index as i" class="w3-display-container w3-padding" >
+                    <li *ngFor="let item of academicYearExpenses index as i" class="w3-display-container" >
                       <mat-slide-toggle
-                      (change)="toggle(item.priorty, selectedAcademicYearExpenses)"
-                      [checked]="selectedAcademicYearExpenses.has(item.priorty)"
+                      (change)="toggle(item.id, selectedAcademicYearExpenses);loadPayments()"
+                      [checked]="selectedAcademicYearExpenses.has(item.id)"
                        ></mat-slide-toggle>
-                       <br>
                       <span style="padding-right: 3px" class="w3-"  >{{ item.name }}</span>
 
-                      <span class="w3-display-topleft w3-padding w3-text-red">
+                      <span class="w3-display-topleft w3-text-red">
                         {{ item.total | currency: ' جنيه ' }}
                       </span>
                     </li>
@@ -209,12 +206,23 @@
               <div class="custom-panel-title" >{{ "services" | trans }}</div>
               <div class="custom-panel-body filter-side"  >
                 <ul class="w3-ul">
-                  <li *ngFor="let item of services index as i" class="w3-display-container w3-padding" >
+                  <li>
                     <mat-slide-toggle
-                    (change)="toggle(item.id, selectedServices)"
+                    (change)="toggleServiceType('wz');loadPayments()"
+                    [checked]="searchData.service_type == 'wz'"
+                     >{{ "wz" | trans }}</mat-slide-toggle>
+
+                     <mat-slide-toggle
+                     (change)="toggleServiceType('in');loadPayments()"
+                     [checked]="searchData.service_type == 'in'"
+                      >{{ "in" | trans }}</mat-slide-toggle>
+                  </li>
+
+                  <li *ngFor="let item of services index as i" class="w3-display-container" >
+                    <mat-slide-toggle
+                    (change)="toggle(item.id, selectedServices);loadPayments()"
                     [checked]="selectedServices.has(item.id)"
                      ></mat-slide-toggle>
-                     <br>
                     <span style="padding-right: 3px" class="" >{{ item.name }}</span>
 
                     <span class="w3-display-topleft w3-padding w3-text-red">
@@ -239,7 +247,7 @@
                   <tr>
                     <th>{{ "#" }}</th>
                     <th>{{ "date" | trans }}</th>
-                    <th>{{ "id" | trans }}</th>
+                    <th>{{ "payment code" | trans }}</th>
                     <th>{{ "student_code" | trans }}</th>
                     <th>{{ "student_name" | trans }}</th>
                     <th>{{ "level" | trans }}</th>
@@ -247,6 +255,8 @@
                     <th>{{ "value" | trans }}</th>
                     <th>{{ "type" | trans }}</th>
                     <th>{{ "payment_name" | trans }}</th>
+                    <th>{{ "wz" | trans }}</th>
+                    <th>{{ "total" | trans }}</th>
                   </tr>
 
                   <tr *ngFor="let item of payments.details index as i"  >
@@ -260,6 +270,14 @@
                     <td>{{ item.value | currency: ' جنيه ' }}</td>
                     <td>{{ "payment_type_"+ item.model_type | trans }}</td>
                     <td>{{ item.model_object? item.model_object.name : '' }}</td>
+                    <td>
+                      <ng-container *ngIf="item.model_type == 'academic_year_expense'" >
+                        {{ item.model_object? item.model_object.wz_value : 0 }}
+                      </ng-container>
+                    </td>
+                    <td>
+                      {{ (item.value + item.wz_value) | currency: ' جنيه ' }}
+                    </td>
                   </tr>
                 </table>
               </div>
@@ -299,6 +317,15 @@
                       type="text" readonly
                       class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                       [(ngModel)]="payments.total" >
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ "additional_value" | trans }}</th>
+                    <td>
+                      <input
+                      type="text" readonly
+                      class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                      [(ngModel)]="payments.additional_value" >
                     </td>
                   </tr>
                 </table>

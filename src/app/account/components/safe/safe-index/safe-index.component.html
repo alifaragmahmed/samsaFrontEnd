@@ -11,6 +11,9 @@
       <div class="safe-box-body row" >
 
         <div class="col-lg-3 col-md-3 col-sm-12" >
+          <div style="padding: 4px;margin-bottom: 7px" class="w3-pale-red w3-round" >
+            اجمالى الرسوم المستحقة : {{ safeObject.current_balance_total | currency: ' جنيه ' }}
+          </div>
           <img [src]="safeObject.image" class="w3-block w3-round border-gray" >
           <br>
           <div class="custom-panel w3-display-container w3-round" style="padding: 5px" >
@@ -29,7 +32,9 @@
 
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#installmentSection').modal('show')"  >{{ "installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')"  (click)="doc.jq('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')"  >{{ "update settings" | trans }}</button>
           </div>
 
         </div>
@@ -205,11 +210,14 @@
           </div>
           <div class="custom-panel w3-display-container w3-round">
             <div class="custom-panel-body"  >
-              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value"   (click)="performPay()" >{{ "save & print" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value && safeObject.payment_type != 'service'"   (click)="performPay()" >{{ "save & print" | trans }}</button>
 
               <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"  (click)="doc.jquery('#studentAvailableServices').modal('show')"  >{{ "services" | trans }}</button>
 
-              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"  (click)="doc.jquery('#studentRefundPayments').modal('show')"  >{{ "pay_refund" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left"
+              *ngIf="safeObject.is_refund == 1"
+              [disabled]="!studentSearchId"
+              (click)="doc.jquery('#studentRefundPayments').modal('show')"  >{{ "pay_refund" | trans }}</button>
 
               <button class="btn btn-default small-shadow w3-margin-left" routerLink="" >{{ "exit" | trans }}</button>
             </div>
@@ -221,6 +229,13 @@
 
       </div>
     </div>
+  </div>
+
+  <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px!important" >
+
+      <!-- student services modal -->
+      <app-available-service [services]="availableServices" [safeObject]="safeObject" [selectedServices]="selectedServices" ></app-available-service>
+
   </div>
 </div>
 
@@ -240,10 +255,8 @@
 <!-- student services modal -->
 <app-installment [student]="safeObject" [updateStudent]="updateStudent" [studentInstallments]="safeObject.installments? safeObject.installments : []" ></app-installment>
 
-<!-- student services modal -->
-<app-available-service [services]="availableServices" [safeObject]="safeObject" ></app-available-service>
-
 <!-- notes modal -->
 <app-send-note [student]="safeObject" [updateStudent]="updateStudent" ></app-send-note>
 
-
+<!-- update setting modal -->
+<app-safe-setting [safeObject]="safeObject" ></app-safe-setting>

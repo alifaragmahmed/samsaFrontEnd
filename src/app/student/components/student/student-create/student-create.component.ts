@@ -198,15 +198,20 @@ export class StudentCreateComponent implements OnInit {
   }
 
   filterDataBaisedOnGender() {
-    if (this.application.gender == 'female') {
+    /*if (this.application.gender == 'female') {
       this.doc.jquery('.military-info-panel').hide();
       this.doc.jquery('.military-info-button').hide();
-    }
+    } else {
+      this.doc.jquery('.military-info-panel').show();
+      this.doc.jquery('.military-info-button').show();
+    }*/
   }
 
   ngOnInit() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
+    //
+    this.application.old_balance_notes = "باقى رسوم سابقه عن عام ";
   }
 
 }

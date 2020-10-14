@@ -83,6 +83,26 @@
               <span class="fa fa-close w3-text-red" *ngIf="!element.is_refund" ></span>
             </td>
         </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="is_in_store">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "is_in_store" | trans }}</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-slide-toggle
+                    (change)="updateActive(element);toggleServiceValue(element, 'is_in_store')"
+                    [checked]="element.is_in_store==1"
+                     ></mat-slide-toggle>
+            </td>
+        </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "active" | trans }}</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-slide-toggle
+                    (change)="updateActive(element);toggleServiceValue(element, 'active')"
+                    [checked]="element.active==1"
+                     ></mat-slide-toggle>
+            </td>
+        </ng-container>
 
         <!-- Position Column -->
         <ng-container matColumnDef="installment_percent">

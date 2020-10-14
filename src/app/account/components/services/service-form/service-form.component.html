@@ -83,6 +83,18 @@
               </td>
             </tr>
             <tr>
+              <th>{{ "show_in_store" | trans }}</th>
+              <td>
+                <input type="checkbox" class="w3-check" [(ngModel)]="item.is_in_store"    >
+              </td>
+            </tr>
+            <tr>
+              <th>{{ "active" | trans }}</th>
+              <td>
+                <input type="checkbox" class="w3-check" [(ngModel)]="item.active"    >
+              </td>
+            </tr>
+            <tr>
               <th>{{ "additional_value" | trans }}</th>
               <td>
                 <input type="number" class="form-control input-sm" [(ngModel)]="item.additional_value"    >

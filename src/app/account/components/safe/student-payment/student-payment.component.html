@@ -65,7 +65,8 @@
                       </ng-container>
                     </td>
                     <td>
-                      <button
+                      <ng-container *ngIf="item.model_type != 'refund'" >
+                        <button
                       class="btn btn-danger btn-sm material-shadow"
                       style="margin: 5px"
                       [disabled]="isSubmitted"
@@ -80,6 +81,7 @@
                       (click)="editPayment(item, editbutton)"  >
                         {{ "save" | trans }}
                       </button>
+                      </ng-container>
                     </td>
                   </tr>
                 </ng-container>

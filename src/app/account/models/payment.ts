@@ -26,7 +26,7 @@ export class Payment {
      */
     validate() {
         let valid = true;
-        if (this.studentId <= 0 || this.value <= 0) {
+        if (this.studentId <= 0 || this.value <= 0 && this.safeObject.payment_type != 'service') {
             valid = false;
         }
         return valid;

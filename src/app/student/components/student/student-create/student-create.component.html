@@ -367,7 +367,9 @@
 
             </div>
 
-            <div class="custom-panel w3-display-container w3-round  application-panel military-info-panel">
+            <div
+            *ngIf="application.gender != 'female'"
+            class="custom-panel w3-display-container w3-round  application-panel military-info-panel">
                 <div class="custom-panel-title" >{{ "military info" | trans }}</div>
 
                 <div class="custom-panel-body"  >

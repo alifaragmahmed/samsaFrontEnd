@@ -784,6 +784,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_system_setting_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/system-setting.service */ "./src/app/core/services/system-setting.service.ts");
 /* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../shared/helper */ "./src/app/shared/helper.ts");
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../app.module */ "./src/app/app.module.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
 
 
 
@@ -802,7 +804,15 @@ var NavBarComponent = /** @class */ (function () {
         this.sidebarOpened = false;
         this.user = _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].user();
         this.notifications = [];
+        this.notify = Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["of"])(this.doc.notify);
         config.placement = 'bottom-right';
+        //let ob = new Observable();
+        //ob.
+        /*this.notify.subscribe((r)=>{
+          console.log("r : " + r);
+          if (r == 1)
+            this.observeNotifications();
+        });*/
     }
     NavBarComponent.prototype.initMessage = function (arr) {
         this.message = _shared_helper__WEBPACK_IMPORTED_MODULE_7__["Helper"].trans("You have {n} notifications").replace("{n}", arr.length);
@@ -815,11 +825,8 @@ var NavBarComponent = /** @class */ (function () {
         this.observeNotifications();
     };
     NavBarComponent.prototype.observeNotifications = function () {
-        var _this = this;
-        setInterval(function () {
-            if (_this.doc.notify == 1)
-                _this.loadNotifications();
-        }, 3000);
+        this.loadNotifications();
+        //AppModule.doc.observeNotification = this.loadNotifications();
     };
     NavBarComponent.prototype.loadNotifications = function () {
         var _this = this;
@@ -1913,16 +1920,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Message", function() { return Message; });
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app.module */ "./src/app/app.module.ts");
 
+//mport { NavBarComponent } from '../core/components/navbar/navbar.component';
 var Message = /** @class */ (function () {
     function Message() {
     }
     Message.success = function (message) {
         _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.playSound('not2');
         _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.swal.success(message);
+        //
+        //AppModule.doc.observeNotification();
     };
     Message.error = function (message) {
         _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.playSound('not2');
         _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.swal.error(message);
+        //
+        //AppModule.doc.observeNotification();
     };
     Message.confirm = function (message, action) {
         _app_module__WEBPACK_IMPORTED_MODULE_0__["AppModule"].doc.swal.confirm(message, action);
@@ -2844,7 +2856,8 @@ var environment = {
     publicUrl: 'http://127.0.0.1:8000',
     // https://samsav2.sphinxws.com/public
     // http://127.0.0.1:8000
-    apiUrl: 'https://samsav2.sphinxws.com/public/api',
+    // http://localhost/samsa-backend/public
+    apiUrl: 'http://localhost/samsa-backend/public/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/'

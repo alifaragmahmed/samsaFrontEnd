@@ -14,7 +14,7 @@ export class AvailableServiceComponent implements OnInit {
   @Input() services: any;
   @Input() safeObject: any;
 
-  selectedServices = new HashTable<any, any>();
+  @Input() selectedServices = new HashTable<any, any>();
 
   constructor() { }
 

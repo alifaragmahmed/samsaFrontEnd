@@ -35,6 +35,7 @@ export class TranslationComponent implements OnInit {
    */
   loadِAppTranslations() {
     this.translationService.get().subscribe((r) => {
+      Cache.remove(Translation.TRANSLATION_CACHE_KEY);
       Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
     });
   }
@@ -60,8 +61,15 @@ export class TranslationComponent implements OnInit {
    * update new words
    */
   updateTranslation() {
+    let changedWord = [];
+    this.translationList.forEach(element => {
+      if (element.changed == 1) {
+        element.value = null;
+        changedWord.push(element);
+      }
+    });
     const data = {
-      data: this.translationList
+      data: changedWord
     };
     this.isUpdate = true;
     this.translationService.update(data).subscribe((r) => {

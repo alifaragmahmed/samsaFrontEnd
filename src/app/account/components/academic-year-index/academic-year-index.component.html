@@ -42,6 +42,7 @@
         <th>{{ "store" | trans }}</th>
         <th>{{ "discount" | trans }}</th>
         <th>{{ "wz_value" | trans }}</th>
+        <th>{{ "service" | trans }}</th>
         <th></th>
       </tr>
     </thead>
@@ -82,6 +83,12 @@
         </td>
         <td>
             <input type="number" class="form-control input-sm" [(ngModel)]="item.wz_value"   >
+        </td>
+        <td>
+            <select class="form-control input-sm" [(ngModel)]="item.service_id" required >
+              <option value="">-- {{ "service" | trans }} --</option>
+              <option *ngFor="let row of services" value="{{ row.id }}" >{{ row.name}}</option>
+            </select>
         </td>
         <td>
           <button mat-button color="warn" (click)="removeRow(item, i)" >
