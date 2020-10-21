@@ -7,6 +7,8 @@ import { AcademicYearIndexComponent } from './components/academic-year-index/aca
 import { StoreIndexComponent } from './components/store/store-index/store-index.component';
 import { OldBalanceComponent } from './components/old-balance/old-balance.component';
 import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
+import { DiscountTypeIndexComponent } from './components/discountType/discount-type-index/discount-type-index.component';
+import { StudentDetailsReportComponent } from './components/report/student-details-report/student-details-report.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,10 @@ const routes: Routes = [
     component: PaymentDetailsReportComponent
   },
   {
+    path: 'report/student-details',
+    component: StudentDetailsReportComponent
+  },
+  {
     path: "setting",
     component: AccountComponent,
     children: [
@@ -37,6 +43,10 @@ const routes: Routes = [
       {
         path: 'stores',
         component: StoreIndexComponent
+      },
+      {
+        path: 'discount_types',
+        component: DiscountTypeIndexComponent
       },
       {
         path: 'academic_year_expenses',

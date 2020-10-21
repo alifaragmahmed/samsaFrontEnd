@@ -86,4 +86,18 @@ export class StudentAccountService {
   public updateStudentInfo(data) {
     return this.http.post('account/update_student_info?api_token='+Auth.getApiToken(), data);
   }
+
+  /**
+   * create discount request for the student
+   */
+  public createDiscountRequest(data) {
+    return this.http.post('account/discount_requests/store?api_token='+Auth.getApiToken(), data);
+  }
+
+  /**
+   * create discount request for the student
+   */
+  public createDiscount(data) {
+    return this.http.post('account/discounts/store?api_token='+Auth.getApiToken(), data);
+  }
 }

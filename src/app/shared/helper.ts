@@ -50,4 +50,14 @@ export class Helper {
       model[key+"_url"] = reader.result;
     }
   }
+
+  /**
+   * open new window in the browser
+   *
+   * @param url: String url of the page
+   */
+  public static openWindow(url) {
+    const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=905,height=484";
+    window.open(url, "_blank", options);
+  }
 }

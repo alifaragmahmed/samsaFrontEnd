@@ -35,6 +35,8 @@
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
 
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')"  >{{ "update settings" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#createDiscountRequestModal').modal('show')"  >{{ "create discount request" | trans }}</button>
           </div>
 
         </div>
@@ -142,7 +144,7 @@
                     <tr>
                       <th>{{ "constraint status" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.constraint_status" [(ngModel)]="safeObject.constraint_status.name" >
+                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.registeration_status" [(ngModel)]="safeObject.registeration_status.name" >
                       </td>
                     </tr>
                   </table>
@@ -260,3 +262,6 @@
 
 <!-- update setting modal -->
 <app-safe-setting [safeObject]="safeObject" ></app-safe-setting>
+
+<!-- create discount request -->
+<app-create-discount-request [safeObject]="safeObject" ></app-create-discount-request>

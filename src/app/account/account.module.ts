@@ -28,6 +28,12 @@ import { MatSliderModule, MatSlideToggleModule } from '@angular/material';
 import { PayRefundComponent } from './components/safe/pay-refund/pay-refund.component';
 import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
 import { SafeSettingComponent } from './components/safe/safe-setting/safe-setting.component';
+import { CreateDiscountRequestComponent } from './components/safe/create-discount-request/create-discount-request.component';
+import { DiscountTypeIndexComponent } from './components/discountType/discount-type-index/discount-type-index.component';
+import { DiscountTypeFormComponent } from './components/discountType/discount-type-form/discount-type-form.component';
+import { StudentDetailsReportComponent } from './components/report/student-details-report/student-details-report.component';
+import { StudentModule } from '../student/student.module';
+import { StudentShowComponent } from '../student/components/student/student-show/student-show.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +56,10 @@ import { SafeSettingComponent } from './components/safe/safe-setting/safe-settin
     PayRefundComponent,
     PaymentDetailsReportComponent,
     SafeSettingComponent,
+    CreateDiscountRequestComponent,
+    DiscountTypeIndexComponent,
+    DiscountTypeFormComponent,
+    StudentDetailsReportComponent,
   ],
   imports: [
     SharedModule,
