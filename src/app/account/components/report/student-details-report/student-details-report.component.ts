@@ -81,6 +81,7 @@ export class StudentDetailsReportComponent implements OnInit {
       this.searchKey = student.name;
       this.loadStuentInfo(student.id);
       this.loadPayments();
+      this.loadStudentDiscounts(student.id);
     }
     this.studentSearchDialogShow = false;
   }
@@ -124,7 +125,7 @@ export class StudentDetailsReportComponent implements OnInit {
   }
 
   showDiscountRequestModal() {
-
+    this.doc.jquery('#discountShowModal').modal('show');
   }
 
   showStudentServiceModal() {
@@ -156,6 +157,12 @@ export class StudentDetailsReportComponent implements OnInit {
           this.academicYearExpenses.push(element);
         }
       });
+    });
+  }
+
+  loadStudentDiscounts(studentId) {
+    this.studentAcountService.getDiscountsRequests(studentId).subscribe((res: any) => {
+       this.discountRequests = res;
     });
   }
 

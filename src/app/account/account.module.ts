@@ -34,6 +34,9 @@ import { DiscountTypeFormComponent } from './components/discountType/discount-ty
 import { StudentDetailsReportComponent } from './components/report/student-details-report/student-details-report.component';
 import { StudentModule } from '../student/student.module';
 import { StudentShowComponent } from '../student/components/student/student-show/student-show.component';
+import { StudentBalanceReportComponent } from './components/report/student-balance-report/student-balance-report.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ReportCreatorReportComponent } from './components/report/report-creator-report/report-creator-report.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { StudentShowComponent } from '../student/components/student/student-show
     DiscountTypeIndexComponent,
     DiscountTypeFormComponent,
     StudentDetailsReportComponent,
+    StudentBalanceReportComponent,
+    ReportCreatorReportComponent,
   ],
   imports: [
     SharedModule,
@@ -71,7 +76,8 @@ import { StudentShowComponent } from '../student/components/student/student-show
     MatCheckboxModule,
     MatButtonModule,
     MatSliderModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    GoogleChartsModule
   ],
   exports: [
     StudentPaymentComponent

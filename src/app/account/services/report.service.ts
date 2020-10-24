@@ -19,4 +19,13 @@ export class ReportService {
   public get(data: any) {
     return this.http.get('account/report/payment-details?api_token=' + Auth.getApiToken()+"&"+this.doc.jquery.param(data));
   }
+
+
+  /**
+   * get balances of students
+   *
+   */
+  public getStudentBalances(data: any) {
+    return this.http.get('account/report/student-balances?api_token=' + Auth.getApiToken()+"&"+this.doc.jquery.param(data));
+  }
 }

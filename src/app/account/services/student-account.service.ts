@@ -100,4 +100,13 @@ export class StudentAccountService {
   public createDiscount(data) {
     return this.http.post('account/discounts/store?api_token='+Auth.getApiToken(), data);
   }
+
+  /**
+   * get discount request for the student
+   *
+   * @param StudentId
+   */
+  public getDiscountsRequests(studentId) {
+    return this.http.get('account/discount_requests?api_token='+Auth.getApiToken()+"&student_id="+studentId);
+  }
 }

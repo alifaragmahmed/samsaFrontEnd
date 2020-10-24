@@ -9,6 +9,8 @@ import { OldBalanceComponent } from './components/old-balance/old-balance.compon
 import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
 import { DiscountTypeIndexComponent } from './components/discountType/discount-type-index/discount-type-index.component';
 import { StudentDetailsReportComponent } from './components/report/student-details-report/student-details-report.component';
+import { StudentBalanceReportComponent } from './components/report/student-balance-report/student-balance-report.component';
+import { ReportCreatorReportComponent } from './components/report/report-creator-report/report-creator-report.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'report/student-details',
     component: StudentDetailsReportComponent
+  },
+  {
+    path: 'report/student-balances',
+    component: StudentBalanceReportComponent
+  },
+  {
+    path: 'report/report-creator',
+    component: ReportCreatorReportComponent
   },
   {
     path: "setting",
