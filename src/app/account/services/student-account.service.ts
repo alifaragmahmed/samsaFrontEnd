@@ -109,4 +109,22 @@ export class StudentAccountService {
   public getDiscountsRequests(studentId) {
     return this.http.get('account/discount_requests?api_token='+Auth.getApiToken()+"&student_id="+studentId);
   }
+
+  /**
+   * remove discount request for the student
+   *
+   * @param StudentId
+   */
+  public removeDiscountRequest(id) {
+    return this.http.post('account/discount_requests/delete/'+id+'?api_token='+Auth.getApiToken(), null);
+  }
+
+  /**
+   * create balance reset for student
+   *
+   * @param data of balance reset
+   */
+  public createStudentBalanceReset(data) {
+    return this.http.post('account/create_balance_reset?api_token='+Auth.getApiToken(), data);
+  }
 }

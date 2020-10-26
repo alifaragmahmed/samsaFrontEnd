@@ -9,33 +9,34 @@ import { Message } from 'src/app/shared/message';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-create-discount-request',
-  templateUrl: './create-discount-request.component.html',
-  styleUrls: ['./create-discount-request.component.scss']
+  selector: 'app-create-balance-reset',
+  templateUrl: './create-balance-reset.component.html',
+  styleUrls: ['./create-balance-reset.component.scss']
 })
-export class CreateDiscountRequestComponent implements OnInit {
+export class CreateBalanceResetComponent implements OnInit {
 
-  doc: any = AppModule.doc;
+  doc: any = document;
   isSubmitted: boolean = false;
   item: any = {};
-  discountTypes: any = [];
+  user: any = Auth.user();
 
   @Input() safeObject: any;
   @Input() updateStudent: any;
 
   requiredField: any = [
-    'discount_type_id',
-    'reason',
-    'student_affairs_notes'
+    'date',
+    'value'
   ];
 
 
   constructor(
-    private studentAccountService: StudentAccountService,
-    private discountTypeService: DiscountTypeService) { }
+    private studentAccountService: StudentAccountService) { }
 
   reset() {
-    this.item = {};
+    this.item = {
+      date: new Date().toISOString().substring(0, 10),
+      student_id: this.safeObject.id
+    };
   }
 
   validate() {
@@ -48,16 +49,19 @@ export class CreateDiscountRequestComponent implements OnInit {
     return valid;
   }
 
+  canCreateBalanceReset() {
+    return this.safeObject.current_balance > 0;
+  }
+
   sendResource() {
     if (!this.validate())
       return Message.error(Helper.trans('fill all data'));
 
     this.isSubmitted = true;
     this.item.student_id = this.safeObject.id;
-    this.studentAccountService.createDiscountRequest(this.item).subscribe((res: any) => {
+    this.studentAccountService.createStudentBalanceReset(this.item).subscribe((res: any) => {
       if (res.status == 1) {
         Message.success(res.message);
-        this.viewReceipt(res.data);
         this.updateStudent();
         this.reset();
       }
@@ -68,27 +72,8 @@ export class CreateDiscountRequestComponent implements OnInit {
     });
   }
 
-  viewReceipt(resource: any) {
-    if (!resource)
-      return;
-    let url = environment.apiUrl + "/account/discount_requests/receipt/"+resource.id+"?api_token="+Auth.getApiToken();
-    Helper.openWindow(url);
-  }
-
-  loadDiscountTypes() {
-    this.discountTypeService.get().subscribe((res: any) => {
-      this.discountTypes = res;
-    });
-  }
-
-  printLastReceipt() {
-    if (this.safeObject.last_discount_request)  {
-      this.viewReceipt(this.safeObject.last_discount_request);
-    }
-  }
-
   ngOnInit() {
-    this.loadDiscountTypes();
+    this.reset();
   }
 
 }

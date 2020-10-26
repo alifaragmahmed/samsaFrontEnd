@@ -351,20 +351,25 @@
            </tr>
 
            <tr *ngFor="let item of discountRequests index as i" >
-             <td>{{ i + 1 }}</td>
-             <td>{{ item.discount_type? item.discount_type.name : '' }}</td>
-             <td>{{ item.reason }}</td>
-             <td>{{ item.student_affairs_notes }}</td>
-             <td>{{ item.user? item.user.name : '' }}</td>
-             <td>
-               <input type="number" *ngIf="item.paid != 1" [(ngModel)]="item.value" >
-               <span  *ngIf="item.paid == 1" class="w3-text-red" >{{ item.value | currency: ' جنية ' }}</span>
-             </td>
-             <td>
-              <button mat-raised-button class="w3-green" *ngIf="item.paid != 1"  (click)="performDiscount(item)" >
-                {{ "make_discount" | trans }}
-              </button>
-             </td>
+             <ng-container *ngIf="item.deleted != 1" >
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.discount_type? item.discount_type.name : '' }}</td>
+              <td>{{ item.reason }}</td>
+              <td>{{ item.student_affairs_notes }}</td>
+              <td>{{ item.user? item.user.name : '' }}</td>
+              <td>
+                <input type="number" *ngIf="item.paid != 1" [(ngModel)]="item.value" style="width: 70px" >
+                <span  *ngIf="item.paid == 1" class="w3-text-red" >{{ item.value | currency: ' جنية ' }}</span>
+              </td>
+              <td>
+               <button mat-raised-button class="w3-green" *ngIf="item.paid != 1"  (click)="performDiscount(item)" >
+                 {{ "make_discount" | trans }}
+               </button>
+               <button mat-button color="warn" *ngIf="item.paid != 1"  (click)="removeDiscount(item)" >
+                 <i class="fa fa-trash" ></i>
+               </button>
+              </td>
+             </ng-container>
            </tr>
         </table>
       </div>

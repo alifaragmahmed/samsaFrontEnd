@@ -20,13 +20,15 @@ import { Message } from 'src/app/shared/message';
 })
 export class ReportCreatorReportComponent implements OnInit {
 
-  doc: any = AppModule.doc;
+  doc: any = document;
   applicationSetting: any = ApplicationSettingService;
   student: any = {};
   searchData: any = {};
   response: any = {};
   levels: any = [];
   divisions: any = [];
+  services: any = [];
+  registerationStatus: any = [];
   caseConstraints: any = [];
   academicYears: any = [];
   academicYearExpenses: any = [];
@@ -38,6 +40,10 @@ export class ReportCreatorReportComponent implements OnInit {
   selectedDivisions = new HashTable();
   selectedAcademicYears = new HashTable();
   selectedAcademicYearsExpenses = new HashTable();
+  selectedServices = new HashTable();
+  selectedRegisterationStatus = new HashTable();
+  selectedCaseConstraints = new HashTable();
+  selectedAcceptance = new HashTable();
 
   //
   public searchKey: string;
@@ -79,8 +85,8 @@ export class ReportCreatorReportComponent implements OnInit {
   }
 
   initSearchData() {
-    this.searchData.current_balance_total_from = 0;
-    this.searchData.current_balance_total_to = 0;
+    this.searchData.current_balance_from = 0;
+    this.searchData.current_balance_to = 0;
 
     this.searchData.paids_from = 0;
     this.searchData.paids_to = 0;
@@ -147,6 +153,7 @@ export class ReportCreatorReportComponent implements OnInit {
   }
 
 
+
   //***********************************************
   //*** student search methods
   //***********************************************
@@ -194,8 +201,15 @@ export class ReportCreatorReportComponent implements OnInit {
   loadData() {
     this.searchData.levels = this.selectedLevels.getKeys();
     this.searchData.divisions = this.selectedDivisions.getKeys();
+    this.searchData.academic_years = this.selectedAcademicYears.getKeys();
+    this.searchData.academic_year_expenses = this.selectedAcademicYearsExpenses.getKeys();
+    this.searchData.registeration_status = this.selectedRegisterationStatus.getKeys();
+    this.searchData.case_constraints = this.selectedCaseConstraints.getKeys();
+    this.searchData.acceptance = this.selectedAcceptance.getKeys();
+    this.searchData.services = this.selectedServices.getKeys();
+
     this.isSearching = true;
-    this.reportService.getStudentBalances(this.searchData).subscribe((res: any) => {
+    this.reportService.getReportCreatorInfo(this.searchData).subscribe((res: any) => {
       this.response = res;
       this.isSearching = false;
       //
@@ -219,12 +233,22 @@ export class ReportCreatorReportComponent implements OnInit {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.divisions = this.applicationSetting.DIVISIONS;
     this.academicYears = this.applicationSetting.ACADEMIC_YEARS;
+    this.registerationStatus = this.applicationSetting.REGISTERATION_STATUS;
+    this.caseConstraints = this.applicationSetting.CASE_CONSTRAINTS;
     //
     this.studentService.get().subscribe((res: any) => {
       this.academicYearExpenses = [];
       res.forEach(element => {
         if (element.is_academic_year_expense == 1) {
           this.academicYearExpenses.push(element);
+        }
+      });
+    });
+    this.studentService.get().subscribe((res: any) => {
+      this.services = [];
+      res.forEach(element => {
+        if (element.is_academic_year_expense != 1) {
+          this.services.push(element);
         }
       });
     });
@@ -253,6 +277,10 @@ export class ReportCreatorReportComponent implements OnInit {
   exportExcel() {
     const filename = "تقرير طالب تفصيلى-"+new Date().toLocaleTimeString();
     this.doc.exportExcel(filename);
+  }
+
+  showSelectConditionModal() {
+    this.doc.jquery('#conditionModal').modal('show');
   }
 
   //***********************************************

@@ -37,6 +37,9 @@ import { StudentShowComponent } from '../student/components/student/student-show
 import { StudentBalanceReportComponent } from './components/report/student-balance-report/student-balance-report.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ReportCreatorReportComponent } from './components/report/report-creator-report/report-creator-report.component';
+import { CreateBalanceResetComponent } from './components/safe/create-balance-reset/create-balance-reset.component';
+import { InstallmentReportComponent } from './components/report/installment-report/installment-report.component';
+import { StudentDiscountReportComponent } from './components/report/student-discount-report/student-discount-report.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { ReportCreatorReportComponent } from './components/report/report-creator
     StudentDetailsReportComponent,
     StudentBalanceReportComponent,
     ReportCreatorReportComponent,
+    CreateBalanceResetComponent,
+    InstallmentReportComponent,
+    StudentDiscountReportComponent,
   ],
   imports: [
     SharedModule,

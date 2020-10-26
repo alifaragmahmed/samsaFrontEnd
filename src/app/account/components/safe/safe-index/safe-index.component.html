@@ -37,6 +37,8 @@
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')"  >{{ "update settings" | trans }}</button>
 
             <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#createDiscountRequestModal').modal('show')"  >{{ "create discount request" | trans }}</button>
+
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#createBalanceResetModal').modal('show')"  >{{ "create balance reset" | trans }}</button>
           </div>
 
         </div>
@@ -264,4 +266,7 @@
 <app-safe-setting [safeObject]="safeObject" ></app-safe-setting>
 
 <!-- create discount request -->
-<app-create-discount-request [safeObject]="safeObject" ></app-create-discount-request>
+<app-create-discount-request [safeObject]="safeObject" [updateStudent]="updateStudent"  ></app-create-discount-request>
+
+<!-- create balace reset for the balance of student -->
+<app-create-balance-reset [safeObject]="safeObject" [updateStudent]="updateStudent"  ></app-create-balance-reset>

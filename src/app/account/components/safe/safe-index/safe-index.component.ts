@@ -17,7 +17,7 @@ import { HashTable } from 'angular-hashtable';
 export class SafeIndexComponent implements OnInit {
 
   // init document
-  public doc: any = AppModule.doc;
+  public doc: any = document;
 
   public safeObject: any = {};
   public payment: Payment;

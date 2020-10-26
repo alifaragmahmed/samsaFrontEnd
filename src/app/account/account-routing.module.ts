@@ -11,6 +11,7 @@ import { DiscountTypeIndexComponent } from './components/discountType/discount-t
 import { StudentDetailsReportComponent } from './components/report/student-details-report/student-details-report.component';
 import { StudentBalanceReportComponent } from './components/report/student-balance-report/student-balance-report.component';
 import { ReportCreatorReportComponent } from './components/report/report-creator-report/report-creator-report.component';
+import { InstallmentReportComponent } from './components/report/installment-report/installment-report.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'report/report-creator',
     component: ReportCreatorReportComponent
+  },
+  {
+    path: 'report/student-installment',
+    component: InstallmentReportComponent
   },
   {
     path: "setting",

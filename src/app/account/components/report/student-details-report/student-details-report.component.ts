@@ -15,7 +15,7 @@ import { Message } from 'src/app/shared/message';
 })
 export class StudentDetailsReportComponent implements OnInit {
 
-  doc: any = AppModule.doc;
+  doc: any = document;
   student: any = {};
   searchData: any = {};
   payments: any = {};
@@ -178,6 +178,20 @@ export class StudentDetailsReportComponent implements OnInit {
       else {
         Message.error(res.message);
       }
+    });
+  }
+
+  removeDiscount(item) {
+    this.doc.swal.confirm(Helper.trans('are you sure'), ()=>{
+      this.studentAcountService.removeDiscountRequest(item.id).subscribe((res: any) => {
+        if (res.status == 1) {
+          Message.success(res.message);
+          item.deleted = 1;
+        }
+        else {
+          Message.error(res.message);
+        }
+      });
     });
   }
 }
