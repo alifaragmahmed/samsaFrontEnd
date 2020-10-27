@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { AppModule } from '../../../../app.module';
 import { StudentService } from '../../../services/student.service';
@@ -17,7 +18,7 @@ export class StudentIndexComponent implements OnInit {
 
   // init breadcrum
   public breadcrumbList = [];
-   
+
   // remove options
   public showRemoveButton = false;
   public showRemoveModal = false;
@@ -28,16 +29,26 @@ export class StudentIndexComponent implements OnInit {
   public isLoad = false;
 
   public selectedItem: any= {};
- 
- 
-  constructor(private studentService: StudentService) { 
+
+  public col = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
+
+
+  constructor(public studentService: StudentService, public router: ActivatedRoute) {
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},
       {name: 'students'}
-    ]; 
+    ];
+
+    this.router.queryParams.subscribe((params) => {
+      let col = params['col'];
+      console.log(col);
+      if (col)
+        this.col = col;
+    });
+
   }
- 
+
 
   toggleFromTrash(id) {
     if (this.trashList.has(id)) {
@@ -46,8 +57,8 @@ export class StudentIndexComponent implements OnInit {
     else {
       this.trashList.put(id, id);
     }
- 
-    if (this.trashList.size() > 0) 
+
+    if (this.trashList.size() > 0)
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
@@ -67,7 +78,7 @@ export class StudentIndexComponent implements OnInit {
     } else {
       this.removed = [];
       this.showRemoveButton = false;
-      this.showRemoveModal = false; 
+      this.showRemoveModal = false;
       this.loadResources();
     }
   }
@@ -85,24 +96,24 @@ export class StudentIndexComponent implements OnInit {
 
 
 
-  loadResources(page=1) { 
+  loadResources(page=1) {
     this.isLoad = true;
     this.studentService.get(page).subscribe( (res: any) => {
-      this.resources = res; 
+      this.resources = res;
       this.prePagniation();
       this.isLoad = false;
-    }); 
-  }  
+    });
+  }
 
   setStudentContainerHeight() {
     //const height = window.innerHeight - 90;
-    //this.doc.jquery('.student-container').css('height', height); 
+    //this.doc.jquery('.student-container').css('height', height);
   }
 
   ngOnInit() {
     this.setStudentContainerHeight();
-    this.loadResources(); 
-  } 
+    this.loadResources();
+  }
 
   showStudentPayments(item: any) {
     this.selectedItem = item;

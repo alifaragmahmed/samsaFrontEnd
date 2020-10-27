@@ -42,6 +42,10 @@ const routes: Routes = [
         path: 'users',
         loadChildren: './user/user.module#UserModule'
       },
+      {
+        path: 'affairs',
+        loadChildren: './affairs/affairs.module#AffairsModule'
+      },
      /* {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'

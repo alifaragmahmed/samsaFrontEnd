@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Auth } from '../../../shared/auth';
 import { SystemSettingService } from '../../services/system-setting.service';
 import { Helper } from '../../../shared/helper';
-import { AppModule } from '../../../app.module';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -22,7 +21,7 @@ export class NavBarComponent implements OnInit {
    */
   public static OBSERVE_TIME = 2 * 60 * 1000;
 
-  public doc: any = AppModule.doc;
+  public doc: any = document;
   public sidebarOpened = false;
   public user: any = Auth.user();
   public notifications: any = [];
@@ -59,7 +58,7 @@ export class NavBarComponent implements OnInit {
 
   public observeNotifications() {
     this.loadNotifications();
-    //AppModule.doc.observeNotification = this.loadNotifications();
+    //this.doc.observeNotification = this.loadNotifications();
   }
 
   loadNotifications() {
@@ -71,7 +70,7 @@ export class NavBarComponent implements OnInit {
       //
       if (res.length > 0) {
         this.initMessage(res);
-        AppModule.doc.playSound('ios_notification');
+        this.doc.playSound('ios_notification');
       }
       this.doc.notify = 0;
     });

@@ -26,7 +26,7 @@ export class StudentDiscountReportComponent implements OnInit {
 
   loadData() {
     this.isSubmitted = true;
-    this.reportService.getStudentInstallment(this.searchData).subscribe((res) => {
+    this.reportService.getStudentDiscounts(this.searchData).subscribe((res) => {
       this.response = res;
       this.isSubmitted = false;
     });
@@ -37,7 +37,7 @@ export class StudentDiscountReportComponent implements OnInit {
   }
 
   exportExcel() {
-    const filename = "تقرير اقساط الطلاب-"+new Date().toLocaleTimeString();
+    const filename = "تقرير اعفاءات الطلاب-"+new Date().toLocaleTimeString();
     this.doc.exportExcel(filename);
   }
 

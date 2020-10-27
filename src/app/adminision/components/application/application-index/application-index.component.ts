@@ -3,6 +3,7 @@ import { ApplicationService } from '../../../services/application.service';
 import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { AppModule } from '../../../../app.module';
 import { Message } from '../../../../shared/message';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-application-index',
@@ -18,7 +19,7 @@ export class ApplicationIndexComponent implements OnInit {
 
   // init breadcrum
   public breadcrumbList = [];
-   
+
   // remove options
   public showRemoveButton = false;
   public showRemoveModal = false;
@@ -29,16 +30,24 @@ export class ApplicationIndexComponent implements OnInit {
 
   public isEntrollSubmit = false;
   public isLoad = false;
- 
- 
-  constructor(private applicationService: ApplicationService) { 
+
+  public col = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
+
+  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) {
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},
       {name: 'applications'}
-    ]; 
+    ];
+
+
+    this.route.queryParams.subscribe((params) => {
+      let col = params['col'];
+      if (col)
+        this.col = col;
+    });
   }
- 
+
 
   toggleFromTrash(id) {
     if (this.trashList.has(id)) {
@@ -47,8 +56,8 @@ export class ApplicationIndexComponent implements OnInit {
     else {
       this.trashList.put(id, id);
     }
- 
-    if (this.trashList.size() > 0) 
+
+    if (this.trashList.size() > 0)
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
@@ -68,7 +77,7 @@ export class ApplicationIndexComponent implements OnInit {
     } else {
       this.removed = [];
       this.showRemoveButton = false;
-      this.showRemoveModal = false; 
+      this.showRemoveModal = false;
       this.loadResources();
     }
   }
@@ -90,7 +99,7 @@ export class ApplicationIndexComponent implements OnInit {
       if (res.status == 1)  {
         Message.success(res.message);
         this.loadResources(this.resources.current_page);
-      } else 
+      } else
         Message.error(res.message);
 
       this.isEntrollSubmit = false;
@@ -99,18 +108,18 @@ export class ApplicationIndexComponent implements OnInit {
 
 
 
-  loadResources(page=1) { 
+  loadResources(page=1) {
     this.isLoad = true;
     this.applicationService.get(page).subscribe( (res: any) => {
-      this.resources = res; 
+      this.resources = res;
       this.prePagniation();
       this.isLoad = false;
-    }); 
-  }  
+    });
+  }
 
   ngOnInit() {
-    this.loadResources(); 
-  } 
+    this.loadResources();
+  }
 
 
 }

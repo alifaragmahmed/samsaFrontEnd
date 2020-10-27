@@ -2,21 +2,21 @@
 
 
 <div class="w3-display-bottomleft w3-padding" style="position: fixed;z-index: 9999" >
-    <button  
+    <button
     mat-fab color="primary"
     class="w3-large"
-    routerLink="/student/create" style="margin: 5px"  > 
-      <span class="fa fa-plus" ></span>  
-    </button> 
+    routerLink="/student/create" style="margin: 5px"  >
+      <span class="fa fa-plus" ></span>
+    </button>
 </div>
 
     <!--
 <div class="box box-primary  table-responsive" >
   <div class="box-header">
-    
 
 
-    <button *ngIf="showRemoveButton" (click)="removeResources()" class="btn btn-danger" style="margin: 5px"  > 
+
+    <button *ngIf="showRemoveButton" (click)="removeResources()" class="btn btn-danger" style="margin: 5px"  >
       <span class="fa fa-trash" ></span>
     </button>
   </div>
@@ -30,7 +30,7 @@
     <i class="fa fa-spin fa-refresh w3-jumbo w3-text-indigo"></i>
   </div>
   <ng-container *ngFor="let item of resources.data" >
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 student-list-col" >
+      <div class="{{ col }} student-list-col" >
           <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item">
 
               <div class="w3-display-topleft w3-padding fa fa-certificate w3-jumbo w3-text-deep-orange" style="z-index: 1;font-size: 80px!important"  >
@@ -59,7 +59,7 @@
               <tr>
                 <th>{{ "level" | trans }}</th>
                 <td>{{ item.level? item.level.name : '' }}</td>
-              </tr> 
+              </tr>
               <tr>
                 <th>{{ "academic_year" | trans }}</th>
                 <td>{{ item.academic_year? item.academic_year.name : '' }}</td>
@@ -67,7 +67,7 @@
               <tr>
                 <th>{{ "division" | trans }}</th>
                 <td>{{ item.division? item.division.name : '' }}</td>
-              </tr> 
+              </tr>
               <tr>
                 <th>{{ "qualification" | trans }}</th>
                 <td>{{ item.qualification? item.qualification.name : '' }}</td>
@@ -76,19 +76,19 @@
                 <th>{{ "registeration_status" | trans }}</th>
                 <td>{{ item.registeration_status? item.registeration_status.name : '' }}</td>
               </tr>
-            </table>  
-            <div class="text-right" > 
+            </table>
+            <div class="text-right" >
               <a href="#" [routerLink]="['/student/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-edit btn btn-warning btn-sm" ></i></a>
-              
-              <a href="#" [routerLink]="['/student/show/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-desktop btn btn-success btn-sm" ></i></a> 
-              
-              <button (click)="showStudentPayments(item)" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "student payments" | trans }} </button> 
+
+              <a href="#" [routerLink]="['/student/show/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-desktop btn btn-success btn-sm" ></i></a>
+
+              <button (click)="showStudentPayments(item)" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "student payments" | trans }} </button>
             </div>
           </div>
       </div>
     </div>
   </ng-container>
-  
+
 
 
 </div>
@@ -103,7 +103,7 @@
           </li>
           <li *ngFor="let item of resources.pages_arr"  >
             <a class="" [ngClass]="{'active': resources.current_page == item}"  (click)="loadResources(item)">{{ item }}</a>
-          </li>  
+          </li>
           <li>
             <a   class="" [ngClass]="{'disabled': !resources.next_page}"  (click)="loadResources(resources.next_page)" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
@@ -111,9 +111,9 @@
           </li>
         </ul>
       </nav>
-</div> 
+</div>
 
- 
+
 <!-- remove modal -->
 <div class="w3-modal w3-block" *ngIf="showRemoveModal"  role="dialog">
     <div class="modal-dialog" role="document">
@@ -126,12 +126,12 @@
             <br>
             {{ trashList.size() }} - {{ "removed" | trans }} {{ trashList.size() + removed.length }}
         </div>
-        <div class="modal-footer"> 
+        <div class="modal-footer">
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
- 
- 
+
+
 <!-- student payments modal -->
 <app-student-payment [payments]="selectedItem.payment_details? selectedItem.payment_details : []" ></app-student-payment>

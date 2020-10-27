@@ -26,7 +26,8 @@ import { AccountModule } from '../account/account.module';
     DataTablesModule
   ],
   exports: [
-    StudentShowComponent
+    StudentShowComponent,
+    StudentIndexComponent
   ]
 })
 export class StudentModule {

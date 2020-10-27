@@ -6,10 +6,6 @@
   border-bottom: 2px dashed gray!important;
 }
 
-.border-bottom-red {
-  border-bottom: 2px dashed red!important;
-}
-
 .border-dashed {
   border: 2px dashed lightgray!important;
 }
@@ -51,7 +47,8 @@
 }
 
 .custom-input {
-  min-width: 120px
+  min-width: 120px;
+  width: 100%;
 }
 
 .modal {
@@ -61,57 +58,8 @@
   custom button style
 */
 
-select, input[type=file] {
-  padding: 0px!important;
-}
 
-.filter-top {
-  height: 200px!important;
-  overflow: auto;
-}
-
-.filter-side {
-  height: 400px!important;
-  overflow: auto;
-}
-
-
-.w3-ul li {
-  padding: 2px!important;
-  font-size: 12px!important;
-}
-
-
-.custom-input {
-  height: 20px;
-}
-
-table {
+.student-list-col {
   width: 100%;
-}
-
-th.mat-sort-header-sorted {
-  color: black;
-}
-
-
-th {
-  font-size: 14px;
-  font-weight: bold;
-  color: black;
-}
-
-.mat-elevation-z8 {
-  overflow: auto;
-}
-
-
-.chip-filter {
-  float: right;
-  min-width: 120px;
-  margin: 5px;
-  background: #fafafa;
-  border: 1px solid lightgray;
-  border-radius: 5em;
-  padding: 5px 5px;
+  box-shadow: none!important;
 }

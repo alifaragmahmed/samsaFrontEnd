@@ -1,4 +1,3 @@
-import { AppModule } from '../app.module';
 import { Translation } from './translation';
 import { Router } from '../../../node_modules/@angular/router';
 
@@ -11,7 +10,8 @@ export class Helper {
       router.navigate([url]);
     });
     setTimeout(() => {
-      AppModule.doc.jquery('.modal-backdrop fade in').remove();
+      let doc: any = document;
+      doc.jquery('.modal-backdrop fade in').remove();
     }, 1000);
   }
 
@@ -34,7 +34,8 @@ export class Helper {
   }
 
   public static print() {
-    AppModule.doc.printJs();
+    let doc: any = document;
+    doc.printJs();
   }
 
 

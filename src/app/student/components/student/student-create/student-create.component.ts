@@ -56,12 +56,20 @@ export class StudentCreateComponent implements OnInit {
     'gender'
   ];
 
+  public col = "col-lg-10 col-md-10 col-sm-12";
+
   constructor(private studentService: StudentService, private route: ActivatedRoute) {
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       this.loadApplication(id);
       this.isUpdate = true;
     }
+
+    this.route.queryParams.subscribe((params) => {
+      let col = params['col'];
+      if (col)
+        this.col = col;
+    });
   }
 
   loadApplication(id) {
