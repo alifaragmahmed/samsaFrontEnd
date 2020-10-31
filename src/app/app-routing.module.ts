@@ -46,6 +46,10 @@ const routes: Routes = [
         path: 'affairs',
         loadChildren: './affairs/affairs.module#AffairsModule'
       },
+      {
+        path: 'card',
+        loadChildren: './card/card.module#CardModule'
+      },
      /* {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'

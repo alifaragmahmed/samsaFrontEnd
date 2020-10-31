@@ -65,25 +65,17 @@
   <script src="assets/js/jquery.table2excel.min.js"></script>
   <script src="assets/js/jquery.nicescroll.iframehelper.min.js"></script>
   <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  <!--
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=IqzcmmiC"></script>
-  <script>
+  -->
+  <script>/*
     var $  = require( 'jquery' );
-    var dt = require( 'datatables.net' )();
+    var dt = require( 'datatables.net' )();*/
   </script>
   <script>
-    $(function () {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-      })
-    })
 
-    document.__proto__.swal = {
+
+    document.swal = {
       success: function(message){
         if (!message)
           return null;
@@ -123,21 +115,21 @@
       }
     };
 
-    document.__proto__.playSound = function(src) {
+    document.playSound = function(src) {
       var player = document.getElementById('player');
       player.src = "/assets/sound/"+src+".mp3";
       player.play();
     }
 
-    document.__proto__.printJs = function() {
+    document.printJs = function() {
       printJS('printable', 'html');
     }
 
-    document.__proto__.printPdf = function() {
+    document.printPdf = function() {
       printJS('printable', 'docs/printjs.pdf');
     }
 
-    document.__proto__.exportExcel = function(name="excel") {
+    document.exportExcel = function(name="excel") {
       $("#printable").table2excel({
         exclude: ".noExl",
         name: name,
@@ -149,14 +141,14 @@
       });
     }
 
-    document.__proto__.nicescroll = function(selector) {
+    document.nicescroll = function(selector) {
       if (selector)
         $(selector).niceScroll();
       else
         $(selector).niceScroll('.nicescroll');
     }
 
-    document.__proto__.datatable = function() {
+    document.datatable = function() {
       $('.default-datatable').each(function(){
         try{
           $(this).dataTable().fnDestroy();
@@ -176,13 +168,13 @@
                 });
           });
     };
-    document.__proto__.jq = $;
-    document.__proto__.jquery = $;
-    document.__proto__.say = function(word) {
+    document.jq = $;
+    document.jquery = $;
+    document.say = function(word) {
       responsiveVoice.speak(word, "Arabic Female");
     };
 
-    document.__proto__.search = function(value, table) {
+    document.search = function(value, table) {
       console.log(value);
       console.log(table);
       if (value.length > 0) {
@@ -196,110 +188,6 @@
       $(table).find("tbody tr").show();
     }
 
-    /**
- * Responsive navigation with a suggestive pointer
- *
- * TODO: Fix bug where resizing below and above 768px wide
- *       causes the feature button and pointer to animate
- */
-($ => {
-  let nav = $('nav'),
-  menu = nav.find('.navigation'),
-  active = menu.find('li.active'),
-  items = menu.find('li').not('.pointer'),
-  pointer = nav.find('.pointer');
-
-  /**
-                                   * Center the pointer vertically or horizontally based on the screen width
-                                   *
-                                   * @param   a     jQuery Object   The active menu item
-                                   */
-  let centralize = a => {
-    if ($(window).innerWidth() > 768) {
-      return `translate3d(${a.position().left + a.outerWidth() / 2}px, 0, 0) rotate(45deg)`;
-    } else {
-      return `translate3d(0, ${a.position().top + a.outerHeight() / 2}px, 0) rotate(45deg)`;
-    }
-  };
-
-  if ($(window).innerWidth() > 768) {
-    nav.find('#mobile-nav-check').attr('tab-index', '-1');
-  } else {
-    nav.find('#mobile-nav-check').removeAttr('tab-index');
-  }
-
-  /**
-     * Center the pointer and reveal it on load
-     */
-  pointer.css({
-    display: 'block',
-    transform: centralize(active) });
-
-
-  /**
-                                       * Center the pointer on resizing the screen
-                                       */
-  $(window).on('resize', function () {
-    if ($(window).innerWidth() > 768) {
-      nav.find('#mobile-nav-check').attr('tab-index', '-1');
-    } else {
-      nav.find('#mobile-nav-check').removeAttr('tab-index');
-    }
-
-    pointer.css({
-      transform: centralize(menu.find('li.active')) });
-
-  });
-
-  /**
-       * Add the active class on click
-       *
-       * Note: only really useful if the a tags dont go anywhere
-       */
-  items.on('click', function () {
-    items.removeClass('active');
-    $(this).addClass('active').find('a').blur();
-  });
-
-  /**
-       * Center the pointer on hovering over a nav item
-       */
-  items.on('mouseover', function () {
-    pointer.css({
-      transform: centralize($(this)) });
-
-  });
-
-  /**
-       * Center the pointer on the active nav item when
-       * hovered out of a nav-item
-       */
-  items.on('mouseout', function () {
-    pointer.css({
-      transform: centralize(menu.find('li.active')) });
-
-  });
-
-  /**
-       * Center the pointer on tabbing or focussing
-       * a nav item
-       */
-  items.find('a').focus(function () {
-    pointer.css({
-      transform: centralize($(this).parent()) });
-
-  });
-
-  /**
-       * Center the pointer on the active nav item when
-       * nav-item is unfocussed
-       */
-  items.find('a').blur(function () {
-    pointer.css({
-      transform: centralize(menu.find('li.active')) });
-
-  });
-})(jQuery);
   </script>
 </body>
 </html>
