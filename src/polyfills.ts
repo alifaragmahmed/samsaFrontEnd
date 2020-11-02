@@ -62,7 +62,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 // import 'intl';  // Run `npm install --save intl`.
-
+/*
 if (!HTMLCanvasElement.prototype.toBlob) {
   Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
     value: function(callback, type, quality) {
@@ -83,3 +83,4 @@ if (!HTMLCanvasElement.prototype.toBlob) {
     }
   });
 }
+*/

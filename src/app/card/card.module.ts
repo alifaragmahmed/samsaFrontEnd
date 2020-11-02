@@ -11,9 +11,10 @@ import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/ch
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule, MatSlideToggleModule } from '@angular/material';
 import { StudentAccountService } from '../account/services/student-account.service';
+import { CardExportReportComponent } from './components/report/card-export-report/card-export-report.component';
 
 @NgModule({
-  declarations: [CardComponent],
+  declarations: [CardComponent, CardExportReportComponent],
   imports: [
     CommonModule,
     SharedModule,

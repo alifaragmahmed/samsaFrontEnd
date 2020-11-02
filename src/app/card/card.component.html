@@ -21,7 +21,7 @@
               [(ngModel)]="searchKey" >
 
               <button
-              (click)="loadStudentAccountInfo(studentSearchId)"
+              (click)="loadStudentInfo(studentSearchId)"
               class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge"  >{{ "search" | trans }}</button>
 
               <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:30%;z-index:10;" >
@@ -131,8 +131,9 @@
               <ul class="w3-ul">
                 <li *ngFor="let item of cardTypes index as i" class="w3-display-container" >
                   <mat-slide-toggle
-                  (change)="selectedCard = (selectedCard == item)? null : item"
-                  [checked]="selectedCard == item"
+                  [disabled]="!availableCards.has(item.id)"
+                  (change)="selectedCard = (selectedCard == item)? null : item;preCardSrc()"
+                  [checked]="selectedCard .id== item.id"
                    ></mat-slide-toggle>
                   <span style="padding-right: 3px" class="w3-"  >{{ item.name }}</span>
                 </li>
@@ -146,8 +147,8 @@
 
         <div class="col-lg-3 col-md-3 col-sm-12">
 
-          <div class="card-place" >
-
+          <div class="card-place" style="height: 200px;border: 2px dashed lightgray;padding: 5px" >
+            <img [src]="selectedCard.image_url" class="w3-block material-shadow w3-round" >
           </div>
           <br>
 
@@ -155,7 +156,20 @@
             <div class="custom-panel-body">
 
               <button
-              class="btn btn-default w3-block small-shadow btn-margin-bottom">{{ "save & print" | trans }}</button>
+              [disabled]="isExportSubmitted || !selectedCard.id"
+              (click)="saveAndPrint()"
+              class="btn btn-default w3-block small-shadow btn-margin-bottom">
+              <span *ngIf="isExportSubmitted" class="fa fa-spin fa-spinner" ></span>
+              <span *ngIf="!isExportSubmitted"  >{{ "save & print" | trans }}</span>
+
+            </button>
+
+            <button
+              (click)="showTermsAndConditions()"
+              class="btn btn-default w3-block small-shadow btn-margin-bottom">
+              <span   >{{ "card terms & conditions" | trans }}</span>
+
+            </button>
 
 
             </div>
@@ -172,6 +186,53 @@
 
   <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px!important">
 
+    <div class="material-shadow w3-white" style="padding: 5px" >
+      <ul class="w3-ul" >
+        <li class="text-center" >
+          {{ "available cards" | trans }}
+        </li>
+        <li *ngFor="let card of student.available_cards index as i" style="padding: 5px" >
+          <img [src]="card.image_url" width="30px" class="w3-round" style="margin-left: 5px" > {{ card.name }}
+        </li>
+      </ul>
+    </div>
 
   </div>
 </div>
+
+
+<div class="modal fade" id="cardTermCondition" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{ "card terms & conditions" | trans }}</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li>
+            ان يكون الطالب مقيد بالمعهد
+          </li>
+          <li>
+            ان يكون الطالب سدد القسط المطلوب لاستخراج الكارنيه
+          </li>
+          <li>
+            لا يوجد مانع للطلاب الذكور مثل (اتم ال 18 ولم يحضر بطاقة 6 جند)
+          </li>
+          <li>
+            توجد صوره شخصية للطالب
+          </li>
+          <li>
+            الطالب غير موقوف تجنيديا
+          </li>
+          <li>
+            الطالب مقيد و غير موقوف من المعهد
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ "close" | trans }}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

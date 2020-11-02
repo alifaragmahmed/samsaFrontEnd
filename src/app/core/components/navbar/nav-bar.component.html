@@ -49,6 +49,17 @@
                           </div>
                         </div>
                       </li>
+                      <li class="waves-effect waves-white text-right">
+                        <div class="w3-dropdown-hover" style="background-color: transparent;"  >
+                          <a class="dropdown-toggle">
+                           {{ "card export unit" | trans }} <span class="caret"></span>
+                          </a>
+                          <div class="w3-dropdown-content w3-bar-block w3-border w3-text-black" style="position: fixed;" >
+                             <a href="#" class="w3-bar-item w3-button w3-text-black" routerLink="/card" >{{ "card export unit" | trans }}</a>
+                             <a href="#" class="w3-bar-item w3-button w3-text-black" routerLink="/card/report/card-export" >{{ "card export report" | trans }}</a>
+                          </div>
+                        </div>
+                      </li>
 
                       <li class="waves-effect waves-white">
                         <a routerLink="/settings" class="dropdown-toggle" data-toggle="dropdown">{{ "main_settings" | trans }}  </a>

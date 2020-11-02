@@ -243,7 +243,7 @@
                           [ngClass]="{'border-bottom-dashed': application.division_id, 'border-bottom-red': !application.division_id}"
                           [(ngModel)]="application.division_id">
                             <ng-container *ngFor="let item of applicationSettings.DIVISIONS">
-                              <option *ngIf="application.department_id == item.department_id"  value="{{ item.id }}">{{ item.name }}</option>
+                              <option  value="{{ item.id }}">{{ item.name }}</option>
                             </ng-container>
                           </select>
                         </td>
