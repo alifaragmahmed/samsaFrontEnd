@@ -32,6 +32,7 @@ import { SystemLabelComponent } from './core/components/system-label/system-labe
 import { AccountModule } from './account/account.module';
 import { UserService } from './user/services/user.service';
 import { RoleService } from './user/services/role.service';
+import { AcademicPlanComponent } from './academic/components/academic-plan/academic-plan.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RoleService } from './user/services/role.service';
     AppComponent,
     PageNotFoundComponent,
     UserProfileComponent,
-    SystemLabelComponent
+    SystemLabelComponent,
+    AcademicPlanComponent
   ],
   imports: [
     BrowserModule,

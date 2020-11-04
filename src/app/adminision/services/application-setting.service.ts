@@ -30,35 +30,66 @@ export class ApplicationSettingService {
 
   public static LOADED: any = false;
 
+  public requestQueue =  [];
+
   constructor(private http: HttpClient) {
+    this.queueRequests();
+  }
+
+  queueRequests() {
+    this.requestQueue.push({request: this.getCaseConstraints(), object: 'CASE_CONSTRAINTS'});
+    this.requestQueue.push({request: this.getNationalities(), object: 'NATIONALITIES'});
+    this.requestQueue.push({request: this.getAcademicYears(), object: 'ACADEMIC_YEARS'});
+    this.requestQueue.push({request: this.getQualificationTypes(), object: 'QUALIFICATION_TYPES'});
+    this.requestQueue.push({request: this.getQualifications(), object: 'QUALIFICATIONS'});
+    this.requestQueue.push({request: this.getRegisterationStatus(), object: 'REGISTERATION_STATUS'});
+    this.requestQueue.push({request: this.getRegisterationMethods(), object: 'REGISTERATION_METHODS'});
+    this.requestQueue.push({request: this.getLanguages(), object: 'LANGUAGES'});
+    this.requestQueue.push({request: this.getCities(), object: 'CITIES'});
+    this.requestQueue.push({request: this.getGovernments(), object: 'GOVERNMENTS'});
+    this.requestQueue.push({request: this.getCountries(), object: 'COUNTRIES'});
+    this.requestQueue.push({request: this.getMilitaryStatus(), object: 'MILITARY_STATUS'});
+    this.requestQueue.push({request: this.getMilitaryAreas(), object: 'MILITARY_AREAS'});
+    this.requestQueue.push({request: this.getParentJobs(), object: 'CITIES'});
+    this.requestQueue.push({request: this.getRelativeRelations(), object: 'PARENT_JOBS'});
+    this.requestQueue.push({request: this.getRequiredDocuments(), object: 'REQUIRED_DOCUMENTS'});
+    this.requestQueue.push({request: this.getDepartments(), object: 'DEPARTMENTS'});
+    this.requestQueue.push({request: this.getRegisterationStatusDocuments(), object: 'REGSITERATIN_STATUS_DOCUMENTS'});
+    this.requestQueue.push({request: this.getDivisions(), object: 'DIVISIONS'});
+    this.requestQueue.push({request: this.getSettings(), object: 'SETTINGS'});
     //
+    this.requestQueue.reverse();
+  }
+
+  public load() {
+    this.requestQueue.forEach(firstElement => {
+      if (ApplicationSettingService[firstElement.object].length <= 0) {
+        firstElement.request.subscribe((res) => {
+          ApplicationSettingService[firstElement.object] = res;
+          console.log(firstElement.object);
+          //
+        });
+      }
+    });
   }
 
   public loadSettings() {
-    if (ApplicationSettingService.LOADED)
-      return;
+  //this.load();
+  // return;
+    let firstElement = this.requestQueue.pop();
 
-    this.getCaseConstraints().subscribe((r)=>{ ApplicationSettingService.CASE_CONSTRAINTS = r; });
-    this.getNationalities().subscribe((r)=>{ ApplicationSettingService.NATIONALITIES = r; });
-    this.getAcademicYears().subscribe((r)=>{ ApplicationSettingService.ACADEMIC_YEARS = r; });
-    this.getQualificationTypes().subscribe((r)=>{ ApplicationSettingService.QUALIFICATION_TYPES = r; });
-    this.getQualifications().subscribe((r)=>{ ApplicationSettingService.QUALIFICATIONS = r; });
-    this.getRegisterationStatus().subscribe((r)=>{ ApplicationSettingService.REGISTERATION_STATUS = r; });
-    this.getRegisterationMethods().subscribe((r)=>{ ApplicationSettingService.REGISTERATION_METHODS = r; });
-    this.getLanguages().subscribe((r)=>{ ApplicationSettingService.LANGUAGES = r; });
-    this.getCities().subscribe((r)=>{ ApplicationSettingService.CITIES = r; });
-    this.getGovernments().subscribe((r)=>{ ApplicationSettingService.GOVERNMENTS = r; });
-    this.getCountries().subscribe((r)=>{ ApplicationSettingService.COUNTRIES = r; });
-    this.getMilitaryStatus().subscribe((r)=>{ ApplicationSettingService.MILITARY_STATUS = r; });
-    this.getMilitaryAreas().subscribe((r)=>{ ApplicationSettingService.MILITARY_AREAS = r; });
-    this.getParentJobs().subscribe((r)=>{ ApplicationSettingService.PARENT_JOBS = r; });
-    this.getRelativeRelations().subscribe((r)=>{ ApplicationSettingService.RELATIVE_RELATIONS = r; });
-    this.getRequiredDocuments().subscribe((r)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = r; });
-    this.getDepartments().subscribe((r)=>{ ApplicationSettingService.DEPARTMENTS = r; });
-    this.getRegisterationStatusDocuments().subscribe((r)=>{ ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = r; });
-    this.getDivisions().subscribe((r)=>{ ApplicationSettingService.DIVISIONS = r; });
-    this.getSettings().subscribe((r)=>{ ApplicationSettingService.SETTINGS = r; });
-    ApplicationSettingService.LOADED = true;
+    if (firstElement) {
+      if (ApplicationSettingService[firstElement.object].length <= 0) {
+        firstElement.request.subscribe((res) => {
+          ApplicationSettingService[firstElement.object] = res;
+          console.log(firstElement.object);
+          //
+          this.loadSettings();
+        }, (error)=> {
+          console.log(error);
+        });
+      }
+    }
   }
 
   public getDivisions() {
