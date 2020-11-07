@@ -80,14 +80,22 @@ export class ApplicationSettingService {
 
     if (firstElement) {
       if (ApplicationSettingService[firstElement.object].length <= 0) {
-        firstElement.request.subscribe((res) => {
-          ApplicationSettingService[firstElement.object] = res;
-          console.log(firstElement.object);
-          //
-          this.loadSettings();
-        }, (error)=> {
-          console.log(error);
-        });
+        firstElement.request.subscribe(
+          (res) => {
+            ApplicationSettingService[firstElement.object] = res;
+            console.log(firstElement.object);
+            //
+            //console.log(this.requestQueue.length);
+            //console.log(ApplicationSettingService[firstElement.object]);
+            this.loadSettings();
+          },
+          (error)=> {
+            this.loadSettings();
+          },
+          () => {
+            this.loadSettings();
+          }
+        );
       }
     }
   }

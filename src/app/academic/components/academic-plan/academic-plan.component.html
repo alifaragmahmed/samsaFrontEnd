@@ -19,14 +19,21 @@
               <table class="table table-bordered" >
                 <tr>
                   <th>{{ "course category" }}</th>
+                  <td>
+                    <select class="w3-round-xxlarge select2 form-control filter-category"   multiple >
+                      <option *ngFor="let item of categories" value="{{ item.id }}">{{ item.name }}</option>
+                    </select>
+                  </td>
                 </tr>
                 <tr>
                   <td>
-                    <select class="w3-round-xxlarge" >
-                      <option value="">{{ "all" }}</option>
-                      <option value="1">{{ "MATHS" }}</option>
-                    </select>
+                    <button
+                    mat-raised-button color="primary"
+                    (click)="filter()" style="margin: 5px" > {{ "search" | trans}} </button>
                   </td>
+                  <td></td>
+                  <td></td>
+                </tr>
               </table>
             </div>
           </div>
@@ -34,92 +41,75 @@
           <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
             <div class="custom-panel-title" >{{ "courses" | trans }}</div>
             <div class="custom-panel-body table-responsive"  >
+              <table class="table table-bordered text-center" >
+                <ng-container *ngFor="let row of categories index as counter" >
+                  <tr class="w3-light-gray category-row category-{{ row.id }}" >
+                    <th>{{ counter + 1 }}</th>
+                    <th >{{ row.name }}</th>
+                    <th>{{ row.required_hours }}</th>
+                  </tr>
+                  <tr class="category-row category-{{ row.id }}" >
+                    <td colspan="3" >
+                      <table class="table table-bordered text-center" >
+                        <tr  >
+                          <th>#</th>
+                          <th>{{ "name" | trans }}</th>
+                          <th>{{ "code" | trans }}</th>
+                          <th>{{ "credit_hour" | trans }}</th>
+                          <th>{{ "division" | trans }}</th>
+                          <th>{{ "course_category" | trans }}</th>
+                          <th>{{ "year_work_degree" | trans }}</th>
+                          <th>{{ "practical_degree" | trans }}</th>
+                          <th>{{ "academic_degree" | trans }}</th>
+                          <th>{{ "small_degree" | trans }}</th>
+                          <th>{{ "large_degree" | trans }}</th>
+                          <th>{{ "has_project" | trans }}</th>
+                          <th>{{ "is_required" | trans }}</th>
+                          <th>{{ "book_price" | trans }}</th>
+                          <th>{{ "failed_degree" | trans }}</th>
+                          <th>{{ "prequsites" | trans }}</th>
+                          <th>{{ "notes" | trans }}</th>
+                          <th></th>
+                        </tr>
+                        <tr *ngFor="let item of row.courses index as i" >
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ item.name }}</td>
+                          <td>{{ item.code }}</td>
+                          <td>{{ item.credit_hour }}</td>
+                          <td>{{ item.division? item.division.name : '' }}</td>
+                          <td>{{ item.category? item.category.name : '' }}</td>
+                          <td>{{ item.year_work_degree }}</td>
+                          <td>{{ item.practical_degree }}</td>
+                          <td>{{ item.academic_degree }}</td>
+                          <td>{{ item.small_degree }}</td>
+                          <td>{{ item.large_degree }}</td>
+                          <td>
+                            <i *ngIf="item.has_project" class="fa fa-check-square w3-text-green" ></i>
+                            <i *ngIf="!item.has_project" class="fa fa-window-close-o w3-text-red" ></i>
+                          </td>
+                          <td>
+                            <i *ngIf="item.is_required" class="fa fa-check-square w3-text-green" ></i>
+                            <i *ngIf="!item.is_required" class="fa fa-window-close-o w3-text-red" ></i>
+                          </td>
+                          <td>{{ item.book_price }}</td>
+                          <td>{{ item.failed_degree }}</td>
+                          <td>{{ item.prerequsites_names }}</td>
+                          <td>{{ item.notes }}</td>
+                          <td>
+                            <div style="width: 100px" >
+                              <i class="fa fa-edit w3-text-orange btn" (click)="showCourseForm(item)" ></i>
 
-              <table class="table-bordered text-center" >
-                <tr >
-                  <th>1</th>
-                  <th colspan="14" >{{ "coures category 1" }}</th>
-                  <th>{{ 25 }}</th>
-                </tr>
-                <tr  >
-                  <th>#</th>
-                  <th>{{ "name" | trans }}</th>
-                  <th>{{ "code" | trans }}</th>
-                  <th>{{ "credit_hour" | trans }}</th>
-                  <th>{{ "division" | trans }}</th>
-                  <th>{{ "course_category" | trans }}</th>
-                  <th>{{ "year_work_degree" | trans }}</th>
-                  <th>{{ "practical_degree" | trans }}</th>
-                  <th>{{ "academic_degree" | trans }}</th>
-                  <th>{{ "small_degree" | trans }}</th>
-                  <th>{{ "large_degree" | trans }}</th>
-                  <th>{{ "has_project" | trans }}</th>
-                  <th>{{ "is_required" | trans }}</th>
-                  <th>{{ "book_price" | trans }}</th>
-                  <th>{{ "failed_degree" | trans }}</th>
-                  <th>{{ "prequsites" | trans }}</th>
-                  <th>{{ "notes" | trans }}</th>
-                </tr>
-                <tr>
-                  <td>
-                    <input type="number" readonly="" value="1"  class="number_input"  >
-                  </td>
-                  <td>
-                    <input type="text" value="Math III"  style="width: 100px" >
-                  </td>
-                  <td>
-                    <input type="text" value="MTHIII"  style="width: 80px"   >
-                  </td>
-                  <td>
-                    <input type="number" value="3"  class="number_input"   >
-                  </td>
-                  <td>
-                    <select   style="width: 50px">
-                      <option value="1">{{ "IT" }}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select   style="width: 80px">
-                      <option value="1">{{ "MATHS" }}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input type="number" value="50"   class="number_input"   >
-                  </td>
-                  <td>
-                    <input type="number" value="50"  class="number_input"    >
-                  </td>
-                  <td>
-                    <input type="number" value="50"   class="number_input"   >
-                  </td>
-                  <td>
-                    <input type="number" value="65"   class="number_input"   >
-                  </td>
-                  <td>
-                    <input type="number" value="100"  class="number_input"    >
-                  </td>
-                  <td>
-                    <input type="checkbox" value="true"  class="number_input"    >
-                  </td>
-                  <td>
-                    <input type="checkbox" value="true"   class="number_input"   >
-                  </td>
-                  <td>
-                    <input type="number" value="100"  class="number_input"    >
-                  </td>
-                  <td>
-                    <input type="number" value="50"   class="number_input"   >
-                  </td>
-                  <td>
-                    <select class="select2" multiple  style="width: 80px">
-                      <option value="1">{{ "Math I" }}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <input type="text" value="-"   >
-                  </td>
-                </tr>
+                              <i *ngIf="item.can_delete" (click)="remove('COURSE', item, i)" class="fa fa-trash w3-text-red btn" ></i>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                      <br>
+                    </td>
+                  </tr>
+                </ng-container>
               </table>
+
 
 
             </div>
@@ -129,7 +119,11 @@
           <!-- course categories panel -->
           <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
             <div class="custom-panel-body table-responsive w3-padding"  >
-              <button mat-raised-button color="primary" ><i class="fa fa-send-o"></i> {{ "save changes" }} </button>
+              <button mat-raised-button color="primary" (click)="showCourseForm()" style="margin: 5px" ><i class="fa fa-send-o"></i> {{ "create course" | trans }} </button>
+
+              <button mat-raised-button color="primary" (click)="showCourseCategoryForm()" style="margin: 5px" ><i class="fa fa-send-o"></i> {{ "create course category" | trans }} </button>
+
+              <button mat-raised-button color="primary" (click)="showDegreeMapForm()" style="margin: 5px" ><i class="fa fa-send-o"></i> {{ "create degree map" | trans}} </button>
             </div>
           </div>
 
@@ -144,7 +138,7 @@
             <div class="custom-panel-title" >{{ "course category" | trans }}</div>
             <div class="custom-panel-body table-responsive"  >
 
-              <table class=" table-bordered text-center" >
+              <table class="table table-bordered text-center" >
                 <tr >
                   <th>{{ "#" }}</th>
                   <th>{{ "name" | trans }}</th>
@@ -153,27 +147,21 @@
                   <th></th>
                 </tr>
 
-                <tr>
+                <tr *ngFor="let item of categories index as i" >
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.total_hours }}</td>
+                  <td>{{ item.required_hours }}</td>
                   <td>
-                    <input type="text" readonly="" value="1" style="width: 20px;" >
-                  </td>
-                  <td>
-                    <input type="text" value="category name" style="width: 100px;" >
-                  </td>
-                  <td>
-                    <input type="number" value="12" style="width: 45px;" >
-                  </td>
-                  <td>
-                    <input type="number" value="12" style="width: 45px;" >
-                  </td>
-                  <td>
-                    <button mat-button color="warning" style="padding: 3px;margin: 0px;">
-                      <i class="fa fa-trash" ></i>
-                    </button>
+                    <div style="width: 100px" >
+                      <i class="fa fa-edit w3-text-orange btn" (click)="showCourseCategoryForm(item)" ></i>
+
+                    <i *ngIf="item.can_delete" (click)="remove('COURSE_CATEGORY', item, i)" class="fa fa-trash w3-text-red btn" ></i>
+                    </div>
                   </td>
                 </tr>
               </table>
-              <button mat-raised-button color="primary" ><i class="fa fa-plus"></i></button>
+              <button class="btn btn-default w3-margin" class="w3-margin" (click)="showCourseCategoryForm(null)" ><i class="fa fa-plus"></i></button>
             </div>
           </div>
           <br>
@@ -183,7 +171,7 @@
             <div class="custom-panel-title" >{{ "degree map" | trans }}</div>
             <div class="custom-panel-body table-responsive"  >
 
-              <table class=" table-bordered text-center" >
+              <table class="table table-bordered text-center" >
                 <tr >
                   <th>{{ "#" }}</th>
                   <th>{{ "from" | trans }}</th>
@@ -194,34 +182,22 @@
                   <th></th>
                 </tr>
 
-                <tr>
+                <tr *ngFor="let item of degreeMaps index as i" >
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.percent_from | percent }}</td>
+                  <td>{{ item.percent_to | percent }}</td>
+                  <td>{{ item.key }}</td>
+                  <td>{{ item.gpa }}</td>
+                  <td>{{ item.name }}</td>
                   <td>
-                    <input type="text" readonly="" value="1" style="width: 20px;" >
-                  </td>
-                  <td>
-                    <input type="number" value="95" style="width: 45px;" >
-                  </td>
-                  <td>
-                    <input type="number" value="100" style="width: 45px;" >
-                  </td>
-                  <td>
-                    <input type="text" value="A+" style="width: 45px;" >
-                  </td>
-                  <td>
-                    <input type="number" value="4" style="width: 45px;" >
-                  </td>
-                  <td>
-                    <input type="text"  value="excellent" style="width: 80px;" >
-                  </td>
-
-                  <td>
-                    <button mat-button color="warning" style="padding: 3px;margin: 0px;">
-                      <i class="fa fa-trash" ></i>
-                    </button>
+                    <div style="width: 100px" >
+                      <i class="fa fa-edit w3-text-orange btn" (click)="showDegreeMapForm(item)" ></i>
+                    <i *ngIf="item.can_delete" (click)="remove('DEGREE_MAP', item, i)" class="fa fa-trash w3-text-red btn" ></i>
+                    </div>
                   </td>
                 </tr>
               </table>
-              <button mat-raised-button color="primary" ><i class="fa fa-plus"></i></button>
+              <button   class="btn btn-default w3-margin" class="w3-margin" (click)="showDegreeMapForm(null)"  ><i class="fa fa-plus"></i></button>
             </div>
           </div>
 
@@ -235,3 +211,10 @@
     </div>
   </div>
 
+
+
+  <app-create-course-form [course]="course" [updateView]="updateView" [categories]="categories" ></app-create-course-form>
+
+  <app-create-degree-map-form [degreeMap]="degreeMap" [updateView]="updateView" ></app-create-degree-map-form>
+
+  <app-create-course-category-form [courseCategory]="courseCategory" [updateView]="updateView" ></app-create-course-category-form>

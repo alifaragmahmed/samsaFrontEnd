@@ -79,3 +79,17 @@ body {
 	position:relative;
 	top:1px;
 }
+
+
+.select2 {
+  width: 100%!important;
+}
+
+.select2-selection__choice {
+  background-color: #4a569a!important;
+  border: none!important;
+}
+
+.select2-selection__choice__remove {
+  color: white!important;
+}

@@ -39,7 +39,7 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   }
 
   ngOnInit() {
-    //this.init();
+    this.init();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
