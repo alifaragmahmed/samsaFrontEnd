@@ -29,13 +29,8 @@ import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/ch
 import {MatButtonModule} from '@angular/material/button';
 import { DataTablesModule } from '../../node_modules/angular-datatables';
 import { SystemLabelComponent } from './core/components/system-label/system-label.component';
-import { AccountModule } from './account/account.module';
 import { UserService } from './user/services/user.service';
 import { RoleService } from './user/services/role.service';
-import { AcademicPlanComponent } from './academic/components/academic-plan/academic-plan.component';
-import { CreateCourseFormComponent } from './academic/components/create-course-form/create-course-form.component';
-import { CreateCourseCategoryFormComponent } from './academic/components/create-course-category-form/create-course-category-form.component';
-import { CreateDegreeMapFormComponent } from './academic/components/create-degree-map-form/create-degree-map-form.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +39,7 @@ import { CreateDegreeMapFormComponent } from './academic/components/create-degre
     AppComponent,
     PageNotFoundComponent,
     UserProfileComponent,
-    SystemLabelComponent,
-    AcademicPlanComponent,
-    CreateCourseFormComponent,
-    CreateCourseCategoryFormComponent,
-    CreateDegreeMapFormComponent
+    SystemLabelComponent
   ],
   imports: [
     BrowserModule,

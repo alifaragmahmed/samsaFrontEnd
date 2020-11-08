@@ -93,3 +93,10 @@ body {
 .select2-selection__choice__remove {
   color: white!important;
 }
+
+.w3-bar-item {
+  text-align: right!important;
+}
+.w3-tiny {
+  font-size: 12px!important;
+}

@@ -41,7 +41,7 @@
           <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
             <div class="custom-panel-title" >{{ "courses" | trans }}</div>
             <div class="custom-panel-body table-responsive"  >
-              <table class="table table-bordered text-center" >
+              <table class="table-bordered text-center w3-tiny" style="width: 100%" >
                 <ng-container *ngFor="let row of categories index as counter" >
                   <tr class="w3-light-gray category-row category-{{ row.id }}" >
                     <th>{{ counter + 1 }}</th>
@@ -50,14 +50,14 @@
                   </tr>
                   <tr class="category-row category-{{ row.id }}" >
                     <td colspan="3" >
-                      <table class="table table-bordered text-center" >
+                      <table class="table-bordered text-center"  style="width: 100%" >
                         <tr  >
                           <th>#</th>
                           <th>{{ "name" | trans }}</th>
                           <th>{{ "code" | trans }}</th>
                           <th>{{ "credit_hour" | trans }}</th>
+                          <th>{{ "level" | trans }}</th>
                           <th>{{ "division" | trans }}</th>
-                          <th>{{ "course_category" | trans }}</th>
                           <th>{{ "year_work_degree" | trans }}</th>
                           <th>{{ "practical_degree" | trans }}</th>
                           <th>{{ "academic_degree" | trans }}</th>
@@ -76,8 +76,8 @@
                           <td>{{ item.name }}</td>
                           <td>{{ item.code }}</td>
                           <td>{{ item.credit_hour }}</td>
+                          <td>{{ item.level? item.level.name : '' }}</td>
                           <td>{{ item.division? item.division.name : '' }}</td>
-                          <td>{{ item.category? item.category.name : '' }}</td>
                           <td>{{ item.year_work_degree }}</td>
                           <td>{{ item.practical_degree }}</td>
                           <td>{{ item.academic_degree }}</td>
@@ -138,7 +138,7 @@
             <div class="custom-panel-title" >{{ "course category" | trans }}</div>
             <div class="custom-panel-body table-responsive"  >
 
-              <table class="table table-bordered text-center" >
+              <table class="w3-tiny table-bordered text-center w3-block" >
                 <tr >
                   <th>{{ "#" }}</th>
                   <th>{{ "name" | trans }}</th>
@@ -171,7 +171,7 @@
             <div class="custom-panel-title" >{{ "degree map" | trans }}</div>
             <div class="custom-panel-body table-responsive"  >
 
-              <table class="table table-bordered text-center" >
+              <table class="w3-tiny table-bordered text-center w3-block"  >
                 <tr >
                   <th>{{ "#" }}</th>
                   <th>{{ "from" | trans }}</th>
@@ -184,8 +184,8 @@
 
                 <tr *ngFor="let item of degreeMaps index as i" >
                   <td>{{ i + 1 }}</td>
-                  <td>{{ item.percent_from | percent }}</td>
-                  <td>{{ item.percent_to | percent }}</td>
+                  <td>{{ item.percent_from  }}%</td>
+                  <td>{{ item.percent_to  }}%</td>
                   <td>{{ item.key }}</td>
                   <td>{{ item.gpa }}</td>
                   <td>{{ item.name }}</td>

@@ -19,6 +19,7 @@ export class CourseService {
     return this.http.get('academic/courses?api_token=' + Auth.getApiToken());
   }
 
+
   /**
    * store new service
    */
@@ -38,5 +39,21 @@ export class CourseService {
    */
   public destroy(id) {
     return this.http.post('academic/courses/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
+  }
+
+
+  /**
+   * get open courses api
+   *
+   */
+  public getOpenCourses() {
+    return this.http.get('academic/open_courses?api_token=' + Auth.getApiToken());
+  }
+
+  /**
+   * update open courses
+   */
+  public updateOpenCourses(data: any) {
+    return this.http.post('academic/open_courses/update?api_token=' + Auth.getApiToken(), data);
   }
 }

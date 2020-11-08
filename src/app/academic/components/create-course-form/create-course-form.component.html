@@ -39,6 +39,14 @@
                 </td>
               </tr>
               <tr>
+                <td>{{ "level"| trans }} *</td>
+                <td>
+                  <select  [(ngModel)]="course.level_id"  class="form-control">
+                    <option *ngFor="let item of levels" value="{{ item.id }}" >{{ item.name }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <td>{{ "course_category"| trans }} *</td>
                 <td>
                   <select  [(ngModel)]="course.subject_category_id" class="form-control" >

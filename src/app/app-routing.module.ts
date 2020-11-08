@@ -3,10 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout.component';
 import { AuthGuardService } from './shared/middlewares/auth-guard.service';
-import { AuthComponent } from './core/auth.component';
-import { AuthGuestService } from './shared/middlewares/auth-guest.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AcademicPlanComponent } from './academic/components/academic-plan/academic-plan.component';
 
 const routes: Routes = [
 
@@ -20,8 +17,8 @@ const routes: Routes = [
         loadChildren: './student/student.module#StudentModule'
       },
       {
-        path: 'academic/plan',
-        component: AcademicPlanComponent
+        path: 'academic',
+        loadChildren: './academic/academic.module#AcademicModule'
       },
       {
         path: 'account',

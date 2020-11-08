@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { LevelService } from 'src/app/account/services/level.service';
 import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
+import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 import { CourseService } from '../../services/course.service';
@@ -19,6 +21,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
 
   courses: any = [];
   divisions: any = [];
+  levels: any = [];
   isSubmitted = false;
   requiredFields = [
     'name',
@@ -29,6 +32,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     'small_degree',
     'large_degree',
     'division_id',
+    'level_id',
     'credit_hour',
     'subject_category_id',
     'book_price',
@@ -45,6 +49,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     this.applicationSetting.getDivisions().subscribe((res) => {
       this.divisions = res;
     });
+    this.levels = Cache.get(LevelService.LEVEL_PREFIX);
   }
 
   ngOnChanges() {
