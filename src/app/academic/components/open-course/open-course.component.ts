@@ -16,6 +16,7 @@ export class OpenCourseComponent implements OnInit {
   openCourses: any = [];
   levels: any = [];
   selectedLevels: any = [];
+  isSubmitted = false;
 
 
   constructor(private courseService: CourseService) { }
@@ -32,10 +33,20 @@ export class OpenCourseComponent implements OnInit {
     });
   }
 
+  selectCourse(course) {
+    this.courses.forEach(element => {
+      if (course.id == element.id)
+        element.selected = true;
+    });
+  }
+
   loadOpenCourses() {
     this.courseService.getOpenCourses().subscribe((res)=> {
       this.openCourses = res;
-      this.loadSelectedLevels();
+      //
+      this.openCourses.forEach(element => {
+        this.selectCourse(element);
+      });
     });
   }
 
@@ -52,35 +63,28 @@ export class OpenCourseComponent implements OnInit {
     });
   }
 
-  loadSelectedLevels() {
-    this.selectedLevels = Cache.get(LevelService.LEVEL_PREFIX);
-    this.selectedLevels.forEach(element => {
-      // assign courses to levels
-      element.courses = [];
-      this.openCourses.forEach(course => {
-        if (course.level_id == element.id) {
-          element.courses.push(course);
-        }
-      });
+  updateOpenCourses() {
+    let arr = [];
+    this.courses.forEach(element => {
+      if (element.selected)
+        arr.push(element);
+    });
+
+    let data ={
+      courses: arr
+    };
+
+    this.isSubmitted= true;
+    this.courseService.updateOpenCourses(data).subscribe((res: any) => {
+      if (res.status == 1) {
+        Message.success(res.message);
+      }
+      else
+        Message.error(res.message);
+      this.isSubmitted = false;
     });
   }
 
-  addCourse(course, index) {
-    this.openCourses.push(course);
-    //
-    this.courses.splice(index, index+1);
-    //
-    this.loadLevels();
-    this.loadSelectedLevels();
-  }
 
-  removeCourse(course, index) {
-    this.courses.push(course);
-    //
-    this.openCourses.splice(index, index+1);
-    //
-    this.loadLevels();
-    this.loadSelectedLevels();
-  }
 
 }

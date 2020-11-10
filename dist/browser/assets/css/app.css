@@ -49,3 +49,54 @@ body {
 .margin-5 {
   margin: 5px!important;
 }
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #2cbf11!important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: rgba(60, 228, 49, 0.54)!important;
+}
+
+
+.gray-button {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff!important;
+}
+.gray-button:hover {
+	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+	background-color:#e9e9e9;
+}
+.gray-button:active {
+	position:relative;
+	top:1px;
+}
+
+
+.select2 {
+  width: 100%!important;
+}
+
+.select2-selection__choice {
+  background-color: #4a569a!important;
+  border: none!important;
+}
+
+.select2-selection__choice__remove {
+  color: white!important;
+}
+
+.w3-bar-item {
+  text-align: right!important;
+}
+.w3-tiny {
+  font-size: 12px!important;
+}

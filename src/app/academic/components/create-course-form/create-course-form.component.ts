@@ -92,6 +92,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     this.courseService.store(this.course).subscribe((res: any) => {
       if (res.status == 1) {
         Message.success(res.message);
+        this.course = {};
       }
       else {
         Message.error(res.message);

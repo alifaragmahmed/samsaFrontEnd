@@ -265,6 +265,67 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./src/app/adminision/services/required-document.service.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/adminision/services/required-document.service.ts ***!
+  \******************************************************************/
+/*! exports provided: RequiredDocumentService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequiredDocumentService", function() { return RequiredDocumentService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var RequiredDocumentService = /** @class */ (function () {
+    function RequiredDocumentService(http) {
+        this.http = http;
+    }
+    /**
+     * get services from api
+     *
+     */
+    RequiredDocumentService.prototype.get = function () {
+        return this.http.get('adminision/required_documents?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
+     * store new service
+     */
+    RequiredDocumentService.prototype.store = function (data) {
+        return this.http.post('adminision/required_documents/store' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * update service
+     */
+    RequiredDocumentService.prototype.update = function (data) {
+        return this.http.post('adminision/required_documents/update/' + data.id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * remove service
+     */
+    RequiredDocumentService.prototype.destroy = function (id) {
+        return this.http.post('adminision/required_documents/delete/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), null);
+    };
+    RequiredDocumentService.REQUIRED_DOCUMENT_SERVICE_PREFIX = 'required_document';
+    RequiredDocumentService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], RequiredDocumentService);
+    return RequiredDocumentService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/settings/case-constraint/case-constraint.component.html":
 /*!*************************************************************************!*\
   !*** ./src/app/settings/case-constraint/case-constraint.component.html ***!
@@ -3332,7 +3393,7 @@ var SettingsModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-10 col-md-10 col-sm-12\">\r\n    <div class=\"w3-white material-shadow box box-primary\">\r\n      <div class=\"box-header w3-xlarge\">\r\n        {{ \"translations\" | trans }}\r\n      </div>\r\n      <br>\r\n      <div class=\"border-bottom-dashed\" ></div>\r\n      <br>\r\n\r\n      <div class=\"box-body w3-padding\" >\r\n          <table class=\" table\" >\r\n              <tr class=\"w3-border-bottom\" >\r\n                  <th>#</th>\r\n                  <th>{{ \"key\" | trans }}</th>\r\n                  <th>{{ \"name_en\" | trans }}</th>\r\n                  <th>{{ \"name_ar\" | trans }}</th>\r\n                </tr>\r\n          </table>\r\n        <div style=\"height: 600px;overflow: auto;\">\r\n            <table class=\" table\" >\r\n                <tr  *ngIf=\"!translationList\" >\r\n                  <th colspan=\"4\" >\r\n                    <div class=\"text-center w3-padding\" >\r\n                      <i class=\"w3-xlarge fa fa-spinner fa-spin w3-text-indigo\"></i>\r\n                    </div>\r\n                  </th>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let item of translationList index as i\" >\r\n                  <td>{{ i + 1 }}</td>\r\n                  <td>\r\n                    <input type=\"text\" class=\"w3-input w3-block\" readonly style=\"border: none;border: 1px dashed gray;\" [(ngModel)]=\"item.key\" >\r\n                  </td>\r\n                  <td>\r\n                    <input type=\"text\" class=\"form-control w3-input w3-block\" [(ngModel)]=\"item.name_en\" >\r\n                  </td>\r\n                  <td>\r\n                    <input type=\"text\" class=\"form-control w3-input w3-block\"  [(ngModel)]=\"item.name_ar\" >\r\n                  </td>\r\n                </tr>\r\n              </table>\r\n        </div>\r\n        <br>\r\n      </div>\r\n      <div class=\"box-footer\">\r\n        <button class=\"btn btn-primary\" [disabled]=\"isUpdate\" (click)=\"updateTranslation()\" >{{ \"save changes\" | trans }}</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-10 col-md-10 col-sm-12\">\r\n    <div class=\"w3-white material-shadow box box-primary\">\r\n      <div class=\"box-header w3-xlarge\">\r\n        {{ \"translations\" | trans }}\r\n      </div>\r\n      <br>\r\n      <div class=\"border-bottom-dashed\" ></div>\r\n      <br>\r\n\r\n      <div class=\"box-body w3-padding\" >\r\n          <table class=\" table\" >\r\n              <tr class=\"w3-border-bottom\" >\r\n                  <th>#</th>\r\n                  <th>{{ \"key\" | trans }}</th>\r\n                  <th>{{ \"name_en\" | trans }}</th>\r\n                  <th>{{ \"name_ar\" | trans }}</th>\r\n                </tr>\r\n          </table>\r\n        <div style=\"height: 600px;overflow: auto;\">\r\n            <table class=\" table\" >\r\n                <tr  *ngIf=\"!translationList\" >\r\n                  <th colspan=\"4\" >\r\n                    <div class=\"text-center w3-padding\" >\r\n                      <i class=\"w3-xlarge fa fa-spinner fa-spin w3-text-indigo\"></i>\r\n                    </div>\r\n                  </th>\r\n                </tr>\r\n\r\n                <tr *ngFor=\"let item of translationList index as i\" >\r\n                  <td>{{ i + 1 }}</td>\r\n                  <td>\r\n                    <input type=\"text\" class=\"w3-input w3-block\" readonly style=\"border: none;border: 1px dashed gray;\" [(ngModel)]=\"item.key\" >\r\n                  </td>\r\n                  <td>\r\n                    <input\r\n                    type=\"text\"\r\n                    (change)=\"item.changed = 1\"\r\n                    class=\"form-control w3-input w3-block\"\r\n                    [(ngModel)]=\"item.name_en\" >\r\n                  </td>\r\n                  <td>\r\n                    <input\r\n                    type=\"text\"\r\n                    (change)=\"item.changed = 1\"\r\n                    class=\"form-control w3-input w3-block\"\r\n                    [(ngModel)]=\"item.name_ar\" >\r\n                  </td>\r\n                </tr>\r\n              </table>\r\n        </div>\r\n        <br>\r\n      </div>\r\n      <div class=\"box-footer\">\r\n        <button class=\"btn btn-primary\" [disabled]=\"isUpdate\" (click)=\"updateTranslation()\" >{{ \"save changes\" | trans }}</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -3392,6 +3453,7 @@ var TranslationComponent = /** @class */ (function () {
      */
     TranslationComponent.prototype.loadِAppTranslations = function () {
         this.translationService.get().subscribe(function (r) {
+            _shared_cache__WEBPACK_IMPORTED_MODULE_2__["Cache"].remove(_shared_translation__WEBPACK_IMPORTED_MODULE_3__["Translation"].TRANSLATION_CACHE_KEY);
             _shared_cache__WEBPACK_IMPORTED_MODULE_2__["Cache"].set(_shared_translation__WEBPACK_IMPORTED_MODULE_3__["Translation"].TRANSLATION_CACHE_KEY, r);
         });
     };
@@ -3417,8 +3479,15 @@ var TranslationComponent = /** @class */ (function () {
      */
     TranslationComponent.prototype.updateTranslation = function () {
         var _this = this;
+        var changedWord = [];
+        this.translationList.forEach(function (element) {
+            if (element.changed == 1) {
+                element.value = null;
+                changedWord.push(element);
+            }
+        });
         var data = {
-            data: this.translationList
+            data: changedWord
         };
         this.isUpdate = true;
         this.translationService.update(data).subscribe(function (r) {

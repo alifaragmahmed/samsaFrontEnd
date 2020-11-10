@@ -5777,21 +5777,6 @@ __webpack_require__.r(__webpack_exports__);
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-// import 'intl';  // Run `npm install --save intl`.
-if (!HTMLCanvasElement.prototype.toBlob) {
-    Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
-        value: function (callback, type, quality) {
-            var dataURL = this.toDataURL(type, quality).split(',')[1];
-            setTimeout(function () {
-                var binStr = atob(dataURL), len = binStr.length, arr = new Uint8Array(len);
-                for (var i = 0; i < len; i++) {
-                    arr[i] = binStr.charCodeAt(i);
-                }
-                callback(new Blob([arr], { type: type || 'image/png' }));
-            });
-        }
-    });
-}
 
 
 /***/ }),
@@ -5803,8 +5788,8 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\projects\samsa\samsaFrontEnd\src\polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! E:\projects\samsa\samsaFrontEnd\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! E:\project\samsaFrontEnd\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! E:\project\samsaFrontEnd\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })

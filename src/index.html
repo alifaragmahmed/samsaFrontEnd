@@ -132,7 +132,7 @@
       printJS('printable', 'docs/printjs.pdf');
     }
 
-    document.exportExcel = function(name="excel") {
+    document.exportExcel = function(name) {
       $("#printable").table2excel({
         exclude: ".noExl",
         name: name,
