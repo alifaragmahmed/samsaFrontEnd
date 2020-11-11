@@ -13,7 +13,7 @@ import { CourseService } from '../../services/course.service';
 })
 export class CreateCourseFormComponent implements OnInit, OnChanges {
 
-  @Input() course: any = {};
+  @Input() course: any;
   @Input() updateView: any;
   @Input() categories: any;
 
@@ -89,6 +89,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
 
   save() {
     this.isSubmitted= true;
+
     this.courseService.store(this.course).subscribe((res: any) => {
       if (res.status == 1) {
         Message.success(res.message);

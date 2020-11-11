@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Request } from 'src/app/shared/request';
 import { HttpClient } from '../../../../node_modules/@angular/common/http';
 import { Auth } from '../../shared/auth';
 
@@ -37,45 +38,31 @@ export class ApplicationSettingService {
   }
 
   queueRequests() {
-    this.requestQueue.push({request: this.getCaseConstraints(), object: 'CASE_CONSTRAINTS'});
-    this.requestQueue.push({request: this.getNationalities(), object: 'NATIONALITIES'});
-    this.requestQueue.push({request: this.getAcademicYears(), object: 'ACADEMIC_YEARS'});
-    this.requestQueue.push({request: this.getQualificationTypes(), object: 'QUALIFICATION_TYPES'});
-    this.requestQueue.push({request: this.getQualifications(), object: 'QUALIFICATIONS'});
-    this.requestQueue.push({request: this.getRegisterationStatus(), object: 'REGISTERATION_STATUS'});
-    this.requestQueue.push({request: this.getRegisterationMethods(), object: 'REGISTERATION_METHODS'});
-    this.requestQueue.push({request: this.getLanguages(), object: 'LANGUAGES'});
-    this.requestQueue.push({request: this.getCities(), object: 'CITIES'});
-    this.requestQueue.push({request: this.getGovernments(), object: 'GOVERNMENTS'});
-    this.requestQueue.push({request: this.getCountries(), object: 'COUNTRIES'});
-    this.requestQueue.push({request: this.getMilitaryStatus(), object: 'MILITARY_STATUS'});
-    this.requestQueue.push({request: this.getMilitaryAreas(), object: 'MILITARY_AREAS'});
-    this.requestQueue.push({request: this.getParentJobs(), object: 'CITIES'});
-    this.requestQueue.push({request: this.getRelativeRelations(), object: 'PARENT_JOBS'});
-    this.requestQueue.push({request: this.getRequiredDocuments(), object: 'REQUIRED_DOCUMENTS'});
-    this.requestQueue.push({request: this.getDepartments(), object: 'DEPARTMENTS'});
-    this.requestQueue.push({request: this.getRegisterationStatusDocuments(), object: 'REGSITERATIN_STATUS_DOCUMENTS'});
-    this.requestQueue.push({request: this.getDivisions(), object: 'DIVISIONS'});
-    this.requestQueue.push({request: this.getSettings(), object: 'SETTINGS'});
-    //
-    this.requestQueue.reverse();
+    Request.addToQueue({observer: this.getCaseConstraints(), action: (res)=>{ ApplicationSettingService.CASE_CONSTRAINTS = res; }});
+    Request.addToQueue({observer: this.getNationalities(), action: (res)=>{ ApplicationSettingService.NATIONALITIES = res; }});
+    Request.addToQueue({observer: this.getAcademicYears(), action: (res)=>{ ApplicationSettingService.ACADEMIC_YEARS = res; }});
+    Request.addToQueue({observer: this.getQualificationTypes(), action: (res)=>{ ApplicationSettingService.QUALIFICATION_TYPES = res; }});
+    Request.addToQueue({observer: this.getQualifications(), action: (res)=>{ ApplicationSettingService.QUALIFICATIONS = res; }});
+    Request.addToQueue({observer: this.getRegisterationStatus(), action: (res)=>{ ApplicationSettingService.REGISTERATION_STATUS = res; }});
+    Request.addToQueue({observer: this.getRegisterationMethods(), action: (res)=>{ ApplicationSettingService.REGISTERATION_METHODS = res; }});
+    Request.addToQueue({observer: this.getLanguages(), action: (res)=>{ ApplicationSettingService.LANGUAGES = res; }});
+    Request.addToQueue({observer: this.getCities(), action: (res)=>{ ApplicationSettingService.CITIES = res; }});
+    Request.addToQueue({observer: this.getGovernments(), action: (res)=>{ ApplicationSettingService.GOVERNMENTS = res; }});
+    Request.addToQueue({observer: this.getCountries(), action: (res)=>{ ApplicationSettingService.COUNTRIES = res; }});
+    Request.addToQueue({observer: this.getMilitaryStatus(), action: (res)=>{ ApplicationSettingService.MILITARY_STATUS = res; }});
+    Request.addToQueue({observer: this.getMilitaryAreas(), action: (res)=>{ ApplicationSettingService.MILITARY_AREAS = res; }});
+    Request.addToQueue({observer: this.getParentJobs(), action: (res)=>{ ApplicationSettingService.PARENT_JOBS = res; }});
+    Request.addToQueue({observer: this.getRelativeRelations(), action: (res)=>{ ApplicationSettingService.RELATIVE_RELATIONS = res; }});
+    Request.addToQueue({observer: this.getRequiredDocuments(), action: (res)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = res; }});
+    Request.addToQueue({observer: this.getDepartments(), action: (res)=>{ ApplicationSettingService.DEPARTMENTS = res; }});
+    Request.addToQueue({observer: this.getRegisterationStatusDocuments(), action: (res)=>{ ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = res; }});
+    Request.addToQueue({observer: this.getDivisions(), action: (res)=>{ ApplicationSettingService.DIVISIONS = res; }});
+    Request.addToQueue({observer: this.getSettings(), action: (res)=>{ ApplicationSettingService.SETTINGS = res; }});
+
+
   }
 
   public load() {
-    this.requestQueue.forEach(firstElement => {
-      if (ApplicationSettingService[firstElement.object].length <= 0) {
-        firstElement.request.subscribe((res) => {
-          ApplicationSettingService[firstElement.object] = res;
-          console.log(firstElement.object);
-          //
-        });
-      }
-    });
-  }
-
-  public loadSettings() {
-  //this.load();
-  // return;
     let firstElement = this.requestQueue.pop();
 
     if (firstElement) {
@@ -98,6 +85,10 @@ export class ApplicationSettingService {
         );
       }
     }
+  }
+
+  public loadSettings() {
+    Request.fire();
   }
 
   public getDivisions() {

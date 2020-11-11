@@ -118,7 +118,7 @@
                 <td>{{ "prequsites"| trans }}</td>
                 <td>
                   <select   class="form-control select2 prerequsited" multiple value="{{ course.prerequsites }}" >
-                    <option *ngFor="let item of courses" value="{{ item.id }}" >{{ item.name }}</option>
+                    <option *ngFor="let item of courses" value="{{ item.id }}" >{{ item.name }}-{{ item.code }}</option>
                   </select>
                 </td>
               </tr>

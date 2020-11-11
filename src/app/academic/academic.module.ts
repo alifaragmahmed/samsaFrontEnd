@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material';
 import { AcademicSettingComponent } from './components/academic-setting/academic-setting.component';
 import { OpenCourseComponent } from './components/open-course/open-course.component';
+import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OpenCourseComponent } from './components/open-course/open-course.compon
     CreateCourseCategoryFormComponent,
     CreateDegreeMapFormComponent,
     AcademicSettingComponent,
-    OpenCourseComponent
+    OpenCourseComponent,
+    StudentRegisterCourseComponent
   ],
   imports: [
     SharedModule,

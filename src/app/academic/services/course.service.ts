@@ -7,6 +7,7 @@ import { Auth } from 'src/app/shared/auth';
 })
 export class CourseService {
 
+  public $: any = $;
 
   constructor(private http: HttpClient) {
   }
@@ -56,4 +57,23 @@ export class CourseService {
   public updateOpenCourses(data: any) {
     return this.http.post('academic/open_courses/update?api_token=' + Auth.getApiToken(), data);
   }
+
+
+  /**
+   * get open courses api
+   *
+   */
+  public getAvailableCourses(data) {
+    return this.http.get('academic/available_courses?api_token=' + Auth.getApiToken()+"&"+$.param(data));
+  }
+
+
+  /**
+   * get open courses api
+   *
+   */
+  public updateRegisterCourses(data) {
+    return this.http.post('academic/open_courses/update?api_token=' + Auth.getApiToken(), data);
+  }
+
 }

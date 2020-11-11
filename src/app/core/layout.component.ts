@@ -9,6 +9,7 @@ import { LevelService } from '../account/services/level.service';
 import { ApplicationSettingService } from '../adminision/services/application-setting.service';
 import { Translation } from '../shared/translation';
 import { Cache } from '../shared/cache';
+import { Request } from '../shared/request';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html'
@@ -39,7 +40,26 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   }
 
   ngOnInit() {
-    this.init();
+    Request.addToQueue({observer: this.translationService.get(), action: (r)=>{
+      Cache.remove(Translation.TRANSLATION_CACHE_KEY);
+      Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+    }});
+    Request.addToQueue({observer: this.levelService.get(), action: (r)=>{
+      Cache.remove(LevelService.LEVEL_PREFIX);
+      Cache.set(LevelService.LEVEL_PREFIX, r);
+    }});
+    Request.addToQueue({observer: this.divisionService.get(), action: (r)=>{
+      Cache.remove(DivisionService.DIVISION_PREFIX);
+      Cache.set(DivisionService.DIVISION_PREFIX, r);
+    }});
+    Request.addToQueue({observer: this.termService.get(), action: (r)=>{
+      Cache.remove(TermService.TERPM_PREFIX);
+      Cache.set(TermService.TERPM_PREFIX, r);
+    }});
+
+    // load all requests in the queueue
+    console.log("request count" + Request.queue.length);
+    Request.fire();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,52 +67,6 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   }
 
   init() {
-    // load the translations words
-    this.loadTranslations();
-    this.loadLevels();
-    this.loadDivisions();
-    this.loadTerms();
-    this.applicationSettingService.loadSettings();
-  }
-
-  /**
-   * load translations and update the cache
-   */
-  loadTranslations() {
-    this.translationService.get().subscribe((r) => {
-      Cache.remove(Translation.TRANSLATION_CACHE_KEY);
-      Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
-    });
-  }
-
-  /**
-   * load levels and update the cache
-   */
-  loadLevels() {
-    this.levelService.get().subscribe((r) => {
-      Cache.remove(LevelService.LEVEL_PREFIX);
-      Cache.set(LevelService.LEVEL_PREFIX, r);
-    });
-  }
-
-  /**
-   * load divisions and update the cache
-   */
-  loadDivisions() {
-    this.divisionService.get().subscribe((r) => {
-      Cache.remove(DivisionService.DIVISION_PREFIX);
-      Cache.set(DivisionService.DIVISION_PREFIX, r);
-    });
-  }
-
-  /**
-   * load terms and update the cache
-   */
-  loadTerms() {
-    this.termService.get().subscribe((r) => {
-      Cache.remove(TermService.TERPM_PREFIX);
-      Cache.set(TermService.TERPM_PREFIX, r);
-    });
   }
 
 

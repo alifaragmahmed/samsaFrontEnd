@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AcademicPlanComponent } from './components/academic-plan/academic-plan.component';
 import { AcademicSettingComponent } from './components/academic-setting/academic-setting.component';
 import { OpenCourseComponent } from './components/open-course/open-course.component';
+import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'open-course',
     component: OpenCourseComponent
+  },
+  {
+    path: 'student-register-course',
+    component: StudentRegisterCourseComponent
   },
   {
     path: '**',
