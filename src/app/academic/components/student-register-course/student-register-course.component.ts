@@ -15,6 +15,8 @@ import { CourseService } from '../../services/course.service';
 })
 export class StudentRegisterCourseComponent implements OnInit {
 
+  $: any = $;
+  doc: any = document;
   isSubmitted = false;
   availableCourses = new HashTable();
   registerCourses = new HashTable();
@@ -23,7 +25,8 @@ export class StudentRegisterCourseComponent implements OnInit {
   student: any = {};
   searchData: any = {};
   levels: any = [];
-  requiredHours = 0;
+  requiredHours: number = 0;
+  moreHours: number = 0;
 
   //
   public searchKey: string;
@@ -99,15 +102,28 @@ export class StudentRegisterCourseComponent implements OnInit {
 
   loadData() {
     this.loadAvailableCourses();
+    this.getMoreHours();
+    this.loadRegisterCourses();
   }
 
   calculateRequiredHours() {
     let hours = 0;
+    if (this.academicSetting.getKeys().length <=0 )
+      return;
     if (this.student.gpa != 0 && this.student.gpa < this.academicSetting.get(2).value) {
       this.requiredHours = this.academicSetting.get(3).value;
     } else {
       this.requiredHours = this.academicSetting.get(4).value;
     }
+  }
+
+  getMoreHours() {
+    if (this.student.register_hours >= this.academicSetting.get(9).value)
+      this.moreHours = this.academicSetting.get(10).value;
+  }
+
+  getAllAvailableHours() {
+    return (parseFloat(this.requiredHours+"") + parseFloat(this.moreHours+""));
   }
 
   getRegisterHours() {
@@ -121,8 +137,8 @@ export class StudentRegisterCourseComponent implements OnInit {
 
   validate() {
     let valid = true;
-    if (this.getRegisterHours() > this.requiredHours) {
-      Message.error("لا يمكنك تسجيل اكثرمن " +this.requiredHours);
+    if (this.getRegisterHours() >= this.getAllAvailableHours()) {
+      Message.error("لا يمكنك تسجيل اكثرمن " +this.getAllAvailableHours());
       return false;
     }
 
@@ -138,6 +154,48 @@ export class StudentRegisterCourseComponent implements OnInit {
       return;
 
     this.registerCourses.put(course.id, course);
+  }
+
+  removeCourse(course) {
+    let self = this;
+    Message.confirm(Helper.trans('are you sure'), ()=>{
+      if (self.registerCourses.has(course.id))
+        self.registerCourses.remove(course.id);
+    });
+  }
+
+  updateRegisterCourses() {
+    let data = {
+      courses: this.registerCourses.getAll(),
+      student_id: this.student.id
+    };
+    this.isSubmitted = true;
+    this.courseService.updateRegisterCourses(data).subscribe((res: any)=>{
+      if (res.status == 1) {
+        Message.success(res.message);
+        this.selectStudent(this.student);
+      }
+      else
+        Message.error(res.message);
+
+      this.isSubmitted = false;
+    });
+  }
+
+  loadRegisterCourses() {
+    if (this.student.current_register_courses)
+    this.student.current_register_courses.forEach(element => {
+      this.registerCourses.put(element.id, element);
+    });
+  }
+
+  print() {
+    Helper.print();
+  }
+
+  exportExcel() {
+    const filename = Helper.trans("student register document") + "-" + new Date().toLocaleTimeString();
+    this.doc.exportExcel(filename);
   }
 
 
@@ -174,14 +232,14 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.searchData.student_id = student.id;
       this.searchKey = student.name;
       this.loadStudentInfo(student.id);
-      this.loadData();
     }
     this.studentSearchDialogShow = false;
   }
 
   loadStudentInfo(id) {
-    this.studentAcountService.getStudentAccount(id).subscribe((res: any) => {
+    this.academicSettingService.getStudentInfo(id).subscribe((res: any) => {
       this.student = res;
+      this.loadData();
     });
   }
 }

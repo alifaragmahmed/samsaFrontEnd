@@ -59,7 +59,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>6)</th>
+                  <th>7)</th>
                   <th>السماح بسجيل اى مادة بدون فحص المقرر المعتمدة</th>
                   <td>
                     <mat-slide-toggle
@@ -73,6 +73,37 @@
           <br>
         </div>
 
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <!-- setting panel -->
+          <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+           <div class="custom-panel-body table-responsive"  >
+             <table class="w3-table w3-block text-right table-right" >
+               <tr>
+                 <th>8)</th>
+                 <th>اجمالى الساعات المطلوبة للتخرج</th>
+                 <td>
+                   <input type="number" class="input-setting" [(ngModel)]="settings[7].value" >
+                 </td>
+               </tr>
+               <tr>
+                 <th>9)</th>
+                 <th>دواعى التخرج للطالب لا تقل ساعات تسجلة عن</th>
+                 <td>
+                   <input type="number" class="input-setting" [(ngModel)]="settings[8].value" >
+                 </td>
+               </tr>
+               <tr>
+                 <th>10)</th>
+                 <th>عدد الساعات المسوحة لدواعى التخرج</th>
+                 <td>
+                   <input type="number" class="input-setting" [(ngModel)]="settings[9].value" >
+                 </td>
+               </tr>
+             </table>
+           </div>
+         </div>
+         <br>
+       </div>
         <div class="col-lg-12 col-md-12 col-sm-12">
           <!-- setting panel -->
           <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">

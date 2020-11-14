@@ -9,7 +9,7 @@
       <br>
 
       <div class="box-body w3-padding" >
-          <table class=" table" >
+          <table class=" table  text-center" >
               <tr class="w3-border-bottom" >
                   <th>#</th>
                   <th>{{ "key" | trans }}</th>
@@ -18,35 +18,43 @@
                 </tr>
           </table>
         <div style="height: 600px;overflow: auto;">
-            <table class=" table" >
-                <tr  *ngIf="!translationList" >
-                  <th colspan="4" >
-                    <div class="text-center w3-padding" >
-                      <i class="w3-xlarge fa fa-spinner fa-spin w3-text-indigo"></i>
-                    </div>
-                  </th>
-                </tr>
+            <table class="text-center" id="tableTrans" style="width: 100%;"  >
+                <thead>
+                  <tr class="w3-border-bottom" >
+                    <th>#</th>
+                    <th>{{ "key" | trans }}</th>
+                    <th>{{ "name_en" | trans }}</th>
+                    <th>{{ "name_ar" | trans }}</th>
+                  </tr>
+                </thead>
 
-                <tr *ngFor="let item of translationList index as i" >
-                  <td>{{ i + 1 }}</td>
-                  <td>
-                    <input type="text" class="w3-input w3-block" readonly style="border: none;border: 1px dashed gray;" [(ngModel)]="item.key" >
-                  </td>
-                  <td>
-                    <input
-                    type="text"
-                    (change)="item.changed = 1"
-                    class="form-control w3-input w3-block"
-                    [(ngModel)]="item.name_en" >
-                  </td>
-                  <td>
-                    <input
-                    type="text"
-                    (change)="item.changed = 1"
-                    class="form-control w3-input w3-block"
-                    [(ngModel)]="item.name_ar" >
-                  </td>
-                </tr>
+                <tbody>
+                  <tr *ngFor="let item of translationList index as i" >
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <input type="text" class="w3-input w3-block"
+                      readonly style="border: none;border: 1px dashed gray;"
+                      [(ngModel)]="item.key" >
+                      <span class="hidden">{{ item.key }}</span>
+                    </td>
+                    <td   >
+                      <input
+                      type="text"
+                      (change)="item.changed = 1"
+                      class="form-control w3-input w3-block"
+                      [(ngModel)]="item.name_en" >
+                      <span class="hidden">{{ item.name_en }}</span>
+                    </td>
+                    <td >
+                      <input
+                      type="text"
+                      (change)="item.changed = 1"
+                      class="form-control w3-input w3-block"
+                      [(ngModel)]="item.name_ar" >
+                      <span class="hidden">{{ item.name_ar }}</span>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
         </div>
         <br>

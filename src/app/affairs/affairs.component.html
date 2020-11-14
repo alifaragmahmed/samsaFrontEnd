@@ -1,58 +1,85 @@
 <div class="row">
-  <div class="col-lg-10">
-    <div class="w3-white material-shadow safe-box">
 
-      <div class="safe-box-header w3-xlarge">
-        {{ "student affairs" | trans }}
+  <div class="col-md-3">
+
+    <!-- navbar list -->
+    <div class="box box-primary material-shadow">
+      <div class="box-body box-profile">
+        <img class="profile-user-img img-responsive img-circle" style="width: 60%!important" src="/assets/img/application.gif" alt="User profile picture">
+
+        <h3 class="profile-username text-center">{{ "student affairs" | trans }}</h3>
+
+
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <a href="#" [routerLink]="['/affairs/students']" [queryParams]="{col: 'col-lg-12'}" >
+                <b>{{ "students" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-users" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" [routerLink]="['/affairs/students/create']" [queryParams]="{col: 'col-lg-12'}" >
+                <b>{{ "add student" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-user-circle" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" [routerLink]="['/affairs/applications']" [queryParams]="{col: 'col-lg-12'}" >
+                <b>{{ "applications" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-address-card-o" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#"  [routerLink]="['/affairs/applications/create']" [queryParams]="{col: 'col-lg-12'}" >
+                <b>{{ "add application" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-address-book-o" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" routerLink='/affairs/required_documents' >
+                <b>{{ "required_documents" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-newspaper-o" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" routerLink='/affairs/application_required' >
+                <b>{{ "application_required" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-check-square" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#" routerLink='/affairs/settings' >
+                <b>{{ "adminision settings" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-cogs" ></i>
+                </a>
+            </a>
+          </li>
+        </ul>
       </div>
-      <div class="border-bottom-dashed"></div>
-      <br>
-
-      <div class="safe-box-body row">
-
-        <div class="col-lg-3 col-md-3 col-sm-12">
-          <div class="custom-panel w3-display-container w3-round">
-            <div class="custom-panel-body">
-
-              <button
-              [routerLink]="['/affairs/students']" [queryParams]="{col: 'col-lg-12'}"
-              class="btn btn-default w3-block small-shadow btn-margin-bottom">{{ "students" | trans }}</button>
-
-              <button
-              [routerLink]="['/affairs/students/create']" [queryParams]="{col: 'col-lg-12'}"
-              class="btn btn-default w3-block small-shadow btn-margin-bottom">{{ "add student" | trans }}</button>
-
-              <button
-              [routerLink]="['/affairs/applications']" [queryParams]="{col: 'col-lg-12'}"
-              class="btn btn-default w3-block small-shadow btn-margin-bottom">{{ "applications" | trans }}</button>
-
-              <button
-              [routerLink]="['/affairs/applications/create']" [queryParams]="{col: 'col-lg-12'}"
-              class="btn btn-default w3-block small-shadow btn-margin-bottom">{{ "add application" | trans }}</button>
-
-
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-        <div class="col-lg-9 col-md-9 col-sm-12">
-          <div style="height: 70vh;overflow: auto;" >
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-
-
-
-      </div>
+      <!-- /.box-body -->
     </div>
-  </div>
-
-  <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px!important">
-
+    <!-- /.box -->
 
   </div>
+  <!-- /.col -->
+  <div class="col-md-9">
+      <router-outlet></router-outlet>
+  </div>
+  <!-- /.col -->
 </div>
+
+
+

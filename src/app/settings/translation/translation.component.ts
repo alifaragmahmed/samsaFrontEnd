@@ -11,6 +11,8 @@ import { Message } from '../../shared/message';
 })
 export class TranslationComponent implements OnInit {
 
+  $: any = $;
+  datatable: any = null;
   public translationList: any;
   public isUpdate = false;
 
@@ -27,6 +29,7 @@ export class TranslationComponent implements OnInit {
   loadTranslations() {
     this.translationService.getList().subscribe((r) => {
       this.translationList = r;
+      this.loadDataTable();
     });
   }
 
@@ -83,6 +86,24 @@ export class TranslationComponent implements OnInit {
       this.loadTranslations();
       this.loadِAppTranslations();
     });
+  }
+
+  loadDataTable() {
+    if (this.datatable) {
+      this.datatable.destroy();
+    }
+      var _this = this;
+      setTimeout(() => {
+        _this.datatable = _this.$('#tableTrans').DataTable({
+          "paging": false,
+          //"pageLength": 10,
+          dom: 'Bfrtip',
+          "language": {
+              "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"
+          },
+      });
+      }, 500);
+
   }
 
 }

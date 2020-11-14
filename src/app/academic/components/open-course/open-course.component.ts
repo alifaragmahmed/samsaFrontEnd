@@ -36,7 +36,7 @@ export class OpenCourseComponent implements OnInit {
   selectCourse(course) {
     this.courses.forEach(element => {
       if (course.id == element.id)
-        element.selected = true;
+        element.selected = 1;
     });
   }
 

@@ -37,3 +37,38 @@
 
 
 </div>
+
+<div class="w3-display-topleft w3-padding sidebar-settings"  style="position: fixed;">
+
+  <div class="w3-card-2 w3-round w3-white" style="width: 80px" >
+    <ul class="w3-ul" >
+      <li class="text-center w3-large w3-hover-light-gray" style="cursor: pointer;" (click)="toggle()" >
+        <b class="fa  {{ isClosed? 'fa-angle-up' : 'fa-angle-down' }}" ></b>
+      </li>
+      <li class="text-center setting-list-item w3-hover-light-gray" style="padding: 3px!important" *ngIf="setting.current_academic_year" >
+         <i class="fa fa-calendar w3-larger w3-text-indigo" ></i>
+         <br>
+         <span class="w3-tiny" style="font-family: 'Roboto';" >{{ setting.current_academic_year.name }}</span>
+      </li>
+      <li class="text-center setting-list-item w3-hover-light-gray" style="padding: 3px!important" *ngIf="setting.current_term" >
+         <i class="fa fa-graduation-cap w3-larger w3-text-indigo" ></i>
+         <br>
+         <span class="w3-tiny" >{{ setting.current_term.name }}</span>
+      </li>
+      <li class="text-center setting-list-item w3-hover-light-gray" style="padding: 3px!important;cursor: pointer;" (click)="resize()" >
+        <div *ngIf="!resizable" >
+          <i class="fa fa-arrows w3-larger w3-text-" ></i>
+          <br>
+          <span class="w3-tiny" >{{ "resize" | trans }}</span>
+        </div>
+        <div *ngIf="resizable" >
+          <i class="fa fa-arrows w3-larger w3-text-indigo" ></i>
+          <br>
+          <b class="w3-tiny" >{{ "resize" | trans }}</b>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+</div>

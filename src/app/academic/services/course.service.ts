@@ -73,7 +73,7 @@ export class CourseService {
    *
    */
   public updateRegisterCourses(data) {
-    return this.http.post('academic/open_courses/update?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('academic/register_courses/update?api_token=' + Auth.getApiToken(), data);
   }
 
 }

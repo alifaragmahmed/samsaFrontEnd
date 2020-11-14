@@ -31,6 +31,9 @@ export class AcademicSettingComponent implements OnInit {
       {id: 5, value: this.settingHash.get(5)},
       {id: 6, value: this.settingHash.get(6)},
       {id: 7, value: this.settingHash.get(7)},
+      {id: 8, value: this.settingHash.get(8)},
+      {id: 9, value: this.settingHash.get(9)},
+      {id: 10, value: this.settingHash.get(10)},
     ];
   }
 

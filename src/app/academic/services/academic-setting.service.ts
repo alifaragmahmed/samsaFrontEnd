@@ -25,4 +25,12 @@ export class AcademicSettingService {
   public update(data) {
     return this.http.post('academic/settings/update?api_token=' + Auth.getApiToken(), data);
   }
+
+  /**
+   * get student info for academic module
+   *
+   */
+  public getStudentInfo(id) {
+    return this.http.get('academic/get_student_academic?api_token=' + Auth.getApiToken()+"&student_id="+id);
+  }
 }
