@@ -183,6 +183,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   loadRegisterCourses() {
+    this.registerCourses = new HashTable();
     if (this.student.current_register_courses)
     this.student.current_register_courses.forEach(element => {
       this.registerCourses.put(element.id, element);
