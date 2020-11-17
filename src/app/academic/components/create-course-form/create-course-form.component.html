@@ -34,7 +34,7 @@
                 <td>{{ "division"| trans }} *</td>
                 <td>
                   <select  [(ngModel)]="course.division_id"  class="form-control">
-                    <option *ngFor="let item of divisions" value="{{ item.id }}" >{{ item.name }}</option>
+                    <option *ngFor="let item of applicationSettting.DIVISIONS" value="{{ item.id }}" >{{ item.name }}</option>
                   </select>
                 </td>
               </tr>
@@ -97,9 +97,15 @@
                 </td>
               </tr>
               <tr>
-                <td>{{ "is_required"| trans }}</td>
+                <td>{{ "required_for_graduation"| trans }}</td>
                 <td>
                   <input type="checkbox"  [(ngModel)]="course.is_required" class="w3-check"     >
+                </td>
+              </tr>
+              <tr>
+                <td>{{ "is_not_credit_hour"| trans }}</td>
+                <td>
+                  <input type="checkbox"  [(ngModel)]="course.is_not_credit_hour" class="w3-check"     >
                 </td>
               </tr>
               <tr>
@@ -119,6 +125,15 @@
                 <td>
                   <select   class="form-control select2 prerequsited" multiple value="{{ course.prerequsites }}" >
                     <option *ngFor="let item of courses" value="{{ item.id }}" >{{ item.name }}-{{ item.code }}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ "service"| trans }}</td>
+                <td>
+                  <select  [(ngModel)]="course.service_id"  class="form-control">
+                    <option value="">{{ "service" | trans }}</option>
+                    <option *ngFor="let item of services" value="{{ item.id }}" >{{ item.name }}</option>
                   </select>
                 </td>
               </tr>

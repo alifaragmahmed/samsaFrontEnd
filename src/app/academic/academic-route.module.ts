@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AcademicPlanComponent } from './components/academic-plan/academic-plan.component';
 import { AcademicSettingComponent } from './components/academic-setting/academic-setting.component';
+import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-index.component';
 import { OpenCourseComponent } from './components/open-course/open-course.component';
 import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'student-register-course',
     component: StudentRegisterCourseComponent
+  },
+  {
+    path: 'doctors',
+    component: DoctorIndexComponent
   },
   {
     path: '**',

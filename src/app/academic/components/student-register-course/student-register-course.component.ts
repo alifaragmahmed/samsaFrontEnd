@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HashTable } from 'angular-hashtable';
 import { LevelService } from 'src/app/account/services/level.service';
 import { StudentAccountService } from 'src/app/account/services/student-account.service';
+import { Auth } from 'src/app/shared/auth';
 import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
+import { environment } from 'src/environments/environment';
 import { AcademicSettingService } from '../../services/academic-setting.service';
 import { CourseService } from '../../services/course.service';
 
@@ -27,6 +29,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   levels: any = [];
   requiredHours: number = 0;
   moreHours: number = 0;
+  sortType: number = 0;
 
   //
   public searchKey: string;
@@ -46,6 +49,14 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   ngOnInit() {
+    let self = this;
+    setTimeout(() => {
+      this.$('.select2').select2();
+      this.$('.sort-select').change(() => {
+        self.sortTable();
+      });
+    }, 500);
+
     this.loadAcademicSetting();
   }
 
@@ -73,6 +84,8 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.loadLevels();
       //
       this.calculateRequiredHours();
+      //
+      this.sortTable();
     });
   }
 
@@ -88,6 +101,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   loadLevels() {
+
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.levels.forEach(element => {
       // assign courses to levels
@@ -130,7 +144,8 @@ export class StudentRegisterCourseComponent implements OnInit {
     let hours = 0;
     this.registerCourses.getAll().forEach(element => {
       let course: any = element;
-      hours += course.credit_hour;
+      if (!course.is_not_credit_hour)
+        hours += course.credit_hour;
     });
     return hours;
   }
@@ -149,9 +164,10 @@ export class StudentRegisterCourseComponent implements OnInit {
     if (this.registerCourses.has(course.id)) {
       return Message.error("المقرر مسجل بالفعل");
     }
-
-    if (!this.validate())
-      return;
+    if (!course.is_not_credit_hour) {
+      if (!this.validate())
+        return;
+    }
 
     this.registerCourses.put(course.id, course);
   }
@@ -164,7 +180,20 @@ export class StudentRegisterCourseComponent implements OnInit {
     });
   }
 
+  performUpdateRegisterCourses() {
+    if (this.getRegisterHours() < this.requiredHours) {
+      var self = this;
+      Message.confirm(Helper.trans('student register hours less than ') + this.requiredHours, () => {
+        self.updateRegisterCourses();
+      });
+    } else {
+      this.updateRegisterCourses()
+    }
+  }
+
   updateRegisterCourses() {
+    if (!this.student.id)
+      return Message.error(Helper.trans('select student first'));
     let data = {
       courses: this.registerCourses.getAll(),
       student_id: this.student.id
@@ -173,6 +202,7 @@ export class StudentRegisterCourseComponent implements OnInit {
     this.courseService.updateRegisterCourses(data).subscribe((res: any)=>{
       if (res.status == 1) {
         Message.success(res.message);
+        this.printRegisterCourses();
         this.selectStudent(this.student);
       }
       else
@@ -199,6 +229,76 @@ export class StudentRegisterCourseComponent implements OnInit {
     this.doc.exportExcel(filename);
   }
 
+  printRegisterCourses() {
+    let url = environment.publicUrl + "/academic/register-course-print/" + this.student.id+"?api_token="+Auth.getApiToken();
+    Helper.openWindow(url);
+  }
+
+  sortTable() {
+    let sorts = this.$('.sort-select').val();
+    console.log(sorts);
+    let courses = this.courses;
+
+    sorts.reverse().forEach(element => {
+      if (element == 1) {
+        courses = this.sortWithPrerequsites(courses);
+      } else if (element == 2) {
+        courses = this.sortWithRegisterTimes(courses);
+      }
+    });
+
+    this.courses = courses;
+    this.loadLevels();
+  }
+
+  /**
+   * sort with prerequsites
+   */
+  sortWithPrerequsites(array) {
+    let courses = [];
+    let prerequistes = [];
+    array.forEach(element => {
+        element.sorted = false;
+        prerequistes.push(element.prerequsite_length);
+    });
+
+    prerequistes.sort().reverse().forEach(element => {
+    array.forEach(course => {
+        if (course.prerequsite_length == element) {
+          if (!course.sorted)
+            courses.push(course);
+          course.sorted = true;
+        }
+      });
+    });
+
+    return courses;
+  }
+
+  /**
+   * sort with times of registers
+   *
+   */
+  sortWithRegisterTimes(array) {
+    let courses = [];
+    let times = [];
+    array.forEach(element => {
+        element.sorted = false;
+        times.push(element.times);
+    });
+
+    times.sort().reverse().forEach(element => {
+      array.forEach(course => {
+        if (course.times == element) {
+          if (!course.sorted)
+            courses.push(course);
+          course.sorted = true;
+        }
+      });
+    });
+
+    return courses;
+  }
 
   //***********************************************
   //*** student search methods

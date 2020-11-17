@@ -11,6 +11,8 @@ import { MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatSliderModule
 import { AcademicSettingComponent } from './components/academic-setting/academic-setting.component';
 import { OpenCourseComponent } from './components/open-course/open-course.component';
 import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
+import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-index.component';
+import { DoctorFormComponent } from './components/doctor/doctor-form/doctor-form.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { StudentRegisterCourseComponent } from './components/student-register-co
     CreateDegreeMapFormComponent,
     AcademicSettingComponent,
     OpenCourseComponent,
+    DoctorIndexComponent,
+    DoctorFormComponent,
     StudentRegisterCourseComponent
   ],
   imports: [

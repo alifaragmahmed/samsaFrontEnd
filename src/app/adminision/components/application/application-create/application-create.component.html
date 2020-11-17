@@ -281,11 +281,12 @@
                         </td>
                       </tr>
                       <tr>
-                          <th>{{ "email" | trans }}</th>
+                          <th>{{ "set_number" | trans }}</th>
                           <td>
                             <input
+                            type="number"
                             class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [(ngModel)]="application.email" >
+                            [(ngModel)]="application.set_number" >
                           </td>
                       </tr>
                         <tr>
@@ -529,11 +530,6 @@
                               </select>
                             </td>
                           </tr>
-                      </table>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                      <table class="table w3-block w3-block" >
                           <tr>
                             <th>{{ "city" | trans }}</th>
                             <td>
@@ -546,6 +542,19 @@
                               </select>
                             </td>
                           </tr>
+                      </table>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                      <table class="table w3-block w3-block" >
+                        <tr>
+                            <th>{{ "email" | trans }}</th>
+                            <td>
+                              <input
+                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                              [(ngModel)]="application.email" >
+                            </td>
+                        </tr>
                           <tr>
                             <th>{{ "religion" | trans }}</th>
                             <td>

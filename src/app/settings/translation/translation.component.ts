@@ -89,6 +89,7 @@ export class TranslationComponent implements OnInit {
   }
 
   loadDataTable() {
+    return;
     if (this.datatable) {
       this.datatable.destroy();
     }

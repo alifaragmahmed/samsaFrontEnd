@@ -57,8 +57,10 @@ export class NavBarComponent implements OnInit {
   }
 
   public observeNotifications() {
-    this.loadNotifications();
-    //this.doc.observeNotification = this.loadNotifications();
+    setInterval(() => {
+      if (this.doc.notify == 1)
+        this.loadNotifications();
+    }, 1000);
   }
 
   loadNotifications() {
