@@ -5,6 +5,7 @@ import { AcademicSettingComponent } from './components/academic-setting/academic
 import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-index.component';
 import { OpenCourseComponent } from './components/open-course/open-course.component';
 import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
+import { StudentResultIndexComponent } from './components/student-result-index/student-result-index.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'doctors',
     component: DoctorIndexComponent
+  },
+  {
+    path: 'student-result',
+    component: StudentResultIndexComponent
   },
   {
     path: '**',

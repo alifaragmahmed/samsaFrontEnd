@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HashTable } from 'angular-hashtable';
+import { LevelService } from 'src/app/account/services/level.service';
+import { Cache } from 'src/app/shared/cache';
+import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 import { AcademicSettingService } from '../../services/academic-setting.service';
 
@@ -10,9 +13,14 @@ import { AcademicSettingService } from '../../services/academic-setting.service'
 })
 export class AcademicSettingComponent implements OnInit {
 
+  $: any = $;
   settings = [];
+  levels = [];
   settingHash = new HashTable();
   isSubmitted = false;
+  password: any = null;
+  level_id: any = null;
+  action = null;
 
   constructor(private academicSettingService: AcademicSettingService) {
     this.initSettings();
@@ -20,6 +28,11 @@ export class AcademicSettingComponent implements OnInit {
 
   ngOnInit() {
     this.loadSettings();
+    this.loadLevels();
+  }
+
+  loadLevels() {
+    this.levels = Cache.get(LevelService.LEVEL_PREFIX);
   }
 
   initSettings() {
@@ -34,6 +47,8 @@ export class AcademicSettingComponent implements OnInit {
       {id: 8, value: this.settingHash.get(8)},
       {id: 9, value: this.settingHash.get(9)},
       {id: 10, value: this.settingHash.get(10)},
+      {id: 11, value: this.settingHash.get(11)},
+      {id: 12, value: this.settingHash.get(12)},
     ];
   }
 
@@ -68,5 +83,37 @@ export class AcademicSettingComponent implements OnInit {
     });
   }
 
+  /**
+   * update all settings of academic
+   */
+  publishResult() {
+    if (!this.password || !this.level_id) {
+      return Message.error(Helper.trans('fill all data'));
+    }
+
+    let data = {
+      action: this.action,
+      level_id: this.level_id,
+      password: this.password
+    };
+    this.isSubmitted = true;
+    this.academicSettingService.updatePublishResult(data).subscribe((res: any) => {
+      if (res.status == 1)
+        Message.success(res.message);
+      else
+        Message.error(res.message);
+
+      this.isSubmitted = false;
+    });
+  }
+
+  /**
+   * show modal of publish result
+   *
+   */
+  showPublishResultModal(action) {
+    this.action = action;
+    this.$('#publishResultModal').modal('show');
+  }
 
 }

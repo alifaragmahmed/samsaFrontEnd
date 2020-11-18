@@ -13,6 +13,7 @@ import { OpenCourseComponent } from './components/open-course/open-course.compon
 import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
 import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-index.component';
 import { DoctorFormComponent } from './components/doctor/doctor-form/doctor-form.component';
+import { StudentResultIndexComponent } from './components/student-result-index/student-result-index.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DoctorFormComponent } from './components/doctor/doctor-form/doctor-form
     OpenCourseComponent,
     DoctorIndexComponent,
     DoctorFormComponent,
+    StudentResultIndexComponent,
     StudentRegisterCourseComponent
   ],
   imports: [

@@ -27,6 +27,14 @@ export class AcademicSettingService {
   }
 
   /**
+   * get update all settings from api
+   *
+   */
+  public updatePublishResult(data) {
+    return this.http.post('academic/settings/update-publish-result?api_token=' + Auth.getApiToken(), data);
+  }
+
+  /**
    * get student info for academic module
    *
    */
