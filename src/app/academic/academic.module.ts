@@ -14,6 +14,7 @@ import { StudentRegisterCourseComponent } from './components/student-register-co
 import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-index.component';
 import { DoctorFormComponent } from './components/doctor/doctor-form/doctor-form.component';
 import { StudentResultIndexComponent } from './components/student-result-index/student-result-index.component';
+import { ControlReportComponent } from './components/control-report/control-report.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { StudentResultIndexComponent } from './components/student-result-index/s
     DoctorIndexComponent,
     DoctorFormComponent,
     StudentResultIndexComponent,
+    ControlReportComponent,
     StudentRegisterCourseComponent
   ],
   imports: [

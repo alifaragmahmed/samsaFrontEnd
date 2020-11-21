@@ -13,6 +13,9 @@ import { DepartmentsComponent } from './departments/departments.component';
 import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
 import { RegisterationStatusComponent } from './registeration-status/registeration-status.component'
 import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
+import { CountryComponent } from './components/country/country.component';
+import { AcademicYearComponent } from './components/academic-year/academic-year.component';
+import { DivisionComponent } from './components/division/division.component';
 
 const routes: Routes = [
   {
@@ -26,15 +29,15 @@ const routes: Routes = [
       },
       {
         path: "country",
-        loadChildren: './country/country.module#CountryModule'
-      },
-      {
-        path: "government",
-        loadChildren: './government/government.module#GovernmentModule'
+        component: CountryComponent
       },
       {
         path: "academic-year",
-        loadChildren: './academic-year/academic-year.module#AcademicYearModule'
+        component: AcademicYearComponent
+      },
+      {
+        path: "division",
+        component: DivisionComponent
       },
       {
         path: "qualifications",

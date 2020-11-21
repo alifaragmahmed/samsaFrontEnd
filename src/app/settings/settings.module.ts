@@ -18,6 +18,9 @@ import { RelativeRelationsComponent } from "./relative-relations/relative-relati
 import { RegisterationStatusComponent } from './registeration-status/registeration-status.component';
 import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
 import { MatSlideToggleModule } from '@angular/material';
+import { CountryComponent } from './components/country/country.component';
+import { AcademicYearComponent } from './components/academic-year/academic-year.component';
+import { DivisionComponent } from './components/division/division.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { MatSlideToggleModule } from '@angular/material';
     DepartmentsComponent,
     RelativeRelationsComponent,
     RegisterationStatusComponent,
-    RequiredDocumentsComponent
+    RequiredDocumentsComponent,
+    CountryComponent,
+    AcademicYearComponent,
+    DivisionComponent
   ],
   imports: [
     CommonModule,

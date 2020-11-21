@@ -1,6 +1,7 @@
 export class Request {
 
   public static queue = [];
+  public static isFired = false;
 
   /**
    * add to queue
@@ -16,6 +17,7 @@ export class Request {
       object.times += 1;
 
     Request.queue.push(object);
+    Request.isFired = true;
   }
 
   /**
@@ -23,6 +25,9 @@ export class Request {
    *
    */
   public static fire() {
+    //if (Request.isFired)
+    //  return;
+
     let object = Request.queue.pop();
 
     if (object) {
@@ -37,6 +42,8 @@ export class Request {
         console.log("queue size : " + (Request.queue.length) + ", key : " + object.key + ", times : " + object.times);
         Request.fire();
       });
+    } else {
+      Request.isFired = false;
     }
   }
 
