@@ -117,7 +117,7 @@
                         <td>
                           <select
                           (change)="watchLevel();emptyData()"
-                          class="custom-input form-control input-sm w3-input input-sm"
+                          class="form-control input-sm"
                           [ngClass]="{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}"
                           [(ngModel)]="application.qualification_id">
                             <option *ngFor="let item of applicationSettings.QUALIFICATIONS" value="{{ item.id }}">{{ item.name }}</option>

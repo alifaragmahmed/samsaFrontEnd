@@ -1,5 +1,78 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["card-card-module"],{
 
+/***/ "./src/app/account/services/report.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/account/services/report.service.ts ***!
+  \****************************************************/
+/*! exports provided: ReportService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportService", function() { return ReportService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+
+var ReportService = /** @class */ (function () {
+    function ReportService(http) {
+        this.http = http;
+        this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"].doc;
+    }
+    /**
+     * get services from api
+     *
+     */
+    ReportService.prototype.get = function (data) {
+        return this.http.get('account/report/payment-details?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken() + "&" + this.doc.jquery.param(data));
+    };
+    /**
+     * get balances of students
+     *
+     */
+    ReportService.prototype.getStudentBalances = function (data) {
+        return this.http.get('account/report/student-balances?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken() + "&" + this.doc.jquery.param(data));
+    };
+    /**
+     * report creator api
+     *
+     */
+    ReportService.prototype.getReportCreatorInfo = function (data) {
+        return this.http.get('account/report/get-report-creator-info?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken() + "&" + this.doc.jquery.param(data));
+    };
+    /**
+     * report creator api
+     *
+     */
+    ReportService.prototype.getStudentInstallment = function (data) {
+        return this.http.get('account/report/get-student-installment?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken() + "&" + this.doc.jquery.param(data));
+    };
+    /**
+     * report creator api
+     *
+     */
+    ReportService.prototype.getStudentDiscounts = function (data) {
+        return this.http.get('account/report/get-student-discount?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken() + "&" + this.doc.jquery.param(data));
+    };
+    ReportService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ReportService);
+    return ReportService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/card/card-routing.module.ts":
 /*!*********************************************!*\
   !*** ./src/app/card/card-routing.module.ts ***!

@@ -2,7 +2,8 @@ import { Helper } from './../helper';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'trans'
+  name: 'trans',
+  pure: false
 })
 export class TransPipe implements PipeTransform {
 

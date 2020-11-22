@@ -8,19 +8,15 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./academic-year/academic-year.module": [
-		"./src/app/settings/academic-year/academic-year.module.ts",
-		"common",
-		"academic-year-academic-year-module"
-	],
 	"./academic/academic.module": [
 		"./src/app/academic/academic.module.ts",
+		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
 		"common",
 		"academic-academic-module"
 	],
 	"./account/account.module": [
 		"./src/app/account/account.module.ts",
-		"default~account-account-module~affairs-affairs-module~card-card-module~student-student-module",
+		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
 		"default~account-account-module~affairs-affairs-module~student-student-module",
 		"common"
 	],
@@ -32,7 +28,7 @@ var map = {
 	],
 	"./affairs/affairs.module": [
 		"./src/app/affairs/affairs.module.ts",
-		"default~account-account-module~affairs-affairs-module~card-card-module~student-student-module",
+		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
 		"default~account-account-module~affairs-affairs-module~student-student-module",
 		"default~adminision-adminision-module~affairs-affairs-module",
 		"default~affairs-affairs-module~student-student-module",
@@ -50,46 +46,14 @@ var map = {
 	],
 	"./card/card.module": [
 		"./src/app/card/card.module.ts",
-		"default~account-account-module~affairs-affairs-module~card-card-module~student-student-module",
+		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
 		"common",
 		"card-card-module"
-	],
-	"./city/city.module": [
-		"./src/app/settings/city/city.module.ts",
-		"common",
-		"city-city-module"
-	],
-	"./country/country.module": [
-		"./src/app/settings/country/country.module.ts",
-		"common",
-		"country-country-module"
-	],
-	"./government/government.module": [
-		"./src/app/settings/government/government.module.ts",
-		"common",
-		"government-government-module"
 	],
 	"./military/military.module": [
 		"./src/app/military/military.module.ts",
 		"common",
 		"military-military-module"
-	],
-	"./qualification-types/qualification-types.module": [
-		"./src/app/settings/qualification-types/qualification-types.module.ts",
-		"common",
-		"qualification-types-qualification-types-module"
-	],
-	"./qualification/qualification.module": [
-		"./src/app/settings/qualification/qualification.module.ts",
-		"qualification-qualification-module"
-	],
-	"./registeration-methods/registeration-methods.module": [
-		"./src/app/settings/registeration-methods/registeration-methods.module.ts",
-		"registeration-methods-registeration-methods-module"
-	],
-	"./roles/roles.module": [
-		"./src/app/settings/roles/roles.module.ts",
-		"roles-roles-module"
 	],
 	"./settings/settings.module": [
 		"./src/app/settings/settings.module.ts",
@@ -98,7 +62,7 @@ var map = {
 	],
 	"./student/student.module": [
 		"./src/app/student/student.module.ts",
-		"default~account-account-module~affairs-affairs-module~card-card-module~student-student-module",
+		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
 		"default~account-account-module~affairs-affairs-module~student-student-module",
 		"default~affairs-affairs-module~student-student-module",
 		"common"
@@ -272,8 +236,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApplicationSettingService", function() { return ApplicationSettingService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/request */ "./src/app/shared/request.ts");
+/* harmony import */ var _node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/@angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/auth */ "./src/app/shared/auth.ts");
+
 
 
 
@@ -286,44 +252,29 @@ var ApplicationSettingService = /** @class */ (function () {
     }
     ApplicationSettingService_1 = ApplicationSettingService;
     ApplicationSettingService.prototype.queueRequests = function () {
-        this.requestQueue.push({ request: this.getCaseConstraints(), object: 'CASE_CONSTRAINTS' });
-        this.requestQueue.push({ request: this.getNationalities(), object: 'NATIONALITIES' });
-        this.requestQueue.push({ request: this.getAcademicYears(), object: 'ACADEMIC_YEARS' });
-        this.requestQueue.push({ request: this.getQualificationTypes(), object: 'QUALIFICATION_TYPES' });
-        this.requestQueue.push({ request: this.getQualifications(), object: 'QUALIFICATIONS' });
-        this.requestQueue.push({ request: this.getRegisterationStatus(), object: 'REGISTERATION_STATUS' });
-        this.requestQueue.push({ request: this.getRegisterationMethods(), object: 'REGISTERATION_METHODS' });
-        this.requestQueue.push({ request: this.getLanguages(), object: 'LANGUAGES' });
-        this.requestQueue.push({ request: this.getCities(), object: 'CITIES' });
-        this.requestQueue.push({ request: this.getGovernments(), object: 'GOVERNMENTS' });
-        this.requestQueue.push({ request: this.getCountries(), object: 'COUNTRIES' });
-        this.requestQueue.push({ request: this.getMilitaryStatus(), object: 'MILITARY_STATUS' });
-        this.requestQueue.push({ request: this.getMilitaryAreas(), object: 'MILITARY_AREAS' });
-        this.requestQueue.push({ request: this.getParentJobs(), object: 'CITIES' });
-        this.requestQueue.push({ request: this.getRelativeRelations(), object: 'PARENT_JOBS' });
-        this.requestQueue.push({ request: this.getRequiredDocuments(), object: 'REQUIRED_DOCUMENTS' });
-        this.requestQueue.push({ request: this.getDepartments(), object: 'DEPARTMENTS' });
-        this.requestQueue.push({ request: this.getRegisterationStatusDocuments(), object: 'REGSITERATIN_STATUS_DOCUMENTS' });
-        this.requestQueue.push({ request: this.getDivisions(), object: 'DIVISIONS' });
-        this.requestQueue.push({ request: this.getSettings(), object: 'SETTINGS' });
-        //
-        this.requestQueue.reverse();
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getCaseConstraints(), action: function (res) { ApplicationSettingService_1.CASE_CONSTRAINTS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getNationalities(), action: function (res) { ApplicationSettingService_1.NATIONALITIES = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getAcademicYears(), action: function (res) { ApplicationSettingService_1.ACADEMIC_YEARS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getQualificationTypes(), action: function (res) { ApplicationSettingService_1.QUALIFICATION_TYPES = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getQualifications(), action: function (res) { ApplicationSettingService_1.QUALIFICATIONS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getRegisterationStatus(), action: function (res) { ApplicationSettingService_1.REGISTERATION_STATUS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getRegisterationMethods(), action: function (res) { ApplicationSettingService_1.REGISTERATION_METHODS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getLanguages(), action: function (res) { ApplicationSettingService_1.LANGUAGES = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getCities(), action: function (res) { ApplicationSettingService_1.CITIES = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getGovernments(), action: function (res) { ApplicationSettingService_1.GOVERNMENTS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getCountries(), action: function (res) { ApplicationSettingService_1.COUNTRIES = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getMilitaryStatus(), action: function (res) { ApplicationSettingService_1.MILITARY_STATUS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getMilitaryAreas(), action: function (res) { ApplicationSettingService_1.MILITARY_AREAS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getParentJobs(), action: function (res) { ApplicationSettingService_1.PARENT_JOBS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getRelativeRelations(), action: function (res) { ApplicationSettingService_1.RELATIVE_RELATIONS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getRequiredDocuments(), action: function (res) { ApplicationSettingService_1.REQUIRED_DOCUMENTS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getDepartments(), action: function (res) { ApplicationSettingService_1.DEPARTMENTS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getRegisterationStatusDocuments(), action: function (res) { ApplicationSettingService_1.REGSITERATIN_STATUS_DOCUMENTS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getDivisions(), action: function (res) { ApplicationSettingService_1.DIVISIONS = res; } });
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].addToQueue({ observer: this.getSettings(), action: function (res) { ApplicationSettingService_1.SETTINGS = res; } });
     };
     ApplicationSettingService.prototype.load = function () {
-        this.requestQueue.forEach(function (firstElement) {
-            if (ApplicationSettingService_1[firstElement.object].length <= 0) {
-                firstElement.request.subscribe(function (res) {
-                    ApplicationSettingService_1[firstElement.object] = res;
-                    console.log(firstElement.object);
-                    //
-                });
-            }
-        });
-    };
-    ApplicationSettingService.prototype.loadSettings = function () {
         var _this = this;
-        //this.load();
-        // return;
         var firstElement = this.requestQueue.pop();
         if (firstElement) {
             if (ApplicationSettingService_1[firstElement.object].length <= 0) {
@@ -342,68 +293,71 @@ var ApplicationSettingService = /** @class */ (function () {
             }
         }
     };
+    ApplicationSettingService.prototype.loadSettings = function () {
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_2__["Request"].fire();
+    };
     ApplicationSettingService.prototype.getDivisions = function () {
-        return this.http.get('account/divisions?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('account/divisions?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRegisterationStatusDocuments = function () {
-        return this.http.get('adminision/get_registeration_status_document?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_registeration_status_document?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getDepartments = function () {
-        return this.http.get('adminision/get_departments?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_departments?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRequiredDocuments = function () {
-        return this.http.get('adminision/required_documents?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/required_documents?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getCaseConstraints = function () {
-        return this.http.get('adminision/get_case_constraints?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_case_constraints?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRelativeRelations = function () {
-        return this.http.get('adminision/get_relative_relations?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_relative_relations?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getNationalities = function () {
-        return this.http.get('adminision/get_nationality?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_nationality?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getAcademicYears = function () {
-        return this.http.get('adminision/get_academic_years?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_academic_years?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getQualificationTypes = function () {
-        return this.http.get('adminision/get_qualification_types?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_qualification_types?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getQualifications = function () {
-        return this.http.get('adminision/get_qualifications?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_qualifications?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRegisterationStatus = function () {
-        return this.http.get('adminision/get_registeration_status?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_registeration_status?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getRegisterationMethods = function () {
-        return this.http.get('adminision/get_registration_methods?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_registration_methods?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getLanguages = function () {
-        return this.http.get('adminision/get_languages?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_languages?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getCities = function () {
-        return this.http.get('adminision/get_cities?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_cities?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getGovernments = function () {
-        return this.http.get('adminision/get_governments?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_governments?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getCountries = function () {
-        return this.http.get('adminision/get_countries?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_countries?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getMilitaryStatus = function () {
-        return this.http.get('adminision/get_military_status?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_military_status?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getMilitaryAreas = function () {
-        return this.http.get('adminision/get_military_areas?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_military_areas?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.getParentJobs = function () {
-        return this.http.get('adminision/get_parent_jobs?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_parent_jobs?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     ApplicationSettingService.prototype.updateSetting = function (data) {
-        return this.http.post('adminision/update_setting?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+        return this.http.post('adminision/update_setting?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken(), data);
     };
     ApplicationSettingService.prototype.getSettings = function () {
-        return this.http.get('adminision/get_settings?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.get('adminision/get_settings?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].getApiToken());
     };
     var ApplicationSettingService_1;
     ApplicationSettingService.NATIONALITIES = [];
@@ -431,7 +385,7 @@ var ApplicationSettingService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], ApplicationSettingService);
     return ApplicationSettingService;
 }());
@@ -700,6 +654,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
+        //let html = '<app-root></app-root>';
+        //var myWindow = window.open(window.location.href, "MsgWindow", "width=200,height=100");
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -762,7 +718,7 @@ var AuthComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"w3-block\" >\r\n\r\n\r\n</div>\r\n"
+module.exports = ""
 
 /***/ }),
 
@@ -789,10 +745,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+
 
 
 var HomeComponent = /** @class */ (function () {
     function HomeComponent() {
+        this.isClosed = false;
+        this.applicationSetting = src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__["ApplicationSettingService"];
+        console.log(this.applicationSetting.SETTINGS);
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -818,7 +779,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n  <nav style=\"height: 40px;\" >\r\n      <div class=\"fixed-nav\" style=\"height: 40px;\" >\r\n          <input type=\"checkbox\" id=\"mobile-nav-check\" class=\"invisible-checkbox\" tab-index=\"-1\" />\r\n          <!-- Fix tabbing on desktop -->\r\n          <label for=\"mobile-nav-check\" class=\"burger\"></label>\r\n          <div class=\"top hidden\"  >\r\n              <div class=\"container \">\r\n\r\n                  <div class=\"w3-left\" style=\"text-align: center;font-size: 13px;\" >\r\n                    <b>وزارة التعليم العالى\r\n                     المعهد العالى للعلوم الادراية\r\n                    ببنى سويف</b>\r\n                </div>\r\n                  <a href=\"#\" class=\"feature-button  logo w3-hide-small\t\">\r\n                    <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                  </a>\r\n              </div>\r\n          </div>\r\n          <div class=\"bottom\">\r\n              <div class=\"container\">\r\n                  <ul class=\"navigation\" style=\"float: none;\" >\r\n                      <li class=\"waves-effect waves-white text-right w3-hide-large w3-hide-medium\t\">\r\n                        <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                      </li>\r\n                      <li class=\"pointer\"></li>\r\n                      <li appPermission permission=\"applications_read\" class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a  class=\"dropdown-toggle\">\r\n                            {{ \"applications_section\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a appPermission permission=\"applications_read\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/adminision/application\" >{{ \"applications\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/adminision/settings\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\" appPermission permission=\"students_read\">\r\n                        <a routerLink=\"/student\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student\" | trans }}</a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"account\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"card export unit\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card\" >{{ \"card export unit\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card/report/card-export\" >{{ \"card export report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"academic\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/plan\" >{{ \"academic_plan\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/setting\" >{{ \"academic_setting\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/open-course\" >{{ \"open_courses\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      <!--\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      -->\r\n                    <!-- Notifications Menu -->\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    class=\"dropdown notifications-menu waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-bell-o\"></i>\r\n                        <span class=\"label label-warning\">{{ notifications.length > 0? notifications.length : '' }}</span>\r\n                      </a>\r\n                      <div\r\n                      class=\"w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card\"\r\n                      style=\"position: fixed;left: 10%;width: 300px\">\r\n                          <!-- Inner Menu: contains the notifications -->\r\n                          <ul class=\"menu w3-ul w3-block\">\r\n                            <li class=\"w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray\" style=\"text-align: center!important;\" >{{ message }}</li>\r\n                            <li\r\n                            style=\"padding: 0px!important\"\r\n                            class=\"w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray\"\r\n                            *ngFor=\"let item of notifications index as i\" ><!-- start notification -->\r\n\r\n                              <div class=\"media\">\r\n                                  <div class=\"media-left\">\r\n                                    <a href=\"#\">\r\n                                        <i\r\n                                        style=\"padding: 0px!important;\"\r\n                                        class=\"w3-text-black text-right {{ item.icon? item.icon : 'fa fa-bell-o' }}\"></i>\r\n                                    </a>\r\n                                  </div>\r\n                                  <div class=\"media-body\"\r\n                                  style=\"text-align: right!important;line-height: 14px!important;padding-top:10px\" >\r\n                                    {{ item.body }}\r\n                                  </div>\r\n                                </div>\r\n                            </li>\r\n                            <li\r\n                            class=\"w3-bar-item w3-button w3-text-black text-center w3-border-bottom w3-border-light-gray\"\r\n                            style=\"text-align: center!important;padding: 0px!important\">{{ \"View all\" | trans }}</li>\r\n                            <!-- end notification -->\r\n                          </ul>\r\n                      </div>\r\n                    </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </nav>\r\n</header>\r\n"
+module.exports = "<header>\r\n  <nav style=\"height: 40px;\" >\r\n      <div class=\"fixed-nav\" style=\"height: 40px;\" >\r\n          <input type=\"checkbox\" id=\"mobile-nav-check\" class=\"invisible-checkbox\" tab-index=\"-1\" />\r\n          <!-- Fix tabbing on desktop -->\r\n          <label for=\"mobile-nav-check\" class=\"burger\"></label>\r\n          <div class=\"top hidden\"  >\r\n              <div class=\"container \">\r\n\r\n                  <div class=\"w3-left\" style=\"text-align: center;font-size: 13px;\" >\r\n                    <b>وزارة التعليم العالى\r\n                     المعهد العالى للعلوم الادراية\r\n                    ببنى سويف</b>\r\n                </div>\r\n                  <a href=\"#\" class=\"feature-button  logo w3-hide-small\t\">\r\n                    <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                  </a>\r\n              </div>\r\n          </div>\r\n          <div class=\"bottom\">\r\n              <div class=\"container\">\r\n                  <ul class=\"navigation\" style=\"float: none;\" >\r\n                      <li class=\"waves-effect waves-white text-right w3-hide-large w3-hide-medium\t\">\r\n                        <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                      </li>\r\n                      <li class=\"pointer\"></li>\r\n                      <li class=\"waves-effect waves-white\"  >\r\n                        <a routerLink=\"/affairs\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student affairs\" | trans }}</a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"account\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"card export unit\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card\" >{{ \"card export unit\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card/report/card-export\" >{{ \"card export report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"academic\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/student-register-course\" >{{ \"student_register_course\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/plan\" >{{ \"academic_plan\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/setting\" >{{ \"academic_setting\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/open-course\" >{{ \"open_courses\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/doctors\" >{{ \"doctors\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/student-result\" >{{ \"control\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/control-report\" >{{ \"control report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      <!--\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      -->\r\n                    <!-- Notifications Menu -->\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    class=\"dropdown notifications-menu waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-bell-o\"></i>\r\n                        <span class=\"label label-warning\">{{ notifications.length > 0? notifications.length : '' }}</span>\r\n                      </a>\r\n                      <div\r\n                      class=\"w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card\"\r\n                      style=\"position: fixed;left: 10%;width: 300px\">\r\n                          <!-- Inner Menu: contains the notifications -->\r\n                          <ul class=\"menu w3-ul w3-block\">\r\n                            <li class=\"w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray\" style=\"text-align: center!important;\" >{{ message }}</li>\r\n                            <li\r\n                            style=\"padding: 0px!important\"\r\n                            class=\"w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray\"\r\n                            *ngFor=\"let item of notifications index as i\" ><!-- start notification -->\r\n\r\n                              <div class=\"media\">\r\n                                  <div class=\"media-left\">\r\n                                    <a href=\"#\">\r\n                                        <i\r\n                                        style=\"padding: 0px!important;\"\r\n                                        class=\"w3-text-black text-right {{ item.icon? item.icon : 'fa fa-bell-o' }}\"></i>\r\n                                    </a>\r\n                                  </div>\r\n                                  <div class=\"media-body\"\r\n                                  style=\"text-align: right!important;line-height: 14px!important;padding-top:10px\" >\r\n                                    {{ item.body }}\r\n                                  </div>\r\n                                </div>\r\n                            </li>\r\n                            <li\r\n                            class=\"w3-bar-item w3-button w3-text-black text-center w3-border-bottom w3-border-light-gray\"\r\n                            style=\"text-align: center!important;padding: 0px!important\">{{ \"View all\" | trans }}</li>\r\n                            <!-- end notification -->\r\n                          </ul>\r\n                      </div>\r\n                    </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </nav>\r\n</header>\r\n"
 
 /***/ }),
 
@@ -892,9 +853,12 @@ var NavBarComponent = /** @class */ (function () {
         this.observeNotifications();
     };
     NavBarComponent.prototype.observeNotifications = function () {
-        this.loadNotifications();
-        //this.doc.observeNotification = this.loadNotifications();
-    };
+        var _this = this;
+        setInterval(function () {
+            if (_this.doc.notify == 1)
+                _this.loadNotifications();
+        }, 5000);
+    }; //
     NavBarComponent.prototype.loadNotifications = function () {
         var _this = this;
         this.systemSettingService.getNotifications().subscribe(function (res) {
@@ -999,7 +963,7 @@ var PageNotFoundComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n\r\n<div class=\"w3-display-topleft current-academic-year w3-center hidden\"   >\r\n  <div class=\"academic_year\" >\r\n    <div class=\"text-center\" >\r\n        <img\r\n          src=\"/assets/img/academic_year.png\"\r\n          class=\"material-shadow w3-circle\"\r\n          style=\"width: 40px;\" >\r\n      </div>\r\n\r\n      <div\r\n      class=\"text-center w3-block\"\r\n      style=\"padding: 5px;z-index: 99;margin-top: -10px\" >\r\n      <b class=\"w3-white material-shadow w3-center w3-round\" style=\"padding: 4px\" >\r\n        {{ setting.current_academic_year? setting.current_academic_year.name : '' }}\r\n      </b>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <div class=\"academic_year\" >\r\n    <div class=\"text-center\" >\r\n        <img\r\n          src=\"/assets/img/term.png\"\r\n          class=\"material-shadow w3-circle\"\r\n          style=\"width: 40px;\" >\r\n      </div>\r\n\r\n      <div\r\n      class=\"text-center w3-block\"\r\n      style=\"padding: 5px;z-index: 99;margin-top: -10px;padding-left: 10px;padding-right: 10px\" >\r\n      <b class=\"w3-white material-shadow w3-center w3-round\" style=\"padding: 4px\" >\r\n        {{ setting.current_term? setting.current_term.name : '' }}\r\n      </b>\r\n    </div>\r\n  </div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "\r\n\r\n<div class=\"w3-display-topleft w3-padding sidebar-settings\"  style=\"position: fixed;\">\r\n\r\n  <div class=\"w3-card-2 w3-round w3-white\" style=\"width: 80px\" >\r\n    <ul class=\"w3-ul\" >\r\n      <li class=\"text-center w3-large w3-hover-light-gray\" style=\"cursor: pointer;\" (click)=\"toggle()\" >\r\n        <b class=\"fa  {{ isClosed? 'fa-angle-up' : 'fa-angle-down' }}\" ></b>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important\" *ngIf=\"setting.current_academic_year\" >\r\n         <i class=\"fa fa-calendar w3-larger w3-text-indigo\" ></i>\r\n         <br>\r\n         <span class=\"w3-tiny\" style=\"font-family: 'Roboto';\" >{{ setting.current_academic_year.name }}</span>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important\" *ngIf=\"setting.current_term\" >\r\n         <i class=\"fa fa-graduation-cap w3-larger w3-text-indigo\" ></i>\r\n         <br>\r\n         <span class=\"w3-tiny\" >{{ setting.current_term.name }}</span>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important;cursor: pointer;\" (click)=\"resize()\" >\r\n        <div *ngIf=\"!resizable\" >\r\n          <i class=\"fa fa-arrows w3-larger w3-text-\" ></i>\r\n          <br>\r\n          <span class=\"w3-tiny\" >{{ \"resize\" | trans }}</span>\r\n        </div>\r\n        <div *ngIf=\"resizable\" >\r\n          <i class=\"fa fa-arrows w3-larger w3-text-indigo\" ></i>\r\n          <br>\r\n          <b class=\"w3-tiny\" >{{ \"resize\" | trans }}</b>\r\n        </div>\r\n      </li>\r\n    </ul>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1010,7 +974,7 @@ module.exports = "\r\n\r\n<div class=\"w3-display-topleft current-academic-year 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".current-academic-year {\n  position: fixed;\n  top: 5px;\n  width: 100px;\n  z-index: 999999999999; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29yZS9jb21wb25lbnRzL3N5c3RlbS1sYWJlbC9FOlxccHJvamVjdFxcc2Ftc2FGcm9udEVuZC9zcmNcXGFwcFxcY29yZVxcY29tcG9uZW50c1xcc3lzdGVtLWxhYmVsXFxzeXN0ZW0tbGFiZWwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDSSxlQUFlO0VBQ2YsUUFBUTtFQUNSLFlBQVk7RUFDWixxQkFBcUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvcmUvY29tcG9uZW50cy9zeXN0ZW0tbGFiZWwvc3lzdGVtLWxhYmVsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG4uY3VycmVudC1hY2FkZW1pYy15ZWFyIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogNXB4O1xyXG4gICAgd2lkdGg6IDEwMHB4O1xyXG4gICAgei1pbmRleDogOTk5OTk5OTk5OTk5O1xyXG59XHJcbiJdfQ== */"
+module.exports = ".current-academic-year {\n  position: fixed;\n  top: 5px;\n  width: 100px;\n  z-index: 999999999999; }\n\n.sidebar-settings {\n  z-index: 999999;\n  top: 50px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29yZS9jb21wb25lbnRzL3N5c3RlbS1sYWJlbC9FOlxccHJvamVjdFxcc2Ftc2FGcm9udEVuZC9zcmNcXGFwcFxcY29yZVxcY29tcG9uZW50c1xcc3lzdGVtLWxhYmVsXFxzeXN0ZW0tbGFiZWwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7RUFDSSxlQUFlO0VBQ2YsUUFBUTtFQUNSLFlBQVk7RUFDWixxQkFBcUIsRUFBQTs7QUFHekI7RUFDRSxlQUFlO0VBQ2YsU0FBUyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvY29yZS9jb21wb25lbnRzL3N5c3RlbS1sYWJlbC9zeXN0ZW0tbGFiZWwuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuXHJcbi5jdXJyZW50LWFjYWRlbWljLXllYXIge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOiA1cHg7XHJcbiAgICB3aWR0aDogMTAwcHg7XHJcbiAgICB6LWluZGV4OiA5OTk5OTk5OTk5OTk7XHJcbn1cclxuXHJcbi5zaWRlYmFyLXNldHRpbmdzIHtcclxuICB6LWluZGV4OiA5OTk5OTk7XHJcbiAgdG9wOiA1MHB4O1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -1026,7 +990,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SystemLabelComponent", function() { return SystemLabelComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_system_setting_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/system-setting.service */ "./src/app/core/services/system-setting.service.ts");
+/* harmony import */ var src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var _services_system_setting_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/system-setting.service */ "./src/app/core/services/system-setting.service.ts");
+
 
 
 
@@ -1034,6 +1000,11 @@ var SystemLabelComponent = /** @class */ (function () {
     function SystemLabelComponent(systemSettingService) {
         this.systemSettingService = systemSettingService;
         this.setting = {};
+        this.$ = $;
+        this.resizable = false;
+        this.isClosed = false;
+        this.applicationSetting = src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__["ApplicationSettingService"];
+        console.log(this.applicationSetting.SETTINGS);
     }
     SystemLabelComponent.prototype.loadSettings = function () {
         var _this = this;
@@ -1044,13 +1015,35 @@ var SystemLabelComponent = /** @class */ (function () {
     SystemLabelComponent.prototype.ngOnInit = function () {
         this.loadSettings();
     };
+    SystemLabelComponent.prototype.toggle = function () {
+        if (this.isClosed) {
+            this.$('.setting-list-item').slideDown(300);
+            this.isClosed = false;
+        }
+        else {
+            this.$('.setting-list-item').slideUp(300);
+            this.isClosed = true;
+        }
+    };
+    SystemLabelComponent.prototype.resize = function () {
+        if (this.resizable) {
+            $('.safe-box').css('overflow', 'auto');
+            $('.safe-box').css('resize', 'none');
+            this.resizable = false;
+        }
+        else {
+            $('.safe-box').css('overflow', 'auto');
+            $('.safe-box').css('resize', 'both');
+            this.resizable = true;
+        }
+    };
     SystemLabelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-system-label',
             template: __webpack_require__(/*! ./system-label.component.html */ "./src/app/core/components/system-label/system-label.component.html"),
             styles: [__webpack_require__(/*! ./system-label.component.scss */ "./src/app/core/components/system-label/system-label.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_system_setting_service__WEBPACK_IMPORTED_MODULE_2__["SystemSettingService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_system_setting_service__WEBPACK_IMPORTED_MODULE_3__["SystemSettingService"]])
     ], SystemLabelComponent);
     return SystemLabelComponent;
 }());
@@ -1110,7 +1103,7 @@ var CoreModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n\r\n  <app-nav-bar></app-nav-bar>\r\n\r\n  <app-system-label></app-system-label>\r\n\r\n  <!-- Full Width Column -->\r\n  <div class=\"content-wrapper\">\r\n    <div class=\"container-fluid\">\r\n      <!-- breadcrumb -->\r\n\r\n\r\n      <!-- Main content -->\r\n      <section class=\"content\">\r\n        <router-outlet></router-outlet>\r\n      </section>\r\n      <!-- /.content -->\r\n    </div>\r\n    <!-- /.container -->\r\n  </div>\r\n  <!-- /.content-wrapper -->\r\n  <footer class=\"footer hidden\">\r\n       <div class=\"w3- font\">\r\n          <a href=\"http://www.sphinxat.com\" target=\"_blank\" class=\"footer\">\r\n                   جميع الحقوق محفوظه لدى شركة سفنكس للتكنولوجيا المتقدمه 01000122247\r\n          </a>\r\n      </div>\r\n  </footer>\r\n  \r\n</div>\r\n<!-- ./wrapper -->\r\n"
+module.exports = "<div class=\"wrapper\">\r\n\r\n  <app-nav-bar></app-nav-bar>\r\n\r\n  <app-system-label></app-system-label>\r\n\r\n  <!-- Full Width Column -->\r\n  <div class=\"content-wrapper\">\r\n    <div class=\"container-fluid\">\r\n      <!-- breadcrumb -->\r\n\r\n\r\n      <!-- Main content -->\r\n      <section class=\"content\">\r\n        <router-outlet></router-outlet>\r\n      </section>\r\n      <!-- /.content -->\r\n    </div>\r\n    <!-- /.container -->\r\n  </div>\r\n  <!-- /.content-wrapper -->\r\n  <footer class=\"footer hidden\">\r\n       <div class=\"w3- font\">\r\n          <a href=\"http://www.sphinxat.com\" target=\"_blank\" class=\"footer\">\r\n                   جميع الحقوق محفوظه لدى شركة سفنكس للتكنولوجيا المتقدمه 01000122247\r\n          </a>\r\n      </div>\r\n  </footer>\r\n\r\n</div>\r\n<!-- ./wrapper -->\r\n"
 
 /***/ }),
 
@@ -1136,6 +1129,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
 /* harmony import */ var _shared_translation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../shared/translation */ "./src/app/shared/translation.ts");
 /* harmony import */ var _shared_cache__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../shared/cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var _shared_request__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../shared/request */ "./src/app/shared/request.ts");
+
 
 
 
@@ -1157,6 +1152,7 @@ var LayoutComponent = /** @class */ (function () {
         this.termService = termService;
         this.divisionService = divisionService;
         this.applicationSettingService = applicationSettingService;
+        _shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_DATA = _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].get(_shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_CACHE_KEY);
     }
     LayoutComponent.prototype.ngAfterViewChecked = function () {
         setTimeout(function () {
@@ -1169,54 +1165,28 @@ var LayoutComponent = /** @class */ (function () {
             this.router.navigate(['/login'], {}).then().catch();
     };
     LayoutComponent.prototype.ngOnInit = function () {
-        this.init();
+        //Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+        _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].addToQueue({ observer: this.translationService.get(), action: function (r) {
+                //Cache.remove(Translation.TRANSLATION_CACHE_KEY);
+                //Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+                _shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_DATA = r;
+            } });
+        _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].addToQueue({ observer: this.divisionService.get(), action: function (r) {
+                _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX);
+                _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX, r);
+            } });
+        _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].addToQueue({ observer: this.termService.get(), action: function (r) {
+                _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX);
+                _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX, r);
+            } });
+        // load all requests in the queueue
+        console.log("request count" + _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].queue.length);
+        _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].fire();
     };
     LayoutComponent.prototype.ngOnChanges = function (changes) {
         this.watchUser();
     };
     LayoutComponent.prototype.init = function () {
-        // load the translations words
-        this.loadTranslations();
-        this.loadLevels();
-        this.loadDivisions();
-        this.loadTerms();
-        this.applicationSettingService.loadSettings();
-    };
-    /**
-     * load translations and update the cache
-     */
-    LayoutComponent.prototype.loadTranslations = function () {
-        this.translationService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_CACHE_KEY);
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_CACHE_KEY, r);
-        });
-    };
-    /**
-     * load levels and update the cache
-     */
-    LayoutComponent.prototype.loadLevels = function () {
-        this.levelService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX);
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX, r);
-        });
-    };
-    /**
-     * load divisions and update the cache
-     */
-    LayoutComponent.prototype.loadDivisions = function () {
-        this.divisionService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX);
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_division_service__WEBPACK_IMPORTED_MODULE_7__["DivisionService"].DIVISION_PREFIX, r);
-        });
-    };
-    /**
-     * load terms and update the cache
-     */
-    LayoutComponent.prototype.loadTerms = function () {
-        this.termService.get().subscribe(function (r) {
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].remove(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX);
-            _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX, r);
-        });
     };
     LayoutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1783,7 +1753,7 @@ var Helper = /** @class */ (function () {
         word = word.replace(/\s/g, '_');
         word = word.toLocaleLowerCase();
         // load translations from cache
-        var transWord = _translation__WEBPACK_IMPORTED_MODULE_0__["Translation"].getTranslationsData()[word];
+        var transWord = _translation__WEBPACK_IMPORTED_MODULE_0__["Translation"].TRANSLATION_DATA[word]; //getTranslationsData()[word];
         if (transWord) {
             return transWord['name_' + _translation__WEBPACK_IMPORTED_MODULE_0__["Translation"].getLang()];
         }
@@ -2184,10 +2154,72 @@ var TransPipe = /** @class */ (function () {
     };
     TransPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Pipe"])({
-            name: 'trans'
+            name: 'trans',
+            pure: false
         })
     ], TransPipe);
     return TransPipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/request.ts":
+/*!***********************************!*\
+  !*** ./src/app/shared/request.ts ***!
+  \***********************************/
+/*! exports provided: Request */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Request", function() { return Request; });
+var Request = /** @class */ (function () {
+    function Request() {
+    }
+    /**
+     * add to queue
+     * @param object {observer: any, action: function()}
+     */
+    Request.addToQueue = function (object) {
+        if (!object.key)
+            object.key = new Date().getMilliseconds();
+        if (!object.times)
+            object.times = 1;
+        else
+            object.times += 1;
+        Request.queue.push(object);
+        Request.isFired = true;
+    };
+    /**
+     * start the queue
+     *
+     */
+    Request.fire = function () {
+        //if (Request.isFired)
+        //  return;
+        var object = Request.queue.pop();
+        if (object) {
+            object.observer.subscribe(function (res) {
+                object.action(res);
+            }, function (error) {
+                console.log("errors : " + error.statusText);
+                Request.queue.push(object);
+                if (object.times <= 10 || error.status == 429)
+                    Request.fire();
+            }, function () {
+                console.log("queue size : " + (Request.queue.length) + ", key : " + object.key + ", times : " + object.times);
+                Request.fire();
+            });
+        }
+        else {
+            Request.isFired = false;
+        }
+    };
+    Request.queue = [];
+    Request.isFired = false;
+    return Request;
 }());
 
 
@@ -2355,13 +2387,14 @@ __webpack_require__.r(__webpack_exports__);
 var TranslationService = /** @class */ (function () {
     function TranslationService(http) {
         this.http = http;
+        this.$ = $;
     }
     /**
      * get services from api
      *
      */
-    TranslationService.prototype.getList = function () {
-        return this.http.get('translation/get?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    TranslationService.prototype.getList = function (data) {
+        return this.http.get('translation/get?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken() + "&" + this.$.param(data));
     };
     /**
      * get services from api
@@ -2549,6 +2582,7 @@ var Translation = /** @class */ (function () {
     Translation.getNewKeys = function () {
         return src_app_shared_cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY);
     };
+    Translation.TRANSLATION_DATA = {};
     Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY = 'translations_not_exists';
     Translation.TRANSLATION_CACHE_KEY = 'translations';
     return Translation;
@@ -2929,7 +2963,7 @@ var environment = {
     production: false,
     // apiUrl      : 'http://41.41.86.210:4000/admin/api',
     // backEndPublicUrl   : 'http://41.41.86.210:4000/',
-    publicUrl: 'http://127.0.0.1:8000',
+    publicUrl: 'http://' + window.location.hostname + '/samsa-backend/public',
     // https://samsav2.sphinxws.com/public
     // http://127.0.0.1:8000
     // http://localhost/samsa-backend/public

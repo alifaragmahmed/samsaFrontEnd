@@ -2,20 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SettingsComponent } from './settings.component';
 import { TranslationComponent } from './translation/translation.component';
-import { LevelsComponent } from './levels/levels.component'
-import { CaseConstraintComponent } from './case-constraint/case-constraint.component';
-import { ConstraintStatusComponent } from './constraint-status/constraint-status.component';
-import { LanguagesComponent } from './languages/languages.component';
-import { ParentJobsComponent } from './parent-jobs/parent-jobs.component';
-import { DivisionsComponent } from './divisions/divisions.component';
-import { NationalityComponent } from './nationality/nationality.component';
-import { DepartmentsComponent } from './departments/departments.component';
-import { RelativeRelationsComponent } from './relative-relations/relative-relations.component';
-import { RegisterationStatusComponent } from './registeration-status/registeration-status.component'
-import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
+import { RegisterationStatusComponent } from './registeration-status/registeration-status.component';
 import { CountryComponent } from './components/country/country.component';
 import { AcademicYearComponent } from './components/academic-year/academic-year.component';
 import { DivisionComponent } from './components/division/division.component';
+import { QualificationComponent } from './components/qualification/qualification.component';
+import { RegistrationMethodComponent } from './components/registration-method/registration-method.component';
+import { CaseConstraintComponent } from './components/case-constraint/case-constraint.component';
+import { LanguageComponent } from './components/language/language.component';
+import { NationalityComponent } from './components/nationality/nationality.component';
+import { ParentJobComponent } from './components/parent-job/parent-job.component';
+import { RelationComponent } from './components/relation/relation.component';
+import { StudentCodeSeriesComponent } from './components/student-code-series/student-code-series.component';
 
 const routes: Routes = [
   {
@@ -23,10 +21,6 @@ const routes: Routes = [
     path: "",
     component: SettingsComponent,
     children: [
-      {
-        path: 'city',
-        loadChildren: './city/city.module#CityModule'
-      },
       {
         path: "country",
         component: CountryComponent
@@ -40,20 +34,36 @@ const routes: Routes = [
         component: DivisionComponent
       },
       {
-        path: "qualifications",
-        loadChildren: './qualification/qualification.module#QualificationModule'
+        path: "qualification",
+        component: QualificationComponent
       },
       {
-        path: "qualification-types",
-        loadChildren: './qualification-types/qualification-types.module#QualificationTypesModule'
+        path: "registration-method",
+        component: RegistrationMethodComponent
       },
       {
-        path: "roles",
-        loadChildren: './roles/roles.module#RolesModule'
+        path: "case-constraint",
+        component: CaseConstraintComponent
       },
       {
-        path: "registration-methods",
-        loadChildren: './registeration-methods/registeration-methods.module#RegisterationMethodsModule'
+        path: "language",
+        component: LanguageComponent
+      },
+      {
+        path: "nationality",
+        component: NationalityComponent
+      },
+      {
+        path: "parent-job",
+        component: ParentJobComponent
+      },
+      {
+        path: "relation",
+        component: RelationComponent
+      },
+      {
+        path: "student-code-series",
+        component: StudentCodeSeriesComponent
       },
       {
         path: "registration-status",
@@ -63,49 +73,9 @@ const routes: Routes = [
         path: "translations",
         component: TranslationComponent
       },
-      {
-        path: "levels",
-        component: LevelsComponent
-      },
-      {
-        path: "case-constraints",
-        component: CaseConstraintComponent
-      }
-      ,
-      {
-        path: "constraint-status",
-        component: ConstraintStatusComponent
-      },
-      {
-        path: 'languages',
-        component: LanguagesComponent
-      }
-      ,
-      {
-        path: 'parent-jobs',
-        component: ParentJobsComponent
-      },
-      {
-        path: 'divisions',
-        component: DivisionsComponent
-      },
-      {
-        path: 'nationalities',
-        component: NationalityComponent
-      },
-      {
-        path: 'departments',
-        component: DepartmentsComponent
-      },
-      {
-        path: 'relative-realtions',
-        component: RelativeRelationsComponent
-      }
-      ,
-      {
-        path: 'required-documents',
-        component: RequiredDocumentsComponent
-      }
+
+
+
     ]
   }
 ];

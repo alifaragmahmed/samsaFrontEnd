@@ -15,6 +15,8 @@ export class TranslationComponent implements OnInit {
   datatable: any = null;
   public translationList: any;
   public isUpdate = false;
+  response: any = {};
+  currentPage: any = 1;
 
   constructor(private translationService: TranslationService) { }
 
@@ -27,17 +29,22 @@ export class TranslationComponent implements OnInit {
    * load translations and update the cache
    */
   loadTranslations() {
-    this.translationService.getList().subscribe((r) => {
-      this.translationList = r;
-      this.loadDataTable();
+    let data = {
+      page: this.currentPage
+    };
+    this.translationService.getList(data).subscribe((r) => {
+      this.response = r;
+      this.prePagniation();
     });
   }
 
   /**
    * load translations and update the cache
    */
-  loadِAppTranslations() {
+  loadِAppTranslations(keys=null) {
+    //Translation.TRANSLATION_DATA = null;
     this.translationService.get().subscribe((r) => {
+      Translation.TRANSLATION_DATA = r;
       Cache.remove(Translation.TRANSLATION_CACHE_KEY);
       Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
     });
@@ -65,7 +72,7 @@ export class TranslationComponent implements OnInit {
    */
   updateTranslation() {
     let changedWord = [];
-    this.translationList.forEach(element => {
+    this.response.data.forEach(element => {
       if (element.changed == 1) {
         element.value = null;
         changedWord.push(element);
@@ -83,28 +90,26 @@ export class TranslationComponent implements OnInit {
         Message.error(data.message);
 
       this.isUpdate = false;
-      this.loadTranslations();
-      this.loadِAppTranslations();
+      //this.loadTranslations();
+      this.loadِAppTranslations(changedWord);
     });
   }
 
-  loadDataTable() {
-    return;
-    if (this.datatable) {
-      this.datatable.destroy();
-    }
-      var _this = this;
-      setTimeout(() => {
-        _this.datatable = _this.$('#tableTrans').DataTable({
-          "paging": false,
-          //"pageLength": 10,
-          dom: 'Bfrtip',
-          "language": {
-              "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"
-          },
-      });
-      }, 500);
 
+  loadPage(page) {
+    this.currentPage = page;
+    this.loadTranslations();
+  }
+
+  prePagniation() {
+    if (!this.response.data)
+      return;
+    this.response.prev_page = this.response.prev_page_url? this.response.prev_page_url.replace(this.response.path+'?page=', '') : null;
+    this.response.next_page = this.response.next_page_url? this.response.next_page_url.replace(this.response.path+'?page=', '') : null;
+    this.response.pages = Math.ceil(this.response.total / this.response.per_page);
+    this.response.pages_arr = [];
+    for(let i = 0; i < this.response.pages; i ++)
+      this.response.pages_arr.push(i+1);
   }
 
 }

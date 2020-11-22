@@ -24,6 +24,7 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   private termService: TermService,
   private divisionService: DivisionService,
   private applicationSettingService: ApplicationSettingService) {
+    Translation.TRANSLATION_DATA = Cache.get(Translation.TRANSLATION_CACHE_KEY);
   }
 
   ngAfterViewChecked(): void {
@@ -40,13 +41,11 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   }
 
   ngOnInit() {
+    //Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
     Request.addToQueue({observer: this.translationService.get(), action: (r)=>{
-      Cache.remove(Translation.TRANSLATION_CACHE_KEY);
-      Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
-    }});
-    Request.addToQueue({observer: this.levelService.get(), action: (r)=>{
-      Cache.remove(LevelService.LEVEL_PREFIX);
-      Cache.set(LevelService.LEVEL_PREFIX, r);
+      //Cache.remove(Translation.TRANSLATION_CACHE_KEY);
+      //Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+      Translation.TRANSLATION_DATA = r;
     }});
     Request.addToQueue({observer: this.divisionService.get(), action: (r)=>{
       Cache.remove(DivisionService.DIVISION_PREFIX);

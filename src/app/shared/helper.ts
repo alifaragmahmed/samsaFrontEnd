@@ -5,6 +5,7 @@ import { Router } from '../../../node_modules/@angular/router';
 export class Helper {
 
 
+
   public static refreshComponent(router: Router, url) {
     router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       router.navigate([url]);
@@ -24,7 +25,7 @@ export class Helper {
     word = word.replace(/\s/g, '_');
     word = word.toLocaleLowerCase();
     // load translations from cache
-    const transWord = Translation.getTranslationsData()[word];
+    const transWord = Translation.TRANSLATION_DATA[word];//getTranslationsData()[word];
 
     if (transWord) {
       return transWord['name_'+Translation.getLang()];

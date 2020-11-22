@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LevelService } from 'src/app/account/services/level.service';
+import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
+import { Cache } from 'src/app/shared/cache';
 import { SettingService } from '../../services/setting.service';
 import { SettingTemplate } from '../../setting-template';
 
@@ -10,26 +13,30 @@ import { SettingTemplate } from '../../setting-template';
 export class QualificationComponent extends SettingTemplate implements OnInit {
 
   qualificationType = null;
+  academicYears: any = [];
+  levels: any = [];
+
 
   constructor(public settingService: SettingService,
-    public levelService: SettingService,
-    public departmentService: SettingService) {
+    public qualificationTypeService: SettingService) {
     super(settingService);
     this.baseUrl = "qualifications";
     this.settingService.baseUrl = "qualifications";
-    this.requiredFields = ['name'];
+    this.requiredFields = ['name', 'grade'];
     this.get();
 
 
     // init qualification type
-    this.qualificationType = new SettingTemplate(this.departmentService);
-    this.qualificationType.baseUrl = "departments";
-    this.qualificationType.requiredFields = ['name', 'level_id', 'division_id'];
+    this.qualificationType = new SettingTemplate(this.qualificationTypeService);
+    this.qualificationType.baseUrl = "qualification_types";
+    this.qualificationType.requiredFields = ['name', 'level_id', 'academic_year_id', 'qualification_id', 'grade'];
     this.qualificationType.get();
 
   }
 
   ngOnInit() {
+    this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+    this.academicYears = ApplicationSettingService.ACADEMIC_YEARS;
   }
 
 }

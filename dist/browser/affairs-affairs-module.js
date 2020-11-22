@@ -13,11 +13,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _adminision_components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../adminision/components/application/application-create/application-create.component */ "./src/app/adminision/components/application/application-create/application-create.component.ts");
-/* harmony import */ var _adminision_components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../adminision/components/application/application-index/application-index.component */ "./src/app/adminision/components/application/application-index/application-index.component.ts");
-/* harmony import */ var _student_components_student_student_create_student_create_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../student/components/student/student-create/student-create.component */ "./src/app/student/components/student/student-create/student-create.component.ts");
-/* harmony import */ var _student_components_student_student_index_student_index_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../student/components/student/student-index/student-index.component */ "./src/app/student/components/student/student-index/student-index.component.ts");
-/* harmony import */ var _affairs_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./affairs.component */ "./src/app/affairs/affairs.component.ts");
+/* harmony import */ var _adminision_components_adminision_setting_adminision_setting_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../adminision/components/adminision-setting/adminision-setting.component */ "./src/app/adminision/components/adminision-setting/adminision-setting.component.ts");
+/* harmony import */ var _adminision_components_application_required_application_required_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../adminision/components/application-required/application-required.component */ "./src/app/adminision/components/application-required/application-required.component.ts");
+/* harmony import */ var _adminision_components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../adminision/components/application/application-create/application-create.component */ "./src/app/adminision/components/application/application-create/application-create.component.ts");
+/* harmony import */ var _adminision_components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../adminision/components/application/application-index/application-index.component */ "./src/app/adminision/components/application/application-index/application-index.component.ts");
+/* harmony import */ var _adminision_components_required_document_required_document_index_required_document_index_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../adminision/components/required_document/required-document-index/required-document-index.component */ "./src/app/adminision/components/required_document/required-document-index/required-document-index.component.ts");
+/* harmony import */ var _student_components_student_student_create_student_create_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../student/components/student/student-create/student-create.component */ "./src/app/student/components/student/student-create/student-create.component.ts");
+/* harmony import */ var _student_components_student_student_index_student_index_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../student/components/student/student-index/student-index.component */ "./src/app/student/components/student/student-index/student-index.component.ts");
+/* harmony import */ var _affairs_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./affairs.component */ "./src/app/affairs/affairs.component.ts");
+
+
+
 
 
 
@@ -29,23 +35,35 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: "",
-        component: _affairs_component__WEBPACK_IMPORTED_MODULE_7__["AffairsComponent"],
+        component: _affairs_component__WEBPACK_IMPORTED_MODULE_10__["AffairsComponent"],
         children: [
             {
                 path: 'students',
-                component: _student_components_student_student_index_student_index_component__WEBPACK_IMPORTED_MODULE_6__["StudentIndexComponent"]
+                component: _student_components_student_student_index_student_index_component__WEBPACK_IMPORTED_MODULE_9__["StudentIndexComponent"]
             },
             {
                 path: 'students/create',
-                component: _student_components_student_student_create_student_create_component__WEBPACK_IMPORTED_MODULE_5__["StudentCreateComponent"]
+                component: _student_components_student_student_create_student_create_component__WEBPACK_IMPORTED_MODULE_8__["StudentCreateComponent"]
             },
             {
                 path: 'applications',
-                component: _adminision_components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_4__["ApplicationIndexComponent"]
+                component: _adminision_components_application_application_index_application_index_component__WEBPACK_IMPORTED_MODULE_6__["ApplicationIndexComponent"]
             },
             {
                 path: 'applications/create',
-                component: _adminision_components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_3__["ApplicationCreateComponent"]
+                component: _adminision_components_application_application_create_application_create_component__WEBPACK_IMPORTED_MODULE_5__["ApplicationCreateComponent"]
+            },
+            {
+                path: 'settings',
+                component: _adminision_components_adminision_setting_adminision_setting_component__WEBPACK_IMPORTED_MODULE_3__["AdminisionSettingComponent"]
+            },
+            {
+                path: 'required_documents',
+                component: _adminision_components_required_document_required_document_index_required_document_index_component__WEBPACK_IMPORTED_MODULE_7__["RequiredDocumentIndexComponent"]
+            },
+            {
+                path: 'application_required',
+                component: _adminision_components_application_required_application_required_component__WEBPACK_IMPORTED_MODULE_4__["ApplicationRequiredComponent"]
             },
         ]
     },
@@ -80,7 +98,7 @@ var AffairsRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-10\">\r\n    <div class=\"w3-white material-shadow safe-box\">\r\n\r\n      <div class=\"safe-box-header w3-xlarge\">\r\n        {{ \"student affairs\" | trans }}\r\n      </div>\r\n      <div class=\"border-bottom-dashed\"></div>\r\n      <br>\r\n\r\n      <div class=\"safe-box-body row\">\r\n\r\n        <div class=\"col-lg-3 col-md-3 col-sm-12\">\r\n          <div class=\"custom-panel w3-display-container w3-round\">\r\n            <div class=\"custom-panel-body\">\r\n\r\n              <button\r\n              [routerLink]=\"['/affairs/students']\" [queryParams]=\"{col: 'col-lg-12'}\"\r\n              class=\"btn btn-default w3-block small-shadow btn-margin-bottom\">{{ \"students\" | trans }}</button>\r\n\r\n              <button\r\n              [routerLink]=\"['/affairs/students/create']\" [queryParams]=\"{col: 'col-lg-12'}\"\r\n              class=\"btn btn-default w3-block small-shadow btn-margin-bottom\">{{ \"add student\" | trans }}</button>\r\n\r\n              <button\r\n              [routerLink]=\"['/affairs/applications']\" [queryParams]=\"{col: 'col-lg-12'}\"\r\n              class=\"btn btn-default w3-block small-shadow btn-margin-bottom\">{{ \"applications\" | trans }}</button>\r\n\r\n              <button\r\n              [routerLink]=\"['/affairs/applications/create']\" [queryParams]=\"{col: 'col-lg-12'}\"\r\n              class=\"btn btn-default w3-block small-shadow btn-margin-bottom\">{{ \"add application\" | trans }}</button>\r\n\r\n\r\n\r\n            </div>\r\n\r\n          </div>\r\n\r\n\r\n        </div>\r\n\r\n        <div class=\"col-lg-9 col-md-9 col-sm-12\">\r\n          <div style=\"height: 70vh;overflow: auto;\" >\r\n            <router-outlet></router-outlet>\r\n          </div>\r\n        </div>\r\n\r\n\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-lg-2 col-md-2 col-sm-2\" style=\"padding: 0px!important\">\r\n\r\n\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n\r\n  <div class=\"col-md-3\">\r\n\r\n    <!-- navbar list -->\r\n    <div class=\"box box-primary material-shadow\">\r\n      <div class=\"box-body box-profile\">\r\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/application.gif\" alt=\"User profile picture\">\r\n\r\n        <h3 class=\"profile-username text-center\">{{ \"student affairs\" | trans }}</h3>\r\n\r\n\r\n        <ul class=\"list-group list-group-unbordered\">\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" [routerLink]=\"['/affairs/students']\" [queryParams]=\"{col: 'col-lg-12'}\" >\r\n                <b>{{ \"students\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-users\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" [routerLink]=\"['/affairs/students/create']\" [queryParams]=\"{col: 'col-lg-12'}\" >\r\n                <b>{{ \"add student\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-user-circle\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" [routerLink]=\"['/affairs/applications']\" [queryParams]=\"{col: 'col-lg-12'}\" >\r\n                <b>{{ \"applications\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-address-card-o\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\"  [routerLink]=\"['/affairs/applications/create']\" [queryParams]=\"{col: 'col-lg-12'}\" >\r\n                <b>{{ \"add application\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-address-book-o\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" routerLink='/affairs/required_documents' >\r\n                <b>{{ \"required_documents\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-newspaper-o\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" routerLink='/affairs/application_required' >\r\n                <b>{{ \"application_required\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-check-square\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" routerLink='/affairs/settings' >\r\n                <b>{{ \"adminision settings\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-cogs\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <!-- /.box-body -->\r\n    </div>\r\n    <!-- /.box -->\r\n\r\n  </div>\r\n  <!-- /.col -->\r\n  <div class=\"col-md-9\">\r\n      <router-outlet></router-outlet>\r\n  </div>\r\n  <!-- /.col -->\r\n</div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 

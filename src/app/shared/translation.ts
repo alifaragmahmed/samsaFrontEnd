@@ -1,14 +1,15 @@
- 
+
 import { Cache } from 'src/app/shared/cache';
 
 export class Translation {
 
+    public static TRANSLATION_DATA = {};
     public static TRANSLATION_CACHE_NOT_EXISTS_KEY = 'translations_not_exists';
     public static TRANSLATION_CACHE_KEY = 'translations';
     /**
      * return application current language
      */
-    public static getLang() { 
+    public static getLang() {
         return 'ar';
     }
 
@@ -21,7 +22,7 @@ export class Translation {
     }
 
     public static storeNewKey(key: string) {
-        let data = Cache.get(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY); 
+        let data = Cache.get(Translation.TRANSLATION_CACHE_NOT_EXISTS_KEY);
         if (data) {
             data.push({
                 key: key,

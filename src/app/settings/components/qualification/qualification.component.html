@@ -8,7 +8,7 @@
 
     <div class="row">
 
-      <div class="col-lg-3  col-md-3 col-sm-12">
+      <div class="col-lg-5  col-md-5 col-sm-12">
         <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
           <div class="custom-panel-title">
             {{ "qualifications" | trans }}
@@ -18,6 +18,8 @@
               <thead>
                 <th>#</th>
                 <th>{{ "name" | trans }}</th>
+                <th>{{ "grade" | trans }}</th>
+                <th>{{ "is_azhar" | trans }}</th>
                 <th></th>
               </thead>
               <tbody>
@@ -25,6 +27,12 @@
                   <td>{{ i + 1 }}</td>
                   <td>
                     <input type="text" class="form-control input-sm" [(ngModel)]="item.name" >
+                  </td>
+                  <td>
+                    <input type="number" class="form-control input-sm" [(ngModel)]="item.grade" >
+                  </td>
+                  <td>
+                    <input type="checkbox" class="" [(ngModel)]="item.is_azhar" >
                   </td>
                   <td>
                    <div style="width: 80px" >
@@ -55,10 +63,10 @@
         </div>
       </div>
 
-      <div class="col-lg-3  col-md-3 col-sm-12">
+      <div class="col-lg-7  col-md-7 col-sm-12">
         <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
           <div class="custom-panel-title">
-            {{ "levels" | trans }}
+            {{ "qualification types" | trans }}
           </div>
           <div class="custom-panel-body table-responsive w3-padding w3-center  "
           style="height: 400px;" >
@@ -66,28 +74,54 @@
               <thead>
                 <th>#</th>
                 <th>{{ "name" | trans }}</th>
+                <th>{{ "qualification" | trans }}</th>
+                <th>{{ "academic_year" | trans }}</th>
+                <th>{{ "level" | trans }}</th>
+                <th>{{ "grade" | trans }}</th>
+                <th>{{ "percent" | trans }}</th>
                 <th></th>
               </thead>
               <tbody>
-                <ng-container *ngFor="let item of level.data index as i" >
+                <ng-container *ngFor="let item of qualificationType.data index as i" >
                   <tr  >
                     <td>{{ i + 1 }}</td>
                     <td>
                       <input type="text" class="form-control input-sm" [(ngModel)]="item.name" >
                     </td>
                     <td>
+                      <select class="form-control input-sm" [(ngModel)]="item.qualification_id"  >
+                        <option *ngFor="let q of data" value="{{ q.id }}">{{ q.name }}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control input-sm" [(ngModel)]="item.academic_year_id"  >
+                        <option *ngFor="let year of academicYears" value="{{ year.id }}">{{ year.name }}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control input-sm" [(ngModel)]="item.level_id"  >
+                        <option *ngFor="let level of levels" value="{{ level.id }}">{{ level.name }}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input type="number" class="form-control input-sm" [(ngModel)]="item.grade" >
+                    </td>
+                    <td>
+                      <input type="number" class="form-control input-sm" [(ngModel)]="item.percent" >
+                    </td>
+                    <td>
                     <div style="width: 90px" >
                       <button class="btn btn-success"
-                      [disabled]="level.isSubmitted"
-                      (click)="level.send(item, i)" >
-                      <i *ngIf="!level.isSubmitted" class="fa fa-check" ></i>
-                      <i *ngIf="level.isSubmitted" class="fa fa-spin fa-spinner" ></i>
+                      [disabled]="qualificationType.isSubmitted"
+                      (click)="qualificationType.send(item, i)" >
+                      <i *ngIf="!qualificationType.isSubmitted" class="fa fa-check" ></i>
+                      <i *ngIf="qualificationType.isSubmitted" class="fa fa-spin fa-spinner" ></i>
                     </button>
                       <button class="btn btn-danger"
-                      [disabled]="level.isSubmitted"
-                      (click)="level.destroy(item, i)" >
-                        <i *ngIf="!level.isSubmitted" class="fa fa-trash" ></i>
-                        <i *ngIf="level.isSubmitted" class="fa fa-spin fa-spinner" ></i>
+                      [disabled]="qualificationType.isSubmitted"
+                      (click)="qualificationType.destroy(item, i)" >
+                        <i *ngIf="!qualificationType.isSubmitted" class="fa fa-trash" ></i>
+                        <i *ngIf="qualificationType.isSubmitted" class="fa fa-spin fa-spinner" ></i>
                       </button>
                     </div>
                     </td>
@@ -96,7 +130,7 @@
                 <tr>
                   <td></td>
                   <td colspan="2" >
-                    <button class="fa fa-plus w3-block btn btn-default btn-flat" (click)="level.add()" ></button>
+                    <button class="fa fa-plus w3-block btn btn-default btn-flat" (click)="qualificationType.add()" ></button>
                   </td>
                 </tr>
               </tbody>
@@ -105,66 +139,7 @@
         </div>
       </div>
 
-      <div class="col-lg-6  col-md-6 col-sm-12">
-        <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
-          <div class="custom-panel-title">
-            {{ "departments" | trans }}
-          </div>
-          <div class="custom-panel-body table-responsive w3-padding w3-center" style="height: 400px;" >
-            <table class=" table-bordered" >
-              <thead>
-                <th>#</th>
-                <th>{{ "name" | trans }}</th>
-                <th>{{ "division" | trans }}</th>
-                <th>{{ "level" | trans }}</th>
-                <th></th>
-              </thead>
-              <tbody>
-                <ng-container *ngFor="let item of department.data index as i">
-                  <tr  >
-                    <td>{{ i + 1 }}</td>
-                    <td>
-                      <input type="text" class="form-control input-sm" [(ngModel)]="item.name" >
-                    </td>
-                    <td>
-                      <select class="form-control input-sm" [(ngModel)]="item.division_id"  >
-                        <option *ngFor="let dv of data" value="{{ dv.id }}">{{ dv.name }}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control input-sm" [(ngModel)]="item.level_id"  >
-                        <option *ngFor="let level of level.data" value="{{ level.id }}">{{ level.name }}</option>
-                      </select>
-                    </td>
-                    <td>
-                    <div style="width: 90px" >
-                      <button class="btn btn-success"
-                      [disabled]="department.isSubmitted"
-                      (click)="department.send(item, i)" >
-                      <i *ngIf="!department.isSubmitted" class="fa fa-check" ></i>
-                      <i *ngIf="department.isSubmitted" class="fa fa-spin fa-spinner" ></i>
-                    </button>
-                      <button class="btn btn-danger"
-                      [disabled]="department.isSubmitted"
-                      (click)="department.destroy(item, i)" >
-                        <i *ngIf="!department.isSubmitted" class="fa fa-trash" ></i>
-                        <i *ngIf="department.isSubmitted" class="fa fa-spin fa-spinner" ></i>
-                      </button>
-                    </div>
-                    </td>
-                  </tr>
-                </ng-container>
-                <tr>
-                  <td></td>
-                  <td colspan="2" >
-                    <button class="fa fa-plus w3-block btn btn-default btn-flat" (click)="department.add()" ></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+
 
     </div>
 

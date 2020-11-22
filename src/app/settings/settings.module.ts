@@ -6,40 +6,36 @@ import { SettingsRoutingModule } from "./settings-routing.module";
 import { SettingsComponent } from "./settings.component";
 import { TranslationComponent } from "./translation/translation.component";
 import { SharedModule } from "../shared/shared.module";
-import { LevelsComponent } from "./levels/levels.component";
-import { CaseConstraintComponent } from "./case-constraint/case-constraint.component";
-import { ConstraintStatusComponent } from "./constraint-status/constraint-status.component";
-import { LanguagesComponent } from "./languages/languages.component";
-import { ParentJobsComponent } from "./parent-jobs/parent-jobs.component";
-import { DivisionsComponent } from "./divisions/divisions.component";
-import { NationalityComponent } from "./nationality/nationality.component";
-import { DepartmentsComponent } from "./departments/departments.component";
-import { RelativeRelationsComponent } from "./relative-relations/relative-relations.component";
 import { RegisterationStatusComponent } from './registeration-status/registeration-status.component';
-import { RequiredDocumentsComponent } from './required-documents/required-documents.component'
 import { MatSlideToggleModule } from '@angular/material';
 import { CountryComponent } from './components/country/country.component';
 import { AcademicYearComponent } from './components/academic-year/academic-year.component';
 import { DivisionComponent } from './components/division/division.component';
+import { QualificationComponent } from './components/qualification/qualification.component';
+import { RegistrationMethodComponent } from './components/registration-method/registration-method.component';
+import { CaseConstraintComponent } from './components/case-constraint/case-constraint.component';
+import { NationalityComponent } from './components/nationality/nationality.component';
+import { LanguageComponent } from './components/language/language.component';
+import { ParentJobComponent } from './components/parent-job/parent-job.component';
+import { RelationComponent } from './components/relation/relation.component';
+import { StudentCodeSeriesComponent } from './components/student-code-series/student-code-series.component';
 
 @NgModule({
   declarations: [
     SettingsComponent,
     TranslationComponent,
-    LevelsComponent,
-    CaseConstraintComponent,
-    ConstraintStatusComponent,
-    LanguagesComponent,
-    ParentJobsComponent,
-    DivisionsComponent,
-    NationalityComponent,
-    DepartmentsComponent,
-    RelativeRelationsComponent,
     RegisterationStatusComponent,
-    RequiredDocumentsComponent,
     CountryComponent,
     AcademicYearComponent,
-    DivisionComponent
+    DivisionComponent,
+    QualificationComponent,
+    RegistrationMethodComponent,
+    CaseConstraintComponent,
+    NationalityComponent,
+    LanguageComponent,
+    ParentJobComponent,
+    RelationComponent,
+    StudentCodeSeriesComponent
   ],
   imports: [
     CommonModule,

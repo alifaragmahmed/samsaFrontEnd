@@ -7,14 +7,16 @@ import { Auth } from '../auth';
 })
 export class TranslationService {
 
+  $: any = $;
+
   constructor(private http: HttpClient) { }
-  
+
   /**
    * get services from api
    *
    */
-  public getList() {
-    return this.http.get('translation/get?api_token=' + Auth.getApiToken());
+  public getList(data) {
+    return this.http.get('translation/get?api_token=' + Auth.getApiToken() + "&"+this.$.param(data),);
   }
 
   /**
@@ -28,7 +30,7 @@ export class TranslationService {
   /**
    * store new service
    */
-  public update(data) { 
+  public update(data) {
     return this.http.post('translation/update' + '?api_token=' + Auth.getApiToken(), data);
   }
 

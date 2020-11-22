@@ -6,5 +6,8 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   constructor() {
+
+    //let html = '<app-root></app-root>';
+    //var myWindow = window.open(window.location.href, "MsgWindow", "width=200,height=100");
   }
 }
