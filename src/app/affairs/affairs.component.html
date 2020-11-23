@@ -11,49 +11,56 @@
         <br>
         <div class="custom-panel w3-display-container w3-round ">
 
-          <div class="custom-panel-body table-responsive w3-padding w3-center"  >
+          <div class="custom-panel-body table-responsive w3-padding w3-center">
 
-             <a href="#" [routerLink]="['/affairs/students']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}" >
-                <b>{{ "students" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-users" ></i>
-                </a>
+            <a href="#" [routerLink]="['/affairs/applications']" role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+              <b>{{ "applications" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-address-card-o"></i>
+              </a>
             </a>
-            <a href="#" [routerLink]="['/affairs/students/create']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}" >
-                <b>{{ "add student" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-user-circle" ></i>
-                </a>
+            <a href="#" [routerLink]="['/affairs/applications/create']" role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+              <b>{{ "add application" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-address-book-o"></i>
+              </a>
             </a>
-            <a href="#" [routerLink]="['/affairs/applications']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow"  [queryParams]="{col: 'col-lg-12'}" >
-                <b>{{ "applications" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-address-card-o" ></i>
-                </a>
+            <a href="#" [routerLink]="['/affairs/students']" role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+              <b>{{ "students" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-users"></i>
+              </a>
             </a>
-            <a href="#"  [routerLink]="['/affairs/applications/create']" role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}" >
-                <b>{{ "add application" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-address-book-o" ></i>
-                </a>
+            <a href="#" [routerLink]="['/affairs/students/create']" role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
+              <b>{{ "add student" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-user-circle"></i>
+              </a>
             </a>
-            <a href="#" routerLink='/affairs/required_documents' role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" >
-                <b>{{ "required_documents" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-newspaper-o" ></i>
-                </a>
+            <a href="#" routerLink='/affairs/required_documents' role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow">
+              <b>{{ "required_documents" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-newspaper-o"></i>
+              </a>
             </a>
-            <a href="#" routerLink='/affairs/application_required' role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" >
-                <b>{{ "application_required" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-check-square" ></i>
-                </a>
+            <a href="#" routerLink='/affairs/application_required' role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow">
+              <b>{{ "application_required" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-check-square"></i>
+              </a>
             </a>
-            <a href="#" routerLink='/affairs/settings' role="button" class="btn-margin-bottom btn btn-default w3-block small-shadow" >
-                <b>{{ "adminision settings" | trans }}</b>
-                <a href="#"  class="pull-left">
-                  <i class="fa fa-cogs" ></i>
-                </a>
+            <a href="#" routerLink='/affairs/settings' role="button"
+              class="btn-margin-bottom btn btn-default w3-block small-shadow">
+              <b>{{ "adminision settings" | trans }}</b>
+              <a href="#" class="pull-left">
+                <i class="fa fa-cogs"></i>
+              </a>
             </a>
           </div>
         </div>
@@ -61,7 +68,7 @@
 
       <div class="col-lg-10">
         <div class="custom- w3-display-container w3-round">
-          <div class="custom-panel- table-responsive w3-padding"  >
+          <div class="custom-panel- table-responsive w3-padding">
             <router-outlet></router-outlet>
           </div>
         </div>
@@ -74,9 +81,3 @@
 
   </div>
 </div>
-
-
-
-
-
-

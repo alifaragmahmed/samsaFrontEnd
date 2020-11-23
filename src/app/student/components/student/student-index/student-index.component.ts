@@ -30,7 +30,7 @@ export class StudentIndexComponent implements OnInit {
 
   public selectedItem: any= {};
 
-  public col = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
+  public col = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 
 
   constructor(public studentService: StudentService, public router: ActivatedRoute) {
@@ -43,8 +43,8 @@ export class StudentIndexComponent implements OnInit {
     this.router.queryParams.subscribe((params) => {
       let col = params['col'];
       console.log(col);
-      if (col)
-        this.col = col;
+      //if (col)
+      //  this.col = col;
     });
 
   }

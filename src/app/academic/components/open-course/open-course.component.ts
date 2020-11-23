@@ -23,13 +23,13 @@ export class OpenCourseComponent implements OnInit {
 
   ngOnInit() {
     this.loadCourses();
-    this.loadOpenCourses();
   }
 
   loadCourses() {
     this.courseService.get().subscribe((res)=> {
       this.courses = res;
       this.loadLevels();
+      this.loadOpenCourses();
     });
   }
 

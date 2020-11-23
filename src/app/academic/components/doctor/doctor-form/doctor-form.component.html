@@ -63,7 +63,7 @@
               <tr>
                 <td>{{ "level"| trans }} </td>
                 <td>
-                  <select class="form-control select2 level-select" multiple value="{{doctor.levels}}" >
+                  <select class="form-control select2 level-select" multiple   >
                     <option *ngFor="let item of levels" value="{{ item.id }}" >{{ item.name }}</option>
                   </select>
                 </td>

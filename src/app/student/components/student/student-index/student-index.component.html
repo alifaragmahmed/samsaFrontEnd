@@ -31,31 +31,29 @@
   </div>
   <ng-container *ngFor="let item of resources.data" >
       <div class="{{ col }} student-list-col" >
-          <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item">
+        <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item w3-round">
+          <div class="w3-display-topleft w3-padding">
+            <div class="text-left">
+                <a href="#" [routerLink]="['/student/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-edit btn btn-warning btn-sm" ></i></a>
 
-              <div class="w3-display-topleft w3-padding fa fa-certificate w3-jumbo w3-text-deep-orange" style="z-index: 1;font-size: 80px!important"  >
+                <a href="#" [routerLink]="['/student/show/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-desktop btn btn-success btn-sm" ></i></a>
 
-              </div>
-              <div class="w3-display-topleft w3-padding w3-tiny w3-text-white text-center" style="z-index: 2;top: 1px;left: 6%;" >
-                <!--
+                <button (click)="showStudentPayments(item)" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "student payments" | trans }} </button>
 
-                <input type="checkbox" style="margin: 0px!important" class="w3-check w3-margin" (click)="toggleFromTrash(item.id)"  >
-                -->
-                <br>
-                <br>
-                <b>{{ item.paid_value }}</b>
-                <br>
-                <b>جنيه</b>
-              </div>
-
-            <div class="media-left">
-                <a  >
-                  <img class="media-object w3-round" [src]="item.image"  style="width: 100px;" >
-                </a>
+                <button class="btn btn-info btn-sm">
+                  <b>{{ item.paid_value }}</b><b>جنيه</b>
+                </button>
             </div>
-            <div class="media-body">
-            <h4 class="media-heading">{{ item.name.substring(0, 15) }}..</h4>
-            <table class="table w3-tiny" >
+          </div>
+
+          <div class="media-left">
+            <a>
+              <img class="media-object w3-round" [src]="item.image" style="width: 100px;max-height: 210;">
+            </a>
+          </div>
+          <div class="media-body">
+            <h5 class="media-heading">{{ item.name }}..</h5>
+            <table class="w3-tiny" >
               <tr>
                 <th>{{ "level" | trans }}</th>
                 <td>{{ item.level? item.level.name : '' }}</td>
@@ -77,15 +75,10 @@
                 <td>{{ item.registeration_status? item.registeration_status.name : '' }}</td>
               </tr>
             </table>
-            <div class="text-right" >
-              <a href="#" [routerLink]="['/student/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-edit btn btn-warning btn-sm" ></i></a>
 
-              <a href="#" [routerLink]="['/student/show/', item.id]" style="margin: 5px" ><i class="material-shadow fa fa-desktop btn btn-success btn-sm" ></i></a>
-
-              <button (click)="showStudentPayments(item)" style="margin: 5px" class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "student payments" | trans }} </button>
-            </div>
           </div>
-      </div>
+        </div>
+
     </div>
   </ng-container>
 

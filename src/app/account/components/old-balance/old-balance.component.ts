@@ -37,6 +37,7 @@ export class OldBalanceComponent implements OnInit {
 
   updateSetting(object, loadding) {
     loadding = true;
+    this.isSubmittedOldbalance = true
     this.accountSettingService.update(object).subscribe((r: any) => {
       if (r.status == 1) {
         Message.success(r.message);
@@ -44,6 +45,7 @@ export class OldBalanceComponent implements OnInit {
         Message.error(r.message);
       }
       loadding = false;
+      this.isSubmittedOldbalance = false
     });
   }
 

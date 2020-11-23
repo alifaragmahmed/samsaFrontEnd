@@ -184,7 +184,7 @@ export class CardComponent implements OnInit {
       this.searchData.student_id = student.id;
       this.searchKey = student.name;
       this.loadStudentInfo(student.id);
-
+      this.selectedCard.image_url = student.image;
     }
     this.studentSearchDialogShow = false;
   }

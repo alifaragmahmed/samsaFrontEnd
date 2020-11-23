@@ -28,31 +28,9 @@
 
     <ng-container *ngFor="let item of resources.data">
       <div class="{{ col }} student-list-col">
-        <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item">
-
-
-          <div class="media-left">
-            <a>
-              <img class="media-object w3-round" [src]="item.personal_photo_url" style="width: 100px;max-height: 210;">
-            </a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">{{ item.name.substring(0, 15) }}..</h4>
-            <table class="table">
-              <tr>
-                <th>{{ "academic_year" | trans }}</th>
-                <td>{{ item.academic_year? item.academic_year.name : '' }}</td>
-              </tr>
-              <tr>
-                <th>{{ "qualification" | trans }}</th>
-                <td>{{ item.qualification? item.qualification.name : '' }}</td>
-              </tr>
-              <tr>
-                <th>{{ "level" | trans }}</th>
-                <td>{{ item.level? item.level.name : '' }}</td>
-              </tr>
-            </table>
-            <div class="text-right">
+        <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item w3-round">
+          <div class="w3-display-topleft w3-padding">
+            <div class="text-left">
               <a href="#" [routerLink]="['/adminision/application/', item.id]" style="margin: 5px"><i
                   class="fa fa-edit btn btn-warning btn-sm material-shadow"></i></a>
 
@@ -73,6 +51,30 @@
                   class="material-shadow fa fa-money btn w3-indigo btn-sm" > {{ "pay" | trans }} </a>
                   -->
             </div>
+          </div>
+
+          <div class="media-left">
+            <a>
+              <img class="media-object w3-round" [src]="item.personal_photo_url" style="width: 100px;max-height: 210;">
+            </a>
+          </div>
+          <div class="media-body">
+            <h5 class="media-heading">{{ item.name }}..</h5>
+            <table class="w3-tiny">
+              <tr>
+                <th>{{ "academic_year" | trans }}</th>
+                <td>{{ item.academic_year? item.academic_year.name : '' }}</td>
+              </tr>
+              <tr>
+                <th>{{ "qualification" | trans }}</th>
+                <td>{{ item.qualification? item.qualification.name : '' }}</td>
+              </tr>
+              <tr>
+                <th>{{ "level" | trans }}</th>
+                <td>{{ item.level? item.level.name : '' }}</td>
+              </tr>
+            </table>
+
           </div>
         </div>
       </div>

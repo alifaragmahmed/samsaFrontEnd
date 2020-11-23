@@ -31,7 +31,7 @@ export class ApplicationIndexComponent implements OnInit {
   public isEntrollSubmit = false;
   public isLoad = false;
 
-  public col = "col-lg-6 col-md-6 col-sm-12 col-xs-12";
+  public col = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 
   constructor(private applicationService: ApplicationService, private route: ActivatedRoute) {
     // init breadcrum

@@ -28,8 +28,10 @@ export class DoctorIndexComponent implements OnInit {
 
   showUpdateDoctorForm(doctor) {
     this.doctor = doctor;
+    console.log(doctor.levels);
     // set select2
     setTimeout(() => {
+      this.$('.level-select').val(doctor.levels);
       this.$('.level-select').select2();
     }, 500);
     this.$('#doctorFormModal').modal('show');

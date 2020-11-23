@@ -49,8 +49,8 @@ export class DoctorFormComponent implements OnInit {
     if (!this.validate()) {
       return Message.error(Helper.trans('fill all required data'));
     }
-    this.doctor.levels = this.$('.level-select').val();
 
+    this.doctor.levels = this.$('.level-select').val();
     if (this.doctor.id) {
       this.update();
     } else {
