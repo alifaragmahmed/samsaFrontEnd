@@ -34,7 +34,7 @@ export class ApplicationSettingService {
   public requestQueue =  [];
 
   constructor(private http: HttpClient) {
-    this.queueRequests();
+    //this.queueRequests();
   }
 
   queueRequests() {

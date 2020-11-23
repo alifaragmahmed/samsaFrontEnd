@@ -8,6 +8,7 @@ import { LevelService } from '../../../../account/services/level.service';
 import { AppModule } from '../../../../app.module';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 import { HashTable } from '../../../../../../node_modules/angular-hashtable';
+import { Request } from 'src/app/shared/request';
 
 @Component({
   selector: 'app-application-create',
@@ -56,7 +57,9 @@ export class ApplicationCreateComponent implements OnInit {
   ];
 
   public col = "col-lg-10 col-md-10 col-sm-12";
-  constructor(private applicationService: ApplicationService, private route: ActivatedRoute) {
+  constructor(private applicationService: ApplicationService, private route: ActivatedRoute, private applicationSettingService: ApplicationSettingService) {
+    this.applicationSettingService.queueRequests();
+    Request.fire();
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       this.loadApplication(id);

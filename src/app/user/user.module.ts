@@ -9,6 +9,7 @@ import { UserFormComponent } from './components/user/user-form/user-form.compone
 import { RoleIndexComponent } from './components/role/role-index/role-index.component';
 import { RoleFormComponent } from './components/role/role-form/role-form.component';
 import { PermissionComponent } from './components/role/permission/permission.component';
+import { UserHistoryComponent } from './components/user-history/user-history.component';
 @NgModule({
   declarations: [
     UserComponent,
@@ -16,7 +17,8 @@ import { PermissionComponent } from './components/role/permission/permission.com
     UserFormComponent,
     RoleIndexComponent,
     RoleFormComponent,
-    PermissionComponent
+    PermissionComponent,
+    UserHistoryComponent
   ],
   imports: [
     SharedModule,

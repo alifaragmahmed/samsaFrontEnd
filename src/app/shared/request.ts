@@ -35,15 +35,15 @@ export class Request {
         object.action(res);
       }, (error)=>{
         console.log("errors : " + error.statusText);
-        Request.queue.push(object);
         if (object.times <= 10 || error.status == 429)
-          Request.fire();
+          Request.queue.push(object);
       }, ()=>{
         console.log("queue size : " + (Request.queue.length) + ", key : " + object.key + ", times : " + object.times);
         Request.fire();
       });
     } else {
       Request.isFired = false;
+      return;
     }
   }
 

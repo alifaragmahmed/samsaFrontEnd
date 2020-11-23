@@ -28,9 +28,6 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
   }
 
   ngAfterViewChecked(): void {
-    setTimeout(() => {
-      // this.document.getElementById('start-loader').remove();
-    }, 1500);
   }
 
   watchUser() {
@@ -57,7 +54,7 @@ export class LayoutComponent implements AfterViewChecked  ,OnInit, OnChanges{
     }});
 
     // load all requests in the queueue
-    console.log("request count" + Request.queue.length);
+    console.log("request count : " + Request.queue.length);
     Request.fire();
   }
 

@@ -11,8 +11,8 @@ import { AppModule } from '../../../../app.module';
   styleUrls: ['./send-note.component.scss']
 })
 export class SendNoteComponent implements OnInit {
- 
-  // init document 
+
+  // init document
   public doc: any = AppModule.doc;
 
   public newNotes: string;
@@ -21,7 +21,7 @@ export class SendNoteComponent implements OnInit {
   @Input() updateStudent: any;
 
   constructor(private studentAccountService: StudentAccountService) { }
-  
+
   /**
    *  load available services for student
    */
@@ -36,7 +36,7 @@ export class SendNoteComponent implements OnInit {
       this.studentAccountService.sendNotes(data).subscribe((r) => {
         this.newNotesUpdate = false;
         this.newNotes = '';
-        Message.success(Helper.trans('done')); 
+        Message.success(Helper.trans('done'));
         this.updateStudent();
         this.dismis();
       });
@@ -52,9 +52,6 @@ export class SendNoteComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void { 
   }
 
 }

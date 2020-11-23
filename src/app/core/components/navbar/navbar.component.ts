@@ -32,16 +32,6 @@ export class NavBarComponent implements OnInit {
   constructor(config: NgbDropdownConfig,private authService: AuthService,
               private router: Router, private systemSettingService: SystemSettingService) {
     config.placement = 'bottom-right';
-
-    //let ob = new Observable();
-    //ob.
-    /*this.notify.subscribe((r)=>{
-      console.log("r : " + r);
-      if (r == 1)
-        this.observeNotifications();
-    });*/
-
-    //Object.
   }
 
   initMessage(arr) {

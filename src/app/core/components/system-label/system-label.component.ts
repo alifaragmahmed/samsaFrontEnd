@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
+import { Cache } from 'src/app/shared/cache';
+import { Theme } from 'src/app/shared/helpers/theme';
 import { SystemSettingService } from '../../services/system-setting.service';
 
 @Component({
@@ -14,10 +16,29 @@ export class SystemLabelComponent implements OnInit {
   resizable = false;
 
   isClosed = false;
-  applicationSetting = ApplicationSettingService;
+  isThemeOpen = false;
+  selectedTheme: any = {};
+  colors: any = [];
 
   constructor(private systemSettingService: SystemSettingService) {
-    console.log(this.applicationSetting.SETTINGS);
+    Theme.load();
+    this.loadTheme();
+  }
+
+  loadTheme() {
+    this.selectedTheme = Theme.get();
+    console.log(this.selectedTheme);
+    this.colors = Theme.COLORS;
+    console.log(this.colors);
+  }
+
+  changeColor(color) {
+    this.selectedTheme = color;
+    Theme.change(color);
+  }
+
+  viewThemeDialog() {
+    this.$('#themeModal').modal('show');
   }
 
   loadSettings() {

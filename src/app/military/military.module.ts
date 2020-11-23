@@ -4,12 +4,12 @@ import { SharedModule } from '../shared/shared.module';
 import { DataTablesModule } from 'angular-datatables';
 
 import { MilitaryRoutingModule } from './military-routing.module';
-import { MilitaryComponent } from './military.component';
-import { MilitaryStatusComponent } from './military-status/military-status.component';
-import { AreaSubmissionComponent } from './area-submission/area-submission.component';
+import { MilitaryComponent } from './military.component'; 
+import { MilitaryAreaComponent } from './components/military-area/military-area.component';
+import { MilitaryStatusComponent } from './components/military-status/military-status.component';
 
 @NgModule({
-  declarations: [MilitaryComponent, MilitaryStatusComponent, AreaSubmissionComponent],
+  declarations: [MilitaryComponent, MilitaryAreaComponent, MilitaryStatusComponent],
   imports: [
     CommonModule,
     MilitaryRoutingModule,

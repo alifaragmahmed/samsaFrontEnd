@@ -29,8 +29,42 @@
           <b class="w3-tiny" >{{ "resize" | trans }}</b>
         </div>
       </li>
+      <li class="text-center setting-list-item w3-hover-light-gray"
+      style="padding: 3px!important;cursor: pointer;" (click)="viewThemeDialog()" >
+        <div  >
+          <i class="fa fa-paint-brush w3-larger w3-text-indigo" ></i>
+          <br>
+          <span class="w3-tiny"  >{{ "theme" | trans }}</span>
+        </div>
+      </li>
     </ul>
 
   </div>
 
 </div>
+
+
+<div class="modal fade"  id="themeModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{ "change application theme" | trans }}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="w3-display-container w3-row">
+          <div *ngFor="let color of colors index as i"
+          (click)="changeColor(color)"
+          class="w3-center" style="width: 40px;float: right;cursor: pointer;" >
+            <i class="fa fa-circle w3-xxlarge" [ngStyle]="{color: color.color}"  ></i>
+            <br>
+            <i class="fa fa-check-circle {{ selectedTheme.color == color.color? 'w3-text-green' : 'w3-text-gray' }}" ></i>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default w3-block small-shadow" data-dismiss="modal">{{ "close" | trans }}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

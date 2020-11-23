@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'trans',
-  pure: false
+  //pure: false
 })
 export class TransPipe implements PipeTransform {
 
