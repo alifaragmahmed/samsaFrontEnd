@@ -130,7 +130,7 @@
              <button
              mat-raised-button color="primary"
              (click)="performUpdateRegisterCourses()"
-             [disabled]="isSubmitted"
+             [disabled]="isSubmitted || !canRegister()"
              style="margin: 5px" >
              <i *ngIf="isSubmitted"  class="fa fa-spin fa-spinner"></i>
              <span *ngIf="!isSubmitted" >{{ "save changes" | trans}} </span>
@@ -147,6 +147,7 @@
              <button
              mat-raised-button color="primary"
              class="w3-purple"
+             [disabled]="!canRegister()"
              (click)="printRegisterCourses()"
              style="margin: 5px" >
              <span >{{ "print" | trans}} </span>
@@ -156,8 +157,13 @@
           </div>
           <br>
 
+          <div *ngIf="!canRegister()" >
+            <div class="alert alert-danger" >
+              {{ cantRegisterReason }}
+            </div>
+          </div>
           <br>
-          <div class="row">
+          <div class="row" *ngIf="canRegister()" >
             <div class="col-lg-6 col-md-6 col-sm-12">
               <div class="w3-padding" >
                 <b>{{ "sort" | trans }}</b>

@@ -30,6 +30,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   requiredHours: number = 0;
   moreHours: number = 0;
   sortType: number = 0;
+  cantRegisterReason = "";
 
   //
   public searchKey: string;
@@ -230,8 +231,10 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   printRegisterCourses() {
-    let url = environment.publicUrl + "/academic/register-course-print/" + this.student.id+"?api_token="+Auth.getApiToken();
-    Helper.openWindow(url);
+    let url1 = environment.publicUrl + "/academic/register-course-student-print/" + this.student.id+"?api_token="+Auth.getApiToken();
+    let url2 = environment.publicUrl + "/academic/register-course-user-print/" + this.student.id+"?api_token="+Auth.getApiToken();
+    Helper.openWindow(url1);
+    Helper.openWindow(url2);
   }
 
   sortTable() {
@@ -298,6 +301,23 @@ export class StudentRegisterCourseComponent implements OnInit {
     });
 
     return courses;
+  }
+
+  /**
+   * check if the student can register
+   *
+   */
+  canRegister() {
+    let valid = true;
+
+    if (this.student.case_constraint_id == 1) {
+      valid = false;
+      this.cantRegisterReason = Helper.trans('can register for application students');
+    } else {
+      this.cantRegisterReason = "";
+    }
+
+    return valid;
   }
 
   //***********************************************

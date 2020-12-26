@@ -66,6 +66,8 @@
               <thead>
                 <th>#</th>
                 <th>{{ "name" | trans }}</th>
+                <th>{{ "required_hours" | trans }}</th>
+                <th>{{ "required_courses" | trans }}</th>
                 <th></th>
               </thead>
               <tbody>
@@ -73,7 +75,13 @@
                   <tr  >
                     <td>{{ i + 1 }}</td>
                     <td>
-                      <input type="text" class="form-control input-sm" [(ngModel)]="item.name" >
+                      <input type="text" style="width: 100px" class="form-control input-sm" [(ngModel)]="item.name" >
+                    </td>
+                    <td>
+                      <input type="text" style="width: 100px" class="form-control input-sm" [(ngModel)]="item.required_hour" >
+                    </td>
+                    <td>
+                      <input type="text" style="width: 100px" class="form-control input-sm" [(ngModel)]="item.required_course" >
                     </td>
                     <td>
                     <div style="width: 90px" >
