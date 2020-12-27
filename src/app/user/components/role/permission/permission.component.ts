@@ -15,6 +15,8 @@ export class PermissionComponent implements OnInit, OnChanges {
   public permissions: any = [];
   public permissionId = new HashTable();
 
+  groups: any = [];
+
   public isSubmitted = false;
 
   constructor(private service: RoleService) {
@@ -60,8 +62,15 @@ export class PermissionComponent implements OnInit, OnChanges {
     });
   }
 
+  loadGroups() {
+    this.service.groups().subscribe((res) => {
+      this.groups = res;
+    });
+  }
+
   ngOnInit() {
     this.loadPermissions();
+    this.loadGroups();
   }
 
   ngOnChanges() {

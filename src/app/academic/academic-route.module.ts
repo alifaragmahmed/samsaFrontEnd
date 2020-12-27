@@ -5,6 +5,7 @@ import { AcademicSettingComponent } from './components/academic-setting/academic
 import { ControlReportComponent } from './components/control-report/control-report.component';
 import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-index.component';
 import { OpenCourseComponent } from './components/open-course/open-course.component';
+import { ResultTransferComponent } from './components/result-transfer/result-transfer.component';
 import { StudentRegisterCourseComponent } from './components/student-register-course/student-register-course.component';
 import { StudentResultIndexComponent } from './components/student-result-index/student-result-index.component';
 
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'control-report',
     component: ControlReportComponent
+  },
+  {
+    path: 'result-transfer',
+    component: ResultTransferComponent
   },
   {
     path: '**',

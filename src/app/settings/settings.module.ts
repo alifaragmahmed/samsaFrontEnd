@@ -19,6 +19,7 @@ import { LanguageComponent } from './components/language/language.component';
 import { ParentJobComponent } from './components/parent-job/parent-job.component';
 import { RelationComponent } from './components/relation/relation.component';
 import { StudentCodeSeriesComponent } from './components/student-code-series/student-code-series.component';
+import { PermissionComponent } from './components/permission/permission.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { StudentCodeSeriesComponent } from './components/student-code-series/stu
     LanguageComponent,
     ParentJobComponent,
     RelationComponent,
-    StudentCodeSeriesComponent
+    StudentCodeSeriesComponent,
+    PermissionComponent
   ],
   imports: [
     CommonModule,

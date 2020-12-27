@@ -14,6 +14,7 @@ import { NationalityComponent } from './components/nationality/nationality.compo
 import { ParentJobComponent } from './components/parent-job/parent-job.component';
 import { RelationComponent } from './components/relation/relation.component';
 import { StudentCodeSeriesComponent } from './components/student-code-series/student-code-series.component';
+import { PermissionComponent } from './components/permission/permission.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path: "translations",
         component: TranslationComponent
+      },
+      {
+        path: "permissions",
+        component: PermissionComponent
       },
 
 

@@ -22,20 +22,20 @@ export class UserService {
    * store new service
    */
   public store(data: any) {
-    return this.http.post('users' + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('users/store' + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
    * update service
    */
   public update(id, data: any) {
-    return this.http.post('users/' + id + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('users/update/' + id + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
    * remove service
    */
   public destroy(id) {
-    return this.http.delete('users/' + id + '?api_token=' + Auth.getApiToken());
+    return this.http.post('users/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
   }
 }

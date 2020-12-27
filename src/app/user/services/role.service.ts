@@ -19,6 +19,14 @@ export class RoleService {
   }
 
   /**
+   * get services from api
+   *
+   */
+  public groups() {
+    return this.http.get('permission_groups?api_token=' + Auth.getApiToken());
+  }
+
+  /**
    * update permission new service
    */
   public updatePermission(id, data: any) {
@@ -37,20 +45,20 @@ export class RoleService {
    * store new service
    */
   public store(data: any) {
-    return this.http.post('roles' + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('roles/store' + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
    * update service
    */
   public update(id, data: any) {
-    return this.http.post('roles/' + id + '?api_token=' + Auth.getApiToken(), data);
+    return this.http.post('roles/update/' + id + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
    * remove service
    */
   public destroy(id) {
-    return this.http.delete('roles/' + id + '?api_token=' + Auth.getApiToken());
+    return this.http.post('roles/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
   }
 }

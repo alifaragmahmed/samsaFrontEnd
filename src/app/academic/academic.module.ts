@@ -15,6 +15,7 @@ import { DoctorIndexComponent } from './components/doctor/doctor-index/doctor-in
 import { DoctorFormComponent } from './components/doctor/doctor-form/doctor-form.component';
 import { StudentResultIndexComponent } from './components/student-result-index/student-result-index.component';
 import { ControlReportComponent } from './components/control-report/control-report.component';
+import { ResultTransferComponent } from './components/result-transfer/result-transfer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ControlReportComponent } from './components/control-report/control-repo
     DoctorFormComponent,
     StudentResultIndexComponent,
     ControlReportComponent,
-    StudentRegisterCourseComponent
+    StudentRegisterCourseComponent,
+    ResultTransferComponent
   ],
   imports: [
     SharedModule,
