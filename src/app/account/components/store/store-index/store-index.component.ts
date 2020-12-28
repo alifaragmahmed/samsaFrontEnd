@@ -1,10 +1,12 @@
- 
-import { Component, OnInit, ViewChild } from '@angular/core'; 
-import { HashTable } from 'angular-hashtable';  
-import { AppModule } from '../../../../app.module';  
+
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HashTable } from 'angular-hashtable';
+import { AppModule } from '../../../../app.module';
 import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import { StoreService } from '../../../services/store.service';
 import { Helper } from '../../../../shared/helper';
+import { Auth } from 'src/app/shared/auth';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-store-index',
@@ -14,13 +16,13 @@ import { Helper } from '../../../../shared/helper';
 export class StoreIndexComponent implements OnInit {
 
   public doc: any = AppModule.doc;
- 
+
   // services list
   public resources: any[] = [];
 
   // init breadcrum
   public breadcrumbList = [];
-  
+
   // show create modal
   public showCreateModal = false;
 
@@ -39,11 +41,11 @@ export class StoreIndexComponent implements OnInit {
   updateResources: any;
   updateItem: any = {};
 
-  constructor(private storeService: StoreService) { 
+  constructor(private storeService: StoreService) {
     this.init();
   }
 
-  init() { 
+  init() {
     this.initBreadcrumb();
     this.initDisplayColumns();
     //
@@ -52,12 +54,12 @@ export class StoreIndexComponent implements OnInit {
     };
   }
 
-  initMatDatatable() { 
+  initMatDatatable() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-  } 
+  }
 
-  initBreadcrumb() { 
+  initBreadcrumb() {
     this.breadcrumbList = [
       {name: 'home', url: '/'},
       {name: 'stores'}
@@ -65,13 +67,13 @@ export class StoreIndexComponent implements OnInit {
   }
 
   initDisplayColumns() {
-    this.displayedColumns = [ 
-      "name", 
-      "init_balance",  
-      "balance",  
-      "address",  
-      "notes",  
-      "action" 
+    this.displayedColumns = [
+      "name",
+      "init_balance",
+      "balance",
+      "address",
+      "notes",
+      "action"
     ];
   }
 
@@ -87,8 +89,8 @@ export class StoreIndexComponent implements OnInit {
     else {
       this.trashList.put(id, id);
     }
- 
-    if (this.trashList.size() > 0) 
+
+    if (this.trashList.size() > 0)
       this.showRemoveButton = true;
     else
       this.showRemoveButton = false;
@@ -115,27 +117,27 @@ export class StoreIndexComponent implements OnInit {
       this.removed = [];
       this.showRemoveButton = false;
       this.showRemoveModal = false;
-      // 
+      //
       this.updateResources();
     }
   }
 
-  loadResources() { 
-    this.storeService.get().subscribe( (res: any) => { 
+  loadResources() {
+    this.storeService.get().subscribe( (res: any) => {
       this.refreshDataSource(res);
-    }); 
+    });
   }
 
   viewCreateModal() {
-    this.doc.jquery('#createModal').modal('show');  
+    this.doc.jquery('#createModal').modal('show');
   }
 
-  showUpdateModal(item) { 
+  showUpdateModal(item) {
     this.updateItem = item;
-    this.doc.jquery('#updateModal').modal('show'); 
+    this.doc.jquery('#updateModal').modal('show');
   }
 
-  updateService() { 
+  updateService() {
     this.storeService.update([]).subscribe(() => {
 
     });
@@ -143,7 +145,7 @@ export class StoreIndexComponent implements OnInit {
 
   ngOnInit() {
     this.initMatDatatable();
-    this.loadResources(); 
+    this.loadResources();
   }
 
 }

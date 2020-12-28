@@ -4,6 +4,8 @@ import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { AppModule } from '../../../../app.module';
 import { Message } from '../../../../shared/message';
 import { ActivatedRoute } from '@angular/router';
+import { Auth } from 'src/app/shared/auth';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-application-index',
@@ -34,6 +36,8 @@ export class ApplicationIndexComponent implements OnInit {
   public col = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
 
   constructor(private applicationService: ApplicationService, private route: ActivatedRoute) {
+    !Auth.can('application_read')? exit() : '';
+
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},

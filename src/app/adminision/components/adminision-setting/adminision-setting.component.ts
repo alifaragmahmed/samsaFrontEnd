@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { exit } from 'process';
+import { Auth } from 'src/app/shared/auth';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 import { ApplicationSettingService } from '../../services/application-setting.service';
@@ -17,6 +19,7 @@ export class AdminisionSettingComponent implements OnInit {
   isSubmitted5 = false;
 
   constructor(private service: ApplicationSettingService) {
+    !Auth.can('application_setting')? exit() : '';
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},

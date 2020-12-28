@@ -2,7 +2,7 @@
 
 <div class="box box-primary material-shadow w3-white table-responsive" >
   <div class="box-header">
-    <button mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  >
+    <button permission="discount_type_add" mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  >
       <span class="fa fa-plus" ></span> {{ "add" | trans }}
     </button>
   </div>
@@ -23,12 +23,12 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-button color="warn"  (click)="showUpdateModal(element)"
+                <button permission="discount_type_edit" mat-button color="warn"  (click)="showUpdateModal(element)"
                 style="margin: 5px;" >
                   <i class="fa fa-edit"></i>
                 </button>
 
-                <button mat-button class="w3-text-red"
+                <button permission="discount_type_remove" mat-button class="w3-text-red"
                 style="margin: 5px;"
                 *ngIf="element.can_delete"
                 (click)="remove(element)" >

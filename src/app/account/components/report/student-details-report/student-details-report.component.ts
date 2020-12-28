@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { exit } from 'process';
 import { Payment } from 'src/app/account/models/payment';
 import { ReportService } from 'src/app/account/services/report.service';
 import { StudentAccountService } from 'src/app/account/services/student-account.service';
 import { StudentServiceService } from 'src/app/account/services/student-service.service';
 import { AppModule } from 'src/app/app.module';
+import { Auth } from 'src/app/shared/auth';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 

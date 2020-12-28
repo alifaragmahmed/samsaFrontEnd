@@ -13,14 +13,18 @@
 
           <div class="custom-panel-body table-responsive w3-padding w3-center">
 
-            <a href="#" [routerLink]="['/affairs/applications']" role="button"
+            <a href="#"
+            permission="application_read"
+            [routerLink]="['/affairs/applications']" role="button"
               class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
               <b>{{ "applications" | trans }}</b>
               <a href="#" class="pull-left">
                 <i class="fa fa-address-card-o"></i>
               </a>
             </a>
-            <a href="#" [routerLink]="['/affairs/applications/create']" role="button"
+            <a href="#"
+            permission="application_add"
+            [routerLink]="['/affairs/applications/create']" role="button"
               class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
               <b>{{ "add application" | trans }}</b>
               <a href="#" class="pull-left">
@@ -28,6 +32,7 @@
               </a>
             </a>
             <a href="#" [routerLink]="['/affairs/students']" role="button"
+            permission="student_read"
               class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
               <b>{{ "students" | trans }}</b>
               <a href="#" class="pull-left">
@@ -35,6 +40,7 @@
               </a>
             </a>
             <a href="#" [routerLink]="['/affairs/students/create']" role="button"
+            permission="student_add"
               class="btn-margin-bottom btn btn-default w3-block small-shadow" [queryParams]="{col: 'col-lg-12'}">
               <b>{{ "add student" | trans }}</b>
               <a href="#" class="pull-left">
@@ -42,6 +48,7 @@
               </a>
             </a>
             <a href="#" routerLink='/affairs/required_documents' role="button"
+            permission="required_document_read"
               class="btn-margin-bottom btn btn-default w3-block small-shadow">
               <b>{{ "required_documents" | trans }}</b>
               <a href="#" class="pull-left">
@@ -49,6 +56,7 @@
               </a>
             </a>
             <a href="#" routerLink='/affairs/application_required' role="button"
+            permission="application_required"
               class="btn-margin-bottom btn btn-default w3-block small-shadow">
               <b>{{ "application_required" | trans }}</b>
               <a href="#" class="pull-left">
@@ -56,6 +64,7 @@
               </a>
             </a>
             <a href="#" routerLink='/affairs/settings' role="button"
+            permission="application_setting"
               class="btn-margin-bottom btn btn-default w3-block small-shadow">
               <b>{{ "adminision settings" | trans }}</b>
               <a href="#" class="pull-left">
@@ -66,7 +75,7 @@
         </div>
       </div>
 
-      <div class="col-lg-10">
+      <div class="col-lg-10 student-affair-container nicescroll" id="studentAffairContainer" style="overflow: auto;" >
         <div class="custom- w3-display-container w3-round">
           <div class="custom-panel- table-responsive w3-padding">
             <router-outlet></router-outlet>

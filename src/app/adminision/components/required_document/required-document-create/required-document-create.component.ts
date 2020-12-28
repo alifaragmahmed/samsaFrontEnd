@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppModule } from '../../../../app.module';
 import { RequiredDocumentService } from '../../../services/required-document.service';
-import { Auth } from '../../../../shared/auth'; 
+import { Auth } from '../../../../shared/auth';
 import { Message } from '../../../../shared/message';
 import { Helper } from '../../../../shared/helper';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-required-document-create',
@@ -16,7 +17,13 @@ export class RequiredDocumentCreateComponent implements OnInit {
   public resource: any = {};
   public isSubmitted = false;
 
-  constructor(private requiredDocumentService: RequiredDocumentService) { }
+  constructor(private requiredDocumentService: RequiredDocumentService) {
+    if (this.resource.id) {
+      !Auth.can('required_document_edit')? exit() : '';
+    } else {
+      !Auth.can('required_document_add')? exit() : '';
+    }
+  }
 
   @Input() updateResources: any;
   ngOnInit() {
@@ -25,7 +32,7 @@ export class RequiredDocumentCreateComponent implements OnInit {
   validate() {
     if (!this.resource.name || !this.resource.type)
       return false;
-    
+
     return true;
   }
 

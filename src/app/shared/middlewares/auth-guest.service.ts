@@ -8,11 +8,7 @@ export class AuthGuestService implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    /*if (this.auth.isAuth()) {
-        this.router.navigate([route.queryParams['return'] || '/admin/dashboard']).then().catch();
-        return false;
-    }*/
-    return true;
+    return route.data.can as boolean;
   }
 }
 

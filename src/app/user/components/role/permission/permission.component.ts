@@ -11,6 +11,10 @@ import { RoleService } from '../../../services/role.service';
 export class PermissionComponent implements OnInit, OnChanges {
 
   @Input() role: any = {};
+  @Input() updateMode: any = false;
+  @Input() loadResources: any = false;
+  public doc: any = document;
+  public $: any = $;
 
   public permissions: any = [];
   public permissionId = new HashTable();
@@ -40,8 +44,10 @@ export class PermissionComponent implements OnInit, OnChanges {
       permissions: this.permissionId.getKeys()
     };
     this.service.updatePermission(this.role.id, data).subscribe((res: any) => {
-      if (res.status == 1)
+      if (res.status == 1){
         Message.success(res.message);
+        this.loadResources();
+      }
       else
         Message.error(res.message);
 
@@ -54,6 +60,8 @@ export class PermissionComponent implements OnInit, OnChanges {
       this.permissionId.remove(id);
     else
       this.permissionId.put(id, id);
+
+    this.updatePermissions();
   }
 
   loadPermissions() {
@@ -75,5 +83,20 @@ export class PermissionComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.setPermission();
+  }
+
+  selectAll(group: any, checked) {
+    group.permissions.forEach(element => {
+      if (checked)
+      this.permissionId.put(element.id, element.id);
+      else
+        if (this.permissionId.has(element.id))
+          this.permissionId.remove(element.id);
+    });
+    this.updatePermissions();
+  }
+
+  changeMode() {
+    this.updateMode = false;
   }
 }

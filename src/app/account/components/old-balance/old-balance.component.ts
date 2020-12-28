@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemSettingService } from 'src/app/core/services/system-setting.service';
+import { Auth } from 'src/app/shared/auth';
 import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
@@ -28,6 +29,7 @@ export class OldBalanceComponent implements OnInit {
     private storeService: StoreService,
     private accountSettingService: AccountSettingService,
     private systemSettingServie: SystemSettingService) {
+
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},

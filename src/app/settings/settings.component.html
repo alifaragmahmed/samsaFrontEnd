@@ -32,85 +32,85 @@
           <ul class="list-group list-group-unbordered">
 
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.canOr(['country', 'city', 'government'])" >
               <a class="active" routerLink="/settings/country"><i class="fa fa-circle-o"></i>
                 {{ "coutries & governments & cities" | trans  }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.canOr(['division', 'department', 'level'])" >
               <a class="active" routerLink="/settings/division"><i class="fa fa-circle-o"></i>
                 {{ "divisions & departments & levels" | trans  }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.canOr(['qualification', 'qualification_type'])" >
               <a class="active" routerLink="/settings/qualification"><i class="fa fa-circle-o"></i>
                 {{ "qualifications" | trans  }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['academic_year'])" >
               <a class="active" routerLink="/settings/academic-year"><i class="fa fa-circle-o"></i>
                 {{ "academic_years" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['registeration_method'])">
               <a class="active" routerLink="/settings/registration-method"><i class="fa fa-circle-o"></i>
                 {{ "registration_methods" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['registeration_status'])">
               <a class="active" routerLink="/settings/registration-status"><i class="fa fa-circle-o"></i>
                 {{ "registration_status" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['case_constraint'])">
               <a class="active" routerLink="/settings/case-constraint"><i class="fa fa-circle-o"></i>
                 {{ "case_constraints" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['language'])">
               <a class="active" routerLink="/settings/language"><i class="fa fa-circle-o"></i>
                 {{ "languages" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['nationality'])">
               <a class="active" routerLink="/settings/nationality"><i class="fa fa-circle-o"></i>
                 {{ "nationalities" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['parent_job'])">
               <a class="active" routerLink="/settings/parent-job"><i class="fa fa-circle-o"></i>
                 {{ "parent jobs" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['relation'])">
               <a class="active" routerLink="/settings/relation"><i class="fa fa-circle-o"></i>
                 {{ "relations" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['student_code_series'])">
               <a class="active" routerLink="/settings/student-code-series"><i class="fa fa-circle-o"></i>
                 {{ "student code series" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['permission'])">
               <a class="active" routerLink="/settings/permissions"><i class="fa fa-circle-o"></i>
                 {{ "permissions" | trans }}
               </a>
             </li>
 
-            <li class="list-group-item">
+            <li class="list-group-item" *ngIf="auth.can(['translation'])">
               <a class="active" routerLink="/settings/translations"><i class="fa fa-circle-o"></i>
                 {{ "translations" | trans }}
               </a>

@@ -1,6 +1,9 @@
 
 import { Cache } from './cache';
 import { AuthService } from './services/auth.service';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '../../../node_modules/@angular/router';
+import { Injectable } from '@angular/core';
+
 
 export class Auth {
 
@@ -30,6 +33,22 @@ export class Auth {
     return false;
   }
 
+  public static canOr(permissions) {
+    let valid = false;
+    permissions.forEach(element => {
+      if (Auth.can(element))
+        valid = Auth.can(element);
+    });
+    return valid;
+  }
+
+  public static canAnd(permissions) {
+    permissions.forEach(element => {
+      if (!Auth.can(element))
+        return false;
+    });
+  }
+
   public static can(permission) {
     if (!Auth.user())
       return false;
@@ -38,5 +57,31 @@ export class Auth {
       return true;
 
     return false;
+  }
+
+  /**
+   * create canActivate instance from condition
+   * @param condition
+   */
+  public static gaurd(condition) {
+    return new Gaurd(condition);
+  }
+}
+
+
+@Injectable()
+class Gaurd implements CanActivate {
+
+  public condition: boolean = false;
+
+  constructor(condition) {
+    this.condition = condition;
+  }
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
+    return this.condition;
   }
 }

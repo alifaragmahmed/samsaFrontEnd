@@ -1,7 +1,7 @@
 <app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
 
 <div class="w3-display-bottomleft w3-padding" style="position: fixed;z-index: 9999">
-  <button mat-fab color="primary" class="w3-large" routerLink="/adminision/application/create" style="margin: 5px">
+  <button permission="application_add" mat-fab color="primary" class="w3-large" routerLink="/adminision/application/create" style="margin: 5px">
     <span class="fa fa-plus"></span>
   </button>
 </div>
@@ -31,7 +31,7 @@
         <div class="media material-shadow w3-white w3-padding w3-display-container student-list-item w3-round">
           <div class="w3-display-topleft w3-padding">
             <div class="text-left">
-              <a href="#" [routerLink]="['/adminision/application/', item.id]" style="margin: 5px"><i
+              <a permission="application_edit" href="#" [routerLink]="['/adminision/application/', item.id]" style="margin: 5px"><i
                   class="fa fa-edit btn btn-warning btn-sm material-shadow"></i></a>
 
               <a href="#" [routerLink]="['/adminision/application/show/', item.id]" style="margin: 5px"><i

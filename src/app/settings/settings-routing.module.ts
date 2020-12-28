@@ -15,6 +15,8 @@ import { ParentJobComponent } from './components/parent-job/parent-job.component
 import { RelationComponent } from './components/relation/relation.component';
 import { StudentCodeSeriesComponent } from './components/student-code-series/student-code-series.component';
 import { PermissionComponent } from './components/permission/permission.component';
+import { Auth } from '../shared/auth';
+import { AuthGuestService } from '../shared/middlewares/auth-guest.service';
 
 const routes: Routes = [
   {
@@ -68,6 +70,8 @@ const routes: Routes = [
       },
       {
         path: "registration-status",
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('registeration_status')},
         component: RegisterationStatusComponent
       },
       {

@@ -18,9 +18,11 @@ export class RoleIndexComponent implements OnInit {
 
   // Resources list
   public resources: any[] = null;
+  public updateMode = false;
 
   // init breadcrum
   public breadcrumbList = [];
+  public breadcrumbList2 = [];
 
   // remove options
   public showRemoveButton = false;
@@ -117,6 +119,12 @@ export class RoleIndexComponent implements OnInit {
   }
 
   permission(item) {
+    this.breadcrumbList2 = [
+      {name: 'home', url: '/'},
+      {name: 'roles', url: '/users/role'},
+      {name: item.name}
+    ];
+    this.updateMode = true;
     this.permissionItem = item;
     this.doc.jquery('#permissionModal').modal('show');
   }

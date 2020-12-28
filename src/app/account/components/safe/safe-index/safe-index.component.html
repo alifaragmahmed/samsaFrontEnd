@@ -14,8 +14,11 @@
           <div style="padding: 4px;margin-bottom: 7px" class="w3-pale-red w3-round" >
             اجمالى الرسوم المستحقة : {{ safeObject.current_balance_total | currency: ' جنيه ' }}
           </div>
-          <img [src]="safeObject.image" class="w3-block w3-round border-gray" >
+          <img
+          class="w3-block"
+          src="/assets/img/safe.png" >
           <br>
+
           <div class="custom-panel w3-display-container w3-round" style="padding: 5px" >
 
             <div
@@ -24,129 +27,130 @@
             [innerHTML]="safeObject.notes" >
 
             </div>
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#studentPayments').modal('show')"    >{{ "student payments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_payment" [disabled]="!studentSearchId" (click)="doc.jquery('#studentPayments').modal('show')"    >{{ "student payments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#studentServices').modal('show')"    >{{ "student services" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_service" [disabled]="!studentSearchId" (click)="doc.jquery('#studentServices').modal('show')"    >{{ "student services" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#studentInstallment').modal('show')"   >{{ "student installments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_my_installment" [disabled]="!studentSearchId" (click)="doc.jquery('#studentInstallment').modal('show')"   >{{ "student installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#installmentSection').modal('show')"  >{{ "installments" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_installment" [disabled]="!studentSearchId" (click)="doc.jquery('#installmentSection').modal('show')"  >{{ "installments" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_note" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')" >{{ "write note" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')"  >{{ "update settings" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_setting" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')"  >{{ "update settings" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#createDiscountRequestModal').modal('show')"  >{{ "create discount request" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_discount" [disabled]="!studentSearchId" (click)="doc.jquery('#createDiscountRequestModal').modal('show')"  >{{ "create discount request" | trans }}</button>
 
-            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" [disabled]="!studentSearchId" (click)="doc.jquery('#createBalanceResetModal').modal('show')"  >{{ "create balance reset" | trans }}</button>
+            <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_balance_reset" [disabled]="!studentSearchId" (click)="doc.jquery('#createBalanceResetModal').modal('show')"  >{{ "create balance reset" | trans }}</button>
           </div>
 
         </div>
 
         <div class="col-lg-9 col-md-9 col-sm-12" >
 
-          <div class="custom-panel w3-display-container w3-round">
-            <div class="custom-panel-title" >{{ "search" | trans }}</div>
-
-            <div class="custom-panel-body w3-display-container"  >
-              <input class="w3-round-xxlarge w3-white w3-input border-gray search-input "
-              (keyup)="searchInputEvent()"
-              placeholder="{{ 'search with student name code national_id' | trans }}"
-              [(ngModel)]="searchKey" >
-
-              <button
-              (click)="loadStudentAccountInfo(studentSearchId)"
-              class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge"  >{{ "search" | trans }}</button>
-
-              <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:30%;z-index:10;" >
-                <span class="fa fa-spin fa-spinner w3-text-indigo" ></span>
-              </div>
-
-              <div class="w3-display-topright w3-white material-shadow" *ngIf="studentSearchDialogShow" style="top: 47px;right:11px;z-index:10;width: 60%" >
-                <div class="w3-display-conitainer">
-                  <span class="w3-display-topright w3-button fa fa-close" (click)="studentSearchDialogShow=false" ></span>
-                  <br>
-                  <ul class="w3-ul" >
-                    <li *ngFor="let item of students" style="cursor: pointer;" class="w3-hover-light-gray w3-block text-right"  >
-                      <div class="media" (click)="selectStudent(item)" >
-                        <div class="media-left">
-                          <a href="#">
-                            <img [src]="item.image" style="width: 30px;height: 30px;" class="w3-circle" alt="">
-                            <!--
-                            <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
-                            -->
-                          </a>
-                        </div>
-                        <div class="media-body">
-                          <h4 class="media-heading" [innerHTML]="item.name" ></h4>
-                          <span [innerHTML]="item.code" class="w3-large" ></span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
 
           <div class="custom-panel w3-display-container w3-round">
             <div class="custom-panel-title" >{{ "student info" | trans }}</div>
 
             <div class="custom-panel-body"  >
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  <img [src]="safeObject.image" class="w3-block w3-round border-gray" >
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-6">
+                  <!--- student search panel -->
+                  <div class="custom-panel w3-display-container w3-round">
+                    <div class="custom-panel-title" >{{ "search" | trans }}</div>
+
+                    <div class="custom-panel-body w3-display-container"  >
+                      <input class="w3-round-xxlarge w3-white w3-input border-gray search-input "
+                      (keyup)="searchInputEvent()"
+                      placeholder="{{ 'search with student name code national_id' | trans }}"
+                      [(ngModel)]="searchKey" >
+
+                      <button
+                      (click)="loadStudentAccountInfo(studentSearchId)"
+                      class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge"  >{{ "search" | trans }}</button>
+
+                      <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:30%;z-index:10;" >
+                        <span class="fa fa-spin fa-spinner w3-text-indigo" ></span>
+                      </div>
+
+                      <div class="w3-display-topright w3-white material-shadow" *ngIf="studentSearchDialogShow" style="top: 47px;right:11px;z-index:10;width: 60%" >
+                        <div class="w3-display-conitainer">
+                          <span class="w3-display-topright w3-button fa fa-close" (click)="studentSearchDialogShow=false" ></span>
+                          <br>
+                          <ul class="w3-ul" >
+                            <li *ngFor="let item of students" style="cursor: pointer;" class="w3-hover-light-gray w3-block text-right"  >
+                              <div class="media" (click)="selectStudent(item)" >
+                                <div class="media-left">
+                                  <a href="#">
+                                    <img [src]="item.image" style="width: 30px;height: 30px;" class="w3-circle" alt="">
+                                    <!--
+                                    <span class="fa fa-user-circle w3-text-indigo w3-large" ></span>
+                                    -->
+                                  </a>
+                                </div>
+                                <div class="media-body">
+                                  <h4 class="media-heading" [innerHTML]="item.name" ></h4>
+                                  <span [innerHTML]="item.code" class="w3-large" ></span>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <br>
                   <table class="table" >
                     <tr>
                       <th>{{ "student name" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.name" >
+                        : {{ safeObject.name }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "student code" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.code" >
+                        : {{ safeObject.code }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "national id" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.national_id" >
+                        : {{ safeObject.national_id }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "gpa" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.gpa" >
+                        : {{ safeObject.gpa }}
                       </td>
                     </tr>
-                  </table>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                  <table class="table" >
                     <tr>
                       <th>{{ "level" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.level" [(ngModel)]="safeObject.level.name" >
+                        : {{ safeObject.level? safeObject.level.name : safeObject.level_id }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "department" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.division" [(ngModel)]="safeObject.division.name" >
+                        : {{ safeObject.department? safeObject.department.name : safeObject.department_id }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "case constraint" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.case_constraint" [(ngModel)]="safeObject.case_constraint.name" >
+                        : {{ safeObject.case_constraint? safeObject.case_constraint.name : safeObject.case_constraint_id }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "constraint status" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly *ngIf="safeObject.registeration_status" [(ngModel)]="safeObject.registeration_status.name" >
+                        : {{ safeObject.registeration_status? safeObject.registeration_status.name : safeObject.registeration_status_id }}
                       </td>
                     </tr>
                   </table>
@@ -166,19 +170,19 @@
                     <tr>
                       <th>{{ "date" | trans }}</th>
                       <td>
-                        <input type="date" class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.date" >
+                        : {{ safeObject.date }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "required value" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paid_value" >
+                        : {{ safeObject.paid_value }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "value" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paid_value" >
+                        : {{ safeObject.paid_value }}
                         <p class="w3-text-red" *ngIf="safeObject.payment_type == 'service'" >
                           {{ "total of selected services" | trans }}
                         </p>
@@ -191,19 +195,19 @@
                     <tr>
                       <th>{{ "old balance" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.old_balance" >
+                        : {{ safeObject.old_balance }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "current balance" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly  [(ngModel)]="safeObject.current_balance" >
+                        : {{ safeObject.current_balance }}
                       </td>
                     </tr>
                     <tr>
                       <th>{{ "paid value" | trans }}</th>
                       <td>
-                        <input class="custom-input w3-input border-bottom-dashed input-sm" readonly [(ngModel)]="safeObject.paids" >
+                        : {{ safeObject.paids }}
                       </td>
                     </tr>
                   </table>
@@ -216,7 +220,7 @@
             <div class="custom-panel-body"  >
               <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value && safeObject.payment_type != 'service'"   (click)="performPay()" >{{ "save & print" | trans }}</button>
 
-              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"  (click)="doc.jquery('#studentAvailableServices').modal('show')"  >{{ "services" | trans }}</button>
+              <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId"  (click)="doc.jquery('#studentAvailableServices').modal('show')" permission="safe_service"  >{{ "services" | trans }}</button>
 
               <button class="btn btn-default small-shadow w3-margin-left"
               *ngIf="safeObject.is_refund == 1"
@@ -235,7 +239,7 @@
     </div>
   </div>
 
-  <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px!important" >
+  <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px!important"  permission="safe_service" >
 
       <!-- student services modal -->
       <app-available-service [services]="availableServices" [safeObject]="safeObject" [selectedServices]="selectedServices" ></app-available-service>

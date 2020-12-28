@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { exit } from 'process';
 import { ReportService } from 'src/app/account/services/report.service';
+import { Auth } from 'src/app/shared/auth';
 import { Helper } from 'src/app/shared/helper';
 
 @Component({

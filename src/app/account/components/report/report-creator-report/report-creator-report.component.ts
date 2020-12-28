@@ -1,6 +1,7 @@
 import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { HashTable } from 'angular-hashtable';
+import { exit } from 'process';
 import { Payment } from 'src/app/account/models/payment';
 import { AcademicYearService } from 'src/app/account/services/academic-year.service';
 import { LevelService } from 'src/app/account/services/level.service';
@@ -9,6 +10,7 @@ import { StudentAccountService } from 'src/app/account/services/student-account.
 import { StudentServiceService } from 'src/app/account/services/student-service.service';
 import { ApplicationSettingService } from 'src/app/adminision/services/application-setting.service';
 import { AppModule } from 'src/app/app.module';
+import { Auth } from 'src/app/shared/auth';
 import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';

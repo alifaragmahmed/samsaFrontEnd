@@ -6,6 +6,8 @@ import {MatSort, MatTableDataSource, MatPaginator} from '@angular/material';
 import { Helper } from '../../../../shared/helper';
 import { DiscountTypeService } from 'src/app/account/services/discount-type.service';
 import { Message } from 'src/app/shared/message';
+import { Auth } from 'src/app/shared/auth';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-discount-type-index',

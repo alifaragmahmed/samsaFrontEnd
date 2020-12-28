@@ -2,10 +2,10 @@
 
 <div class="box box-primary material-shadow w3-white table-responsive" >
   <div class="box-header">
-    <button mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  >
+    <button permission="safe_add" mat-raised-button color="primary" (click)="viewCreateModal()" style="margin: 5px"  >
       <span class="fa fa-plus" ></span> {{ "add" | trans }}
     </button>
-    <button mat-raised-button color="warn" *ngIf="showRemoveButton" (click)="performRemove()" style="margin: 5px"  >
+    <button permission="safe_remove" mat-raised-button color="warn" *ngIf="showRemoveButton" (click)="performRemove()" style="margin: 5px"  >
       <span class="fa fa-trash" ></span>
     </button>
   </div>
@@ -60,7 +60,7 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-button color="warn"  (click)="showUpdateModal(element)" >
+                <button permission="safe_edit" mat-button color="warn"  (click)="showUpdateModal(element)" >
                   <i class="fa fa-edit"></i>
                 </button>
             </td>

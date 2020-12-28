@@ -3,7 +3,7 @@
 <div class="box box-primary material-shadow w3-white table-responsive" >
   <div class="box-header">
 
-    <button *ngIf="showRemoveButton" (click)="removeServices()" class="btn btn-danger" style="margin: 5px"  >
+    <button *ngIf="showRemoveButton"   class="btn btn-danger" style="margin: 5px"  >
       <span class="fa fa-trash" ></span>
     </button>
   </div>
@@ -91,7 +91,7 @@
             </select>
         </td>
         <td>
-          <button mat-button color="warn" (click)="removeRow(item, i)" >
+          <button permission="academic_expense_remove" mat-button color="warn" (click)="removeRow(item, i)" >
             <i class="fa fa-trash" ></i>
           </button>
         </td>
@@ -111,10 +111,10 @@
     </tbody>
   </table>
   <br>
-  <button mat-raised-button [disabled]="!level_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  >
+  <button permission="academic_expense_add" mat-raised-button [disabled]="!level_id"  class="w3-light-gray" (click)="addRow()" style="margin: 5px"  >
     <span class="fa fa-plus" ></span>
   </button>
-  <button mat-raised-button color="primary" [disabled]="updateItem || (!level_id)" (click)="viewChanges()" style="margin: 5px"  >
+  <button permission="academic_expense_edit" mat-raised-button color="primary" [disabled]="updateItem || (!level_id)" (click)="viewChanges()" style="margin: 5px"  >
     <span *ngIf="!updateItem" >{{ "save" | trans }}</span>
     <span *ngIf="updateItem"  class="fa fa-spin fa-spinner" ></span>
   </button>

@@ -20,6 +20,7 @@ export class StudentPaymentComponent implements OnInit , OnChanges{
   public isSubmitted = false;
   public stores: any = [];
   public services: any = [];
+  public auth: any = Auth;
 
   @Input() payments: any[];
   @Input() updateStudent: any;

@@ -12,6 +12,8 @@ import { TermService } from '../../services/term.service';
 import { StoreService } from '../../services/store.service';
 import { ApplicationSettingService } from '../../../adminision/services/application-setting.service';
 import { StudentServiceService } from '../../services/student-service.service';
+import { Auth } from 'src/app/shared/auth';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-academic-year-index',

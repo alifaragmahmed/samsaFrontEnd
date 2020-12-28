@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { exit } from 'process';
+import { Auth } from 'src/app/shared/auth';
 import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { AppModule } from '../../../../app.module';
 import { StudentService } from '../../../services/student.service';
@@ -35,6 +37,7 @@ export class StudentIndexComponent implements OnInit {
 
   constructor(public studentService: StudentService, public router: ActivatedRoute) {
     // init breadcrum
+    !Auth.can('student_read')? exit() : '';
     this.breadcrumbList = [
       {name: 'home', url: '/'},
       {name: 'students'}

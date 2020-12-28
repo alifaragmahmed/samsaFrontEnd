@@ -9,6 +9,8 @@ import { ApplicationSettingService } from '../../../../adminision/services/appli
 import { StudentService } from '../../../services/student.service';
 import { DivisionService } from '../../../../account/services/division.service';
 import { HashTable } from 'angular-hashtable';
+import { Auth } from 'src/app/shared/auth';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-student-create',
@@ -61,8 +63,11 @@ export class StudentCreateComponent implements OnInit {
   constructor(private studentService: StudentService, private route: ActivatedRoute) {
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
+      !Auth.can('student_edit')? exit() : '';
       this.loadApplication(id);
       this.isUpdate = true;
+    } else {
+      !Auth.can('student_add')? exit() : '';
     }
 
     this.route.queryParams.subscribe((params) => {

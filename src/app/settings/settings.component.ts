@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '../shared/auth';
 
 @Component({
   selector: 'app-settings',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
+  public auth: any = Auth;
   constructor() { }
 
   ngOnInit() {

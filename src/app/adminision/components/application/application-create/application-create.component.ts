@@ -9,6 +9,8 @@ import { AppModule } from '../../../../app.module';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { Request } from 'src/app/shared/request';
+import { Auth } from 'src/app/shared/auth';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-application-create',
@@ -62,8 +64,11 @@ export class ApplicationCreateComponent implements OnInit {
     Request.fire();
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
+      !Auth.can('application_edit')? exit() : '';
       this.loadApplication(id);
       this.isUpdate = true;
+    } else {
+      !Auth.can('application_add')? exit() : '';
     }
 
     this.route.queryParams.subscribe((params) => {

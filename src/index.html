@@ -147,11 +147,13 @@
       });
     }
 
-    document.nicescroll = function(selector) {
+    document.nicescroll = function(selector, data) {
+      //$('#studentAffairContainer').slimScroll();
+
       if (selector)
-        $(selector).niceScroll();
+        $(selector).slimScroll(data);
       else
-        $(selector).niceScroll('.nicescroll');
+        $('.nicescroll').slimScroll(data);
     }
 
     document.datatable = function() {

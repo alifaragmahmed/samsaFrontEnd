@@ -3,6 +3,7 @@ import { Auth } from '../../../shared/auth';
 import { AppModule } from '../../../app.module';
 import { ApplicationRequiredService } from '../../services/application-required.service';
 import { Message } from '../../../shared/message';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-application-required',
@@ -17,6 +18,7 @@ export class ApplicationRequiredComponent implements OnInit {
   public breadcrumbList: any;
 
   constructor(private applicationRequiredService: ApplicationRequiredService) {
+    !Auth.can('application_required')? exit() : '';
     // init breadcrum
     this.breadcrumbList = [
       {name: 'home', url: '/'},
@@ -28,21 +30,21 @@ export class ApplicationRequiredComponent implements OnInit {
     this.loadResources();
   }
 
-  loadResources() {    
-    this.applicationRequiredService.get().subscribe((res) => { 
+  loadResources() {
+    this.applicationRequiredService.get().subscribe((res) => {
       this.resources = res;
     });
   }
 
-  updateResources() { 
-    this.isSubmitted = true; 
+  updateResources() {
+    this.isSubmitted = true;
     const data = {
       data: this.resources
     };
     this.applicationRequiredService.update(data).subscribe((res) => {
       const data: any = res;
       if (data.status == 1) {
-        Message.success(data.message); 
+        Message.success(data.message);
         this.loadResources();
       }
       else
@@ -54,7 +56,7 @@ export class ApplicationRequiredComponent implements OnInit {
 
 
   check(bool) {
-    this.resources.forEach(element => { 
+    this.resources.forEach(element => {
       element.required = bool;
     });
   }

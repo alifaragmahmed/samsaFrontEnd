@@ -13,6 +13,8 @@ import { StudentBalanceReportComponent } from './components/report/student-balan
 import { ReportCreatorReportComponent } from './components/report/report-creator-report/report-creator-report.component';
 import { InstallmentReportComponent } from './components/report/installment-report/installment-report.component';
 import { StudentDiscountReportComponent } from './components/report/student-discount-report/student-discount-report.component';
+import { Auth } from '../shared/auth';
+import { AuthGuestService } from '../shared/middlewares/auth-guest.service';
 
 
 const routes: Routes = [
@@ -26,26 +28,38 @@ const routes: Routes = [
   },
   {
     path: 'report/payment-details',
+    canActivate: [AuthGuestService],
+    data: {can: Auth.can('payment_detail_report')},
     component: PaymentDetailsReportComponent
   },
   {
     path: 'report/student-details',
+    canActivate: [AuthGuestService],
+    data: {can: Auth.can('student_detail_report')},
     component: StudentDetailsReportComponent
   },
   {
     path: 'report/student-balances',
+    canActivate: [AuthGuestService],
+    data: {can: Auth.can('account_setting')},
     component: StudentBalanceReportComponent
   },
   {
     path: 'report/report-creator',
+    canActivate: [AuthGuestService],
+    data: {can: Auth.can('report_creator_report')},
     component: ReportCreatorReportComponent
   },
   {
     path: 'report/student-installment',
+    canActivate: [AuthGuestService],
+    data: {can: Auth.can('installment_report')},
     component: InstallmentReportComponent
   },
   {
     path: 'report/student-discount',
+    canActivate: [AuthGuestService],
+    data: {can: Auth.can('student_discount_report')},
     component: StudentDiscountReportComponent
   },
   {
@@ -53,23 +67,33 @@ const routes: Routes = [
     component: AccountComponent,
     children: [
       {
-        path: '',
+        path: 's',
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('account_setting')},
         component: OldBalanceComponent
       },
       {
         path: 'services',
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('service_read')},
         component: ServiceIndexComponent
       },
       {
         path: 'stores',
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('safe_read')},
         component: StoreIndexComponent
       },
       {
         path: 'discount_types',
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('discount_type_read')},
         component: DiscountTypeIndexComponent
       },
       {
         path: 'academic_year_expenses',
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('academic_expense_read')},
         component: AcademicYearIndexComponent
       },
     ]

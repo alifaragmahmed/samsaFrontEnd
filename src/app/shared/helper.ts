@@ -1,5 +1,5 @@
+import { Router } from '@angular/router';
 import { Translation } from './translation';
-import { Router } from '../../../node_modules/@angular/router';
 
 
 export class Helper {
@@ -62,4 +62,6 @@ export class Helper {
     const options = "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=200,width=905,height=484";
     window.open(url, "_blank", options);
   }
+
 }
+
