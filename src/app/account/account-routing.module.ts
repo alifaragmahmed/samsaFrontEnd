@@ -15,6 +15,7 @@ import { InstallmentReportComponent } from './components/report/installment-repo
 import { StudentDiscountReportComponent } from './components/report/student-discount-report/student-discount-report.component';
 import { Auth } from '../shared/auth';
 import { AuthGuestService } from '../shared/middlewares/auth-guest.service';
+import { TreeIndexComponent } from './components/tree/tree-index/tree-index.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,12 @@ const routes: Routes = [
         canActivate: [AuthGuestService],
         data: {can: Auth.can('discount_type_read')},
         component: DiscountTypeIndexComponent
+      },
+      {
+        path: 'trees',
+        //canActivate: [AuthGuestService],
+        data: {can: Auth.can('tree_read')},
+        component: TreeIndexComponent
       },
       {
         path: 'academic_year_expenses',

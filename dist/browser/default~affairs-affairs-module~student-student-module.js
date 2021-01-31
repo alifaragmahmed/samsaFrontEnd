@@ -44,6 +44,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_student_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../services/student.service */ "./src/app/student/services/student.service.ts");
 /* harmony import */ var _account_services_division_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../account/services/division.service */ "./src/app/account/services/division.service.ts");
 /* harmony import */ var angular_hashtable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_13__);
+
+
 
 
 
@@ -89,8 +94,12 @@ var StudentCreateComponent = /** @class */ (function () {
         this.col = "col-lg-10 col-md-10 col-sm-12";
         var id = this.route.snapshot.params['id'];
         if (id > 0) {
+            !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_12__["Auth"].can('student_edit') ? Object(process__WEBPACK_IMPORTED_MODULE_13__["exit"])() : '';
             this.loadApplication(id);
             this.isUpdate = true;
+        }
+        else {
+            !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_12__["Auth"].can('student_add') ? Object(process__WEBPACK_IMPORTED_MODULE_13__["exit"])() : '';
         }
         this.route.queryParams.subscribe(function (params) {
             var col = params['col'];
@@ -258,7 +267,7 @@ var StudentCreateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n\r\n<div class=\"w3-display-bottomleft w3-padding\" style=\"position: fixed;z-index: 9999\" >\r\n    <button\r\n    mat-fab color=\"primary\"\r\n    class=\"w3-large\"\r\n    routerLink=\"/student/create\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span>\r\n    </button>\r\n</div>\r\n\r\n    <!--\r\n<div class=\"box box-primary  table-responsive\" >\r\n  <div class=\"box-header\">\r\n\r\n\r\n\r\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeResources()\" class=\"btn btn-danger\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div>\r\n  <br>\r\n\r\n</div>\r\n    -->\r\n\r\n<div class=\"w3-row student-container nicescroll\" style=\"padding: 5px;\"    >\r\n  <div *ngIf=\"isLoad\" class=\"w3-block text-center w3-padding\" >\r\n    <i class=\"fa fa-spin fa-refresh w3-jumbo w3-text-indigo\"></i>\r\n  </div>\r\n  <ng-container *ngFor=\"let item of resources.data\" >\r\n      <div class=\"{{ col }} student-list-col\" >\r\n          <div class=\"media material-shadow w3-white w3-padding w3-display-container student-list-item\">\r\n\r\n              <div class=\"w3-display-topleft w3-padding fa fa-certificate w3-jumbo w3-text-deep-orange\" style=\"z-index: 1;font-size: 80px!important\"  >\r\n\r\n              </div>\r\n              <div class=\"w3-display-topleft w3-padding w3-tiny w3-text-white text-center\" style=\"z-index: 2;top: 1px;left: 6%;\" >\r\n                <!--\r\n\r\n                <input type=\"checkbox\" style=\"margin: 0px!important\" class=\"w3-check w3-margin\" (click)=\"toggleFromTrash(item.id)\"  >\r\n                -->\r\n                <br>\r\n                <br>\r\n                <b>{{ item.paid_value }}</b>\r\n                <br>\r\n                <b>جنيه</b>\r\n              </div>\r\n\r\n            <div class=\"media-left\">\r\n                <a  >\r\n                  <img class=\"media-object w3-round\" [src]=\"item.image\"  style=\"width: 100px;\" >\r\n                </a>\r\n            </div>\r\n            <div class=\"media-body\">\r\n            <h4 class=\"media-heading\">{{ item.name.substring(0, 15) }}..</h4>\r\n            <table class=\"table w3-tiny\" >\r\n              <tr>\r\n                <th>{{ \"level\" | trans }}</th>\r\n                <td>{{ item.level? item.level.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"academic_year\" | trans }}</th>\r\n                <td>{{ item.academic_year? item.academic_year.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"division\" | trans }}</th>\r\n                <td>{{ item.division? item.division.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"qualification\" | trans }}</th>\r\n                <td>{{ item.qualification? item.qualification.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"registeration_status\" | trans }}</th>\r\n                <td>{{ item.registeration_status? item.registeration_status.name : '' }}</td>\r\n              </tr>\r\n            </table>\r\n            <div class=\"text-right\" >\r\n              <a href=\"#\" [routerLink]=\"['/student/', item.id]\" style=\"margin: 5px\" ><i class=\"material-shadow fa fa-edit btn btn-warning btn-sm\" ></i></a>\r\n\r\n              <a href=\"#\" [routerLink]=\"['/student/show/', item.id]\" style=\"margin: 5px\" ><i class=\"material-shadow fa fa-desktop btn btn-success btn-sm\" ></i></a>\r\n\r\n              <button (click)=\"showStudentPayments(item)\" style=\"margin: 5px\" class=\"material-shadow fa fa-money btn w3-indigo btn-sm\" > {{ \"student payments\" | trans }} </button>\r\n            </div>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </ng-container>\r\n\r\n\r\n\r\n</div>\r\n<br>\r\n<div class=\"text-center w3-center\" >\r\n    <nav aria-label=\"Page navigation\">\r\n        <ul class=\"pagination\">\r\n          <li>\r\n            <a   class=\"\" [ngClass]=\"{'disabled': !resources.prev_page}\" (click)=\"loadResources(resources.prev_page)\" aria-label=\"Previous\">\r\n              <span aria-hidden=\"true\">&laquo;</span>\r\n            </a>\r\n          </li>\r\n          <li *ngFor=\"let item of resources.pages_arr\"  >\r\n            <a class=\"\" [ngClass]=\"{'active': resources.current_page == item}\"  (click)=\"loadResources(item)\">{{ item }}</a>\r\n          </li>\r\n          <li>\r\n            <a   class=\"\" [ngClass]=\"{'disabled': !resources.next_page}\"  (click)=\"loadResources(resources.next_page)\" aria-label=\"Next\">\r\n              <span aria-hidden=\"true\">&raquo;</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </nav>\r\n</div>\r\n\r\n\r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">{{ \"remove applications\" | trans }}</h4>\r\n        </div>\r\n        <div class=\"modal-body text-center\">\r\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\r\n            <br>\r\n            {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n\r\n\r\n<!-- student payments modal -->\r\n<app-student-payment [payments]=\"selectedItem.payment_details? selectedItem.payment_details : []\" ></app-student-payment>\r\n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n\r\n<div class=\"w3-display-bottomleft w3-padding\" style=\"position: fixed;z-index: 9999\" >\r\n    <button\r\n    mat-fab color=\"primary\"\r\n    class=\"w3-large\"\r\n    routerLink=\"/student/create\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span>\r\n    </button>\r\n</div>\r\n\r\n    <!--\r\n<div class=\"box box-primary  table-responsive\" >\r\n  <div class=\"box-header\">\r\n\r\n\r\n\r\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeResources()\" class=\"btn btn-danger\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div>\r\n  <br>\r\n\r\n</div>\r\n    -->\r\n\r\n    <button mat-raised-button class=\"w3-green\" (click)=\"$('#importExcelModal').modal('show')\" >{{ \"import from excel\" | trans }}</button>\r\n\r\n    <br>\r\n\r\n<div class=\"w3-row student-container nicescroll\" style=\"padding: 5px;\"    >\r\n  <div *ngIf=\"isLoad\" class=\"w3-block text-center w3-padding\" >\r\n    <i class=\"fa fa-spin fa-refresh w3-jumbo w3-text-indigo\"></i>\r\n  </div>\r\n  <ng-container *ngFor=\"let item of resources.data\" >\r\n      <div class=\"{{ col }} student-list-col\" >\r\n        <div class=\"media material-shadow w3-white w3-padding w3-display-container student-list-item w3-round\">\r\n          <div class=\"w3-display-topleft w3-padding\">\r\n            <div class=\"text-left\">\r\n                <a href=\"#\" [routerLink]=\"['/student/', item.id]\" style=\"margin: 5px\" ><i class=\"material-shadow fa fa-edit btn btn-warning btn-sm\" ></i></a>\r\n\r\n                <a href=\"#\" [routerLink]=\"['/student/show/', item.id]\" style=\"margin: 5px\" ><i class=\"material-shadow fa fa-desktop btn btn-success btn-sm\" ></i></a>\r\n\r\n                <button (click)=\"showStudentPayments(item)\" style=\"margin: 5px\" class=\"material-shadow fa fa-money btn w3-indigo btn-sm\" > {{ \"student payments\" | trans }} </button>\r\n\r\n                <button class=\"btn btn-info btn-sm\">\r\n                  <b>{{ item.paid_value }}</b><b>جنيه</b>\r\n                </button>\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"media-left\">\r\n            <a>\r\n              <img class=\"media-object w3-round\" [src]=\"item.image\" style=\"width: 100px;max-height: 210;\">\r\n            </a>\r\n          </div>\r\n          <div class=\"media-body\">\r\n            <h5 class=\"media-heading\">{{ item.name }}..</h5>\r\n            <table class=\"w3-tiny\" >\r\n              <tr>\r\n                <th>{{ \"level\" | trans }}</th>\r\n                <td>{{ item.level? item.level.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"academic_year\" | trans }}</th>\r\n                <td>{{ item.academic_year? item.academic_year.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"division\" | trans }}</th>\r\n                <td>{{ item.department? item.department.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"qualification\" | trans }}</th>\r\n                <td>{{ item.qualification? item.qualification.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"registeration_status\" | trans }}</th>\r\n                <td>{{ item.registeration_status? item.registeration_status.name : '' }}</td>\r\n              </tr>\r\n            </table>\r\n\r\n          </div>\r\n        </div>\r\n\r\n    </div>\r\n  </ng-container>\r\n\r\n\r\n\r\n</div>\r\n<br>\r\n<div class=\"text-center w3-center\" >\r\n    <nav aria-label=\"Page navigation\">\r\n        <ul class=\"pagination\">\r\n          <li>\r\n            <a   class=\"\" [ngClass]=\"{'disabled': !resources.prev_page}\" (click)=\"loadResources(resources.prev_page)\" aria-label=\"Previous\">\r\n              <span aria-hidden=\"true\">&laquo;</span>\r\n            </a>\r\n          </li>\r\n          <li *ngFor=\"let item of resources.pages_arr\"  >\r\n            <a class=\"\" [ngClass]=\"{'active': resources.current_page == item}\"  (click)=\"loadResources(item)\">{{ item }}</a>\r\n          </li>\r\n          <li>\r\n            <a   class=\"\" [ngClass]=\"{'disabled': !resources.next_page}\"  (click)=\"loadResources(resources.next_page)\" aria-label=\"Next\">\r\n              <span aria-hidden=\"true\">&raquo;</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </nav>\r\n</div>\r\n\r\n\r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">{{ \"remove applications\" | trans }}</h4>\r\n        </div>\r\n        <div class=\"modal-body text-center\">\r\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\r\n            <br>\r\n            {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n\r\n\r\n<!-- student payments modal -->\r\n<app-student-payment [payments]=\"selectedItem.payment_details? selectedItem.payment_details : []\" ></app-student-payment>\r\n\r\n\r\n<app-import-excel [apiUrl]=\"'import-student'\" [action]=\"loadResources\" ></app-import-excel>\r\n"
 
 /***/ }),
 
@@ -269,7 +278,7 @@ module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-brea
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".student-list-item {\n  height: 220px;\n  margin: 5px !important; }\n\n.student-list-col {\n  padding: 5px !important; }\n\n.student-container {\n  overflow: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3R1ZGVudC9jb21wb25lbnRzL3N0dWRlbnQvc3R1ZGVudC1pbmRleC9FOlxccHJvamVjdFxcc2Ftc2FGcm9udEVuZC9zcmNcXGFwcFxcc3R1ZGVudFxcY29tcG9uZW50c1xcc3R1ZGVudFxcc3R1ZGVudC1pbmRleFxcc3R1ZGVudC1pbmRleC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQWE7RUFDYixzQkFBcUIsRUFBQTs7QUFHekI7RUFDSSx1QkFBc0IsRUFBQTs7QUFHMUI7RUFDSSxjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9zdHVkZW50L2NvbXBvbmVudHMvc3R1ZGVudC9zdHVkZW50LWluZGV4L3N0dWRlbnQtaW5kZXguY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3R1ZGVudC1saXN0LWl0ZW0ge1xyXG4gICAgaGVpZ2h0OiAyMjBweDtcclxuICAgIG1hcmdpbjogNXB4IWltcG9ydGFudDtcclxufVxyXG5cclxuLnN0dWRlbnQtbGlzdC1jb2wge1xyXG4gICAgcGFkZGluZzogNXB4IWltcG9ydGFudDtcclxufVxyXG5cclxuLnN0dWRlbnQtY29udGFpbmVye1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbn0iXX0= */"
+module.exports = ".student-list-item {\n  margin-bottom: 5px !important; }\n\n.student-list-col {\n  padding: 5px !important; }\n\n.student-container {\n  overflow: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3R1ZGVudC9jb21wb25lbnRzL3N0dWRlbnQvc3R1ZGVudC1pbmRleC9FOlxccHJvamVjdFxcc2Ftc2FGcm9udEVuZC9zcmNcXGFwcFxcc3R1ZGVudFxcY29tcG9uZW50c1xcc3R1ZGVudFxcc3R1ZGVudC1pbmRleFxcc3R1ZGVudC1pbmRleC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLDZCQUE0QixFQUFBOztBQUdoQztFQUNJLHVCQUFzQixFQUFBOztBQUcxQjtFQUNJLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3N0dWRlbnQvY29tcG9uZW50cy9zdHVkZW50L3N0dWRlbnQtaW5kZXgvc3R1ZGVudC1pbmRleC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zdHVkZW50LWxpc3QtaXRlbSB7XHJcbiAgICBtYXJnaW4tYm90dG9tOiA1cHghaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc3R1ZGVudC1saXN0LWNvbCB7XHJcbiAgICBwYWRkaW5nOiA1cHghaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc3R1ZGVudC1jb250YWluZXJ7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -286,9 +295,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
-/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _services_student_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../services/student.service */ "./src/app/student/services/student.service.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../node_modules/angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
+/* harmony import */ var _services_student_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/student.service */ "./src/app/student/services/student.service.ts");
+
 
 
 
@@ -297,10 +309,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var StudentIndexComponent = /** @class */ (function () {
     function StudentIndexComponent(studentService, router) {
-        var _this = this;
         this.studentService = studentService;
         this.router = router;
-        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"].doc;
+        this.doc = document;
+        this.$ = $;
         // Resources list
         this.resources = {};
         // init breadcrum
@@ -308,12 +320,13 @@ var StudentIndexComponent = /** @class */ (function () {
         // remove options
         this.showRemoveButton = false;
         this.showRemoveModal = false;
-        this.trashList = new _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_3__["HashTable"]();
+        this.trashList = new _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_5__["HashTable"]();
         this.removed = [];
         this.isLoad = false;
         this.selectedItem = {};
-        this.col = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
+        this.col = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
         // init breadcrum
+        !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].can('student_read') ? Object(process__WEBPACK_IMPORTED_MODULE_3__["exit"])() : '';
         this.breadcrumbList = [
             { name: 'home', url: '/' },
             { name: 'students' }
@@ -321,8 +334,8 @@ var StudentIndexComponent = /** @class */ (function () {
         this.router.queryParams.subscribe(function (params) {
             var col = params['col'];
             console.log(col);
-            if (col)
-                _this.col = col;
+            //if (col)
+            //  this.col = col;
         });
     }
     StudentIndexComponent.prototype.toggleFromTrash = function (id) {
@@ -395,7 +408,7 @@ var StudentIndexComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./student-index.component.html */ "./src/app/student/components/student/student-index/student-index.component.html"),
             styles: [__webpack_require__(/*! ./student-index.component.scss */ "./src/app/student/components/student/student-index/student-index.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_student_service__WEBPACK_IMPORTED_MODULE_5__["StudentService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_student_service__WEBPACK_IMPORTED_MODULE_6__["StudentService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], StudentIndexComponent);
     return StudentIndexComponent;
 }());

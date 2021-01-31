@@ -272,7 +272,7 @@ if (false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"modal fade\" id=\"permissionModal\">\r\n  <div class=\"modal-dialog\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">{{ \"assign required document\" }}</h4>\r\n      </div>\r\n      <div class=\"box box-primary\">\r\n          <div class=\"box-body\">\r\n             <ul class=\"w3-ul\">\r\n              <li *ngFor=\"let item of permissions\" >\r\n                <div class=\"media\">\r\n                  <div class=\"media-left\">\r\n                    <mat-slide-toggle\r\n                      [checked]=\"permissionId.has(item.id)\"\r\n                      (change)=\"togglePermissions(item.id)\" ></mat-slide-toggle>\r\n                  </div>\r\n                  <div class=\"media-body\">\r\n                    <h6 class=\"media-heading\">{{ item.name }}</h6>\r\n                    <p>\r\n                      {{ item.notes }}\r\n                    </p>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n             </ul>\r\n          </div>\r\n          <div class=\"box-footer\">\r\n            <button [disabled]=\"isSubmitted\" (click)=\"updatePermissions()\" type=\"submit\" class=\"btn btn-primary\">\r\n              <i *ngIf=\"!isSubmitted\" >{{ \"add\" | trans }}</i>\r\n              <i *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n            </button>\r\n            &nbsp;\r\n            <button type=\"button\" id=\"cancel\" class=\"btn btn-danger\" data-dismiss=\"modal\">{{ \"cancel\" | trans }}</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n<div class=\"w3-block\">\r\n  <div class=\"w3-white material-shadow safe-box\">\r\n    <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\r\n      {{ \"permissions\" | trans }} <i class=\"fa fa-angle-left\" ></i> {{ role.name }}\r\n    </div>\r\n    <div class=\"border-bottom-dashed\"></div>\r\n    <br>\r\n\r\n    <div class=\"row\">\r\n\r\n      <div class=\"col-lg-4 col-md-4 col-sm-4\" *ngFor=\"let group of groups\" >\r\n        <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel group-{{ group.id }}\">\r\n          <div class=\"custom-panel-title\">\r\n            <mat-slide-toggle\r\n                      #selectAllMatSlider\r\n                      (change)=\"selectAll(group, selectAllMatSlider.checked)\" ></mat-slide-toggle>\r\n                      {{ group.name }}\r\n          </div>\r\n          <div class=\"custom-panel-body table-responsive w3-padding w3-center\" style=\"height: 400px;\" >\r\n            <br>\r\n            <ul class=\"w3-ul\">\r\n              <li *ngFor=\"let item of group.permissions\" >\r\n                <div class=\"media\">\r\n                  <div class=\"media-left\">\r\n                    <mat-slide-toggle\r\n                      [checked]=\"permissionId.has(item.id)\"\r\n                      (change)=\"togglePermissions(item.id)\" ></mat-slide-toggle>\r\n                  </div>\r\n                  <div class=\"media-body\">\r\n                    <div class=\"media-heading text-right \">{{ item.display_name }}</div>\r\n                  </div>\r\n                </div>\r\n              </li>\r\n             </ul>\r\n          </div>\r\n\r\n\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"box-footer\">\r\n      <button [disabled]=\"isSubmitted\" (click)=\"updatePermissions()\" type=\"submit\" class=\"btn btn-primary\">\r\n        <i *ngIf=\"!isSubmitted\" >{{ \"add\" | trans }}</i>\r\n        <i *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n      </button>\r\n\r\n    </div>\r\n\r\n\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -283,7 +283,7 @@ module.exports = "\r\n<div class=\"modal fade\" id=\"permissionModal\">\r\n  <di
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3VzZXIvY29tcG9uZW50cy9yb2xlL3Blcm1pc3Npb24vcGVybWlzc2lvbi5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = ".safe-box {\n  padding: 10px; }\n\n.border-bottom-dashed {\n  border-bottom: 2px dashed gray !important; }\n\n.border-bottom-red {\n  border-bottom: 2px dashed red !important; }\n\n.border-dashed {\n  border: 2px dashed lightgray !important; }\n\n.btn-margin-bottom {\n  margin-bottom: 6px !important; }\n\n.custom-panel {\n  border: 2px dashed lightgray !important;\n  margin-bottom: 15px !important; }\n\n.custom-panel-title {\n  position: absolute !important;\n  right: 10px !important;\n  top: -13px !important;\n  width: auto !important;\n  background-color: white !important;\n  padding-left: 10px !important;\n  padding-right: 10px !important;\n  z-index: 9999999; }\n\n.custom-panel-body {\n  padding: 5px; }\n\n.small-shadow {\n  box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.3) !important; }\n\n.search-input {\n  min-width: 70% !important; }\n\n.border-gray {\n  border: 1px solid gray !important; }\n\n.custom-input {\n  min-width: 120px; }\n\n.modal {\n  overflow: auto !important; }\n\n/*\r\n  custom button style\r\n*/\n\nselect, input[type=file] {\n  padding: 0px !important; }\n\n.filter-top {\n  height: 200px !important;\n  overflow: auto; }\n\n.filter-side {\n  height: 400px !important;\n  overflow: auto; }\n\n.w3-ul li {\n  padding: 2px !important;\n  font-size: 12px !important; }\n\n.number_input {\n  width: 45px; }\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci9jb21wb25lbnRzL3JvbGUvcGVybWlzc2lvbi9FOlxccHJvamVjdFxcc2Ftc2FGcm9udEVuZC9zcmNcXGFwcFxcdXNlclxcY29tcG9uZW50c1xccm9sZVxccGVybWlzc2lvblxccGVybWlzc2lvbi5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvdXNlci9jb21wb25lbnRzL3JvbGUvcGVybWlzc2lvbi9wZXJtaXNzaW9uLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFDRixFQUFBOztBQUVBO0VBQ0UseUNBQXdDLEVBQUE7O0FBRzFDO0VBQ0Usd0NBQXVDLEVBQUE7O0FBR3pDO0VBQ0UsdUNBQXNDLEVBQUE7O0FBR3hDO0VBQ0UsNkJBQTRCLEVBQUE7O0FBRzlCO0VBQ0UsdUNBQXNDO0VBQ3RDLDhCQUE2QixFQUFBOztBQUkvQjtFQUNFLDZCQUE0QjtFQUM1QixzQkFBcUI7RUFDckIscUJBQW9CO0VBQ3BCLHNCQUFxQjtFQUNyQixrQ0FBaUM7RUFDakMsNkJBQTRCO0VBQzVCLDhCQUE2QjtFQUM3QixnQkFBZ0IsRUFBQTs7QUFHbEI7RUFDRSxZQUFZLEVBQUE7O0FBR2Q7RUFDRSx1REFBbUQsRUFBQTs7QUFHckQ7RUFDRSx5QkFBd0IsRUFBQTs7QUFHMUI7RUFDRSxpQ0FBZ0MsRUFBQTs7QUFHbEM7RUFDRSxnQkFDRixFQUFBOztBQUVBO0VBQ0UseUJBQXdCLEVBQUE7O0FBRTFCOztDQ1hDOztBRGVEO0VBQ0UsdUJBQXNCLEVBQUE7O0FBR3hCO0VBQ0Usd0JBQXVCO0VBQ3ZCLGNBQWMsRUFBQTs7QUFHaEI7RUFDRSx3QkFBdUI7RUFDdkIsY0FBYyxFQUFBOztBQUloQjtFQUNFLHVCQUFzQjtFQUN0QiwwQkFBeUIsRUFBQTs7QUFHM0I7RUFDRSxXQUNGLEVBQUEiLCJmaWxlIjoic3JjL2FwcC91c2VyL2NvbXBvbmVudHMvcm9sZS9wZXJtaXNzaW9uL3Blcm1pc3Npb24uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2FmZS1ib3gge1xyXG4gIHBhZGRpbmc6IDEwcHhcclxufVxyXG5cclxuLmJvcmRlci1ib3R0b20tZGFzaGVkIHtcclxuICBib3JkZXItYm90dG9tOiAycHggZGFzaGVkIGdyYXkhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uYm9yZGVyLWJvdHRvbS1yZWQge1xyXG4gIGJvcmRlci1ib3R0b206IDJweCBkYXNoZWQgcmVkIWltcG9ydGFudDtcclxufVxyXG5cclxuLmJvcmRlci1kYXNoZWQge1xyXG4gIGJvcmRlcjogMnB4IGRhc2hlZCBsaWdodGdyYXkhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uYnRuLW1hcmdpbi1ib3R0b20ge1xyXG4gIG1hcmdpbi1ib3R0b206IDZweCFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5jdXN0b20tcGFuZWwge1xyXG4gIGJvcmRlcjogMnB4IGRhc2hlZCBsaWdodGdyYXkhaW1wb3J0YW50O1xyXG4gIG1hcmdpbi1ib3R0b206IDE1cHghaW1wb3J0YW50O1xyXG59XHJcblxyXG5cclxuLmN1c3RvbS1wYW5lbC10aXRsZSB7XHJcbiAgcG9zaXRpb246IGFic29sdXRlIWltcG9ydGFudDtcclxuICByaWdodDogMTBweCFpbXBvcnRhbnQ7XHJcbiAgdG9wOiAtMTNweCFpbXBvcnRhbnQ7XHJcbiAgd2lkdGg6IGF1dG8haW1wb3J0YW50O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlIWltcG9ydGFudDtcclxuICBwYWRkaW5nLWxlZnQ6IDEwcHghaW1wb3J0YW50O1xyXG4gIHBhZGRpbmctcmlnaHQ6IDEwcHghaW1wb3J0YW50O1xyXG4gIHotaW5kZXg6IDk5OTk5OTk7XHJcbn1cclxuXHJcbi5jdXN0b20tcGFuZWwtYm9keSB7XHJcbiAgcGFkZGluZzogNXB4O1xyXG59XHJcblxyXG4uc21hbGwtc2hhZG93IHtcclxuICBib3gtc2hhZG93OiAwIDFweCAxcHggMHB4IHJnYmEoMCwwLDAsMC4zKSFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5zZWFyY2gtaW5wdXQge1xyXG4gIG1pbi13aWR0aDogNzAlIWltcG9ydGFudDtcclxufVxyXG5cclxuLmJvcmRlci1ncmF5IHtcclxuICBib3JkZXI6IDFweCBzb2xpZCBncmF5IWltcG9ydGFudDtcclxufVxyXG5cclxuLmN1c3RvbS1pbnB1dCB7XHJcbiAgbWluLXdpZHRoOiAxMjBweFxyXG59XHJcblxyXG4ubW9kYWwge1xyXG4gIG92ZXJmbG93OiBhdXRvIWltcG9ydGFudDtcclxufVxyXG4vKlxyXG4gIGN1c3RvbSBidXR0b24gc3R5bGVcclxuKi9cclxuXHJcbnNlbGVjdCwgaW5wdXRbdHlwZT1maWxlXSB7XHJcbiAgcGFkZGluZzogMHB4IWltcG9ydGFudDtcclxufVxyXG5cclxuLmZpbHRlci10b3Age1xyXG4gIGhlaWdodDogMjAwcHghaW1wb3J0YW50O1xyXG4gIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcblxyXG4uZmlsdGVyLXNpZGUge1xyXG4gIGhlaWdodDogNDAwcHghaW1wb3J0YW50O1xyXG4gIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcblxyXG5cclxuLnczLXVsIGxpIHtcclxuICBwYWRkaW5nOiAycHghaW1wb3J0YW50O1xyXG4gIGZvbnQtc2l6ZTogMTJweCFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5udW1iZXJfaW5wdXQge1xyXG4gIHdpZHRoOiA0NXB4XHJcbn1cclxuIiwiLnNhZmUtYm94IHtcbiAgcGFkZGluZzogMTBweDsgfVxuXG4uYm9yZGVyLWJvdHRvbS1kYXNoZWQge1xuICBib3JkZXItYm90dG9tOiAycHggZGFzaGVkIGdyYXkgIWltcG9ydGFudDsgfVxuXG4uYm9yZGVyLWJvdHRvbS1yZWQge1xuICBib3JkZXItYm90dG9tOiAycHggZGFzaGVkIHJlZCAhaW1wb3J0YW50OyB9XG5cbi5ib3JkZXItZGFzaGVkIHtcbiAgYm9yZGVyOiAycHggZGFzaGVkIGxpZ2h0Z3JheSAhaW1wb3J0YW50OyB9XG5cbi5idG4tbWFyZ2luLWJvdHRvbSB7XG4gIG1hcmdpbi1ib3R0b206IDZweCAhaW1wb3J0YW50OyB9XG5cbi5jdXN0b20tcGFuZWwge1xuICBib3JkZXI6IDJweCBkYXNoZWQgbGlnaHRncmF5ICFpbXBvcnRhbnQ7XG4gIG1hcmdpbi1ib3R0b206IDE1cHggIWltcG9ydGFudDsgfVxuXG4uY3VzdG9tLXBhbmVsLXRpdGxlIHtcbiAgcG9zaXRpb246IGFic29sdXRlICFpbXBvcnRhbnQ7XG4gIHJpZ2h0OiAxMHB4ICFpbXBvcnRhbnQ7XG4gIHRvcDogLTEzcHggIWltcG9ydGFudDtcbiAgd2lkdGg6IGF1dG8gIWltcG9ydGFudDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGUgIWltcG9ydGFudDtcbiAgcGFkZGluZy1sZWZ0OiAxMHB4ICFpbXBvcnRhbnQ7XG4gIHBhZGRpbmctcmlnaHQ6IDEwcHggIWltcG9ydGFudDtcbiAgei1pbmRleDogOTk5OTk5OTsgfVxuXG4uY3VzdG9tLXBhbmVsLWJvZHkge1xuICBwYWRkaW5nOiA1cHg7IH1cblxuLnNtYWxsLXNoYWRvdyB7XG4gIGJveC1zaGFkb3c6IDAgMXB4IDFweCAwcHggcmdiYSgwLCAwLCAwLCAwLjMpICFpbXBvcnRhbnQ7IH1cblxuLnNlYXJjaC1pbnB1dCB7XG4gIG1pbi13aWR0aDogNzAlICFpbXBvcnRhbnQ7IH1cblxuLmJvcmRlci1ncmF5IHtcbiAgYm9yZGVyOiAxcHggc29saWQgZ3JheSAhaW1wb3J0YW50OyB9XG5cbi5jdXN0b20taW5wdXQge1xuICBtaW4td2lkdGg6IDEyMHB4OyB9XG5cbi5tb2RhbCB7XG4gIG92ZXJmbG93OiBhdXRvICFpbXBvcnRhbnQ7IH1cblxuLypcclxuICBjdXN0b20gYnV0dG9uIHN0eWxlXHJcbiovXG5zZWxlY3QsIGlucHV0W3R5cGU9ZmlsZV0ge1xuICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDsgfVxuXG4uZmlsdGVyLXRvcCB7XG4gIGhlaWdodDogMjAwcHggIWltcG9ydGFudDtcbiAgb3ZlcmZsb3c6IGF1dG87IH1cblxuLmZpbHRlci1zaWRlIHtcbiAgaGVpZ2h0OiA0MDBweCAhaW1wb3J0YW50O1xuICBvdmVyZmxvdzogYXV0bzsgfVxuXG4udzMtdWwgbGkge1xuICBwYWRkaW5nOiAycHggIWltcG9ydGFudDtcbiAgZm9udC1zaXplOiAxMnB4ICFpbXBvcnRhbnQ7IH1cblxuLm51bWJlcl9pbnB1dCB7XG4gIHdpZHRoOiA0NXB4OyB9XG4iXX0= */"
 
 /***/ }),
 
@@ -311,8 +311,13 @@ var PermissionComponent = /** @class */ (function () {
     function PermissionComponent(service) {
         this.service = service;
         this.role = {};
+        this.updateMode = false;
+        this.loadResources = false;
+        this.doc = document;
+        this.$ = $;
         this.permissions = [];
         this.permissionId = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
+        this.groups = [];
         this.isSubmitted = false;
     }
     PermissionComponent.prototype.setPermission = function () {
@@ -333,8 +338,10 @@ var PermissionComponent = /** @class */ (function () {
             permissions: this.permissionId.getKeys()
         };
         this.service.updatePermission(this.role.id, data).subscribe(function (res) {
-            if (res.status == 1)
+            if (res.status == 1) {
                 src_app_shared_message__WEBPACK_IMPORTED_MODULE_3__["Message"].success(res.message);
+                _this.loadResources();
+            }
             else
                 src_app_shared_message__WEBPACK_IMPORTED_MODULE_3__["Message"].error(res.message);
             _this.isSubmitted = false;
@@ -345,6 +352,7 @@ var PermissionComponent = /** @class */ (function () {
             this.permissionId.remove(id);
         else
             this.permissionId.put(id, id);
+        this.updatePermissions();
     };
     PermissionComponent.prototype.loadPermissions = function () {
         var _this = this;
@@ -352,16 +360,44 @@ var PermissionComponent = /** @class */ (function () {
             _this.permissions = res;
         });
     };
+    PermissionComponent.prototype.loadGroups = function () {
+        var _this = this;
+        this.service.groups().subscribe(function (res) {
+            _this.groups = res;
+        });
+    };
     PermissionComponent.prototype.ngOnInit = function () {
         this.loadPermissions();
+        this.loadGroups();
     };
     PermissionComponent.prototype.ngOnChanges = function () {
         this.setPermission();
+    };
+    PermissionComponent.prototype.selectAll = function (group, checked) {
+        var _this = this;
+        group.permissions.forEach(function (element) {
+            if (checked)
+                _this.permissionId.put(element.id, element.id);
+            else if (_this.permissionId.has(element.id))
+                _this.permissionId.remove(element.id);
+        });
+        this.updatePermissions();
+    };
+    PermissionComponent.prototype.changeMode = function () {
+        this.updateMode = false;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], PermissionComponent.prototype, "role", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PermissionComponent.prototype, "updateMode", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PermissionComponent.prototype, "loadResources", void 0);
     PermissionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-permission',
@@ -542,7 +578,7 @@ var RoleFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\r\n  <div class=\"box-header\">\r\n    <button mat-raised-button color=\"primary\" (click)=\"doc.jquery('#createModal').modal('show');\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button>\r\n  </div>\r\n  <br>\r\n\r\n</div>\r\n\r\n<div class=\"mat-elevation-z8 w3-white\" style=\"padding: 7px\" >\r\n  <input  class=\"form-control\"\r\n  (keyup)=\"search($event.target.value)\" placeholder=\"{{ 'search' | trans }}\">\r\n  <br>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort  class=\"\">\r\n\r\n      <!-- Position Column -->\r\n      <ng-container matColumnDef=\"name\" sticky>\r\n        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"name\" | trans }}</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <span class=\"w3-margin-right\">\r\n              {{element.name}}\r\n          </span>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <!-- Position Column -->\r\n      <ng-container matColumnDef=\"action\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\r\n          <td mat-cell *matCellDef=\"let element\">\r\n              <button mat-button color=\"info\"  (click)=\"edit(element)\" >\r\n                <i class=\"fa fa-edit\"></i>\r\n              </button>\r\n              <button mat-button color=\"info\"  (click)=\"permission(element)\" >\r\n                <i class=\"fa fa-th-list\"></i>\r\n              </button>\r\n              <button mat-button color=\"warn\" *ngIf=\"element.can_delete\" (click)=\"destroy(element.id)\" >\r\n                <i class=\"fa fa-trash\"></i>\r\n              </button>\r\n          </td>\r\n     </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n\r\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n\r\n\r\n\r\n  <app-role-form [updateResources]=\"updateResources\" [resource]=\"updateItem\" [isUpdate]=\"true\" ></app-role-form>\r\n  <app-role-form [updateResources]=\"updateResources\" [resource]=\"{}\" [isUpdate]=\"false\" ></app-role-form>\r\n\r\n  <app-permission [role]=\"permissionItem\" ></app-permission>\r\n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\" *ngIf=\"!updateMode\"></app-breadcrumb>\r\n\r\n<app-breadcrumb [breadcrumbList]=\"breadcrumbList2\" *ngIf=\"updateMode\" ></app-breadcrumb>\r\n\r\n<div class=\"box box-primary material-shadow w3-white table-responsive\" *ngIf=\"!updateMode\" >\r\n  <div class=\"box-header\">\r\n    <button mat-raised-button color=\"primary\" (click)=\"doc.jquery('#createModal').modal('show');\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button>\r\n  </div>\r\n\r\n  <br>\r\n\r\n</div>\r\n\r\n<div class=\"mat-elevation-z8 w3-white\" style=\"padding: 7px\" *ngIf=\"!updateMode\" >\r\n  <input  class=\"form-control\"\r\n  (keyup)=\"search($event.target.value)\" placeholder=\"{{ 'search' | trans }}\">\r\n  <br>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort  class=\"\">\r\n\r\n      <!-- Position Column -->\r\n      <ng-container matColumnDef=\"name\" sticky>\r\n        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ \"name\" | trans }}</th>\r\n        <td mat-cell *matCellDef=\"let element\">\r\n          <span class=\"w3-margin-right\">\r\n              {{element.name}}\r\n          </span>\r\n        </td>\r\n      </ng-container>\r\n\r\n      <!-- Position Column -->\r\n      <ng-container matColumnDef=\"action\">\r\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>\r\n          <td mat-cell *matCellDef=\"let element\">\r\n              <button mat-button color=\"info\"  (click)=\"edit(element)\" >\r\n                <i class=\"fa fa-edit\"></i>\r\n              </button>\r\n              <button mat-button color=\"info\"  (click)=\"permission(element)\" >\r\n                <i class=\"fa fa-th-list\"></i>\r\n              </button>\r\n              <button mat-button color=\"warn\" *ngIf=\"element.can_delete\" (click)=\"destroy(element.id)\" >\r\n                <i class=\"fa fa-trash\"></i>\r\n              </button>\r\n          </td>\r\n     </ng-container>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n\r\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\r\n</div>\r\n\r\n<div class=\"w3-white\" *ngIf=\"updateMode\" >\r\n  <button (click)=\"updateMode=false\" class=\"w3-white shadow w3-margin w3-large btn\"  >\r\n    <i class=\"fa fa-angle-right\" ></i> {{ \"back\" | trans }}\r\n </button>\r\n  <app-permission [role]=\"permissionItem\" [updateMode]=\"updateMode\" [loadResources]=\"updateResources\" ></app-permission>\r\n</div>\r\n\r\n\r\n  <app-role-form [updateResources]=\"updateResources\" [resource]=\"updateItem\" [isUpdate]=\"true\" ></app-role-form>\r\n  <app-role-form [updateResources]=\"updateResources\" [resource]=\"{}\" [isUpdate]=\"false\" ></app-role-form>\r\n\r\n"
 
 /***/ }),
 
@@ -593,8 +629,10 @@ var RoleIndexComponent = /** @class */ (function () {
         this.doc = _app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"].doc;
         // Resources list
         this.resources = null;
+        this.updateMode = false;
         // init breadcrum
         this.breadcrumbList = [];
+        this.breadcrumbList2 = [];
         // remove options
         this.showRemoveButton = false;
         this.showRemoveModal = false;
@@ -669,6 +707,12 @@ var RoleIndexComponent = /** @class */ (function () {
             this.dataSource.filter = filterValue.trim().toLowerCase();
     };
     RoleIndexComponent.prototype.permission = function (item) {
+        this.breadcrumbList2 = [
+            { name: 'home', url: '/' },
+            { name: 'roles', url: '/users/role' },
+            { name: item.name }
+        ];
+        this.updateMode = true;
         this.permissionItem = item;
         this.doc.jquery('#permissionModal').modal('show');
     };
@@ -689,6 +733,62 @@ var RoleIndexComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_role_service__WEBPACK_IMPORTED_MODULE_3__["RoleService"], _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], RoleIndexComponent);
     return RoleIndexComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/user/components/user-history/user-history.component.html":
+/*!**************************************************************************!*\
+  !*** ./src/app/user/components/user-history/user-history.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"w3-block w3-row\">\n  <div class=\"w3-white material-shadow safe-box col-lg-6 col-md-6 col-sm-6\">\n    <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\n      {{ \"users history\" | trans }}\n    </div>\n    <div class=\"border-bottom-dashed\"></div>\n    <br>\n\n    <div class=\"row\">\n\n      <div class=\"col-lg-12\">\n        <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n\n          <div class=\"custom-panel-body table-responsive w3-padding w3-center\" style=\"height: 400px;\" >\n            <table class=\"table-bordered\" >\n              <thead>\n                <th>#</th>\n                <th>{{ \"name\" | trans }}</th>\n                <th>{{ \"start_date\" | trans }}</th>\n                <th>{{ \"end_date\" | trans }}</th>\n                <th></th>\n              </thead>\n              <tbody>\n\n                <tr>\n                  <td></td>\n                  <td>\n                    <button class=\"fa fa-plus w3-block btn btn-default btn-flat\" ></button>\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n\n\n\n    </div>\n\n\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/user/components/user-history/user-history.component.scss":
+/*!**************************************************************************!*\
+  !*** ./src/app/user/components/user-history/user-history.component.scss ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3VzZXIvY29tcG9uZW50cy91c2VyLWhpc3RvcnkvdXNlci1oaXN0b3J5LmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/user/components/user-history/user-history.component.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/user/components/user-history/user-history.component.ts ***!
+  \************************************************************************/
+/*! exports provided: UserHistoryComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserHistoryComponent", function() { return UserHistoryComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var UserHistoryComponent = /** @class */ (function () {
+    function UserHistoryComponent() {
+    }
+    UserHistoryComponent.prototype.ngOnInit = function () {
+    };
+    UserHistoryComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-user-history',
+            template: __webpack_require__(/*! ./user-history.component.html */ "./src/app/user/components/user-history/user-history.component.html"),
+            styles: [__webpack_require__(/*! ./user-history.component.scss */ "./src/app/user/components/user-history/user-history.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], UserHistoryComponent);
+    return UserHistoryComponent;
 }());
 
 
@@ -1032,9 +1132,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _components_role_role_index_role_index_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/role/role-index/role-index.component */ "./src/app/user/components/role/role-index/role-index.component.ts");
-/* harmony import */ var _components_user_user_index_user_index_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/user/user-index/user-index.component */ "./src/app/user/components/user/user-index/user-index.component.ts");
-/* harmony import */ var _user_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user.component */ "./src/app/user/user.component.ts");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var _shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/middlewares/auth-guest.service */ "./src/app/shared/middlewares/auth-guest.service.ts");
+/* harmony import */ var _components_role_role_index_role_index_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/role/role-index/role-index.component */ "./src/app/user/components/role/role-index/role-index.component.ts");
+/* harmony import */ var _components_user_user_index_user_index_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/user/user-index/user-index.component */ "./src/app/user/components/user/user-index/user-index.component.ts");
+/* harmony import */ var _user_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user.component */ "./src/app/user/user.component.ts");
+
+
 
 
 
@@ -1044,16 +1148,20 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: "",
-        component: _user_component__WEBPACK_IMPORTED_MODULE_5__["UserComponent"],
+        component: _user_component__WEBPACK_IMPORTED_MODULE_7__["UserComponent"],
         children: [
             {
-                path: '',
-                component: _components_user_user_index_user_index_component__WEBPACK_IMPORTED_MODULE_4__["UserIndexComponent"]
+                path: 'u',
+                canActivate: [_shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuestService"]],
+                data: { can: _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].can('user_read') },
+                component: _components_user_user_index_user_index_component__WEBPACK_IMPORTED_MODULE_6__["UserIndexComponent"]
             },
             {
                 path: 'role',
-                component: _components_role_role_index_role_index_component__WEBPACK_IMPORTED_MODULE_3__["RoleIndexComponent"]
-            },
+                canActivate: [_shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuestService"]],
+                data: { can: _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].can('role_read') },
+                component: _components_role_role_index_role_index_component__WEBPACK_IMPORTED_MODULE_5__["RoleIndexComponent"]
+            }
         ]
     },
     {
@@ -1087,7 +1195,7 @@ var UserRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n\r\n  <div class=\"col-md-3\">\r\n\r\n    <!-- navbar list -->\r\n    <div class=\"box box-primary material-shadow\">\r\n      <div class=\"box-body box-profile\">\r\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/application.gif\" alt=\"User profile picture\">\r\n\r\n        <h3 class=\"profile-username text-center\">{{ \"users\" | trans }}</h3>\r\n\r\n\r\n        <ul class=\"list-group list-group-unbordered\">\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" routerLink='/users' >\r\n                <b>{{ \"users\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-users\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\">\r\n            <a href=\"#\" routerLink='/users/role' >\r\n                <b>{{ \"roles\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-th-list\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <!-- /.box-body -->\r\n    </div>\r\n    <!-- /.box -->\r\n\r\n  </div>\r\n  <!-- /.col -->\r\n  <div class=\"col-md-9\">\r\n      <router-outlet></router-outlet>\r\n  </div>\r\n  <!-- /.col -->\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n\r\n  <div class=\"col-md-3\">\r\n\r\n    <!-- navbar list -->\r\n    <div class=\"box box-primary material-shadow\">\r\n      <div class=\"box-body box-profile\">\r\n        <img class=\"profile-user-img img-responsive img-circle\" style=\"width: 60%!important\" src=\"/assets/img/application.gif\" alt=\"User profile picture\">\r\n\r\n        <h3 class=\"profile-username text-center\">{{ \"users\" | trans }}</h3>\r\n\r\n\r\n        <ul class=\"list-group list-group-unbordered\">\r\n          <li class=\"list-group-item\" permission=\"user_read\" >\r\n            <a href=\"#\" routerLink='/users/u' >\r\n                <b>{{ \"users\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-users\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n          <li class=\"list-group-item\" permission=\"role_read\" >\r\n            <a href=\"#\" routerLink='/users/role' >\r\n                <b>{{ \"roles\" | trans }}</b>\r\n                <a href=\"#\"  class=\"pull-left\">\r\n                  <i class=\"fa fa-th-list\" ></i>\r\n                </a>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <!-- /.box-body -->\r\n    </div>\r\n    <!-- /.box -->\r\n\r\n  </div>\r\n  <!-- /.col -->\r\n  <div class=\"col-md-9\">\r\n      <router-outlet></router-outlet>\r\n  </div>\r\n  <!-- /.col -->\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1158,6 +1266,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_role_role_index_role_index_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/role/role-index/role-index.component */ "./src/app/user/components/role/role-index/role-index.component.ts");
 /* harmony import */ var _components_role_role_form_role_form_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/role/role-form/role-form.component */ "./src/app/user/components/role/role-form/role-form.component.ts");
 /* harmony import */ var _components_role_permission_permission_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/role/permission/permission.component */ "./src/app/user/components/role/permission/permission.component.ts");
+/* harmony import */ var _components_user_history_user_history_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/user-history/user-history.component */ "./src/app/user/components/user-history/user-history.component.ts");
+
 
 
 
@@ -1181,7 +1291,8 @@ var UserModule = /** @class */ (function () {
                 _components_user_user_form_user_form_component__WEBPACK_IMPORTED_MODULE_8__["UserFormComponent"],
                 _components_role_role_index_role_index_component__WEBPACK_IMPORTED_MODULE_9__["RoleIndexComponent"],
                 _components_role_role_form_role_form_component__WEBPACK_IMPORTED_MODULE_10__["RoleFormComponent"],
-                _components_role_permission_permission_component__WEBPACK_IMPORTED_MODULE_11__["PermissionComponent"]
+                _components_role_permission_permission_component__WEBPACK_IMPORTED_MODULE_11__["PermissionComponent"],
+                _components_user_history_user_history_component__WEBPACK_IMPORTED_MODULE_12__["UserHistoryComponent"]
             ],
             imports: [
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"],

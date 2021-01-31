@@ -19,6 +19,8 @@ import { ReplaceUnderscoreWithSpacePipe } from './pipes/replace-underscore-with-
 import { TransPipe } from './pipes/trans.pipe';
 import { DataTablesModule } from 'angular-datatables';
 import { PermissionDirective } from './directives/permission.directive';
+import { ImportExcelComponent } from './components/import-excel/import-excel.component';
+import { MatButtonModule, MatCheckboxModule, MatPaginatorModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PermissionDirective } from './directives/permission.directive';
     ButtonClickedDirective,
     MainLoaderComponent,
     TransPipe,
-    PermissionDirective
+    PermissionDirective,
+    ImportExcelComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,14 @@ import { PermissionDirective } from './directives/permission.directive';
     NgSelectModule,
     NgbModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatSliderModule,
+    MatSlideToggleModule,
   ],
   exports: [
     CommonModule,
@@ -63,7 +73,8 @@ import { PermissionDirective } from './directives/permission.directive';
     MainLoaderComponent,
     ReplaceUnderscoreWithSpacePipe,
     TransPipe,
-    PermissionDirective
+    PermissionDirective,
+    ImportExcelComponent
   ]
 })
 export class SharedModule { }

@@ -13,7 +13,8 @@ import { StudentService } from '../../../services/student.service';
 })
 export class StudentIndexComponent implements OnInit {
 
-  public doc: any = AppModule.doc;
+  public doc: any = document;
+  public $: any = $;
 
   // Resources list
   public resources: any = {};

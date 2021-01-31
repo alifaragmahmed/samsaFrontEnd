@@ -124,6 +124,8 @@
               <button mat-raised-button color="primary" (click)="showCourseCategoryForm()" style="margin: 5px" ><i class="fa fa-send-o"></i> {{ "create course category" | trans }} </button>
 
               <button mat-raised-button color="primary" (click)="showDegreeMapForm()" style="margin: 5px" ><i class="fa fa-send-o"></i> {{ "create degree map" | trans}} </button>
+
+              <button mat-raised-button color="primary" (click)="$('#importExcelModal').modal('show')" style="margin: 5px" >  {{ "import from excel" | trans}} </button>
             </div>
           </div>
 
@@ -218,3 +220,6 @@
   <app-create-degree-map-form [degreeMap]="degreeMap" [updateView]="updateView" ></app-create-degree-map-form>
 
   <app-create-course-category-form [courseCategory]="courseCategory" [updateView]="updateView" ></app-create-course-category-form>
+
+
+<app-import-excel [apiUrl]="'import-course'" [action]="updateView" ></app-import-excel>

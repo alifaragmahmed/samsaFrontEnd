@@ -41,6 +41,10 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
 
   <script src="assets/js/jquery.min.js"></script>
+
+  <style id="theme" >
+
+  </style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -69,6 +73,7 @@
   <script src="assets/js/jquery.nicescroll.iframehelper.min.js"></script>
   <script src="assets/js/print.min.js"></script>
   <script src="assets/js/select2.min.js"></script>
+  <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
 
   <!--
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=IqzcmmiC"></script>
@@ -143,11 +148,13 @@
       });
     }
 
-    document.nicescroll = function(selector) {
+    document.nicescroll = function(selector, data) {
+      //$('#studentAffairContainer').slimScroll();
+
       if (selector)
-        $(selector).niceScroll();
+        $(selector).slimScroll(data);
       else
-        $(selector).niceScroll('.nicescroll');
+        $('.nicescroll').slimScroll(data);
     }
 
     document.datatable = function() {
@@ -172,6 +179,8 @@
     };
     document.jq = $;
     document.jquery = $;
+    document.readXlsxFile = readXlsxFile;
+    document.Swal = Swal;
     document.say = function(word) {
       responsiveVoice.speak(word, "Arabic Female");
     };

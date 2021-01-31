@@ -40,6 +40,8 @@ import { ReportCreatorReportComponent } from './components/report/report-creator
 import { CreateBalanceResetComponent } from './components/safe/create-balance-reset/create-balance-reset.component';
 import { InstallmentReportComponent } from './components/report/installment-report/installment-report.component';
 import { StudentDiscountReportComponent } from './components/report/student-discount-report/student-discount-report.component';
+import { TreeIndexComponent } from './components/tree/tree-index/tree-index.component';
+import { TreeComponent } from './components/tree/tree/tree.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { StudentDiscountReportComponent } from './components/report/student-disc
     CreateBalanceResetComponent,
     InstallmentReportComponent,
     StudentDiscountReportComponent,
+    TreeIndexComponent,
+    TreeComponent,
   ],
   imports: [
     SharedModule,

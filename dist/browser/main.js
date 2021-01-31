@@ -11,19 +11,16 @@ var map = {
 	"./academic/academic.module": [
 		"./src/app/academic/academic.module.ts",
 		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
-		"common",
 		"academic-academic-module"
 	],
 	"./account/account.module": [
 		"./src/app/account/account.module.ts",
 		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
-		"default~account-account-module~affairs-affairs-module~student-student-module",
-		"common"
+		"default~account-account-module~affairs-affairs-module~student-student-module"
 	],
 	"./adminision/adminision.module": [
 		"./src/app/adminision/adminision.module.ts",
 		"default~adminision-adminision-module~affairs-affairs-module",
-		"common",
 		"adminision-adminision-module"
 	],
 	"./affairs/affairs.module": [
@@ -32,13 +29,7 @@ var map = {
 		"default~account-account-module~affairs-affairs-module~student-student-module",
 		"default~adminision-adminision-module~affairs-affairs-module",
 		"default~affairs-affairs-module~student-student-module",
-		"common",
 		"affairs-affairs-module"
-	],
-	"./area/area.module": [
-		"./src/app/military/area/area.module.ts",
-		"common",
-		"area-area-module"
 	],
 	"./auth/auth.module": [
 		"./src/app/auth/auth.module.ts",
@@ -47,17 +38,14 @@ var map = {
 	"./card/card.module": [
 		"./src/app/card/card.module.ts",
 		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
-		"common",
 		"card-card-module"
 	],
 	"./military/military.module": [
 		"./src/app/military/military.module.ts",
-		"common",
 		"military-military-module"
 	],
 	"./settings/settings.module": [
 		"./src/app/settings/settings.module.ts",
-		"common",
 		"settings-settings-module"
 	],
 	"./student/student.module": [
@@ -65,11 +53,10 @@ var map = {
 		"default~academic-academic-module~account-account-module~affairs-affairs-module~card-card-module~stud~fe653cd8",
 		"default~account-account-module~affairs-affairs-module~student-student-module",
 		"default~affairs-affairs-module~student-student-module",
-		"common"
+		"student-student-module"
 	],
 	"./user/user.module": [
 		"./src/app/user/user.module.ts",
-		"common",
 		"user-user-module"
 	]
 };
@@ -248,7 +235,7 @@ var ApplicationSettingService = /** @class */ (function () {
     function ApplicationSettingService(http) {
         this.http = http;
         this.requestQueue = [];
-        this.queueRequests();
+        //this.queueRequests();
     }
     ApplicationSettingService_1 = ApplicationSettingService;
     ApplicationSettingService.prototype.queueRequests = function () {
@@ -772,6 +759,62 @@ var HomeComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/components/main-page/main-page.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/core/components/main-page/main-page.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  main-page works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/core/components/main-page/main-page.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/core/components/main-page/main-page.component.scss ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvY29tcG9uZW50cy9tYWluLXBhZ2UvbWFpbi1wYWdlLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/core/components/main-page/main-page.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/core/components/main-page/main-page.component.ts ***!
+  \******************************************************************/
+/*! exports provided: MainPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MainPageComponent", function() { return MainPageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var MainPageComponent = /** @class */ (function () {
+    function MainPageComponent() {
+    }
+    MainPageComponent.prototype.ngOnInit = function () {
+    };
+    MainPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-main-page',
+            template: __webpack_require__(/*! ./main-page.component.html */ "./src/app/core/components/main-page/main-page.component.html"),
+            styles: [__webpack_require__(/*! ./main-page.component.scss */ "./src/app/core/components/main-page/main-page.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], MainPageComponent);
+    return MainPageComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/core/components/navbar/nav-bar.component.html":
 /*!***************************************************************!*\
   !*** ./src/app/core/components/navbar/nav-bar.component.html ***!
@@ -779,7 +822,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n  <nav style=\"height: 40px;\" >\r\n      <div class=\"fixed-nav\" style=\"height: 40px;\" >\r\n          <input type=\"checkbox\" id=\"mobile-nav-check\" class=\"invisible-checkbox\" tab-index=\"-1\" />\r\n          <!-- Fix tabbing on desktop -->\r\n          <label for=\"mobile-nav-check\" class=\"burger\"></label>\r\n          <div class=\"top hidden\"  >\r\n              <div class=\"container \">\r\n\r\n                  <div class=\"w3-left\" style=\"text-align: center;font-size: 13px;\" >\r\n                    <b>وزارة التعليم العالى\r\n                     المعهد العالى للعلوم الادراية\r\n                    ببنى سويف</b>\r\n                </div>\r\n                  <a href=\"#\" class=\"feature-button  logo w3-hide-small\t\">\r\n                    <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                  </a>\r\n              </div>\r\n          </div>\r\n          <div class=\"bottom\">\r\n              <div class=\"container\">\r\n                  <ul class=\"navigation\" style=\"float: none;\" >\r\n                      <li class=\"waves-effect waves-white text-right w3-hide-large w3-hide-medium\t\">\r\n                        <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                      </li>\r\n                      <li class=\"pointer\"></li>\r\n                      <li class=\"waves-effect waves-white\"  >\r\n                        <a routerLink=\"/affairs\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student affairs\" | trans }}</a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"account\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"card export unit\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card\" >{{ \"card export unit\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card/report/card-export\" >{{ \"card export report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"academic\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/student-register-course\" >{{ \"student_register_course\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/plan\" >{{ \"academic_plan\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/setting\" >{{ \"academic_setting\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/open-course\" >{{ \"open_courses\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/doctors\" >{{ \"doctors\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/student-result\" >{{ \"control\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/control-report\" >{{ \"control report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      <!--\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      -->\r\n                    <!-- Notifications Menu -->\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    class=\"dropdown notifications-menu waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-bell-o\"></i>\r\n                        <span class=\"label label-warning\">{{ notifications.length > 0? notifications.length : '' }}</span>\r\n                      </a>\r\n                      <div\r\n                      class=\"w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card\"\r\n                      style=\"position: fixed;left: 10%;width: 300px\">\r\n                          <!-- Inner Menu: contains the notifications -->\r\n                          <ul class=\"menu w3-ul w3-block\">\r\n                            <li class=\"w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray\" style=\"text-align: center!important;\" >{{ message }}</li>\r\n                            <li\r\n                            style=\"padding: 0px!important\"\r\n                            class=\"w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray\"\r\n                            *ngFor=\"let item of notifications index as i\" ><!-- start notification -->\r\n\r\n                              <div class=\"media\">\r\n                                  <div class=\"media-left\">\r\n                                    <a href=\"#\">\r\n                                        <i\r\n                                        style=\"padding: 0px!important;\"\r\n                                        class=\"w3-text-black text-right {{ item.icon? item.icon : 'fa fa-bell-o' }}\"></i>\r\n                                    </a>\r\n                                  </div>\r\n                                  <div class=\"media-body\"\r\n                                  style=\"text-align: right!important;line-height: 14px!important;padding-top:10px\" >\r\n                                    {{ item.body }}\r\n                                  </div>\r\n                                </div>\r\n                            </li>\r\n                            <li\r\n                            class=\"w3-bar-item w3-button w3-text-black text-center w3-border-bottom w3-border-light-gray\"\r\n                            style=\"text-align: center!important;padding: 0px!important\">{{ \"View all\" | trans }}</li>\r\n                            <!-- end notification -->\r\n                          </ul>\r\n                      </div>\r\n                    </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </nav>\r\n</header>\r\n"
+module.exports = "<header>\r\n  <nav style=\"height: 40px;\" >\r\n      <div class=\"fixed-nav\" style=\"height: 40px;\" >\r\n          <input type=\"checkbox\" id=\"mobile-nav-check\" class=\"invisible-checkbox\" tab-index=\"-1\" />\r\n          <!-- Fix tabbing on desktop -->\r\n          <label for=\"mobile-nav-check\" class=\"burger\"></label>\r\n          <div class=\"top hidden\"  >\r\n              <div class=\"container \">\r\n\r\n                  <div class=\"w3-left\" style=\"text-align: center;font-size: 13px;\" >\r\n                    <b>وزارة التعليم العالى\r\n                     المعهد العالى للعلوم الادراية\r\n                    ببنى سويف</b>\r\n                </div>\r\n                  <a href=\"#\" class=\"feature-button  logo w3-hide-small\t\">\r\n                    <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                  </a>\r\n              </div>\r\n          </div>\r\n          <div class=\"bottom\">\r\n              <div class=\"container\">\r\n                  <ul class=\"navigation\" style=\"float: none;\" >\r\n                      <li class=\"waves-effect waves-white text-right w3-hide-large w3-hide-medium\t\">\r\n                        <img src=\"../../../../assets/img/logo.png\" width=\"50px\" >\r\n                      </li>\r\n                      <li class=\"pointer\"></li>\r\n                      <li class=\"waves-effect waves-white\" *ngIf=\"canAccessStudentAffair()\" >\r\n                        <a routerLink=\"/affairs\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"student affairs\" | trans }}</a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\" *ngIf=\"canAccessSafe() && !canAccessAccountSettings()\" >\r\n                        <a routerLink=\"/account/safe\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"stores\" | trans }}</a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\" *ngIf=\"(canAccessSafe() && canAccessAccountSettings()) || canAccessAccountSettings()\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"account\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a  *ngIf=\"canAccessSafe()\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/safe\" >{{ \"stores\" | trans }}</a>\r\n                             <a *ngIf=\"canAccessAccountSettings()\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/account/setting\" >{{ \"settings\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\" *ngIf=\"canAccessCardExport()\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"card export unit\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a permission=\"card_export\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card\" >{{ \"card export unit\" | trans }}</a>\r\n                             <a permission=\"card_export_report\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/card/report/card-export\" >{{ \"card export report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white text-right\" *ngIf=\"canAccessAcademic()\">\r\n                        <div class=\"w3-dropdown-hover\" style=\"background-color: transparent;\"  >\r\n                          <a class=\"dropdown-toggle\">\r\n                           {{ \"academic\" | trans }} <span class=\"caret\"></span>\r\n                          </a>\r\n                          <div class=\"w3-dropdown-content w3-bar-block w3-border w3-text-black\" style=\"position: fixed;\" >\r\n                             <a permission=\"student_register\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/student-register-course\" >{{ \"student_register_course\" | trans }}</a>\r\n                             <a href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/plan\" >{{ \"academic_plan\" | trans }}</a>\r\n                             <a permission=\"academic_setting\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/setting\" >{{ \"academic_setting\" | trans }}</a>\r\n                             <a permission=\"open_course\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/open-course\" >{{ \"open_courses\" | trans }}</a>\r\n                             <a permission=\"doctor_read\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/doctors\" >{{ \"doctors\" | trans }}</a>\r\n                             <a permission=\"control\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/student-result\" >{{ \"control\" | trans }}</a>\r\n                             <a permission=\"control_report\" href=\"#\" class=\"w3-bar-item w3-button w3-text-black\" routerLink=\"/academic/control-report\" >{{ \"control report\" | trans }}</a>\r\n                          </div>\r\n                        </div>\r\n                      </li>\r\n\r\n                      <li class=\"waves-effect waves-white\" *ngIf=\"canAccessMainSettings()\">\r\n                        <a routerLink=\"/settings\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"main_settings\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\" *ngIf=\"canAccessMilitary()\">\r\n                        <a routerLink=\"/military\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"military\" | trans }}  </a>\r\n                      </li>\r\n                      <li class=\"waves-effect waves-white\" *ngIf=\"canAccessUsers()\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      <!--\r\n                      <li class=\"waves-effect waves-white\">\r\n                        <a routerLink=\"/users\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">{{ \"users\" | trans }}  </a>\r\n                      </li>\r\n                      -->\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    (click)=\"logout()\"\r\n                    class=\"waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a   class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-sign-out\"></i>\r\n                      </a>\r\n                    </li>\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    class=\"dropdown notifications-menu waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-bell-o\"></i>\r\n                        <span class=\"label label-warning\">{{ notifications.length > 0? notifications.length : '' }}</span>\r\n                      </a>\r\n                      <div\r\n                      class=\"w3-ul w3-dropdown-content w3-bar-block w3-border w3-text-black w3-card\"\r\n                      style=\"position: fixed;left: 10%;width: 300px\">\r\n                          <!-- Inner Menu: contains the notifications -->\r\n                          <ul class=\"menu w3-ul w3-block\">\r\n                            <li class=\"w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray\" style=\"text-align: center!important;\" >{{ message }}</li>\r\n                            <li class=\"w3-bar-item w3-text-black text-center w3-border-bottom w3-border-light-gray\" style=\"text-align: center!important;height: 200px;overflow: auto;\" >\r\n                              <ul class=\"w3-ul\">\r\n                                <li\r\n                                style=\"padding: 0px!important\"\r\n                                class=\"w3-bar-item w3-text-black w3-border-bottom w3-border-light-gray\"\r\n                                *ngFor=\"let item of notifications index as i\" ><!-- start notification -->\r\n\r\n                                  <div class=\"media\">\r\n                                      <div class=\"media-left\">\r\n                                        <a href=\"#\">\r\n                                            <i\r\n                                            style=\"padding: 0px!important;\"\r\n                                            class=\"w3-text-black text-right {{ item.icon? item.icon : 'fa fa-bell-o' }}\"></i>\r\n                                        </a>\r\n                                      </div>\r\n                                      <div class=\"media-body\"\r\n                                      style=\"text-align: right!important;line-height: 14px!important;padding-top:10px\" >\r\n                                        {{ item.body }}\r\n                                      </div>\r\n                                    </div>\r\n                                </li>\r\n                              </ul>\r\n                            </li>\r\n                            <li\r\n                            class=\"w3-bar-item w3-button w3-text-black text-center w3-border-bottom w3-border-light-gray\"\r\n                            style=\"text-align: center!important;padding: 0px!important\">{{ \"View all\" | trans }}</li>\r\n                            <!-- end notification -->\r\n                          </ul>\r\n                      </div>\r\n                    </li>\r\n                    <!-- profile item -->\r\n                    <li\r\n                    style=\"float: left!important\"\r\n                    class=\"dropdown notifications-menu waves-effect waves-white w3-dropdown-hover\">\r\n                      <!-- Menu toggle button -->\r\n                      <a routerLink=\"/profile\"  class=\"dropdown-toggle\" data-toggle=\"dropdown\">\r\n                        <i class=\"fa fa-user-circle\"></i>\r\n                      </a>\r\n                    </li>\r\n                  </ul>\r\n              </div>\r\n          </div>\r\n      </div>\r\n  </nav>\r\n</header>\r\n"
 
 /***/ }),
 
@@ -813,6 +856,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_system_setting_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/system-setting.service */ "./src/app/core/services/system-setting.service.ts");
 /* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../shared/helper */ "./src/app/shared/helper.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+
 
 
 
@@ -833,14 +878,6 @@ var NavBarComponent = /** @class */ (function () {
         this.notifications = [];
         this.notify = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["of"])(this.doc.notify);
         config.placement = 'bottom-right';
-        //let ob = new Observable();
-        //ob.
-        /*this.notify.subscribe((r)=>{
-          console.log("r : " + r);
-          if (r == 1)
-            this.observeNotifications();
-        });*/
-        //Object.
     }
     NavBarComponent.prototype.initMessage = function (arr) {
         this.message = _shared_helper__WEBPACK_IMPORTED_MODULE_7__["Helper"].trans("You have {n} notifications").replace("{n}", arr.length);
@@ -853,30 +890,65 @@ var NavBarComponent = /** @class */ (function () {
         this.observeNotifications();
     };
     NavBarComponent.prototype.observeNotifications = function () {
-        var _this = this;
+        var _this_1 = this;
         setInterval(function () {
-            if (_this.doc.notify == 1)
-                _this.loadNotifications();
+            if (_this_1.doc.notify == 1)
+                _this_1.loadNotifications();
         }, 5000);
     }; //
     NavBarComponent.prototype.loadNotifications = function () {
-        var _this = this;
+        var _this_1 = this;
         this.systemSettingService.getNotifications().subscribe(function (res) {
             res.forEach(function (element) {
-                _this.notifications.push(element);
+                _this_1.notifications.push(element);
             });
-            _this.notifications.reverse();
+            _this_1.notifications.reverse();
             //
             if (res.length > 0) {
-                _this.initMessage(res);
-                _this.doc.playSound('ios_notification');
+                _this_1.initMessage(res);
+                _this_1.doc.playSound('ios_notification');
             }
-            _this.doc.notify = 0;
+            _this_1.doc.notify = 0;
         });
     };
     NavBarComponent.prototype.logout = function () {
-        _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].logout();
-        this.router.navigate(['/login']).then().catch();
+        var _this = this;
+        src_app_shared_message__WEBPACK_IMPORTED_MODULE_9__["Message"].confirm(_shared_helper__WEBPACK_IMPORTED_MODULE_7__["Helper"].trans('are you sure'), function () {
+            _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].logout();
+            _this.router.navigate(['/login']).then().catch();
+        });
+    };
+    NavBarComponent.prototype.canAccessStudentAffair = function () {
+        var permissions = ["application_add", "applicattion_edit", "application_remove", "application_read", "student_read", "student_edit", "student_add", "student_remove", "required_document_read", "required_document_edit", "required_document_add", "required_document_remove", "application_required", "application_setting"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessSafe = function () {
+        var permissions = ["safe_student_payment", "safe_student_service", "safe_student_my_installment", "safe_student_installment", "safe_note", "safe_setting", "safe_discount", "safe_balance_reset", "safe_service"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessAccountSettings = function () {
+        var permissions = ["service_read", "service_edit", "service_add", "service_remove", "safe_read", "safe_edit", "safe_remove", "safe_add", "academic_expense_read", "academic_expense_edit", "academic_expense_add", "discount_type_read", "discount_type_add", "discount_type_remove", "installment_report", "report_creator_report", "student_balance_report", "student_discount_report", "student_detail_report", "payment_detail_report", "account_setting", "discount_type_edit", "academic_expense_remove"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessCardExport = function () {
+        var permissions = ["card_export", "card_export_report"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessMainSettings = function () {
+        var permissions = ["translation", "permission", "student_code_series", "relation", "parent_job", "nationality", "language", "case_constraint", "registeration_status", "registeration_method", "academic_year", "qualification_type", "qualification", "department", "division", "level", "city", "government", "country"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessMilitary = function () {
+        var permissions = ["military_status", "military_area"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessAcademic = function () {
+        var permissions = ["result_transfer", "control_report", "control", "open_course", "academic_setting", "doctor_remove", "doctor_add", "doctor_edit", "doctor_read", "degree_map_remove", "degree_map_add", "degree_map_edit", "degree_map_read", "course_category_remove", "course_category_add", "course_category_edit", "course_category_read", "course_remove", "course_add", "course_edit", "course_read", "student_register"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
+    };
+    NavBarComponent.prototype.canAccessUsers = function () {
+        var permissions = ["role_remove", "role_add", "role_edit", "role_read", "user_remove", "user_add", "user_edit", "user_read"];
+        return _shared_auth__WEBPACK_IMPORTED_MODULE_5__["Auth"].canOr(permissions);
     };
     /**
      * observe time to load notifications
@@ -963,7 +1035,7 @@ var PageNotFoundComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n\r\n<div class=\"w3-display-topleft w3-padding sidebar-settings\"  style=\"position: fixed;\">\r\n\r\n  <div class=\"w3-card-2 w3-round w3-white\" style=\"width: 80px\" >\r\n    <ul class=\"w3-ul\" >\r\n      <li class=\"text-center w3-large w3-hover-light-gray\" style=\"cursor: pointer;\" (click)=\"toggle()\" >\r\n        <b class=\"fa  {{ isClosed? 'fa-angle-up' : 'fa-angle-down' }}\" ></b>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important\" *ngIf=\"setting.current_academic_year\" >\r\n         <i class=\"fa fa-calendar w3-larger w3-text-indigo\" ></i>\r\n         <br>\r\n         <span class=\"w3-tiny\" style=\"font-family: 'Roboto';\" >{{ setting.current_academic_year.name }}</span>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important\" *ngIf=\"setting.current_term\" >\r\n         <i class=\"fa fa-graduation-cap w3-larger w3-text-indigo\" ></i>\r\n         <br>\r\n         <span class=\"w3-tiny\" >{{ setting.current_term.name }}</span>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important;cursor: pointer;\" (click)=\"resize()\" >\r\n        <div *ngIf=\"!resizable\" >\r\n          <i class=\"fa fa-arrows w3-larger w3-text-\" ></i>\r\n          <br>\r\n          <span class=\"w3-tiny\" >{{ \"resize\" | trans }}</span>\r\n        </div>\r\n        <div *ngIf=\"resizable\" >\r\n          <i class=\"fa fa-arrows w3-larger w3-text-indigo\" ></i>\r\n          <br>\r\n          <b class=\"w3-tiny\" >{{ \"resize\" | trans }}</b>\r\n        </div>\r\n      </li>\r\n    </ul>\r\n\r\n  </div>\r\n\r\n</div>\r\n"
+module.exports = "\r\n\r\n<div class=\"w3-display-topleft w3-padding sidebar-settings\"  style=\"position: fixed;\">\r\n\r\n  <div class=\"w3-card-2 w3-round w3-white\" style=\"width: 80px\" >\r\n    <ul class=\"w3-ul\" >\r\n      <li class=\"text-center w3-large w3-hover-light-gray\" style=\"cursor: pointer;\" (click)=\"toggle()\" >\r\n        <b class=\"fa  {{ isClosed? 'fa-angle-up' : 'fa-angle-down' }}\" ></b>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important\" *ngIf=\"setting.current_academic_year\" >\r\n         <i class=\"fa fa-calendar w3-larger w3-text-indigo\" ></i>\r\n         <br>\r\n         <span class=\"w3-tiny\" style=\"font-family: 'Roboto';\" >{{ setting.current_academic_year.name }}</span>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important\" *ngIf=\"setting.current_term\" >\r\n         <i class=\"fa fa-graduation-cap w3-larger w3-text-indigo\" ></i>\r\n         <br>\r\n         <span class=\"w3-tiny\" >{{ setting.current_term.name }}</span>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\" style=\"padding: 3px!important;cursor: pointer;\" (click)=\"resize()\" >\r\n        <div *ngIf=\"!resizable\" >\r\n          <i class=\"fa fa-arrows w3-larger w3-text-\" ></i>\r\n          <br>\r\n          <span class=\"w3-tiny\" >{{ \"resize\" | trans }}</span>\r\n        </div>\r\n        <div *ngIf=\"resizable\" >\r\n          <i class=\"fa fa-arrows w3-larger w3-text-indigo\" ></i>\r\n          <br>\r\n          <b class=\"w3-tiny\" >{{ \"resize\" | trans }}</b>\r\n        </div>\r\n      </li>\r\n      <li class=\"text-center setting-list-item w3-hover-light-gray\"\r\n      style=\"padding: 3px!important;cursor: pointer;\" (click)=\"viewThemeDialog()\" >\r\n        <div  >\r\n          <i class=\"fa fa-paint-brush w3-larger w3-text-indigo\" ></i>\r\n          <br>\r\n          <span class=\"w3-tiny\"  >{{ \"theme\" | trans }}</span>\r\n        </div>\r\n      </li>\r\n    </ul>\r\n\r\n  </div>\r\n\r\n</div>\r\n\r\n\r\n<div class=\"modal fade\"  id=\"themeModal\" tabindex=\"-1\" role=\"dialog\">\r\n  <div class=\"modal-dialog modal-sm\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\">{{ \"change application theme\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"w3-display-container w3-row\">\r\n          <div *ngFor=\"let color of colors index as i\"\r\n          (click)=\"changeColor(color)\"\r\n          class=\"w3-center\" style=\"width: 40px;float: right;cursor: pointer;\" >\r\n            <i class=\"fa fa-circle w3-xxlarge\" [ngStyle]=\"{color: color.color}\"  ></i>\r\n            <br>\r\n            <i class=\"fa fa-check-circle {{ selectedTheme.color == color.color? 'w3-text-green' : 'w3-text-gray' }}\" ></i>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default w3-block small-shadow\" data-dismiss=\"modal\">{{ \"close\" | trans }}</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
 
 /***/ }),
 
@@ -990,7 +1062,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SystemLabelComponent", function() { return SystemLabelComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var src_app_shared_helpers_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/helpers/theme */ "./src/app/shared/helpers/theme.ts");
 /* harmony import */ var _services_system_setting_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/system-setting.service */ "./src/app/core/services/system-setting.service.ts");
 
 
@@ -1003,9 +1075,25 @@ var SystemLabelComponent = /** @class */ (function () {
         this.$ = $;
         this.resizable = false;
         this.isClosed = false;
-        this.applicationSetting = src_app_adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__["ApplicationSettingService"];
-        console.log(this.applicationSetting.SETTINGS);
+        this.isThemeOpen = false;
+        this.selectedTheme = {};
+        this.colors = [];
+        src_app_shared_helpers_theme__WEBPACK_IMPORTED_MODULE_2__["Theme"].load();
+        this.loadTheme();
     }
+    SystemLabelComponent.prototype.loadTheme = function () {
+        this.selectedTheme = src_app_shared_helpers_theme__WEBPACK_IMPORTED_MODULE_2__["Theme"].get();
+        console.log(this.selectedTheme);
+        this.colors = src_app_shared_helpers_theme__WEBPACK_IMPORTED_MODULE_2__["Theme"].COLORS;
+        console.log(this.colors);
+    };
+    SystemLabelComponent.prototype.changeColor = function (color) {
+        this.selectedTheme = color;
+        src_app_shared_helpers_theme__WEBPACK_IMPORTED_MODULE_2__["Theme"].change(color);
+    };
+    SystemLabelComponent.prototype.viewThemeDialog = function () {
+        this.$('#themeModal').modal('show');
+    };
     SystemLabelComponent.prototype.loadSettings = function () {
         var _this = this;
         this.systemSettingService.getSystemSetting().subscribe(function (res) {
@@ -1067,6 +1155,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/shared.module */ "./src/app/shared/shared.module.ts");
 /* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/core/components/navbar/navbar.component.ts");
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/core/components/home/home.component.ts");
+/* harmony import */ var _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/main-page/main-page.component */ "./src/app/core/components/main-page/main-page.component.ts");
+
 
 
 
@@ -1079,7 +1169,8 @@ var CoreModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_3__["NavBarComponent"],
-                _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"]
+                _components_home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"],
+                _components_main_page_main_page_component__WEBPACK_IMPORTED_MODULE_5__["MainPageComponent"]
             ],
             imports: [
                 _shared_shared_module__WEBPACK_IMPORTED_MODULE_2__["SharedModule"]
@@ -1155,9 +1246,6 @@ var LayoutComponent = /** @class */ (function () {
         _shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_DATA = _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].get(_shared_translation__WEBPACK_IMPORTED_MODULE_10__["Translation"].TRANSLATION_CACHE_KEY);
     }
     LayoutComponent.prototype.ngAfterViewChecked = function () {
-        setTimeout(function () {
-            // this.document.getElementById('start-loader').remove();
-        }, 1500);
     };
     LayoutComponent.prototype.watchUser = function () {
         console.log(_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
@@ -1180,7 +1268,7 @@ var LayoutComponent = /** @class */ (function () {
                 _shared_cache__WEBPACK_IMPORTED_MODULE_11__["Cache"].set(_account_services_term_service__WEBPACK_IMPORTED_MODULE_6__["TermService"].TERPM_PREFIX, r);
             } });
         // load all requests in the queueue
-        console.log("request count" + _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].queue.length);
+        console.log("request count : " + _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].queue.length);
         _shared_request__WEBPACK_IMPORTED_MODULE_12__["Request"].fire();
     };
     LayoutComponent.prototype.ngOnChanges = function (changes) {
@@ -1260,8 +1348,12 @@ var SystemSettingService = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Auth", function() { return Auth; });
-/* harmony import */ var _cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cache */ "./src/app/shared/cache.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/shared/services/auth.service.ts");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _cache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cache */ "./src/app/shared/cache.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/shared/services/auth.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
 
 
 var Auth = /** @class */ (function () {
@@ -1272,22 +1364,36 @@ var Auth = /** @class */ (function () {
      *
      */
     Auth.getApiToken = function () {
-        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
+        return _cache__WEBPACK_IMPORTED_MODULE_1__["Cache"].get(_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"].API_TOKEN_PRFIX);
     };
     /**
      * return user
      *
      */
     Auth.user = function () {
-        return _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
+        return _cache__WEBPACK_IMPORTED_MODULE_1__["Cache"].get(_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"].USER_PRFIX);
     };
     /**
      * remove user object from cache
      */
     Auth.logout = function () {
-        _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].API_TOKEN_PRFIX);
-        _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"].USER_PRFIX);
+        _cache__WEBPACK_IMPORTED_MODULE_1__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"].API_TOKEN_PRFIX);
+        _cache__WEBPACK_IMPORTED_MODULE_1__["Cache"].remove(_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"].USER_PRFIX);
         return false;
+    };
+    Auth.canOr = function (permissions) {
+        var valid = false;
+        permissions.forEach(function (element) {
+            if (Auth.can(element))
+                valid = Auth.can(element);
+        });
+        return valid;
+    };
+    Auth.canAnd = function (permissions) {
+        permissions.forEach(function (element) {
+            if (!Auth.can(element))
+                return false;
+        });
     };
     Auth.can = function (permission) {
         if (!Auth.user())
@@ -1297,9 +1403,30 @@ var Auth = /** @class */ (function () {
             return true;
         return false;
     };
+    /**
+     * create canActivate instance from condition
+     * @param condition
+     */
+    Auth.gaurd = function (condition) {
+        return new Gaurd(condition);
+    };
     return Auth;
 }());
 
+var Gaurd = /** @class */ (function () {
+    function Gaurd(condition) {
+        this.condition = false;
+        this.condition = condition;
+    }
+    Gaurd.prototype.canActivate = function (route, state) {
+        return this.condition;
+    };
+    Gaurd = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [Object])
+    ], Gaurd);
+    return Gaurd;
+}());
 
 
 /***/ }),
@@ -1460,6 +1587,117 @@ var ConfirmModalComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_confirm_service__WEBPACK_IMPORTED_MODULE_2__["ConfirmState"]])
     ], ConfirmModalComponent);
     return ConfirmModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/components/import-excel/import-excel.component.html":
+/*!****************************************************************************!*\
+  !*** ./src/app/shared/components/import-excel/import-excel.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal fade\" id=\"importExcelModal\" tabindex=\"-1\" role=\"dialog\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content text-center\"  style=\"background-color: #cdffc0;\"  >\n      <div class=\"modal-header w3-border-0\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n        <h4 class=\"modal-title\">{{ \"import excel file\" | trans }}</h4>\n      </div>\n      <div class=\"modal-body w3-border-0\">\n        <button mat-raised-button style=\"border-radius: 5em;\" (click)=\"$(importFile).click()\" >{{ \"upload file\" | trans }}</button>\n        <br>\n        <b *ngIf=\"resource.file\" >{{ resource.file? resource.file.name : '' }}</b>\n        <input type=\"file\" class=\"import_file hidden\" #importFile (change)=\"loadFile($event)\" accept=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel\"  >\n\n        <br>\n        <div style=\"max-height: 300px; overflow: auto;\" >\n          <br>\n          <table class=\"table table-bordered\" >\n            <tr *ngFor=\"let row of excelRows index as i\" class=\"{{ i == 0? 'w3-black' : '' }}\" >\n              <td  *ngFor=\"let col of row\" >\n                {{ col }}\n              </td>\n            </tr>\n          </table>\n          <br>\n        </div>\n      </div>\n      <div class=\"modal-footer w3-border-0 text-center w3-center\">\n        <button type=\"button\" mat-raised-button data-dismiss=\"modal\" style=\"margin: 5px\" >{{ \"close\" | trans }}</button>\n        <button type=\"button\"\n        class=\"w3-indigo\"\n        [disabled]=\"isSubmitted\"\n        mat-raised-button\n        (click)=\"sendFile()\"\n        style=\"margin: 5px\" >\n          <span *ngIf=\"!isSubmitted\" >{{ \"send file\" | trans }}</span>\n          <span *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></span>\n        </button>\n      </div>\n    </div><!-- /.modal-content -->\n  </div><!-- /.modal-dialog -->\n</div><!-- /.modal -->\n"
+
+/***/ }),
+
+/***/ "./src/app/shared/components/import-excel/import-excel.component.scss":
+/*!****************************************************************************!*\
+  !*** ./src/app/shared/components/import-excel/import-excel.component.scss ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9jb21wb25lbnRzL2ltcG9ydC1leGNlbC9pbXBvcnQtZXhjZWwuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/shared/components/import-excel/import-excel.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/shared/components/import-excel/import-excel.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: ImportExcelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImportExcelComponent", function() { return ImportExcelComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../message */ "./src/app/shared/message.ts");
+/* harmony import */ var _services_global_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/global.service */ "./src/app/shared/services/global.service.ts");
+
+
+
+
+
+var ImportExcelComponent = /** @class */ (function () {
+    function ImportExcelComponent(globalService) {
+        this.globalService = globalService;
+        this.$ = $;
+        this.doc = document;
+        this.resource = {};
+        this.isSubmitted = false;
+        this.excelRows = [];
+    }
+    ImportExcelComponent.prototype.ngOnInit = function () {
+    };
+    ImportExcelComponent.prototype.loadFile = function (ev) {
+        _helper__WEBPACK_IMPORTED_MODULE_2__["Helper"].loadImage(ev, 'file', this.resource);
+        this.readExcelFile(this.resource.file);
+        console.log(this.resource);
+    };
+    /**
+     * read excel file
+     */
+    ImportExcelComponent.prototype.readExcelFile = function (file) {
+        var self = this;
+        this.doc.readXlsxFile(file).then(function (rows) {
+            console.log(rows);
+            self.excelRows = rows;
+        });
+    };
+    ImportExcelComponent.prototype.sendFile = function () {
+        var _this = this;
+        this.isSubmitted = true;
+        this.globalService.store(this.apiUrl, _helper__WEBPACK_IMPORTED_MODULE_2__["Helper"].toFormData(this.resource)).subscribe(function (res) {
+            if (res.status == 1) {
+                _message__WEBPACK_IMPORTED_MODULE_3__["Message"].success(res.message);
+                _this.isSubmitted = false;
+                if (_this.action)
+                    _this.action();
+            }
+            else {
+                _message__WEBPACK_IMPORTED_MODULE_3__["Message"].error(res.message);
+            }
+            _this.isSubmitted = false;
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ImportExcelComponent.prototype, "apiUrl", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ImportExcelComponent.prototype, "data", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ImportExcelComponent.prototype, "action", void 0);
+    ImportExcelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-import-excel',
+            template: __webpack_require__(/*! ./import-excel.component.html */ "./src/app/shared/components/import-excel/import-excel.component.html"),
+            styles: [__webpack_require__(/*! ./import-excel.component.scss */ "./src/app/shared/components/import-excel/import-excel.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_global_service__WEBPACK_IMPORTED_MODULE_4__["GlobalService"]])
+    ], ImportExcelComponent);
+    return ImportExcelComponent;
 }());
 
 
@@ -1668,15 +1906,15 @@ __webpack_require__.r(__webpack_exports__);
 var PermissionDirective = /** @class */ (function () {
     function PermissionDirective(el) {
         this.el = el;
-        this.permission = el.nativeElement.getAttribute('permission');
-        //console.log(this.permission);
+        var permission = el.nativeElement.getAttribute('permission');
+        console.log(permission);
         //console.log(!Auth.can(this.permission));
-        if (!_auth__WEBPACK_IMPORTED_MODULE_2__["Auth"].can(this.permission))
+        if (!_auth__WEBPACK_IMPORTED_MODULE_2__["Auth"].can(permission))
             el.nativeElement.remove();
     }
     PermissionDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
-            selector: '[appPermission]'
+            selector: '[permission]'
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
     ], PermissionDirective);
@@ -1767,6 +2005,20 @@ var Helper = /** @class */ (function () {
     Helper.setFile = function (event, key, model) {
         model[key] = event.target.files[0];
     };
+    /**
+     * convert javascript object to formData object
+     * @param resource java script object
+     * @returns FormData object
+     */
+    Helper.toFormData = function (resource) {
+        var data = new FormData();
+        for (var _i = 0, _a = Object.keys(resource); _i < _a.length; _i++) {
+            var key = _a[_i];
+            if (resource[key])
+                data.append(key, resource[key]);
+        }
+        return data;
+    };
     Helper.loadImage = function (event, key, model) {
         Helper.setFile(event, key, model);
         var reader = new FileReader();
@@ -1785,6 +2037,56 @@ var Helper = /** @class */ (function () {
         window.open(url, "_blank", options);
     };
     return Helper;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/helpers/theme.ts":
+/*!*****************************************!*\
+  !*** ./src/app/shared/helpers/theme.ts ***!
+  \*****************************************/
+/*! exports provided: Theme */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Theme", function() { return Theme; });
+/* harmony import */ var _cache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cache */ "./src/app/shared/cache.ts");
+
+var Theme = /** @class */ (function () {
+    function Theme() {
+    }
+    Theme.load = function () {
+        var theme = Theme.get();
+        Theme.change(theme);
+    };
+    Theme.get = function () {
+        var theme = _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].get(Theme.PREFIX);
+        if (!theme)
+            theme = Theme.DEFAULT;
+        return theme;
+    };
+    Theme.change = function (object) {
+        var element = document.getElementById('theme');
+        element.innerHTML = '.w3-indigo, .btn-primary, .fixed-nav,.mat-primary { background-color: ' + object.color + '!important; }';
+        element.innerHTML += '.w3-text-indigo { color: ' + object.color + '!important; }';
+        _cache__WEBPACK_IMPORTED_MODULE_0__["Cache"].set(Theme.PREFIX, object);
+    };
+    Theme.PREFIX = "THEME";
+    Theme.COLORS = [
+        { color: '#5c6bc0' },
+        { color: '#333' },
+        { color: '#009688' },
+        { color: '#ff5722' },
+        { color: '#29910d' },
+        { color: '#795548' },
+        { color: '#5f5f5f' },
+        { color: '#e91e63' }
+    ];
+    Theme.DEFAULT = Theme.COLORS[0];
+    return Theme;
 }());
 
 
@@ -2076,11 +2378,7 @@ var AuthGuestService = /** @class */ (function () {
         this.router = router;
     }
     AuthGuestService.prototype.canActivate = function (route, state) {
-        /*if (this.auth.isAuth()) {
-            this.router.navigate([route.queryParams['return'] || '/admin/dashboard']).then().catch();
-            return false;
-        }*/
-        return true;
+        return route.data.can;
     };
     AuthGuestService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -2155,7 +2453,6 @@ var TransPipe = /** @class */ (function () {
     TransPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Pipe"])({
             name: 'trans',
-            pure: false
         })
     ], TransPipe);
     return TransPipe;
@@ -2205,9 +2502,8 @@ var Request = /** @class */ (function () {
                 object.action(res);
             }, function (error) {
                 console.log("errors : " + error.statusText);
-                Request.queue.push(object);
                 if (object.times <= 10 || error.status == 429)
-                    Request.fire();
+                    Request.queue.push(object);
             }, function () {
                 console.log("queue size : " + (Request.queue.length) + ", key : " + object.key + ", times : " + object.times);
                 Request.fire();
@@ -2215,6 +2511,7 @@ var Request = /** @class */ (function () {
         }
         else {
             Request.isFired = false;
+            return;
         }
     };
     Request.queue = [];
@@ -2366,6 +2663,68 @@ var ConfirmTemplateDirective = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared/services/global.service.ts":
+/*!***************************************************!*\
+  !*** ./src/app/shared/services/global.service.ts ***!
+  \***************************************************/
+/*! exports provided: GlobalService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalService", function() { return GlobalService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var GlobalService = /** @class */ (function () {
+    function GlobalService(http) {
+        this.http = http;
+        this.$ = $;
+    }
+    /**
+     * get services from api
+     *
+     */
+    GlobalService.prototype.get = function (url, data) {
+        if (data === void 0) { data = {}; }
+        return this.http.get(url + '?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken() + "&" + this.$.param(data));
+    };
+    /**
+     * store new service
+     */
+    GlobalService.prototype.store = function (url, data) {
+        return this.http.post(url + '?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * update service
+     */
+    GlobalService.prototype.update = function (url, data) {
+        return this.http.post(url + '?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * remove service
+     */
+    GlobalService.prototype.destroy = function (url, id) {
+        return this.http.post(url + '/' + id + '?api_token=' + _auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), null);
+    };
+    GlobalService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], GlobalService);
+    return GlobalService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/services/translation.service.ts":
 /*!********************************************************!*\
   !*** ./src/app/shared/services/translation.service.ts ***!
@@ -2454,6 +2813,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pipes/trans.pipe */ "./src/app/shared/pipes/trans.pipe.ts");
 /* harmony import */ var angular_datatables__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! angular-datatables */ "./node_modules/angular-datatables/index.js");
 /* harmony import */ var _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./directives/permission.directive */ "./src/app/shared/directives/permission.directive.ts");
+/* harmony import */ var _components_import_excel_import_excel_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/import-excel/import-excel.component */ "./src/app/shared/components/import-excel/import-excel.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
+
 
 
 
@@ -2492,7 +2855,8 @@ var SharedModule = /** @class */ (function () {
                 _directives_button_clicked_directive_directive__WEBPACK_IMPORTED_MODULE_15__["ButtonClickedDirective"],
                 _components_main_loader_main_loader_component__WEBPACK_IMPORTED_MODULE_11__["MainLoaderComponent"],
                 _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__["TransPipe"],
-                _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__["PermissionDirective"]
+                _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__["PermissionDirective"],
+                _components_import_excel_import_excel_component__WEBPACK_IMPORTED_MODULE_22__["ImportExcelComponent"]
             ],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
@@ -2504,7 +2868,14 @@ var SharedModule = /** @class */ (function () {
                 _ng_select_ng_select__WEBPACK_IMPORTED_MODULE_17__["NgSelectModule"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
-                angular_font_awesome__WEBPACK_IMPORTED_MODULE_1__["AngularFontAwesomeModule"]
+                angular_font_awesome__WEBPACK_IMPORTED_MODULE_1__["AngularFontAwesomeModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatPaginatorModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatCheckboxModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSliderModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSlideToggleModule"],
             ],
             exports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
@@ -2523,7 +2894,8 @@ var SharedModule = /** @class */ (function () {
                 _components_main_loader_main_loader_component__WEBPACK_IMPORTED_MODULE_11__["MainLoaderComponent"],
                 _pipes_replace_underscore_with_space_pipe__WEBPACK_IMPORTED_MODULE_18__["ReplaceUnderscoreWithSpacePipe"],
                 _pipes_trans_pipe__WEBPACK_IMPORTED_MODULE_19__["TransPipe"],
-                _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__["PermissionDirective"]
+                _directives_permission_directive__WEBPACK_IMPORTED_MODULE_21__["PermissionDirective"],
+                _components_import_excel_import_excel_component__WEBPACK_IMPORTED_MODULE_22__["ImportExcelComponent"]
             ]
         })
     ], SharedModule);
@@ -2846,6 +3218,13 @@ var RoleService = /** @class */ (function () {
         return this.http.get('permissions?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
     };
     /**
+     * get services from api
+     *
+     */
+    RoleService.prototype.groups = function () {
+        return this.http.get('permission_groups?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
      * update permission new service
      */
     RoleService.prototype.updatePermission = function (id, data) {
@@ -2862,19 +3241,19 @@ var RoleService = /** @class */ (function () {
      * store new service
      */
     RoleService.prototype.store = function (data) {
-        return this.http.post('roles' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+        return this.http.post('roles/store' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     /**
      * update service
      */
     RoleService.prototype.update = function (id, data) {
-        return this.http.post('roles/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+        return this.http.post('roles/update/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     /**
      * remove service
      */
     RoleService.prototype.destroy = function (id) {
-        return this.http.delete('roles/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.post('roles/delete/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), null);
     };
     RoleService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2922,19 +3301,19 @@ var UserService = /** @class */ (function () {
      * store new service
      */
     UserService.prototype.store = function (data) {
-        return this.http.post('users' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+        return this.http.post('users/store' + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     /**
      * update service
      */
     UserService.prototype.update = function (id, data) {
-        return this.http.post('users/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+        return this.http.post('users/update/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
     };
     /**
      * remove service
      */
     UserService.prototype.destroy = function (id) {
-        return this.http.delete('users/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+        return this.http.post('users/delete/' + id + '?api_token=' + _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), null);
     };
     UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2967,7 +3346,9 @@ var environment = {
     // https://samsav2.sphinxws.com/public
     // http://127.0.0.1:8000
     // http://localhost/samsa-backend/public
-    apiUrl: 'http://' + window.location.hostname + '/samsa-backend/public/api',
+    // window.location.hostname
+    //192.168.43.159
+    apiUrl: 'http://' + '192.168.43.159' + '/samsa-backend/public/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/'

@@ -136,7 +136,7 @@ body {
   background-color: white!important;
   padding-left: 10px!important;
   padding-right: 10px!important;
-  z-index: 9999999;
+  z-index: 9;
 }
 
 .custom-panel-body {

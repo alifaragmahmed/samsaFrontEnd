@@ -44,6 +44,20 @@ export class Helper {
     model[key] = event.target.files[0];
   }
 
+  /**
+   * convert javascript object to formData object
+   * @param resource java script object
+   * @returns FormData object
+   */
+  public static toFormData(resource) {
+    let data = new FormData();
+    for(let key of Object.keys(resource)) {
+      if(resource[key])
+        data.append(key, resource[key]);
+    }
+    return data;
+  }
+
   public static loadImage(event, key, model) {
     Helper.setFile(event, key, model);
     var reader = new FileReader();

@@ -25,6 +25,10 @@
 </div>
     -->
 
+    <button mat-raised-button class="w3-green" (click)="$('#importExcelModal').modal('show')" >{{ "import from excel" | trans }}</button>
+
+    <br>
+
 <div class="w3-row student-container nicescroll" style="padding: 5px;"    >
   <div *ngIf="isLoad" class="w3-block text-center w3-padding" >
     <i class="fa fa-spin fa-refresh w3-jumbo w3-text-indigo"></i>
@@ -128,3 +132,6 @@
 
 <!-- student payments modal -->
 <app-student-payment [payments]="selectedItem.payment_details? selectedItem.payment_details : []" ></app-student-payment>
+
+
+<app-import-excel [apiUrl]="'import-student'" [action]="loadResources" ></app-import-excel>

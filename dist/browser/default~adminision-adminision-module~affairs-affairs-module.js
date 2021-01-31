@@ -1,5 +1,200 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["default~adminision-adminision-module~affairs-affairs-module"],{
 
+/***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+
 /***/ "./src/app/adminision/adminision-routing.module.ts":
 /*!*********************************************************!*\
   !*** ./src/app/adminision/adminision-routing.module.ts ***!
@@ -251,8 +446,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminisionSettingComponent", function() { return AdminisionSettingComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
-/* harmony import */ var _services_application_setting_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var _services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+
+
 
 
 
@@ -263,6 +463,7 @@ var AdminisionSettingComponent = /** @class */ (function () {
         this.breadcrumbList = [];
         this.adminisionSetting5 = {};
         this.isSubmitted5 = false;
+        !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].can('application_setting') ? Object(process__WEBPACK_IMPORTED_MODULE_2__["exit"])() : '';
         // init breadcrum
         this.breadcrumbList = [
             { name: 'home', url: '/' },
@@ -284,10 +485,10 @@ var AdminisionSettingComponent = /** @class */ (function () {
         this.isSubmitted5 = true;
         this.service.updateSetting(element).subscribe(function (r) {
             if (r.status == 1) {
-                src_app_shared_message__WEBPACK_IMPORTED_MODULE_2__["Message"].success(r.message);
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].success(r.message);
             }
             else {
-                src_app_shared_message__WEBPACK_IMPORTED_MODULE_2__["Message"].error(r.message);
+                src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].error(r.message);
             }
             _this.isSubmitted5 = false;
         });
@@ -301,7 +502,7 @@ var AdminisionSettingComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./adminision-setting.component.html */ "./src/app/adminision/components/adminision-setting/adminision-setting.component.html"),
             styles: [__webpack_require__(/*! ./adminision-setting.component.scss */ "./src/app/adminision/components/adminision-setting/adminision-setting.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_setting_service__WEBPACK_IMPORTED_MODULE_3__["ApplicationSettingService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationSettingService"]])
     ], AdminisionSettingComponent);
     return AdminisionSettingComponent;
 }());
@@ -344,9 +545,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApplicationRequiredComponent", function() { return ApplicationRequiredComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _services_application_required_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/application-required.service */ "./src/app/adminision/services/application-required.service.ts");
-/* harmony import */ var _shared_message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _services_application_required_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/application-required.service */ "./src/app/adminision/services/application-required.service.ts");
+/* harmony import */ var _shared_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared/message */ "./src/app/shared/message.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_6__);
+
+
 
 
 
@@ -355,9 +561,10 @@ __webpack_require__.r(__webpack_exports__);
 var ApplicationRequiredComponent = /** @class */ (function () {
     function ApplicationRequiredComponent(applicationRequiredService) {
         this.applicationRequiredService = applicationRequiredService;
-        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"].doc;
+        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"].doc;
         this.resources = {};
         this.isSubmitted = false;
+        !_shared_auth__WEBPACK_IMPORTED_MODULE_2__["Auth"].can('application_required') ? Object(process__WEBPACK_IMPORTED_MODULE_6__["exit"])() : '';
         // init breadcrum
         this.breadcrumbList = [
             { name: 'home', url: '/' },
@@ -382,11 +589,11 @@ var ApplicationRequiredComponent = /** @class */ (function () {
         this.applicationRequiredService.update(data).subscribe(function (res) {
             var data = res;
             if (data.status == 1) {
-                _shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].success(data.message);
+                _shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].success(data.message);
                 _this.loadResources();
             }
             else
-                _shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].error(data.message);
+                _shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(data.message);
             _this.isSubmitted = false;
         });
     };
@@ -401,7 +608,7 @@ var ApplicationRequiredComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./application-required.component.html */ "./src/app/adminision/components/application-required/application-required.component.html"),
             styles: [__webpack_require__(/*! ./application-required.component.scss */ "./src/app/adminision/components/application-required/application-required.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_required_service__WEBPACK_IMPORTED_MODULE_3__["ApplicationRequiredService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_required_service__WEBPACK_IMPORTED_MODULE_4__["ApplicationRequiredService"]])
     ], ApplicationRequiredComponent);
     return ApplicationRequiredComponent;
 }());
@@ -417,7 +624,7 @@ var ApplicationRequiredComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"{{ col }}\">\r\n      <div class=\"w3-white material-shadow safe-box\">\r\n        <div class=\"safe-box-header w3-xlarge\">\r\n          {{ \"create application\" | trans }}\r\n        </div>\r\n        <br>\r\n        <div class=\"border-bottom-dashed\" ></div>\r\n        <br>\r\n\r\n        <div class=\"safe-box-body row\" >\r\n\r\n          <div class=\"col-lg-3 col-md-3 col-sm-12\" >\r\n            <img [src]=\"application.personal_photo_url?  application.personal_photo_url : defaultImage\" class=\"w3-block w3-round border-gray\" >\r\n            <br>\r\n            <input\r\n                type=\"file\"\r\n                (change)=\"viewPersonalImage($event)\"\r\n                accept=\"image/x-png,image/gif,image/jpeg\"\r\n                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"  >\r\n            <div class=\"custom-panel w3-display-container w3-round\" style=\"padding: 5px\" >\r\n\r\n              <div\r\n                class=\"alert alert-danger w3-block btn-margin-bottom text-center\"\r\n               >\r\n                {{ currentError }}\r\n              </div>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle(null)\"  >{{ \"all info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('student-info-panel')\"  >{{ \"student info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom military-info-button\"  (click)=\"toggle('military-info-panel')\"  >{{ \"military info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('parent-info-panel')\"  >{{ \"parent info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('additional-info-panel')\"  >{{ \"additional info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('document-info-panel')\"  >{{ \"required documents\" | trans }}</button>\r\n\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-9 col-md-9 col-sm-12\" >\r\n\r\n\r\n\r\n            <!--\r\n\r\n        => student basic info\r\n        name\t                  email\r\n        academic_years_id\t      grade\r\n        registeration_date\t    phone_1\r\n        registration_status_id\tregistration_method_id\r\n        qualification_date\t    qualification_set_number\r\n        qualification_types_id\tqualification_id\r\n        level_id\t              case_constraint_id\r\n        national_id\t            password\r\n        acceptance_code\t        acceptance_date\r\n        status\t                writen_by\r\n\r\n\r\n        => additional info\r\n\r\n        nationality_id\t        gender\r\n        language_1_id\t          language_2_id\r\n        city_id\t                government_id\r\n        country_id\t            religion\r\n        address\t                birth_address\r\n        national_id_date\t      national_id_place\r\n\r\n        => military info\r\n        military_status_id\t    military_area_id\r\n        triple_number\r\n\r\n        => parent info\r\n        parent_name\t            parent_national_id\r\n        parent_job_id\t          parent_address\r\n        parent_phone\t          relative_relation_id\r\n\r\n        => personal image\r\n        personal_photo\r\n\r\n        => required document\r\n\r\n            -->\r\n            <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\r\n              <div class=\"custom-panel-title\" >{{ \"student basic info\" | trans }}</div>\r\n\r\n              <div class=\"custom-panel-body\"  >\r\n                <div class=\"row\">\r\n                  <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                    <table class=\"table w3-block\" >\r\n                      <tr>\r\n                        <th>{{ \"student name\" | trans }} *</th>\r\n                        <td>\r\n                          <input\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.name, 'border-bottom-red': !application.name}\"\r\n                          [(ngModel)]=\"application.name\" >\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"academic_years\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          (change)=\"watchLevel()\"\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.academic_years_id, 'border-bottom-red': !application.academic_years_id}\"\r\n                          [(ngModel)]=\"application.academic_years_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.ACADEMIC_YEARS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"qualification\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          (change)=\"watchLevel();emptyData()\"\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}\"\r\n                          [(ngModel)]=\"application.qualification_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.QUALIFICATIONS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"qualification_types\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          (change)=\"watchLevel();checkIfAzhar()\"\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.qualification_types_id>0, 'border-bottom-red': !application.qualification_types_id}\"\r\n                          [(ngModel)]=\"application.qualification_types_id\">\r\n                            <ng-container *ngFor=\"let item of applicationSettings.QUALIFICATION_TYPES\">\r\n                                <option *ngIf=\"item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                            </ng-container>\r\n\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"grade\" | trans }} *</th>\r\n                          <td>\r\n                            <input\r\n                            (change)=\"watchLevel()\"\r\n                            type=\"number\"\r\n                            [readOnly]=\"isAzhar\"\r\n                            class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                            [ngClass]=\"{'border-bottom-dashed': application.grade, 'border-bottom-red': !application.grade}\"\r\n                            [(ngModel)]=\"application.grade\" >\r\n                            <p *ngIf=\"gradeError\" class=\"w3-text-red w3-tiny\"  >\r\n                              {{ gradeError }}\r\n                            </p>\r\n                          </td>\r\n                      </tr>\r\n                      <ng-container *ngIf=\"isAzhar\" >\r\n                        <tr>\r\n                            <th>{{ \"total_grade\" | trans }} *</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"number\"\r\n                              (change)=\"checkIfAzhar()\"\r\n                              class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                              [ngClass]=\"{'border-bottom-dashed': application.azhar_total_grade, 'border-bottom-red': !application.azhar_total_grade}\"\r\n                              [(ngModel)]=\"application.azhar_total_grade\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"religious_grade_total\" | trans }} *</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"number\"\r\n                              (change)=\"checkIfAzhar()\"\r\n                              class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                              [ngClass]=\"{'border-bottom-dashed': application.azhar_religious_grade_total, 'border-bottom-red': !application.azhar_religious_grade_total}\"\r\n                              [(ngModel)]=\"application.azhar_religious_grade_total\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"azhar_remind_grade\" | trans }} *</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"number\"\r\n                              readonly\r\n                              class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                              [ngClass]=\"{'border-bottom-dashed': application.azhar_remind_grade, 'border-bottom-red': !application.azhar_remind_grade}\"\r\n                              [(ngModel)]=\"application.azhar_remind_grade\" >\r\n                            </td>\r\n                        </tr>\r\n                      </ng-container>\r\n                      <tr>\r\n                        <th>{{ \"level\" | trans }}</th>\r\n                        <td>\r\n                          <input\r\n                          type=\"text\"\r\n                          readonly\r\n                          class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                          [(ngModel)]=\"application.level_name\" >\r\n                          <input\r\n                          type=\"hidden\"\r\n                          [(ngModel)]=\"application.level_id\" >\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"qualification_date\" | trans }} *</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"date\"\r\n                            class=\"custom-input form-control input-sm w3-input  input-sm\"\r\n                            [ngClass]=\"{'border-bottom-dashed': application.qualification_date>0, 'border-bottom-red': !application.qualification_date}\"\r\n                            [(ngModel)]=\"application.qualification_date\" >\r\n                          </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"registration_status\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          class=\"custom-input form-control input-sm w3-input  input-sm\"\r\n                          (change)=\"validateOnRegisterationStatusDocument()\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.registration_status_id>0, 'border-bottom-red': !application.registration_status_id}\"\r\n                          [(ngModel)]=\"application.registration_status_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.REGISTERATION_STATUS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"national_id\" | trans }} *</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"text\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [ngClass]=\"{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}\"\r\n                            [(ngModel)]=\"application.national_id\" >\r\n                          </td>\r\n                      </tr>\r\n                      <!--\r\n                      <tr>\r\n                        <th>{{ \"case_constraint\" | trans }}</th>\r\n                        <td>\r\n                          <select\r\n                          class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.case_constraint_id>0, 'border-bottom-red': !application.case_constraint_id}\"\r\n                          [(ngModel)]=\"application.case_constraint_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.CASE_CONSTRAINTS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      -->\r\n                    </table>\r\n                  </div>\r\n\r\n                  <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                    <table class=\"table w3-block w3-block\" >\r\n                        <tr>\r\n                            <th>{{ \"registeration_date\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"date\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.registeration_date\" >\r\n                            </td>\r\n                        </tr>\r\n                      <tr>\r\n                          <th>{{ \"qualification_set_number\" | trans }}</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"number\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [(ngModel)]=\"application.qualification_set_number\" >\r\n                          </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"registration_method\" | trans }}</th>\r\n                        <td>\r\n                          <select\r\n                          class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                          [(ngModel)]=\"application.registration_method_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.REGISTERATION_METHODS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"set_number\" | trans }}</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"number\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [(ngModel)]=\"application.set_number\" >\r\n                          </td>\r\n                      </tr>\r\n                        <tr>\r\n                            <th>{{ \"coordination_password\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"password\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.password\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"acceptance_code\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"text\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.acceptance_code\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"acceptance_date\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"date\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.acceptance_date\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"phone_1\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"text\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.phone_1\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                          <th>{{ \"gender\" | trans }}</th>\r\n                          <td>\r\n                            <select\r\n                            (change)=\"filterDataBaisedOnGender()\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [(ngModel)]=\"application.gender\">\r\n                              <option value=\"male\">{{ \"male\" | trans }}</option>\r\n                              <option value=\"female\">{{ \"female\" | trans }}</option>\r\n                            </select>\r\n                          </td>\r\n                        </tr>\r\n\r\n\r\n                    </table>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n\r\n            <div\r\n            *ngIf=\"application.gender != 'female'\"\r\n            class=\"custom-panel w3-display-container w3-round  application-panel military-info-panel\">\r\n                <div class=\"custom-panel-title\" >{{ \"military info\" | trans }}</div>\r\n\r\n                <div class=\"custom-panel-body\"  >\r\n                  <div class=\"row\">\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block\" >\r\n                          <tr>\r\n                            <th>{{ \"military_status\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.military_status_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.MALITARY_STATUS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"military_area\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.military_area_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.MALITARY_AREAS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                      </table>\r\n                    </div>\r\n\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block w3-block\" >\r\n                          <tr>\r\n                            <th>{{ \"triple_number\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"text\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.triple_number\" >\r\n                            </td>\r\n                          </tr>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n              </div>\r\n\r\n              <div class=\"custom-panel w3-display-container w3-round application-panel parent-info-panel\">\r\n                  <div class=\"custom-panel-title\" >{{ \"parent info\" | trans }}</div>\r\n\r\n                  <div class=\"custom-panel-body\"  >\r\n                    <div class=\"row\">\r\n                      <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                        <table class=\"table w3-block\" >\r\n                            <tr>\r\n                              <th>{{ \"parent_name\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_name\" >\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"parent_national_id\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_national_id\" >\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"parent_address\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_address\" >\r\n                              </td>\r\n                            </tr>\r\n                        </table>\r\n                      </div>\r\n\r\n                      <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                        <table class=\"table w3-block w3-block\" >\r\n                            <tr>\r\n                              <th>{{ \"parent_phone\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_phone\" >\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"parent_job\" | trans }}</th>\r\n                              <td>\r\n                                <select\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_job_id\">\r\n                                  <option *ngFor=\"let item of applicationSettings.PARENT_JOBS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                                </select>\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"relative_relation\" | trans }}</th>\r\n                              <td>\r\n                                <select\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.relative_relation_id\">\r\n                                  <option *ngFor=\"let item of applicationSettings.RELATIVE_RELATIONS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                                </select>\r\n                              </td>\r\n                            </tr>\r\n                        </table>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n\r\n                </div>\r\n\r\n            <div class=\"custom-panel w3-display-container w3-round application-panel additional-info-panel\">\r\n                <div class=\"custom-panel-title\" >{{ \"additional info\" | trans }}</div>\r\n\r\n                <div class=\"custom-panel-body\"  >\r\n                  <div class=\"row\">\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block\" >\r\n                          <tr>\r\n                            <th>{{ \"nationality\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.nationality_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.NATIONALITIES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"language_1\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.language_1_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.LANGUAGUES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"language_2\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.language_2_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.LANGUAGUES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"country\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.country_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.COUNTRIES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"government\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.government_id\">\r\n                              <ng-container  *ngFor=\"let item of applicationSettings.GOVERNMENTS\">\r\n                                  <option *ngIf=\"application.country_id == item.country_id\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </ng-container>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"city\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.city_id\">\r\n                                <ng-container  *ngFor=\"let item of applicationSettings.CITIES\">\r\n                                    <option *ngIf=\"application.government_id == item.government_id\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                                </ng-container>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                      </table>\r\n                    </div>\r\n\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block w3-block\" >\r\n                        <tr>\r\n                            <th>{{ \"email\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.email\" >\r\n                            </td>\r\n                        </tr>\r\n                          <tr>\r\n                            <th>{{ \"religion\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.religion\">\r\n                                <option value=\"muslim\">{{ \"muslim\" | trans }}</option>\r\n                                <option value=\"christian\">{{ \"christian\" | trans }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"address\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.address\" >\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"birth_address\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.birth_address\" >\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"national_id_date\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.national_id_date\" >\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"national_id_place\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.national_id_place\" >\r\n                            </td>\r\n                          </tr>\r\n\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n              </div>\r\n\r\n              <div class=\"custom-panel w3-display-container w3-round application-panel document-info-panel\">\r\n                  <div class=\"custom-panel-title\" >{{ \"required documents info\" | trans }}</div>\r\n\r\n                  <div class=\"custom-panel-body\"  >\r\n                    <div class=\"row\">\r\n                      <div class=\"col-lg-12 col-md-12 col-sm-12\">\r\n\r\n\r\n                        <table class=\"table w3-block\" >\r\n                           <ng-container *ngFor=\"let item of applicationSettings.REQUIRED_DOCUMENTS\"  >\r\n                              <tr\r\n                              *ngIf=\"requiredDocumentList.get(item.id) > 0\"\r\n                              [ngClass]=\"{'w3-text-green': application['required_document_' + item.id]}\"\r\n                              >\r\n                                <th>\r\n                                  <i *ngIf=\"application['required_document_' + item.id]\"\r\n                                  class=\"fa fa-check-circle w3-text-green\"></i>\r\n\r\n                                  <i *ngIf=\"requiredDocumentList.get(item.id) == 1 && !application['required_document_' + item.id]\"\r\n                                  class=\"fa fa-exclamation-circle w3-text-red\"></i>\r\n                                  {{ item.name  }}\r\n                                </th>\r\n                                <th>{{ item.type | trans }}</th>\r\n                                <td>\r\n                                    <input\r\n                                    type=\"file\"\r\n                                    (change)=\"setFile($event, 'required_document_' + item.id, item.id)\"\r\n                                    class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"   >\r\n                                  </td>\r\n                              </tr>\r\n                           </ng-container>\r\n\r\n\r\n                        </table>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n\r\n                </div>\r\n\r\n              <div class=\"custom-panel w3-display-container w3-round\">\r\n                  <div class=\"custom-panel-body\"  >\r\n                    <button mat-raised-button color=\"primary\" class=\"w3-margin-left\" [disabled]=\"isSubmitted\"  (click)=\"sendApplication()\" >{{ \"send application\" | trans }}</button>\r\n\r\n                    <a href=\"#\" class=\"btn btn-default small-shadow w3-margin-left\" routerLink=\"/adminision/application\" >{{ \"exit\" | trans }}</a>\r\n                  </div>\r\n\r\n                </div>\r\n\r\n          </div>\r\n\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n    <div class=\"{{ col }}\">\r\n      <div class=\"w3-white material-shadow safe-box\">\r\n        <div class=\"safe-box-header w3-xlarge\">\r\n          {{ \"create application\" | trans }}\r\n        </div>\r\n        <br>\r\n        <div class=\"border-bottom-dashed\" ></div>\r\n        <br>\r\n\r\n        <div class=\"safe-box-body row\" >\r\n\r\n          <div class=\"col-lg-3 col-md-3 col-sm-12\" >\r\n            <img [src]=\"application.personal_photo_url?  application.personal_photo_url : defaultImage\" class=\"w3-block w3-round border-gray\" >\r\n            <br>\r\n            <input\r\n                type=\"file\"\r\n                (change)=\"viewPersonalImage($event)\"\r\n                accept=\"image/x-png,image/gif,image/jpeg\"\r\n                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"  >\r\n            <div class=\"custom-panel w3-display-container w3-round\" style=\"padding: 5px\" >\r\n\r\n              <div\r\n                class=\"alert alert-danger w3-block btn-margin-bottom text-center\"\r\n               >\r\n                {{ currentError }}\r\n              </div>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle(null)\"  >{{ \"all info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('student-info-panel')\"  >{{ \"student info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom military-info-button\"  (click)=\"toggle('military-info-panel')\"  >{{ \"military info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('parent-info-panel')\"  >{{ \"parent info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('additional-info-panel')\"  >{{ \"additional info\" | trans }}</button>\r\n\r\n              <button class=\"btn btn-default w3-block small-shadow btn-margin-bottom\"  (click)=\"toggle('document-info-panel')\"  >{{ \"required documents\" | trans }}</button>\r\n\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"col-lg-9 col-md-9 col-sm-12\" >\r\n\r\n\r\n\r\n            <!--\r\n\r\n        => student basic info\r\n        name\t                  email\r\n        academic_years_id\t      grade\r\n        registeration_date\t    phone_1\r\n        registration_status_id\tregistration_method_id\r\n        qualification_date\t    qualification_set_number\r\n        qualification_types_id\tqualification_id\r\n        level_id\t              case_constraint_id\r\n        national_id\t            password\r\n        acceptance_code\t        acceptance_date\r\n        status\t                writen_by\r\n\r\n\r\n        => additional info\r\n\r\n        nationality_id\t        gender\r\n        language_1_id\t          language_2_id\r\n        city_id\t                government_id\r\n        country_id\t            religion\r\n        address\t                birth_address\r\n        national_id_date\t      national_id_place\r\n\r\n        => military info\r\n        military_status_id\t    military_area_id\r\n        triple_number\r\n\r\n        => parent info\r\n        parent_name\t            parent_national_id\r\n        parent_job_id\t          parent_address\r\n        parent_phone\t          relative_relation_id\r\n\r\n        => personal image\r\n        personal_photo\r\n\r\n        => required document\r\n\r\n            -->\r\n            <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\r\n              <div class=\"custom-panel-title\" >{{ \"student basic info\" | trans }}</div>\r\n\r\n              <div class=\"custom-panel-body\"  >\r\n                <div class=\"row\">\r\n                  <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                    <table class=\"table w3-block\" >\r\n                      <tr>\r\n                        <th>{{ \"student name\" | trans }} *</th>\r\n                        <td>\r\n                          <input\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.name, 'border-bottom-red': !application.name}\"\r\n                          [(ngModel)]=\"application.name\" >\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"academic_years\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          (change)=\"watchLevel()\"\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.academic_years_id, 'border-bottom-red': !application.academic_years_id}\"\r\n                          [(ngModel)]=\"application.academic_years_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.ACADEMIC_YEARS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"qualification\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          (change)=\"watchLevel();emptyData()\"\r\n                          class=\"form-control input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.qualification_id>0, 'border-bottom-red': !application.qualification_id}\"\r\n                          [(ngModel)]=\"application.qualification_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.QUALIFICATIONS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"qualification_types\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          (change)=\"watchLevel();checkIfAzhar()\"\r\n                          class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.qualification_types_id>0, 'border-bottom-red': !application.qualification_types_id}\"\r\n                          [(ngModel)]=\"application.qualification_types_id\">\r\n                            <ng-container *ngFor=\"let item of applicationSettings.QUALIFICATION_TYPES\">\r\n                                <option *ngIf=\"item.qualification_id == application.qualification_id && item.academic_year_id == application.academic_years_id\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                            </ng-container>\r\n\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"grade\" | trans }} *</th>\r\n                          <td>\r\n                            <input\r\n                            (change)=\"watchLevel()\"\r\n                            type=\"number\"\r\n                            [readOnly]=\"isAzhar\"\r\n                            class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                            [ngClass]=\"{'border-bottom-dashed': application.grade, 'border-bottom-red': !application.grade}\"\r\n                            [(ngModel)]=\"application.grade\" >\r\n                            <p *ngIf=\"gradeError\" class=\"w3-text-red w3-tiny\"  >\r\n                              {{ gradeError }}\r\n                            </p>\r\n                          </td>\r\n                      </tr>\r\n                      <ng-container *ngIf=\"isAzhar\" >\r\n                        <tr>\r\n                            <th>{{ \"total_grade\" | trans }} *</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"number\"\r\n                              (change)=\"checkIfAzhar()\"\r\n                              class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                              [ngClass]=\"{'border-bottom-dashed': application.azhar_total_grade, 'border-bottom-red': !application.azhar_total_grade}\"\r\n                              [(ngModel)]=\"application.azhar_total_grade\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"religious_grade_total\" | trans }} *</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"number\"\r\n                              (change)=\"checkIfAzhar()\"\r\n                              class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                              [ngClass]=\"{'border-bottom-dashed': application.azhar_religious_grade_total, 'border-bottom-red': !application.azhar_religious_grade_total}\"\r\n                              [(ngModel)]=\"application.azhar_religious_grade_total\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"azhar_remind_grade\" | trans }} *</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"number\"\r\n                              readonly\r\n                              class=\"custom-input form-control input-sm w3-input input-sm\"\r\n                              [ngClass]=\"{'border-bottom-dashed': application.azhar_remind_grade, 'border-bottom-red': !application.azhar_remind_grade}\"\r\n                              [(ngModel)]=\"application.azhar_remind_grade\" >\r\n                            </td>\r\n                        </tr>\r\n                      </ng-container>\r\n                      <tr>\r\n                        <th>{{ \"level\" | trans }}</th>\r\n                        <td>\r\n                          <input\r\n                          type=\"text\"\r\n                          readonly\r\n                          class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                          [(ngModel)]=\"application.level_name\" >\r\n                          <input\r\n                          type=\"hidden\"\r\n                          [(ngModel)]=\"application.level_id\" >\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"qualification_date\" | trans }} *</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"date\"\r\n                            class=\"custom-input form-control input-sm w3-input  input-sm\"\r\n                            [ngClass]=\"{'border-bottom-dashed': application.qualification_date>0, 'border-bottom-red': !application.qualification_date}\"\r\n                            [(ngModel)]=\"application.qualification_date\" >\r\n                          </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"registration_status\" | trans }} *</th>\r\n                        <td>\r\n                          <select\r\n                          class=\"custom-input form-control input-sm w3-input  input-sm\"\r\n                          (change)=\"validateOnRegisterationStatusDocument()\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.registration_status_id>0, 'border-bottom-red': !application.registration_status_id}\"\r\n                          [(ngModel)]=\"application.registration_status_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.REGISTERATION_STATUS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"national_id\" | trans }} *</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"text\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [ngClass]=\"{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}\"\r\n                            [(ngModel)]=\"application.national_id\" >\r\n                          </td>\r\n                      </tr>\r\n                      <!--\r\n                      <tr>\r\n                        <th>{{ \"case_constraint\" | trans }}</th>\r\n                        <td>\r\n                          <select\r\n                          class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                          [ngClass]=\"{'border-bottom-dashed': application.case_constraint_id>0, 'border-bottom-red': !application.case_constraint_id}\"\r\n                          [(ngModel)]=\"application.case_constraint_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.CASE_CONSTRAINTS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      -->\r\n                    </table>\r\n                  </div>\r\n\r\n                  <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                    <table class=\"table w3-block w3-block\" >\r\n                        <tr>\r\n                            <th>{{ \"registeration_date\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"date\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.registeration_date\" >\r\n                            </td>\r\n                        </tr>\r\n                      <tr>\r\n                          <th>{{ \"qualification_set_number\" | trans }}</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"number\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [(ngModel)]=\"application.qualification_set_number\" >\r\n                          </td>\r\n                      </tr>\r\n                      <tr>\r\n                        <th>{{ \"registration_method\" | trans }}</th>\r\n                        <td>\r\n                          <select\r\n                          class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                          [(ngModel)]=\"application.registration_method_id\">\r\n                            <option *ngFor=\"let item of applicationSettings.REGISTERATION_METHODS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                          </select>\r\n                        </td>\r\n                      </tr>\r\n                      <tr>\r\n                          <th>{{ \"set_number\" | trans }}</th>\r\n                          <td>\r\n                            <input\r\n                            type=\"number\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [(ngModel)]=\"application.set_number\" >\r\n                          </td>\r\n                      </tr>\r\n                        <tr>\r\n                            <th>{{ \"coordination_password\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"password\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.password\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"acceptance_code\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"text\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.acceptance_code\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"acceptance_date\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"date\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.acceptance_date\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th>{{ \"phone_1\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"text\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.phone_1\" >\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                          <th>{{ \"gender\" | trans }}</th>\r\n                          <td>\r\n                            <select\r\n                            (change)=\"filterDataBaisedOnGender()\"\r\n                            class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                            [(ngModel)]=\"application.gender\">\r\n                              <option value=\"male\">{{ \"male\" | trans }}</option>\r\n                              <option value=\"female\">{{ \"female\" | trans }}</option>\r\n                            </select>\r\n                          </td>\r\n                        </tr>\r\n\r\n\r\n                    </table>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n\r\n            </div>\r\n\r\n            <div\r\n            *ngIf=\"application.gender != 'female'\"\r\n            class=\"custom-panel w3-display-container w3-round  application-panel military-info-panel\">\r\n                <div class=\"custom-panel-title\" >{{ \"military info\" | trans }}</div>\r\n\r\n                <div class=\"custom-panel-body\"  >\r\n                  <div class=\"row\">\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block\" >\r\n                          <tr>\r\n                            <th>{{ \"military_status\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.military_status_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.MALITARY_STATUS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"military_area\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.military_area_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.MALITARY_AREAS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                      </table>\r\n                    </div>\r\n\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block w3-block\" >\r\n                          <tr>\r\n                            <th>{{ \"triple_number\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              type=\"text\"\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.triple_number\" >\r\n                            </td>\r\n                          </tr>\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n              </div>\r\n\r\n              <div class=\"custom-panel w3-display-container w3-round application-panel parent-info-panel\">\r\n                  <div class=\"custom-panel-title\" >{{ \"parent info\" | trans }}</div>\r\n\r\n                  <div class=\"custom-panel-body\"  >\r\n                    <div class=\"row\">\r\n                      <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                        <table class=\"table w3-block\" >\r\n                            <tr>\r\n                              <th>{{ \"parent_name\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_name\" >\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"parent_national_id\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_national_id\" >\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"parent_address\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_address\" >\r\n                              </td>\r\n                            </tr>\r\n                        </table>\r\n                      </div>\r\n\r\n                      <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                        <table class=\"table w3-block w3-block\" >\r\n                            <tr>\r\n                              <th>{{ \"parent_phone\" | trans }}</th>\r\n                              <td>\r\n                                <input\r\n                                type=\"text\"\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_phone\" >\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"parent_job\" | trans }}</th>\r\n                              <td>\r\n                                <select\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.parent_job_id\">\r\n                                  <option *ngFor=\"let item of applicationSettings.PARENT_JOBS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                                </select>\r\n                              </td>\r\n                            </tr>\r\n                            <tr>\r\n                              <th>{{ \"relative_relation\" | trans }}</th>\r\n                              <td>\r\n                                <select\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.relative_relation_id\">\r\n                                  <option *ngFor=\"let item of applicationSettings.RELATIVE_RELATIONS\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                                </select>\r\n                              </td>\r\n                            </tr>\r\n                        </table>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n\r\n                </div>\r\n\r\n            <div class=\"custom-panel w3-display-container w3-round application-panel additional-info-panel\">\r\n                <div class=\"custom-panel-title\" >{{ \"additional info\" | trans }}</div>\r\n\r\n                <div class=\"custom-panel-body\"  >\r\n                  <div class=\"row\">\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block\" >\r\n                          <tr>\r\n                            <th>{{ \"nationality\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.nationality_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.NATIONALITIES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"language_1\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.language_1_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.LANGUAGUES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"language_2\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.language_2_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.LANGUAGUES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"country\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.country_id\">\r\n                                <option *ngFor=\"let item of applicationSettings.COUNTRIES\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"government\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.government_id\">\r\n                              <ng-container  *ngFor=\"let item of applicationSettings.GOVERNMENTS\">\r\n                                  <option *ngIf=\"application.country_id == item.country_id\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                              </ng-container>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"city\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                                class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                                [(ngModel)]=\"application.city_id\">\r\n                                <ng-container  *ngFor=\"let item of applicationSettings.CITIES\">\r\n                                    <option *ngIf=\"application.government_id == item.government_id\" value=\"{{ item.id }}\">{{ item.name }}</option>\r\n                                </ng-container>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                      </table>\r\n                    </div>\r\n\r\n                    <div class=\"col-lg-6 col-md-6 col-sm-12\">\r\n                      <table class=\"table w3-block w3-block\" >\r\n                        <tr>\r\n                            <th>{{ \"email\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.email\" >\r\n                            </td>\r\n                        </tr>\r\n                          <tr>\r\n                            <th>{{ \"religion\" | trans }}</th>\r\n                            <td>\r\n                              <select\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.religion\">\r\n                                <option value=\"muslim\">{{ \"muslim\" | trans }}</option>\r\n                                <option value=\"christian\">{{ \"christian\" | trans }}</option>\r\n                              </select>\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"address\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.address\" >\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"birth_address\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.birth_address\" >\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"national_id_date\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.national_id_date\" >\r\n                            </td>\r\n                          </tr>\r\n                          <tr>\r\n                            <th>{{ \"national_id_place\" | trans }}</th>\r\n                            <td>\r\n                              <input\r\n                              class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"\r\n                              [(ngModel)]=\"application.national_id_place\" >\r\n                            </td>\r\n                          </tr>\r\n\r\n                      </table>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n\r\n              </div>\r\n\r\n              <div class=\"custom-panel w3-display-container w3-round application-panel document-info-panel\">\r\n                  <div class=\"custom-panel-title\" >{{ \"required documents info\" | trans }}</div>\r\n\r\n                  <div class=\"custom-panel-body\"  >\r\n                    <div class=\"row\">\r\n                      <div class=\"col-lg-12 col-md-12 col-sm-12\">\r\n\r\n\r\n                        <table class=\"table w3-block\" >\r\n                           <ng-container *ngFor=\"let item of applicationSettings.REQUIRED_DOCUMENTS\"  >\r\n                              <tr\r\n                              *ngIf=\"requiredDocumentList.get(item.id) > 0\"\r\n                              [ngClass]=\"{'w3-text-green': application['required_document_' + item.id]}\"\r\n                              >\r\n                                <th>\r\n                                  <i *ngIf=\"application['required_document_' + item.id]\"\r\n                                  class=\"fa fa-check-circle w3-text-green\"></i>\r\n\r\n                                  <i *ngIf=\"requiredDocumentList.get(item.id) == 1 && !application['required_document_' + item.id]\"\r\n                                  class=\"fa fa-exclamation-circle w3-text-red\"></i>\r\n                                  {{ item.name  }}\r\n                                </th>\r\n                                <th>{{ item.type | trans }}</th>\r\n                                <td>\r\n                                    <input\r\n                                    type=\"file\"\r\n                                    (change)=\"setFile($event, 'required_document_' + item.id, item.id)\"\r\n                                    class=\"custom-input form-control input-sm w3-input border-bottom-dashed input-sm\"   >\r\n                                  </td>\r\n                              </tr>\r\n                           </ng-container>\r\n\r\n\r\n                        </table>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n\r\n                </div>\r\n\r\n              <div class=\"custom-panel w3-display-container w3-round\">\r\n                  <div class=\"custom-panel-body\"  >\r\n                    <button mat-raised-button color=\"primary\" class=\"w3-margin-left\" [disabled]=\"isSubmitted\"  (click)=\"sendApplication()\" >{{ \"send application\" | trans }}</button>\r\n\r\n                    <a href=\"#\" class=\"btn btn-default small-shadow w3-margin-left\" routerLink=\"/adminision/application\" >{{ \"exit\" | trans }}</a>\r\n                  </div>\r\n\r\n                </div>\r\n\r\n          </div>\r\n\r\n\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -453,6 +660,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../../node_modules/@angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../../../node_modules/angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
+/* harmony import */ var src_app_shared_request__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/shared/request */ "./src/app/shared/request.ts");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_13__);
+
+
+
 
 
 
@@ -465,10 +679,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ApplicationCreateComponent = /** @class */ (function () {
-    function ApplicationCreateComponent(applicationService, route) {
+    function ApplicationCreateComponent(applicationService, route, applicationSettingService) {
         var _this = this;
         this.applicationService = applicationService;
         this.route = route;
+        this.applicationSettingService = applicationSettingService;
         this.doc = _app_module__WEBPACK_IMPORTED_MODULE_8__["AppModule"].doc;
         /**
          * application object
@@ -495,10 +710,16 @@ var ApplicationCreateComponent = /** @class */ (function () {
             //'case_constraint_id'
         ];
         this.col = "col-lg-10 col-md-10 col-sm-12";
+        this.applicationSettingService.queueRequests();
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_11__["Request"].fire();
         var id = this.route.snapshot.params['id'];
         if (id > 0) {
+            !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_12__["Auth"].can('application_edit') ? Object(process__WEBPACK_IMPORTED_MODULE_13__["exit"])() : '';
             this.loadApplication(id);
             this.isUpdate = true;
+        }
+        else {
+            !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_12__["Auth"].can('application_add') ? Object(process__WEBPACK_IMPORTED_MODULE_13__["exit"])() : '';
         }
         this.route.queryParams.subscribe(function (params) {
             var col = params['col'];
@@ -738,7 +959,7 @@ var ApplicationCreateComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./application-create.component.html */ "./src/app/adminision/components/application/application-create/application-create.component.html"),
             styles: [__webpack_require__(/*! ./application-create.component.scss */ "./src/app/adminision/components/application/application-create/application-create.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationService"], _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_application_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationService"], _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"], _services_application_setting_service__WEBPACK_IMPORTED_MODULE_2__["ApplicationSettingService"]])
     ], ApplicationCreateComponent);
     return ApplicationCreateComponent;
 }());
@@ -754,7 +975,7 @@ var ApplicationCreateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n<div class=\"w3-display-bottomleft w3-padding\" style=\"position: fixed;z-index: 9999\" >\r\n    <button\r\n    mat-fab color=\"primary\"\r\n    class=\"w3-large\"\r\n    routerLink=\"/adminision/application/create\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span>\r\n    </button>\r\n</div>\r\n<!--\r\n\r\n<div class=\"box box-primary  table-responsive\" >\r\n  <div class=\"box-header\">\r\n    <button class=\"btn btn-primary\" routerLink=\"/adminision/application/create\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button>\r\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeResources()\" class=\"btn btn-danger\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div>\r\n  <br>\r\n</div>\r\n-->\r\n\r\n<div class=\"w3-row\" style=\"padding: 5px;\">\r\n    <div *ngIf=\"isLoad\" class=\"w3-block text-center w3-padding\" >\r\n      <i class=\"fa fa-spin fa-refresh w3-jumbo w3-text-indigo\"></i>\r\n    </div>\r\n  <ng-container *ngFor=\"let item of resources.data\" >\r\n      <div class=\"{{ col }} student-list-col\" >\r\n          <div class=\"media material-shadow w3-white w3-padding w3-display-container student-list-item\">\r\n\r\n              <div class=\"w3-display-topleft w3-padding\" >\r\n                <input type=\"checkbox\" style=\"margin: 0px!important\" class=\"w3-check w3-margin\" (click)=\"toggleFromTrash(item.id)\"  >\r\n              </div>\r\n\r\n            <div class=\"media-left\">\r\n                <a href=\"#\">\r\n                  <img class=\"media-object w3-round\" [src]=\"item.personal_photo_url\"  style=\"width: 100px;\" >\r\n                </a>\r\n            </div>\r\n            <div class=\"media-body\">\r\n              <h4 class=\"media-heading\">{{ item.name.substring(0, 15) }}..</h4>\r\n              <table class=\"table\" >\r\n                <tr>\r\n                  <th>{{ \"academic_year\" | trans }}</th>\r\n                  <td>{{ item.academic_year? item.academic_year.name : '' }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <th>{{ \"qualification\" | trans }}</th>\r\n                  <td>{{ item.qualification? item.qualification.name : '' }}</td>\r\n                </tr>\r\n                <tr>\r\n                  <th>{{ \"level\" | trans }}</th>\r\n                  <td>{{ item.level? item.level.name : '' }}</td>\r\n                </tr>\r\n              </table>\r\n          </div>\r\n          <div class=\"text-right\" >\r\n            <a href=\"#\" [routerLink]=\"['/adminision/application/', item.id]\" style=\"margin: 5px\" ><i class=\"fa fa-edit btn btn-warning btn-sm material-shadow\" ></i></a>\r\n\r\n            <a href=\"#\" [routerLink]=\"['/adminision/application/show/', item.id]\" style=\"margin: 5px\" ><i class=\"fa fa-desktop btn btn-success btn-sm material-shadow\" ></i></a>\r\n\r\n            <button\r\n            *ngIf=\"item.can_convert_to_student\"\r\n            class=\"btn btn-primary btn-sm material-shadow\"\r\n            (click)=\"enrollStudent(item.id)\"\r\n            [disabled]=\"isEntrollSubmit\"\r\n            style=\"margin: 5px\" ><i class=\"fa\" [ngClass]=\"{'fa-user-circle': !isEntrollSubmit, 'fa-spin fa-spinner': isEntrollSubmit}\" ></i>  {{ \"enroll student\" | trans }} </button>\r\n\r\n            <!--\r\n            <a\r\n            *ngIf=\"!item.can_convert_to_student\"\r\n            href=\"#\"\r\n            [routerLink]=\"['/account/safe/', item.id]\"\r\n            style=\"margin: 5px\"\r\n            class=\"material-shadow fa fa-money btn w3-indigo btn-sm\" > {{ \"pay\" | trans }} </a>\r\n            -->\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </ng-container>\r\n\r\n\r\n\r\n</div>\r\n<br>\r\n<div class=\"text-center w3-center\" >\r\n    <nav aria-label=\"Page navigation\">\r\n        <ul class=\"pagination\">\r\n          <li>\r\n            <a   class=\"\" [ngClass]=\"{'disabled': !resources.prev_page}\" (click)=\"loadResources(resources.prev_page)\" aria-label=\"Previous\">\r\n              <span aria-hidden=\"true\">&laquo;</span>\r\n            </a>\r\n          </li>\r\n          <li *ngFor=\"let item of resources.pages_arr\"  >\r\n            <a class=\"\" [ngClass]=\"{'active': resources.current_page == item}\"  (click)=\"loadResources(item)\">{{ item }}</a>\r\n          </li>\r\n          <li>\r\n            <a   class=\"\" [ngClass]=\"{'disabled': !resources.next_page}\"  (click)=\"loadResources(resources.next_page)\" aria-label=\"Next\">\r\n              <span aria-hidden=\"true\">&raquo;</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </nav>\r\n</div>\r\n\r\n\r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">{{ \"remove applications\" | trans }}</h4>\r\n        </div>\r\n        <div class=\"modal-body text-center\">\r\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\r\n            <br>\r\n            {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n\r\n"
+module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n<div class=\"w3-display-bottomleft w3-padding\" style=\"position: fixed;z-index: 9999\">\r\n  <button permission=\"application_add\" mat-fab color=\"primary\" class=\"w3-large\" routerLink=\"/adminision/application/create\" style=\"margin: 5px\">\r\n    <span class=\"fa fa-plus\"></span>\r\n  </button>\r\n</div>\r\n<!--\r\n\r\n<div class=\"box box-primary  table-responsive\" >\r\n  <div class=\"box-header\">\r\n    <button class=\"btn btn-primary\" routerLink=\"/adminision/application/create\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button>\r\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeResources()\" class=\"btn btn-danger\" style=\"margin: 5px\"  >\r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div>\r\n  <br>\r\n</div>\r\n-->\r\n\r\n<div class=\"w3-row\" style=\"padding: 5px;\">\r\n  <div *ngIf=\"isLoad\" class=\"w3-block text-center w3-padding\">\r\n    <i class=\"fa fa-spin fa-refresh w3-jumbo w3-text-indigo\"></i>\r\n  </div>\r\n  <ng-container *ngIf=\"!isLoad\">\r\n\r\n    <ng-container *ngFor=\"let item of resources.data\">\r\n      <div class=\"{{ col }} student-list-col\">\r\n        <div class=\"media material-shadow w3-white w3-padding w3-display-container student-list-item w3-round\">\r\n          <div class=\"w3-display-topleft w3-padding\">\r\n            <div class=\"text-left\">\r\n              <a permission=\"application_edit\" href=\"#\" [routerLink]=\"['/adminision/application/', item.id]\" style=\"margin: 5px\"><i\r\n                  class=\"fa fa-edit btn btn-warning btn-sm material-shadow\"></i></a>\r\n\r\n              <a href=\"#\" [routerLink]=\"['/adminision/application/show/', item.id]\" style=\"margin: 5px\"><i\r\n                  class=\"fa fa-desktop btn btn-success btn-sm material-shadow\"></i></a>\r\n\r\n              <button *ngIf=\"item.can_convert_to_student\" class=\"btn btn-primary btn-sm material-shadow\"\r\n                (click)=\"enrollStudent(item.id)\" [disabled]=\"isEntrollSubmit\" style=\"margin: 5px\"><i class=\"fa\"\r\n                  [ngClass]=\"{'fa-user-circle': !isEntrollSubmit, 'fa-spin fa-spinner': isEntrollSubmit}\"></i>\r\n                {{ \"enroll student\" | trans }} </button>\r\n\r\n              <!--\r\n                  <a\r\n                  *ngIf=\"!item.can_convert_to_student\"\r\n                  href=\"#\"\r\n                  [routerLink]=\"['/account/safe/', item.id]\"\r\n                  style=\"margin: 5px\"\r\n                  class=\"material-shadow fa fa-money btn w3-indigo btn-sm\" > {{ \"pay\" | trans }} </a>\r\n                  -->\r\n            </div>\r\n          </div>\r\n\r\n          <div class=\"media-left\">\r\n            <a>\r\n              <img class=\"media-object w3-round\" [src]=\"item.personal_photo_url\" style=\"width: 100px;max-height: 210;\">\r\n            </a>\r\n          </div>\r\n          <div class=\"media-body\">\r\n            <h5 class=\"media-heading\">{{ item.name }}..</h5>\r\n            <table class=\"w3-tiny\">\r\n              <tr>\r\n                <th>{{ \"academic_year\" | trans }}</th>\r\n                <td>{{ item.academic_year? item.academic_year.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"qualification\" | trans }}</th>\r\n                <td>{{ item.qualification? item.qualification.name : '' }}</td>\r\n              </tr>\r\n              <tr>\r\n                <th>{{ \"level\" | trans }}</th>\r\n                <td>{{ item.level? item.level.name : '' }}</td>\r\n              </tr>\r\n            </table>\r\n\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </ng-container>\r\n  </ng-container>\r\n\r\n\r\n\r\n</div>\r\n<br>\r\n<div class=\"text-center w3-center\">\r\n  <nav aria-label=\"Page navigation\">\r\n    <ul class=\"pagination\">\r\n      <li>\r\n        <a  class=\"btn\" [ngClass]=\"{'disabled': !resources.prev_page}\" (click)=\"loadResources(resources.prev_page)\"\r\n          aria-label=\"Previous\">\r\n          <span aria-hidden=\"true\">&laquo;</span>\r\n        </a>\r\n      </li>\r\n      <li *ngFor=\"let item of resources.pages_arr\">\r\n        <a class=\"btn\" [ngClass]=\"{'active w3-indigo': resources.current_page == item}\" (click)=\"loadResources(item)\">{{ item }}</a>\r\n      </li>\r\n      <li>\r\n        <a  class=\"btn\" [ngClass]=\"{'disabled': !resources.next_page}\" (click)=\"loadResources(resources.next_page)\"\r\n          aria-label=\"Next\">\r\n          <span aria-hidden=\"true\">&raquo;</span>\r\n        </a>\r\n      </li>\r\n    </ul>\r\n  </nav>\r\n</div>\r\n\r\n\r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\" role=\"dialog\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h4 class=\"modal-title\">{{ \"remove applications\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"modal-body text-center\">\r\n        <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\"></i>\r\n        <br>\r\n        {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
 
 /***/ }),
 
@@ -765,7 +986,7 @@ module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-brea
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".student-list-item {\n  height: 220px;\n  margin: 5px !important; }\n\n.student-list-col {\n  padding: 5px !important; }\n\n.student-container {\n  overflow: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRtaW5pc2lvbi9jb21wb25lbnRzL2FwcGxpY2F0aW9uL2FwcGxpY2F0aW9uLWluZGV4L0U6XFxwcm9qZWN0XFxzYW1zYUZyb250RW5kL3NyY1xcYXBwXFxhZG1pbmlzaW9uXFxjb21wb25lbnRzXFxhcHBsaWNhdGlvblxcYXBwbGljYXRpb24taW5kZXhcXGFwcGxpY2F0aW9uLWluZGV4LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLHNCQUFxQixFQUFBOztBQUd2QjtFQUNFLHVCQUFzQixFQUFBOztBQUd4QjtFQUNFLGNBQWMsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXNpb24vY29tcG9uZW50cy9hcHBsaWNhdGlvbi9hcHBsaWNhdGlvbi1pbmRleC9hcHBsaWNhdGlvbi1pbmRleC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zdHVkZW50LWxpc3QtaXRlbSB7XHJcbiAgaGVpZ2h0OiAyMjBweDtcclxuICBtYXJnaW46IDVweCFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5zdHVkZW50LWxpc3QtY29sIHtcclxuICBwYWRkaW5nOiA1cHghaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc3R1ZGVudC1jb250YWluZXJ7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuIl19 */"
+module.exports = ".student-list-item {\n  /*height: 220px;*/\n  margin-bottom: 5px !important; }\n\n.student-list-col {\n  padding: 5px !important; }\n\n.student-container {\n  overflow: auto; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYWRtaW5pc2lvbi9jb21wb25lbnRzL2FwcGxpY2F0aW9uL2FwcGxpY2F0aW9uLWluZGV4L0U6XFxwcm9qZWN0XFxzYW1zYUZyb250RW5kL3NyY1xcYXBwXFxhZG1pbmlzaW9uXFxjb21wb25lbnRzXFxhcHBsaWNhdGlvblxcYXBwbGljYXRpb24taW5kZXhcXGFwcGxpY2F0aW9uLWluZGV4LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQUE7RUFDQSw2QkFBNEIsRUFBQTs7QUFHOUI7RUFDRSx1QkFBc0IsRUFBQTs7QUFHeEI7RUFDRSxjQUFjLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hZG1pbmlzaW9uL2NvbXBvbmVudHMvYXBwbGljYXRpb24vYXBwbGljYXRpb24taW5kZXgvYXBwbGljYXRpb24taW5kZXguY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc3R1ZGVudC1saXN0LWl0ZW0ge1xyXG4gIC8qaGVpZ2h0OiAyMjBweDsqL1xyXG4gIG1hcmdpbi1ib3R0b206IDVweCFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5zdHVkZW50LWxpc3QtY29sIHtcclxuICBwYWRkaW5nOiA1cHghaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc3R1ZGVudC1jb250YWluZXJ7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -786,6 +1007,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
 /* harmony import */ var _shared_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../shared/message */ "./src/app/shared/message.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_8__);
+
+
 
 
 
@@ -795,7 +1021,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var ApplicationIndexComponent = /** @class */ (function () {
     function ApplicationIndexComponent(applicationService, route) {
-        var _this = this;
         this.applicationService = applicationService;
         this.route = route;
         this.doc = _app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"].doc;
@@ -810,7 +1035,8 @@ var ApplicationIndexComponent = /** @class */ (function () {
         this.removed = [];
         this.isEntrollSubmit = false;
         this.isLoad = false;
-        this.col = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
+        this.col = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+        !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_7__["Auth"].can('application_read') ? Object(process__WEBPACK_IMPORTED_MODULE_8__["exit"])() : '';
         // init breadcrum
         this.breadcrumbList = [
             { name: 'home', url: '/' },
@@ -818,8 +1044,8 @@ var ApplicationIndexComponent = /** @class */ (function () {
         ];
         this.route.queryParams.subscribe(function (params) {
             var col = params['col'];
-            if (col)
-                _this.col = col;
+            /*if (col)
+              this.col = col;*/
         });
     }
     ApplicationIndexComponent.prototype.toggleFromTrash = function (id) {
@@ -1053,6 +1279,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../shared/auth */ "./src/app/shared/auth.ts");
 /* harmony import */ var _shared_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../shared/message */ "./src/app/shared/message.ts");
 /* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -1066,6 +1295,12 @@ var RequiredDocumentCreateComponent = /** @class */ (function () {
         this.doc = _app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"].doc;
         this.resource = {};
         this.isSubmitted = false;
+        if (this.resource.id) {
+            !_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].can('required_document_edit') ? Object(process__WEBPACK_IMPORTED_MODULE_7__["exit"])() : '';
+        }
+        else {
+            !_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].can('required_document_add') ? Object(process__WEBPACK_IMPORTED_MODULE_7__["exit"])() : '';
+        }
     }
     RequiredDocumentCreateComponent.prototype.ngOnInit = function () {
     };
@@ -1118,7 +1353,7 @@ var RequiredDocumentCreateComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-breadcrumb [breadcrumbList]=\"breadcrumbList\"></app-breadcrumb>\r\n\r\n<div class=\"box box-primary material-shadow w3-white table-responsive\" >\r\n  <div class=\"box-header\">\r\n    <button class=\"btn btn-primary\" (click)=\"doc.jquery('#createModal').modal('show');\" style=\"margin: 5px\"  > \r\n      <span class=\"fa fa-plus\" ></span> {{ \"add\" | trans }}\r\n    </button> \r\n    <button *ngIf=\"showRemoveButton\" (click)=\"removeResources()\" class=\"btn btn-danger\" style=\"margin: 5px\"  > \r\n      <span class=\"fa fa-trash\" ></span>\r\n    </button>\r\n  </div>\r\n  <br>\r\n  <div style=\"padding: 5px;\">\r\n      <table class=\"table table-bordered text-center default-datatable\" >\r\n          <thead>\r\n            <tr class=\"w3-hover-light-gray\" >\r\n              <th></th>\r\n              <th>#</th>\r\n              <th>{{ \"name\" | trans }}</th>\r\n              <th>{{ \"type\" | trans }}</th> \r\n              <th>{{ \"notes\" | trans }}</th> \r\n              <th></th>\r\n            </tr>\r\n          </thead>\r\n      \r\n          <tbody>\r\n            <tr *ngFor=\"let item of resources index as i\" >\r\n              <td>\r\n                <input type=\"checkbox\" style=\"margin: 0px!important\" class=\"w3-check\" (click)=\"toggleFromTrash(item.id)\"  >\r\n              </td>\r\n              <td>{{ i + 1 }}</td>\r\n              <td>{{ item.name }}</td> \r\n              <td>{{ item.type | trans}}</td>\r\n              <td>{{ item.notes }}</td>\r\n              <td> \r\n                <button class=\"btn btn-warning fa fa-edit\" (click)=\"setUpdateResource(item)\" ></button>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n  </div>\r\n\r\n</div>\r\n\r\n \r\n<!-- remove modal -->\r\n<div class=\"w3-modal w3-block\" *ngIf=\"showRemoveModal\"  role=\"dialog\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h4 class=\"modal-title\">{{ \"remove required documents\" | trans }}</h4>\r\n        </div>\r\n        <div class=\"modal-body text-center\">\r\n            <i class=\"fa fa-spinner fa-spin w3-jumbo w3-text-indigo w3-center\" ></i>\r\n            <br>\r\n            {{ trashList.size() }} - {{ \"removed\" | trans }} {{ trashList.size() + removed.length }}\r\n        </div>\r\n        <div class=\"modal-footer\"> \r\n        </div>\r\n      </div><!-- /.modal-content -->\r\n    </div><!-- /.modal-dialog -->\r\n  </div><!-- /.modal -->\r\n \r\n\r\n  <app-required-document-update [updateResources]=\"updateResources\" [resource]=\"updateItem\" ></app-required-document-update>\r\n\r\n  <app-required-document-create [updateResources]=\"updateResources\" ></app-required-document-create>"
+module.exports = "<div class=\"w3-block w3-row\">\r\n  <div class=\"w3-white material-shadow safe-box  \">\r\n    <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\r\n      {{ \"required_documents\" | trans }}\r\n    </div>\r\n    <div class=\"border-bottom-dashed\"></div>\r\n    <br>\r\n\r\n    <div class=\"row\">\r\n\r\n      <div class=\"col-lg-12\">\r\n        <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\r\n\r\n          <div class=\"custom-panel-body table-responsive w3-padding w3-center\" style=\"height: 400px;\" >\r\n            <table class=\" table-bordered\" >\r\n              <thead>\r\n                <th>#</th>\r\n                <th>{{ \"name\" | trans }}</th>\r\n                <th>{{ \"type\" | trans }}</th>\r\n                <th></th>\r\n              </thead>\r\n              <tbody>\r\n                <tr *ngFor=\"let item of data index as i\" >\r\n                  <td>{{ i + 1 }}</td>\r\n                  <td>\r\n                    <input type=\"text\" class=\"form-control input-sm\" [(ngModel)]=\"item.name\" >\r\n                  </td>\r\n                  <td>\r\n                    <select  class=\"form-control input-sm\" [(ngModel)]=\"item.type\" >\r\n                      <option value=\"original\">{{ \"original\" | trans }}</option>\r\n                      <option value=\"copy\">{{ \"copy\" | trans }}</option>\r\n                      <option value=\"both\">{{ \"both\" | trans }}</option>\r\n                    </select>\r\n                  </td>\r\n                  <td>\r\n                    <button class=\"btn btn-success\"\r\n                    [disabled]=\"isSubmitted\"\r\n                    (click)=\"send(item, i)\" >\r\n                    <i *ngIf=\"!isSubmitted\" class=\"fa fa-check\" ></i>\r\n                    <i *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n                  </button>\r\n                    <button class=\"btn btn-danger\"\r\n                    [disabled]=\"isSubmitted\"\r\n                    (click)=\"destroy(item, i)\" >\r\n                      <i *ngIf=\"!isSubmitted\" class=\"fa fa-trash\" ></i>\r\n                      <i *ngIf=\"isSubmitted\" class=\"fa fa-spin fa-spinner\" ></i>\r\n                    </button>\r\n                  </td>\r\n                </tr>\r\n                <tr>\r\n                  <td></td>\r\n                  <td>\r\n                    <button class=\"fa fa-plus w3-block btn btn-default btn-flat\" (click)=\"add()\" ></button>\r\n                  </td>\r\n                </tr>\r\n              </tbody>\r\n            </table>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1145,96 +1380,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequiredDocumentIndexComponent", function() { return RequiredDocumentIndexComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/angular-hashtable */ "./node_modules/angular-hashtable/fesm5/angular-hashtable.js");
-/* harmony import */ var _services_required_document_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/required-document.service */ "./src/app/adminision/services/required-document.service.ts");
-/* harmony import */ var _app_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../node_modules/@angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var src_app_settings_services_setting_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/settings/services/setting.service */ "./src/app/settings/services/setting.service.ts");
+/* harmony import */ var src_app_settings_setting_template__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/settings/setting-template */ "./src/app/settings/setting-template.ts");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! process */ "./node_modules/process/browser.js");
+/* harmony import */ var process__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(process__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
 
-
-var RequiredDocumentIndexComponent = /** @class */ (function () {
-    function RequiredDocumentIndexComponent(requiredDocumentService, router) {
-        var _this = this;
-        this.requiredDocumentService = requiredDocumentService;
-        this.router = router;
-        this.doc = _app_module__WEBPACK_IMPORTED_MODULE_4__["AppModule"].doc;
-        // Resources list
-        this.resources = null;
-        // init breadcrum
-        this.breadcrumbList = [];
-        // remove options
-        this.showRemoveButton = false;
-        this.showRemoveModal = false;
-        this.trashList = new _node_modules_angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
-        this.removed = [];
-        // update 
-        this.updateItem = {};
-        // init breadcrum
-        this.breadcrumbList = [
-            { name: 'home', url: '/' },
-            { name: 'required_documents' }
-        ];
-        this.updateResources = function () {
-            _shared_helper__WEBPACK_IMPORTED_MODULE_6__["Helper"].refreshComponent(_this.router, '/adminision/settings/required_documents');
-        };
+var RequiredDocumentIndexComponent = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](RequiredDocumentIndexComponent, _super);
+    function RequiredDocumentIndexComponent(settingService) {
+        var _this = _super.call(this, settingService) || this;
+        _this.settingService = settingService;
+        !src_app_shared_auth__WEBPACK_IMPORTED_MODULE_4__["Auth"].can('required_document_read') ? Object(process__WEBPACK_IMPORTED_MODULE_5__["exit"])() : '';
+        _this.baseUrl = "required_documents";
+        _this.requiredFields = ['name', 'type'];
+        _this.get();
+        return _this;
     }
-    RequiredDocumentIndexComponent.prototype.toggleFromTrash = function (id) {
-        if (this.trashList.has(id)) {
-            this.trashList.remove(id);
-        }
-        else {
-            this.trashList.put(id, id);
-        }
-        if (this.trashList.size() > 0)
-            this.showRemoveButton = true;
-        else
-            this.showRemoveButton = false;
-    };
-    RequiredDocumentIndexComponent.prototype.removeResources = function () {
-        var _this = this;
-        this.showRemoveModal = true;
-        var queue = this.trashList.getKeys();
-        if (queue.length > 0) {
-            var id_1 = queue.pop();
-            this.requiredDocumentService.destroy(id_1).subscribe(function () {
-                _this.removed.push(id_1);
-                _this.trashList.remove(id_1);
-                //
-                _this.removeResources();
-            });
-        }
-        else {
-            this.removed = [];
-            this.showRemoveButton = false;
-            this.showRemoveModal = false;
-            // 
-            this.updateResources();
-        }
-    };
-    RequiredDocumentIndexComponent.prototype.loadResources = function () {
-        var _this = this;
-        this.requiredDocumentService.get().subscribe(function (res) {
-            _this.resources = res;
-            // 
-            setTimeout(function () {
-                _this.doc.datatable();
-            }, 2000);
-        });
-    };
-    RequiredDocumentIndexComponent.prototype.setUpdateResource = function (item) {
-        this.updateItem = item;
-        this.doc.jquery('#updateModal').modal('show');
-    };
     RequiredDocumentIndexComponent.prototype.ngOnInit = function () {
-        this.loadResources();
     };
-    RequiredDocumentIndexComponent.prototype.showUpdateModal = function (item) {
-        this.updateItem = item;
+    RequiredDocumentIndexComponent.prototype.action = function () {
+        this.get();
     };
     RequiredDocumentIndexComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1242,10 +1413,10 @@ var RequiredDocumentIndexComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./required-document-index.component.html */ "./src/app/adminision/components/required_document/required-document-index/required-document-index.component.html"),
             styles: [__webpack_require__(/*! ./required-document-index.component.scss */ "./src/app/adminision/components/required_document/required-document-index/required-document-index.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_required_document_service__WEBPACK_IMPORTED_MODULE_3__["RequiredDocumentService"], _node_modules_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_settings_services_setting_service__WEBPACK_IMPORTED_MODULE_2__["SettingService"]])
     ], RequiredDocumentIndexComponent);
     return RequiredDocumentIndexComponent;
-}());
+}(src_app_settings_setting_template__WEBPACK_IMPORTED_MODULE_3__["SettingTemplate"]));
 
 
 
@@ -1528,6 +1699,199 @@ var RequiredDocumentService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_node_modules_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], RequiredDocumentService);
     return RequiredDocumentService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/settings/services/setting.service.ts":
+/*!******************************************************!*\
+  !*** ./src/app/settings/services/setting.service.ts ***!
+  \******************************************************/
+/*! exports provided: SettingService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingService", function() { return SettingService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/auth */ "./src/app/shared/auth.ts");
+
+
+
+
+var SettingService = /** @class */ (function () {
+    function SettingService(http) {
+        this.http = http;
+        this.baseUrl = "";
+        this.get();
+    }
+    /**
+     * get services from api
+     *
+     */
+    SettingService.prototype.get = function () {
+        return this.http.get(this.baseUrl + '?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken());
+    };
+    /**
+     * store new service
+     */
+    SettingService.prototype.store = function (data) {
+        return this.http.post(this.baseUrl + '/store' + '?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * update service
+     */
+    SettingService.prototype.update = function (data) {
+        return this.http.post(this.baseUrl + '/update/' + data.id + '?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), data);
+    };
+    /**
+     * remove service
+     */
+    SettingService.prototype.destroy = function (id) {
+        return this.http.post(this.baseUrl + '/delete/' + id + '?api_token=' + src_app_shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].getApiToken(), null);
+    };
+    SettingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], SettingService);
+    return SettingService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/settings/setting-template.ts":
+/*!**********************************************!*\
+  !*** ./src/app/settings/setting-template.ts ***!
+  \**********************************************/
+/*! exports provided: SettingTemplate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingTemplate", function() { return SettingTemplate; });
+/* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var _shared_message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/message */ "./src/app/shared/message.ts");
+
+
+var SettingTemplate = /** @class */ (function () {
+    function SettingTemplate(settingService) {
+        this.settingService = settingService;
+        this.item = {};
+        this.isSubmitted = false;
+        this.data = [];
+        this.requiredFields = [];
+        this.baseUrl = null;
+        this.settingService.baseUrl = this.baseUrl;
+    }
+    SettingTemplate.prototype.action = function (res) {
+    };
+    SettingTemplate.prototype.get = function () {
+        var _this = this;
+        this.settingService.baseUrl = this.baseUrl;
+        this.settingService.get().subscribe(function (res) {
+            _this.data = res;
+        });
+    };
+    SettingTemplate.prototype.add = function () {
+        var item = {};
+        this.data.push(item);
+    };
+    SettingTemplate.prototype.validate = function (item) {
+        if (item === void 0) { item = this.item; }
+        var valid = true;
+        this.requiredFields.forEach(function (element) {
+            if (!item[element])
+                valid = false;
+        });
+        return valid;
+    };
+    SettingTemplate.prototype.send = function (item, index) {
+        if (item === void 0) { item = this.item; }
+        if (index === void 0) { index = null; }
+        this.settingService.baseUrl = this.baseUrl;
+        if (item.id)
+            this.update(item, index = null);
+        else
+            this.store(item, index = null);
+    };
+    SettingTemplate.prototype.store = function (item, index) {
+        var _this = this;
+        if (item === void 0) { item = this.item; }
+        if (index === void 0) { index = null; }
+        if (!this.validate(item))
+            return _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].error(_shared_helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].trans('fill all data'));
+        this.isSubmitted = true;
+        this.settingService.store(item).subscribe(function (res) {
+            if (res.status == 1) {
+                _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].success(res.message);
+                //
+                if (index)
+                    _this.data[index] = res.data;
+                var arr = _this.data;
+                _this.data = [];
+                _this.data = arr;
+            }
+            else
+                _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].error(res.message);
+            _this.action(res);
+            _this.isSubmitted = false;
+        });
+    };
+    SettingTemplate.prototype.update = function (item, index) {
+        var _this = this;
+        if (item === void 0) { item = this.item; }
+        if (index === void 0) { index = null; }
+        if (!this.validate(item))
+            return _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].error(_shared_helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].trans('fill all data'));
+        this.isSubmitted = true;
+        this.settingService.update(item).subscribe(function (res) {
+            if (res.status == 1) {
+                _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].success(res.message);
+                //
+                if (index)
+                    _this.data[index] = res.data;
+                var arr = _this.data;
+                _this.data = [];
+                _this.data = arr;
+            }
+            else
+                _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].error(res.message);
+            _this.action(res);
+            _this.isSubmitted = false;
+        });
+    };
+    SettingTemplate.prototype.destroy = function (item, index) {
+        var _this = this;
+        this.settingService.baseUrl = this.baseUrl;
+        var self = this;
+        _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].confirm(_shared_helper__WEBPACK_IMPORTED_MODULE_0__["Helper"].trans('are you sure'), function () {
+            if (item.id) {
+                _this.isSubmitted = true;
+                _this.settingService.destroy(item.id).subscribe(function (res) {
+                    if (res.status == 1)
+                        _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].success(res.message);
+                    else
+                        _shared_message__WEBPACK_IMPORTED_MODULE_1__["Message"].error(res.message);
+                    _this.action(res);
+                    _this.isSubmitted = false;
+                });
+            }
+            // remove item from array
+            _this.data.splice(index, index + 1);
+            var arr = _this.data;
+            _this.data = [];
+            _this.data = arr;
+        });
+    };
+    return SettingTemplate;
 }());
 
 

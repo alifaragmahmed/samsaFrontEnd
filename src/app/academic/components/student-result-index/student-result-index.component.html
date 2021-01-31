@@ -30,6 +30,10 @@
                   <i *ngIf="isLoading" class="fa fa-spin fa-spinner"></i>
                   <span *ngIf="!isLoading">{{ "search" | trans }} </span>
                 </button>
+                <button mat-raised-button color="primary" class="w3-green" (click)="$('#importExcelModal').modal('show')" style="margin: 5px" >
+
+                  <span  >{{ "import from excel" | trans }} </span>
+                </button>
               </div>
             </div>
           </div>
@@ -113,4 +117,7 @@
 
   </div>
 </div>
+
+
+<app-import-excel [apiUrl]="'import-result'"  ></app-import-excel>
 

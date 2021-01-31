@@ -86,8 +86,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _card_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./card.component */ "./src/app/card/card.component.ts");
-/* harmony import */ var _components_report_card_export_report_card_export_report_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/report/card-export-report/card-export-report.component */ "./src/app/card/components/report/card-export-report/card-export-report.component.ts");
+/* harmony import */ var _shared_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/auth */ "./src/app/shared/auth.ts");
+/* harmony import */ var _shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/middlewares/auth-guest.service */ "./src/app/shared/middlewares/auth-guest.service.ts");
+/* harmony import */ var _card_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./card.component */ "./src/app/card/card.component.ts");
+/* harmony import */ var _components_report_card_export_report_card_export_report_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/report/card-export-report/card-export-report.component */ "./src/app/card/components/report/card-export-report/card-export-report.component.ts");
+
+
 
 
 
@@ -100,11 +104,15 @@ var routes = [
         children: [
             {
                 path: '',
-                component: _card_component__WEBPACK_IMPORTED_MODULE_3__["CardComponent"]
+                canActivate: [_shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuestService"]],
+                data: { can: _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].can('card_export') },
+                component: _card_component__WEBPACK_IMPORTED_MODULE_5__["CardComponent"]
             },
             {
                 path: 'report/card-export',
-                component: _components_report_card_export_report_card_export_report_component__WEBPACK_IMPORTED_MODULE_4__["CardExportReportComponent"]
+                canActivate: [_shared_middlewares_auth_guest_service__WEBPACK_IMPORTED_MODULE_4__["AuthGuestService"]],
+                data: { can: _shared_auth__WEBPACK_IMPORTED_MODULE_3__["Auth"].can('card_export_report') },
+                component: _components_report_card_export_report_card_export_report_component__WEBPACK_IMPORTED_MODULE_6__["CardExportReportComponent"]
             },
         ]
     },
@@ -331,6 +339,7 @@ var CardComponent = /** @class */ (function () {
             this.searchData.student_id = student.id;
             this.searchKey = student.name;
             this.loadStudentInfo(student.id);
+            this.selectedCard.image_url = student.image;
         }
         this.studentSearchDialogShow = false;
     };

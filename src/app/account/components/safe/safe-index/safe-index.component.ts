@@ -118,6 +118,8 @@ export class SafeIndexComponent implements OnInit {
       if (!this.safeObject.image)
         this.safeObject.image = '/assets/img/avatar.png';
       this.loadAvailableServices();
+
+      this.alertForOldBalance();
     });
   }
 
@@ -171,6 +173,13 @@ export class SafeIndexComponent implements OnInit {
 
   getSelectedServices() {
 
+  }
+
+  alertForOldBalance() {
+    if (this.safeObject.old_balance > 0) {
+      let message = 'تنيه يوجد رسوم سابقه على الطالب بقيمة ' + this.safeObject.old_balance;
+      this.doc.Swal.fire({title: message});
+    }
   }
 
   ngOnInit() {

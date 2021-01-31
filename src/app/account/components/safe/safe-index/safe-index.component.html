@@ -11,8 +11,17 @@
       <div class="safe-box-body row" >
 
         <div class="col-lg-3 col-md-3 col-sm-12" >
+          <!--
+            current_balance_total
+            current_balance
+          -->
           <div style="padding: 4px;margin-bottom: 7px" class="w3-pale-red w3-round" >
-            اجمالى الرسوم المستحقة : {{ safeObject.current_balance_total | currency: ' جنيه ' }}
+            اجمالى الرسوم المستحقة : {{ safeObject.current_balance | number}}
+            <span *ngIf="safeObject.payment_type == 'service' && safeObject.paid_value > 0"  >
+              + {{ safeObject.paid_value }}
+              = {{ safeObject.paid_value + safeObject.current_balance }}
+            </span>
+            جنيه
           </div>
           <img
           class="w3-block"
