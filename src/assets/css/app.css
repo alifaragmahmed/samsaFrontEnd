@@ -194,3 +194,13 @@ select, input[type=file] {
 table, tr {
   width: 100%
 }
+
+
+.modal  {
+  transform:translate3d(0,0,0)!important;
+  -webkit-transform:translate3d(0,0,0)!important;
+}
+
+.modal.fade .modal-dialog {
+  transform: none!important;
+}

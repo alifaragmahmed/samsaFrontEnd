@@ -77,5 +77,19 @@ export class Helper {
     window.open(url, "_blank", options);
   }
 
+  /**
+   * validate on object from array of attributes
+   *
+   * @param model
+   * @param requireds
+   */
+  public static validator(model, attributes: any) {
+    let valid = true;
+    attributes.forEach(element => {
+      if (!model[element])
+        valid = false;
+    });
+    return valid;
+  }
 }
 

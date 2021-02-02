@@ -11,11 +11,43 @@
 
 
         <ul class="list-group list-group-unbordered">
-          <li class="list-group-item" permission="service_read" >
+          <li class="list-group-item" permission_="tree_read" >
             <a href="#" routerLink='/account/setting/trees' >
                 <b>{{ "trees" | trans }}</b>
                 <a href="#"  class="pull-left">
                   <i class="fa fa-tree" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item" permission_="bank_read" >
+            <a href="#" routerLink='/account/setting/banks' >
+                <b>{{ "banks" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-bank" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item" permission_="bank_read" >
+            <a href="#" routerLink='/account/setting/checks' >
+                <b>{{ "checks" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-newspaper-o" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item" permission_="daily_read" >
+            <a href="#" routerLink='/account/setting/dailys' >
+                <b>{{ "dailys" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-reply" ></i>
+                </a>
+            </a>
+          </li>
+          <li class="list-group-item" permission_="transformation_read" >
+            <a href="#" routerLink='/account/setting/transformations' >
+                <b>{{ "transformations" | trans }}</b>
+                <a href="#"  class="pull-left">
+                  <i class="fa fa-reply" ></i>
                 </a>
             </a>
           </li>

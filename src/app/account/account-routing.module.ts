@@ -16,6 +16,10 @@ import { StudentDiscountReportComponent } from './components/report/student-disc
 import { Auth } from '../shared/auth';
 import { AuthGuestService } from '../shared/middlewares/auth-guest.service';
 import { TreeIndexComponent } from './components/tree/tree-index/tree-index.component';
+import { BankIndexComponent } from './components/bank/bank-index/bank-index.component';
+import { CheckIndexComponent } from './components/check/check-index/check-index.component';
+import { DailyIndexComponent } from './components/daily/daily-index/daily-index.component';
+import { TransformationIndexComponent } from './components/transformation/transformation-index/transformation-index.component';
 
 
 const routes: Routes = [
@@ -92,16 +96,40 @@ const routes: Routes = [
         component: DiscountTypeIndexComponent
       },
       {
+        path: 'academic_year_expenses',
+        canActivate: [AuthGuestService],
+        data: {can: Auth.can('academic_expense_read')},
+        component: AcademicYearIndexComponent
+      },
+      {
         path: 'trees',
         //canActivate: [AuthGuestService],
         data: {can: Auth.can('tree_read')},
         component: TreeIndexComponent
       },
       {
-        path: 'academic_year_expenses',
-        canActivate: [AuthGuestService],
-        data: {can: Auth.can('academic_expense_read')},
-        component: AcademicYearIndexComponent
+        path: 'banks',
+        //canActivate: [AuthGuestService],
+        data: {can: Auth.can('bank_read')},
+        component: BankIndexComponent
+      },
+      {
+        path: 'checks',
+        //canActivate: [AuthGuestService],
+        data: {can: Auth.can('check_read')},
+        component: CheckIndexComponent
+      },
+      {
+        path: 'dailys',
+        //canActivate: [AuthGuestService],
+        data: {can: Auth.can('daily_read')},
+        component: DailyIndexComponent
+      },
+      {
+        path: 'transformations',
+        //canActivate: [AuthGuestService],
+        data: {can: Auth.can('transformation_read')},
+        component: TransformationIndexComponent
       },
     ]
   },

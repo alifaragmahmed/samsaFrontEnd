@@ -42,6 +42,14 @@ import { InstallmentReportComponent } from './components/report/installment-repo
 import { StudentDiscountReportComponent } from './components/report/student-discount-report/student-discount-report.component';
 import { TreeIndexComponent } from './components/tree/tree-index/tree-index.component';
 import { TreeComponent } from './components/tree/tree/tree.component';
+import { BankIndexComponent } from './components/bank/bank-index/bank-index.component';
+import { BankFormComponent } from './components/bank/bank-form/bank-form.component';
+import { CheckIndexComponent } from './components/check/check-index/check-index.component';
+import { CheckFormComponent } from './components/check/check-form/check-form.component';
+import { DailyIndexComponent } from './components/daily/daily-index/daily-index.component';
+import { DailyFormComponent } from './components/daily/daily-form/daily-form.component';
+import { TransformationIndexComponent } from './components/transformation/transformation-index/transformation-index.component';
+import { TransformationFormComponent } from './components/transformation/transformation-form/transformation-form.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +83,14 @@ import { TreeComponent } from './components/tree/tree/tree.component';
     StudentDiscountReportComponent,
     TreeIndexComponent,
     TreeComponent,
+    BankIndexComponent,
+    BankFormComponent,
+    CheckIndexComponent,
+    CheckFormComponent,
+    DailyIndexComponent,
+    DailyFormComponent,
+    TransformationIndexComponent,
+    TransformationFormComponent,
   ],
   imports: [
     SharedModule,
