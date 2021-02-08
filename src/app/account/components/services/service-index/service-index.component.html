@@ -103,6 +103,15 @@
                      ></mat-slide-toggle>
             </td>
         </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="is_mobile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ "is_mobile" | trans }}</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-slide-toggle
+                    [checked]="element.is_mobile==1"
+                     ></mat-slide-toggle>
+            </td>
+        </ng-container>
 
         <!-- Position Column -->
         <ng-container matColumnDef="installment_percent">

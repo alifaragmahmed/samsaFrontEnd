@@ -78,6 +78,7 @@ export class ServiceIndexComponent implements OnInit {
       "repeat",
       "is_refund",
       "is_in_store",
+      "is_mobile",
       "active",
       "installment_percent",
       "from_installment_id",

@@ -24,7 +24,7 @@ import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/ch
 import {MatButtonModule} from '@angular/material/button';
 import { StoreFormComponent } from './components/store/store-form/store-form.component';
 import { OldBalanceComponent } from './components/old-balance/old-balance.component';
-import { MatSliderModule, MatSlideToggleModule } from '@angular/material';
+import { MatSliderModule, MatSlideToggleModule, MatTab, MatTabsModule } from '@angular/material';
 import { PayRefundComponent } from './components/safe/pay-refund/pay-refund.component';
 import { PaymentDetailsReportComponent } from './components/report/payment-details-report/payment-details-report.component';
 import { SafeSettingComponent } from './components/safe/safe-setting/safe-setting.component';
@@ -50,6 +50,15 @@ import { DailyIndexComponent } from './components/daily/daily-index/daily-index.
 import { DailyFormComponent } from './components/daily/daily-form/daily-form.component';
 import { TransformationIndexComponent } from './components/transformation/transformation-index/transformation-index.component';
 import { TransformationFormComponent } from './components/transformation/transformation-form/transformation-form.component';
+import { ExpenseSheetComponent } from './components/worksheet/expense-sheet/expense-sheet.component';
+import { WorksheetIndexComponent } from './components/worksheet/worksheet-index/worksheet-index.component';
+import { DailySheetComponent } from './components/worksheet/daily-sheet/daily-sheet.component';
+import { IncomeSheetComponent } from './components/worksheet/income-sheet/income-sheet.component';
+import { BalanceSheetComponent } from './components/worksheet/balance-sheet/balance-sheet.component';
+import { DepositeSheetComponent } from './components/worksheet/deposite-sheet/deposite-sheet.component';
+import { CustodySheetComponent } from './components/worksheet/custody-sheet/custody-sheet.component';
+import { SolfaSheetComponent } from './components/worksheet/solfa-sheet/solfa-sheet.component';
+import { BankBalanceSheetComponent } from './components/worksheet/bank-balance-sheet/bank-balance-sheet.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +100,15 @@ import { TransformationFormComponent } from './components/transformation/transfo
     DailyFormComponent,
     TransformationIndexComponent,
     TransformationFormComponent,
+    ExpenseSheetComponent,
+    WorksheetIndexComponent,
+    DailySheetComponent,
+    IncomeSheetComponent,
+    BalanceSheetComponent,
+    DepositeSheetComponent,
+    CustodySheetComponent,
+    SolfaSheetComponent,
+    BankBalanceSheetComponent,
   ],
   imports: [
     SharedModule,
@@ -103,7 +121,8 @@ import { TransformationFormComponent } from './components/transformation/transfo
     MatButtonModule,
     MatSliderModule,
     MatSlideToggleModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    MatTabsModule
   ],
   exports: [
     StudentPaymentComponent
