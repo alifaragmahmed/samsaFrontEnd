@@ -1,6 +1,6 @@
 
 
- <div>
+ <div class="col-lg-10 col-md-10" >
 
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm- 6">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <br>
-  <table class="table-bordered w3-white text-center material-shadow">
+  <table class="table-bordered w3-white text-center material-shadow safe-box" id="printable" >
 
     <tr>
       <th class="w3-padding text-center"  colspan="5" >
@@ -57,39 +57,19 @@
     <ng-container *ngFor="let item of data index as i" >
       <tr   >
         <td>
-          <input
-          type="number"
-          class="w3-block w3-border-0  text-center"
-          readonly
-          [value]="i + 1"  >
+          {{ i + 1 }}
         </td>
         <td>
-          <input
-          type="date"
-          class="w3-block w3-border-0 text-center"
-          readonly
-          [(ngModel)]="item.date" >
+          {{ item.date }}
         </td>
         <td>
-          <input
-          type="text"
-          class="w3-block w3-border-0 text-center"
-          readonly
-          [value]="item.student? item.student.name : ''" >
+          {{ item.student? item.student.name : '' }}
         </td>
         <td>
-          <input
-          type="text"
-          class="w3-block w3-border-0 text-center"
-          readonly
-          [(ngModel)]="item.id" >
+          {{ item.id }}
         </td>
         <td>
-          <input
-          type="text"
-          class="w3-block w3-border-0 text-center"
-          readonly
-          [(ngModel)]="item.value" >
+          {{ item.value }}
         </td>
       </tr>
     </ng-container>

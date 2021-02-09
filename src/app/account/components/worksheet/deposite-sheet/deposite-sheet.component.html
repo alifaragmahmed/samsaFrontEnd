@@ -1,6 +1,6 @@
 
 
- <div>
+ <div class="col-lg-10 col-md-10" >
 
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm- 6">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <br>
-  <table class="table-bordered w3-white text-center material-shadow">
+  <table class="table-bordered w3-white text-center material-shadow safe-box" id="printable" >
 
     <tr>
       <th class="w3-padding text-center"  colspan="5" >
@@ -63,6 +63,7 @@
           class="w3-block w3-border-0  text-center"
           readonly
           [value]="i + 1"  >
+          <span style="display: none;" >{{ i+1 }}</span>
         </td>
         <td>
           <input
@@ -70,6 +71,7 @@
           class="w3-block w3-border-0  text-center"
           (change)="sendResource(item)"
           [(ngModel)]="item.date"  >
+          <span style="display: none;" >{{ item.date }}</span>
         </td>
         <td>
           <select
@@ -78,6 +80,7 @@
           [(ngModel)]="item.bank_id">
           <option *ngFor="let row of banks" value="{{ row.id }}">{{ row.name }}</option>
         </select>
+        <span style="display: none;" >{{ item.bank? item.bank.name : '' }}</span>
         </td>
         <td>
           <input
@@ -85,12 +88,14 @@
           class="w3-block w3-border-0  text-center"
           (change)="sendResource(item)"
           [(ngModel)]="item.notes"  >
+          <span style="display: none;" >{{ item.notes }}</span>
         </td>
         <td>
           <input type="number"
           (change)="sendResource(item)"
           class="w3-block w3-border-0  text-center"
           [(ngModel)]="item.value" >
+          <span style="display: none;" >{{ item.value }}</span>
         </td>
         <td>
           <button class="fa fa-trash w3-button" *ngIf="item.id"  (click)="remove(item, i)" ></button>

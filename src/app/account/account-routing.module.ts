@@ -112,31 +112,31 @@ const routes: Routes = [
       },
       {
         path: 'trees',
-        //canActivate: [AuthGuestService],
+        canActivate: [AuthGuestService],
         data: {can: Auth.can('tree_read')},
         component: TreeIndexComponent
       },
       {
         path: 'banks',
-        //canActivate: [AuthGuestService],
+        canActivate: [AuthGuestService],
         data: {can: Auth.can('bank_read')},
         component: BankIndexComponent
       },
       {
         path: 'checks',
-        //canActivate: [AuthGuestService],
+        canActivate: [AuthGuestService],
         data: {can: Auth.can('check_read')},
         component: CheckIndexComponent
       },
       {
         path: 'dailys',
-        //canActivate: [AuthGuestService],
+        canActivate: [AuthGuestService],
         data: {can: Auth.can('daily_read')},
         component: DailyIndexComponent
       },
       {
         path: 'transformations',
-        //canActivate: [AuthGuestService],
+        canActivate: [AuthGuestService],
         data: {can: Auth.can('transformation_read')},
         component: TransformationIndexComponent
       },
@@ -146,49 +146,49 @@ const routes: Routes = [
         children: [
           {
             path: 'expenses',
-            //canActivate: [AuthGuestService],
-            data: {can: Auth.can('expense_read')},
+            canActivate: [AuthGuestService],
+            data: {can: Auth.can('tree_read')},
             component: ExpenseSheetComponent
           },
           {
             path: 'daily',
-            //canActivate: [AuthGuestService],
-            data: {can: Auth.can('daily')},
+            canActivate: [AuthGuestService],
+            data: {can: Auth.can('expense_detail_read')},
             component: DailySheetComponent
           },
           {
             path: 'incomes',
-            //canActivate: [AuthGuestService],
+            canActivate: [AuthGuestService],
             data: {can: Auth.can('income_read')},
             component: IncomeSheetComponent
           },
           {
             path: 'custody',
-            //canActivate: [AuthGuestService],
+            canActivate: [AuthGuestService],
             data: {can: Auth.can('custody_read')},
             component: CustodySheetComponent
           },
           {
             path: 'transformations',
-            //canActivate: [AuthGuestService],
-            data: {can: Auth.can('transformation_read')},
+            canActivate: [AuthGuestService],
+            data: {can: Auth.can('deposite_read')},
             component: DepositeSheetComponent
           },
           {
             path: 'balances',
-            //canActivate: [AuthGuestService],
-            data: {can: Auth.can('balance_read')},
+            canActivate: [AuthGuestService],
+            data: {can: Auth.can('store_balance_read')},
             component: BalanceSheetComponent
           },
           {
             path: 'bank-balances',
-            //canActivate: [AuthGuestService],
+            canActivate: [AuthGuestService],
             data: {can: Auth.can('bank_balance_read')},
             component: BankBalanceSheetComponent
           },
           {
             path: 'solfa',
-            //canActivate: [AuthGuestService],
+            canActivate: [AuthGuestService],
             data: {can: Auth.can('solfa_read')},
             component: SolfaSheetComponent
           }

@@ -42,6 +42,14 @@ export class DailySheetComponent implements OnInit {
     });
   }
 
+  getSelectedExpenses(id) {
+    this.expenses.forEach(element => {
+      if (element.id == id)
+        return element;
+    });
+
+    return null;
+  }
 
   getIndexWithId(id) {
     this.data.forEach((element, index, arr) => {

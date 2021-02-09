@@ -1,6 +1,6 @@
 <div id="spreadsheet--"  ></div>
 
-<div  >
+<div class="col-lg-10 col-md-10" >
 
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm- 6">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <br>
-  <div class="table-responsive w3-white text-center material-shadow">
+  <div class="table-responsive w3-white text-center material-shadow safe-box">
     <table class="table-bordered">
       <tr>
         <th class="w3-padding text-center"  colspan="4" >
@@ -92,6 +92,7 @@
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.total > 0"
           [(ngModel)]="item.value"  >
         </td>
         <td>
@@ -102,65 +103,79 @@
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst2 > 0"
           [(ngModel)]="item.kst1"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst3 > 0"
           [(ngModel)]="item.kst2"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst4 > 0"
           [(ngModel)]="item.kst3"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst5 > 0"
           [(ngModel)]="item.kst4"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst6 > 0"
           [(ngModel)]="item.kst5"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst7 > 0"
           [(ngModel)]="item.kst6"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst8 > 0"
           [(ngModel)]="item.kst7"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst9 > 0"
           [(ngModel)]="item.kst8"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst10 > 0"
           [(ngModel)]="item.kst9"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst11 > 0"
           [(ngModel)]="item.kst10"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.kst12 > 0"
           [(ngModel)]="item.kst11"  >
         </td>
         <td>
           <input type="number" class="w3-block w3-border-0 -light-gray text-center"
           (change)="sendResource(item)"
+          [readOnly]="item.total == item.value"
           [(ngModel)]="item.kst12"  >
         </td>
         <td>
-          <button class="fa fa-trash w3-button" *ngIf="item.id"  (click)="remove(item, i)" ></button>
+          <button class="fa fa-trash w3-button"
+          *ngIf="item.id && item.remained <= 0"
+          (click)="remove(item, i)" ></button>
         </td>
       </tr>
       <tr>

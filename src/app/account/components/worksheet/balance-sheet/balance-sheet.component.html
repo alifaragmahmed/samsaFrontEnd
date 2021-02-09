@@ -38,7 +38,7 @@
       </div>
     </div>
     <br>
-    <table class="table-bordered w3-white text-center material-shadow" id="printable" >
+    <table class="table-bordered w3-white text-center material-shadow safe-box" id="printable" >
 
       <tr>
         <th class="w3-padding text-center"  colspan="8" >
@@ -55,10 +55,13 @@
         <th class="w3-padding" >{{ "solfa"| trans }}</th>
         <th class="w3-padding" >{{ "balance_"| trans }}</th>
       </tr>
+      <tr *ngIf="data.length <= 0" >
+        <td class="w3-padding w3-text-red"  colspan="8"  >{{ "select store, date from and date to" | trans }}</td>
+      </tr>
       <tr *ngIf="loading" >
         <td class="w3-padding"  colspan="8" ><i class="fa fa-spin fa-spinner w3-large"></i></td>
       </tr>
-      <tr>
+      <tr *ngIf="data.length > 0" >
         <td>1</td>
         <td>
           {{ "init_balance" | trans }}
@@ -71,7 +74,7 @@
         <td>{{ selectedStore.init_balance }}</td>
       </tr>
       <ng-container *ngFor="let item of data index as i" >
-        <tr   *ngIf="!loading"  >
+        <tr   *ngIf="!loading && data.length > 0"  >
           <td>
             {{ i + 2 }}
           </td>
