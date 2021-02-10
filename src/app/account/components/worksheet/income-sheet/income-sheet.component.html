@@ -54,8 +54,14 @@
       <th class="w3-padding" >{{ "payment_code" | trans }}</th>
       <th class="w3-padding" >{{ "academic_year_expenses"| trans }}</th>
     </tr>
+    <tr *ngIf="!filter.store_id"  >
+      <td class="w3-text-red text-center" colspan="5" >{{ "select store" | trans }}</td>
+    </tr>
+    <tr *ngIf="loading"  >
+      <td class="w3-text-indigo text-center" colspan="5" ><i class="fa fa-spin fa-spinner"></i></td>
+    </tr>
     <ng-container *ngFor="let item of data index as i" >
-      <tr   >
+      <tr  *ngIf="filter.store_id && !loading" >
         <td>
           {{ i + 1 }}
         </td>

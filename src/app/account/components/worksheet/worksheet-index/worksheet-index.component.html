@@ -46,6 +46,15 @@
   </button>
 
   <button
+  routerLink="/account/setting/worksheet/check"
+  permission="check_read"
+  class="w3-tiny"
+  mat-raised-button color=""
+  style="margin: 2px;border-radius: 0em;" >
+    <i class="fa fa-newspaper-o"></i> {{  "checks" | trans }}
+  </button>
+
+  <button
   routerLink="/account/setting/worksheet/custody"
   permission="custody_read"
   class="w3-tiny"

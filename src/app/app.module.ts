@@ -82,6 +82,32 @@ export class AppModule {
   public static doc: any = document;
 
   constructor() {
+    var self = this;
+    /*
+    self.reloadIfConsoleOpen();
+
+    document.oncontextmenu = function(ev){
+      ev.preventDefault();
+    };
+
+    document.onmousemove = function(ev){
+      self.reloadIfConsoleOpen();
+    };
+*/
+  }
+
+  reloadIfConsoleOpen() {
+    if (this.isConsoleOpen()) {
+        window.location.href = "https://www.youtube.com/watch?v=6YCq549gdT0";
+    };
+  }
+
+  isConsoleOpen() {
+    var startTime: any = new Date();
+    debugger;
+    var endTime: any = new Date();
+
+    return endTime - startTime > 100;
   }
 
 

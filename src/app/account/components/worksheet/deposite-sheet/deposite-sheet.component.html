@@ -55,8 +55,14 @@
       <th class="w3-padding" >{{ "value" | trans }}</th>
       <th class="w3-padding" >{{ "remove"| trans }}</th>
     </tr>
+    <tr *ngIf="!filter.store_id"  >
+      <td class="w3-text-red text-center" colspan="6" >{{ "select store" | trans }}</td>
+    </tr>
+    <tr *ngIf="loading"  >
+      <td class="w3-text-indigo text-center" colspan="6" ><i class="fa fa-spin fa-spinner"></i></td>
+    </tr>
     <ng-container *ngFor="let item of data index as i" >
-      <tr   >
+      <tr *ngIf="filter.store_id !loading"  >
         <td>
           <input
           type="number"

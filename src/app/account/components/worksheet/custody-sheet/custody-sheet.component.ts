@@ -34,6 +34,8 @@ export class CustodySheetComponent implements OnInit, OnChanges {
 
 
   loadData() {
+    if (!this.filter.store_id)
+      return;
     this.loading = true;
     this.globalService.get('account/custodys', this.filter).subscribe((res) =>{
       this.data = res;

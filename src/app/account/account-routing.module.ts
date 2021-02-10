@@ -29,6 +29,7 @@ import { BalanceSheetComponent } from './components/worksheet/balance-sheet/bala
 import { SolfaSheetComponent } from './components/worksheet/solfa-sheet/solfa-sheet.component';
 import { BankBalanceSheetComponent } from './components/worksheet/bank-balance-sheet/bank-balance-sheet.component';
 import { CustodySheetComponent } from './components/worksheet/custody-sheet/custody-sheet.component';
+import { CheckSheetComponent } from './components/worksheet/check-sheet/check-sheet.component';
 
 
 const routes: Routes = [
@@ -173,6 +174,12 @@ const routes: Routes = [
             canActivate: [AuthGuestService],
             data: {can: Auth.can('deposite_read')},
             component: DepositeSheetComponent
+          },
+          {
+            path: 'check',
+            canActivate: [AuthGuestService],
+            data: {can: Auth.can('check_read')},
+            component: CheckSheetComponent
           },
           {
             path: 'balances',

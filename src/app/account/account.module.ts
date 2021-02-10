@@ -59,6 +59,7 @@ import { DepositeSheetComponent } from './components/worksheet/deposite-sheet/de
 import { CustodySheetComponent } from './components/worksheet/custody-sheet/custody-sheet.component';
 import { SolfaSheetComponent } from './components/worksheet/solfa-sheet/solfa-sheet.component';
 import { BankBalanceSheetComponent } from './components/worksheet/bank-balance-sheet/bank-balance-sheet.component';
+import { CheckSheetComponent } from './components/worksheet/check-sheet/check-sheet.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { BankBalanceSheetComponent } from './components/worksheet/bank-balance-s
     CustodySheetComponent,
     SolfaSheetComponent,
     BankBalanceSheetComponent,
+    CheckSheetComponent,
   ],
   imports: [
     SharedModule,

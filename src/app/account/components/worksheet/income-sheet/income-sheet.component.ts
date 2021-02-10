@@ -30,6 +30,8 @@ export class IncomeSheetComponent implements OnInit {
   }
 
   loadData() {
+    if (!this.filter.store_id)
+      return;
     this.loading = true;
     this.globalService.get('account/incomes', this.filter).subscribe((res) =>{
       this.data = res;

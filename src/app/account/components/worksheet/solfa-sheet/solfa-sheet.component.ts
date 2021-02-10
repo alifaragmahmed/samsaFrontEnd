@@ -15,6 +15,7 @@ export class SolfaSheetComponent implements OnInit {
   data: any = [];
   total = 0;
   stores: any = [];
+  loading: any = false;
 
   constructor(private globalService: GlobalService) { }
 
@@ -26,8 +27,12 @@ export class SolfaSheetComponent implements OnInit {
   }
 
   loadData() {
+    if (!this.filter.store_id)
+      return;
+    this.loading = true;
     this.globalService.get('account/solfas', this.filter).subscribe((res) =>{
       this.data = res;
+      this.loading = false;
       this.calculateTotal();
       this.create('');
     });
