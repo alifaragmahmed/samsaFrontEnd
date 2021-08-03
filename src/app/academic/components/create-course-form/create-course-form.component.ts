@@ -5,6 +5,7 @@ import { ApplicationSettingService } from 'src/app/adminision/services/applicati
 import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
+import { GlobalService } from 'src/app/shared/services/global.service';
 import { StudentService } from 'src/app/student/services/student.service';
 import { CourseService } from '../../services/course.service';
 
@@ -47,6 +48,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
 
   constructor(
     private courseService: CourseService,
+    private globalService: GlobalService,
     private applicationSetting: ApplicationSettingService,
     private studentService: StudentServiceService) { }
 
@@ -58,9 +60,12 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
     // load open couress for this year and term
     this.loadCourses();
     // load divisions
-    this.divisions = ApplicationSettingService.DIVISIONS;
+    this.globalService.get('account/divisions').subscribe((res) => {
+      this.divisions = res;
+    });
     // load levels
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+
     // load student services
     this.loadServices();
   }

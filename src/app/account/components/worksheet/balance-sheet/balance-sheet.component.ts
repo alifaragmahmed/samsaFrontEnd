@@ -23,6 +23,21 @@ export class BalanceSheetComponent implements OnInit {
 
   constructor(private globalService: GlobalService) {
     this.filter.store_id = 0;
+    let month: any = new Date().getMonth();
+    month = parseInt(month) + 1;
+    let year = new Date().getFullYear();
+
+    if (month.toString().length < 2) {
+      month = "0"+month;
+    }
+
+
+    this.filter.date_from = year + "-"+ month + "-01";
+    this.filter.date_to = year + "-"+ month + "-31";
+
+    console.log("filter = ");
+    console.log(this.filter);
+
     this.updateView =() =>{ this.loadData() };
   }
 

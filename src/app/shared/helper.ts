@@ -25,7 +25,7 @@ export class Helper {
     word = word.replace(/\s/g, '_');
     word = word.toLocaleLowerCase();
     // load translations from cache
-    const transWord = Translation.TRANSLATION_DATA[word];//getTranslationsData()[word];
+    const transWord = Translation.getTranslationsData()[word];
 
     if (transWord) {
       return transWord['name_'+Translation.getLang()];

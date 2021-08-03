@@ -85,7 +85,7 @@ var AuthModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-box\">\r\n    <div class=\"login-logo w3-animate-top\">\r\n      <img src=\"/assets/img/logo.png\" alt=\"\" style=\"width: 90px\" >\r\n      <br>\r\n      <a href=\"#\" class=\"w3-text-gray\" ><b> المعهد العالي للعلوم الإدارية ببني سويف  </b></a>\r\n    </div>\r\n    <!-- /.login-logo -->\r\n    <div class=\"login-box-body material-shadow w3-animate-zoom\">\r\n      <p class=\"login-box-msg\"><b>{{ 'login with account' || trans }}</b></p>\r\n   \r\n        <div class=\"form-group has-feedback\">\r\n          <input type=\"email\" class=\"form-control\" [(ngModel)]=\"userAuth.email\" placeholder=\"{{ 'email' | trans }}\">\r\n          <span class=\"glyphicon glyphicon-envelope form-control-feedback\"></span>\r\n        </div>\r\n        <div class=\"form-group has-feedback\">\r\n          <input type=\"password\" class=\"form-control\" [(ngModel)]=\"userAuth.password\" placeholder=\"{{ 'password' | trans }}\">\r\n          <span class=\"glyphicon glyphicon-lock form-control-feedback\"></span>\r\n        </div>\r\n        <div class=\"row\">\r\n          <div class=\"col-xs-8\">\r\n            <div class=\"checkbox icheck\">\r\n              <!--\r\n              <label class=\"\">\r\n                <div class=\"icheckbox_square-blue\" aria-checked=\"false\" aria-disabled=\"false\" style=\"position: relative;\"><input type=\"checkbox\" style=\"position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;\"><ins class=\"iCheck-helper\" style=\"position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;\"></ins></div> \r\n                Remember Me\r\n              </label>\r\n              -->\r\n            </div>\r\n          </div>\r\n          <!-- /.col -->\r\n          <div class=\"col-xs-4\">\r\n            <button type=\"button\" (click)=\"login()\" [disabled]=\"isSubmitted\" class=\"btn btn-primary btn-block btn-flat\">{{ 'Sign In' | trans }}</button>\r\n          </div>\r\n          <!-- /.col -->\r\n        </div> \r\n   \r\n      <!-- /.social-auth-links \r\n  \r\n      <a href=\"#\">I forgot my password</a><br>\r\n      <a href=\"register.html\" class=\"text-center\">Register a new membership</a>\r\n  -->\r\n    </div>\r\n    <!-- /.login-box-body -->\r\n  </div>"
+module.exports = "<div class=\"login-box\">\r\n    <div class=\"login-logo w3-animate-top\">\r\n      <img src=\"/assets/img/logo.png\" alt=\"\" style=\"width: 90px\" >\r\n      <br>\r\n      <a href=\"#\" class=\"w3-text-gray\" ><b> المعهد العالي للعلوم الإدارية ببني سويف  </b></a>\r\n    </div>\r\n    <!-- /.login-logo -->\r\n    <div class=\"login-box-body material-shadow w3-animate-zoom\">\r\n      <p class=\"login-box-msg\"><b>{{ 'login with account' | trans }}</b></p>\r\n\r\n        <div class=\"form-group has-feedback\">\r\n          <input type=\"email\" class=\"form-control\" [(ngModel)]=\"userAuth.email\" placeholder=\"{{ 'email' | trans }}\">\r\n          <span class=\"glyphicon glyphicon-envelope form-control-feedback\"></span>\r\n        </div>\r\n        <div class=\"form-group has-feedback\">\r\n          <input type=\"password\" class=\"form-control\" [(ngModel)]=\"userAuth.password\" placeholder=\"{{ 'password' | trans }}\">\r\n          <span class=\"glyphicon glyphicon-lock form-control-feedback\"></span>\r\n        </div>\r\n        <div class=\"row\">\r\n          <div class=\"col-xs-8\">\r\n            <div class=\"checkbox icheck\">\r\n              <!--\r\n              <label class=\"\">\r\n                <div class=\"icheckbox_square-blue\" aria-checked=\"false\" aria-disabled=\"false\" style=\"position: relative;\"><input type=\"checkbox\" style=\"position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;\"><ins class=\"iCheck-helper\" style=\"position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;\"></ins></div>\r\n                Remember Me\r\n              </label>\r\n              -->\r\n            </div>\r\n          </div>\r\n          <!-- /.col -->\r\n          <div class=\"\">\r\n            <button type=\"button\" (click)=\"login()\" [disabled]=\"isSubmitted\" class=\"btn btn-primary btn-block btn-flat\">{{ 'Sign In' | trans }}</button>\r\n          </div>\r\n          <!-- /.col -->\r\n        </div>\r\n\r\n      <!-- /.social-auth-links\r\n\r\n      <a href=\"#\">I forgot my password</a><br>\r\n      <a href=\"register.html\" class=\"text-center\">Register a new membership</a>\r\n  -->\r\n    </div>\r\n    <!-- /.login-box-body -->\r\n  </div>\r\n"
 
 /***/ }),
 
@@ -136,7 +136,7 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () {
         this.doc.jquery('body').addClass('login-background');
         this.route.queryParams.subscribe(function (params) {
-            // noinspection TsLint 
+            // noinspection TsLint
         });
     };
     LoginComponent.prototype.login = function () {
@@ -145,11 +145,12 @@ var LoginComponent = /** @class */ (function () {
         this.authService.login(this.userAuth).subscribe(function (result) {
             var data = result;
             if (data.status == 1) {
-                // cache user 
+                // cache user
                 _shared_cache__WEBPACK_IMPORTED_MODULE_4__["Cache"].set(_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"].USER_PRFIX, data.data);
-                // cache api token 
+                // cache api token
                 _shared_cache__WEBPACK_IMPORTED_MODULE_4__["Cache"].set(_shared_services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"].API_TOKEN_PRFIX, data.data.api_token);
                 _this.router.navigate(['/']).then().catch();
+                window.location.href = "/";
             }
             else {
                 _shared_message__WEBPACK_IMPORTED_MODULE_5__["Message"].error(data.message);

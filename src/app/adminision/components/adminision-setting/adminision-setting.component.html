@@ -17,16 +17,18 @@
           <span *ngIf="isSubmitted5"  class="fa fa-spin fa-spinner" ></span>
         </button>
       </td>
-      <!--
-      <td>{{ "division" | trans }}</td>
+
+      <td>{{ "currrent term" | trans }}</td>
       <td>
-        <select   style="width: 100px" class="form-control input-sm" (change)="loadAcademicYearExpenses()"  [(ngModel)]="division_id" >
-           <ng-container *ngFor="let item of departments">
-              <option *ngIf="level_id == item.level_id"  value="{{ item.id }}" >{{ item.name }}</option>
+        <select   style="width: 100px" class="form-control input-sm" [(ngModel)]="currentTerm.id" (change)="updateSettings(currentTerm)"   >
+           <ng-container *ngFor="let item of terms">
+              <option  value="{{ item.id }}" >{{ item.name }}</option>
            </ng-container>
         </select>
       </td>
-      -->
+
+
+
     </tr>
   </table>
   <br>

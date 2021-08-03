@@ -34,7 +34,7 @@
                 <td>{{ "division"| trans }} *</td>
                 <td>
                   <select  [(ngModel)]="course.division_id"  class="form-control">
-                    <option *ngFor="let item of applicationSettting.DIVISIONS" value="{{ item.id }}" >{{ item.name }}</option>
+                    <option *ngFor="let item of divisions" value="{{ item.id }}" >{{ item.name }}</option>
                   </select>
                 </td>
               </tr>

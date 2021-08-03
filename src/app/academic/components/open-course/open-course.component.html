@@ -23,6 +23,7 @@
                     <th>{{ "code" | trans }}</th>
                     <th>{{ "name" | trans }}</th>
                     <th>{{ "credit_hour" | trans }}</th>
+                    <th>{{ "prerequsites" | trans }}</th>
                     <th>{{ "book_price" | trans }}</th>
                     <th></th>
                   </tr>
@@ -34,6 +35,7 @@
                     <td>{{ course.code }}</td>
                     <td>{{ course.name }}</td>
                     <td>{{ course.credit_hour }}</td>
+                    <td>{{ course.prerequsites_names }}</td>
                     <td>{{ course.book_price }}</td>
                     <td>
                       <mat-slide-toggle

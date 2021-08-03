@@ -29,6 +29,7 @@ export class Cache {
    */
   public static get(key) {
     const data = localStorage.getItem(Cache.CACHE_KEY + key);
+
     return JSON.parse(data);
   }
 

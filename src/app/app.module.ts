@@ -31,6 +31,19 @@ import { DataTablesModule } from '../../node_modules/angular-datatables';
 import { SystemLabelComponent } from './core/components/system-label/system-label.component';
 import { UserService } from './user/services/user.service';
 import { RoleService } from './user/services/role.service';
+import { Request } from './shared/request';
+import { Router } from '@angular/router';
+import { AccountModule } from './account/account.module';
+import { AcademicModule } from './academic/academic.module';
+import { AdminisionModule } from './adminision/adminision.module';
+import { AffairsModule } from './affairs/affairs.module';
+import { CardModule } from './card/card.module';
+import { SettingsModule } from './settings/settings.module';
+import { StudentModule } from './student/student.module';
+import { UserModule } from './user/user.module';
+import { Helper } from './shared/helper';
+import { MilitaryModule } from './military/military.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -73,6 +86,13 @@ import { RoleService } from './user/services/role.service';
     AuthGuestService,
     UserService,
     RoleService,
+    AccountModule,
+    AcademicModule,
+    AdminisionModule,
+    AffairsModule,
+    CardModule,
+    SettingsModule,
+    StudentModule,
     {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
   ],
   bootstrap: [AppComponent]
@@ -81,19 +101,40 @@ export class AppModule {
 
   public static doc: any = document;
 
-  constructor() {
+  constructor(
+  private router: Router,
+  private translationService: TranslationService,
+  private levelService: LevelService,
+  private termService: TermService,
+  private divisionService: DivisionService,
+  private applicationSettingService: ApplicationSettingService) {
+    Translation.TRANSLATION_DATA = Cache.has(Translation.TRANSLATION_CACHE_KEY)? Cache.get(Translation.TRANSLATION_CACHE_KEY) : [];
+
     var self = this;
-    /*
-    self.reloadIfConsoleOpen();
+     //Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+     Request.addToQueue({observer: this.translationService.get(), action: (r)=>{
+      Cache.remove(Translation.TRANSLATION_CACHE_KEY);
+      Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
+      Translation.TRANSLATION_DATA = r;
+      Helper.refreshComponent(this.router, '/');
+    }});
+    Request.addToQueue({observer: this.divisionService.get(), action: (r)=>{
+      Cache.remove(DivisionService.DIVISION_PREFIX);
+      Cache.set(DivisionService.DIVISION_PREFIX, r);
+    }});
+    Request.addToQueue({observer: this.levelService.get(), action: (r)=>{
+      Cache.remove(LevelService.LEVEL_PREFIX);
+      Cache.set(LevelService.LEVEL_PREFIX, r);
+    }});
+    Request.addToQueue({observer: this.termService.get(), action: (r)=>{
+      Cache.remove(TermService.TERPM_PREFIX);
+      Cache.set(TermService.TERPM_PREFIX, r);
+    }});
 
-    document.oncontextmenu = function(ev){
-      ev.preventDefault();
-    };
+    // load all requests in the queueue
+    console.log("request count : " + Request.queue.length);
+    Request.fire();
 
-    document.onmousemove = function(ev){
-      self.reloadIfConsoleOpen();
-    };
-*/
   }
 
   reloadIfConsoleOpen() {

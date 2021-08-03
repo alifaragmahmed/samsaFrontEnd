@@ -51,6 +51,7 @@
         <th class="w3-padding" >{{ "date" | trans }}</th>
         <th class="w3-padding" >{{ "name" | trans }}</th>
         <th class="w3-padding" >{{ "value" | trans }}</th>
+        <th class="w3-padding" ></th>
       </tr>
       <tr *ngIf="!filter.store_id"  >
         <td class="w3-text-red text-center" colspan="4" >{{ "select store" | trans }}</td>
@@ -87,6 +88,9 @@
             class="w3-block w3-border-0 -light-gray text-center"
             [(ngModel)]="item.value" >
           </td>
+          <td>
+            <button class="fa fa-trash w3-button" *ngIf="item.id"  (click)="remove(item, i)" ></button>
+          </td>
         </tr>
       </ng-container>
       <tr>
@@ -94,6 +98,7 @@
         <td></td>
         <td>{{ "total" | trans }}</td>
         <td>{{ total }}</td>
+        <td></td>
       </tr>
 
     </table>

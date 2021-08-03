@@ -18,10 +18,13 @@ export class SettingTemplate {
 
   }
 
-  get() {
+  get(action=null) {
     this.settingService.baseUrl = this.baseUrl;
     this.settingService.get().subscribe((res) => {
       this.data = res;
+
+      if (action)
+        action(res);
     });
   }
 
@@ -39,15 +42,15 @@ export class SettingTemplate {
     return valid;
   }
 
-  send(item=this.item, index=null) {
+  send(item=this.item, index=null, action=null) {
     this.settingService.baseUrl = this.baseUrl;
     if (item.id)
-      this.update(item, index=null);
+      this.update(item, index=null, action);
     else
-      this.store(item, index=null);
+      this.store(item, index=null, action);
   }
 
-  store(item=this.item, index=null) {
+  store(item=this.item, index=null, callback=null) {
     if (!this.validate(item))
       return Message.error(Helper.trans('fill all data'));
 
@@ -67,10 +70,13 @@ export class SettingTemplate {
 
       this.action(res);
       this.isSubmitted = false;
+
+      if (callback)
+      callback(res);
     });
   }
 
-  update(item=this.item, index=null) {
+  update(item=this.item, index=null, callback=null) {
     if (!this.validate(item))
       return Message.error(Helper.trans('fill all data'));
 
@@ -90,6 +96,8 @@ export class SettingTemplate {
 
       this.action(res);
       this.isSubmitted = false;
+      if (callback)
+      callback(res);
     });
   }
 

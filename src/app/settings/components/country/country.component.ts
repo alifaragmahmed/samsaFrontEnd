@@ -13,6 +13,7 @@ export class CountryComponent extends SettingTemplate implements OnInit {
 
   gover = null;
   city = null;
+  goverAction = null;
   selectedCountry: any = {};
   selectedGovernment: any = {};
 
@@ -32,16 +33,22 @@ export class CountryComponent extends SettingTemplate implements OnInit {
     this.gover.baseUrl = "governments";
     //governmentService.baseUrl = "governments";
     this.gover.get();
+    this.goverAction = (res) => {
+
+    };
 
     // init city
     this.city = new SettingTemplate(this.cityService);
     this.city.baseUrl = "cities";
     this.city.requiredFields = ['name', 'government_id'];
     this.city.get();
-
   }
 
   ngOnInit() {
+  }
+
+  action(res) {
+    this.get();
   }
 
 }

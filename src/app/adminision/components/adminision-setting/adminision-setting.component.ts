@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { exit } from 'process';
+import { TermService } from 'src/app/account/services/term.service';
+import { SystemSettingService } from 'src/app/core/services/system-setting.service';
 import { Auth } from 'src/app/shared/auth';
+import { Cache } from 'src/app/shared/cache';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 import { ApplicationSettingService } from '../../services/application-setting.service';
@@ -14,11 +17,14 @@ export class AdminisionSettingComponent implements OnInit {
 
   breadcrumbList: any = [];
   adminisionSetting5: any = {};
+  terms: any = [];
+
+  currentTerm: any = {};
 
 
   isSubmitted5 = false;
 
-  constructor(private service: ApplicationSettingService) {
+  constructor(private service: ApplicationSettingService, private termService: TermService, private systemSetting: SystemSettingService) {
     !Auth.can('application_setting')? exit() : '';
     // init breadcrum
     this.breadcrumbList = [
@@ -36,6 +42,17 @@ export class AdminisionSettingComponent implements OnInit {
         }
       });
     });
+
+    this.terms = Cache.get(TermService.TERPM_PREFIX);
+
+  }
+
+  loadSetting() {
+    this.systemSetting.getSystemSetting().subscribe((res: any)=>{
+      console.log(res);
+      this.currentTerm = res['current_term'];
+
+    });
   }
 
   updateSettings(element) {
@@ -52,6 +69,7 @@ export class AdminisionSettingComponent implements OnInit {
 
   ngOnInit() {
     this.loadSettings();
+    this.loadSetting();
   }
 
 }

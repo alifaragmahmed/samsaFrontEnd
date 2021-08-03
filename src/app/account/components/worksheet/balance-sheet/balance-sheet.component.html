@@ -100,6 +100,19 @@
             {{ item.balance }}
           </td>
         </tr>
+
+        <tr *ngIf="i == (data.length - 1)" >
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="w3-large" >{{ "total of the store" | trans }}</td>
+          <td class="w3-large">
+            <b class="w3-text-red" >{{ item.balance }}</b>
+          </td>
+        </tr>
       </ng-container>
 
     </table>

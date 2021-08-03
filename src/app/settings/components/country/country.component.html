@@ -88,7 +88,7 @@
                     <div style="width: 90px" >
                       <button class="btn btn-success"
                       [disabled]="gover.isSubmitted"
-                      (click)="gover.send(item, i)" >
+                      (click)="gover.send(item, i, goverAction)" >
                       <i *ngIf="!gover.isSubmitted" class="fa fa-check" ></i>
                       <i *ngIf="gover.isSubmitted" class="fa fa-spin fa-spinner" ></i>
                     </button>

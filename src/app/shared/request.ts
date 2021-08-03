@@ -24,7 +24,7 @@ export class Request {
    * start the queue
    *
    */
-  public static fire() {
+  public static fire(sync=false) {
     //if (Request.isFired)
     //  return;
 
@@ -39,8 +39,12 @@ export class Request {
           Request.queue.push(object);
       }, ()=>{
         console.log("queue size : " + (Request.queue.length) + ", key : " + object.key + ", times : " + object.times);
-        Request.fire();
+        if (!sync)
+          Request.fire(sync);
       });
+
+      if (sync)
+        Request.fire(sync);
     } else {
       Request.isFired = false;
       return;
