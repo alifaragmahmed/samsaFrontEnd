@@ -41,7 +41,7 @@ export class ApplicationCreateComponent implements OnInit {
 
   public qualificationGrade = 0;
 
-  public requiredDocumentList = new HashTable();
+  public requiredDocumentList = new HashTable<any, any>();
 
   public differentYearRequired = 0;
 
@@ -52,7 +52,7 @@ export class ApplicationCreateComponent implements OnInit {
     'registration_status_id',
     'academic_years_id',
     'grade',
-    'qualification_date',
+    'qualification_date1',
     'qualification_types_id',
     'level_id'
     //'case_constraint_id'
@@ -61,7 +61,9 @@ export class ApplicationCreateComponent implements OnInit {
   public col = "col-lg-10 col-md-10 col-sm-12";
   constructor(private applicationService: ApplicationService, private route: ActivatedRoute, private applicationSettingService: ApplicationSettingService) {
     this.applicationSettingService.queueRequests();
-    Request.fire();
+    Request.fire(false, () => {
+      this.application = {};
+    });
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
       !Auth.can('application_edit')? exit() : '';
@@ -69,6 +71,8 @@ export class ApplicationCreateComponent implements OnInit {
       this.isUpdate = true;
     } else {
       !Auth.can('application_add')? exit() : '';
+      //
+      this.application.registeration_date = new Date().toISOString().substring(0, 10);
     }
 
     this.route.queryParams.subscribe((params) => {
@@ -84,6 +88,40 @@ export class ApplicationCreateComponent implements OnInit {
     });
   }
 
+  calculateAge() {
+    if (!this.application.birthdate)
+      return 0;
+
+    var years = 0;
+    try {
+      var calcDate = new Date();
+      calcDate.setMonth(9);
+      calcDate.setDate(1);
+
+      var birthdate = this.application.birthdate;
+      var bDate = new Date(birthdate);
+
+      var diffTime = calcDate.getTime() - bDate.getTime();
+      console.log("diffTime : ", diffTime);
+
+      years = parseInt((diffTime / (24 * 60 * 60 * 1000 * 365)) + "");
+      this.application.years = years;
+    } catch (error) {
+      console.log(error);
+    }
+    return years;
+  }
+
+  validateOnAge(action=null) {
+    var message = "عمر الطالب اكبر من 22 سنه هل انت موافق بالاستمرار";
+    this.calculateAge();
+    if (this.application.years >= 22) {
+      Message.confirm(message, function(){
+        action? action() : null;
+      });
+    }
+  }
+
   validate() {
     let valid = true;
 
@@ -95,6 +133,19 @@ export class ApplicationCreateComponent implements OnInit {
     return valid;
   }
 
+  calculatePercent() {
+    var percent = 0;
+    var total = 0;
+    this.applicationSettings.QUALIFICATION_TYPES.forEach(element => {
+      if (this.application.qualification_types_id == element.id) {
+        total = element.grade;
+      }
+    });
+    //
+    percent = (this.application.grade / total) * 100;
+    this.application.percent = percent.toFixed(2);
+  }
+
   validateOnRegisterationStatusDocument() {
     this.requiredDocumentList = new HashTable();
     this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS.forEach(element => {
@@ -102,25 +153,38 @@ export class ApplicationCreateComponent implements OnInit {
         this.requiredDocumentList.put(element.required_document_id, 1);
       }
     });
+
+    this.changeIfMakasa();
+  }
+
+  changeIfMakasa() {
+    if (this.application.registration_status_id == 4) {
+      this.application.level_id = 2;
+      this.setLevel();
+    }
   }
 
   validateOnQualificationDate() {
-    if (!this.application.qualification_date)
+    if (!this.application.qualification_date1)
       return false;
 
-    this.differentYearRequired = 0;
-    this.applicationSettings.SETTINGS.forEach(element => {
-      if (element.id == 5)
-        this.differentYearRequired = element.value;
-    });
-    // current year
-    let currentYear = new Date().getFullYear();
-    let qualificationYear = new Date(this.application.qualification_date).getFullYear();
-    let differentYear = currentYear - qualificationYear;
+    try {
+      this.differentYearRequired = 0;
+      this.applicationSettings.SETTINGS.forEach(element => {
+        if (element.id == 5)
+          this.differentYearRequired = element.value;
+      });
+      // current year
+      let currentYear = new Date().getFullYear();
+      let qualificationYear = parseInt(this.application.qualification_date1);//new Date(this.application.qualification_date1).getFullYear();
+      let differentYear = currentYear - qualificationYear;
 
-    console.log(differentYear);
-    if (differentYear > this.differentYearRequired)
+      console.log(differentYear);
+      if (differentYear > this.differentYearRequired)
+        return false;
+    } catch (error) {
       return false;
+    }
 
     return true;
   }
@@ -133,10 +197,19 @@ export class ApplicationCreateComponent implements OnInit {
     if (!this.validateOnQualificationDate())
       return Message.error(Helper.trans('different year of qualification must be less of equal than ' + this.differentYearRequired));
 
+
+    var date = new Date();
+    date.setFullYear(this.application.qualification_date1);
+    this.application.qualification_date = date.toISOString().substring(0,10);
+
     if (this.isUpdate)
       this.performUpdateApplication();
-    else
-      this.performSendApplication();
+    else {
+        var self = this;
+        this.validateOnAge(function(){
+          self.performSendApplication();
+        });
+    }
   }
 
   performUpdateApplication() {
@@ -257,7 +330,7 @@ export class ApplicationCreateComponent implements OnInit {
       }
     });
 
-    if (requiredGrade) {
+    if (requiredGrade && this.application.registration_status_id != 4) {
       this.gradeError = Helper.trans('grade must be equal or bigger than ') + ' : ' + requiredGrade;
       this.setCurrentError(this.gradeError);
     } else {
@@ -272,6 +345,8 @@ export class ApplicationCreateComponent implements OnInit {
     }
 
     this.application.level_id = levelId;
+
+    this.changeIfMakasa();
   }
 
   setLevel() {

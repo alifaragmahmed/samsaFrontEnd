@@ -24,7 +24,7 @@ export class Request {
    * start the queue
    *
    */
-  public static fire(sync=false) {
+  public static fire(sync=false, action=null) {
     //if (Request.isFired)
     //  return;
 
@@ -47,6 +47,7 @@ export class Request {
         Request.fire(sync);
     } else {
       Request.isFired = false;
+      action? action() : null;
       return;
     }
   }

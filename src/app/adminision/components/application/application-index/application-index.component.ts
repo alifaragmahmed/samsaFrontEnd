@@ -29,6 +29,7 @@ export class ApplicationIndexComponent implements OnInit {
   public removed = [];
 
   public pages: any;
+  public search: any = {};
 
   public isEntrollSubmit = false;
   public isLoad = false;
@@ -114,7 +115,7 @@ export class ApplicationIndexComponent implements OnInit {
 
   loadResources(page=1) {
     this.isLoad = true;
-    this.applicationService.get(page).subscribe( (res: any) => {
+    this.applicationService.get(page, this.search).subscribe( (res: any) => {
       this.resources = res;
       this.prePagniation();
       this.isLoad = false;

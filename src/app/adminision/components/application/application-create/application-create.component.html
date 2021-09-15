@@ -52,7 +52,7 @@
         academic_years_id	      grade
         registeration_date	    phone_1
         registration_status_id	registration_method_id
-        qualification_date	    qualification_set_number
+        qualification_date1	    qualification_set_number
         qualification_types_id	qualification_id
         level_id	              case_constraint_id
         national_id	            password
@@ -101,6 +101,20 @@
                         </td>
                       </tr>
                       <tr>
+                        <th>{{ "birthdate" | trans }}</th>
+                        <td>
+                          <input
+                          type="date"
+                          (change)="calculateAge()"
+                          class="custom-input form-control input-sm w3-input input-sm"
+                          [(ngModel)]="application.birthdate" >
+
+                          <p class="w3-text-red w3-tiny" *ngIf="application.years > 0" >
+                            {{ application.years }}
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
                         <th>{{ "academic_years" | trans }} *</th>
                         <td>
                           <select
@@ -128,7 +142,7 @@
                         <th>{{ "qualification_types" | trans }} *</th>
                         <td>
                           <select
-                          (change)="watchLevel();checkIfAzhar()"
+                          (change)="watchLevel();checkIfAzhar();calculatePercent()"
                           class="custom-input form-control input-sm w3-input input-sm"
                           [ngClass]="{'border-bottom-dashed': application.qualification_types_id>0, 'border-bottom-red': !application.qualification_types_id}"
                           [(ngModel)]="application.qualification_types_id">
@@ -137,13 +151,26 @@
                             </ng-container>
 
                           </select>
+                          <p class="w3-text-red w3-tiny" *ngIf="application.percent > 0" >
+                            {{ application.percent }} %
+                          </p>
                         </td>
+                      </tr>
+                      <tr>
+                          <th>{{ "qualification_date1" | trans }} *</th>
+                          <td>
+                            <input
+                            type="number"
+                            class="custom-input form-control input-sm w3-input  input-sm"
+                            [ngClass]="{'border-bottom-dashed': application.qualification_date1>0, 'border-bottom-red': !application.qualification_date1}"
+                            [(ngModel)]="application.qualification_date1" >
+                          </td>
                       </tr>
                       <tr>
                           <th>{{ "grade" | trans }} *</th>
                           <td>
                             <input
-                            (change)="watchLevel()"
+                            (change)="watchLevel();calculatePercent()"
                             type="number"
                             [readOnly]="isAzhar"
                             class="custom-input form-control input-sm w3-input input-sm"
@@ -190,28 +217,15 @@
                         </tr>
                       </ng-container>
                       <tr>
-                        <th>{{ "level" | trans }}</th>
-                        <td>
-                          <input
-                          type="text"
-                          readonly
-                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                          [(ngModel)]="application.level_name" >
-                          <input
-                          type="hidden"
-                          [(ngModel)]="application.level_id" >
-                        </td>
-                      </tr>
-                      <tr>
-                          <th>{{ "qualification_date" | trans }} *</th>
+                          <th>{{ "qualification_set_number" | trans }}</th>
                           <td>
                             <input
-                            type="date"
-                            class="custom-input form-control input-sm w3-input  input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.qualification_date>0, 'border-bottom-red': !application.qualification_date}"
-                            [(ngModel)]="application.qualification_date" >
+                            type="number"
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                            [(ngModel)]="application.qualification_set_number" >
                           </td>
                       </tr>
+
                       <tr>
                         <th>{{ "registration_status" | trans }} *</th>
                         <td>
@@ -225,13 +239,25 @@
                         </td>
                       </tr>
                       <tr>
-                          <th>{{ "national_id" | trans }} *</th>
+                        <th>{{ "level" | trans }}</th>
+                        <td>
+                          <input
+                          type="text"
+                          readonly
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                          [(ngModel)]="application.level_name" >
+                          <input
+                          type="hidden"
+                          [(ngModel)]="application.level_id" >
+                        </td>
+                      </tr>
+
+                      <tr *ngIf="application.registration_status_id == 4 || application.registration_status_id == 8 || application.registration_status_id == 9" >
+                          <th>{{ "register_notes" | trans }}</th>
                           <td>
-                            <input
-                            type="text"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
-                            [(ngModel)]="application.national_id" >
+                            <textarea
+                            class="custom-input form-control input-sm w3-input  input-sm"
+                            [(ngModel)]="application.register_notes" ></textarea>
                           </td>
                       </tr>
                       <!--
@@ -252,6 +278,36 @@
 
                   <div class="col-lg-6 col-md-6 col-sm-12">
                     <table class="table w3-block w3-block" >
+                      <tr>
+                        <th>{{ "address" | trans }}</th>
+                        <td>
+                          <input
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                          [(ngModel)]="application.address" >
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th>{{ "phone_1" | trans }}</th>
+                        <td>
+                          <input
+                          type="text"
+                          class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                          [(ngModel)]="application.phone_1" >
+                        </td>
+                    </tr>
+
+
+                      <tr>
+                          <th>{{ "national_id" | trans }} *</th>
+                          <td>
+                            <input
+                            type="text"
+                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                            [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
+                            [(ngModel)]="application.national_id" >
+                          </td>
+                      </tr>
                         <tr>
                             <th>{{ "registeration_date" | trans }}</th>
                             <td>
@@ -261,15 +317,6 @@
                               [(ngModel)]="application.registeration_date" >
                             </td>
                         </tr>
-                      <tr>
-                          <th>{{ "qualification_set_number" | trans }}</th>
-                          <td>
-                            <input
-                            type="number"
-                            class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                            [(ngModel)]="application.qualification_set_number" >
-                          </td>
-                      </tr>
                       <tr>
                         <th>{{ "registration_method" | trans }}</th>
                         <td>
@@ -298,7 +345,9 @@
                               [(ngModel)]="application.password" >
                             </td>
                         </tr>
-                        <tr>
+                        <ng-container *ngIf="application.registration_status_id != 3" >
+
+                          <tr>
                             <th>{{ "acceptance_code" | trans }}</th>
                             <td>
                               <input
@@ -316,15 +365,9 @@
                               [(ngModel)]="application.acceptance_date" >
                             </td>
                         </tr>
-                        <tr>
-                            <th>{{ "phone_1" | trans }}</th>
-                            <td>
-                              <input
-                              type="text"
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                              [(ngModel)]="application.phone_1" >
-                            </td>
-                        </tr>
+
+                        </ng-container>
+
                         <tr>
                           <th>{{ "gender" | trans }}</th>
                           <td>
@@ -361,7 +404,7 @@
                               <select
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.military_status_id">
-                                <option *ngFor="let item of applicationSettings.MALITARY_STATUS" value="{{ item.id }}">{{ item.name }}</option>
+                                <option *ngFor="let item of applicationSettings.MILITARY_STATUS" value="{{ item.id }}">{{ item.name }}</option>
                               </select>
                             </td>
                           </tr>
@@ -371,7 +414,7 @@
                               <select
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.military_area_id">
-                                <option *ngFor="let item of applicationSettings.MALITARY_AREAS" value="{{ item.id }}">{{ item.name }}</option>
+                                <option *ngFor="let item of applicationSettings.MILITARY_AREAS" value="{{ item.id }}">{{ item.name }}</option>
                               </select>
                             </td>
                           </tr>
@@ -387,6 +430,24 @@
                               type="text"
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.triple_number" >
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ "military_code" | trans }}</th>
+                            <td>
+                              <input
+                              type="text"
+                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                              [(ngModel)]="application.military_code" >
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>{{ "military_date" | trans }}</th>
+                            <td>
+                              <input
+                              type="date"
+                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                              [(ngModel)]="application.military_date" >
                             </td>
                           </tr>
                       </table>
@@ -494,7 +555,7 @@
                               <select
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.language_1_id">
-                                <option *ngFor="let item of applicationSettings.LANGUAGUES" value="{{ item.id }}">{{ item.name }}</option>
+                                <option *ngFor="let item of applicationSettings.LANGUAGES" value="{{ item.id }}">{{ item.name }}</option>
                               </select>
                             </td>
                           </tr>
@@ -504,7 +565,7 @@
                               <select
                               class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
                               [(ngModel)]="application.language_2_id">
-                                <option *ngFor="let item of applicationSettings.LANGUAGUES" value="{{ item.id }}">{{ item.name }}</option>
+                                <option *ngFor="let item of applicationSettings.LANGUAGES" value="{{ item.id }}">{{ item.name }}</option>
                               </select>
                             </td>
                           </tr>
@@ -566,14 +627,7 @@
                               </select>
                             </td>
                           </tr>
-                          <tr>
-                            <th>{{ "address" | trans }}</th>
-                            <td>
-                              <input
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                              [(ngModel)]="application.address" >
-                            </td>
-                          </tr>
+
                           <tr>
                             <th>{{ "birth_address" | trans }}</th>
                             <td>
@@ -582,22 +636,28 @@
                               [(ngModel)]="application.birth_address" >
                             </td>
                           </tr>
-                          <tr>
-                            <th>{{ "national_id_date" | trans }}</th>
-                            <td>
-                              <input
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                              [(ngModel)]="application.national_id_date" >
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>{{ "national_id_place" | trans }}</th>
-                            <td>
-                              <input
-                              class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
-                              [(ngModel)]="application.national_id_place" >
-                            </td>
-                          </tr>
+                          <!--
+                            1 => egyptian
+                            --->
+                          <ng-container *ngIf="application.nationality_id != 1 && application.nationality_id > 0" >
+                            <tr>
+                              <th>{{ "national_id_date" | trans }}</th>
+                              <td>
+                                <input
+                                class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                                [(ngModel)]="application.national_id_date" >
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>{{ "national_id_place" | trans }}</th>
+                              <td>
+                                <input
+                                class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm"
+                                [(ngModel)]="application.national_id_place" >
+                              </td>
+                            </tr>
+                          </ng-container>
+
 
                       </table>
                     </div>

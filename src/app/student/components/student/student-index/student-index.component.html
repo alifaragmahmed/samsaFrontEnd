@@ -29,6 +29,14 @@
 
     <br>
 
+    <input
+    type="text"
+    class="w3-input w3-block form-control"
+    placeholder="{{ 'search' | trans }}"
+    (change)="loadResources()"
+    [(ngModel)]="search.search_key"  >
+  <br>
+
 <div class="w3-row student-container nicescroll" style="padding: 5px;"    >
   <div *ngIf="isLoad" class="w3-block text-center w3-padding" >
     <i class="fa fa-spin fa-refresh w3-jumbo w3-text-indigo"></i>

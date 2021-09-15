@@ -20,6 +20,13 @@
 </div>
 -->
 
+<input
+  type="text"
+  class="w3-input w3-block form-control"
+  placeholder="{{ 'search' | trans }}"
+  (change)="loadResources()"
+  [(ngModel)]="search.search_key"  >
+<br>
 <div class="w3-row" style="padding: 5px;">
   <div *ngIf="isLoad" class="w3-block text-center w3-padding">
     <i class="fa fa-spin fa-refresh w3-jumbo w3-text-indigo"></i>
@@ -61,6 +68,10 @@
           <div class="media-body">
             <h5 class="media-heading">{{ item.name }}..</h5>
             <table class="w3-tiny">
+              <tr>
+                <th>{{ "code" | trans }}</th>
+                <td>{{ item.id }}</td>
+              </tr>
               <tr>
                 <th>{{ "academic_year" | trans }}</th>
                 <td>{{ item.academic_year? item.academic_year.name : '' }}</td>

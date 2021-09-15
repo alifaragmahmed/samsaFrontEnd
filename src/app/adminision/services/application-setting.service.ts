@@ -38,26 +38,65 @@ export class ApplicationSettingService {
   }
 
   queueRequests() {
-    Request.addToQueue({observer: this.getCaseConstraints(), action: (res)=>{ ApplicationSettingService.CASE_CONSTRAINTS = res; }});
-    Request.addToQueue({observer: this.getNationalities(), action: (res)=>{ ApplicationSettingService.NATIONALITIES = res; }});
-    Request.addToQueue({observer: this.getAcademicYears(), action: (res)=>{ ApplicationSettingService.ACADEMIC_YEARS = res; }});
-    Request.addToQueue({observer: this.getQualificationTypes(), action: (res)=>{ ApplicationSettingService.QUALIFICATION_TYPES = res; }});
-    Request.addToQueue({observer: this.getQualifications(), action: (res)=>{ ApplicationSettingService.QUALIFICATIONS = res; }});
-    Request.addToQueue({observer: this.getRegisterationStatus(), action: (res)=>{ ApplicationSettingService.REGISTERATION_STATUS = res; }});
-    Request.addToQueue({observer: this.getRegisterationMethods(), action: (res)=>{ ApplicationSettingService.REGISTERATION_METHODS = res; }});
-    Request.addToQueue({observer: this.getLanguages(), action: (res)=>{ ApplicationSettingService.LANGUAGES = res; }});
-    Request.addToQueue({observer: this.getCities(), action: (res)=>{ ApplicationSettingService.CITIES = res; }});
-    Request.addToQueue({observer: this.getGovernments(), action: (res)=>{ ApplicationSettingService.GOVERNMENTS = res; }});
-    Request.addToQueue({observer: this.getCountries(), action: (res)=>{ ApplicationSettingService.COUNTRIES = res; }});
-    Request.addToQueue({observer: this.getMilitaryStatus(), action: (res)=>{ ApplicationSettingService.MILITARY_STATUS = res; }});
-    Request.addToQueue({observer: this.getMilitaryAreas(), action: (res)=>{ ApplicationSettingService.MILITARY_AREAS = res; }});
-    Request.addToQueue({observer: this.getParentJobs(), action: (res)=>{ ApplicationSettingService.PARENT_JOBS = res; }});
-    Request.addToQueue({observer: this.getRelativeRelations(), action: (res)=>{ ApplicationSettingService.RELATIVE_RELATIONS = res; }});
-    Request.addToQueue({observer: this.getRequiredDocuments(), action: (res)=>{ ApplicationSettingService.REQUIRED_DOCUMENTS = res; }});
-    Request.addToQueue({observer: this.getDepartments(), action: (res)=>{ ApplicationSettingService.DEPARTMENTS = res; }});
-    Request.addToQueue({observer: this.getRegisterationStatusDocuments(), action: (res)=>{ ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = res; }});
-    Request.addToQueue({observer: this.getDivisions(), action: (res)=>{ ApplicationSettingService.DIVISIONS = res; }});
-    Request.addToQueue({observer: this.getSettings(), action: (res)=>{ ApplicationSettingService.SETTINGS = res; }});
+    if (ApplicationSettingService.CASE_CONSTRAINTS.length <= 0)
+      Request.addToQueue({observer: this.getCaseConstraints(), action: (res)=>{ApplicationSettingService.CASE_CONSTRAINTS = res; }});
+
+    if (ApplicationSettingService.NATIONALITIES.length <= 0)
+      Request.addToQueue({observer: this.getNationalities(), action: (res)=>{   ApplicationSettingService.NATIONALITIES = res; }});
+
+    if (ApplicationSettingService.ACADEMIC_YEARS.length <= 0)
+      Request.addToQueue({observer: this.getAcademicYears(), action: (res)=>{   ApplicationSettingService.ACADEMIC_YEARS = res; }});
+
+    if (ApplicationSettingService.QUALIFICATION_TYPES.length <= 0)
+      Request.addToQueue({observer: this.getQualificationTypes(), action: (res)=>{  ApplicationSettingService.QUALIFICATION_TYPES = res; }});
+
+    if (ApplicationSettingService.QUALIFICATIONS.length <= 0)
+      Request.addToQueue({observer: this.getQualifications(), action: (res)=>{  ApplicationSettingService.QUALIFICATIONS = res; }});
+
+    if (ApplicationSettingService.REGISTERATION_STATUS.length <= 0)
+      Request.addToQueue({observer: this.getRegisterationStatus(), action: (res)=>{  ApplicationSettingService.REGISTERATION_STATUS = res; }});
+
+    if (ApplicationSettingService.REGISTERATION_METHODS.length <= 0)
+      Request.addToQueue({observer: this.getRegisterationMethods(), action: (res)=>{  ApplicationSettingService.REGISTERATION_METHODS = res; }});
+
+    if (ApplicationSettingService.LANGUAGES.length <= 0)
+      Request.addToQueue({observer: this.getLanguages(), action: (res)=>{  ApplicationSettingService.LANGUAGES = res; }});
+
+    if (ApplicationSettingService.CITIES.length <= 0)
+      Request.addToQueue({observer: this.getCities(), action: (res)=>{  ApplicationSettingService.CITIES = res; }});
+
+    if (ApplicationSettingService.GOVERNMENTS.length <= 0)
+      Request.addToQueue({observer: this.getGovernments(), action: (res)=>{  ApplicationSettingService.GOVERNMENTS = res; }});
+
+    if (ApplicationSettingService.COUNTRIES.length <= 0)
+      Request.addToQueue({observer: this.getCountries(), action: (res)=>{  ApplicationSettingService.COUNTRIES = res; }});
+
+    if (ApplicationSettingService.MILITARY_STATUS.length <= 0)
+      Request.addToQueue({observer: this.getMilitaryStatus(), action: (res)=>{  ApplicationSettingService.MILITARY_STATUS = res; }});
+
+    if (ApplicationSettingService.MILITARY_AREAS.length <= 0)
+      Request.addToQueue({observer: this.getMilitaryAreas(), action: (res)=>{  ApplicationSettingService.MILITARY_AREAS = res; console.log("MILITARY AREAS : ", res); }});
+
+    if (ApplicationSettingService.PARENT_JOBS.length <= 0)
+      Request.addToQueue({observer: this.getParentJobs(), action: (res)=>{  ApplicationSettingService.PARENT_JOBS = res; }});
+
+    if (ApplicationSettingService.RELATIVE_RELATIONS.length <= 0)
+      Request.addToQueue({observer: this.getRelativeRelations(), action: (res)=>{  ApplicationSettingService.RELATIVE_RELATIONS = res; }});
+
+    if (ApplicationSettingService.REQUIRED_DOCUMENTS.length <= 0)
+      Request.addToQueue({observer: this.getRequiredDocuments(), action: (res)=>{  ApplicationSettingService.REQUIRED_DOCUMENTS = res; }});
+
+    if (ApplicationSettingService.DEPARTMENTS.length <= 0)
+      Request.addToQueue({observer: this.getDepartments(), action: (res)=>{  ApplicationSettingService.DEPARTMENTS = res; }});
+
+    if (ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS.length <= 0)
+      Request.addToQueue({observer: this.getRegisterationStatusDocuments(), action: (res)=>{   ApplicationSettingService.REGSITERATIN_STATUS_DOCUMENTS = res; }});
+
+    if (ApplicationSettingService.DIVISIONS.length <= 0)
+      Request.addToQueue({observer: this.getDivisions(), action: (res)=>{  ApplicationSettingService.DIVISIONS = res; }});
+
+    if (ApplicationSettingService.SETTINGS.length <= 0)
+      Request.addToQueue({observer: this.getSettings(), action: (res)=>{  ApplicationSettingService.SETTINGS = res; }});
 
 
   }

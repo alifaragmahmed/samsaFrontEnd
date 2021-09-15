@@ -21,6 +21,7 @@ export class StudentIndexComponent implements OnInit {
 
   // init breadcrum
   public breadcrumbList = [];
+  public search: any = {};
 
   // remove options
   public showRemoveButton = false;
@@ -102,7 +103,7 @@ export class StudentIndexComponent implements OnInit {
 
   loadResources(page=1) {
     this.isLoad = true;
-    this.studentService.get(page).subscribe( (res: any) => {
+    this.studentService.get(page, this.search).subscribe( (res: any) => {
       this.resources = res;
       this.prePagniation();
       this.isLoad = false;

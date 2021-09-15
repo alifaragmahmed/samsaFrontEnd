@@ -17,6 +17,7 @@ export class TranslationComponent implements OnInit {
   public isUpdate = false;
   response: any = {};
   currentPage: any = 1;
+  search: any = {};
 
   constructor(private translationService: TranslationService) { }
 
@@ -30,7 +31,8 @@ export class TranslationComponent implements OnInit {
    */
   loadTranslations() {
     let data = {
-      page: this.currentPage
+      page: this.currentPage,
+      key: this.search.key
     };
     this.translationService.getList(data).subscribe((r) => {
       this.response = r;

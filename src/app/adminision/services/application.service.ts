@@ -7,6 +7,8 @@ import { Auth } from '../../shared/auth';
 })
 export class ApplicationService {
 
+  $: any = $;
+
   constructor(private http: HttpClient) {
   }
 
@@ -14,8 +16,8 @@ export class ApplicationService {
    * get services from api
    *
    */
-  public get(page: any=1) {
-    return this.http.get('adminision/applications?api_token=' + Auth.getApiToken()+"&page="+page);
+  public get(page: any=1, data={}) {
+    return this.http.get('adminision/applications?api_token=' + Auth.getApiToken()+"&page="+page + "&" + this.$.param(data));
   }
 
   /**
@@ -29,28 +31,28 @@ export class ApplicationService {
   /**
    * store new service
    */
-  public store(data: FormData) { 
+  public store(data: FormData) {
     return this.http.post('adminision/applications/store' + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
    * update service
    */
-  public update(data: FormData) { 
+  public update(data: FormData) {
     return this.http.post('adminision/applications/update/' + data.get('id') + '?api_token=' + Auth.getApiToken(), data);
   }
 
   /**
    * remove service
    */
-  public destroy(id) { 
+  public destroy(id) {
     return this.http.post('adminision/applications/delete/' + id + '?api_token=' + Auth.getApiToken(), null);
   }
-  
+
   /**
    * enroll application to student
    */
-  public enroll(id) { 
+  public enroll(id) {
     return this.http.post('students/enroll/' + id + '?api_token=' + Auth.getApiToken(), null);
   }
 
