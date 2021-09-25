@@ -11,6 +11,8 @@ import { HashTable } from '../../../../../../node_modules/angular-hashtable';
 import { Request } from 'src/app/shared/request';
 import { Auth } from 'src/app/shared/auth';
 import { exit } from 'process';
+import { Router } from '@angular/router';
+import { ApplicationHelper } from '../application-helper';
 
 @Component({
   selector: 'app-application-create',
@@ -45,6 +47,10 @@ export class ApplicationCreateComponent implements OnInit {
 
   public differentYearRequired = 0;
 
+  public appHelper = ApplicationHelper;
+
+  public $: any = $;
+
   public required_field = [
     'name',
     'qualification_id',
@@ -59,7 +65,11 @@ export class ApplicationCreateComponent implements OnInit {
   ];
 
   public col = "col-lg-10 col-md-10 col-sm-12";
-  constructor(private applicationService: ApplicationService, private route: ActivatedRoute, private applicationSettingService: ApplicationSettingService) {
+  constructor(
+    private applicationService: ApplicationService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private applicationSettingService: ApplicationSettingService) {
     this.applicationSettingService.queueRequests();
     Request.fire(false, () => {
       this.application = {};
@@ -88,6 +98,27 @@ export class ApplicationCreateComponent implements OnInit {
     });
   }
 
+  validateOnNationalId() {
+    var message = Helper.trans("national id is not valid");
+    var self = this;
+
+    if (!ApplicationHelper.validateOnNationalId(this.application.national_id, this.application.birthdate)) {
+
+      this.setCurrentError(message);
+      Message.confirm(message, function(){
+        self.$('.national_id')[0].focus();
+      }, () => {
+        self.$('.national_id')[0].focus();
+      });
+
+    } else {
+      this.setCurrentError("");
+    }
+
+    // set gender
+    this.application.gender = ApplicationHelper.getGenderFromNationalId(this.application.national_id);
+  }
+
   calculateAge() {
     if (!this.application.birthdate)
       return 0;
@@ -112,13 +143,18 @@ export class ApplicationCreateComponent implements OnInit {
     return years;
   }
 
-  validateOnAge(action=null) {
+  validateOnAge() {
     var message = "عمر الطالب اكبر من 22 سنه هل انت موافق بالاستمرار";
     this.calculateAge();
+    var self = this;
+
     if (this.application.years >= 22) {
       Message.confirm(message, function(){
-        action? action() : null;
+        // do noting if ok
+      }, () => {
+        Helper.refreshComponent(self.router, "/affairs");
       });
+    } else {
     }
   }
 
@@ -205,10 +241,7 @@ export class ApplicationCreateComponent implements OnInit {
     if (this.isUpdate)
       this.performUpdateApplication();
     else {
-        var self = this;
-        this.validateOnAge(function(){
-          self.performSendApplication();
-        });
+        this.performSendApplication();
     }
   }
 

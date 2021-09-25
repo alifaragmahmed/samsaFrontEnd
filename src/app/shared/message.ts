@@ -18,8 +18,8 @@ export class Message {
       //AppModule.doc.observeNotification();
     }
 
-    public static confirm(message: string, action: any) {
+    public static confirm(message: string, action: any, nothing: any=null) {
       let doc: any = document;
-      doc.swal.confirm(message, action);
+      doc.swal.confirm(message, action, nothing);
     }
 }
