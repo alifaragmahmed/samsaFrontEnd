@@ -9,6 +9,11 @@ import { StudentCreateComponent } from '../student/components/student/student-cr
 import { StudentIndexComponent } from '../student/components/student/student-index/student-index.component';
 import { StudentComponent } from '../student/student.component';
 import { AffairsComponent } from './affairs.component';
+import { StudentAffairReport2Component } from './report/student-affair-report2/student-affair-report2.component';
+import { StudentAffairReport1Component } from './report/student-affair-report1/student-affair-report1.component';
+import { StudentAffairReport3Component } from './report/student-affair-report3/student-affair-report3.component';
+import { StudentAffairReport4Component } from './report/student-affair-report4/student-affair-report4.component';
+import { StudentAffairReport5Component } from './report/student-affair-report5/student-affair-report5.component';
 
 const routes: Routes = [
    {
@@ -42,6 +47,26 @@ const routes: Routes = [
       {
         path: 'application_required',
         component: ApplicationRequiredComponent
+      },
+      {
+        path: 'report/report1',
+        component: StudentAffairReport1Component
+      },
+      {
+        path: 'report/report2',
+        component: StudentAffairReport2Component
+      },
+      {
+        path: 'report/report3',
+        component: StudentAffairReport3Component
+      },
+      {
+        path: 'report/report4',
+        component: StudentAffairReport4Component
+      },
+      {
+        path: 'report/report5',
+        component: StudentAffairReport5Component
       },
     ]
   },

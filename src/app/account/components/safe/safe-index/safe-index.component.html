@@ -249,7 +249,7 @@
 <app-student-installment [installments]="safeObject.installments? safeObject.installments : []" [showStudentInstallment]="showStudentInstallment"></app-student-installment>
 
 <!-- student payments modal -->
-<app-student-payment [payments]="safeObject.payment_details? safeObject.payment_details : []" [updateStudent]="updateStudent"></app-student-payment>
+<app-student-payment [paymentsRow]="safeObject.payments? safeObject.payments : []" [payments]="safeObject.payment_details? safeObject.payment_details : []" [updateStudent]="updateStudent"></app-student-payment>
 
 <!-- student refund payments modal -->
 <app-pay-refund [payments]="safeObject.payments? safeObject.payments : []" [updateStudent]="updateStudent"></app-pay-refund>

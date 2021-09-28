@@ -132,12 +132,25 @@
             player.play();
         }
 
+
         document.printJs = function() {
-            printJS('printable', 'html');
+            $('table').addClass('text-center');
+            printJS({
+                printable: 'printable',
+                type: 'html',
+                css: ['assets/css/bootstrap.min.css', 'assets/css/w3.css']
+            });
+            //printJS('printable', 'html');
         }
 
         document.printPdf = function() {
-            printJS('printable', 'docs/printjs.pdf');
+            $('table').addClass('text-center');
+            printJS({
+                printable: 'printable',
+                type: 'html',
+                css: ['assets/css/bootstrap.min.css', 'assets/css/w3.css']
+            });
+            //printJS('printable', 'docs/pdf');
         }
 
         document.exportExcel = function(name) {

@@ -9,6 +9,7 @@ import { DivisionService } from '../../../services/division.service';
 import { Cache } from '../../../../shared/cache';
 import { LevelService } from '../../../services/level.service';
 import { StoreService } from '../../../services/store.service';
+import { GlobalService } from '../../../../shared/services/global.service';
 
 @Component({
   selector: 'app-service-form',
@@ -30,8 +31,10 @@ export class ServiceFormComponent implements OnInit {
   public levels: any;
   public divisions: any;
   public stores: any;
+  public service_templates: any = [];
 
-  constructor(private studentService: StudentServiceService, private storeService: StoreService) {
+  constructor(private studentService: StudentServiceService,
+    private storeService: StoreService, private globalService: GlobalService) {
     this.reset();
   }
 
@@ -60,6 +63,12 @@ export class ServiceFormComponent implements OnInit {
     this.divisions = Cache.get(DivisionService.DIVISION_PREFIX);
     this.storeService.get().subscribe((res)=>{
       this.stores = res;
+    });
+    this.storeService.get().subscribe((res)=>{
+      this.stores = res;
+    });
+    this.globalService.get("account/service_templates").subscribe((res)=>{
+      this.service_templates = res;
     });
   }
 

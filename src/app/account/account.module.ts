@@ -110,7 +110,7 @@ import { CheckSheetComponent } from './components/worksheet/check-sheet/check-sh
     CustodySheetComponent,
     SolfaSheetComponent,
     BankBalanceSheetComponent,
-    CheckSheetComponent,
+    CheckSheetComponent
   ],
   imports: [
     SharedModule,

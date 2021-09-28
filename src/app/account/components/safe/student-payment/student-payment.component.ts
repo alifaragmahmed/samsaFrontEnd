@@ -6,6 +6,8 @@ import { Auth } from 'src/app/shared/auth';
 import { Helper } from 'src/app/shared/helper';
 import { Message } from 'src/app/shared/message';
 import { AppModule } from '../../../../app.module';
+import { GlobalService } from 'src/app/shared/services/global.service';
+import { Payment } from '../../../models/payment';
 
 @Component({
   selector: 'app-student-payment',
@@ -23,9 +25,10 @@ export class StudentPaymentComponent implements OnInit , OnChanges{
   public auth: any = Auth;
 
   @Input() payments: any[];
+  @Input() paymentsRow: any[];
   @Input() updateStudent: any;
 
-  constructor(private service: StudentAccountService, private storeService: StoreService, private studentService: StudentServiceService) { }
+  constructor(private service: StudentAccountService, private storeService: StoreService, private studentService: StudentServiceService, private globalService: GlobalService) { }
 
   calculateTotal() {
     this.total = 0;
@@ -96,4 +99,26 @@ export class StudentPaymentComponent implements OnInit , OnChanges{
     this.calculateTotal();
   }
 
+  changePaymentStatus(payment: any) {
+
+    payment.is_print = payment.is_print == 0? '1' : '0';
+
+    var data = {
+      payment_id: payment.id,
+      col: 'is_print',
+      value: payment.is_print
+    };
+
+    this.globalService.store("account/change_payment_status", data).subscribe(function(res: any){
+      if (res.status == 1)
+        Message.success(res.message);
+      else
+        Message.error(res.message);
+    });
+  }
+
+  printPayment(payment: any) {
+    payment.is_print = 1;
+    Payment.viewReceipt(payment.id);
+  }
 }
