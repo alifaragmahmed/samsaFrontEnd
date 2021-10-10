@@ -93,6 +93,13 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th>{{ "national_id" | trans }} *</th>
+                                            <td>
+                                                <input type="text" (blur)="validateOnNationalId()" class="national_id custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
+                                                    [(ngModel)]="application.national_id">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>{{ "birthdate" | trans }}</th>
                                             <td>
                                                 <input type="date" (blur)="validateOnAge()" class="custom-input form-control input-sm w3-input input-sm" [(ngModel)]="application.birthdate">
@@ -235,14 +242,7 @@
                                             </td>
                                         </tr>
 
-
-                                        <tr>
-                                            <th>{{ "national_id" | trans }} *</th>
-                                            <td>
-                                                <input type="text" (blur)="validateOnNationalId()" class="national_id custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [ngClass]="{'border-bottom-dashed': application.national_id>0, 'border-bottom-red': !application.national_id}"
-                                                    [(ngModel)]="application.national_id">
-                                            </td>
-                                        </tr>
+                                        <!-- -->
                                         <tr>
                                             <th>{{ "registeration_date" | trans }}</th>
                                             <td>

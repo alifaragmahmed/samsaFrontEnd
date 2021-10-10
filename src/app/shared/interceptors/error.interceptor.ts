@@ -9,6 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Auth } from '../auth';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -27,11 +28,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           } else {
             // server-side error
             if (error.status === 401) {
-              localStorage.removeItem('AdminToken');
-              localStorage.removeItem('AdminEmail');
-              localStorage.removeItem('AdminRole');
-              localStorage.removeItem('AdminName');
-              this.router.navigate(['/admin/auth/login']);
+              Auth.logout();
+              this.router.navigate(['/login']);
             }
           }
           return throwError(error);

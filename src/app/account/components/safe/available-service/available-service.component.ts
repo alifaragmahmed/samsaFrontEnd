@@ -29,6 +29,9 @@ export class AvailableServiceComponent implements OnInit {
         this.total += (element.value + element.additional_value) * element.number;
       }
     });
+
+    if (this.total > 0)
+      this.safeObject.paid_value = this.total;
   }
 
   toggleService(item) {

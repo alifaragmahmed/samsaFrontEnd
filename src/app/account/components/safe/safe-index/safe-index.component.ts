@@ -8,6 +8,7 @@ import { AppModule } from '../../../../app.module';
 import { SafeMsgBuilder } from '../../../helpers/safe-msg-builder';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 import { HashTable } from 'angular-hashtable';
+import { SafeAlerter } from '../../../helpers/safe-alerter';
 
 @Component({
   selector: 'app-safe-index',
@@ -35,6 +36,7 @@ export class SafeIndexComponent implements OnInit {
   public updateStudent: any;
 
   public selectedServices = new HashTable<any, any>();
+  public safeAlerter: SafeAlerter;
 
   constructor(private studentAcountService: StudentAccountService, private route: ActivatedRoute) {
     this.init();
@@ -120,6 +122,8 @@ export class SafeIndexComponent implements OnInit {
       this.loadAvailableServices();
 
       this.alertForOldBalance();
+      this.safeAlerter = new SafeAlerter(this.safeObject);
+      this.safeAlerter.notify();
     });
   }
 

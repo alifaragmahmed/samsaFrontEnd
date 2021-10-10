@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges, Input } from '@angular/core';
+import { Component, OnInit, SimpleChanges, Input, OnChanges } from '@angular/core';
 import { StudentAccountService } from '../../../services/student-account.service';
 import { Auth } from '../../../../shared/auth';
 import { Helper } from '../../../../shared/helper';
@@ -10,7 +10,7 @@ import { AppModule } from '../../../../app.module';
   templateUrl: './send-note.component.html',
   styleUrls: ['./send-note.component.scss']
 })
-export class SendNoteComponent implements OnInit {
+export class SendNoteComponent implements OnInit, OnChanges {
 
   // init document
   public doc: any = AppModule.doc;
@@ -26,7 +26,7 @@ export class SendNoteComponent implements OnInit {
    *  load available services for student
    */
   sendNotes() {
-    if(this.newNotes) {
+    //if(this.newNotes) {
       const data = {
         api_token: Auth.getApiToken(),
         student_id: this.student.id,
@@ -40,8 +40,8 @@ export class SendNoteComponent implements OnInit {
         this.updateStudent();
         this.dismis();
       });
-    } else
-      Message.error(Helper.trans('write some notes'));
+    //} else
+    //  Message.error(Helper.trans('write some notes'));
   }
 
   /**
@@ -52,6 +52,10 @@ export class SendNoteComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+    this.newNotes = this.student.notes;
   }
 
 }

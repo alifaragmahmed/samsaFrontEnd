@@ -37,6 +37,7 @@ export class PaymentDetailsReportComponent implements OnInit {
   selectedServices = new HashTable();
   selectedAcademicYearExpenses = new HashTable();
   selectedTypes = new HashTable();
+  $: any = $;
 
   //
   public searchKey: string;
@@ -62,6 +63,11 @@ export class PaymentDetailsReportComponent implements OnInit {
       this.searchData.date_to = inputDate;
     }
 
+  loadSelectedType() {
+    this.selectedTypes.put(ReportType.OUT, ReportType.OUT);
+    this.selectedTypes.put(ReportType.IN, ReportType.IN);
+  }
+
 
   loadUsers() {
     this.userService.get().subscribe((res) => {
@@ -71,14 +77,26 @@ export class PaymentDetailsReportComponent implements OnInit {
 
   loadLevels() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
+    //
+    this.levels.forEach(element => {
+      this.selectedLevels.put(element.id, element.id);
+    });
   }
 
   loadDivisions() {
     this.divisions = this.applicationSetting.DIVISIONS;
+    //
+    this.divisions.forEach(element => {
+      this.selectedDivisions.put(element.id, element.id);
+    });
   }
 
   loadAcademicYears() {
     this.academicYears = this.applicationSetting.ACADEMIC_YEARS;
+    //
+    this.academicYears.forEach(element => {
+      this.selectedYears.put(element.id, element.id);
+    });
   }
 
   loadServices() {
@@ -87,6 +105,7 @@ export class PaymentDetailsReportComponent implements OnInit {
       res.forEach(element => {
         if (element.is_academic_year_expense != 1) {
           this.services.push(element);
+          this.selectedServices.put(element.id, element.id);
         }
       });
     });
@@ -98,16 +117,23 @@ export class PaymentDetailsReportComponent implements OnInit {
       res.forEach(element => {
         if (element.is_academic_year_expense == 1) {
           this.academicYearExpenses.push(element);
+          //
+          this.selectedAcademicYearExpenses.put(element.id, element.id);
         }
       });
     });
   }
 
   toggleType(value) {
-    if (this.searchData.payment_type == value)
+    /*if (this.searchData.payment_type == value)
       this.searchData.payment_type = '';
     else
       this.searchData.payment_type = value;
+*/
+    if (this.selectedTypes.has(value))
+      this.selectedTypes.remove(value);
+    else
+      this.selectedTypes.put(value, value);
   }
 
   toggle(id, list = new HashTable()) {
@@ -124,6 +150,7 @@ export class PaymentDetailsReportComponent implements OnInit {
     this.searchData.division_id = this.selectedDivisions.getKeys();
     this.searchData.academic_year_id = this.selectedYears.getKeys();
     this.searchData.services = this.selectedServices.getKeys();
+    this.searchData.payment_type = this.selectedTypes.getKeys();
     this.searchData.academic_year_expenses = this.selectedAcademicYearExpenses.getKeys();
     this.isSubmitted = true;
     this.reportService.get(this.searchData).subscribe((res) => {
@@ -204,6 +231,7 @@ export class PaymentDetailsReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadSelectedType();
     this.loadUsers();
     this.loadLevels();
     this.loadDivisions();
@@ -213,6 +241,15 @@ export class PaymentDetailsReportComponent implements OnInit {
 
     //
     this.loadPayments();
+    //
+    setTimeout(() => {
+      //this.$('.mat-slide-toggle-thumb-container').click();
+    }, 4000);
   }
 
+}
+
+
+enum ReportType {
+  OUT = 'out', IN = 'in'
 }

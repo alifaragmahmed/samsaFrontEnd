@@ -116,7 +116,6 @@ export class AppModule {
       Cache.remove(Translation.TRANSLATION_CACHE_KEY);
       Cache.set(Translation.TRANSLATION_CACHE_KEY, r);
       Translation.TRANSLATION_DATA = r;
-      Helper.refreshComponent(this.router, '/');
     }});
     Request.addToQueue({observer: this.divisionService.get(), action: (r)=>{
       Cache.remove(DivisionService.DIVISION_PREFIX);

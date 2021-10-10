@@ -30,21 +30,27 @@
                         <div *ngIf="studentSearchId" class="alert alert-danger w3-block btn-margin-bottom text-center" [innerHTML]="safeObject.notes">
 
                         </div>
-                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_payment" [disabled]="!studentSearchId" (click)="doc.jquery('#studentPayments').modal('show')">{{ "student payments" | trans }}</button>
+                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_payment" [disabled]="!studentSearchId" (click)="doc.jquery('#studentPayments').modal('show')">{{ "student payments"
+              | trans }}</button>
 
-                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_service" [disabled]="!studentSearchId" (click)="doc.jquery('#studentServices').modal('show')">{{ "student services" | trans }}</button>
+                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_service" [disabled]="!studentSearchId" (click)="doc.jquery('#studentServices').modal('show')">{{ "student services"
+              | trans }}</button>
 
                         <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_my_installment" [disabled]="!studentSearchId" (click)="doc.jquery('#studentInstallment').modal('show')">{{ "student installments" | trans }}</button>
 
                         <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_student_installment" [disabled]="!studentSearchId" (click)="doc.jquery('#installmentSection').modal('show')">{{ "installments" | trans }}</button>
 
-                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_note" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')">{{ "write note" | trans }}</button>
+                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_note" [disabled]="!studentSearchId" (click)="doc.jquery('#notesModal').modal('show')">{{ "write note" | trans
+              }}</button>
 
-                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_setting" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')">{{ "update settings" | trans }}</button>
+                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_setting" [disabled]="!studentSearchId" (click)="doc.jquery('#updateStudentInfo').modal('show')">{{ "update
+              settings" | trans }}</button>
 
-                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_discount" [disabled]="!studentSearchId" (click)="doc.jquery('#createDiscountRequestModal').modal('show')">{{ "create discount request" | trans }}</button>
+                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_discount" [disabled]="!studentSearchId" (click)="doc.jquery('#createDiscountRequestModal').modal('show')">{{ "create
+              discount request" | trans }}</button>
 
-                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_balance_reset" [disabled]="!studentSearchId" (click)="doc.jquery('#createBalanceResetModal').modal('show')">{{ "create balance reset" | trans }}</button>
+                        <button class="btn btn-default w3-block small-shadow btn-margin-bottom" permission="safe_balance_reset" [disabled]="!studentSearchId" (click)="doc.jquery('#createBalanceResetModal').modal('show')">{{ "create
+              balance reset" | trans }}</button>
                     </div>
 
                 </div>
@@ -68,7 +74,8 @@
                                         <div class="custom-panel-body w3-display-container">
                                             <input class="w3-round-xxlarge w3-white w3-input border-gray search-input " (keyup)="searchInputEvent()" placeholder="{{ 'search with student name code national_id' | trans }}" [(ngModel)]="searchKey">
 
-                                            <button (click)="loadStudentAccountInfo(studentSearchId)" class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge">{{ "search" | trans }}</button>
+                                            <button (click)="loadStudentAccountInfo(studentSearchId)" class="btn btn-default small-shadow w3-margin-left w3-margin-right w3-round-xxlarge">{{ "search"
+                        | trans }}</button>
 
                                             <div class="w3-display-topleft w3-padding" *ngIf="studentSearchDialogLoader" style="top: 12px;left:30%;z-index:10;">
                                                 <span class="fa fa-spin fa-spinner w3-text-indigo"></span>
@@ -194,8 +201,8 @@
                                             <th>{{ "old balance" | trans }}</th>
                                             <td>
                                                 : <b class="w3-text-red">
-                            {{ safeObject.old_balance }}
-                          </b>
+                          {{ safeObject.old_balance }}
+                        </b>
                                             </td>
                                         </tr>
                                         <tr>
@@ -220,9 +227,11 @@
                         <div class="custom-panel-body">
                             <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId || safeObject.paid_value < 0 || !safeObject.paid_value && safeObject.payment_type != 'service'" (click)="performPay()">{{ "save & print" | trans }}</button>
 
-                            <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId" (click)="doc.jquery('#studentAvailableServices').modal('show')" permission="safe_service">{{ "services" | trans }}</button>
+                            <button class="btn btn-default small-shadow w3-margin-left" [disabled]="!studentSearchId" (click)="doc.jquery('#studentAvailableServices').modal('show')" permission="safe_service">{{ "services"
+                | trans }}</button>
 
-                            <button class="btn btn-default small-shadow w3-margin-left" *ngIf="safeObject.is_refund == 1" [disabled]="!studentSearchId" (click)="doc.jquery('#studentRefundPayments').modal('show')">{{ "pay_refund" | trans }}</button>
+                            <button class="btn btn-default small-shadow w3-margin-left" *ngIf="safeObject.is_refund == 1" [disabled]="!studentSearchId" (click)="doc.jquery('#studentRefundPayments').modal('show')">{{
+                "pay_refund" | trans }}</button>
 
                             <button class="btn btn-default small-shadow w3-margin-left" routerLink="">{{ "exit" | trans }}</button>
                         </div>
@@ -249,10 +258,12 @@
 <app-student-installment [installments]="safeObject.installments? safeObject.installments : []" [showStudentInstallment]="showStudentInstallment"></app-student-installment>
 
 <!-- student payments modal -->
-<app-student-payment [paymentsRow]="safeObject.payments? safeObject.payments : []" [payments]="safeObject.payment_details? safeObject.payment_details : []" [updateStudent]="updateStudent"></app-student-payment>
+<app-student-payment [paymentsRow]="safeObject.payments? safeObject.payments : []" [payments]="safeObject.payment_details? safeObject.payment_details : []" [updateStudent]="updateStudent">
+</app-student-payment>
 
 <!-- student refund payments modal -->
-<app-pay-refund [payments]="safeObject.payments? safeObject.payments : []" [updateStudent]="updateStudent"></app-pay-refund>
+<app-pay-refund [payments]="safeObject.payments? safeObject.payments : []" [updateStudent]="updateStudent">
+</app-pay-refund>
 
 <!-- student services modal -->
 <app-student-service [safeObject]="safeObject"></app-student-service>

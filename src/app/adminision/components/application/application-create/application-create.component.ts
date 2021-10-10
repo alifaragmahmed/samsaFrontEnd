@@ -102,7 +102,14 @@ export class ApplicationCreateComponent implements OnInit {
     var message = Helper.trans("national id is not valid");
     var self = this;
 
-    if (!ApplicationHelper.validateOnNationalId(this.application.national_id, this.application.birthdate)) {
+    // get birth date from national id
+    this.application.birthdate = ApplicationHelper.getBirthdate(this.application.national_id);
+    this.calculateAge();
+
+    // get gender from national id
+    this.application.gender = ApplicationHelper.getGenderFromNationalId(this.application.national_id);
+
+    /*if (!ApplicationHelper.validateOnNationalId(this.application.national_id, this.application.birthdate)) {
 
       this.setCurrentError(message);
       Message.confirm(message, function(){
@@ -113,10 +120,9 @@ export class ApplicationCreateComponent implements OnInit {
 
     } else {
       this.setCurrentError("");
-    }
+    }*/
 
     // set gender
-    this.application.gender = ApplicationHelper.getGenderFromNationalId(this.application.national_id);
   }
 
   calculateAge() {
