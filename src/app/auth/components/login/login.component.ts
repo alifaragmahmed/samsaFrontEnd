@@ -4,6 +4,7 @@ import {AuthService} from '../../../shared/services/auth.service';
 import { Cache } from '../../../shared/cache';
 import { Message } from '../../../shared/message';
 import { AppModule } from '../../../app.module';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   public userAuth: any = {};
 
   public doc: any = AppModule.doc;
+  env: any = environment;
 
   constructor(
     private authService: AuthService,

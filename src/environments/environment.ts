@@ -13,5 +13,7 @@ export const environment = {
   //apiUrl: 'http://samsa.msa-bns.com/api',
   backEndPublicUrl: 'http://localhost:4000/',
   googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
-  frontEndPublicUrl: 'http://127.0.0.1:4200/'
+  frontEndPublicUrl: 'http://127.0.0.1:4200/',
+  business_name: 'المعهد العالي للعلوم الإدارية ببني سويف',
+
 };

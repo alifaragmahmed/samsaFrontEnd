@@ -6226,7 +6226,7 @@ var StudentDiscountReportComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"w3-white material-shadow\" >\r\n  <div class=\"custom-panel w3-display-container w3-round\">\r\n    <div class=\"w3-border-bottom w3-border-gray w3-padding text-center\" >{{ \"student available services\" | trans }}</div>\r\n    <div class=\"custom-panel-body\"  >\r\n      <ng-container *ngFor=\"let item of services index as i\">\r\n        <div\r\n        class=\"w3-border-bottom w3-border-gray w3-display-container\"\r\n        style=\"padding: 3px\" *ngIf=\"item.valid && item.is_in_store\" >\r\n          <mat-slide-toggle\r\n          (change)=\"toggleService(item)\"\r\n          [checked]=\"selectedServices.has(item.id)\" ></mat-slide-toggle>\r\n          <br>\r\n          {{ item.name }}\r\n          <div class=\"w3-display-topleft\" style=\"padding: 5px\" >\r\n            {{ item.value | currency: ' EGP ' }}\r\n          </div>\r\n        </div>\r\n      </ng-container>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div class=\"modal \" id=\"studentAvailableServices\" tabindex=\"-1\" role=\"dialog\"   >\r\n  <div class=\"modal-dialog modal-lg\" role=\"document\">\r\n    <div class=\"modal-content w3-animate-top\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title text-center\">{{ \"student available services\" | trans }}</h4>\r\n      </div>\r\n      <div class=\"\">\r\n        <table class=\"table table-bordered text-center\" >\r\n          <thead>\r\n            <tr class=\"w3-dark-gray\" >\r\n              <th>{{ \"#\" | trans }}</th>\r\n              <th>{{ \"name\" | trans }}</th>\r\n              <th>{{ \"additional_value\" | trans }}</th>\r\n              <th>{{ \"value\" | trans }}</th>\r\n              <th>{{ \"valid\" | trans }}</th>\r\n              <th>{{ \"reason\" | trans }}</th>\r\n              <th>{{ \"number\" | trans }}</th>\r\n              <th>{{ \"total\" | trans }}</th>\r\n              <th></th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <tr\r\n            *ngFor=\"let item of services index as i\"\r\n            [ngClass]=\"{'w3-text-red': !item.valid}\"\r\n             >\r\n              <td>{{ i + 1 }}</td>\r\n              <td>{{ item.name }}</td>\r\n              <td>{{ item.additional_value | currency: ' EGP ' }}</td>\r\n              <td>{{ item.value | currency: ' EGP ' }}</td>\r\n              <td>\r\n                <i *ngIf=\"!item.valid\" class=\"fa fa-window-close w3-text-red\" ></i>\r\n                <i *ngIf=\"item.valid\" class=\"fa fa-check-square w3-text-green\" ></i>\r\n              </td>\r\n              <td>\r\n                <span *ngIf=\"!item.valid\" class=\"w3-text-red\">\r\n                  {{ item.reason }}\r\n                </span>\r\n              </td>\r\n              <td>\r\n                <input\r\n                *ngIf=\"item.valid && item.copy\"\r\n                (change)=\"calculateTotal()\"\r\n                type=\"number\"\r\n                class=\"custom-input w3-input border-bottom-dashed input-sm\" [(ngModel)]=\"item.number\" >\r\n              </td>\r\n              <td>{{ (item.value + item.additional_value) | currency: ' EGP ' }}</td>\r\n              <td>\r\n                <mat-slide-toggle\r\n                (change)=\"toggleService(item)\"\r\n                [checked]=\"selectedServices.has(item.id)\"\r\n                *ngIf=\"item.valid\"  ></mat-slide-toggle>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n            </tr>\r\n            <tr>\r\n              <td>{{ \"total\" | trans }}</td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td></td>\r\n              <td>{{ total | currency: ' EGP ' }}</td>\r\n              <td></td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n      <div class=\"modal-footer text-right\">\r\n        <button type=\"button\" class=\"btn btn-default\"  class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" >{{ \"close\" | trans }}</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->\r\n"
+module.exports = "<div class=\"w3-white material-shadow\">\r\n    <div class=\"custom-panel w3-display-container w3-round\">\r\n        <div class=\"w3-border-bottom w3-border-gray w3-padding text-center\">{{ \"student available services\" | trans }}</div>\r\n        <div class=\"custom-panel-body\">\r\n            <ng-container *ngFor=\"let item of services index as i\">\r\n                <div class=\"w3-border-bottom w3-border-gray w3-display-container\" style=\"padding: 3px\" *ngIf=\"item.valid && item.is_in_store\">\r\n                    <mat-slide-toggle (change)=\"toggleService(item)\" [checked]=\"selectedServices.has(item.id)\"></mat-slide-toggle>\r\n                    <br> {{ item.name }}\r\n                    <div class=\"w3-display-topleft\" style=\"padding: 5px\">\r\n                        {{ item.value | currency: ' EGP ' }}\r\n                    </div>\r\n                </div>\r\n            </ng-container>\r\n        </div>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"modal \" id=\"studentAvailableServices\" tabindex=\"-1\" role=\"dialog\">\r\n    <div class=\"modal-dialog modal-lg\" role=\"document\">\r\n        <div class=\"modal-content w3-animate-top\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title text-center\">{{ \"student available services\" | trans }}</h4>\r\n            </div>\r\n            <div class=\"\">\r\n                <table class=\"table table-bordered text-center\">\r\n                    <thead>\r\n                        <tr class=\"w3-dark-gray\">\r\n                            <th>{{ \"#\" | trans }}</th>\r\n                            <th>{{ \"name\" | trans }}</th>\r\n                            <th>{{ \"additional_value\" | trans }}</th>\r\n                            <th>{{ \"value\" | trans }}</th>\r\n                            <th>{{ \"valid\" | trans }}</th>\r\n                            <th>{{ \"reason\" | trans }}</th>\r\n                            <th>{{ \"number\" | trans }}</th>\r\n                            <th>{{ \"total\" | trans }}</th>\r\n                            <th></th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let item of services index as i\" [ngClass]=\"{'w3-text-red': !item.valid}\">\r\n                            <td>{{ i + 1 }}</td>\r\n                            <td>{{ item.name }}</td>\r\n                            <td>{{ item.additional_value | currency: ' EGP ' }}</td>\r\n                            <td>{{ item.value | currency: ' EGP ' }}</td>\r\n                            <td>\r\n                                <i *ngIf=\"!item.valid\" class=\"fa fa-window-close w3-text-red\"></i>\r\n                                <i *ngIf=\"item.valid\" class=\"fa fa-check-square w3-text-green\"></i>\r\n                            </td>\r\n                            <td>\r\n                                <span *ngIf=\"!item.valid\" class=\"w3-text-red\">\r\n                  {{ item.reason }}\r\n                </span>\r\n                            </td>\r\n                            <td>\r\n                                <input *ngIf=\"item.valid && item.copy\" #serviceNumberInput (change)=\"item.number = serviceNumberInput.value;calculateTotal();\" type=\"number\" class=\"custom-input w3-input border-bottom-dashed input-sm\" [(ngModel)]=\"item.number\">\r\n                            </td>\r\n                            <td>{{ (item.value + item.additional_value) | currency: ' EGP ' }}</td>\r\n                            <td>\r\n                                <mat-slide-toggle (change)=\"toggleService(item)\" [checked]=\"selectedServices.has(item.id)\" *ngIf=\"item.valid\"></mat-slide-toggle>\r\n                            </td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td>{{ \"total\" | trans }}</td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td></td>\r\n                            <td>{{ total | currency: ' EGP ' }}</td>\r\n                            <td></td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <div class=\"modal-footer text-right\">\r\n                <button type=\"button\" class=\"btn btn-default\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">{{ \"close\" | trans }}</button>\r\n            </div>\r\n        </div>\r\n        <!-- /.modal-content -->\r\n    </div>\r\n    <!-- /.modal-dialog -->\r\n</div>\r\n<!-- /.modal -->"
 
 /***/ }),
 
@@ -6263,6 +6263,7 @@ var AvailableServiceComponent = /** @class */ (function () {
     function AvailableServiceComponent() {
         this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"].doc;
         this.total = 0;
+        this.$ = $;
         this.selectedServices = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
     }
     AvailableServiceComponent.prototype.calculateTotal = function () {
@@ -6278,6 +6279,7 @@ var AvailableServiceComponent = /** @class */ (function () {
             });
         if (this.total > 0)
             this.safeObject.paid_value = this.total;
+        this.setServicePayment();
     };
     AvailableServiceComponent.prototype.toggleService = function (item) {
         if (this.selectedServices.has(item.id)) {
@@ -6293,13 +6295,27 @@ var AvailableServiceComponent = /** @class */ (function () {
         var _this = this;
         var arr = [];
         var ids = this.selectedServices.getKeys();
-        ids.forEach(function (element) {
-            var object = {
-                id: element,
-                number: _this.selectedServices.get(element).number
-            };
-            arr.push(object);
+        console.log(this.services);
+        this.services.forEach(function (element) {
+            if (_this.selectedServices.has(element.id)) {
+                var object = {
+                    id: element.id,
+                    number: element.number
+                };
+                arr.push(object);
+            }
         });
+        /*
+        ids.forEach(element => {
+          const object = {
+            id: element,
+            number: this.selectedServices.get(element).number
+          };
+    
+          arr.push(object);
+        });
+        */
+        console.log("arr ", arr);
         if (ids.length > 0) {
             this.safeObject.services = arr;
             this.safeObject.payment_type = 'service';
@@ -20586,7 +20602,8 @@ var environment = {
     //apiUrl: 'http://samsa.msa-bns.com/api',
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
-    frontEndPublicUrl: 'http://127.0.0.1:4200/'
+    frontEndPublicUrl: 'http://127.0.0.1:4200/',
+    business_name: 'المعهد العالي للعلوم الإدارية ببني سويف',
 };
 
 

@@ -13,6 +13,7 @@ export class AvailableServiceComponent implements OnInit {
   public total = 0;
   @Input() services: any;
   @Input() safeObject: any;
+  $: any = $;
 
   @Input() selectedServices = new HashTable<any, any>();
 
@@ -32,6 +33,8 @@ export class AvailableServiceComponent implements OnInit {
 
     if (this.total > 0)
       this.safeObject.paid_value = this.total;
+
+    this.setServicePayment();
   }
 
   toggleService(item) {
@@ -48,6 +51,18 @@ export class AvailableServiceComponent implements OnInit {
     const arr = [];
     const ids = this.selectedServices.getKeys();
 
+    console.log(this.services);
+    this.services.forEach(element => {
+      if (this.selectedServices.has(element.id)) {
+        const object = {
+          id: element.id,
+          number: element.number
+        };
+
+        arr.push(object);
+      }
+    });
+    /*
     ids.forEach(element => {
       const object = {
         id: element,
@@ -56,6 +71,8 @@ export class AvailableServiceComponent implements OnInit {
 
       arr.push(object);
     });
+    */
+    console.log("arr ", arr);
 
     if (ids.length > 0) {
       this.safeObject.services = arr;
