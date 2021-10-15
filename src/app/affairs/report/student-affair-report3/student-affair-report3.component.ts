@@ -32,14 +32,18 @@ export class StudentAffairReport3Component implements OnInit {
 
 
     }
+  calculateCount() {
+    this.$('#count').text(this.$('#reportContent tbody tr').length);
+  }
 
   load() {
-    if (!Helper.validator(this.filter, ['level_id', 'division_id', 'academic_year_id'])) {
-      return Message.error(Helper.trans('please choose all filters'));
-    }
+    //if (!Helper.validator(this.filter, ['level_id', 'division_id', 'academic_year_id'])) {
+    //  return Message.error(Helper.trans('please choose all filters'));
+    //}
 
     this.globalService.loadHtml("affair/report3", this.filter).subscribe((res) => {
       $('#reportContent').html(res);
+      this.calculateCount();
     });
   }
 

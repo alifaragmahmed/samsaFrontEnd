@@ -6263,6 +6263,8 @@ var AvailableServiceComponent = /** @class */ (function () {
     function AvailableServiceComponent() {
         this.doc = src_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"].doc;
         this.total = 0;
+        this.services = [];
+        this.safeObject = {};
         this.$ = $;
         this.selectedServices = new angular_hashtable__WEBPACK_IMPORTED_MODULE_2__["HashTable"]();
     }
@@ -6293,6 +6295,8 @@ var AvailableServiceComponent = /** @class */ (function () {
     };
     AvailableServiceComponent.prototype.setServicePayment = function () {
         var _this = this;
+        if (!this.services)
+            return;
         var arr = [];
         var ids = this.selectedServices.getKeys();
         console.log(this.services);
@@ -6319,12 +6323,13 @@ var AvailableServiceComponent = /** @class */ (function () {
         if (ids.length > 0) {
             this.safeObject.services = arr;
             this.safeObject.payment_type = 'service';
-            this.safeObject.paid_value = this.total;
+            if (this.total > 0)
+                this.safeObject.paid_value = this.total;
         }
         else {
             this.safeObject.services = [];
             this.safeObject.payment_type = null;
-            this.safeObject.paid_value = 0;
+            //this.safeObject.paid_value = 0;
         }
     };
     AvailableServiceComponent.prototype.ngOnInit = function () {
@@ -13855,7 +13860,7 @@ var StudentAffairReport2Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"w3-block w3-row\">\n    <div class=\"w3-white material-shadow safe-box w3-block\">\n        <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\n            الطلاب المتقدمين\n        </div>\n        <div class=\"border-bottom-dashed\"></div>\n        <br>\n\n        <div class=\"\">\n\n            <div class=\"\">\n                <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n\n                    <div class=\"custom-panel-body table-responsive w3-padding\">\n\n                        <div class=\"row\">\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <div class=\"form-group\">\n                                    <label>{{ \"level\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.level_id\">\n                                  <option *ngFor=\"let item of levels\"  value=\"{{ item.id }}\">{{ item.name }}</option>\n                                </select>\n                                </div>\n                            </div>\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <div class=\"form-group\">\n                                    <label>{{ \"division\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.division_id\">\n                                  <option *ngFor=\"let item of applicationService.DIVISIONS\" value=\"{{ item.id }}\">{{ item.name }}</option>\n                                </select>\n                                </div>\n                            </div>\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <div class=\"form-group\">\n                                    <label>{{ \"academic_year\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.academic_year_id\">\n                                <option *ngFor=\"let item of applicationService.ACADEMIC_YEARS\"  value=\"{{ item.id }}\">{{ item.name }}</option>\n                              </select>\n                                </div>\n                            </div>\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <button class=\"btn btn-default w3-round\" (click)=\"load()\">{{ \"search\" | trans }}</button>\n                                <button class=\"btn btn-default w3-round\" (click)=\"printContent()\">{{ \"print\" | trans }}</button>\n                            </div>\n\n\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n            <div class=\"\">\n                <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\" id=\"printable\">\n\n                    <div class=\"custom-panel-body table-responsive w3-padding\" id=\"reportContent\">\n\n\n                    </div>\n                </div>\n            </div>\n\n\n\n        </div>\n\n\n    </div>\n</div>\n"
+module.exports = "<div class=\"w3-block w3-row\">\n    <div class=\"w3-white material-shadow safe-box w3-block\">\n        <div class=\"safe-box-header w3-large\" style=\"padding: 5px!important\">\n            الطلاب المتقدمين\n        </div>\n        <div class=\"border-bottom-dashed\"></div>\n        <br>\n\n        <div class=\"\">\n\n            <div class=\"\">\n                <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\">\n\n                    <div class=\"custom-panel-body table-responsive w3-padding\">\n\n                        <div class=\"row\">\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <div class=\"form-group\">\n                                    <label>{{ \"level\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.level_id\">\n                                      <option value=\"\">{{ \"all\" | trans }}</option>\n                                  <option *ngFor=\"let item of levels\"  value=\"{{ item.id }}\">{{ item.name }}</option>\n                                </select>\n                                </div>\n                            </div>\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <div class=\"form-group\">\n                                    <label>{{ \"division\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.division_id\">\n                                      <option value=\"\">{{ \"all\" | trans }}</option>\n                                  <option *ngFor=\"let item of applicationService.DIVISIONS\" value=\"{{ item.id }}\">{{ item.name }}</option>\n                                </select>\n                                </div>\n                            </div>\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <div class=\"form-group\">\n                                    <label>{{ \"academic_year\" | trans }}</label>\n                                    <select class=\"form-control\" [(ngModel)]=\"filter.academic_year_id\">\n                                      <option value=\"\">{{ \"all\" | trans }}</option>\n                                <option *ngFor=\"let item of applicationService.ACADEMIC_YEARS\"  value=\"{{ item.id }}\">{{ item.name }}</option>\n                              </select>\n                                </div>\n                            </div>\n\n                            <div class=\"col-lg-3 col-md-3\">\n                                <button class=\"btn btn-default w3-round\" (click)=\"load()\">{{ \"search\" | trans }}</button>\n                                <button class=\"btn btn-default w3-round\" (click)=\"printContent()\">{{ \"print\" | trans }}</button>\n\n                                <span class=\"w3-xlarge w3-text-green\" id=\"count\">\n\n                                </span>\n                            </div>\n\n\n                        </div>\n\n                    </div>\n                </div>\n            </div>\n            <div class=\"\">\n                <div class=\"custom-panel w3-display-container w3-round application-panel student-info-panel\" id=\"printable\">\n\n                    <div class=\"custom-panel-body table-responsive w3-padding\" id=\"reportContent\">\n\n\n                    </div>\n                </div>\n            </div>\n\n\n\n        </div>\n\n\n    </div>\n</div>"
 
 /***/ }),
 
@@ -13883,14 +13888,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_shared_cache__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/cache */ "./src/app/shared/cache.ts");
-/* harmony import */ var src_app_shared_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/helper */ "./src/app/shared/helper.ts");
-/* harmony import */ var src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/message */ "./src/app/shared/message.ts");
-/* harmony import */ var src_app_shared_request__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/shared/request */ "./src/app/shared/request.ts");
-/* harmony import */ var src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/services/global.service */ "./src/app/shared/services/global.service.ts");
-/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
-/* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../account/services/level.service */ "./src/app/account/services/level.service.ts");
-
-
+/* harmony import */ var src_app_shared_request__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/request */ "./src/app/shared/request.ts");
+/* harmony import */ var src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/shared/services/global.service */ "./src/app/shared/services/global.service.ts");
+/* harmony import */ var _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../adminision/services/application-setting.service */ "./src/app/adminision/services/application-setting.service.ts");
+/* harmony import */ var _account_services_level_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../account/services/level.service */ "./src/app/account/services/level.service.ts");
 
 
 
@@ -13904,29 +13905,34 @@ var StudentAffairReport3Component = /** @class */ (function () {
         this.applicationSettingService = applicationSettingService;
         this.filter = {};
         this.$ = $;
-        this.applicationService = _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationSettingService"];
+        this.applicationService = _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationSettingService"];
         this.levels = [];
         this.divisions = [];
         this.academicYears = [];
         this.doc = document;
         this.applicationSettingService.queueRequests();
         var self = this;
-        src_app_shared_request__WEBPACK_IMPORTED_MODULE_5__["Request"].fire(false, function () {
+        src_app_shared_request__WEBPACK_IMPORTED_MODULE_3__["Request"].fire(false, function () {
         });
     }
+    StudentAffairReport3Component.prototype.calculateCount = function () {
+        this.$('#count').text(this.$('#reportContent tbody tr').length);
+    };
     StudentAffairReport3Component.prototype.load = function () {
-        if (!src_app_shared_helper__WEBPACK_IMPORTED_MODULE_3__["Helper"].validator(this.filter, ['level_id', 'division_id', 'academic_year_id'])) {
-            return src_app_shared_message__WEBPACK_IMPORTED_MODULE_4__["Message"].error(src_app_shared_helper__WEBPACK_IMPORTED_MODULE_3__["Helper"].trans('please choose all filters'));
-        }
+        //if (!Helper.validator(this.filter, ['level_id', 'division_id', 'academic_year_id'])) {
+        //  return Message.error(Helper.trans('please choose all filters'));
+        //}
+        var _this = this;
         this.globalService.loadHtml("affair/report3", this.filter).subscribe(function (res) {
             $('#reportContent').html(res);
+            _this.calculateCount();
         });
     };
     StudentAffairReport3Component.prototype.printContent = function () {
         this.doc.printJs();
     };
     StudentAffairReport3Component.prototype.ngOnInit = function () {
-        this.levels = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_2__["Cache"].get(_account_services_level_service__WEBPACK_IMPORTED_MODULE_8__["LevelService"].LEVEL_PREFIX);
+        this.levels = src_app_shared_cache__WEBPACK_IMPORTED_MODULE_2__["Cache"].get(_account_services_level_service__WEBPACK_IMPORTED_MODULE_6__["LevelService"].LEVEL_PREFIX);
     };
     StudentAffairReport3Component = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -13934,8 +13940,8 @@ var StudentAffairReport3Component = /** @class */ (function () {
             template: __webpack_require__(/*! ./student-affair-report3.component.html */ "./src/app/affairs/report/student-affair-report3/student-affair-report3.component.html"),
             styles: [__webpack_require__(/*! ./student-affair-report3.component.scss */ "./src/app/affairs/report/student-affair-report3/student-affair-report3.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_6__["GlobalService"],
-            _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_7__["ApplicationSettingService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_shared_services_global_service__WEBPACK_IMPORTED_MODULE_4__["GlobalService"],
+            _adminision_services_application_setting_service__WEBPACK_IMPORTED_MODULE_5__["ApplicationSettingService"]])
     ], StudentAffairReport3Component);
     return StudentAffairReport3Component;
 }());
@@ -20603,7 +20609,7 @@ var environment = {
     backEndPublicUrl: 'http://localhost:4000/',
     googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
     frontEndPublicUrl: 'http://127.0.0.1:4200/',
-    business_name: 'المعهد العالي للعلوم الإدارية ببني سويف',
+    business_name: 'المهعد العالى لادارة HIM',
 };
 
 

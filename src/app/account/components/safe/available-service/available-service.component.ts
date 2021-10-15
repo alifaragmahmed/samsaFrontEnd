@@ -11,8 +11,8 @@ export class AvailableServiceComponent implements OnInit {
 
   public doc: any = AppModule.doc;
   public total = 0;
-  @Input() services: any;
-  @Input() safeObject: any;
+  @Input() services: any = [];
+  @Input() safeObject: any = {};
   $: any = $;
 
   @Input() selectedServices = new HashTable<any, any>();
@@ -48,6 +48,9 @@ export class AvailableServiceComponent implements OnInit {
   }
 
   setServicePayment() {
+    if (!this.services)
+      return;
+
     const arr = [];
     const ids = this.selectedServices.getKeys();
 
@@ -77,11 +80,12 @@ export class AvailableServiceComponent implements OnInit {
     if (ids.length > 0) {
       this.safeObject.services = arr;
       this.safeObject.payment_type = 'service';
-      this.safeObject.paid_value = this.total;
+      if (this.total > 0)
+        this.safeObject.paid_value = this.total;
     } else {
       this.safeObject.services = [];
       this.safeObject.payment_type = null;
-      this.safeObject.paid_value = 0;
+      //this.safeObject.paid_value = 0;
     }
   }
 

@@ -19,6 +19,7 @@
                                 <div class="form-group">
                                     <label>{{ "level" | trans }}</label>
                                     <select class="form-control" [(ngModel)]="filter.level_id">
+                                      <option value="">{{ "all" | trans }}</option>
                                   <option *ngFor="let item of levels"  value="{{ item.id }}">{{ item.name }}</option>
                                 </select>
                                 </div>
@@ -28,6 +29,7 @@
                                 <div class="form-group">
                                     <label>{{ "division" | trans }}</label>
                                     <select class="form-control" [(ngModel)]="filter.division_id">
+                                      <option value="">{{ "all" | trans }}</option>
                                   <option *ngFor="let item of applicationService.DIVISIONS" value="{{ item.id }}">{{ item.name }}</option>
                                 </select>
                                 </div>
@@ -37,6 +39,7 @@
                                 <div class="form-group">
                                     <label>{{ "academic_year" | trans }}</label>
                                     <select class="form-control" [(ngModel)]="filter.academic_year_id">
+                                      <option value="">{{ "all" | trans }}</option>
                                 <option *ngFor="let item of applicationService.ACADEMIC_YEARS"  value="{{ item.id }}">{{ item.name }}</option>
                               </select>
                                 </div>
@@ -45,6 +48,10 @@
                             <div class="col-lg-3 col-md-3">
                                 <button class="btn btn-default w3-round" (click)="load()">{{ "search" | trans }}</button>
                                 <button class="btn btn-default w3-round" (click)="printContent()">{{ "print" | trans }}</button>
+
+                                <span class="w3-xlarge w3-text-green" id="count">
+
+                                </span>
                             </div>
 
 

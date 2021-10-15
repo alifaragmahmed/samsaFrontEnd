@@ -14,6 +14,5 @@ export const environment = {
   backEndPublicUrl: 'http://localhost:4000/',
   googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
   frontEndPublicUrl: 'http://127.0.0.1:4200/',
-  business_name: 'المعهد العالي للعلوم الإدارية ببني سويف',
-
+  business_name: 'المهعد العالى لادارة HIM',
 };
