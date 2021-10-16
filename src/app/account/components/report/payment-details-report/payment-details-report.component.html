@@ -175,9 +175,9 @@
                                 <div class="custom-panel-body filter-side">
                                     <ul class="w3-ul">
                                         <li>
-                                            <mat-slide-toggle (change)="toggleServiceType('wz');loadPayments()" [checked]="true">{{ "wz" | trans }}</mat-slide-toggle>
+                                            <mat-slide-toggle #wzel (change)="toggleServiceType(wzel, 'wz');loadPayments()" [checked]="true">{{ "wz" | trans }}</mat-slide-toggle>
 
-                                            <mat-slide-toggle (change)="toggleServiceType('in');loadPayments()" [checked]="true">{{ "in" | trans }}</mat-slide-toggle>
+                                            <mat-slide-toggle #inel (change)="toggleServiceType(inel, 'in');loadPayments()" [checked]="true">{{ "in" | trans }}</mat-slide-toggle>
                                         </li>
 
                                         <li *ngFor="let item of services index as i" class="w3-display-container">

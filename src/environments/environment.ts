@@ -14,5 +14,5 @@ export const environment = {
   backEndPublicUrl: 'http://localhost:4000/',
   googleApiKey: 'AIzaSyAtCTUfmq6JOFrE9Ib_HPEPFhUE9VdwcEs',
   frontEndPublicUrl: 'http://127.0.0.1:4200/',
-  business_name: 'المهعد العالى لادارة HIM',
+  business_name: 'المهعد العالى  للعلوم الادارية',
 };

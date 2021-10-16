@@ -214,6 +214,27 @@ export class PaymentDetailsReportComponent implements OnInit {
     this.studentSearchDialogShow = false;
   }
 
+  toggleServiceType(element: any, type) {
+    if (element.checked) {
+      //this.searchData.service_type = type;
+      //this.selectedServices = new HashTable();
+      this.services.forEach(element => {
+        if (element.type == type) {
+          this.selectedServices.put(element.id, element.id);
+        }
+      });
+    } else {
+      //this.searchData.service_type = type;
+      //this.selectedServices = new HashTable();
+      this.services.forEach(element => {
+        if (element.type == type) {
+          this.selectedServices.remove(element.id);
+        }
+      });
+    }
+  }
+
+  /*
   toggleServiceType(type) {
     if (this.searchData.service_type == type) {
       this.searchData.service_type= '';
@@ -229,6 +250,7 @@ export class PaymentDetailsReportComponent implements OnInit {
       });
     }
   }
+  */
 
   ngOnInit() {
     this.loadSelectedType();
