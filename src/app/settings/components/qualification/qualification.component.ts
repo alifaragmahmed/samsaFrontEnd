@@ -15,6 +15,7 @@ export class QualificationComponent extends SettingTemplate implements OnInit {
   qualificationType = null;
   academicYears: any = [];
   levels: any = [];
+  filter: any = {};
 
 
   constructor(public settingService: SettingService,
@@ -32,11 +33,22 @@ export class QualificationComponent extends SettingTemplate implements OnInit {
     this.qualificationType.requiredFields = ['name', 'level_id', 'academic_year_id', 'qualification_id', 'grade'];
     this.qualificationType.get();
 
+    //this.qualificationType;
+
+  }
+
+  searchQualificationType() {
+    this.qualificationType.filter = this.filter;
+    this.qualificationType.get();
   }
 
   ngOnInit() {
     this.levels = Cache.get(LevelService.LEVEL_PREFIX);
     this.academicYears = ApplicationSettingService.ACADEMIC_YEARS;
+  }
+
+  action(res) {
+    this.qualificationType.get();
   }
 
 }

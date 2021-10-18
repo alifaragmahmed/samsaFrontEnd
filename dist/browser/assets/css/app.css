@@ -204,3 +204,9 @@ table, tr {
 .modal.fade .modal-dialog {
   transform: none!important;
 }
+
+
+* {
+  font-size: 15px;
+  font-weight: bold;
+}

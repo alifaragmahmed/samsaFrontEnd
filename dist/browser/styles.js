@@ -11,6 +11,17 @@ module.exports = [[module.i, ".mat-badge-content{font-weight:600;font-size:12px;
 
 /***/ }),
 
+/***/ "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./src/styles.scss":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src??embedded!./node_modules/sass-loader/lib/loader.js??ref--14-3!./src/styles.scss ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = [[module.i, "input::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  /* display: none; <- Crashes Chrome on hover */\n  -webkit-appearance: none;\n  margin: 0;\n  /* <-- Apparently some margin are still there even though it's hidden */ }\n\ninput[type=number] {\n  -moz-appearance: textfield;\n  /* Firefox */ }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9FOlxcc2Ftc2FGcm9udEVuZC9zcmNcXHN0eWxlcy5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVFOztFQUVJLDhDQUFBO0VBQ0Esd0JBQXdCO0VBQ3hCLFNBQVM7RUFBRSx1RUFBQSxFQUF3RTs7QUFHdkY7RUFDSSwwQkFBeUI7RUFBRSxZQUFBLEVBQWEiLCJmaWxlIjoic3JjL3N0eWxlcy5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcblxyXG4gIGlucHV0Ojotd2Via2l0LW91dGVyLXNwaW4tYnV0dG9uLFxyXG4gIGlucHV0Ojotd2Via2l0LWlubmVyLXNwaW4tYnV0dG9uIHtcclxuICAgICAgLyogZGlzcGxheTogbm9uZTsgPC0gQ3Jhc2hlcyBDaHJvbWUgb24gaG92ZXIgKi9cclxuICAgICAgLXdlYmtpdC1hcHBlYXJhbmNlOiBub25lO1xyXG4gICAgICBtYXJnaW46IDA7IC8qIDwtLSBBcHBhcmVudGx5IHNvbWUgbWFyZ2luIGFyZSBzdGlsbCB0aGVyZSBldmVuIHRob3VnaCBpdCdzIGhpZGRlbiAqL1xyXG4gIH1cclxuXHJcbiAgaW5wdXRbdHlwZT1udW1iZXJdIHtcclxuICAgICAgLW1vei1hcHBlYXJhbmNlOnRleHRmaWVsZDsgLyogRmlyZWZveCAqL1xyXG4gIH1cclxuIl19 */", '', '']]
+
+/***/ }),
+
 /***/ "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css":
 /*!************************************************************************!*\
   !*** ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ***!
@@ -550,14 +561,45 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ 3:
-/*!******************************************************************************!*\
-  !*** multi ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ***!
-  \******************************************************************************/
+/***/ "./src/styles.scss":
+/*!*************************!*\
+  !*** ./src/styles.scss ***!
+  \*************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\myProject\samsaFrontEnd\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
+
+var content = __webpack_require__(/*! !../node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!../node_modules/postcss-loader/src??embedded!../node_modules/sass-loader/lib/loader.js??ref--14-3!./styles.scss */ "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/plugins/raw-css-loader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./src/styles.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ 3:
+/*!************************************************************************************************!*\
+  !*** multi ./src/styles.scss ./node_modules/@angular/material/prebuilt-themes/indigo-pink.css ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! E:\samsaFrontEnd\src\styles.scss */"./src/styles.scss");
+module.exports = __webpack_require__(/*! E:\samsaFrontEnd\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */"./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
 
 
 /***/ })

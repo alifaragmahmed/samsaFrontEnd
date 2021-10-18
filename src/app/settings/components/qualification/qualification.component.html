@@ -20,19 +20,23 @@
                 <th>{{ "name" | trans }}</th>
                 <th>{{ "grade" | trans }}</th>
                 <th>{{ "is_azhar" | trans }}</th>
+                <th>{{ "percent" | trans }}</th>
                 <th></th>
               </thead>
               <tbody>
                 <tr *ngFor="let item of data index as i" >
                   <td>{{ i + 1 }}</td>
                   <td>
-                    <input type="text" class="form-control input-sm" [(ngModel)]="item.name" >
+                    <input type="text" style="width: 150px" class="form-control input-sm" [(ngModel)]="item.name" >
                   </td>
                   <td>
-                    <input type="number" class="form-control input-sm" [(ngModel)]="item.grade" >
+                    <input type="number" style="width: 70px" class="form-control input-sm" [(ngModel)]="item.grade" >
                   </td>
                   <td>
                     <input type="checkbox" class="" [(ngModel)]="item.is_azhar" >
+                  </td>
+                  <td>
+                    <input type="number" style="width: 70px" class="form-control input-sm" [(ngModel)]="item.percent" >
                   </td>
                   <td>
                    <div style="width: 80px" >
@@ -70,6 +74,33 @@
           </div>
           <div class="custom-panel-body table-responsive w3-padding w3-center  "
           style="height: 400px;" >
+            <div class="row">
+              <div class="col-sm-4">
+                <label for="">{{ "search" | trans }}</label>
+                <input type="text" class="w3-input w3-block"
+                  [(ngModel)]="filter.search"
+                  (change)="searchQualificationType()"
+                  placeholder="{{ 'search' | trans }}" >
+              </div>
+
+              <div class="col-sm-4">
+                <label for="">{{ "qualification" | trans }}</label>
+                <select [(ngModel)]="filter.qualification_id"
+                (change)="searchQualificationType()" class="form-control">
+                  <option value="">{{ "all" | trans }}</option>
+                  <option  *ngFor="let item of data" value="{{ item.id }}">{{ item.name }}</option>
+                </select>
+              </div>
+
+              <div class="col-sm-4">
+                <label for="">{{ "academic_year" | trans }}</label>
+                <select [(ngModel)]="filter.academic_year_id"
+                (change)="searchQualificationType()" class="form-control">
+                  <option value="">{{ "all" | trans }}</option>
+                  <option  *ngFor="let item of academicYears" value="{{ item.id }}">{{ item.name }}</option>
+                </select>
+              </div>
+            </div>
             <table class=" table-bordered" >
               <thead>
                 <th>#</th>
@@ -79,6 +110,7 @@
                 <th>{{ "level" | trans }}</th>
                 <th>{{ "grade" | trans }}</th>
                 <th>{{ "percent" | trans }}</th>
+                <th>{{ "total" | trans }}</th>
                 <th></th>
               </thead>
               <tbody>
@@ -86,15 +118,15 @@
                   <tr  >
                     <td>{{ i + 1 }}</td>
                     <td>
-                      <input type="text" class="form-control input-sm" [(ngModel)]="item.name" >
+                      <input style="width: 150px" type="text" class="form-control input-sm" [(ngModel)]="item.name" >
                     </td>
                     <td>
-                      <select class="form-control input-sm" [(ngModel)]="item.qualification_id"  >
+                      <select style="width: 150px" class="form-control input-sm" [(ngModel)]="item.qualification_id"  >
                         <option *ngFor="let q of data" value="{{ q.id }}">{{ q.name }}</option>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control input-sm" [(ngModel)]="item.academic_year_id"  >
+                      <select style="width: 100px" class="form-control input-sm" [(ngModel)]="item.academic_year_id"  >
                         <option *ngFor="let year of academicYears" value="{{ year.id }}">{{ year.name }}</option>
                       </select>
                     </td>
@@ -104,10 +136,13 @@
                       </select>
                     </td>
                     <td>
-                      <input type="number" class="form-control input-sm" [(ngModel)]="item.grade" >
+                      <input style="width: 70px" type="number" class="form-control input-sm" [(ngModel)]="item.grade" >
                     </td>
                     <td>
-                      <input type="number" class="form-control input-sm" [(ngModel)]="item.percent" >
+                      <input style="width: 50px" type="number" class="form-control input-sm" [(ngModel)]="item.percent" >
+                    </td>
+                    <td>
+                      <input style="width: 50px" type="number" class="form-control input-sm" [(ngModel)]="item.total" >
                     </td>
                     <td>
                     <div style="width: 90px" >

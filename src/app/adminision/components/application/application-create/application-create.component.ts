@@ -72,7 +72,7 @@ export class ApplicationCreateComponent implements OnInit {
     private applicationSettingService: ApplicationSettingService) {
     this.applicationSettingService.queueRequests();
     Request.fire(false, () => {
-      this.application = {};
+      this.setDefaultYear();
     });
     const id = this.route.snapshot.params['id'];
     if (id > 0) {
@@ -82,6 +82,7 @@ export class ApplicationCreateComponent implements OnInit {
     } else {
       !Auth.can('application_add')? exit() : '';
       //
+      this.setDefaultYear();
       this.application.registeration_date = new Date().toISOString().substring(0, 10);
     }
 
@@ -92,9 +93,21 @@ export class ApplicationCreateComponent implements OnInit {
     });
   }
 
+  setDefaultYear() {
+    this.application.academic_years_id = 8;
+    this.watchLevel();
+    /*ApplicationSettingService.ACADEMIC_YEARS.forEach(element => {
+      if (element.id == 8) {
+        this.application.
+      }
+    });*/
+  }
+
   loadApplication(id) {
     this.applicationService.load(id).subscribe((res: any) => {
       this.application = res;
+      //
+      this.application.qualification_date1 = this.application.qualification_date;
     });
   }
 
@@ -167,7 +180,7 @@ export class ApplicationCreateComponent implements OnInit {
   validate() {
     let valid = true;
 
-    this.required_field.forEach(element => {
+    this.required_field.forEach((element: any) => {
       if (!this.application[element])
         valid = false;
     });
@@ -178,11 +191,18 @@ export class ApplicationCreateComponent implements OnInit {
   calculatePercent() {
     var percent = 0;
     var total = 0;
-    this.applicationSettings.QUALIFICATION_TYPES.forEach(element => {
+    console.log('in percent func');
+    this.applicationSettings.QUALIFICATION_TYPES.forEach((element: any) => {
       if (this.application.qualification_types_id == element.id) {
-        total = element.grade;
+        total = element.total;
       }
     });
+    /*
+    this.applicationSettings.QUALIFICATIONS.forEach(element => {
+      if (this.application.qualification_id == element.id) {
+        total = element.grade;
+      }
+    });*/
     //
     percent = (this.application.grade / total) * 100;
     this.application.percent = percent.toFixed(2);
@@ -190,7 +210,7 @@ export class ApplicationCreateComponent implements OnInit {
 
   validateOnRegisterationStatusDocument() {
     this.requiredDocumentList = new HashTable();
-    this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS.forEach(element => {
+    this.applicationSettings.REGSITERATIN_STATUS_DOCUMENTS.forEach((element: any) => {
       if (element.registeration_status_id	 == this.application.registration_status_id) {
         this.requiredDocumentList.put(element.required_document_id, 1);
       }
@@ -212,7 +232,7 @@ export class ApplicationCreateComponent implements OnInit {
 
     try {
       this.differentYearRequired = 0;
-      this.applicationSettings.SETTINGS.forEach(element => {
+      this.applicationSettings.SETTINGS.forEach((element: any) => {
         if (element.id == 5)
           this.differentYearRequired = element.value;
       });
@@ -285,7 +305,8 @@ export class ApplicationCreateComponent implements OnInit {
       const data: any = res;
 
       if (data.status == 1)  {
-        Message.success(data.message);
+        Message.warning("", data.message, ()=> {});
+        //Message.success(data.message);
         this.reset();
       }
       else {
@@ -345,6 +366,7 @@ export class ApplicationCreateComponent implements OnInit {
 
   watchLevel() {
     this.calculateLevel();
+    this.calculatePercent();
     this.setLevel();
   }
 
@@ -352,15 +374,29 @@ export class ApplicationCreateComponent implements OnInit {
     const qualificationsTypes = this.applicationSettings.QUALIFICATION_TYPES;
     let levelId = null;
     let changes = false;
-    let requiredGrade = null;
-    qualificationsTypes.forEach(element => {
-      const condition: boolean =
-      element.id == this.application.qualification_types_id &&
-      element.grade <= this.application.grade;
+    let requiredGrade: any = null;
+    let requiredPercent: any = null;
+    qualificationsTypes.forEach((element: any) => {
+      var condition: boolean = false;
+
+
 
       if (element.id == this.application.qualification_types_id) {
         requiredGrade = element.grade;
+        if (element.percent) {
+          requiredPercent = element.percent;
+          this.application.requiredPercent = element.percent;
+        }
+
         this.qualificationGrade = requiredGrade;
+      }
+
+      if (requiredPercent) {
+        condition = element.id == this.application.qualification_types_id &&
+        element.percent <= this.application.grade;
+      } else {
+        condition = element.id == this.application.qualification_types_id &&
+        element.grade <= this.application.grade;
       }
 
       if (condition) {
@@ -369,18 +405,32 @@ export class ApplicationCreateComponent implements OnInit {
       }
     });
 
-    if (requiredGrade && this.application.registration_status_id != 4) {
+    if (requiredGrade && this.application.registration_status_id != 4 && !requiredPercent) {
       this.gradeError = Helper.trans('grade must be equal or bigger than ') + ' : ' + requiredGrade;
-      this.setCurrentError(this.gradeError);
-    } else {
+      console.log("requiredGrade < this.application.grade", requiredGrade , this.application.grade);
+      if (requiredGrade > this.application.grade) {
+        this.setCurrentError(this.gradeError);
+        Message.warning("", this.gradeError, () => {});
+      }
+    }/* else if (requiredPercent && this.application.registration_status_id != 4) {
+      this.gradeError = Helper.trans('percent must be equal or bigger than ') + ' : ' + requiredPercent + " %";
+
+      if (requiredPercent > this.application.grade) {
+        this.setCurrentError(this.gradeError);
+        Message.warning("", this.gradeError, () => {});
+      }
+    }*/ else {
       this.setCurrentError("");
     }
+
+    if (!this.validateOnPercent())
+      return;
 
     if (!changes) {
       levelId = null;
     } else {
       this.gradeError = null;
-      this.setCurrentError(this.gradeError);
+      this.setCurrentError("");
     }
 
     this.application.level_id = levelId;
@@ -388,9 +438,22 @@ export class ApplicationCreateComponent implements OnInit {
     this.changeIfMakasa();
   }
 
+  validateOnPercent() {
+      if (this.application.requiredPercent > this.application.grade && this.application.qualification_types_id) {
+
+        this.gradeError = Helper.trans('percent must be equal or bigger than ') + ' : ' + this.application.requiredPercent + " %";
+        this.setCurrentError(this.gradeError);
+        Message.warning("", this.gradeError, () => {});
+
+        return false;
+      }
+      else
+        return true;
+  }
+
   setLevel() {
     const levels = Cache.get(LevelService.LEVEL_PREFIX);
-    levels.forEach(element => {
+    levels.forEach((element: any) => {
       if (element.id  == this.application.level_id)
         this.application.level_name = element.name;
     });
@@ -400,7 +463,7 @@ export class ApplicationCreateComponent implements OnInit {
     let grade = 0;
     if (!qualificationId)
       qualificationId = this.application.qualification_id;
-    this.applicationSettings.QUALIFICATIONS.forEach(element => {
+    this.applicationSettings.QUALIFICATIONS.forEach((element: any) => {
       if (element.id == qualificationId)
         grade = element.grade;
     });

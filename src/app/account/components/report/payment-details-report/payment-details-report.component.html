@@ -212,30 +212,41 @@
                                             <th>{{ "level" | trans }}</th>
                                             <th>{{ "division" | trans }}</th>
                                             <th>{{ "value" | trans }}</th>
+                                            <th>{{ "wz_report" | trans }}</th>
                                             <th>{{ "type" | trans }}</th>
                                             <th>{{ "payment_name" | trans }}</th>
-                                            <th>{{ "wz_report" | trans }}</th>
                                             <th>{{ "total" | trans }}</th>
                                         </tr>
 
                                         <tr *ngFor="let item of payments.details index as i">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.date }}</td>
-                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.serial }}</td>
                                             <td>{{ item.code }}</td>
                                             <td>{{ item.name }}</td>
                                             <td>{{ item.level? item.level.name : item.level_id }}</td>
                                             <td>{{ item.division? item.division.name : item.division_id }}</td>
-                                            <td>{{ item.value | currency: ' جنيه ' }}</td>
+                                            <td>
+                                              <ng-container *ngIf="item.model_object">
+                                                <ng-container *ngIf="item.model_object.wz_value" >
+                                                  {{ item.value - item.model_object.wz_value }}
+                                                </ng-container>
+
+                                                <ng-container *ngIf="!item.model_object.wz_value" >
+                                                  {{ item.value }}
+                                                </ng-container>
+
+                                              </ng-container>
+                                            </td>
+                                            <td>
+                                              <ng-container *ngIf="item.model_type == 'academic_year_expense'">
+                                                  {{ item.model_object? item.model_object.wz_value : 0 }}
+                                              </ng-container>
+                                          </td>
                                             <td>{{ "payment_type_"+ item.model_type | trans }}</td>
                                             <td>{{ item.model_object? item.model_object.name : '' }}</td>
                                             <td>
-                                                <ng-container *ngIf="item.model_type == 'academic_year_expense'">
-                                                    {{ item.model_object? item.model_object.wz_value : 0 }}
-                                                </ng-container>
-                                            </td>
-                                            <td>
-                                                {{ item.total | currency: ' جنيه ' }}
+                                                {{ item.value | currency: ' جنيه ' }}
                                             </td>
                                         </tr>
                                     </table>
