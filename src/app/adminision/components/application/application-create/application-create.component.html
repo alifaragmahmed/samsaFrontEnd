@@ -277,7 +277,7 @@
                                                 <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.phone_1">
                                             </td>
                                         </tr>
-                                        =======
+
                                     </table>
                                 </div>
 
@@ -312,13 +312,11 @@
                           <option *ngFor="let item of applicationSettings.REGISTERATION_METHODS" value="{{ item.id }}">
                             {{ item.name }}</option>
                         </select>
-                                                <<<<<<< HEAD </td>
+                                            </td>
                                         </tr>
+
+
                                         <!--
-=======
-                      </td>
-                    </tr>
-                    <!--
 
                                         <tr>
                                             <th>{{ "set_number" | trans }}</th>
@@ -327,62 +325,62 @@
                                             </td>
                                         </tr>
                                         -->
-                                        <<<<<<< HEAD <tr>
+                                        <tr>
                                             <th>{{ "coordination_password" | trans }}</th>
                                             <td>
                                                 <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
                                             </td>
-                                            </tr>
-                                            <ng-container *ngIf="application.registration_status_id != 3">
+                                        </tr>
+                                        <ng-container *ngIf="application.registration_status_id != 3">
 
-                                                <tr>
-                                                    <th>{{ "acceptance_code" | trans }}</th>
-                                                    <td>
-                                                        <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>{{ "acceptance_date" | trans }}</th>
-                                                    <td>
-                                                        <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
-                                                    </td>
-                                                </tr>
-
-                                            </ng-container>
-                                            =======
                                             <tr>
-                                                <th>{{ "coordination_password" | trans }}</th>
+                                                <th>{{ "acceptance_code" | trans }}</th>
                                                 <td>
-                                                    <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
+                                                    <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
                                                 </td>
                                             </tr>
-                                            <ng-container *ngIf="application.registration_status_id != 3">
+                                            <tr>
+                                                <th>{{ "acceptance_date" | trans }}</th>
+                                                <td>
+                                                    <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
+                                                </td>
+                                            </tr>
 
+                                        </ng-container>
 
-                                                <tr>
-                                                    <th>{{ "acceptance_code" | trans }}</th>
-                                                    <td>
-                                                        <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>{{ "acceptance_date" | trans }}</th>
-                                                    <td>
-                                                        <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
-                                                    </td>
-                                                </tr>
+                                        <tr>
+                                            <th>{{ "coordination_password" | trans }}</th>
+                                            <td>
+                                                <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
+                                            </td>
+                                        </tr>
+                                        <ng-container *ngIf="application.registration_status_id != 3">
 
-                                            </ng-container>
 
                                             <tr>
-                                                <th>{{ "gender" | trans }}</th>
+                                                <th>{{ "acceptance_code" | trans }}</th>
                                                 <td>
-                                                    <select (change)="filterDataBaisedOnGender()" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.gender">
+                                                    <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>{{ "acceptance_date" | trans }}</th>
+                                                <td>
+                                                    <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
+                                                </td>
+                                            </tr>
+
+                                        </ng-container>
+
+                                        <tr>
+                                            <th>{{ "gender" | trans }}</th>
+                                            <td>
+                                                <select (change)="filterDataBaisedOnGender()" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.gender">
                           <option value="male">{{ "male" | trans }}</option>
                           <option value="female">{{ "female" | trans }}</option>
                         </select>
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
 
 
                                     </table>
