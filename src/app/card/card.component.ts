@@ -39,7 +39,7 @@ export class CardComponent implements OnInit {
     private cardService: CardService,
     private sanitizer: DomSanitizer) {
 
-      this.preCardSrc();
+      //this.preCardSrc();
     }
 
   ngOnInit() {

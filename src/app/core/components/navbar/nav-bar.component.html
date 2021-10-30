@@ -27,10 +27,27 @@
                         <li class="waves-effect waves-white" *ngIf="canAccessStudentAffair()">
                             <a routerLink="/affairs" class="dropdown-toggle" data-toggle="dropdown">{{ "student affairs" | trans }}</a>
                         </li>
+                        <!--
                         <li class="waves-effect waves-white" *ngIf="canAccessSafe() && !canAccessAccountSettings()">
                             <a routerLink="/account/safe" class="dropdown-toggle" data-toggle="dropdown">{{ "stores" | trans }}</a>
                         </li>
-                        <li class="waves-effect waves-white text-right" *ngIf="(canAccessSafe() && canAccessAccountSettings()) || canAccessAccountSettings()">
+                        -->
+                        <li
+                        class="waves-effect waves-white text-right"
+                        *ngIf="!canAccessAccountSettings() && canAccessSafe()">
+                            <div class="w3-dropdown-hover" style="background-color: transparent;">
+                                <a class="dropdown-toggle">
+                           {{ "stores" | trans }} <span class="caret"></span>
+                          </a>
+                                <div class="w3-dropdown-content w3-bar-block w3-border w3-text-black" style="position: fixed;">
+                                    <a *ngIf="canAccessSafe()" href="#" class="w3-bar-item w3-button w3-text-black" routerLink="/account/safe">{{ "get academic expenses" | trans }}</a>
+
+                                    <a permission="payment_detail_report" href="#" class="w3-bar-item w3-button w3-text-black" routerLink="/account/report/payment-details">{{ "students payments report" | trans }}</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="waves-effect waves-white text-right"
+                        *ngIf="(canAccessSafe() && canAccessAccountSettings()) || canAccessAccountSettings()">
                             <div class="w3-dropdown-hover" style="background-color: transparent;">
                                 <a class="dropdown-toggle">
                            {{ "account" | trans }} <span class="caret"></span>

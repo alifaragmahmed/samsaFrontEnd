@@ -116,6 +116,7 @@ export class StudentRegisterCourseComponent implements OnInit {
   }
 
   loadData() {
+    this.alertOneStudentStage(this.student);
     this.loadAvailableCourses();
     this.getMoreHours();
     this.loadRegisterCourses();
@@ -362,5 +363,12 @@ export class StudentRegisterCourseComponent implements OnInit {
       this.student = res;
       this.loadData();
     });
+  }
+
+  alertOneStudentStage(student: any) {
+    if (student.stage > 0) {
+      var message = Helper.trans('student in stage number') + " : " + student.stage;
+      Message.warning(message, student.name);
+    }
   }
 }

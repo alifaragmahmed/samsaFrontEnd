@@ -31,6 +31,7 @@ export class CreateCourseFormComponent implements OnInit, OnChanges {
   requiredFields = [
     'name',
     'code',
+    'stage',
     /*
     'year_work_degree',
     'practical_degree',

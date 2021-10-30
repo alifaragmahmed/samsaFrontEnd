@@ -19,6 +19,7 @@ export class CreateDegreeMapFormComponent implements OnInit {
     'percent_to',
     'key',
     'gpa',
+    'stage',
     'name'
   ];
 

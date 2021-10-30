@@ -1,73 +1,66 @@
 <div class="row">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="w3-white material-shadow safe-box">
-      <div class="safe-box-header w3-large" style="padding: 5px!important">
-        {{ "open_course_this_term" | trans }}
-      </div>
-      <div class="border-bottom-dashed"></div>
-      <br>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="w3-white material-shadow safe-box">
+            <div class="safe-box-header w3-large" style="padding: 5px!important">
+                {{ "open_course_this_term" | trans }}
+            </div>
+            <div class="border-bottom-dashed"></div>
+            <br>
 
-      <div class="safe-box-body ">
-        <div>
+            <div class="safe-box-body ">
+                <div>
 
-          <b class="w3-large">{{ "open_course_this_term" | trans }}</b>
-              <br>
-              <table class="table text-center">
-                <ng-container  *ngFor="let item of levels index as i">
-                  <tr class="w3-light-gray"  >
-                    <th>{{ i + 1 }}</th>
-                    <th colspan="5" >{{ item.name }}</th>
-                  </tr>
-                  <tr>
-                    <th>#</th>
-                    <th>{{ "code" | trans }}</th>
-                    <th>{{ "name" | trans }}</th>
-                    <th>{{ "credit_hour" | trans }}</th>
-                    <th>{{ "prerequsites" | trans }}</th>
-                    <th>{{ "book_price" | trans }}</th>
-                    <th></th>
-                  </tr>
+                    <b class="w3-large">{{ "open_course_this_term" | trans }}</b>
+                    <br>
+                    <table class="table text-center">
+                        <ng-container *ngFor="let item of levels index as i">
+                            <tr class="w3-light-gray">
+                                <th>{{ i + 1 }}</th>
+                                <th colspan="7">{{ item.name }}</th>
+                            </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ "code" | trans }}</th>
+                                <th>{{ "name" | trans }}</th>
+                                <th>{{ "credit_hour" | trans }}</th>
+                                <th>{{ "prerequsites" | trans }}</th>
+                                <th>{{ "book_price" | trans }}</th>
+                                <th>{{ "stage" | trans }}</th>
+                                <th></th>
+                            </tr>
 
-                  <tr *ngFor="let course of item.courses index as counter"
-                  (click)="course.selected = course.selected? false : true"
-                  class="w3-hover-light-gray" style="cursor: pointer"  >
-                    <td>{{ counter + 1 }}</td>
-                    <td>{{ course.code }}</td>
-                    <td>{{ course.name }}</td>
-                    <td>{{ course.credit_hour }}</td>
-                    <td>{{ course.prerequsites_names }}</td>
-                    <td>{{ course.book_price }}</td>
-                    <td>
-                      <mat-slide-toggle
-                      [(ngModel)]="course.selected"
-                      [checked]="course.selected"
-                         ></mat-slide-toggle>
-                    </td>
-                  </tr>
-                </ng-container>
-              </table>
-        </div>
+                            <tr *ngFor="let course of item.courses index as counter" (click)="course.selected = course.selected? false : true" class="w3-hover-light-gray" style="cursor: pointer">
+                                <td>{{ counter + 1 }}</td>
+                                <td>{{ course.code }}</td>
+                                <td>{{ course.name }}</td>
+                                <td>{{ course.credit_hour }}</td>
+                                <td>{{ course.prerequsites_names }}</td>
+                                <td>{{ course.book_price }}</td>
+                                <td>{{ course.stage }}</td>
+                                <td>
+                                    <mat-slide-toggle [(ngModel)]="course.selected" [checked]="course.selected"></mat-slide-toggle>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </table>
+                </div>
 
 
-          <!-- setting panel -->
-          <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
-           <div class="custom-panel-body table-responsive"  >
-            <button
-            mat-raised-button color="primary"
-            (click)="updateOpenCourses()"
-            [disabled]="isSubmitted"
-            style="margin: 5px" >
+                <!-- setting panel -->
+                <div class="custom-panel w3-display-container w3-round application-panel student-info-panel">
+                    <div class="custom-panel-body table-responsive">
+                        <button mat-raised-button color="primary" (click)="updateOpenCourses()" [disabled]="isSubmitted" style="margin: 5px">
             <i *ngIf="isSubmitted"  class="fa fa-spin fa-spinner"></i>
             <span *ngIf="!isSubmitted" >{{ "save changes" | trans}} </span>
           </button>
-           </div>
-         </div>
-         <br>
+                    </div>
+                </div>
+                <br>
 
 
-      </div>
+            </div>
 
 
+        </div>
     </div>
-  </div>
 </div>

@@ -88,7 +88,7 @@ export class NavBarComponent implements OnInit {
   }
 
   canAccessAccountSettings() {
-    let permissions = ["service_read","service_edit","service_add","service_remove","safe_read","safe_edit","safe_remove","safe_add","academic_expense_read","academic_expense_edit","academic_expense_add","discount_type_read","discount_type_add","discount_type_remove","installment_report","report_creator_report","student_balance_report","student_discount_report","student_detail_report","payment_detail_report","account_setting","discount_type_edit","academic_expense_remove"];
+    let permissions = ["service_read","service_edit","service_add","service_remove","safe_read","safe_edit","safe_remove","safe_add","academic_expense_read","academic_expense_edit","academic_expense_add","discount_type_read","discount_type_add","discount_type_remove","installment_report","report_creator_report","student_balance_report","student_discount_report","student_detail_report","account_setting","discount_type_edit","academic_expense_remove"];
     return Auth.canOr(permissions);
   }
 

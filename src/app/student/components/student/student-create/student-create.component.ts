@@ -68,6 +68,7 @@ export class StudentCreateComponent implements OnInit {
       this.isUpdate = true;
     } else {
       !Auth.can('student_add')? exit() : '';
+      this.application.stage = 1;
     }
 
     this.route.queryParams.subscribe((params) => {

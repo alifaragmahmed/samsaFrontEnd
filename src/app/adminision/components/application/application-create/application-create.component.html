@@ -147,13 +147,19 @@
                                         <tr>
                                             <th>{{ "qualification_date1" | trans }} *</th>
                                             <td>
-                                                <input type="number" class="custom-input form-control input-sm w3-input  input-sm" [ngClass]="{'border-bottom-dashed': application.qualification_date1>0, 'border-bottom-red': !application.qualification_date1}" [(ngModel)]="application.qualification_date1">
+                                                <input type="number" autocomplete="none" class="custom-input form-control input-sm w3-input  input-sm" [ngClass]="{'border-bottom-dashed': application.qualification_date1>0, 'border-bottom-red': !application.qualification_date1}" [(ngModel)]="application.qualification_date1">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>{{ "grade" | trans }} *</th>
+                                            <th>
+                                                <ng-container>
+                                                    {{ "grade" | trans }}
+                                                </ng-container>
+
+                                                *
+                                            </th>
                                             <td>
-                                                <input (change)="watchLevel();calculatePercent()" type="number" [readOnly]="isAzhar" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{'border-bottom-dashed': application.grade, 'border-bottom-red': !application.grade}" [(ngModel)]="application.grade">
+                                                <input (change)="watchLevel();calculatePercent()" type="text" [readOnly]="isAzhar" class="custom-input form-control input-sm w3-input input-sm" [ngClass]="{'border-bottom-dashed': application.grade, 'border-bottom-red': !application.grade}" [(ngModel)]="application.grade">
                                                 <p *ngIf="gradeError" class="w3-text-red w3-tiny">
                                                     {{ gradeError }}
                                                 </p>
@@ -229,6 +235,35 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <table class="table w3-block w3-block">
                                         <tr>
+                                            <th>{{ "division" | trans }} *</th>
+                                            <td>
+                                                <select class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.division_id">
+                          <ng-container *ngFor="let item of applicationSettings.DIVISIONS">
+                            <option  value="{{ item.id }}">{{ item.name }}</option>
+                          </ng-container>
+                        </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "department" | trans }} *</th>
+                                            <td>
+                                                <select class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.department_id">
+                        <ng-container *ngFor="let item of applicationSettings.DEPARTMENTS">
+                          <option *ngIf="item.division_id == application.division_id && item.level_id == application.level_id" value="{{ item.id }}" >{{ item.name }}</option>
+                        </ng-container>
+                        </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ "stage" | trans }} *</td>
+                                            <td>
+                                                <select [(ngModel)]="application.stage" class="form-control">
+                                                  <option value="1">1</option>
+                                                  <option value="2">2</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>{{ "address" | trans }}</th>
                                             <td>
                                                 <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.address">
@@ -258,16 +293,18 @@
                         </select>
                                             </td>
                                         </tr>
+                                        <!--
                                         <tr>
                                             <th>{{ "set_number" | trans }}</th>
                                             <td>
                                                 <input type="number" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.set_number">
                                             </td>
                                         </tr>
+                                        -->
                                         <tr>
                                             <th>{{ "coordination_password" | trans }}</th>
                                             <td>
-                                                <input type="password" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
+                                                <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
                                             </td>
                                         </tr>
                                         <ng-container *ngIf="application.registration_status_id != 3">
