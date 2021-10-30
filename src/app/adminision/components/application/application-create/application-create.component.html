@@ -229,6 +229,7 @@
                         </td>
                       </tr>
                       -->
+
                                     </table>
                                 </div>
 
@@ -276,6 +277,26 @@
                                                 <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.phone_1">
                                             </td>
                                         </tr>
+                                        =======
+                                    </table>
+                                </div>
+
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <table class="table w3-block w3-block">
+                                        <tr>
+                                            <th>{{ "address" | trans }}</th>
+                                            <td>
+                                                <input class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.address">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>{{ "phone_1" | trans }}</th>
+                                            <td>
+                                                <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.phone_1">
+                                            </td>
+                                        </tr>
 
                                         <!-- -->
                                         <tr>
@@ -291,9 +312,14 @@
                           <option *ngFor="let item of applicationSettings.REGISTERATION_METHODS" value="{{ item.id }}">
                             {{ item.name }}</option>
                         </select>
-                                            </td>
+                                                <<<<<<< HEAD </td>
                                         </tr>
                                         <!--
+=======
+                      </td>
+                    </tr>
+                    <!--
+
                                         <tr>
                                             <th>{{ "set_number" | trans }}</th>
                                             <td>
@@ -301,38 +327,62 @@
                                             </td>
                                         </tr>
                                         -->
-                                        <tr>
+                                        <<<<<<< HEAD <tr>
                                             <th>{{ "coordination_password" | trans }}</th>
                                             <td>
                                                 <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
                                             </td>
-                                        </tr>
-                                        <ng-container *ngIf="application.registration_status_id != 3">
+                                            </tr>
+                                            <ng-container *ngIf="application.registration_status_id != 3">
 
+                                                <tr>
+                                                    <th>{{ "acceptance_code" | trans }}</th>
+                                                    <td>
+                                                        <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>{{ "acceptance_date" | trans }}</th>
+                                                    <td>
+                                                        <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
+                                                    </td>
+                                                </tr>
+
+                                            </ng-container>
+                                            =======
                                             <tr>
-                                                <th>{{ "acceptance_code" | trans }}</th>
+                                                <th>{{ "coordination_password" | trans }}</th>
                                                 <td>
-                                                    <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
+                                                    <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.password">
                                                 </td>
                                             </tr>
+                                            <ng-container *ngIf="application.registration_status_id != 3">
+
+
+                                                <tr>
+                                                    <th>{{ "acceptance_code" | trans }}</th>
+                                                    <td>
+                                                        <input type="text" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_code">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>{{ "acceptance_date" | trans }}</th>
+                                                    <td>
+                                                        <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
+                                                    </td>
+                                                </tr>
+
+                                            </ng-container>
+
                                             <tr>
-                                                <th>{{ "acceptance_date" | trans }}</th>
+                                                <th>{{ "gender" | trans }}</th>
                                                 <td>
-                                                    <input type="date" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.acceptance_date">
-                                                </td>
-                                            </tr>
-
-                                        </ng-container>
-
-                                        <tr>
-                                            <th>{{ "gender" | trans }}</th>
-                                            <td>
-                                                <select (change)="filterDataBaisedOnGender()" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.gender">
+                                                    <select (change)="filterDataBaisedOnGender()" class="custom-input form-control input-sm w3-input border-bottom-dashed input-sm" [(ngModel)]="application.gender">
                           <option value="male">{{ "male" | trans }}</option>
                           <option value="female">{{ "female" | trans }}</option>
                         </select>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
 
 
                                     </table>
